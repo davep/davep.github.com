@@ -12,4 +12,3 @@ keyboard about while not doing it in the usual places.
   As such I want to find a better way of doing this that's as dynamic as
   possible *and* keeps things hosted in the repo.
 - Sort out an "overview" view of posts (by month, or something)
-- Add some sort of next/prev navigation to posts
