@@ -1,13 +1,15 @@
 ---
 layout: page
-title: Hello World!
-tagline: Supporting tagline
 ---
 {% include JB/setup %}
 
-<ul class="posts">
+<div class="index">
   {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+    <div class="post">
+      <h2 class="title"><a href="{{BASE_PATH}}{{post.url}}">{{post.title}}</a></h2>
+      <h3 class="date">{{post.date}}</h3>
+      <div class="content">{{post.content}}</div>
+    </div>
   {% endfor %}
-</ul>
+</div>
 
