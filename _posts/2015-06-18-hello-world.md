@@ -51,7 +51,7 @@ seen elsewhere it's easy enough to make use of something like
 One other thing I might look at doing is putting this behind my own domain.
 For the moment it's only available via github.io and I guess it might look
 nicer if it was actually available via a URL that looks like the name I've
-attached to the blog.
+attached to the blog. **Update:** This has now happened.
 
 Anyway, that's it for now. Time to push this up and think some more about
 where it'll go from here.
