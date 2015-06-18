@@ -46,7 +46,7 @@ actually liking the clean look it delivers out of the box).
 One thing that's obviously missing right now is a facility for commenting.
 That's something I'll look into should I feel it's necessary -- from what I've
 seen elsewhere it's easy enough to make use of something like
-[disqus](https://disqus.com/).
+[disqus](https://disqus.com/). **Update:** This has now happened.
 
 One other thing I might look at doing is putting this behind my own domain.
 For the moment it's only available via github.io and I guess it might look
