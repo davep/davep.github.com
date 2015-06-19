@@ -22,7 +22,7 @@ and on ChromeOS this is simple enough, all I need to do is find the "app" in
 the Chrome app launcher, pull up the content menu, and tell it to open as a
 window.
 
-![Chrome app context menu on Windows 7](/attachments/GmailContextWin.png)
+![Chrome app context menu on Windows 7](/attachments/2015/06/18/GmailContextWin.png)
 
 Nice and simple[^1].
 
@@ -32,7 +32,7 @@ right?
 
 Nope.
 
-![Chrome app context menu on OS X](/attachments/GmailContextMac.png)
+![Chrome app context menu on OS X](/attachments/2015/06/18/GmailContextMac.png)
 
 There's no option at all to open as a window!
 
