@@ -25,9 +25,8 @@ horrible I'm afraid) photo:
 ![Photo of what the screen actually looked like](/attachments/2015/06/21/IMG_20150621_183146.jpg)
 
 It's unclear to me if this is something wrong with the Chromebook itself, or
-in this release of the OS. I believe (but can't check at the time of writing
-this as I'm not near it) that it's running the beta channel so, of course, this
-sort of thing is to be expected.
+in this release of the OS. It is running the beta channel -- currently on
+44.0.2403.54 -- so, of course, this sort of thing is to be expected.
 
 If it is the case that that Chromebook is on its way out -- either in terms of
 that actual machine dying or support for it at the OS level going away -- it
