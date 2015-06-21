@@ -39,3 +39,20 @@ break the bank.
 
 But I'd be a little sad to see it go, I've done some pretty significant things
 on it and it is, in some ways, a little bit of computer history.
+
+---
+
+_Edit to add:_ I've now moved it back over to the stable channel, with a
+powerwash on the way (of course) and this seems to have done the trick. I'm
+no longer seeing any problems. The switch to stable even had the problem
+showing. Here's a video of stable downloading:
+
+<center>
+<iframe width="480" height="270" src="https://www.youtube.com/embed/dKURvastEAA" frameborder="0" allowfullscreen></iframe>
+</center>
+
+That's pretty much the sort of thing I was seeing all over the place, and it
+appeared to be getting worse as time went on.
+
+Hopefully this was a one-off and the problem isn't simply up in the beta
+cannel and waiting to head down to stable.
