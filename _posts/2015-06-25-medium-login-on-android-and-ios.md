@@ -49,3 +49,8 @@ to create an account based off your email address, from what I can see).
 
 I'm left trying to decide if I missed a step here, if this is clever, or if this
 is just plain creepy (and who's responsible for having made the connection).
+
+*Edit to add:* [Cara](https://twitter.com/caramev) from Medium was kind enough
+to notice my tweet pointing to this post and [let me know the how and why of
+the above](https://twitter.com/caramev/status/614098764450496512). Turns out
+it's what Rich suggested in the comments.
