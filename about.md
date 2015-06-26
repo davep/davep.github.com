@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-After a long time away from it, and mostly with an emphasis on natting about
+After a long time away from it, and mostly with an emphasis on nattering about
 things on places like [Google+](https://plus.google.com/+DavePearson/posts),
 I'm finally having a crack at a return to blogging.
 
