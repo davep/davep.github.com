@@ -10,7 +10,7 @@ date: 2015-06-27 18:41:57+0100
 My history with computers starts with a Sinclair ZX81 in the early 1980s,
 followed shortly by a Vic20, then on to the BBC B and fairly quickly on to
 very early IBM PC compatible machines. In the early 1990s I added OS/2 (during
-the introduction of Warp) and no too long after that GNU/Linux. Along the way
+the introduction of Warp) and not too long after that GNU/Linux. Along the way
 I've also used the odd Unix here and there as well as CP/M, RSTS and VMS.
 
 Aside from an inherited Mac whose model name escapes me, and whose operating
