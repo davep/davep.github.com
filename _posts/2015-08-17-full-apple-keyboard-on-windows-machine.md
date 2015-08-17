@@ -7,7 +7,7 @@ published: True
 date: 2015-08-17 11:31:15+0100
 ---
 
-I seem to have somehow mess up my left hand. I'm not sure what the problem is
+I seem to have somehow messed up my left hand. I'm not sure what the problem is
 yet, I'm speaking to the doctor and have had an x-ray to check out one possible
 cause, but the simple fact is that my left hand has an issue. Sometimes the
 arm is painful, pretty much all the time a couple of fingers are near-numb.
