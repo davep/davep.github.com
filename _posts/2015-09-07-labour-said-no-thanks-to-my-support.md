@@ -92,10 +92,10 @@ evening (2015-09-03) or early Friday morning (2015-09-04).
 
 A little later on Friday this happened:
 
-![A follow from someone involved in Larbour](/attachments/2015/09/07/Screenshot_2015-09-07-11-07-16.png)
+![A follow from someone involved in Labour](/attachments/2015/09/07/Screenshot_2015-09-07-11-07-16.png)
 
 I've no idea who [@polycarponkundi](https://twitter.com/polycarponkundi) is
-but it seemed clear from their timeline that they are a Larbour supporter or
+but it seemed clear from their timeline that they are a Labour supporter or
 even member and that they are a strong supporter of the Liz Kendall leadership
 campaign.
 
