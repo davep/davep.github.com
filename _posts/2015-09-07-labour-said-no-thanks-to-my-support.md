@@ -61,7 +61,7 @@ I then waited, and waited, and waited, and then on Saturday this happened:
 
 ![I got purged](/attachments/2015/09/07/IGotPurged.png)
 
-In other words.... I got purged.
+In other words.... I got [purged](https://twitter.com/hashtag/labourpurge).
 
 And a couple of events before this have me wondering and a little suspicious
 of how this went down.
