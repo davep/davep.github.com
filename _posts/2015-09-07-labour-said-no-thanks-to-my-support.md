@@ -111,6 +111,10 @@ Then, the following day, I get the letter telling me to sod off. Suddenly the
 coincidence seems less of a coincidence. I go and check the profile and notice
 that they've even unfollowed me, just a couple of days after the follow.
 
+![That account no longer follows me](/attachments/2015/09/07/Screen Shot 2015-09-07 at 16.21.45.png)
+
+Note the lack of "follows @davepdotorg" in the profile?
+
 Very odd.
 
 Right now I'm not drawing any firm conclusions about what happened, and I have
