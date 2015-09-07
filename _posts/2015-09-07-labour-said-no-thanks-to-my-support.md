@@ -28,12 +28,14 @@ safe seats.
 
 But, for many reasons, I've always felt an important connection to Labour.
 
-Possibly one of the best moments, in political terms, was that night in 1997,
+Possibly one of the best moments, in political terms, was that night in
+[1997](https://en.wikipedia.org/wiki/United_Kingdom_general_election,_1997),
 as I drove back home, down the M3 from London, listening to the radio, hearing
 Tory after Tory fall and realising that, for the first time in my (politically
 concious) life, I was going to enjoy the benefits, we were all going to enjoy
 the benefits, of a Labour government. This was such a sweet victory after
-having really felt the defeat of 1992.
+having really felt the defeat of
+[1992](https://en.wikipedia.org/wiki/United_Kingdom_general_election,_1992).
 
 The Blair horror show that followed was.... horrific. I don't think I've ever
 felt as let down by an organisation as I did by that Labour government.
