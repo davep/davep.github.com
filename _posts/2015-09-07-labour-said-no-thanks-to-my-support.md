@@ -41,7 +41,7 @@ The Blair horror show that followed was.... horrific. I don't think I've ever
 felt as let down by an organisation as I did by that Labour government.
 
 Fast forward to this year and I was really hopeful that, perhaps, Labour would
-be back in government and, this time, lessons would have been learnt. I wasn't
+be back in government, and this time, lessons would have been learnt. I wasn't
 as enthusiastic as before but I was cautiously optimistic.
 
 Sadly, it wasn't to be.
