@@ -90,9 +90,13 @@ by a couple of emails from a couple of the leadership campaign groups, I
 filled in the form to ask them to hurry it up. I think it was late on Thursday
 evening (2015-09-03) or early Friday morning (2015-09-04).
 
-A little later on Friday this happened:
+A little later on Friday this happened (Anroid twitter):
 
 ![A follow from someone involved in Labour](/attachments/2015/09/07/Screenshot_2015-09-07-11-07-16.png)
+
+Same follow as seen from Tweetdeck:
+
+![A follow from someone involved in Labour](/attachments/2015/09/07/Screen Shot 2015-09-07 at 16.17.06.png)
 
 I've no idea who [@polycarponkundi](https://twitter.com/polycarponkundi) is
 but it seemed clear from their timeline that they are a Labour supporter or
