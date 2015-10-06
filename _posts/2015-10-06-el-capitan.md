@@ -44,7 +44,7 @@ Some of the other improvements I've read about seem to involve things I'm
 never going to use: either improvements to Safari (Chrome all the way for
 me), the Mac Mail app (Gmail all the way for me, with Kiwi for Gmail
 being my client of choice on the iMac) or various iOS-oriented things which
-are of little use (while I down own an iOS device it's not one I use much).
+are of little use (while I do own an iOS device it's not one I use much).
 
 Overall the thing I'm taking away from this is that the upgrade was smooth,
 nothing was obviously broken or changed in a way that was confusing (unlike
