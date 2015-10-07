@@ -29,7 +29,8 @@ This face fits perfectly into that.
 
 ![Krona Sunlight face](/attachments/2015/10/07/Krona Sunlight.png)
 
-While it lacks the battery information, and second time display, that Pujie
+While it lacks the battery information (edit to add: it doesn't lack battery
+information, it's just an option that is off by default), and second time display, that Pujie
 Black has, it more than makes up for it with the rather fantastic display
 of weather and sunrise/set information -- especially how it displays temperature.
 
