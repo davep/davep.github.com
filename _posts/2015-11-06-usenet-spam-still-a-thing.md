@@ -31,3 +31,6 @@ even if I had the address in question wouldn't have been the one used.
 
 So, yeah, great way to impress me with a new product: make your first contact
 with me look exactly like some old Usenet spam.
+
+**Edit to add:** I've since had it confrimed by the sender of the email that
+my address was indeed pulled from [comp.lang.clipper](news:comp.lang.clipper).
