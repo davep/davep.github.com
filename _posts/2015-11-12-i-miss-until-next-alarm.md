@@ -32,7 +32,7 @@ keep that in and make it even more awesome, right? Right?!?
 
 Well fuck!
 
-Why? Just..... why?!? I actually prefer the new one it works. They've more or
+Why? Just..... why?!? I actually prefer how the new one works. They've more or
 less solved the problem of how it was more faff to deal with, they've solved
 the problem of having to cock about with the volume rocker to get at the
 settings and then set the settings. I like all that.
