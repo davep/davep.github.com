@@ -4,7 +4,7 @@ title: Voice search failing on Nexus 6
 categories: []
 tags: [ Google, Android, Nexus ]
 published: True
-date: 2015-11-11 16:07:25+0100
+date: 2015-11-11 16:07:25+0000
 ---
 
 It's been quite a while since I used voiced search on my Nexus 6. Ever since

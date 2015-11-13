@@ -4,7 +4,7 @@ title: Usenet spam, still a thing
 categories: []
 tags: [Clipper, Xbase, Spam]
 published: True
-date: 2015-11-06 13:28:17+0100
+date: 2015-11-06 13:28:17+0000
 ---
 
 This just turned up in email a little earlier:
