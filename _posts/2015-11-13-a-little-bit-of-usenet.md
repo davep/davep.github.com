@@ -4,7 +4,7 @@ title: A little bit of usenet
 categories: []
 tags: [ OSX, iMac, NNTP, usenet, Homebrew ]
 published: True
-date: 2015-11-13 15:45:19+0100
+date: 2015-11-13 15:45:19+0000
 ---
 
 Earlier on today I needed a copy of
