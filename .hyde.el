@@ -1,6 +1,6 @@
 (setq
  hyde/git/remote "origin"
- hyde/git/remote "master"
+ hyde/git/remote-branch "master"
  hyde/deploy-command  ""
  hyde-custom-params
  '(
