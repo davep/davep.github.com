@@ -100,7 +100,7 @@ more tidy and far easier to maintain. Whereas my old config was almost
 (load-davep-autoloads)
 ```
 
-All the other stuff, things to tweak language modes so they intend
+All the other stuff, things to tweak language modes so they indent
 "just so", my own special keyboard bindings, that sort of thing,
 they're all farmed off into their own files:
 
