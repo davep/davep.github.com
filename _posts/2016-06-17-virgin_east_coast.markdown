@@ -17,7 +17,7 @@ Much has changed since the last time I used the trains a lot; the big (good)
 change being that you can do a ton of stuff online and, even more usefully,
 you can do most things on your mobile phone. Being able to buy tickets from
 my desk or sofa, and being able to carry all the useful info (times, seat
-numbers, etc) inside an app makes for a almost stress-free.
+numbers, etc) inside an app makes for an almost stress-free journey.
 
 Up until now I've being using [TheTrainLine](https://www.thetrainline.com/)
 to do all the booking. The website is uncluttered and easy to use. The same
