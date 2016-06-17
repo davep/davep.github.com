@@ -1,4 +1,5 @@
 (setq
+ hyde-home "/Users/davep/blogging/davep.github.com"
  hyde/git/remote "origin"
  hyde/git/remote-branch "master"
  hyde/deploy-command  ""
