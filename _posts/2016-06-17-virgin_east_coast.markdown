@@ -186,7 +186,7 @@ The phone call came a little later on. It didn't go well.
 At first I was told that the problem was that I needed to purchase a ticket
 and then that would mean I'd be able to log into the mobile app. Let's just
 take a moment to really appreciate what's being said: I SHOULD SPEND A
-HUNDRED PONDS OR MORE SO I CAN EVEN LOG INTO THE APP.
+HUNDRED POUNDS OR MORE SO I CAN EVEN LOG INTO THE APP.
 
 Only... that's
 nonsense. [According to the website](https://www.virgintrainseastcoast.com/rail-travel/your-ticket/m-tickets/)
