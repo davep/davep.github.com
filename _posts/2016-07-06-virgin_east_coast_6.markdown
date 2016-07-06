@@ -20,7 +20,6 @@ Later on in the day I got a reply:
 
 > Dear Dave
 > 
-
 > Thank you for your email dated 6th June 2016 concerning the tickets that
 > you have not booked with us yet and the fact that your Mobile App ticket
 > wallet is not able to show you anything after you have installed it.
@@ -78,3 +77,5 @@ don't. I suppose that's something.
 Meanwhile.... the Ticket Wallet app is
 [*still*](/2016/06/17/virgin_east_coast.html) telling me that my user name
 or password are incorrect.
+
+PS: "Thank you for your email dated 6th June 2016" -- it's July, not June.
