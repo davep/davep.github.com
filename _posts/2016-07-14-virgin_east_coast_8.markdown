@@ -12,7 +12,7 @@ Remember [this](/2016/07/08/virgin_east_coast_7.html)?
 > chasing them about this again I will contact you to let you know what is
 > happening with this now.
 
-Well, it's not Thursday 14th and I've not had a peep out of them.
+Well, it's now Thursday 14th and I've not had a peep out of them.
 
 I'm on a train today. I'm actually writing this on a train. I guess I'll
 have to think about chasing them up tomorrow (or perhaps at least chasing
