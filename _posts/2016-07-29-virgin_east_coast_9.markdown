@@ -71,7 +71,7 @@ two.
 
 Let that settle in for a moment: they apparently arranged to close down a
 call centre without ensuring that the computer systems that contain (some
-of?) their customer's data were handed over in some way, shape or form.
+of?) their customers' data were handed over in some way, shape or form.
 
 That's a touch worrying.
 
