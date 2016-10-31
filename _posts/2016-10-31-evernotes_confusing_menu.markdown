@@ -57,3 +57,12 @@ So, at some point, I guess I'm going to have to uninstall Evernote from the
 Macbook and the iMac, reinstall from the Evernote website itself, and try
 this again. All of which seems a bit silly when *the menu option is there
 and visible when I run Evernote up!*
+
+---
+
+**Edit to add:** Sure enough, removing the App Store version and installing
+the version from Evernote's own website, and *then* going into preferences
+and enabling the option, sorted it. It's still really odd they'd promote the
+facility via the blog and not mention it, and also very odd that the option
+would always show until the first time you're in a position to use it, and
+then it'd disappear.
