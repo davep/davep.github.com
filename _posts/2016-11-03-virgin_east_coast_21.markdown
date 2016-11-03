@@ -14,10 +14,19 @@ Well, I say "didn't go well", the conversation itself went very well, the
 chap I spoke to was polite and apologetic and helpful, but the outcome
 wasn't really very brilliant.
 
-Much of the content of the conversation involved vaguely confidential
-information (nothing too terrible or that big a secret -- just stuff that
-isn't generally known yet) which I'm not going to repeat here. The upshot of
-the chat though is this: they can't do anything for me.
+It didn't get off to a brilliant start when I was first told that the
+solution to my problem was that I needed to uninstall and then reinstall the
+app (something I've done more than once while trying to get to the bottom of
+the problem). I asked if that was really necessary and I was informed that
+it was the only way to fix the problem of the tickets not showing. Problem
+is... that wasn't my problem. So I then had to explain the exact nature of
+the fault I was experiencing (and also explained my guess as to what the
+cause of the problem was).
+
+After that, much of the content of the conversation involved vaguely
+confidential information (nothing too terrible or that big a secret -- just
+stuff that isn't generally known yet) which I'm not going to repeat here.
+The upshot of the chat though is this: they can't do anything for me.
 
 Simply put: they acknowledge there's a problem with the app, the problem is
 at their end, it's a problem that needs to be fixed and there's nothing they
