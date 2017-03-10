@@ -2,7 +2,88 @@
 layout: post
 title: "jsNG"
 categories: []
-tags: []
+tags: [ Norton Guide, Development, JavaScript ]
 date: 2017-03-10 10:14:47+0000
 ---
 
+Like many programmers, I have a couple of "Hello, World" projects that I've
+carried with me over the years. One is 5x5 (which has been used to get to
+grips with things as diverse as the Palm Pilot and GNU emacs). Another
+is [Norton Guides database](https://en.wikipedia.org/wiki/Norton_Guides)
+[readers](http://www.davep.org/norton-guides/).
+
+I've made Norton Guides tools that have allowed web servers to serve guides
+(`w3ng`), that have allowed you to convert guides to HTML (`ng2html`), that
+have let you read guides on OS/2 and GNU/Linux (`eg`) and also have let you
+read guides in Microsoft Windows (`weg`). It's a problem I know fairly well
+and one where I know the solution well enough so I can concentrate on
+learning the new language or environment.
+
+Recently I wanted to get to grips with some
+"pure" [ES6](http://es6-features.org/#Constants) coding while also getting
+to know [node.js](https://nodejs.org/en/). A new version of the Norton Guide
+code, written for this environment, seemed like a good thing to do.
+
+And so [jsNG](https://github.com/davep/jsNG) was born.
+
+At its core is [a library of code for opening and reading data from Norton
+Guides databases](https://github.com/davep/jsNG/tree/master/lib). While I
+doubt it's good ES6 code, or even good node.js code, it's been very useful
+in giving me a fun problem to solve and it'll carry on being something I'll
+tweak and tinker with by way of trying new things out.
+
+On top of this I've built a handful of tools for working with Norton Guides
+databases. The most useful one at the moment (the others are more in the
+"test the library" than the "make something handy with the library"
+category) is `ngserve`. This is designed as a simple Norton Guides database
+HTTP server.
+
+![ngserve in action](/attachments/2017/03/10/Screen Shot 2017-03-10 at 10.10.18.png)
+
+When run, you give it a list of guides to serve:
+
+![Starting ngserve](/attachments/2017/03/10/Screen Shot 2017-03-10 at 10.26.44.png)
+
+and it does the right thing. It has a small number of command line options
+that help configure what it does:
+
+![ngserve command line options](/attachments/2017/03/10/Screen Shot 2017-03-10 at 10.29.28.png)
+
+Possibly the most useful are the ones that let you change how it handles
+"higher" DOS characters and, if you don't like the default colours and
+stuff, the option that lets you point to your own style sheet (note for now
+you'll need to host the stylesheet somewhere else -- ngserve won't serve it
+for you; I'm aiming to change that in some way in the near future).
+
+jsNG does have a fairly basic design compromise at its heart. In the very
+early version I started out using the async functions for opening and
+reading the guides. This got very tedious very quickly and I could see that
+it was going to make for a very messy library with a very messy interface.
+While it might not be in the spirit of node.js programming I decided to go
+with the sync version of the file IO functions and code up the core library
+based around this.
+
+This approach also means that I took another leap that I never have done
+with Norton Guides before: rather than doing the traditional thing of
+keeping an open handle into them and reading direct from the file as you
+navigate the guide, I simply read it all into a buffer in one go and keep it
+in memory. This is a "guides are small, memory is cheap, things will go
+faster" approach.
+
+It does mean that when you load up a load of guides into `ngserve` they're
+all sat in memory. The upside of this is that things should be a lot faster
+and the code is a lot easier to follow (I think). To put this in some
+perspective: I have a directory here that contains 110 Norton Guides files.
+They total 36M in size. If that seems like a lot of stuff to hold in
+memory... remind me how much is being used by your web browser so you can
+look at some hilarious kittens. ;)
+
+Anyway, that's where I'm at with it right now. The code is mostly settled
+and mostly tidy. I need to write up some documentation for it (and so I need
+to take a look at good JavaScript documentation tools) and perhaps tinker
+with `ngserve` a little more. I'd also like to do a new version of `ng2html`
+with this -- a version that makes it *far* easier to control the style of
+the output. I'm also tempted to do a CLI-based reader in pure ES6; something
+similar to `EG` or `WEG`.
+
+All in good time.
