@@ -96,7 +96,7 @@ and there is no local install `use-package` is smart enough to get the emacs
 package system to install it.
 
 So, given that, all I need to do was [create a startup file that would
-declare the packages I use](https://github.com/davep/.emacs.d/blob/master/startup/davep-packages.el) and
+declare the packages I use](https://github.com/davep/.emacs.d/blob/1fa67c2895f345098057654f6acb3b57a77f1194/startup/davep-packages.el) and
 I'd have a setup that should, once I'd cloned `.emacs.d`, self-install.
 
 Except... yeah, one more issue. `use-package` isn't part of GNU emacs yet so
