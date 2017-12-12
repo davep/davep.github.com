@@ -13,7 +13,7 @@ that served me pretty well; the company was small (I'm not much of a big
 company person), I generally got to dictate the development tools and
 direction, and I also got to work from home.
 
-The working from hope part was especially helpful as other life events
+The working from home part was especially helpful as other life events
 involved me and happened around me. The job I've been in has seen a marriage
 come and go, and a move from Hampshire to Lincolnshire, and then from
 Lincolnshire to Midlothian. There's been a few adventures along the way.
