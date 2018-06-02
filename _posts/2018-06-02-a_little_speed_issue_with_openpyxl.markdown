@@ -49,13 +49,13 @@ I'd being doing that from the very start.
 Eventually I came across a post somewhere (sorry, I've lost it for now --
 I'll try and track it down again) that suggested that openpyxl was very slow
 to read from a workbook if you were reading one cell at a time, rather than
-using generators. The suggesting being that every time you pull a value form
+using generators. The suggestion being that every time you pull a value form
 a cell, it has to parse the whole sheet up to that cell. Generators, on the
 other hand, would allow access to all the cells during one parse.
 
-This seemed a little unlikely to me -- I'd have expected to cache the
-parsing results or something like that -- but it also would explain what I
-was seeing. So I decided to give it a test.
+This seemed a little unlikely to me -- I'd have expected the code to cache
+the parsing results or something like that -- but it also would explain what
+I was seeing. So I decided to give it a test.
 
 [`openpyxl-speed-issue`](https://github.com/davep/openpyxl-speed-issue) is a
 version of the tests I wrote and ran and they absolutely show that there's a
@@ -80,7 +80,7 @@ for row in wb[ "Test Sheet" ].rows:
 Here's an example of the difference in time, as seen on my iMac:
 
 ```sh
-# make test
+$ make test
 pipenv run time ./read-using-generators
         1.59 real         0.44 user         0.04 sys
 pipenv run time ./read-using-peeking
