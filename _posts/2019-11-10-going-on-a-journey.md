@@ -71,9 +71,8 @@ use heavily (I'm especially keen to try a version in
 want to find a reason to use).
 
 Meanwhile, yesterday, I had a quick go at a first version in Python (aimed
-at Python 3.8 or higher).
-
-%[https://github.com/davep/journeys.py]
+at Python 3.8 or higher):
+[https://github.com/davep/journeys.py](https://github.com/davep/journeys.py)
 
 I set out to try and write something that was fairly idiomatic Python, which
 uses tools that I tend to employ when working on Python projects (pipenv,
