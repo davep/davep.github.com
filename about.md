@@ -4,11 +4,25 @@ title: About
 permalink: /about/
 ---
 
-After a long time away from it, and mostly with an emphasis on nattering about
-things on places like [Google+](https://plus.google.com/+DavePearson/posts),
-I'm finally having a crack at a return to blogging.
+# About the site
 
-This site won't be anything terribly interesting, just somewhere where I can
-ramble on about coding, things I'm experimenting with, and assorted nonsense.
-It also serves as a vehicle for me to get back into constantly using
-things like Markdown, ruby, HTML and JavaScript for my own fun.
+A blog that has wandered from place to place, but has (hopefully) settled
+back here. Mostly it's to do with tech/coding stuff, sometimes perhaps
+gaming and video-making stuff, and on occasion personal stuff.
+
+Expect a bit of a mix.
+
+# About me
+
+Initially self-taught back in the early 1980s, I started programming on a
+ZX81 and I've been in love with software development ever since. My
+"primary" language has drifted over the years, but as it has I've made an
+effort to get to know and work with plenty of others.
+
+These days I do a lot of Python/Django/JavaScript work, while having fun
+working with bioinformaticians and machine learning scientists.
+
+Evenings and weekends I spend a fair bit of time playing, recording and
+streaming VR games.
+
+[//]: # (about.md ends here)
