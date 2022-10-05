@@ -205,7 +205,7 @@ and other variations on that theme in different languages.
 
 ## Up next
 
-In [the next post](/2020/10/05/reading-2bit-files-for-fun-the-index.html)
+In [the next post](/2020/09/05/reading-2bit-files-for-fun-the-index.html)
 I'll write about how the sequence index is stored and how to load it,
 including some considerations about how to make the loading as efficient as
 possible.

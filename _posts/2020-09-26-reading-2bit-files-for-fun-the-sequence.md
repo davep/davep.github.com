@@ -12,7 +12,7 @@ This post will cover the most important content of a 2bit file: the actual
 sequence data itself. In [the first
 post](/2020/08/30/reading-2bit-files-for-fun.html) I wrote about the format
 of the file's header, and in [the second
-post](/2020/10/05/reading-2bit-files-for-fun-the-index.html) I wrote about
+post](/2020/09/05/reading-2bit-files-for-fun-the-index.html) I wrote about
 the content of the file's index.
 
 At this point that's enough information to know what's in the file and where
