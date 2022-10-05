@@ -6,24 +6,23 @@ layout: default
 
   <ul class="post-list">
     {% for post in paginator.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%Y-%m-%d %H:%M:%S %Z" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-        {{ post.content }}
-      </li>
+    <li>
+      <h2 class="index-title">
+        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+      </h2>
+      <div class="post-meta">{{ post.date | date: "%Y-%m-%d %H:%M:%S %Z" }}</div>
+      {{ post.content }}
+    </li>
     {% endfor %}
   </ul>
 
   <p class="page-nav">
-      {% if paginator.previous_page %}
-          <a class="page-prev" href="{{paginator.previous_page_path}}" title="Newer posts">&laquo; Page {{paginator.previous_page}}/{{paginator.total_pages}}</a>
-      {% endif %}
-      {% if paginator.next_page %}
-          <a class="page-next" href="{{paginator.next_page_path}}" title="Older posts">Page {{paginator.next_page}}/{{paginator.total_pages}} &raquo;</a>
-      {% endif %}
+    {% if paginator.previous_page %}
+    <a class="page-prev" href="{{paginator.previous_page_path}}" title="Newer posts">&laquo; Page {{paginator.previous_page}}/{{paginator.total_pages}}</a>
+    {% endif %}
+    {% if paginator.next_page %}
+    <a class="page-next" href="{{paginator.next_page_path}}" title="Older posts">Page {{paginator.next_page}}/{{paginator.total_pages}} &raquo;</a>
+    {% endif %}
   </p>
 
   <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
