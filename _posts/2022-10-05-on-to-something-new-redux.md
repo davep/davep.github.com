@@ -6,7 +6,7 @@ tags: [ "programming", "work", "life", "python" ]
 date: 2022-10-05 09:24:00 +0100
 ---
 
-Just over Five years ago I got a message from my then employer to say I was
+Just over five years ago I got a message from my then employer to say I was
 going to be made redundant after 21 years working for them. After the 3
 month notice period the final day came. Meanwhile, I found something new
 that [looked terrifying but
