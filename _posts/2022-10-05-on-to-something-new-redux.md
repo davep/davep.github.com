@@ -89,7 +89,7 @@ So, yeah, as of 2022-10-10 I'm on yet another new adventure. Time for me to
 team as part of Textualize.
 
 Or, as I put it on Twitter a few days ago: [I'm going to be a Python
-imposter syndrome
+impostor syndrome
 speedrunner](https://twitter.com/davepdotorg/status/1574121611413921792)!
 
 [//]: # (2022-10-05-on-to-something-new-redux.md ends here)
