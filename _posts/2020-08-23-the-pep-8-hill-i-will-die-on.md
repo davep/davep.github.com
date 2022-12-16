@@ -52,7 +52,7 @@ Just no.
 
 I can't.
 
-Rightly or wrongly, I just need to the code to breathe a bit. When I type
+Rightly or wrongly, I just need for the code to breathe a bit. When I type
 this:
 
 ```python
