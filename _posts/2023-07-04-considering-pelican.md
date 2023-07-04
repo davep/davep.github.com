@@ -14,12 +14,13 @@ reminded again when installing it on the Mac Mini that it's Ruby-based and I
 have very little understanding of how to get a good Ruby experience on
 macOS[^1].
 
-Having mentioned on Mastodon that I was thinking about finally looking at
-moving my blog management/generation to something new, and specifically
+Having [mentioned on Mastodon that I was thinking about finally looking at
+moving my blog management/generation to something
+new](https://fosstodon.org/@davep/110643256889173912), and specifically
 something Python-based and ideally some sort of site generator, I got a few
 suggestions.
 
-One that looks promising so far as [Pelican](https://getpelican.com/). At
+One that looks promising so far is [Pelican](https://getpelican.com/). At
 first glance it seems to tick a few boxes for me:
 
 - Python-based (so easy for me to grok in terms of installing, and also more
