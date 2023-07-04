@@ -10,30 +10,47 @@ DISQUS_SITENAME = "blogdaveporg"
 
 ##############################################################################
 # General generation configuration.
-THEME                   = "bootstrap2-dark"
 PATH                    = "content"
 DEFAULT_PAGINATION      = 10
 ARTICLE_URL             = "{date:%Y}/{date:%m}/{date:%d}/{slug}.html"
 ARTICLE_SAVE_AS         = ARTICLE_URL
 DELETE_OUTPUT_DIRECTORY = True
-STATIC_PATHS            = ["attachments"]
+STATIC_PATHS            = ["attachments", "static"]
+DATE_FORMATS            = {"en": "%Y-%m-%d"}
+
+# EXTRA_PATH_METADATA = {
+#     "static/davep.css": {"path": "static/davep.css"},
+# }
+
+##############################################################################
+# Theme control.
+THEME                                      = "flex"
+THEME_COLOR                                = "dark"
+THEME_COLOR_AUTO_DETECT_BROWSER_PREFERENCE = True
+THEME_COLOR_ENABLE_USER_OVERRIDE           = True
+CUSTOM_CSS                                 = "static/davep.css"
 
 ##############################################################################
 # Feed information.
-FEED_ALL_ATOM = 'feeds/all.atom.xml'
-CATEGORY_FEED_ATOM = 'feeds/{slug}.atom.xml'
+FEED_ALL_ATOM         = "feeds/all.atom.xml"
+CATEGORY_FEED_ATOM    = "feeds/{slug}.atom.xml"
 TRANSLATION_FEED_ATOM = None
-AUTHOR_FEED_ATOM = None
-AUTHOR_FEED_RSS = None
+AUTHOR_FEED_ATOM      = None
+AUTHOR_FEED_RSS       = None
 
-# Blogroll
+##############################################################################
+# Menu configuration.
+MAIN_MENU = True
 LINKS = (
     ("GitHub", "https://github.com/davep"),
 )
-
-# Social widget
 SOCIAL = (
     ("Mastodon", "https://fosstodon.org/@davep"),
+)
+MENUITEMS = (
+    ("Archives", "/archives.html"),
+    ("Categories", "/categories.html"),
+    ("Tags", "/tags.html"),
 )
 
 ### pelicanconf.py ends here
