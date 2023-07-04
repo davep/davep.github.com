@@ -10,7 +10,7 @@ DISQUS_SITENAME = "blogdaveporg"
 
 ##############################################################################
 # General generation configuration.
-THEME                   = "notmyidea"
+THEME                   = "bootstrap2-dark"
 PATH                    = "content"
 DEFAULT_PAGINATION      = 10
 ARTICLE_URL             = "{date:%Y}/{date:%m}/{date:%d}/{slug}.html"
