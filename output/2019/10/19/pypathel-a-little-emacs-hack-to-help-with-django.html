@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>"pypath.el -- A little Emacs hack to help with Django"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom Feed" />
+        <meta name="description" content="One of the things I really like about coding with Emacs is how I can easily identify a repeated task and turn it into a command in my environment,..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog.davep.org</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/2019/10/19/pypathel-a-little-emacs-hack-to-help-with-django.html" rel="bookmark"
+           title="Permalink to "pypath.el -- A little Emacs hack to help with Django"">"pypath.el -- A little Emacs hack to help with Django"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-10-19T10:35:00+01:00">
+                Published: Sat 19 October 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/emacs.html">[ &#34;emacs&#34;</a> <a href="/tag/python.html">&#34;python&#34;</a> <a href="/tag/django.html">&#34;django&#34;</a> <a href="/tag/lisp.html">&#34;lisp&#34; ]</a> </p>
+</footer><!-- /.post-info -->      <p>One of the things I really like about coding with Emacs is how I can easily
+identify a repeated task and turn it into a command in my environment,
+saving me a load of work down the line.</p>
+<p><a href="https://github.com/davep/pypath.el"><code>pypath.el</code></a> is one such example.</p>
+<p>In my day job I write a lot of Django code. As part of that, I write a good
+number of unit tests too. Sometimes I'll write the tests as I'm writing the
+code they test, other times I'm writing them afterwards; it all really
+depends on where my head's at and how the code is flowing.</p>
+<p>When I'm writing those tests, I often want to test them as I go. Given that
+starting up a test session can take a while, and given that running all the
+tests in the system can take a while, it's really handy if I can run that
+single test I'm working on.</p>
+<p>This is easy enough with Django. In my work environment it's normally
+something like:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipenv<span class="w"> </span>run<span class="w"> </span>./manage.py<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-v<span class="w"> </span><span class="m">2</span><span class="w"> </span>app.test.some.sub.module.TestClass.test_method
+</code></pre></div>
+
+<p>Only... typing out the:</p>
+<div class="highlight"><pre><span></span><code><span class="n">app</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">some</span><span class="o">.</span><span class="n">sub</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">TestClass</span><span class="o">.</span><span class="n">test_method</span>
+</code></pre></div>
+
+<p>part is a bit of a pain. Sure, once you've typed it the once you can use
+your shell of choice (mine being <a href="https://fishshell.com/">fish</a> and on
+occasion
+<a href="https://www.gnu.org/software/emacs/manual/html_mono/eshell.html">eshell</a>)
+to recall it from history, but typing it out the first time is the annoying
+part.</p>
+<p>So this was the point where I took 1/2 hour or so to code up
+<a href="https://github.com/davep/pypath.el"><code>pypath.el</code></a> to solve the problem for
+me. It gives me two commands:</p>
+<ul>
+<li><code>pypath</code>: which simply places the dotted path of the <a href="http://doc.endlessparentheses.com/Fun/python-info-current-defun.html">current
+  "defun"</a>,
+  within the context of being part of a Django system, into the clipboard
+  buffer.</li>
+<li><code>pypath-django-test</code>: which works similar to the above but places the
+  whole Django testing command into the clipboard.</li>
+</ul>
+<p>With the above, I can work on a test, hit the latter command above, flip to
+my command line, paste and I'm running the test.</p>
+<p>Of course, I'm sure there's plenty of other handy ways to do this. Doubtless
+there's work environments where the test can be run right there, in the edit
+buffer, without flipping away, and which takes into account the fact that
+there's a pipenv-managed virtual environment involved, etc. If there is,
+that's great, but I don't think it'd work with how I work.</p>
+<p>And that's one of the things I really love about Emacs, and why it's still
+my work environment after almost 25 years of on and off use: with very
+little work on my part I can create a couple of commands that work exactly
+how I need them to. While it's great to create <a href="https://melpa.org/">generally-useful code for
+Emacs that lots of people benefit from</a>, sometimes the
+real value is that <a href="https://blog.davep.org/delpa/">you can code up your own particular quirk and just get
+on with stuff</a>.</p>
+<p>To conclude: this post isn't to show off <code>pypath.el</code>; really this post is to
+sing the praises of Emacs and why it still works so well for me after all
+these years.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://github.com/davep">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://fosstodon.org/@davep">Mastodon</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

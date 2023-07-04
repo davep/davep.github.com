@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>"A little speed issue with openpyxl"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom Feed" />
+        <meta name="description" content="It's been very quiet on the blogging front, I'm afraid, mostly for the reasons I wrote about back in December last year. In that time I've been..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog.davep.org</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/2018/06/02/a-little-speed-issue-with-openpyxl.html" rel="bookmark"
+           title="Permalink to "A little speed issue with openpyxl"">"A little speed issue with openpyxl"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-06-02T13:16:37+01:00">
+                Published: Sat 02 June 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/python-openpyxl.html">[python openpyxl]</a> </p>
+</footer><!-- /.post-info -->      <p>It's been very quiet on the blogging front, I'm afraid, mostly for <a href="/2017/12/12/on_to_something_new.html">the
+reasons I wrote about back in December last
+year</a>. In that time I've been really
+very busy with work (in a good way, in a <em>very</em> good way) and there's not a
+whole lot of time to be toying with pet projects at home.</p>
+<p>However, finding myself with a spare hour or so, I wanted to write about
+something I did run into as part of some development at work, and which I
+thought might be worth writing about in case it helps someone else.</p>
+<p>Recently I've needed to write a library of code for loading data from Excel
+Workbooks. Given that the vast majority of coding I do at the moment is in
+Python, it made sense to make use of
+<a href="https://openpyxl.readthedocs.io/">openpyxl</a>. The initial prototype code I
+wrote worked well and it soon grew into a full-blown library that'll be used
+in a couple of work-related projects.</p>
+<p>But one thing kept niggling me... It just wasn't as fast as I'd expected.
+The workbooks I'm pulling data from aren't that large, and yet it was taking
+a noticeable number of seconds to read in the data, and when I let the code
+have a go at a directory full of such workbooks... even the fan on the
+machine would ramp up.</p>
+<p>It didn't seem right.</p>
+<p>I did a little bit of profiling and could see that the code was spending
+most of its time deep in the guts of some XML-parsing functions. While I
+know that an <code>xlsx</code> file is pretty much an XML document, it seemed odd to me
+that it would take so much time and effort to pull the data out from it.</p>
+<p>Given that I had other code to be writing, and given that the
+workbook-parsing code was "good enough" for the moment, I moved on for a
+short while.</p>
+<p>But, a couple of weeks back, I had a bit of spare time and decided to
+revisit it. I did some more searching on openpyxl and speed issues and
+almost everything I found said that the common problem was failing to open
+the workbook in <code>read_only</code> mode. That can't have been my problem because
+I'd being doing that from the very start.</p>
+<p>Eventually I came across a post somewhere (sorry, I've lost it for now --
+I'll try and track it down again) that suggested that openpyxl was very slow
+to read from a workbook if you were reading one cell at a time, rather than
+using generators. The suggestion being that every time you pull a value form
+a cell, it has to parse the whole sheet up to that cell. Generators, on the
+other hand, would allow access to all the cells during one parse.</p>
+<p>This seemed a little unlikely to me -- I'd have expected the code to cache
+the parsing results or something like that -- but it also would explain what
+I was seeing. So I decided to give it a test.</p>
+<p><a href="https://github.com/davep/openpyxl-speed-issue"><code>openpyxl-speed-issue</code></a> is a
+version of the tests I wrote and ran and they absolutely show that there's a
+huge difference between cell-by-cell access vs generator access.</p>
+<p>Code like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sheet</span><span class="o">.</span><span class="n">max_row</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">):</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sheet</span><span class="o">.</span><span class="n">max_column</span> <span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">[</span> <span class="n">row</span> <span class="p">][</span> <span class="n">col</span> <span class="p">]</span><span class="o">.</span><span class="n">value</span>
+</code></pre></div>
+
+<p>is <em>far slower</em> than something like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">wb</span><span class="p">[</span> <span class="s2">&quot;Test Sheet&quot;</span> <span class="p">]</span><span class="o">.</span><span class="n">rows</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">value</span>
+</code></pre></div>
+
+<p>Here's an example of the difference in time, as seen on my iMac:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>make<span class="w"> </span><span class="nb">test</span>
+pipenv<span class="w"> </span>run<span class="w"> </span><span class="nb">time</span><span class="w"> </span>./read-using-generators
+<span class="w">        </span><span class="m">1</span>.59<span class="w"> </span>real<span class="w">         </span><span class="m">0</span>.44<span class="w"> </span>user<span class="w">         </span><span class="m">0</span>.04<span class="w"> </span>sys
+pipenv<span class="w"> </span>run<span class="w"> </span><span class="nb">time</span><span class="w"> </span>./read-using-peeking
+<span class="w">       </span><span class="m">25</span>.02<span class="w"> </span>real<span class="w">        </span><span class="m">24</span>.88<span class="w"> </span>user<span class="w">         </span><span class="m">0</span>.10<span class="w"> </span>sys
+</code></pre></div>
+
+<p>As you can see, the cell-by-cell approach is about 16 times slower than the
+generator approach.</p>
+<p>In most circumstances the generator approach would make most sense anyway,
+and in any other situation I probably would have used it and never have
+noticed this. However, the nature of the workbooks I need to pull data from
+means I need to "peek ahead" to make decisions about what I'm doing, so a
+more traditional loop over, with an index, made more sense.</p>
+<p>I can easily "fix" this by using the generator approach to build up a
+two-dimensional array of cells, acquired via the generator; so I can still
+do what I want <em>and</em> benefit from using generators.</p>
+<p>In conclusion: given that I found it difficult to find information about my
+speed issue, and given that the one off-hand comment I saw that suggested it
+was this wasn't exactly easy to find, I thought I'd write it all down too
+and <a href="https://github.com/davep/openpyxl-speed-issue">create a repository of some test code to illustrate the
+issue</a>. Hopefully someone
+else will benefit from this in the future.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://github.com/davep">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://fosstodon.org/@davep">Mastodon</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

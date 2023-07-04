@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>"gh.fish -- Quickly visit a repo's forge"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom Feed" />
+        <meta name="description" content="These days fish is my shell of choice. I started out with bash back in the 1990s, went through a bit of a zsh/oh-my-zsh phase, but earlier this..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog.davep.org</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/2019/10/20/ghfish-quickly-visit-a-repos-forge.html" rel="bookmark"
+           title="Permalink to "gh.fish -- Quickly visit a repo's forge"">"gh.fish -- Quickly visit a repo's forge"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-10-20T13:15:00+01:00">
+                Published: Sun 20 October 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/fish.html">[ &#34;fish&#34;</a> <a href="/tag/git.html">&#34;git&#34; ]</a> </p>
+</footer><!-- /.post-info -->      <p>These days <a href="https://fishshell.com/">fish</a> is my shell of choice. I started
+out with <a href="https://www.gnu.org/software/bash/">bash</a> back in the 1990s, went
+through a bit of a
+<a href="https://www.zsh.org/">zsh</a>/<a href="https://ohmyz.sh/">oh-my-zsh</a> phase, but
+earlier this year finally settled on fish.</p>
+<p>At some point I might write a post about my fish config, and why fish works
+well for me. But that's an idea for another time.</p>
+<p>In this post I thought I'd share a little snippet of code that can come in
+handy now and again.</p>
+<p>Sometimes I find myself inside a git repo, in the shell, and I want to get
+to the "<a href="https://en.wikipedia.org/wiki/Forge_%28software%29">forge</a>" for
+that repo. This is most often either on <a href="https://github.com/">GitHub</a>, or in
+a <a href="https://about.gitlab.com/install/">company-local installation of GitLab</a>.
+To get there quickly I wrote
+<a href="https://gist.github.com/davep/3bac3b30e45a3560c265150e609219db"><code>gh.fish</code></a>:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">##############################################################################</span>
+<span class="cp"># Attempt go visit the origin hub for the current repo.</span>
+
+<span class="n">function</span><span class="w"> </span><span class="n">gh</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="s">&quot;Visit the repo in its origin hub&quot;</span>
+
+<span class="w">    </span><span class="cp"># Check that there is some sort of origin.</span>
+<span class="w">    </span><span class="n">set</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="p">(</span><span class="n">git</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">--</span><span class="n">get</span><span class="w"> </span><span class="n">remote</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">url</span><span class="p">)</span>
+
+<span class="w">    </span><span class="cp"># If we didn&#39;t get anything...</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;$origin&quot;</span>
+<span class="w">        </span><span class="cp"># ...complain and exit.</span>
+<span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="s">&quot;This doesn&#39;t appear to be a git repo with an origin&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">end</span>
+
+<span class="w">    </span><span class="cp"># Open in the browser.</span>
+<span class="w">    </span><span class="n">open</span><span class="w"> </span><span class="s">&quot;https://&quot;</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w"> </span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="w"> </span><span class="err">&#39;\</span><span class="p">.</span><span class="n">git$</span><span class="err">&#39;</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">split</span><span class="w"> </span><span class="s">&quot;@&quot;</span><span class="w"> </span><span class="n">$origin</span><span class="p">)[</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">]))</span>
+
+<span class="n">end</span>
+
+<span class="cp">### gh.fish ends here</span>
+</code></pre></div>
+
+<p>The idea is pretty simple: I see if the repo has an origin of some
+description and, if it has, I <a href="https://fishshell.com/docs/current/commands.html#string">slice and dice
+it</a> into something
+that looks like the URL you'd expect to find for a GitHub or GitLab repo.
+Finally I use
+<a href="https://fishshell.com/docs/current/commands.html#open"><code>open</code></a> to open the
+URL in the environment's browser of choice.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://github.com/davep">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://fosstodon.org/@davep">Mastodon</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

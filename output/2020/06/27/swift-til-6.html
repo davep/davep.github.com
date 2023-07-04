@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>"Swift TIL 6"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom Feed" />
+        <meta name="description" content="I'm going to file this one under "it seems really unnecessary, but it's also kinda cool". While reading up about protocols the book I'm reading..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog.davep.org</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/2020/06/27/swift-til-6.html" rel="bookmark"
+           title="Permalink to "Swift TIL 6"">"Swift TIL 6"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-06-27T21:23:00+01:00">
+                Published: Sat 27 June 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->      <p>I'm going to file this one under "it seems really unnecessary, but it's also
+kinda cool". While reading up about
+<a href="https://docs.swift.org/swift-book/LanguageGuide/Protocols.html">protocols</a>
+the book I'm reading introduced the <code>ExpressibleBy*Literal</code> protocols, where
+the <code>*</code> is one of a number of obvious literals. For example:
+<code>ExpressibleByStringLiteral</code>. As you might imagine, it lets you create a
+class that can be initialised with a literal value, as opposed to needing to
+appear to call the constructor for a class.</p>
+<p>So, for a silly example:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Hello</span> <span class="p">:</span> <span class="n">ExpressibleByStringLiteral</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">what</span> <span class="p">:</span> <span class="nb">String</span>
+
+    <span class="kr">required</span> <span class="kd">init</span><span class="p">(</span> <span class="n">stringLiteral</span> <span class="n">what</span> <span class="p">:</span> <span class="nb">String</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">what</span> <span class="p">=</span> <span class="n">what</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">say</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;Hello, </span><span class="si">\(</span><span class="kc">self</span><span class="p">.</span><span class="n">what</span><span class="si">)</span><span class="s">!&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>You could, of course, write this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">v1</span> <span class="p">=</span> <span class="n">Hello</span><span class="p">(</span> <span class="s">&quot;world&quot;</span> <span class="p">)</span>
+<span class="n">v1</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
+</code></pre></div>
+
+<p>but because of <code>ExpressibleByStringLiteral</code> you can also write:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">v2</span> <span class="p">:</span> <span class="n">Hello</span> <span class="p">=</span> <span class="s">&quot;universe&quot;</span>
+<span class="n">v2</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Now, sure, in this case it saves you nothing, but this does also mean that
+parameters of functions whose type uses one of the <code>`ExpressibleBy*Literal</code>
+protocols can be passed a literal, rather than a "long-hand" instantiated
+object. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">Greet</span><span class="p">(</span> <span class="kc">_</span> <span class="n">h</span> <span class="p">:</span> <span class="n">Hello</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">h</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="n">Greet</span><span class="p">(</span> <span class="s">&quot;davep&quot;</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>I can see that being quite handy.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://github.com/davep">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://fosstodon.org/@davep">Mastodon</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

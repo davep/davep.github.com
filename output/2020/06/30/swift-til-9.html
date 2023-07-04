@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>"Swift TIL 9"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom Feed" />
+        <meta name="description" content="Some may be happy to know that the frequency of these little notes to myself may reduce real soon, as I'm sort of caught up with my notes, mostly,..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog.davep.org</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/2020/06/30/swift-til-9.html" rel="bookmark"
+           title="Permalink to "Swift TIL 9"">"Swift TIL 9"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-06-30T21:02:00+01:00">
+                Published: Tue 30 June 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->      <p><em>Some may be happy to know that the frequency of these little notes to
+myself may reduce real soon, as I'm sort of caught up with my notes, mostly,
+and I'm unlikely to pick up the book that I'm reading for a couple or so
+days now</em></p>
+<p>I'm used to the idea of structures and classes from other languages, going
+way back, but as I first started reading about Swift it wasn't obvious to me
+why it had them both too. At first glance they appeared to be very similar.
+It was only as I got a little further into reading that I found out one huge
+difference (there are others, that pretty much stem from this one): objects
+created from classes are <em>reference types</em> (which you'd expect, of course),
+structures on the other hand are <em>value types</em>.</p>
+<p>A quick illustration of the difference, in my head anyway, can be found if I
+go back to <a href="/2020/06/24/swift-til-3.html">using an
+observer</a>.
+Take this daft bit of illustrative code for example:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">name</span> <span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;No name&quot;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nv">dave</span> <span class="p">=</span> <span class="n">Person</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">didSet</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;dave was set&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">dave</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Dave&quot;</span>
+</code></pre></div>
+
+<p>If I run that, I get no output. That makes sense. The variable <code>dave</code> is
+initialised to an instance of a <code>Person</code> but is never subsequently set to
+anything else. The following assignment is to a property of the object.
+We're working on a reference to an existing object.</p>
+<p>But simply change <code>Person</code> to being a <code>struct</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">name</span> <span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;No name&quot;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nv">dave</span> <span class="p">=</span> <span class="n">Person</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">didSet</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;dave was set&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">dave</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Dave&quot;</span>
+</code></pre></div>
+
+<p>and the output looks like this:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>ref-vs-val
+dave<span class="w"> </span>was<span class="w"> </span><span class="nb">set</span>
+</code></pre></div>
+
+<p>That's because the assignment to <code>dave.name</code> means a new value is created.</p>
+<p>This, of course, is just the tip of the iceberg; there are all sorts of
+other things to keep in mind that follow on from this, generally relating to
+mutability (or the lack thereof). I also imagine this means that, when
+there's no obvious benefit either way, the choice of using <code>class</code> vs
+<code>struct</code> is something that could have performance implications. That's
+something for me to look into more another day; but this is a note here to
+myself that it's a thing to keep in mind.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://github.com/davep">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://fosstodon.org/@davep">Mastodon</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

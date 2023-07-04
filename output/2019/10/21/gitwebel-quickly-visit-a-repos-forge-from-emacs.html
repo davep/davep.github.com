@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>"gitweb.el -- Quickly visit a repo's forge from Emacs"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom Feed" />
+        <meta name="description" content="gh.fish, which I wrote about yesterday, actually sprang from something I initially wrote for Emacs. I'm often spending my time switching between..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog.davep.org</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/2019/10/21/gitwebel-quickly-visit-a-repos-forge-from-emacs.html" rel="bookmark"
+           title="Permalink to "gitweb.el -- Quickly visit a repo's forge from Emacs"">"gitweb.el -- Quickly visit a repo's forge from Emacs"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-10-21T10:41:00+01:00">
+                Published: Mon 21 October 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/emacs.html">[ &#34;emacs&#34;</a> <a href="/tag/git.html">&#34;git&#34; ]</a> </p>
+</footer><!-- /.post-info -->      <p><code>gh.fish</code>, which <a href="/2019/10/20/fg-fish.html">I wrote about yesterday</a>,
+actually sprang from something I initially wrote for Emacs. I'm often
+spending my time switching between Emacs and the command line (which is fast
+and easy -- I normally work on macOS and have Emacs and
+<a href="https://www.iterm2.com/">iTerm2</a> running full screen, and I can switch
+between them without ever taking my hands off the keyboard), so it makes
+sense to have some handy commands repeated in both places.</p>
+<p>So, originally, I'd written
+<a href="https://github.com/davep/gitweb.el"><code>gitweb.el</code></a> to open the current repo's
+"forge" in the web browser.</p>
+<p>As with the fish version, how it works is quite simple. I use
+<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Synchronous-Processes.html"><code>shell-command-to-string</code></a>
+to call git and find the origin URL for the current repo, and then
+manipulate it a bit to turn it into a normal browser-friendly URL. Finally,
+if I get something workable, I use
+<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Browse_002dURL.html"><code>browser-url</code></a>
+to have the resulting page open in the browsing environment of choice.</p>
+<p>I have the command <a href="https://github.com/davep/.emacs.d/blob/8f1be3a03e4be98155571939fe5d6fbb54de487f/init.d/packages/init-packages-delpa.el#L51-L54">bound to a key combination that's similar to the ones I
+use with magit and
+forge</a>,
+so in terms of muscle-memory it's easy for me to remember what to press when
+I quickly want to skip over from a magit view to the repo forge itself.</p>
+<p>Similar to what I wrote <a href="/2019/10/19/pypath-el.html">a couple of days back</a>,
+I think this again illustrates how handy Emacs is as a work environment.
+While it's absolutely true that there are other development environments out
+there that offer similar extensibility, Emacs is the one I'm comfortable
+with, and it has a <em>long</em> history of offering this.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://github.com/davep">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://fosstodon.org/@davep">Mastodon</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

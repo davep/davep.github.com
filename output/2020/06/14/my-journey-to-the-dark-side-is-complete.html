@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>"My journey to the dark side is complete"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom Feed" />
+        <meta name="description" content="Ever since the whole business of "light mode" and "dark mode" really kicked off in the mobile OS world, I've been a fan of the dark modes. On both..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog.davep.org</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/2020/06/14/my-journey-to-the-dark-side-is-complete.html" rel="bookmark"
+           title="Permalink to "My journey to the dark side is complete"">"My journey to the dark side is complete"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-06-14T20:00:00+01:00">
+                Published: Sun 14 June 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/emacs.html">[ &#34;emacs&#34; ]</a> </p>
+</footer><!-- /.post-info -->      <p>Ever since the whole business of "light mode" and "dark mode" really kicked
+off in the mobile OS world, I've been a fan of the dark modes. On both
+Android and iOS/iPadOS, when apps became available with dark modes, I'd
+switch to it. When the operating systems themselves adopted the switch,
+that's what I went for. As well as having a love for all things black
+(anyone who knows me personally will know that), I think it just looks
+better on mobile devices. I can't quite say why, but it just works best for
+me.</p>
+<p>So, when macOS got a supported dark mode, I instantly switched it on,
+obviously. Then, within a day, I switched it back to light mode.
+Surprisingly it just didn't work for me, and I wasn't sure why. Since then
+I've tried living with it a few times and it's rarely lasted more than a few
+hours. There was something, something I couldn't quite put my finger on,
+that didn't sit right.</p>
+<p>Last Monday I decided to give it another go. This time, however, I thought
+I'd figured it out. The "problem" was Emacs! As mentioned <a href="/2020/01/11/where-i-live-and-work.html">back in
+January</a>,
+for as long as I've used it (so since the mid-1990s), my Emacs has always
+had a light background -- probably because that's how it came "out of the
+box" (I'm talking Emacs in graphical mode here; I started with it on <a href="https://en.wikipedia.org/wiki/OS/2#1994%E2%80%931996:_The_%22Warp%22_years">OS/2
+Warp</a>
+and then moved to a GNU/Linux X-based desktop). I figured that the contrast
+between the colour scheme of Emacs, and the rest of the machine, was the
+issue here.</p>
+<p>I spend most of my working day either in Emacs, or in
+<a href="https://www.iterm2.com/">iTerm2</a> -- often rapidly switching between the
+two. I've always run iTerm2 in the usual dark background mode with light
+text. So I figured the problem was having a dark OS desktop, dark terminal,
+and then a light editing environment. Eventually that'd feel wrong.</p>
+<p>So I decided that, for the first time in about 25 years, I should give Emacs
+a go with a dark mode. Taking a quick look at <a href="https://pawelbx.github.io/emacs-theme-gallery/">popular dark
+themes</a> I noticed
+<a href="https://github.com/purcell/color-theme-sanityinc-tomorrow"><code>sanityinc-tomorrow-night</code></a>
+looked easy on the eye, so I gave that a go (actually, I gave each of the
+themes in that set a go, <a href="https://github.com/davep/.emacs.d/commit/07f1c4c4c8c0c476f1e5e34845a834956d2be0c4">initially starting with
+<code>sanityinc-tomorrow-eighties</code></a>,
+but I finally settled on <code>sanityinc-tomorrow-night</code>).</p>
+<p>To start with it didn't look too good; not because of a problem with the
+theme itself, but because, over time, I'd made changes and tweaks to my
+setup that assumed I'd be using my usual light theme. After some dabbling
+and tinkering and trying things out, I got it looking "just so".</p>
+<p><img alt="Screenshot 2020-06-14 at 19.40.43.png" src="/attachments/2020/06/14/Screenshot 2020-06-14 at 19.40.43.png"></p>
+<p>Having got that working, I then thought it would be nice to be able to have
+Emacs -- at least on restart -- adapt to me switching between dark and light
+mode on macOS. It turns out that detecting if macOS is in dark mode is easy
+enough, the command <code>defaults read -g AppleInterfaceStyle</code> will emit <code>Dark</code>
+if in dark mode. So, knowing that, I updated <a href="https://github.com/davep/is-a.el/blob/2b3eb99a213454536d789325f01477e3ce7eec87/is-a.el#L67-L70">my personal package for
+checking things about the environment that Emacs is in to use that
+information</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">defconst</span><span class="w"> </span><span class="nv">is-a-macOS-dark-mode-window-p</span>
+<span class="w">  </span><span class="p">(</span><span class="k">and</span>
+<span class="w">   </span><span class="nv">is-a-macOS-window-p</span>
+<span class="w">   </span><span class="p">(</span><span class="nf">string=</span><span class="w"> </span><span class="p">(</span><span class="nv">shell-command-to-string</span><span class="w"> </span><span class="s">&quot;defaults read -g AppleInterfaceStyle&quot;</span><span class="p">)</span><span class="w"> </span><span class="s">&quot;Dark\n&quot;</span><span class="p">))</span>
+<span class="w">  </span><span class="s">&quot;Are we running in a macOS window in dark mode?&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>So, as of now, my Emacs setup is such that, <a href="https://github.com/davep/.emacs.d/blob/f8389ac8f93b66c614ef82705929b86f01efc130/init.d/init-style.el#L15-L24">if I'm in graphical mode on
+macOS and I'm in dark mode, Emacs will use a dark theme, otherwise it'll do
+what it did before -- with a light background in a graphical mode and a more
+Borland-a-like blue background when in CHUI
+mode</a>.</p>
+<p>This seems to have made a difference. Almost one week on my work Macbook is
+still in dark mode, and I've switched both of my personal Macbooks, and my
+iMac, into dark mode too. I think it's sticking this time. Next up is to
+give some serious consideration to darkening the web in general. Only now am
+I noticing just how damn bright most of it is!</p>
+<hr>
+<p>As a slight aside to the above, I've also made one other change to Emacs:
+I've finally dropped the display of scroll bars. In the themes I'm using
+they didn't look so great, appearing to be distracting. For the past 25
+years I've had the scrollbars there, but never actually <em>used</em> them; all
+they've ever done is serve as a visual aid to where I am in a file. Thing
+is, I'm not sure I ever really pay that much attention to that either. So,
+as a test, I've also been running with them turned off and, so far, I'm
+really not noticing them been gone.</p>
+<p>The habits we form that we convince ourselves make sense...</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://github.com/davep">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://fosstodon.org/@davep">Mastodon</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

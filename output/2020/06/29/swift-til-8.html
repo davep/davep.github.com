@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>"Swift TIL 8"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom Feed" />
+        <meta name="description" content="Although I read up on it a few days back, it was only this evening that I fired up Emacs (well of course I'm testing Swift with Emacs, what did..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog.davep.org</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/2020/06/29/swift-til-8.html" rel="bookmark"
+           title="Permalink to "Swift TIL 8"">"Swift TIL 8"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-06-29T22:48:00+01:00">
+                Published: Mon 29 June 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->      <p>Although I read up on it a few days back, it was only this evening that I
+fired up Emacs (well of course I'm testing Swift with Emacs, what did you
+think I'd do?!?) and dabbled with some code to really get a feel for how
+casting works in Swift.</p>
+<p>Swift seems to be one of those languages that does it with a keyword rather
+than a non-keyword approach. The two main keywords being <code>as?</code> and <code>as!</code>. I
+kind of like how there's a polite version and a bossy version. Having the
+two makes a lot of sense from what I read too.</p>
+<p>To try and illustrate my understanding so far (and do keep in mind I'm not
+writing this with the express purpose of explaining it to anyone else -- I'm
+writing this to try and retain it all in my head by working through it),
+here's a bit of utterly pointless and highly-contrived code that defines
+three classes in a fairly ordinary hierarchy:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Animal</span> <span class="p">{}</span>
+
+<span class="kd">class</span> <span class="nc">Dog</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">{}</span>
+
+<span class="kd">class</span> <span class="nc">Cat</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">beAdorable</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;Purrrrrr!&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>So, so far, so good: we have animals, we have dogs which are a kind of
+animal, and we have cats, which are also a kind of animal, but they have the
+special ability of actually being adorable. 😼</p>
+<p>Now, for the purposes of just testing all of this out, here's a horrible
+function that makes little sense other than for testing:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">adore</span><span class="p">(</span> <span class="kc">_</span> <span class="n">a</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="p">(</span> <span class="n">a</span> <span class="k">as</span><span class="p">!</span> <span class="n">Cat</span> <span class="p">).</span><span class="n">beAdorable</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Given an animal, it forces it to be a cat (by casting it with <code>as!</code>), and
+then asks it to be adorable (because, of course, cats always do as they're
+asked).</p>
+<p>So, if we then had:</p>
+<div class="highlight"><pre><span></span><code><span class="n">adore</span><span class="p">(</span> <span class="n">Cat</span><span class="p">()</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>we'd get what we expect when run:</p>
+<div class="highlight"><pre><span></span><code>Purrrrrr!
+</code></pre></div>
+
+<p>So far so good. But what about:</p>
+<div class="highlight"><pre><span></span><code><span class="n">adore</span><span class="p">(</span> <span class="n">Dog</span><span class="p">()</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>Yeah, that's not so good:</p>
+<div class="highlight"><pre><span></span><code>~/d/p/s/casting$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>casting
+Could<span class="w"> </span>not<span class="w"> </span>cast<span class="w"> </span>value<span class="w"> </span>of<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s1">&#39;casting.Dog&#39;</span><span class="w"> </span><span class="o">(</span>0x10a1f8830<span class="o">)</span><span class="w"> </span>to<span class="w"> </span><span class="s1">&#39;casting.Cat&#39;</span><span class="w"> </span><span class="o">(</span>0x10a1f88c0<span class="o">)</span>.
+fish:<span class="w"> </span><span class="s1">&#39;swift run&#39;</span><span class="w"> </span>terminated<span class="w"> </span>by<span class="w"> </span>signal<span class="w"> </span>SIGABRT<span class="w"> </span><span class="o">(</span>Abort<span class="o">)</span>
+</code></pre></div>
+
+<p>One way around this would be to use <code>as?</code>, which has the effect of casting
+the result to an
+<a href="https://developer.apple.com/documentation/swift/optional"><code>Optional</code></a>. This
+means I can re-write the <code>adore</code> function like this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">adore</span><span class="p">(</span> <span class="kc">_</span> <span class="n">a</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="p">(</span> <span class="n">a</span> <span class="k">as</span><span class="p">?</span> <span class="n">Cat</span> <span class="p">)?.</span><span class="n">beAdorable</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Now, if <code>a</code> can be cast to a <code>Cat</code>, you get an optional that wraps the
+<code>Cat</code>, otherwise you get an optional that wraps <code>nil</code> (hence the second <code>?</code>
+before attempting to call the <code>beAdorable</code> member function).</p>
+<p>So now, if I run the problematic dog call above again:</p>
+<div class="highlight"><pre><span></span><code>~/d/p/s/casting$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>casting
+</code></pre></div>
+
+<p>In other words, no output at all. Which is the idea here.</p>
+<p>I think I like this, I think it makes sense, and I think I can see why both
+<code>as!</code> and <code>as?</code> exist. The latter also means, of course, that you can do
+something like:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">adore</span><span class="p">(</span> <span class="kc">_</span> <span class="n">a</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">cat</span> <span class="p">=</span> <span class="n">a</span> <span class="k">as</span><span class="p">?</span> <span class="n">Cat</span>
+    <span class="k">if</span> <span class="n">cat</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="n">cat</span><span class="p">!.</span><span class="n">beAdorable</span><span class="p">()</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;That totally wasn&#39;t a cat&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>which, in the messy dog call again, now results in:</p>
+<div class="highlight"><pre><span></span><code>~/d/p/s/casting$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>casting
+That<span class="w"> </span>totally<span class="w"> </span>wasn<span class="err">&#39;</span>t<span class="w"> </span>a<span class="w"> </span>cat
+</code></pre></div>
+
+<p>Or, of course, the same effect could be had with:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">adore</span><span class="p">(</span> <span class="kc">_</span> <span class="n">a</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="k">is</span> <span class="n">Cat</span> <span class="p">{</span>
+        <span class="p">(</span> <span class="n">a</span> <span class="k">as</span><span class="p">!</span> <span class="n">Cat</span> <span class="p">).</span><span class="n">beAdorable</span><span class="p">()</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;That totally wasn&#39;t a cat&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>It should be stressed, of course, that the example code is terrible design,
+so given the above I'd ensure I never end up in this sort of situation in
+the first place. But for the purposes of writing and compiling and running
+code and seeing what the different situations result in, it helped.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://github.com/davep">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://fosstodon.org/@davep">Mastodon</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>"Swift TIL 2"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom Feed" />
+        <meta name="description" content="Following on with writing little notes to myself so I remember some key things as I learn about Swift... I sort of feel like this will make..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog.davep.org</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/2020/06/23/swift-til-2.html" rel="bookmark"
+           title="Permalink to "Swift TIL 2"">"Swift TIL 2"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-06-23T14:21:00+01:00">
+                Published: Tue 23 June 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->      <p><a href="/2020/06/22/swift-til-1.html">Following on</a> with writing little notes to
+myself so I remember some key things as I learn about Swift...</p>
+<p>I sort of feel like this will make reading code a little harder, so it's one
+I want to keep in mind. When calling an instance method, if it's not
+ambiguous, you can omit <code>self.</code> from the call. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">inner</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span> <span class="s">&quot;Foo&quot;</span> <span class="p">}</span>
+    <span class="kd">func</span> <span class="nf">outer</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span> <span class="n">inner</span><span class="p">()</span> <span class="o">+</span> <span class="kc">self</span><span class="p">.</span><span class="n">inner</span><span class="p">()</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="bp">print</span><span class="p">(</span> <span class="n">Foo</span><span class="p">().</span><span class="n">outer</span><span class="p">()</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>This makes me feel a little uneasy, and I strongly suspect I'll always use
+<code>self.</code> when writing such code: I'm a big fan of the idea that we write code
+for people, not for compilers.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://github.com/davep">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://fosstodon.org/@davep">Mastodon</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

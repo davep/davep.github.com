@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>blog.davep.org - [ "git" ]</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog.davep.org</a></h1>
+                <nav><ul>
+                    <li><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/2020/07/09/helping-myself-change-the-default-git-branch.html">"Helping myself change the default git branch"</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2020-07-09T20:17:00+01:00">
+                Published: Thu 09 July 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/git.html">[ &#34;git&#34; ]</a> </p>
+</footer><!-- /.post-info --><p>This is something I've being meaning to do for a couple or so years now, and
+unsurprisingly it's bubbled up again recently: the business of swapping the
+name of the <code>master</code> branch in <code>git</code> out for something better.</p>
+<p>Because it's one of those jobs that's simultaneously simple and also
+laborious, I kept putting it off. Changing up the local configuration so
+that <code>main</code> (or whatever name you prefer) is used "out of the box" <a href="https://leigh.net.au/writing/git-init-main/">is
+simple enough</a>; the laborious
+part is updating all of the repositories that live in the "forge of choice".
+In my case, <a href="https://github.com/davep">over on GitHub</a>, I have <a href="https://github.com/davep?tab=repositories">getting on
+for 200 repositories</a> -- 142 of
+which are public (as of the time of writing). At work we use
+<a href="https://gitlab.com/">GitLab</a> as our internal forge and I've got a
+non-trivial number of repositories on there too.</p>
+<p>The obvious first step to tackling this is to knock up a little tool to help
+find the repos that still need swapping. That was <a href="https://github.com/davep/git-archaic">simple
+enough</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Quick and dirty tool to find repositories that still make use of a</span>
+<span class="c1"># &quot;master&quot; branch. Helps with tracking down the ones that need</span>
+<span class="c1"># updating/improving.</span>
+
+<span class="k">for</span><span class="w"> </span>repo<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span>.git<span class="k">)</span>
+<span class="k">do</span>
+<span class="w">    </span><span class="o">(</span>
+<span class="w">        </span><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$repo</span><span class="k">)</span><span class="s2">&quot;</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>master<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="w">        </span><span class="k">then</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$repo</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="k">fi</span>
+<span class="w">    </span><span class="o">)</span>
+<span class="k">done</span>
+
+<span class="c1">### git-archaic ends here</span>
+</code></pre></div>
+
+<p>It's not meant to be clever, just something I can run when I'm in a "default
+branch swapping" mood so find a repository or two to tackle. The idea being
+that it uses <code>find</code> to pull out any instance of <code>.git</code> in or below the
+current directory, changes to it (inside a sub-process to ensure the <code>PWD</code>
+gets put back after the <code>cd</code> that happens, before the next iteration of the
+loop), gets a list of the branches and, if <code>master</code> is one of them, prints
+the directory name.</p>
+<p>Using this, I can now slowly work through my more active repositories and
+make the swap -- the idea being that if I currently have them cloned down to
+my machine, they're obviously some level of "active". At some point I
+imagine I could get more clever and use the APIs of the forges to look at
+all the repositories I own; that's another job for another day.</p>
+<p>This gives me enough to be going on with. :-)</p><p>There are <a href="/2020/07/09/helping-myself-change-the-default-git-branch.html#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2019/10/21/gitwebel-quickly-visit-a-repos-forge-from-emacs.html" rel="bookmark"
+                           title="Permalink to "gitweb.el -- Quickly visit a repo's forge from Emacs"">"gitweb.el -- Quickly visit a repo's forge from Emacs"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-10-21T10:41:00+01:00">
+                Published: Mon 21 October 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/emacs.html">[ &#34;emacs&#34;</a> <a href="/tag/git.html">&#34;git&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p><code>gh.fish</code>, which <a href="/2019/10/20/fg-fish.html">I wrote about yesterday</a>,
+actually sprang from something I initially wrote for Emacs. I'm often
+spending my time switching between Emacs and the command line (which is fast
+and easy -- I normally work on macOS and have Emacs and
+<a href="https://www.iterm2.com/">iTerm2</a> running full screen, and I can switch …</p>
+                <a class="readmore" href="/2019/10/21/gitwebel-quickly-visit-a-repos-forge-from-emacs.html">read more</a>
+<p>There are <a href="/2019/10/21/gitwebel-quickly-visit-a-repos-forge-from-emacs.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2019/10/20/ghfish-quickly-visit-a-repos-forge.html" rel="bookmark"
+                           title="Permalink to "gh.fish -- Quickly visit a repo's forge"">"gh.fish -- Quickly visit a repo's forge"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-10-20T13:15:00+01:00">
+                Published: Sun 20 October 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/fish.html">[ &#34;fish&#34;</a> <a href="/tag/git.html">&#34;git&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>These days <a href="https://fishshell.com/">fish</a> is my shell of choice. I started
+out with <a href="https://www.gnu.org/software/bash/">bash</a> back in the 1990s, went
+through a bit of a
+<a href="https://www.zsh.org/">zsh</a>/<a href="https://ohmyz.sh/">oh-my-zsh</a> phase, but
+earlier this year finally settled on fish.</p>
+<p>At some point I might write a post about my fish config, and why fish works …</p>
+                <a class="readmore" href="/2019/10/20/ghfish-quickly-visit-a-repos-forge.html">read more</a>
+<p>There are <a href="/2019/10/20/ghfish-quickly-visit-a-repos-forge.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://github.com/davep">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://fosstodon.org/@davep">Mastodon</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

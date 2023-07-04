@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>"Swift TIL 7"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom Feed" />
+        <meta name="description" content="This post is very much a case of me writing it down to try and get it all straight in my head, and to make sure it sticks. The other day I was..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog.davep.org</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/2020/06/28/swift-til-7.html" rel="bookmark"
+           title="Permalink to "Swift TIL 7"">"Swift TIL 7"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-06-28T16:25:00+01:00">
+                Published: Sun 28 June 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->      <p>This post is <em>very</em> much a case of me writing it down to try and get it all
+straight in my head, and to make sure it sticks. The other day I was reading
+about Swift's types and type-equality checks, and as I'd expect from plenty
+of other languages I've worked with, there's a way for checking that two
+types are the same, such that super/subclasses aren't taken into account,
+and a way where they are. So, given this silly code:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Animal</span> <span class="p">{}</span>
+
+<span class="kd">class</span> <span class="nc">Cat</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">{}</span>
+
+<span class="bp">print</span><span class="p">(</span> <span class="n">Cat</span><span class="p">.</span><span class="kc">self</span> <span class="p">==</span> <span class="n">Animal</span><span class="p">.</span><span class="kc">self</span> <span class="p">)</span>          <span class="c1">// False</span>
+<span class="bp">print</span><span class="p">(</span> <span class="n">Cat</span><span class="p">.</span><span class="kc">self</span> <span class="k">is</span> <span class="n">Animal</span><span class="p">.</span><span class="kr">Type</span> <span class="p">)</span>          <span class="c1">// True</span>
+<span class="bp">print</span><span class="p">(</span> <span class="n">type</span><span class="p">(</span> <span class="n">of</span><span class="p">:</span> <span class="n">Cat</span><span class="p">()</span> <span class="p">)</span> <span class="k">is</span> <span class="n">Animal</span><span class="p">.</span><span class="kr">Type</span> <span class="p">)</span> <span class="c1">// True</span>
+</code></pre></div>
+
+<p>it's made clear that <code>==</code> checks for strict equality and a super/subclass
+relationship isn't taken into account. On the other hand <code>is</code> does take it
+into account.</p>
+<p>Only... what's with this whole <code>.self</code> sometimes and <code>.Type</code> other times
+business? That took a little bit of writing code and playing to get
+comfortable with. Here's how I understand it now (and do feel free to
+correct me below if I'm way off):</p>
+<p>Given the above code, <code>Animal.Type</code> is the type of a value that expresses
+the type of <code>Animal</code>. On the other hand, <code>Animal.self</code> is a value that is
+the type of an <code>Animal</code>. Yeah, I know, that still reads oddly. But written
+as code:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">feline</span> <span class="p">:</span> <span class="n">Cat</span><span class="p">.</span><span class="kr">Type</span> <span class="p">=</span> <span class="n">Cat</span><span class="p">.</span><span class="kc">self</span>
+</code></pre></div>
+
+<p>I think it makes a lot more sense. And having got there I felt I better
+understood it. I'm not 100% sure I'm 100% with it, but I'm getting there.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://github.com/davep">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://fosstodon.org/@davep">Mastodon</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

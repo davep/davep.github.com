@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>blog.davep.org - [ "swift"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog.davep.org</a></h1>
+                <nav><ul>
+                    <li><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/2020/08/23/the-pep-8-hill-i-will-die-on.html">"The PEP 8 hill I will die on"</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2020-08-23T16:54:00+01:00">
+                Published: Sun 23 August 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info --><p>I first learnt Python back in the mid-to-late 90s, used it in place of Perl
+once I was comfortable with it, and then we sort of drifted apart when I
+first met Ruby. It's only in the last couple of years that I've got back
+into it, and in a huge way, thanks to <a href="/2017/12/12/on_to_something_new.html">my (not-quite-so-) new
+job</a>. Despite
+the quirks and oddness (as I perceive them), I actually quite like Python
+and it's one of those languages that just flows off my fingers. I'm sure you
+know the same thing, perhaps not with Python, but there will be languages
+that just flow for you, and those that take a bit more effort and
+concentration. Python... feels okay to me.</p>
+<p>I also appreciate that there's been a long-standing style guide. I quite
+like <a href="python.org/dev/peps/pep-0008/">PEP 8</a> as a read, and think there's a
+lot of good ideas in there; much of the content sits with how I'd approach
+things if I was tasked to come up with such a document. With this in mind,
+I'm a fairly heavy user of <code>pylint</code> and it in turn leans on PEP 8 (amongst
+other things) and I'm happy to accept most of its judgements. Not all of its
+judgements, <a href="/2019/11/04/my-pylint-shame.html">but even when I disagree with it I try and keep track of how
+far I'm
+drifting</a>.</p>
+<p>But there is absolutely one hill I will happily die on when it comes to PEP
+8: the concept of <a href="https://www.python.org/dev/peps/pep-0008/#whitespace-in-expressions-and-statements">"extraneous whitespace" in lists and
+expressions</a>.
+Just.... no! Oh gods no!</p>
+<p>To borrow a line of code from <a href="/2019/11/10/going-on-a-journey.html">the journey problem I dabbled with a while
+back</a>,
+PEP 8 would have me write something like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">perform</span><span class="p">(</span><span class="n">commands</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">State</span><span class="p">:</span>
+</code></pre></div>
+
+<p>Now, I'm sure plenty of people won't see a problem with this at all; but all
+I can see is an almost-claustrophobic parameter list. What's with the
+parameters being jammed up against the opening and closing parens? Why have
+the dinky little comma lost between two different things? Why have it look
+like a long stream of letters and punctuation? Why....</p>
+<p>No.</p>
+<p>Just no.</p>
+<p>I can't.</p>
+<p>Rightly or wrongly, I just need for the code to breathe a bit. When I type
+this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">perform</span><span class="p">(</span> <span class="n">commands</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span> <span class="nb">str</span> <span class="p">],</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">State</span><span class="p">:</span>
+</code></pre></div>
+
+<p>suddenly if feels like there's fresh air in the code, like it flows gently
+out of my head, off my fingers, through the keyboard and into the buffer.</p>
+<p>In my head, and to my eyes, the code is.... relaxed.</p>
+<p>Do I have a rational reason for this? Nope. Then again I don't see one for
+doing it the other way either; I can't think of one and I don't see one in
+the source document. So, that's a warning I always turn off with <code>pylint</code>
+and it's a style I carry through all my Python code; and I think that's the
+important point here: anyone reading and working with my code should see the
+same style all the way through. It might differ from PEP 8 on this point,
+but at least it's the same all the way.</p>
+<p>And, really, that's okay: <a href="https://www.python.org/dev/peps/pep-0008/#a-foolish-consistency-is-the-hobgoblin-of-little-minds">PEP 8 is there to be
+ignored</a>.
+;-)</p>
+<p>PS: This is a small part of another blog post I was meaning to write, and
+might still do, about my (still ongoing) experience of getting
+<a href="https://github.com/emacs-lsp/lsp-mode"><code>lsp-mode</code></a> up and running in Emacs
+and having it play nice with Python projects. I have that working, but it
+was a bit of a learning curve and epic battle over a couple of days, and one
+that had me first encounter
+<a href="https://pypi.org/project/pycodestyle/"><code>pycodestyle</code></a>. I may still tell the
+tale...</p><p>There are <a href="/2020/08/23/the-pep-8-hill-i-will-die-on.html#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2020/07/18/swift-til-12.html" rel="bookmark"
+                           title="Permalink to "Swift TIL 12"">"Swift TIL 12"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-07-18T10:16:00+01:00">
+                Published: Sat 18 July 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>First a small aside: To be honest, the <code>T</code> part of <code>TIL</code> is getting to be
+less and less true with this series of posts, but the posts themselves serve
+a useful purpose for me. As I've been reading the book I'm working through,
+I've also been making notes on …</p>
+                <a class="readmore" href="/2020/07/18/swift-til-12.html">read more</a>
+<p>There are <a href="/2020/07/18/swift-til-12.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2020/07/11/swift-til-11.html" rel="bookmark"
+                           title="Permalink to "Swift TIL 11"">"Swift TIL 11"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-07-11T21:34:00+01:00">
+                Published: Sat 11 July 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>This is one of those things, especially this little play to help appreciate
+the feature, that I'm filing under "kinda cool, but I am <em>never</em> doing this
+in production".</p>
+<p>So Swift has operator overriding, and then some. Moreover, operators are, in
+effect, functions, just with some extra syntax support. None …</p>
+                <a class="readmore" href="/2020/07/11/swift-til-11.html">read more</a>
+<p>There are <a href="/2020/07/11/swift-til-11.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2020/07/05/swift-til-10.html" rel="bookmark"
+                           title="Permalink to "Swift TIL 10"">"Swift TIL 10"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-07-05T15:27:00+01:00">
+                Published: Sun 05 July 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>My leisurely journey into getting to know Swift by reading and then making
+notes to myself in my blog continues, and this weekend I encountered
+<code>defer</code>. As I was reading about Swift I did keep wondering when something
+like <code>try</code> (it has <code>try</code>), <code>catch</code> (it has <code>catch</code>) and <code>finally</code> (it …</p>
+                <a class="readmore" href="/2020/07/05/swift-til-10.html">read more</a>
+<p>There are <a href="/2020/07/05/swift-til-10.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2020/06/30/swift-til-9.html" rel="bookmark"
+                           title="Permalink to "Swift TIL 9"">"Swift TIL 9"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-06-30T21:02:00+01:00">
+                Published: Tue 30 June 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p><em>Some may be happy to know that the frequency of these little notes to
+myself may reduce real soon, as I'm sort of caught up with my notes, mostly,
+and I'm unlikely to pick up the book that I'm reading for a couple or so
+days now</em></p>
+<p>I'm used to …</p>
+                <a class="readmore" href="/2020/06/30/swift-til-9.html">read more</a>
+<p>There are <a href="/2020/06/30/swift-til-9.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2020/06/29/swift-til-8.html" rel="bookmark"
+                           title="Permalink to "Swift TIL 8"">"Swift TIL 8"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-06-29T22:48:00+01:00">
+                Published: Mon 29 June 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>Although I read up on it a few days back, it was only this evening that I
+fired up Emacs (well of course I'm testing Swift with Emacs, what did you
+think I'd do?!?) and dabbled with some code to really get a feel for how
+casting works in Swift …</p>
+                <a class="readmore" href="/2020/06/29/swift-til-8.html">read more</a>
+<p>There are <a href="/2020/06/29/swift-til-8.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2020/06/28/swift-til-7.html" rel="bookmark"
+                           title="Permalink to "Swift TIL 7"">"Swift TIL 7"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-06-28T16:25:00+01:00">
+                Published: Sun 28 June 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>This post is <em>very</em> much a case of me writing it down to try and get it all
+straight in my head, and to make sure it sticks. The other day I was reading
+about Swift's types and type-equality checks, and as I'd expect from plenty
+of other languages I've …</p>
+                <a class="readmore" href="/2020/06/28/swift-til-7.html">read more</a>
+<p>There are <a href="/2020/06/28/swift-til-7.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2020/06/27/swift-til-6.html" rel="bookmark"
+                           title="Permalink to "Swift TIL 6"">"Swift TIL 6"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-06-27T21:23:00+01:00">
+                Published: Sat 27 June 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>I'm going to file this one under "it seems really unnecessary, but it's also
+kinda cool". While reading up about
+<a href="https://docs.swift.org/swift-book/LanguageGuide/Protocols.html">protocols</a>
+the book I'm reading introduced the <code>ExpressibleBy*Literal</code> protocols, where
+the <code>*</code> is one of a number of obvious literals. For example:
+<code>ExpressibleByStringLiteral</code>. As you might imagine, it lets you …</p>
+                <a class="readmore" href="/2020/06/27/swift-til-6.html">read more</a>
+<p>There are <a href="/2020/06/27/swift-til-6.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2020/06/26/swift-til-5.html" rel="bookmark"
+                           title="Permalink to "Swift TIL 5"">"Swift TIL 5"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-06-26T15:44:00+01:00">
+                Published: Fri 26 June 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>I'm going to file this one under "it makes perfect sense, but I don't think
+it aids in making the code readable" -- something which I'm finding is a bit
+of a theme with Swift.</p>
+<p>In Swift <code>self</code> gets used and gets used in a way you'd expect from many
+other …</p>
+                <a class="readmore" href="/2020/06/26/swift-til-5.html">read more</a>
+<p>There are <a href="/2020/06/26/swift-til-5.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2020/06/25/swift-til-4.html" rel="bookmark"
+                           title="Permalink to "Swift TIL 4"">"Swift TIL 4"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-06-25T13:21:00+01:00">
+                Published: Thu 25 June 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>Some languages favour a <a href="https://www.python.org/dev/peps/pep-0020/">"one way to do
+it"</a> approach, some favour
+<a href="https://en.wikipedia.org/wiki/There%27s_more_than_one_way_to_do_it">"there's more than one way to do
+it"</a>.
+I'm not sure I'm at a point where I have a feel for what Swift's approach
+is, but I'm getting the impression it's more the latter than the former.</p>
+<p>If …</p>
+                <a class="readmore" href="/2020/06/25/swift-til-4.html">read more</a>
+<p>There are <a href="/2020/06/25/swift-til-4.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 2
+        <a href="/tag/swift2.html">&raquo;</a>
+        <a href="/tag/swift2.html">&#8649;</a>
+</p>
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://github.com/davep">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://fosstodon.org/@davep">Mastodon</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>"Swift TIL 5"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom Feed" />
+        <meta name="description" content="I'm going to file this one under "it makes perfect sense, but I don't think it aids in making the code readable" -- something which I'm finding is..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog.davep.org</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/2020/06/26/swift-til-5.html" rel="bookmark"
+           title="Permalink to "Swift TIL 5"">"Swift TIL 5"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-06-26T15:44:00+01:00">
+                Published: Fri 26 June 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->      <p>I'm going to file this one under "it makes perfect sense, but I don't think
+it aids in making the code readable" -- something which I'm finding is a bit
+of a theme with Swift.</p>
+<p>In Swift <code>self</code> gets used and gets used in a way you'd expect from many
+other languages. So far so good. But, it seems, <code>Self</code> is also a thing too,
+and it's different from <code>self</code>. Whereas <code>self</code> is the current instance,
+<code>Self</code> is the current type. So consider this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Greeting</span> <span class="p">{</span>
+
+    <span class="kd">class</span> <span class="nc">func</span> <span class="n">message</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
+        <span class="s">&quot;Ayup!&quot;</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">message</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
+        <span class="s">&quot;Well hello there&quot;</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">emit</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="kc">Self</span><span class="p">.</span><span class="n">message</span><span class="p">()</span> <span class="p">)</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="kc">self</span><span class="p">.</span><span class="n">message</span><span class="p">()</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">Greeting</span><span class="p">().</span><span class="n">emit</span><span class="p">()</span>
+</code></pre></div>
+
+<p>When run, the output is:</p>
+<div class="highlight"><pre><span></span><code>Ayup!
+Well hello there
+</code></pre></div>
+
+<p>It makes sense that that's the case. I actually really like the ability to
+use <code>Self</code> rather than having to use <code>Greeting</code>, but damn that's really
+setting things up for either mistyping or misreading code. You're going to
+want to hope that your development environment makes it super obvious what's
+a value and what's a type when it comes to using font choices.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://github.com/davep">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://fosstodon.org/@davep">Mastodon</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

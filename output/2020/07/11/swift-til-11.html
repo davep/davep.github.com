@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>"Swift TIL 11"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom Feed" />
+        <meta name="description" content="This is one of those things, especially this little play to help appreciate the feature, that I'm filing under "kinda cool, but I am never doing..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog.davep.org</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/2020/07/11/swift-til-11.html" rel="bookmark"
+           title="Permalink to "Swift TIL 11"">"Swift TIL 11"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-07-11T21:34:00+01:00">
+                Published: Sat 11 July 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->      <p>This is one of those things, especially this little play to help appreciate
+the feature, that I'm filing under "kinda cool, but I am <em>never</em> doing this
+in production".</p>
+<p>So Swift has operator overriding, and then some. Moreover, operators are, in
+effect, functions, just with some extra syntax support. None of this is new
+to me, I've worked in and with other languages that have this ability,
+expect... I don't ever recall working in a language that, at the time I did,
+supported creating brand new operators (okay, fine, Lisp is a bit of an
+outlier here and there's all sorts of fun conversations to be had there --
+but still, let's stick with more "conventional" syntax here). Support always
+seemed to be about extending the ability of an existing operator.</p>
+<p>Swift though... yeah, you get to pick from a huge character space when it
+comes to creating operators.</p>
+<p>Which got me thinking... How cool would it be to have a prefix operator that
+turns a floating point number into a currency-friendly number (you know, the
+sort of number type that can be used for currency-friendly calculations).</p>
+<p>Swift has the
+<a href="https://developer.apple.com/documentation/foundation/decimal"><code>decimal</code></a>
+type which, at first glance anyway, looks to be a sensible candidate; even
+if it isn't (and, really, how to actually sensibly handle currency is a
+whole series of blog posts in their own right, that I have no wish to write
+myself because such things are a previous working life for me, and other
+people have doubtless done a very comprehensive job elsewhere over the
+years) it will serve as a good stand-in for the little bit of horror I'm
+going to write next.</p>
+<p>So... Let's say we want to use <code>£</code> as a prefix operator to say "see this
+number? make it a <code>decimal</code>", we could do something as simple as this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">Foundation</span>
+
+<span class="kr">prefix</span> <span class="kd">operator</span> <span class="err">£</span>
+<span class="kr">prefix</span> <span class="kd">func</span> <span class="err">£</span><span class="p">(</span> <span class="n">n</span> <span class="p">:</span> <span class="n">Decimal</span> <span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Decimal</span> <span class="p">{</span> <span class="n">n</span> <span class="p">}</span>
+
+<span class="bp">print</span><span class="p">(</span> <span class="err">£</span><span class="mf">1.20</span> <span class="o">+</span> <span class="err">£</span><span class="mf">0.75</span> <span class="o">+</span> <span class="err">£</span><span class="mf">0.01</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>Horrifically and delightfully, it works:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>opover
+<span class="m">1</span>.96
+</code></pre></div>
+
+<p>I know, I know, I feel bad for even trying. But it's also kinda cool that
+the language has this.</p>
+<p>It gets better though...</p>
+<p>While reading up on what characters can and can't be used as operators, one
+thing that stood out was the fact that, more or less, any character that
+isn't a valid identifier can be used as an operator. So... hang on, we can
+use "emoji" as identifiers?</p>
+<p>Like this?</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">Foundation</span>
+
+<span class="kr">prefix</span> <span class="kd">operator</span> <span class="err">£</span>
+<span class="kr">prefix</span> <span class="kd">func</span> <span class="err">£</span><span class="p">(</span> <span class="n">n</span> <span class="p">:</span> <span class="n">Decimal</span> <span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Decimal</span> <span class="p">{</span> <span class="n">n</span> <span class="p">}</span>
+
+<span class="kd">let</span> <span class="err">💵</span> <span class="p">=</span> <span class="err">£</span><span class="mf">1.20</span> <span class="o">+</span> <span class="err">£</span><span class="mf">0.75</span> <span class="o">+</span> <span class="err">£</span><span class="mf">0.01</span>
+
+<span class="bp">print</span><span class="p">(</span> <span class="err">💵</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>Why yes. Yes we can. 😈</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://github.com/davep">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://fosstodon.org/@davep">Mastodon</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

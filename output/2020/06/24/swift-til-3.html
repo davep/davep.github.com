@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>"Swift TIL 3"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom Feed" />
+        <meta name="description" content="Today's little "Swift TIL" is observers. While reading up on the language I was delighted to find that it has observer support baked right into..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog.davep.org</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/2020/06/24/swift-til-3.html" rel="bookmark"
+           title="Permalink to "Swift TIL 3"">"Swift TIL 3"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-06-24T16:38:00+01:00">
+                Published: Wed 24 June 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->      <p>Today's little "Swift TIL" is observers. While reading up on the language I
+was delighted to find that it has observer support baked right into the
+language, for any sort of variable. So code like this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nv">name</span>  <span class="p">=</span> <span class="s">&quot;David&quot;</span> <span class="p">{</span>
+
+    <span class="kr">willSet</span><span class="p">(</span> <span class="n">new</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;About to change name from </span><span class="si">\(</span><span class="n">name</span><span class="si">)</span><span class="s"> to </span><span class="si">\(</span><span class="n">new</span><span class="si">)</span><span class="s">&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kr">didSet</span><span class="p">(</span> <span class="n">old</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;Name changed from </span><span class="si">\(</span><span class="n">old</span><span class="si">)</span><span class="s"> to </span><span class="si">\(</span><span class="n">name</span><span class="si">)</span><span class="s">&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">name</span> <span class="p">=</span> <span class="s">&quot;davep&quot;</span>
+</code></pre></div>
+
+<p>Does what you'd imagine:</p>
+<div class="highlight"><pre><span></span><code>About to change name from David to davep
+Name changed from David to davep
+</code></pre></div>
+
+<p>Not only can I see how that'd be useful for the main sorts of purposes that
+Swift is put to, I can think of many times when I'd have benefitted from
+that in my general day-to-day work. Of course, you can create an observer
+approach in any language really, but having an idiom that's part of the
+language feels nice and tidy.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://github.com/davep">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://fosstodon.org/@davep">Mastodon</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

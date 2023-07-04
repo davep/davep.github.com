@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>"Swift TIL 12"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom Feed" />
+        <meta name="description" content="First a small aside: To be honest, the T part of TIL is getting to be less and less true with this series of posts, but the posts themselves serve..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog.davep.org</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/2020/07/18/swift-til-12.html" rel="bookmark"
+           title="Permalink to "Swift TIL 12"">"Swift TIL 12"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-07-18T10:16:00+01:00">
+                Published: Sat 18 July 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/swift.html">[ &#34;swift&#34;</a> <a href="/tag/apple.html">&#34;apple&#34;</a> <a href="/tag/til.html">&#34;TIL&#34; ]</a> </p>
+</footer><!-- /.post-info -->      <p>First a small aside: To be honest, the <code>T</code> part of <code>TIL</code> is getting to be
+less and less true with this series of posts, but the posts themselves serve
+a useful purpose for me. As I've been reading the book I'm working through,
+I've also been making notes on my iPad in the <a href="https://apps.apple.com/us/app/notes/id1110145109">Apple Notes
+application</a>. I'm not
+really convinced that that's the best final location for such notes, so
+early on I made an extra step in keeping track of what I'm doing and trying
+to reinforce what I'm learning: transfer the notes into
+<a href="https://orgmode.org/">Org-Mode</a> documents in my notebook repository.</p>
+<p>This repository contains lots of Org-Mode files, broken down into subject
+directories, that hang on to longer-form information I want to keep track of
+regarding software development and general operating system use. I'm sure
+you know the sort of thing, the things where you know you know them but you
+can't always retain all the detail -- so having the detail where you know
+you'll find it is useful.</p>
+<p>So I've made that part of the process: read book, find thing worth noting,
+note in Apple Notes, a wee while later re-read and test out by writing
+sample code and transfer to the Org-Mode notebook. During that latter step I
+sometimes also write up something that I really liked or found interesting
+here to further reinforce the learning process.</p>
+<p>The "TIL" I wanted to note quickly today is how happy I was to see that
+Swift has something that's a reasonably recent addition to Emacs Lisp:
+conditional binding. Skipping off into Emacs Lisp for a moment, it would be
+very common for me to find myself writing something like this (this actually
+happens in all languages really):</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="nv">foo</span><span class="w"> </span><span class="p">(</span><span class="nv">get-something-from-elsewhere</span><span class="p">)))</span>
+<span class="w">  </span><span class="p">(</span><span class="nb">when</span><span class="w"> </span><span class="nv">foo</span>
+<span class="w">    </span><span class="p">(</span><span class="nv">do-something-with</span><span class="w"> </span><span class="nv">foo</span><span class="p">)))</span>
+</code></pre></div>
+
+<p>Quite simply: I'd get a value from elsewhere, that value could possibly be
+<code>nil</code> to mark that there was a failure to get a value, but that failure
+wasn't in any way fatal or even a problem worthy of note: I just needed to
+skip along. But that binding followed by the test was always a little
+jarring. And then, <a href="https://endlessparentheses.com/new-in-emacs-25-1-more-flow-control-macros.html">back in
+25.1</a>,
+<code>if-let</code> and <code>when-let</code> got added (of course, this being Lisp, <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Macros.html#Macros">it would
+have been very simple to add them
+anyway</a>),
+and it was easier to <a href="https://github.com/davep/pinboard.el/blob/d426f9d2ebec5f907c8a89d6b38ccbcb13750d4f/pinboard.el#L308">write the code so it looked just a little
+nicer</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nv">when-let</span><span class="w"> </span><span class="p">((</span><span class="nv">foo</span><span class="w"> </span><span class="p">(</span><span class="nv">get-something-from-elsewhere</span><span class="p">)))</span>
+<span class="w">  </span><span class="p">(</span><span class="nv">do-something-with</span><span class="w"> </span><span class="nv">foo</span><span class="p">))</span>
+</code></pre></div>
+
+<p>It's a small difference, but I find it a pleasing one.</p>
+<p>So of course I was pleased to find that Swift has something similar with
+<code>if</code> and
+<a href="https://developer.apple.com/documentation/swift/optional"><code>Optional</code></a>
+values, where you can write something like:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="kd">let</span> <span class="nv">foo</span> <span class="p">=</span> <span class="n">getSomethingFromElsewhere</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Do something with foo but only if it&#39;s not nil</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Which means you can do things like this (not that I'd really do things like
+this, but it was a handy test on the command line):</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">oddRand</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Int</span><span class="p">?</span> <span class="p">{</span>
+
+    <span class="kd">let</span> <span class="nv">n</span> <span class="p">=</span> <span class="nb">Int</span><span class="p">.</span><span class="n">random</span><span class="p">(</span> <span class="k">in</span><span class="p">:</span> <span class="mf">0.</span><span class="p">..</span><span class="mi">99</span> <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="p">==</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">nil</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">n</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="kc">_</span> <span class="k">in</span> <span class="mf">0.</span><span class="p">..</span><span class="mi">10</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="kd">let</span> <span class="nv">n</span> <span class="p">=</span> <span class="n">oddRand</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="n">n</span> <span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;Nope&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>As usual... of course that's horrible code, it was just thrown together to
+test/experience the language feature on the command line.</p>
+<p>I like it though. I figure <a href="https://clojuredocs.org/clojure.core/when-let">all the best languages have conditional
+binding</a>. ;-)</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://github.com/davep">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://fosstodon.org/@davep">Mastodon</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

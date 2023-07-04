@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>blog.davep.org - [ "Emacs"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog.davep.org</a></h1>
+                <nav><ul>
+                    <li><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/2022/08/23/i-must-be-getting-old.html">I must be getting old</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2022-08-23T21:31:00+01:00">
+                Published: Tue 23 August 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/emacs.html">[ &#34;Emacs&#34;</a> <a href="/tag/lisp.html">&#34;Lisp&#34; ]</a> </p>
+</footer><!-- /.post-info --><p>A little earlier this evening I got <a href="https://github.com/davep/boxquote.el/issues/7">a new
+issue</a> raised against
+<a href="(https://github.com/davep/boxquote.el/issues/7)"><code>boxquote.el</code></a>. Apparently
+Emacs 29 (I'm running 28.1 as of the time of writing) is moaning about the
+likes of:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">setf</span><span class="w"> </span><span class="p">(</span><span class="nf">point</span><span class="p">)</span><span class="w"> </span><span class="nv">some-location-or-other</span><span class="p">)</span>
+</code></pre></div>
+
+<p>and</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">setf</span><span class="w"> </span><span class="p">(</span><span class="nf">buffer-string</span><span class="p">)</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>There's a whole background to why I've tended to code like that, that stems
+from enjoying Common Lisp, my days reading (and sometimes posting to)
+<code>comp.lang.lisp</code>, and I <em>think</em> some of the stuff <a href="https://en.wikipedia.org/wiki/Erik_Naggum">Erik
+Naggum</a> wrote back in the day. I
+won't get into it all now; I'm not sure I can even remember a lot of how I
+got there given how far back it was.</p>
+<p>But...</p>
+<p>Wanting to quickly get to the bottom of why the above was suddenly an issue,
+I dived into the <code>NEWS</code> file and <a href="https://github.com/emacs-mirror/emacs/blob/67a15ce1564ce35ece24a19f00e03a36e0575746/etc/NEWS#L2585">found the
+following</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">**</span><span class="w"> </span><span class="n">Many</span><span class="w"> </span><span class="n">seldom</span><span class="o">-</span><span class="n">used</span><span class="w"> </span><span class="n">generalized</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">been</span><span class="w"> </span><span class="n">made</span><span class="w"> </span><span class="n">obsolete</span><span class="o">.</span>
+<span class="n">Emacs</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">rather</span><span class="w"> </span><span class="n">obscure</span><span class="w"> </span><span class="n">generalized</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="n">defined</span><span class="p">,</span>
+<span class="n">that</span><span class="p">,</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">instance</span><span class="p">,</span><span class="w"> </span><span class="n">allowed</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">say</span><span class="w"> </span><span class="n">things</span><span class="w"> </span><span class="n">like</span><span class="p">:</span>
+
+<span class="w">   </span><span class="p">(</span><span class="n">setf</span><span class="w"> </span><span class="p">(</span><span class="n">point</span><span class="o">-</span><span class="nb">min</span><span class="p">)</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">These</span><span class="w"> </span><span class="n">never</span><span class="w"> </span><span class="n">caught</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">been</span><span class="w"> </span><span class="n">made</span><span class="w"> </span><span class="n">obsolete</span><span class="o">.</span><span class="w">  </span><span class="n">The</span><span class="w"> </span><span class="n">form</span><span class="w"> </span><span class="n">above</span><span class="p">,</span>
+<span class="k">for</span><span class="w"> </span><span class="n">instance</span><span class="p">,</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">saying</span>
+
+<span class="w">   </span><span class="p">(</span><span class="n">narrow</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">region</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">(</span><span class="n">point</span><span class="o">-</span><span class="nb">max</span><span class="p">))</span>
+
+<span class="n">The</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="n">generalized</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">been</span><span class="w"> </span><span class="n">made</span><span class="w"> </span><span class="n">obsolete</span><span class="p">:</span>
+<span class="s1">&#39;buffer-file-name&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;buffer-local-value&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;buffer-modified-p&#39;</span><span class="p">,</span>
+<span class="s1">&#39;buffer-name&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;buffer-string&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;buffer-substring&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;current-buffer&#39;</span><span class="p">,</span>
+<span class="s1">&#39;current-column&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;current-global-map&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;current-input-mode&#39;</span><span class="p">,</span>
+<span class="s1">&#39;current-local-map&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;current-window-configuration&#39;</span><span class="p">,</span>
+<span class="s1">&#39;default-file-modes&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;documentation-property&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;frame-height&#39;</span><span class="p">,</span>
+<span class="s1">&#39;frame-visible-p&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;global-key-binding&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;local-key-binding&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;mark&#39;</span><span class="p">,</span>
+<span class="s1">&#39;mark-marker&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;marker-position&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;mouse-position&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;point&#39;</span><span class="p">,</span>
+<span class="s1">&#39;point-marker&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;point-max&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;point-min&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;read-mouse-position&#39;</span><span class="p">,</span>
+<span class="s1">&#39;screen-height&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;screen-width&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;selected-frame&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;selected-screen&#39;</span><span class="p">,</span>
+<span class="s1">&#39;selected-window&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;standard-case-table&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;syntax-table&#39;</span><span class="p">,</span>
+<span class="s1">&#39;visited-file-modtime&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;window-height&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;window-width&#39;</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span>
+<span class="s1">&#39;x-get-secondary-selection&#39;</span><span class="o">.</span>
+</code></pre></div>
+
+<p>As suggested above... this is my thing, this is how I coded some Elisp
+stuff. Look through much of my <a href="https://elisp.dev/">Emacs Lisp code</a> and
+you'll find me <code>setf</code>ing stuff all over the place.</p>
+<p>Apparently my style is "obscure". Actually, I'm kinda okay with that if I'm
+honest.</p>
+<p>This is going to be a bit of a pain in the arse; I'm going to have to go
+through a whole bunch of code and make it "less obscure", at some point.</p>
+<p>But...</p>
+<p>This isn't the part that had me thinking I must be getting old. Oh no. The
+<code>NEWS</code> file had another little surprise in store:</p>
+<div class="highlight"><pre><span></span><code><span class="o">**</span><span class="w"> </span><span class="nx">The</span><span class="w"> </span><span class="nx">quickurl</span><span class="p">.</span><span class="nx">el</span><span class="w"> </span><span class="kn">library</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">now</span><span class="w"> </span><span class="nx">obsolete</span><span class="p">.</span>
+<span class="nx">Use</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">abbrev</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">skeleton</span><span class="err">&#39;</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">tempo</span><span class="err">&#39;</span><span class="w"> </span><span class="nx">instead</span><span class="p">.</span>
+</code></pre></div>
+
+<p>That.... that's me that is. Well, it's one of the me things. If you run
+<code>about-emacs</code>, dive into <code>Authors</code>, and search for my name, in any copy of
+GNU Emacs from the last decade or two, you'll find this:</p>
+<div class="highlight"><pre><span></span><code>Dave Pearson: wrote 5x5.el quickurl.el
+</code></pre></div>
+
+<p><a href="https://github.com/davep/quickurl.el/blob/master/quickurl.el"><code>quickurl.el</code></a>
+was a package I wrote back in the late 1990s, back when I was a very heavy
+user of <a href="https://en.wikipedia.org/wiki/Usenet">Usenet</a>, and often found
+myself posting the same URLs in posts again and again; especially in
+<code>comp.lang.clipper</code>. As a fairly quick hack I wrote the code so that I could
+very quickly insert often-used URLs.</p>
+<p>Some time later, I got an email from the
+<a href="https://en.wikipedia.org/wiki/Free_Software_Foundation">FSF</a> (I actually
+think it was from <a href="https://en.wikipedia.org/wiki/Richard_Stallman">RMS</a> --
+but that's an <a href="https://en.wikipedia.org/wiki/Mbox"><code>mbox</code></a> I've long ago
+lost -- or a backup of it might be in storage back in England, on a DVD),
+asking if I wanted to contribute it to Emacs proper. This seemed like an odd
+thing to add to Emacs but, sure, why the hell not?</p>
+<p>And so I had my second contribution to a body of code I used a lot (the
+first being <a href="https://github.com/davep/5x5.el"><code>5x5.el</code></a> -- which itself was
+my first ever attempt at writing some non-trivial Elisp code).</p>
+<p>So... yeah... here we are. I'm now old enough to have written some Emacs
+Lisp code, had it required by the FSF for inclusion in Emacs, had it live in
+there for something like two decades, and then <em>become obselete</em>!</p><p>There are <a href="/2022/08/23/i-must-be-getting-old.html#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2020/06/14/my-journey-to-the-dark-side-is-complete.html" rel="bookmark"
+                           title="Permalink to "My journey to the dark side is complete"">"My journey to the dark side is complete"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-06-14T20:00:00+01:00">
+                Published: Sun 14 June 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/emacs.html">[ &#34;emacs&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>Ever since the whole business of "light mode" and "dark mode" really kicked
+off in the mobile OS world, I've been a fan of the dark modes. On both
+Android and iOS/iPadOS, when apps became available with dark modes, I'd
+switch to it. When the operating systems themselves adopted …</p>
+                <a class="readmore" href="/2020/06/14/my-journey-to-the-dark-side-is-complete.html">read more</a>
+<p>There are <a href="/2020/06/14/my-journey-to-the-dark-side-is-complete.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2020/06/07/some-more-emacsd-evolution.html" rel="bookmark"
+                           title="Permalink to "Some more ~/.emacs.d evolution"">"Some more ~/.emacs.d evolution"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-06-07T16:48:00+01:00">
+                Published: Sun 07 June 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/emacs.html">[ &#34;emacs&#34;</a> <a href="/tag/lisp.html">&#34;lisp&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>When I started with this version of the blog on Hashnode<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, my plan was to
+try and write something at least once a week. I managed to do that as far as
+January this year, give or take, but then things got a little busy, the
+world got trickier …</p>
+                <a class="readmore" href="/2020/06/07/some-more-emacsd-evolution.html">read more</a>
+<p>There are <a href="/2020/06/07/some-more-emacsd-evolution.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2020/01/19/dnoteel-a-wrapper-for-the-dnote-cli.html" rel="bookmark"
+                           title="Permalink to "dnote.el - A wrapper for the dnote CLI"">"dnote.el - A wrapper for the dnote CLI"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-01-19T16:35:00+00:00">
+                Published: Sun 19 January 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/emacs.html">[ &#34;emacs&#34;</a> <a href="/tag/lisp.html">&#34;lisp&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>Late on last year I stumbled on an article about
+<a href="https://www.getdnote.com/">dnote</a>. Annoyingly, I can't recall now where I
+saw it, but I made a reminder to look at it over my Christmas break.</p>
+<p>Dnote looked like a tool that would fill a hole I had in how I work. When …</p>
+                <a class="readmore" href="/2020/01/19/dnoteel-a-wrapper-for-the-dnote-cli.html">read more</a>
+<p>There are <a href="/2020/01/19/dnoteel-a-wrapper-for-the-dnote-cli.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2020/01/11/where-i-live-and-work.html" rel="bookmark"
+                           title="Permalink to "Where I live and work"">"Where I live and work"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-01-11T14:17:00+00:00">
+                Published: Sat 11 January 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/emacs.html">[ &#34;emacs&#34;</a> <a href="/tag/shell.html">&#34;shell&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>It's no surprise that I spend a lot of time in Emacs. Especially when I'm
+developing software, either for work or for personal fun, most of my time is
+time spent in Emacs. While I do obviously flit over to Chrome, and mostly do
+my CLI stuff in <a href="https://iterm2.com/">iTerm2</a> (I …</p>
+                <a class="readmore" href="/2020/01/11/where-i-live-and-work.html">read more</a>
+<p>There are <a href="/2020/01/11/where-i-live-and-work.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2019/12/14/nuke-buffersel-tidy-up-open-buffers-in-emacs.html" rel="bookmark"
+                           title="Permalink to "nuke-buffers.el -- Tidy up open buffers in Emacs"">"nuke-buffers.el -- Tidy up open buffers in Emacs"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-12-14T13:17:00+00:00">
+                Published: Sat 14 December 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/emacs.html">[ &#34;emacs&#34;</a> <a href="/tag/lisp.html">&#34;lisp&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>Both at work and at home I use Emacs by <a href="https://github.com/davep/longmacs.el">keeping a copy running all the
+time</a>, and use <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html#Emacs-Server"><code>emacsclient</code> to open
+files inside
+it</a>
+(including on remote machines thanks to a bit of
+<a href="https://en.wikipedia.org/wiki/Secure_Shell"><code>ssh</code></a> and heavy use of
+<a href="https://www.gnu.org/software/tramp/"><code>tramp</code></a> -- I might write this up at
+some point). This works …</p>
+                <a class="readmore" href="/2019/12/14/nuke-buffersel-tidy-up-open-buffers-in-emacs.html">read more</a>
+<p>There are <a href="/2019/12/14/nuke-buffersel-tidy-up-open-buffers-in-emacs.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2019/12/01/being-phony-and-lispy-regular-expressions.html" rel="bookmark"
+                           title="Permalink to "Being phony, and Lispy regular expressions"">"Being phony, and Lispy regular expressions"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-12-01T16:42:00+00:00">
+                Published: Sun 01 December 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/emacs.html">[ &#34;emacs&#34;</a> <a href="/tag/lisp.html">&#34;lisp&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>While it does seem that they're a little out of fashion these days, in some
+circles anyway, I'm still an avid fan of <code>make</code> and make files. Even in
+environments where I don't need a <code>Makefile</code> to actually build anything,
+I'll use one (or more) to help create handy shortcuts …</p>
+                <a class="readmore" href="/2019/12/01/being-phony-and-lispy-regular-expressions.html">read more</a>
+<p>There are <a href="/2019/12/01/being-phony-and-lispy-regular-expressions.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2019/11/24/emacsconf-2019-videos-are-out.html" rel="bookmark"
+                           title="Permalink to "EmacsConf 2019 videos are out"">"EmacsConf 2019 videos are out"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-11-24T17:17:00+00:00">
+                Published: Sun 24 November 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/emacs.html">[ &#34;emacs&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>At the start of this month <a href="/2019/11/02/emacsconf-2019.html">I spent a very enjoyable Saturday afternoon
+watching EmacsConf 2019</a>. If you missed it,
+or even if you didn't, you might like to know that <a href="https://lists.gnu.org/r/emacsconf-discuss/2019-11/msg00002.html">the announcement has
+gone out</a>
+that almost all of the videos are <a href="https://emacsconf.org/2019/videos">now available for
+watching</a>.</p>
+<p>While I mean …</p>
+                <a class="readmore" href="/2019/11/24/emacsconf-2019-videos-are-out.html">read more</a>
+<p>There are <a href="/2019/11/24/emacsconf-2019-videos-are-out.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2019/11/23/visual-evolution-of-emacsd.html" rel="bookmark"
+                           title="Permalink to "Visual evolution of ~/.emacs.d"">"Visual evolution of ~/.emacs.d"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-11-23T14:42:00+00:00">
+                Published: Sat 23 November 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/emacs.html">[ &#34;emacs&#34;</a> <a href="/tag/lisp.html">&#34;lisp&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>As detailed in a blog post I wrote <a href="/2016/05/26/starting_fresh_with_gnu_emacs.html">back in
+2016</a>, I first got into
+using Emacs in the mid 1990s, starting with it on OS/2 and then moving over
+to GNU/Linux. It's been my often-used and much-loved development environment
+for most of those years (I even have …</p>
+                <a class="readmore" href="/2019/11/23/visual-evolution-of-emacsd.html">read more</a>
+<p>There are <a href="/2019/11/23/visual-evolution-of-emacsd.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/2019/11/02/emacsconf-2019.html" rel="bookmark"
+                           title="Permalink to "EmacsConf 2019"">"EmacsConf 2019"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-11-02T11:33:00+00:00">
+                Published: Sat 02 November 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dave-pearson.html">Dave Pearson</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/emacs.html">[ &#34;emacs&#34; ]</a> </p>
+</footer><!-- /.post-info -->                <p>For anyone who doesn't know, today is the day for <a href="https://emacsconf.org/2019/">EmacsConf
+2019</a>. As you might gather from the name, it's
+a conference all about Emacs, the joys of Emacs, Emacs Lisp and other
+Emacs-related things.</p>
+<p>Better still, it's an online conference (although there do appear to be a
+couple of …</p>
+                <a class="readmore" href="/2019/11/02/emacsconf-2019.html">read more</a>
+<p>There are <a href="/2019/11/02/emacsconf-2019.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 2
+        <a href="/tag/emacs2.html">&raquo;</a>
+        <a href="/tag/emacs2.html">&#8649;</a>
+</p>
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://github.com/davep">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://fosstodon.org/@davep">Mastodon</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>
