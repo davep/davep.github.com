@@ -57,7 +57,7 @@ async def make_banner() -> None:
         pilot.app.save_screenshot("davep.svg")
 ```
 
-Of course, that needs running async, but that's simply enough:
+Of course, that needs running async, but that's simple enough:
 
 ```python
 if __name__ == "__main__":
