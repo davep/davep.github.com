@@ -82,7 +82,6 @@ and update the repository.
 
 For now though... I'll stick with keeping things nice and simple.
 
----
 [^1]: It was actually kind of annoying when they introduced it because the
     repo it uses is named after your user name. I already had a `davep`
     repo: it was a private repo where I was slowly working on a (now

@@ -43,10 +43,8 @@ how things have to work on a Mac. Thing is, I find it hard to believe that
 it's the latter given that Google Keep runs in its own window on the Mac and
 I can happily pin it to the dock.
 
----
-[^1]:
-    It's that simple on ChromeOS too. In case you're wondering why I didn't
-also illustrate that, it's because you can't take a screenshot on ChromeOS
-while you've got a context menu open. O_o
+[^1]: It's that simple on ChromeOS too. In case you're wondering why I
+didn't also illustrate that, it's because you can't take a screenshot on
+ChromeOS while you've got a context menu open. O_o
 
 [//]: # (2015-06-18-a-mild-chrome-annoyance.md ends here)
