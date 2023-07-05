@@ -7,7 +7,9 @@ SITENAME        = "blog.davep.org"
 TIMEZONE        = "Europe/London"
 DEFAULT_LANG    = "en"
 DISQUS_SITENAME = "blogdaveporg"
-SITELOGO        = "static/davep.jpeg"
+SITELOGO        = "/static/davep.jpeg"
+COPYRIGHT_NAME  = AUTHOR
+COPYRIGHT_YEAR  = "2015-2023"
 
 ##############################################################################
 # General generation configuration.
