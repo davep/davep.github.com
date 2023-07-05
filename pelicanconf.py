@@ -37,6 +37,7 @@ CUSTOM_CSS                                 = "static/davep.css"
 # Feed information.
 FEED_MAX_ITEMS        = 20
 FEED_ALL_ATOM         = "feeds/all.atom.xml"
+FEED_ALL_RSS          = "feed.xml"
 CATEGORY_FEED_ATOM    = "feeds/{slug}.atom.xml"
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM      = None
