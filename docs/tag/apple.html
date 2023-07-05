@@ -184,12 +184,32 @@ rel="me"           href="https://fosstodon.org/@davep"
 <a href="/2022/12/16/oidia.html">almost 7 months passed without a post</a>! It's so
 easily done too isn't it? While, <a href="/2022/05/20/im-back.html">when I revived this blog last
 year</a>, I didn't make a point of intending to write
-lots and often, I …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2023/07/02/catching-up.html#catching-up">
-          Continue reading
-        </a>
+lots and often, I had hope that I'd manage something at least once a week;
+perhaps at least once a month.</p>
+<p>Ahh well.</p>
+<p>There's been two main reasons why it's been quiet around here. The first is
+that <a href="/2022/10/05/on-to-something-new-redux.html">my (now not so) new job</a>
+keeps me busy (in a good way). It involves a reasonable amount of trekking
+into town and back (which I don't mind on the whole), and once I'm home in
+the evening I'm generally (but not always) done with the keyboard and desk.</p>
+<p>The second reason, which is probably the dafter one, is that a bit earlier
+this year I finally upgraded my desktop setup from the 2019 Intel MacBook
+Pro I was using to a recently-released M2Pro Mac Mini (and <em>what</em> an
+upgrade!). How this plays into blogging being even more quiet is... I needed
+to set up jekyll again, and I'd forgotten how I got it running in the first
+place, so I kept putting off getting it going, and...</p>
+<p>Well, this morning, I sat down with coffee, grepped the <code>history</code> on my
+previous machine, and got it running in like 5 minutes (of course).</p>
+<p>So, here I am, back adding another blog post. I'm writing this as much to
+test that the setup works as anything else.</p>
+<p>But also, this time, I'm going to try and make a promise to myself: I'm
+going to try and write more. I can and should write about anything. I can
+and should write short things as well as long things. I can and should
+remember that it's not about writing things that are going to be super
+important or anything like that, it's about just getting stuff down and
+creating and recording.</p>
+<p>Note of course I said "try" and make a promise.</p>
+<p>We'll see. ;-)</p></div>
   </div>
   <hr />
 </article>
@@ -207,12 +227,84 @@ lots and often, I …</p></div>
       <div><p>First a small aside: To be honest, the <code>T</code> part of <code>TIL</code> is getting to be
 less and less true with this series of posts, but the posts themselves serve
 a useful purpose for me. As I've been reading the book I'm working through,
-I've also been making notes on …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2020/07/18/swift-til-12.html#swift-til-12">
-          Continue reading
-        </a>
+I've also been making notes on my iPad in the <a href="https://apps.apple.com/us/app/notes/id1110145109">Apple Notes
+application</a>. I'm not
+really convinced that that's the best final location for such notes, so
+early on I made an extra step in keeping track of what I'm doing and trying
+to reinforce what I'm learning: transfer the notes into
+<a href="https://orgmode.org/">Org-Mode</a> documents in my notebook repository.</p>
+<p>This repository contains lots of Org-Mode files, broken down into subject
+directories, that hang on to longer-form information I want to keep track of
+regarding software development and general operating system use. I'm sure
+you know the sort of thing, the things where you know you know them but you
+can't always retain all the detail -- so having the detail where you know
+you'll find it is useful.</p>
+<p>So I've made that part of the process: read book, find thing worth noting,
+note in Apple Notes, a wee while later re-read and test out by writing
+sample code and transfer to the Org-Mode notebook. During that latter step I
+sometimes also write up something that I really liked or found interesting
+here to further reinforce the learning process.</p>
+<p>The "TIL" I wanted to note quickly today is how happy I was to see that
+Swift has something that's a reasonably recent addition to Emacs Lisp:
+conditional binding. Skipping off into Emacs Lisp for a moment, it would be
+very common for me to find myself writing something like this (this actually
+happens in all languages really):</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="nv">foo</span><span class="w"> </span><span class="p">(</span><span class="nv">get-something-from-elsewhere</span><span class="p">)))</span>
+<span class="w">  </span><span class="p">(</span><span class="nb">when</span><span class="w"> </span><span class="nv">foo</span>
+<span class="w">    </span><span class="p">(</span><span class="nv">do-something-with</span><span class="w"> </span><span class="nv">foo</span><span class="p">)))</span>
+</code></pre></div>
+
+<p>Quite simply: I'd get a value from elsewhere, that value could possibly be
+<code>nil</code> to mark that there was a failure to get a value, but that failure
+wasn't in any way fatal or even a problem worthy of note: I just needed to
+skip along. But that binding followed by the test was always a little
+jarring. And then, <a href="https://endlessparentheses.com/new-in-emacs-25-1-more-flow-control-macros.html">back in
+25.1</a>,
+<code>if-let</code> and <code>when-let</code> got added (of course, this being Lisp, <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Macros.html#Macros">it would
+have been very simple to add them
+anyway</a>),
+and it was easier to <a href="https://github.com/davep/pinboard.el/blob/d426f9d2ebec5f907c8a89d6b38ccbcb13750d4f/pinboard.el#L308">write the code so it looked just a little
+nicer</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nv">when-let</span><span class="w"> </span><span class="p">((</span><span class="nv">foo</span><span class="w"> </span><span class="p">(</span><span class="nv">get-something-from-elsewhere</span><span class="p">)))</span>
+<span class="w">  </span><span class="p">(</span><span class="nv">do-something-with</span><span class="w"> </span><span class="nv">foo</span><span class="p">))</span>
+</code></pre></div>
+
+<p>It's a small difference, but I find it a pleasing one.</p>
+<p>So of course I was pleased to find that Swift has something similar with
+<code>if</code> and
+<a href="https://developer.apple.com/documentation/swift/optional"><code>Optional</code></a>
+values, where you can write something like:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="kd">let</span> <span class="nv">foo</span> <span class="p">=</span> <span class="n">getSomethingFromElsewhere</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Do something with foo but only if it&#39;s not nil</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Which means you can do things like this (not that I'd really do things like
+this, but it was a handy test on the command line):</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">oddRand</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Int</span><span class="p">?</span> <span class="p">{</span>
+
+    <span class="kd">let</span> <span class="nv">n</span> <span class="p">=</span> <span class="nb">Int</span><span class="p">.</span><span class="n">random</span><span class="p">(</span> <span class="k">in</span><span class="p">:</span> <span class="mf">0.</span><span class="p">..</span><span class="mi">99</span> <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="p">==</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">nil</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">n</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="kc">_</span> <span class="k">in</span> <span class="mf">0.</span><span class="p">..</span><span class="mi">10</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="kd">let</span> <span class="nv">n</span> <span class="p">=</span> <span class="n">oddRand</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="n">n</span> <span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;Nope&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>As usual... of course that's horrible code, it was just thrown together to
+test/experience the language feature on the command line.</p>
+<p>I like it though. I figure <a href="https://clojuredocs.org/clojure.core/when-let">all the best languages have conditional
+binding</a>. ;-)</p></div>
   </div>
   <hr />
 </article>
@@ -231,12 +323,62 @@ I've also been making notes on …</p></div>
 the feature, that I'm filing under "kinda cool, but I am <em>never</em> doing this
 in production".</p>
 <p>So Swift has operator overriding, and then some. Moreover, operators are, in
-effect, functions, just with some extra syntax support. None …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2020/07/11/swift-til-11.html#swift-til-11">
-          Continue reading
-        </a>
+effect, functions, just with some extra syntax support. None of this is new
+to me, I've worked in and with other languages that have this ability,
+expect... I don't ever recall working in a language that, at the time I did,
+supported creating brand new operators (okay, fine, Lisp is a bit of an
+outlier here and there's all sorts of fun conversations to be had there --
+but still, let's stick with more "conventional" syntax here). Support always
+seemed to be about extending the ability of an existing operator.</p>
+<p>Swift though... yeah, you get to pick from a huge character space when it
+comes to creating operators.</p>
+<p>Which got me thinking... How cool would it be to have a prefix operator that
+turns a floating point number into a currency-friendly number (you know, the
+sort of number type that can be used for currency-friendly calculations).</p>
+<p>Swift has the
+<a href="https://developer.apple.com/documentation/foundation/decimal"><code>decimal</code></a>
+type which, at first glance anyway, looks to be a sensible candidate; even
+if it isn't (and, really, how to actually sensibly handle currency is a
+whole series of blog posts in their own right, that I have no wish to write
+myself because such things are a previous working life for me, and other
+people have doubtless done a very comprehensive job elsewhere over the
+years) it will serve as a good stand-in for the little bit of horror I'm
+going to write next.</p>
+<p>So... Let's say we want to use <code>£</code> as a prefix operator to say "see this
+number? make it a <code>decimal</code>", we could do something as simple as this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">Foundation</span>
+
+<span class="kr">prefix</span> <span class="kd">operator</span> <span class="err">£</span>
+<span class="kr">prefix</span> <span class="kd">func</span> <span class="err">£</span><span class="p">(</span> <span class="n">n</span> <span class="p">:</span> <span class="n">Decimal</span> <span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Decimal</span> <span class="p">{</span> <span class="n">n</span> <span class="p">}</span>
+
+<span class="bp">print</span><span class="p">(</span> <span class="err">£</span><span class="mf">1.20</span> <span class="o">+</span> <span class="err">£</span><span class="mf">0.75</span> <span class="o">+</span> <span class="err">£</span><span class="mf">0.01</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>Horrifically and delightfully, it works:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>opover
+<span class="m">1</span>.96
+</code></pre></div>
+
+<p>I know, I know, I feel bad for even trying. But it's also kinda cool that
+the language has this.</p>
+<p>It gets better though...</p>
+<p>While reading up on what characters can and can't be used as operators, one
+thing that stood out was the fact that, more or less, any character that
+isn't a valid identifier can be used as an operator. So... hang on, we can
+use "emoji" as identifiers?</p>
+<p>Like this?</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">Foundation</span>
+
+<span class="kr">prefix</span> <span class="kd">operator</span> <span class="err">£</span>
+<span class="kr">prefix</span> <span class="kd">func</span> <span class="err">£</span><span class="p">(</span> <span class="n">n</span> <span class="p">:</span> <span class="n">Decimal</span> <span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Decimal</span> <span class="p">{</span> <span class="n">n</span> <span class="p">}</span>
+
+<span class="kd">let</span> <span class="err">💵</span> <span class="p">=</span> <span class="err">£</span><span class="mf">1.20</span> <span class="o">+</span> <span class="err">£</span><span class="mf">0.75</span> <span class="o">+</span> <span class="err">£</span><span class="mf">0.01</span>
+
+<span class="bp">print</span><span class="p">(</span> <span class="err">💵</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>Why yes. Yes we can. 😈</p></div>
   </div>
   <hr />
 </article>
@@ -254,12 +396,52 @@ effect, functions, just with some extra syntax support. None …</p></div>
       <div><p>My leisurely journey into getting to know Swift by reading and then making
 notes to myself in my blog continues, and this weekend I encountered
 <code>defer</code>. As I was reading about Swift I did keep wondering when something
-like <code>try</code> (it has <code>try</code>), <code>catch</code> (it has <code>catch</code>) and <code>finally</code> (it …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2020/07/05/swift-til-10.html#swift-til-10">
-          Continue reading
-        </a>
+like <code>try</code> (it has <code>try</code>), <code>catch</code> (it has <code>catch</code>) and <code>finally</code> (it
+doesn't have <code>finally</code>, but...) might crop up. This weekend I hit the part
+of the book that covered this sort of thing.</p>
+<p>Given Swift's apparent general reliance on <em>not</em> throwing errors but instead
+using <code>Optional</code> and <code>nil</code> to signify issues, it sort of came as no surprise
+that its approach to implementing something like <code>try</code>...<code>finally</code> is
+actually divorced from <code>try</code>. I'm not sure how I feel about it yet, but
+<code>defer</code> makes sense.</p>
+<p>Here's an utterly useless bit of code that demonstrates how it works:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">add</span><span class="p">(</span> <span class="kc">_</span> <span class="n">n1</span> <span class="p">:</span> <span class="nb">Int</span><span class="p">,</span> <span class="kc">_</span> <span class="n">n2</span> <span class="p">:</span> <span class="nb">Int</span> <span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span>
+
+    <span class="k">defer</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;Huh! We did some adding!&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;About to do the add and then return&quot;</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="n">n1</span> <span class="o">+</span> <span class="n">n2</span>
+<span class="p">}</span>
+
+<span class="bp">print</span><span class="p">(</span> <span class="n">add</span><span class="p">(</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>When run, the output is this:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>try-defer
+About<span class="w"> </span>to<span class="w"> </span><span class="k">do</span><span class="w"> </span>the<span class="w"> </span>add<span class="w"> </span>and<span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">return</span>
+Huh!<span class="w"> </span>We<span class="w"> </span>did<span class="w"> </span>some<span class="w"> </span>adding!
+<span class="m">4</span>
+</code></pre></div>
+
+<p>A <code>defer</code> (and there can be multiple) is tied to the block that it's
+declared in, and is executed when the block exits. This is, of course, going
+to be really handy for things like resource-management where you don't want
+to be leaking something, although I can imagine a few other uses too (none
+of which are really going to be novel for someone who's coded in other
+languages with similar constructs).</p>
+<p>What I find interesting about this is that one or more <code>defer</code> blocks can be
+declared at various locations within a block of code; this obviously makes
+sense in that you might not want to be handling the tidy-up of something
+you've not got around to creating yet. But there's also part of me feels
+uneasy about the "exit" code being declared further up the body of code,
+rather than down towards the end. On the other hand I think I do appreciate
+the idea of, up front, writing "look, any time there's a GTFO in the code
+that follows, this will happen" -- you're made aware pretty quickly of what
+to expect.</p>
+<p>Anyway, it's good to know Swift has something similar to a <code>finally</code>.</p></div>
   </div>
   <hr />
 </article>
@@ -278,12 +460,62 @@ like <code>try</code> (it has <code>try</code>), <code>catch</code> (it has <cod
 myself may reduce real soon, as I'm sort of caught up with my notes, mostly,
 and I'm unlikely to pick up the book that I'm reading for a couple or so
 days now</em></p>
-<p>I'm used to …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2020/06/30/swift-til-9.html#swift-til-9">
-          Continue reading
-        </a>
+<p>I'm used to the idea of structures and classes from other languages, going
+way back, but as I first started reading about Swift it wasn't obvious to me
+why it had them both too. At first glance they appeared to be very similar.
+It was only as I got a little further into reading that I found out one huge
+difference (there are others, that pretty much stem from this one): objects
+created from classes are <em>reference types</em> (which you'd expect, of course),
+structures on the other hand are <em>value types</em>.</p>
+<p>A quick illustration of the difference, in my head anyway, can be found if I
+go back to <a href="/2020/06/24/swift-til-3.html">using an
+observer</a>.
+Take this daft bit of illustrative code for example:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">name</span> <span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;No name&quot;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nv">dave</span> <span class="p">=</span> <span class="n">Person</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">didSet</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;dave was set&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">dave</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Dave&quot;</span>
+</code></pre></div>
+
+<p>If I run that, I get no output. That makes sense. The variable <code>dave</code> is
+initialised to an instance of a <code>Person</code> but is never subsequently set to
+anything else. The following assignment is to a property of the object.
+We're working on a reference to an existing object.</p>
+<p>But simply change <code>Person</code> to being a <code>struct</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">name</span> <span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;No name&quot;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nv">dave</span> <span class="p">=</span> <span class="n">Person</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">didSet</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;dave was set&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">dave</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Dave&quot;</span>
+</code></pre></div>
+
+<p>and the output looks like this:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>ref-vs-val
+dave<span class="w"> </span>was<span class="w"> </span><span class="nb">set</span>
+</code></pre></div>
+
+<p>That's because the assignment to <code>dave.name</code> means a new value is created.</p>
+<p>This, of course, is just the tip of the iceberg; there are all sorts of
+other things to keep in mind that follow on from this, generally relating to
+mutability (or the lack thereof). I also imagine this means that, when
+there's no obvious benefit either way, the choice of using <code>class</code> vs
+<code>struct</code> is something that could have performance implications. That's
+something for me to look into more another day; but this is a note here to
+myself that it's a thing to keep in mind.</p></div>
   </div>
   <hr />
 </article>
@@ -301,12 +533,110 @@ days now</em></p>
       <div><p>Although I read up on it a few days back, it was only this evening that I
 fired up Emacs (well of course I'm testing Swift with Emacs, what did you
 think I'd do?!?) and dabbled with some code to really get a feel for how
-casting works in Swift …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2020/06/29/swift-til-8.html#swift-til-8">
-          Continue reading
-        </a>
+casting works in Swift.</p>
+<p>Swift seems to be one of those languages that does it with a keyword rather
+than a non-keyword approach. The two main keywords being <code>as?</code> and <code>as!</code>. I
+kind of like how there's a polite version and a bossy version. Having the
+two makes a lot of sense from what I read too.</p>
+<p>To try and illustrate my understanding so far (and do keep in mind I'm not
+writing this with the express purpose of explaining it to anyone else -- I'm
+writing this to try and retain it all in my head by working through it),
+here's a bit of utterly pointless and highly-contrived code that defines
+three classes in a fairly ordinary hierarchy:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Animal</span> <span class="p">{}</span>
+
+<span class="kd">class</span> <span class="nc">Dog</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">{}</span>
+
+<span class="kd">class</span> <span class="nc">Cat</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">beAdorable</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;Purrrrrr!&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>So, so far, so good: we have animals, we have dogs which are a kind of
+animal, and we have cats, which are also a kind of animal, but they have the
+special ability of actually being adorable. 😼</p>
+<p>Now, for the purposes of just testing all of this out, here's a horrible
+function that makes little sense other than for testing:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">adore</span><span class="p">(</span> <span class="kc">_</span> <span class="n">a</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="p">(</span> <span class="n">a</span> <span class="k">as</span><span class="p">!</span> <span class="n">Cat</span> <span class="p">).</span><span class="n">beAdorable</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Given an animal, it forces it to be a cat (by casting it with <code>as!</code>), and
+then asks it to be adorable (because, of course, cats always do as they're
+asked).</p>
+<p>So, if we then had:</p>
+<div class="highlight"><pre><span></span><code><span class="n">adore</span><span class="p">(</span> <span class="n">Cat</span><span class="p">()</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>we'd get what we expect when run:</p>
+<div class="highlight"><pre><span></span><code>Purrrrrr!
+</code></pre></div>
+
+<p>So far so good. But what about:</p>
+<div class="highlight"><pre><span></span><code><span class="n">adore</span><span class="p">(</span> <span class="n">Dog</span><span class="p">()</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>Yeah, that's not so good:</p>
+<div class="highlight"><pre><span></span><code>~/d/p/s/casting$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>casting
+Could<span class="w"> </span>not<span class="w"> </span>cast<span class="w"> </span>value<span class="w"> </span>of<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s1">&#39;casting.Dog&#39;</span><span class="w"> </span><span class="o">(</span>0x10a1f8830<span class="o">)</span><span class="w"> </span>to<span class="w"> </span><span class="s1">&#39;casting.Cat&#39;</span><span class="w"> </span><span class="o">(</span>0x10a1f88c0<span class="o">)</span>.
+fish:<span class="w"> </span><span class="s1">&#39;swift run&#39;</span><span class="w"> </span>terminated<span class="w"> </span>by<span class="w"> </span>signal<span class="w"> </span>SIGABRT<span class="w"> </span><span class="o">(</span>Abort<span class="o">)</span>
+</code></pre></div>
+
+<p>One way around this would be to use <code>as?</code>, which has the effect of casting
+the result to an
+<a href="https://developer.apple.com/documentation/swift/optional"><code>Optional</code></a>. This
+means I can re-write the <code>adore</code> function like this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">adore</span><span class="p">(</span> <span class="kc">_</span> <span class="n">a</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="p">(</span> <span class="n">a</span> <span class="k">as</span><span class="p">?</span> <span class="n">Cat</span> <span class="p">)?.</span><span class="n">beAdorable</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Now, if <code>a</code> can be cast to a <code>Cat</code>, you get an optional that wraps the
+<code>Cat</code>, otherwise you get an optional that wraps <code>nil</code> (hence the second <code>?</code>
+before attempting to call the <code>beAdorable</code> member function).</p>
+<p>So now, if I run the problematic dog call above again:</p>
+<div class="highlight"><pre><span></span><code>~/d/p/s/casting$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>casting
+</code></pre></div>
+
+<p>In other words, no output at all. Which is the idea here.</p>
+<p>I think I like this, I think it makes sense, and I think I can see why both
+<code>as!</code> and <code>as?</code> exist. The latter also means, of course, that you can do
+something like:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">adore</span><span class="p">(</span> <span class="kc">_</span> <span class="n">a</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">cat</span> <span class="p">=</span> <span class="n">a</span> <span class="k">as</span><span class="p">?</span> <span class="n">Cat</span>
+    <span class="k">if</span> <span class="n">cat</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="n">cat</span><span class="p">!.</span><span class="n">beAdorable</span><span class="p">()</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;That totally wasn&#39;t a cat&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>which, in the messy dog call again, now results in:</p>
+<div class="highlight"><pre><span></span><code>~/d/p/s/casting$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>casting
+That<span class="w"> </span>totally<span class="w"> </span>wasn<span class="err">&#39;</span>t<span class="w"> </span>a<span class="w"> </span>cat
+</code></pre></div>
+
+<p>Or, of course, the same effect could be had with:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">adore</span><span class="p">(</span> <span class="kc">_</span> <span class="n">a</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="k">is</span> <span class="n">Cat</span> <span class="p">{</span>
+        <span class="p">(</span> <span class="n">a</span> <span class="k">as</span><span class="p">!</span> <span class="n">Cat</span> <span class="p">).</span><span class="n">beAdorable</span><span class="p">()</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;That totally wasn&#39;t a cat&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>It should be stressed, of course, that the example code is terrible design,
+so given the above I'd ensure I never end up in this sort of situation in
+the first place. But for the purposes of writing and compiling and running
+code and seeing what the different situations result in, it helped.</p></div>
   </div>
   <hr />
 </article>
@@ -324,12 +654,34 @@ casting works in Swift …</p></div>
       <div><p>This post is <em>very</em> much a case of me writing it down to try and get it all
 straight in my head, and to make sure it sticks. The other day I was reading
 about Swift's types and type-equality checks, and as I'd expect from plenty
-of other languages I've …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2020/06/28/swift-til-7.html#swift-til-7">
-          Continue reading
-        </a>
+of other languages I've worked with, there's a way for checking that two
+types are the same, such that super/subclasses aren't taken into account,
+and a way where they are. So, given this silly code:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Animal</span> <span class="p">{}</span>
+
+<span class="kd">class</span> <span class="nc">Cat</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">{}</span>
+
+<span class="bp">print</span><span class="p">(</span> <span class="n">Cat</span><span class="p">.</span><span class="kc">self</span> <span class="p">==</span> <span class="n">Animal</span><span class="p">.</span><span class="kc">self</span> <span class="p">)</span>          <span class="c1">// False</span>
+<span class="bp">print</span><span class="p">(</span> <span class="n">Cat</span><span class="p">.</span><span class="kc">self</span> <span class="k">is</span> <span class="n">Animal</span><span class="p">.</span><span class="kr">Type</span> <span class="p">)</span>          <span class="c1">// True</span>
+<span class="bp">print</span><span class="p">(</span> <span class="n">type</span><span class="p">(</span> <span class="n">of</span><span class="p">:</span> <span class="n">Cat</span><span class="p">()</span> <span class="p">)</span> <span class="k">is</span> <span class="n">Animal</span><span class="p">.</span><span class="kr">Type</span> <span class="p">)</span> <span class="c1">// True</span>
+</code></pre></div>
+
+<p>it's made clear that <code>==</code> checks for strict equality and a super/subclass
+relationship isn't taken into account. On the other hand <code>is</code> does take it
+into account.</p>
+<p>Only... what's with this whole <code>.self</code> sometimes and <code>.Type</code> other times
+business? That took a little bit of writing code and playing to get
+comfortable with. Here's how I understand it now (and do feel free to
+correct me below if I'm way off):</p>
+<p>Given the above code, <code>Animal.Type</code> is the type of a value that expresses
+the type of <code>Animal</code>. On the other hand, <code>Animal.self</code> is a value that is
+the type of an <code>Animal</code>. Yeah, I know, that still reads oddly. But written
+as code:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">feline</span> <span class="p">:</span> <span class="n">Cat</span><span class="p">.</span><span class="kr">Type</span> <span class="p">=</span> <span class="n">Cat</span><span class="p">.</span><span class="kc">self</span>
+</code></pre></div>
+
+<p>I think it makes a lot more sense. And having got there I felt I better
+understood it. I'm not 100% sure I'm 100% with it, but I'm getting there.</p></div>
   </div>
   <hr />
 </article>
@@ -349,12 +701,46 @@ kinda cool". While reading up about
 <a href="https://docs.swift.org/swift-book/LanguageGuide/Protocols.html">protocols</a>
 the book I'm reading introduced the <code>ExpressibleBy*Literal</code> protocols, where
 the <code>*</code> is one of a number of obvious literals. For example:
-<code>ExpressibleByStringLiteral</code>. As you might imagine, it lets you …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2020/06/27/swift-til-6.html#swift-til-6">
-          Continue reading
-        </a>
+<code>ExpressibleByStringLiteral</code>. As you might imagine, it lets you create a
+class that can be initialised with a literal value, as opposed to needing to
+appear to call the constructor for a class.</p>
+<p>So, for a silly example:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Hello</span> <span class="p">:</span> <span class="n">ExpressibleByStringLiteral</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">what</span> <span class="p">:</span> <span class="nb">String</span>
+
+    <span class="kr">required</span> <span class="kd">init</span><span class="p">(</span> <span class="n">stringLiteral</span> <span class="n">what</span> <span class="p">:</span> <span class="nb">String</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">what</span> <span class="p">=</span> <span class="n">what</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">say</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;Hello, </span><span class="si">\(</span><span class="kc">self</span><span class="p">.</span><span class="n">what</span><span class="si">)</span><span class="s">!&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>You could, of course, write this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">v1</span> <span class="p">=</span> <span class="n">Hello</span><span class="p">(</span> <span class="s">&quot;world&quot;</span> <span class="p">)</span>
+<span class="n">v1</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
+</code></pre></div>
+
+<p>but because of <code>ExpressibleByStringLiteral</code> you can also write:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">v2</span> <span class="p">:</span> <span class="n">Hello</span> <span class="p">=</span> <span class="s">&quot;universe&quot;</span>
+<span class="n">v2</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Now, sure, in this case it saves you nothing, but this does also mean that
+parameters of functions whose type uses one of the <code>`ExpressibleBy*Literal</code>
+protocols can be passed a literal, rather than a "long-hand" instantiated
+object. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">Greet</span><span class="p">(</span> <span class="kc">_</span> <span class="n">h</span> <span class="p">:</span> <span class="n">Hello</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">h</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="n">Greet</span><span class="p">(</span> <span class="s">&quot;davep&quot;</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>I can see that being quite handy.</p></div>
   </div>
   <hr />
 </article>
@@ -373,12 +759,38 @@ the <code>*</code> is one of a number of obvious literals. For example:
 it aids in making the code readable" -- something which I'm finding is a bit
 of a theme with Swift.</p>
 <p>In Swift <code>self</code> gets used and gets used in a way you'd expect from many
-other …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2020/06/26/switch-til-5.html#switch-til-5">
-          Continue reading
-        </a>
+other languages. So far so good. But, it seems, <code>Self</code> is also a thing too,
+and it's different from <code>self</code>. Whereas <code>self</code> is the current instance,
+<code>Self</code> is the current type. So consider this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Greeting</span> <span class="p">{</span>
+
+    <span class="kd">class</span> <span class="nc">func</span> <span class="n">message</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
+        <span class="s">&quot;Ayup!&quot;</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">message</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
+        <span class="s">&quot;Well hello there&quot;</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">emit</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="kc">Self</span><span class="p">.</span><span class="n">message</span><span class="p">()</span> <span class="p">)</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="kc">self</span><span class="p">.</span><span class="n">message</span><span class="p">()</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">Greeting</span><span class="p">().</span><span class="n">emit</span><span class="p">()</span>
+</code></pre></div>
+
+<p>When run, the output is:</p>
+<div class="highlight"><pre><span></span><code>Ayup!
+Well hello there
+</code></pre></div>
+
+<p>It makes sense that that's the case. I actually really like the ability to
+use <code>Self</code> rather than having to use <code>Greeting</code>, but damn that's really
+setting things up for either mistyping or misreading code. You're going to
+want to hope that your development environment makes it super obvious what's
+a value and what's a type when it comes to using font choices.</p></div>
   </div>
   <hr />
 </article>
@@ -399,12 +811,30 @@ it"</a> approach, some favour
 it"</a>.
 I'm not sure I'm at a point where I have a feel for what Swift's approach
 is, but I'm getting the impression it's more the latter than the former.</p>
-<p>If …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2020/06/25/swift-til-4.html#swift-til-4">
-          Continue reading
-        </a>
+<p>If there was one thing that made me think that, it was when I found out that
+Swift's <code>bool</code> type has a <code>toggle</code> method.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nv">cool</span> <span class="p">=</span> <span class="kc">false</span>
+
+<span class="bp">print</span><span class="p">(</span> <span class="n">cool</span> <span class="p">)</span>
+<span class="n">cool</span> <span class="p">=</span> <span class="o">!</span><span class="n">cool</span>
+<span class="bp">print</span><span class="p">(</span> <span class="n">cool</span> <span class="p">)</span>
+<span class="n">cool</span><span class="p">.</span><span class="n">toggle</span><span class="p">()</span>
+<span class="bp">print</span><span class="p">(</span> <span class="n">cool</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>giving:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="nb">false</span>
+<span class="nb">true</span>
+<span class="nb">false</span>
+</code></pre></div>
+
+<p>I can see a number of reasons why that's actually going to be handy -- the
+main one being when you want to throw around a toggling method -- but it
+still struck me as rather odd on first reading. I also think it's worth me
+making a personal note about it because <code>foo.toggle()</code> isn't going to stand
+out as much as <code>foo = !foo</code> when reading code. At least not for a short
+while.</p></div>
   </div>
 </article>
 

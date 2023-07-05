@@ -184,12 +184,52 @@ rel="me"           href="https://fosstodon.org/@davep"
 unsurprisingly it's bubbled up again recently: the business of swapping the
 name of the <code>master</code> branch in <code>git</code> out for something better.</p>
 <p>Because it's one of those jobs that's simultaneously simple and also
-laborious …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2020/07/09/helping-myself-change-the-default-git-branch.html#helping-myself-change-the-default-git-branch">
-          Continue reading
-        </a>
+laborious, I kept putting it off. Changing up the local configuration so
+that <code>main</code> (or whatever name you prefer) is used "out of the box" <a href="https://leigh.net.au/writing/git-init-main/">is
+simple enough</a>; the laborious
+part is updating all of the repositories that live in the "forge of choice".
+In my case, <a href="https://github.com/davep">over on GitHub</a>, I have <a href="https://github.com/davep?tab=repositories">getting on
+for 200 repositories</a> -- 142 of
+which are public (as of the time of writing). At work we use
+<a href="https://gitlab.com/">GitLab</a> as our internal forge and I've got a
+non-trivial number of repositories on there too.</p>
+<p>The obvious first step to tackling this is to knock up a little tool to help
+find the repos that still need swapping. That was <a href="https://github.com/davep/git-archaic">simple
+enough</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Quick and dirty tool to find repositories that still make use of a</span>
+<span class="c1"># &quot;master&quot; branch. Helps with tracking down the ones that need</span>
+<span class="c1"># updating/improving.</span>
+
+<span class="k">for</span><span class="w"> </span>repo<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span>.git<span class="k">)</span>
+<span class="k">do</span>
+<span class="w">    </span><span class="o">(</span>
+<span class="w">        </span><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$repo</span><span class="k">)</span><span class="s2">&quot;</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>master<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="w">        </span><span class="k">then</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$repo</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="k">fi</span>
+<span class="w">    </span><span class="o">)</span>
+<span class="k">done</span>
+
+<span class="c1">### git-archaic ends here</span>
+</code></pre></div>
+
+<p>It's not meant to be clever, just something I can run when I'm in a "default
+branch swapping" mood so find a repository or two to tackle. The idea being
+that it uses <code>find</code> to pull out any instance of <code>.git</code> in or below the
+current directory, changes to it (inside a sub-process to ensure the <code>PWD</code>
+gets put back after the <code>cd</code> that happens, before the next iteration of the
+loop), gets a list of the branches and, if <code>master</code> is one of them, prints
+the directory name.</p>
+<p>Using this, I can now slowly work through my more active repositories and
+make the swap -- the idea being that if I currently have them cloned down to
+my machine, they're obviously some level of "active". At some point I
+imagine I could get more clever and use the APIs of the forges to look at
+all the repositories I own; that's another job for another day.</p>
+<p>This gives me enough to be going on with. :-)</p></div>
   </div>
   <hr />
 </article>
@@ -208,12 +248,29 @@ laborious …</p></div>
 actually sprang from something I initially wrote for Emacs. I'm often
 spending my time switching between Emacs and the command line (which is fast
 and easy -- I normally work on macOS and have Emacs and
-<a href="https://www.iterm2.com/">iTerm2</a> running full screen, and I can switch …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2019/10/21/gitweb-el.html#gitweb-el">
-          Continue reading
-        </a>
+<a href="https://www.iterm2.com/">iTerm2</a> running full screen, and I can switch
+between them without ever taking my hands off the keyboard), so it makes
+sense to have some handy commands repeated in both places.</p>
+<p>So, originally, I'd written
+<a href="https://github.com/davep/gitweb.el"><code>gitweb.el</code></a> to open the current repo's
+"forge" in the web browser.</p>
+<p>As with the fish version, how it works is quite simple. I use
+<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Synchronous-Processes.html"><code>shell-command-to-string</code></a>
+to call git and find the origin URL for the current repo, and then
+manipulate it a bit to turn it into a normal browser-friendly URL. Finally,
+if I get something workable, I use
+<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Browse_002dURL.html"><code>browser-url</code></a>
+to have the resulting page open in the browsing environment of choice.</p>
+<p>I have the command <a href="https://github.com/davep/.emacs.d/blob/8f1be3a03e4be98155571939fe5d6fbb54de487f/init.d/packages/init-packages-delpa.el#L51-L54">bound to a key combination that's similar to the ones I
+use with magit and
+forge</a>,
+so in terms of muscle-memory it's easy for me to remember what to press when
+I quickly want to skip over from a magit view to the repo forge itself.</p>
+<p>Similar to what I wrote <a href="/2019/10/19/pypath-el.html">a couple of days back</a>,
+I think this again illustrates how handy Emacs is as a work environment.
+While it's absolutely true that there are other development environments out
+there that offer similar extensibility, Emacs is the one I'm comfortable
+with, and it has a <em>long</em> history of offering this.</p></div>
   </div>
   <hr />
 </article>
@@ -233,12 +290,46 @@ out with <a href="https://www.gnu.org/software/bash/">bash</a> back in the 1990s
 through a bit of a
 <a href="https://www.zsh.org/">zsh</a>/<a href="https://ohmyz.sh/">oh-my-zsh</a> phase, but
 earlier this year finally settled on fish.</p>
-<p>At some point I might write a post about my fish config, and why fish works …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2019/10/20/fg-fish.html#fg-fish">
-          Continue reading
-        </a>
+<p>At some point I might write a post about my fish config, and why fish works
+well for me. But that's an idea for another time.</p>
+<p>In this post I thought I'd share a little snippet of code that can come in
+handy now and again.</p>
+<p>Sometimes I find myself inside a git repo, in the shell, and I want to get
+to the "<a href="https://en.wikipedia.org/wiki/Forge_%28software%29">forge</a>" for
+that repo. This is most often either on <a href="https://github.com/">GitHub</a>, or in
+a <a href="https://about.gitlab.com/install/">company-local installation of GitLab</a>.
+To get there quickly I wrote
+<a href="https://gist.github.com/davep/3bac3b30e45a3560c265150e609219db"><code>gh.fish</code></a>:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">##############################################################################</span>
+<span class="cp"># Attempt go visit the origin hub for the current repo.</span>
+
+<span class="n">function</span><span class="w"> </span><span class="n">gh</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="s">&quot;Visit the repo in its origin hub&quot;</span>
+
+<span class="w">    </span><span class="cp"># Check that there is some sort of origin.</span>
+<span class="w">    </span><span class="n">set</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="p">(</span><span class="n">git</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">--</span><span class="n">get</span><span class="w"> </span><span class="n">remote</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">url</span><span class="p">)</span>
+
+<span class="w">    </span><span class="cp"># If we didn&#39;t get anything...</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;$origin&quot;</span>
+<span class="w">        </span><span class="cp"># ...complain and exit.</span>
+<span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="s">&quot;This doesn&#39;t appear to be a git repo with an origin&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">end</span>
+
+<span class="w">    </span><span class="cp"># Open in the browser.</span>
+<span class="w">    </span><span class="n">open</span><span class="w"> </span><span class="s">&quot;https://&quot;</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w"> </span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="w"> </span><span class="err">&#39;\</span><span class="p">.</span><span class="n">git$</span><span class="err">&#39;</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">split</span><span class="w"> </span><span class="s">&quot;@&quot;</span><span class="w"> </span><span class="n">$origin</span><span class="p">)[</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">]))</span>
+
+<span class="n">end</span>
+
+<span class="cp">### gh.fish ends here</span>
+</code></pre></div>
+
+<p>The idea is pretty simple: I see if the repo has an origin of some
+description and, if it has, I <a href="https://fishshell.com/docs/current/commands.html#string">slice and dice
+it</a> into something
+that looks like the URL you'd expect to find for a GitHub or GitLab repo.
+Finally I use
+<a href="https://fishshell.com/docs/current/commands.html#open"><code>open</code></a> to open the
+URL in the environment's browser of choice.</p></div>
   </div>
 </article>
 

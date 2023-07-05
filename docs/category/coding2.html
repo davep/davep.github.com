@@ -185,12 +185,46 @@ out with <a href="https://www.gnu.org/software/bash/">bash</a> back in the 1990s
 through a bit of a
 <a href="https://www.zsh.org/">zsh</a>/<a href="https://ohmyz.sh/">oh-my-zsh</a> phase, but
 earlier this year finally settled on fish.</p>
-<p>At some point I might write a post about my fish config, and why fish works …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2019/10/20/fg-fish.html#fg-fish">
-          Continue reading
-        </a>
+<p>At some point I might write a post about my fish config, and why fish works
+well for me. But that's an idea for another time.</p>
+<p>In this post I thought I'd share a little snippet of code that can come in
+handy now and again.</p>
+<p>Sometimes I find myself inside a git repo, in the shell, and I want to get
+to the "<a href="https://en.wikipedia.org/wiki/Forge_%28software%29">forge</a>" for
+that repo. This is most often either on <a href="https://github.com/">GitHub</a>, or in
+a <a href="https://about.gitlab.com/install/">company-local installation of GitLab</a>.
+To get there quickly I wrote
+<a href="https://gist.github.com/davep/3bac3b30e45a3560c265150e609219db"><code>gh.fish</code></a>:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">##############################################################################</span>
+<span class="cp"># Attempt go visit the origin hub for the current repo.</span>
+
+<span class="n">function</span><span class="w"> </span><span class="n">gh</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="s">&quot;Visit the repo in its origin hub&quot;</span>
+
+<span class="w">    </span><span class="cp"># Check that there is some sort of origin.</span>
+<span class="w">    </span><span class="n">set</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="p">(</span><span class="n">git</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">--</span><span class="n">get</span><span class="w"> </span><span class="n">remote</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">url</span><span class="p">)</span>
+
+<span class="w">    </span><span class="cp"># If we didn&#39;t get anything...</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;$origin&quot;</span>
+<span class="w">        </span><span class="cp"># ...complain and exit.</span>
+<span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="s">&quot;This doesn&#39;t appear to be a git repo with an origin&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">end</span>
+
+<span class="w">    </span><span class="cp"># Open in the browser.</span>
+<span class="w">    </span><span class="n">open</span><span class="w"> </span><span class="s">&quot;https://&quot;</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w"> </span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="w"> </span><span class="err">&#39;\</span><span class="p">.</span><span class="n">git$</span><span class="err">&#39;</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">split</span><span class="w"> </span><span class="s">&quot;@&quot;</span><span class="w"> </span><span class="n">$origin</span><span class="p">)[</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">]))</span>
+
+<span class="n">end</span>
+
+<span class="cp">### gh.fish ends here</span>
+</code></pre></div>
+
+<p>The idea is pretty simple: I see if the repo has an origin of some
+description and, if it has, I <a href="https://fishshell.com/docs/current/commands.html#string">slice and dice
+it</a> into something
+that looks like the URL you'd expect to find for a GitHub or GitLab repo.
+Finally I use
+<a href="https://fishshell.com/docs/current/commands.html#open"><code>open</code></a> to open the
+URL in the environment's browser of choice.</p></div>
   </div>
   <hr />
 </article>
@@ -210,12 +244,66 @@ carried with me over the years. One is 5x5 (which has been used to get to
 grips with things as diverse as the Palm Pilot and GNU emacs). Another
 is <a href="https://en.wikipedia.org/wiki/Norton_Guides">Norton Guides database</a>
 <a href="http://www.davep.org/norton-guides/">readers</a>.</p>
-<p>I've made Norton …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2017/03/10/jsng.html#jsng">
-          Continue reading
-        </a>
+<p>I've made Norton Guides tools that have allowed web servers to serve guides
+(<code>w3ng</code>), that have allowed you to convert guides to HTML (<code>ng2html</code>), that
+have let you read guides on OS/2 and GNU/Linux (<code>eg</code>) and also have let you
+read guides in Microsoft Windows (<code>weg</code>). It's a problem I know fairly well
+and one where I know the solution well enough so I can concentrate on
+learning the new language or environment.</p>
+<p>Recently I wanted to get to grips with some
+"pure" <a href="http://es6-features.org/#Constants">ES6</a> coding while also getting
+to know <a href="https://nodejs.org/en/">node.js</a>. A new version of the Norton Guide
+code, written for this environment, seemed like a good thing to do.</p>
+<p>And so <a href="https://github.com/davep/jsNG">jsNG</a> was born.</p>
+<p>At its core is <a href="https://github.com/davep/jsNG/tree/master/lib">a library of code for opening and reading data from Norton
+Guides databases</a>. While I
+doubt it's good ES6 code, or even good node.js code, it's been very useful
+in giving me a fun problem to solve and it'll carry on being something I'll
+tweak and tinker with by way of trying new things out.</p>
+<p>On top of this I've built a handful of tools for working with Norton Guides
+databases. The most useful one at the moment (the others are more in the
+"test the library" than the "make something handy with the library"
+category) is <code>ngserve</code>. This is designed as a simple Norton Guides database
+HTTP server.</p>
+<p><img alt="ngserve in action" src="/attachments/2017/03/10/Screen Shot 2017-03-10 at 10.10.18.png"></p>
+<p>When run, you give it a list of guides to serve:</p>
+<p><img alt="Starting ngserve" src="/attachments/2017/03/10/Screen Shot 2017-03-10 at 10.26.44.png"></p>
+<p>and it does the right thing. It has a small number of command line options
+that help configure what it does:</p>
+<p><img alt="ngserve command line options" src="/attachments/2017/03/10/Screen Shot 2017-03-10 at 10.29.28.png"></p>
+<p>Possibly the most useful are the ones that let you change how it handles
+"higher" DOS characters and, if you don't like the default colours and
+stuff, the option that lets you point to your own style sheet (note for now
+you'll need to host the stylesheet somewhere else -- ngserve won't serve it
+for you; I'm aiming to change that in some way in the near future).</p>
+<p>jsNG does have a fairly basic design compromise at its heart. In the very
+early version I started out using the async functions for opening and
+reading the guides. This got very tedious very quickly and I could see that
+it was going to make for a very messy library with a very messy interface.
+While it might not be in the spirit of node.js programming I decided to go
+with the sync version of the file IO functions and code up the core library
+based around this.</p>
+<p>This approach also means that I took another leap that I never have done
+with Norton Guides before: rather than doing the traditional thing of
+keeping an open handle into them and reading direct from the file as you
+navigate the guide, I simply read it all into a buffer in one go and keep it
+in memory. This is a "guides are small, memory is cheap, things will go
+faster" approach.</p>
+<p>It does mean that when you load up a load of guides into <code>ngserve</code> they're
+all sat in memory. The upside of this is that things should be a lot faster
+and the code is a lot easier to follow (I think). To put this in some
+perspective: I have a directory here that contains 110 Norton Guides files.
+They total 36M in size. If that seems like a lot of stuff to hold in
+memory... remind me how much is being used by your web browser so you can
+look at some hilarious kittens. ;)</p>
+<p>Anyway, that's where I'm at with it right now. The code is mostly settled
+and mostly tidy. I need to write up some documentation for it (and so I need
+to take a look at good JavaScript documentation tools) and perhaps tinker
+with <code>ngserve</code> a little more. I'd also like to do a new version of <code>ng2html</code>
+with this -- a version that makes it <em>far</em> easier to control the style of
+the output. I'm also tempted to do a CLI-based reader in pure ES6; something
+similar to <code>EG</code> or <code>WEG</code>.</p>
+<p>All in good time.</p></div>
   </div>
 </article>
 

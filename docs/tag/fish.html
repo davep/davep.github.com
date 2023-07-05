@@ -184,12 +184,104 @@ rel="me"           href="https://fosstodon.org/@davep"
 think the copy of <a href="https://www.python.org/doc/essays/foreword/">Programming
 Python</a> that I have (sadly in
 storage at the moment) might be a first edition. I probably fell out of the
-habit of using Python some time in the early …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2019/11/04/my-pylint-shame.html#my-pylint-shame">
-          Continue reading
-        </a>
+habit of using Python some time in the early 2000s (that was when I met
+Ruby). It was only 22 months ago that I started using Python a <em>lot</em> thanks
+to <a href="/2017/12/12/on_to_something_new.html">a change of
+employer</a>.</p>
+<p>As you might imagine, much had changed in the 15+ years since I'd last
+written a line of Python in anger. So, early on, I made a point of making
+<a href="https://www.pylint.org/">Pylint</a> part of my development process. All my
+projects have a <code>make lint</code> make target. All of my projects lint the code
+when I push to <code>master</code> in the company GitLab instance. These days I even
+use <a href="https://www.flycheck.org/en/latest/">flycheck</a> to keep me honest as I
+write my code; mostly gone are the days where I don't know of problems until
+I do a <code>make lint</code>.</p>
+<p>Leaning on Pylint in the early days of my new position made for a great
+Python refresher for me. Now, I still lean on it to make sure I don't make
+daft mistakes.</p>
+<p>But...</p>
+<p>Pylint and I don't always agree. And that's fine. For example, I really
+can't stand Pylint's approach to whitespace, and that is a hill I'll happily
+die on. Ditto the obsession with lines being no more than 80 characters wide
+(120 should be fine thanks). As such any project's <code>.pylintrc</code> has, as a
+bare minimum, this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[FORMAT]</span>
+<span class="na">max-line-length</span><span class="o">=</span><span class="s">120</span>
+
+<span class="k">[MESSAGES CONTROL]</span>
+<span class="na">disable</span><span class="o">=</span><span class="s">bad-whitespace</span>
+</code></pre></div>
+
+<p>Beyond that though, aside from one or two extras that pertain to particular
+projects, I'm happy with what Pylint complains about.</p>
+<p>There are exceptions though. There are times, simply due to the nature of
+the code involved, that Pylint's insistence on code purity isn't going to
+work. That's where I use its inline <a href="https://pylint.readthedocs.io/en/latest/user_guide/message-control.html#block-disables">block disabling
+feature</a>.
+It's handy and helps keep things clean (I won't deploy code that doesn't
+pass 10/10), but there is always this nagging doubt: if I've disabled a
+warning in the code, am I ever going to come back and revisit it?</p>
+<p>To help me think about coming back to such disables now and again, I thought
+it might be interesting to write a tool that'll show which warnings I
+disable most. It resulted in <a href="https://github.com/davep/fish/blob/dd2721e0565928b4145698a42c9c74e4534c578a/conf.d/abbr.d/python.fish#L5">this fish
+abbr</a>:</p>
+<div class="highlight"><pre><span></span><code>abbr<span class="w"> </span>-g<span class="w"> </span>pylintshame<span class="w"> </span><span class="s2">&quot;rg --no-messages \&quot;pylint:disable=\&quot; | awk &#39;BEGIN{FS=\&quot;disable=\&quot;;}{print \$2}&#39; | tr \&quot;,\&quot; \&quot;\n\&quot; | sort | uniq -c | sort -hr&quot;</span>
+</code></pre></div>
+
+<p>The idea here being that it produces a "Pylint hall of shame", something
+like this:</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="mi">12</span><span class="w"> </span><span class="n">wildcard</span><span class="o">-</span><span class="n">import</span>
+<span class="w">  </span><span class="mi">12</span><span class="w"> </span><span class="n">unused</span><span class="o">-</span><span class="n">wildcard</span><span class="o">-</span><span class="n">import</span>
+<span class="w">   </span><span class="mi">8</span><span class="w"> </span><span class="n">no</span><span class="o">-</span><span class="n">member</span>
+<span class="w">   </span><span class="mi">6</span><span class="w"> </span><span class="n">invalid</span><span class="o">-</span><span class="n">name</span>
+<span class="w">   </span><span class="mi">5</span><span class="w"> </span><span class="n">no</span><span class="o">-</span><span class="bp">self</span><span class="o">-</span><span class="n">use</span>
+<span class="w">   </span><span class="mi">4</span><span class="w"> </span><span class="n">import</span><span class="o">-</span><span class="n">outside</span><span class="o">-</span><span class="n">toplevel</span>
+<span class="w">   </span><span class="mi">4</span><span class="w"> </span><span class="n">bare</span><span class="o">-</span><span class="n">except</span>
+<span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="n">unused</span><span class="o">-</span><span class="n">argument</span>
+<span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="n">too</span><span class="o">-</span><span class="n">many</span><span class="o">-</span><span class="n">public</span><span class="o">-</span><span class="n">methods</span>
+<span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="n">too</span><span class="o">-</span><span class="n">many</span><span class="o">-</span><span class="n">instance</span><span class="o">-</span><span class="n">attributes</span>
+<span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="ow">not</span><span class="o">-</span><span class="n">callable</span>
+<span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="n">broad</span><span class="o">-</span><span class="n">except</span>
+<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">wrong</span><span class="o">-</span><span class="n">import</span><span class="o">-</span><span class="n">position</span>
+<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">wrong</span><span class="o">-</span><span class="n">import</span><span class="o">-</span><span class="n">order</span>
+<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">unused</span><span class="o">-</span><span class="n">variable</span>
+<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">unexpected</span><span class="o">-</span><span class="n">keyword</span><span class="o">-</span><span class="n">arg</span>
+<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">too</span><span class="o">-</span><span class="n">many</span><span class="o">-</span><span class="n">locals</span>
+<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">arguments</span><span class="o">-</span><span class="n">differ</span>
+</code></pre></div>
+
+<p>To break the pipeline down:</p>
+<div class="highlight"><pre><span></span><code>rg --no-messages &quot;pylint:disable=&quot;
+</code></pre></div>
+
+<p>First off, I use <a href="https://github.com/BurntSushi/ripgrep"><code>ripgrep</code></a> (if you
+don't, you might want to have a good look at it -- I find it amazingly
+handy) to find everywhere in the code in and below the current directory
+(the <code>--no-messages</code> switch just stops any file I/O errors that might result
+from permission issues -- they're not interesting here) that contains a line
+that has a Pylint block disable (if you tend to format yours differently,
+you'll need to tweak the regular expression, of course).</p>
+<p>I then pipe it through <code>awk</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">awk</span> <span class="s">&#39;BEGIN{FS=&quot;disable=&quot;;}{print $2}&#39;</span>
+</code></pre></div>
+
+<p>so I can lazily <a href="https://docs.freebsd.org/info/gawk/gawk.info.Field_Separators.html">extract everything after the
+<code>disable=</code></a>.</p>
+<p>Next up, because it's a possible list of things that can be disabled, I use
+<code>tr</code>:</p>
+<div class="highlight"><pre><span></span><code>tr &quot;,&quot; &quot;\n&quot;
+</code></pre></div>
+
+<p>to turn any comma-separated list into multiple lines.</p>
+<p>Having got to this point, I <code>sort</code> the list, <code>uniq</code> the result, while
+prepending a count (<code>-c</code>), and then <code>sort</code> the result again, in reverse and
+sorting the numbers based on how a human would read the result (<code>-hr</code>).</p>
+<div class="highlight"><pre><span></span><code>sort | uniq -c | sort -hr
+</code></pre></div>
+
+<p>It's short, sweet and hacky, but does the job quite nicely. From now on, any
+time I get curious about which disables I'm leaning on too much, I can use
+this to take stock.</p></div>
   </div>
   <hr />
 </article>
@@ -208,12 +300,106 @@ habit of using Python some time in the early …</p></div>
 recently and it was a new trick that impacted on around 25 years if prior
 working practice.</em></p>
 <p>I think it must have been around 1991 when I first encountered
-<a href="https://en.wikipedia.org/wiki/4DOS">4DOS</a>. While I'd used the …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2019/10/23/why-i-really-like-fish-abbreviations.html#why-i-really-like-fish-abbreviations">
-          Continue reading
-        </a>
+<a href="https://en.wikipedia.org/wiki/4DOS">4DOS</a>. While I'd used the odd Unix
+shell here and there previously, it'd only been in passing. It was 4DOS that
+first introduced me to the power of aliases on the command line. Many of the
+aliases I set up and used in 4DOS still remain with me to this day, on
+GNU/Linux and macOS, in some form or another.</p>
+<p>I'm sure I don't need to tell anyone reading this why aliases and cool and
+handy and pretty much vital if you do lots of work on the command line.</p>
+<p>And then, a couple or so weeks ago, as a very recent convert to
+<a href="https://fishshell.com/">fish</a>, I discovered the
+<a href="https://fishshell.com/docs/current/commands.html#abbr"><code>abbr</code></a> command. At
+first glance it didn't seem to make much sense. It was like
+<a href="https://fishshell.com/docs/current/commands.html#alias"><code>alias</code></a>, only it
+expanded what you typed rather than acted as a command in its own right.</p>
+<p>I did a bit of digging and some of it started to make sense. One thing that
+really won me over -- and while it's something that doesn't directly impact
+on me -- was the argument that it allows for a far more transparent command
+history; especially if you're likely to use a transcript of a shell session
+in a place where people might not know or have access to your aliases.</p>
+<p>Imagine being in a position where you have loads of handy and cool aliases,
+but you also need to record what you've done so other people can follow your
+work (does it show that I sit amongst people who maintain lab notebooks?);
+it seems like it would be a bit of a bother needing to record all of the
+aliases in your own work environment up front. Without that information few
+people will be able to make sense of the recorded commands, with that
+information they'd still need to double-check what each command does.</p>
+<p>So imagine an alias that, when used, expands in place. Then you'd get all of
+the benefit of aliases while also having a full and readable record of what
+you <em>actually</em> did.</p>
+<p>Seems neat!</p>
+<p>Here's a silly example. For a long time I've carried around an alias called
+<code>greedy</code> that runs something like this:</p>
+<div class="highlight"><pre><span></span><code>du<span class="w"> </span>-hs<span class="w"> </span>*<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rh
+</code></pre></div>
+
+<p>It's pretty straightforward: I'm using <code>du</code> to get a sense of which
+directories are using what space, and then using <code>sort</code> to make a
+worst-to-best-offender list out of it. So I could use an alias:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">alias</span><span class="w"> </span><span class="nv">greedy</span><span class="o">=</span><span class="s2">&quot;du -hs * | sort -rh&quot;</span>
+</code></pre></div>
+
+<p>The only downside to this is that, any time I run it, if I were to record
+the shell session and make it available for someone else to read, they'd
+just see:</p>
+<div class="highlight"><pre><span></span><code>~/develop$<span class="w"> </span>greedy
+<span class="m">1</span>.1G<span class="w">    </span>JavaScript
+824M<span class="w">    </span>C
+699M<span class="w">    </span>rust
+<span class="w"> </span>93M<span class="w">    </span>python
+<span class="w"> </span>33M<span class="w">    </span>fonts
+<span class="w"> </span>33M<span class="w">    </span>elisp
+<span class="m">3</span>.4M<span class="w">    </span>zsh
+<span class="m">3</span>.0M<span class="w">    </span>misc
+<span class="m">1</span>.1M<span class="w">    </span>bash
+840K<span class="w">    </span>ocaml
+428K<span class="w">    </span>C++
+316K<span class="w">    </span>lisp
+172K<span class="w">    </span>Swift
+152K<span class="w">    </span>git
+132K<span class="w">    </span>ruby
+<span class="w"> </span>28K<span class="w">    </span>ObjC
+</code></pre></div>
+
+<p>Now, with an abbreviation rather than an alias, I'd type <code>greedy</code> but as
+soon as I hit <code>Enter</code> it'd get expanded to something anyone could read and
+follow:</p>
+<div class="highlight"><pre><span></span><code>~/develop$<span class="w"> </span>du<span class="w"> </span>-hs<span class="w"> </span>*<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rh
+<span class="m">1</span>.1G<span class="w">    </span>JavaScript
+824M<span class="w">    </span>C
+699M<span class="w">    </span>rust
+<span class="w"> </span>93M<span class="w">    </span>python
+<span class="w"> </span>33M<span class="w">    </span>fonts
+<span class="w"> </span>33M<span class="w">    </span>elisp
+<span class="m">3</span>.4M<span class="w">    </span>zsh
+<span class="m">3</span>.0M<span class="w">    </span>misc
+<span class="m">1</span>.1M<span class="w">    </span>bash
+840K<span class="w">    </span>ocaml
+428K<span class="w">    </span>C++
+316K<span class="w">    </span>lisp
+172K<span class="w">    </span>Swift
+152K<span class="w">    </span>git
+132K<span class="w">    </span>ruby
+<span class="w"> </span>28K<span class="w">    </span>ObjC
+</code></pre></div>
+
+<p>This is far from the only benefit of abbreviations; for most people it
+probably isn't one of the most important ones, but I find it neat and
+compelling and this alone drove me to rework almost all of my aliases as
+abbreviations.</p>
+<p>Having done that, I get other benefits too. For example, fish (like other
+shells) has good support for argument completion for well-known commands.
+The problem is, if you alias such a command, you don't get that completion.
+With an abbreviation though you do! All you need to do is type the
+abbreviation, hit <code>space</code> and it'll expand to the underlying command and
+then the full range of completion can happen.</p>
+<p>There's also one last reason why I like abbreviations over aliases, and it's
+kind of a silly one, but in a good way. It's actually fun to see what you
+type magically expand as you do things, it makes you look like you can type
+even faster than you normally can! ;-)</p>
+<p>PS: If you've never tried <code>fish</code> before and you're curious, it's easy to
+<a href="https://rootnroll.com/d/fish-shell/">try in your browser</a>.</p></div>
   </div>
   <hr />
 </article>
@@ -233,12 +419,46 @@ out with <a href="https://www.gnu.org/software/bash/">bash</a> back in the 1990s
 through a bit of a
 <a href="https://www.zsh.org/">zsh</a>/<a href="https://ohmyz.sh/">oh-my-zsh</a> phase, but
 earlier this year finally settled on fish.</p>
-<p>At some point I might write a post about my fish config, and why fish works …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2019/10/20/fg-fish.html#fg-fish">
-          Continue reading
-        </a>
+<p>At some point I might write a post about my fish config, and why fish works
+well for me. But that's an idea for another time.</p>
+<p>In this post I thought I'd share a little snippet of code that can come in
+handy now and again.</p>
+<p>Sometimes I find myself inside a git repo, in the shell, and I want to get
+to the "<a href="https://en.wikipedia.org/wiki/Forge_%28software%29">forge</a>" for
+that repo. This is most often either on <a href="https://github.com/">GitHub</a>, or in
+a <a href="https://about.gitlab.com/install/">company-local installation of GitLab</a>.
+To get there quickly I wrote
+<a href="https://gist.github.com/davep/3bac3b30e45a3560c265150e609219db"><code>gh.fish</code></a>:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">##############################################################################</span>
+<span class="cp"># Attempt go visit the origin hub for the current repo.</span>
+
+<span class="n">function</span><span class="w"> </span><span class="n">gh</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="s">&quot;Visit the repo in its origin hub&quot;</span>
+
+<span class="w">    </span><span class="cp"># Check that there is some sort of origin.</span>
+<span class="w">    </span><span class="n">set</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="p">(</span><span class="n">git</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">--</span><span class="n">get</span><span class="w"> </span><span class="n">remote</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">url</span><span class="p">)</span>
+
+<span class="w">    </span><span class="cp"># If we didn&#39;t get anything...</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;$origin&quot;</span>
+<span class="w">        </span><span class="cp"># ...complain and exit.</span>
+<span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="s">&quot;This doesn&#39;t appear to be a git repo with an origin&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">end</span>
+
+<span class="w">    </span><span class="cp"># Open in the browser.</span>
+<span class="w">    </span><span class="n">open</span><span class="w"> </span><span class="s">&quot;https://&quot;</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w"> </span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="w"> </span><span class="err">&#39;\</span><span class="p">.</span><span class="n">git$</span><span class="err">&#39;</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">split</span><span class="w"> </span><span class="s">&quot;@&quot;</span><span class="w"> </span><span class="n">$origin</span><span class="p">)[</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">]))</span>
+
+<span class="n">end</span>
+
+<span class="cp">### gh.fish ends here</span>
+</code></pre></div>
+
+<p>The idea is pretty simple: I see if the repo has an origin of some
+description and, if it has, I <a href="https://fishshell.com/docs/current/commands.html#string">slice and dice
+it</a> into something
+that looks like the URL you'd expect to find for a GitHub or GitLab repo.
+Finally I use
+<a href="https://fishshell.com/docs/current/commands.html#open"><code>open</code></a> to open the
+URL in the environment's browser of choice.</p></div>
   </div>
 </article>
 

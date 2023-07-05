@@ -184,12 +184,18 @@ rel="me"           href="https://fosstodon.org/@davep"
 myself so I remember some key things as I learn about Swift...</p>
 <p>I sort of feel like this will make reading code a little harder, so it's one
 I want to keep in mind. When calling an instance method, if it's not
-ambiguous …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2020/06/23/swift-til-2.html#swift-til-2">
-          Continue reading
-        </a>
+ambiguous, you can omit <code>self.</code> from the call. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">inner</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span> <span class="s">&quot;Foo&quot;</span> <span class="p">}</span>
+    <span class="kd">func</span> <span class="nf">outer</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span> <span class="n">inner</span><span class="p">()</span> <span class="o">+</span> <span class="kc">self</span><span class="p">.</span><span class="n">inner</span><span class="p">()</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="bp">print</span><span class="p">(</span> <span class="n">Foo</span><span class="p">().</span><span class="n">outer</span><span class="p">()</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>This makes me feel a little uneasy, and I strongly suspect I'll always use
+<code>self.</code> when writing such code: I'm a big fan of the idea that we write code
+for people, not for compilers.</p></div>
   </div>
   <hr />
 </article>
@@ -210,12 +216,15 @@ I'm going to make a small series of posts where I write down things that
 I've stumbled on while getting to know Swift that are, for me personally,
 worthy of note, different, unusual, cool, or just simply "WTF!?!".</p>
 <p>Because learning new stuff is fun.</p>
-<p>My first …</p></div>
-        <br>
-        <a class="btn"
-           href="https://blog.davep.org/2020/06/22/swift-til-1.html#swift-til-1">
-          Continue reading
-        </a>
+<p>My first one is that you can use keywords as identifiers if you "escape"
+them with backticks. Kind of like this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="p">`</span><span class="kd">let</span><span class="p">`</span> <span class="p">=</span> <span class="s">&quot;let&quot;</span>
+
+<span class="bp">print</span><span class="p">(</span> <span class="p">`</span><span class="kd">let</span><span class="p">`</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>I'm struggling to imagine a situation where I'd ever want to do this. I'm
+still unsure if my reaction is "that's cool" or "WTF?!?".</p></div>
   </div>
 </article>
 
