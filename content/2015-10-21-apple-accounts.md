@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Apple Accounts
-categories: []
+category: Tech
 tags: Apple, OS X, iMac, SMB
 published: True
 date: 2015-10-21 15:36:19+0100

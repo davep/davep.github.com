@@ -1,7 +1,7 @@
 ---
 layout: post
 title: New Things On PyPi
-categories: []
+category: Python
 tags: Python, programming
 date: 2022-12-01 22:13:00 +0000
 ---

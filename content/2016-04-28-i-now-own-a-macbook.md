@@ -1,5 +1,6 @@
 ---
 title: I now own a Macbook
+category: Tech
 layout: post
 tags: Mac, Apple, iMac, Unix
 published: True

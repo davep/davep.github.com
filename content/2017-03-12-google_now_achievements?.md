@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Google Now Achievements?
-categories: []
+category: Tech
 tags: Google
 date: 2017-03-12 12:16:17+0000
 ---

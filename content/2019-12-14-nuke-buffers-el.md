@@ -1,7 +1,7 @@
 ---
 layout: post
 title: nuke-buffers.el -- Tidy up open buffers in Emacs
-categories: []
+category: Emacs
 tags: Emacs, Lisp, Emacs Lisp
 date: 2019-12-14 13:17:00+0000
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Wear timer issue fixed, sort of
-categories: []
+category: Tech
 tags: Google, Android, Wear, Android Wear, Watch, Moto360
 published: True
 date: 2015-06-26 12:02:31+0100

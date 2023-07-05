@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The PEP 8 hill I will die on
-categories: []
+category: Python
 tags: Python
 date: 2020-08-23 16:54:00+0100
 ---

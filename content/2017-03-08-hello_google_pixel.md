@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hello Google Pixel
-categories: []
+category: Life
 tags: Google, Android, Phone
 date: 2017-03-08 12:22:05+0000
 ---

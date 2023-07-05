@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Evernote discovers pop-up advertising
-categories: []
+category: Tech
 tags: Evernote
 published: True
 date: 2015-07-09 16:47:20+0100

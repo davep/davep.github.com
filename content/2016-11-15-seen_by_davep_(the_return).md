@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Seen by davep (the return)
-categories: []
+category: Creative
 tags: blog, photography
 date: 2016-11-15 15:52:15+0000
 ---

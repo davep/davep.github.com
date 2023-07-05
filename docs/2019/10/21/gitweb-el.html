@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://blog.davep.org/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://blog.davep.org/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://blog.davep.org/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/static/davep.css">
+
+  <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
+
+  <link href="https://blog.davep.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom">
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Dave Pearson" />
+<meta name="description" content="gh.fish, which I wrote about yesterday, actually sprang from something I initially wrote for Emacs. I&#39;m often spending my time switching between Emacs and the command line (which is fast and easy -- I normally work on macOS and have Emacs and iTerm2 running full screen, and I can switch …" />
+<meta name="keywords" content="Emacs, git">
+
+
+  <meta property="og:site_name" content="blog.davep.org"/>
+  <meta property="og:title" content="gitweb.el -- Quickly visit a repo&#39;s forge from Emacs"/>
+  <meta property="og:description" content="gh.fish, which I wrote about yesterday, actually sprang from something I initially wrote for Emacs. I&#39;m often spending my time switching between Emacs and the command line (which is fast and easy -- I normally work on macOS and have Emacs and iTerm2 running full screen, and I can switch …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://blog.davep.org/2019/10/21/gitweb-el.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2019-10-21 10:41:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://blog.davep.org/author/dave-pearson.html">
+  <meta property="article:section" content="Emacs"/>
+  <meta property="article:tag" content="Emacs"/>
+  <meta property="article:tag" content="git"/>
+  <meta property="og:image" content="/static/davep.jpeg">
+
+  <title>blog.davep.org &ndash; gitweb.el -- Quickly visit a repo&#39;s forge from Emacs</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://blog.davep.org/">
+      <img src="/static/davep.jpeg" alt="" title="">
+    </a>
+
+    <h1>
+      <a href="https://blog.davep.org/"></a>
+    </h1>
+
+
+
+    <nav>
+      <ul class="list">
+
+
+            <li>
+              <a target="_self"
+                 href="https://blog.davep.org/pages/about.html#about">
+                About
+              </a>
+            </li>
+
+          <li>
+            <a target="_self" href="http://davep.at/" >davep.at</a>
+          </li>
+          <li>
+            <a target="_self" href="https://pinboard.in/u:davep" >Pinboard</a>
+          </li>
+          <li>
+            <a target="_self" href="https://seenbydavep.blogspot.com/" >Photoblog</a>
+          </li>
+          <li>
+            <a target="_self" href="https://pypi.org/user/davepearson/" >Python Packages</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-github"
+           href="https://github.com/davep"
+           target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-mastodon"
+rel="me"           href="https://fosstodon.org/@davep"
+           target="_blank">
+          <i class="fa-brands fa-mastodon"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-flickr"
+           href="https://www.flickr.com/photos/davepearson/"
+           target="_blank">
+          <i class="fa-brands fa-flickr"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-lastfm"
+           href="https://www.last.fm/user/davepdotorg"
+           target="_blank">
+          <i class="fa-brands fa-lastfm"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-npm"
+           href="https://www.npmjs.com/~davep.org"
+           target="_blank">
+          <i class="fa-brands fa-npm"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-youtube"
+           href="https://www.youtube.com/user/daveporg"
+           target="_blank">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-steam"
+           href="https://steamcommunity.com/id/davepdotorg"
+           target="_blank">
+          <i class="fa-brands fa-steam"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://blog.davep.org/">Home</a>
+
+  <a href="/archives.html">Archives</a>
+  <a href="/categories.html">Categories</a>
+  <a href="/tags.html">Tags</a>
+
+  <a href="https://blog.davep.org/feeds/all.atom.xml">Atom</a>
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="gitweb-el">gitweb.el -- Quickly visit a repo's forge from Emacs</h1>
+    <p>
+      Posted on 2019-10-21 10:41 +0100 in <a href="https://blog.davep.org/category/emacs.html">Emacs</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p><code>gh.fish</code>, which <a href="/2019/10/20/fg-fish.html">I wrote about yesterday</a>,
+actually sprang from something I initially wrote for Emacs. I'm often
+spending my time switching between Emacs and the command line (which is fast
+and easy -- I normally work on macOS and have Emacs and
+<a href="https://www.iterm2.com/">iTerm2</a> running full screen, and I can switch
+between them without ever taking my hands off the keyboard), so it makes
+sense to have some handy commands repeated in both places.</p>
+<p>So, originally, I'd written
+<a href="https://github.com/davep/gitweb.el"><code>gitweb.el</code></a> to open the current repo's
+"forge" in the web browser.</p>
+<p>As with the fish version, how it works is quite simple. I use
+<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Synchronous-Processes.html"><code>shell-command-to-string</code></a>
+to call git and find the origin URL for the current repo, and then
+manipulate it a bit to turn it into a normal browser-friendly URL. Finally,
+if I get something workable, I use
+<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Browse_002dURL.html"><code>browser-url</code></a>
+to have the resulting page open in the browsing environment of choice.</p>
+<p>I have the command <a href="https://github.com/davep/.emacs.d/blob/8f1be3a03e4be98155571939fe5d6fbb54de487f/init.d/packages/init-packages-delpa.el#L51-L54">bound to a key combination that's similar to the ones I
+use with magit and
+forge</a>,
+so in terms of muscle-memory it's easy for me to remember what to press when
+I quickly want to skip over from a magit view to the repo forge itself.</p>
+<p>Similar to what I wrote <a href="/2019/10/19/pypath-el.html">a couple of days back</a>,
+I think this again illustrates how handy Emacs is as a work environment.
+While it's absolutely true that there are other development environments out
+there that offer similar extensibility, Emacs is the one I'm comfortable
+with, and it has a <em>long</em> history of offering this.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://blog.davep.org/tag/emacs.html">Emacs</a>
+      <a href="https://blog.davep.org/tag/git.html">git</a>
+    </p>
+  </div>
+
+
+
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>&copy; 2015-2023 Dave Pearson</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://blog.davep.org/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " blog.davep.org ",
+  "url" : "https://blog.davep.org",
+  "image": "/static/davep.jpeg",
+  "description": ""
+}
+</script>
+</body>
+</html>

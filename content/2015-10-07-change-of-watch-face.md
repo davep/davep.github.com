@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Change of watch face
-categories: []
+category: Tech
 tags: Android Wear, Moto360
 published: True
 date: 2015-10-07 14:57:07+0100

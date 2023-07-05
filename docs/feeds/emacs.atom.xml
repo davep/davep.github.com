@@ -1,0 +1,870 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Emacs</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/emacs.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2022-08-23T21:31:00+01:00</updated><entry><title>I must be getting old</title><link href="https://blog.davep.org/2022/08/23/I-must-be-getting-old.html" rel="alternate"></link><published>2022-08-23T21:31:00+01:00</published><updated>2022-08-23T21:31:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2022-08-23:/2022/08/23/I-must-be-getting-old.html</id><summary type="html">&lt;p&gt;A little earlier this evening I got &lt;a href="https://github.com/davep/boxquote.el/issues/7"&gt;a new
+issue&lt;/a&gt; raised against
+&lt;a href="(https://github.com/davep/boxquote.el/issues/7)"&gt;&lt;code&gt;boxquote.el&lt;/code&gt;&lt;/a&gt;. Apparently
+Emacs 29 (I'm running 28.1 as of the time of writing) is moaning about the
+likes of:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;setf&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;point&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;some-location-or-other&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;setf&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;buffer-string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;There's a whole background to why I've tended to code like …&lt;/p&gt;</summary><content type="html">&lt;p&gt;A little earlier this evening I got &lt;a href="https://github.com/davep/boxquote.el/issues/7"&gt;a new
+issue&lt;/a&gt; raised against
+&lt;a href="(https://github.com/davep/boxquote.el/issues/7)"&gt;&lt;code&gt;boxquote.el&lt;/code&gt;&lt;/a&gt;. Apparently
+Emacs 29 (I'm running 28.1 as of the time of writing) is moaning about the
+likes of:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;setf&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;point&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;some-location-or-other&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;setf&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;buffer-string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;There's a whole background to why I've tended to code like that, that stems
+from enjoying Common Lisp, my days reading (and sometimes posting to)
+&lt;code&gt;comp.lang.lisp&lt;/code&gt;, and I &lt;em&gt;think&lt;/em&gt; some of the stuff &lt;a href="https://en.wikipedia.org/wiki/Erik_Naggum"&gt;Erik
+Naggum&lt;/a&gt; wrote back in the day. I
+won't get into it all now; I'm not sure I can even remember a lot of how I
+got there given how far back it was.&lt;/p&gt;
+&lt;p&gt;But...&lt;/p&gt;
+&lt;p&gt;Wanting to quickly get to the bottom of why the above was suddenly an issue,
+I dived into the &lt;code&gt;NEWS&lt;/code&gt; file and &lt;a href="https://github.com/emacs-mirror/emacs/blob/67a15ce1564ce35ece24a19f00e03a36e0575746/etc/NEWS#L2585"&gt;found the
+following&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Many&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;seldom&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;used&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;generalized&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;variables&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;have&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;been&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;made&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;obsolete&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Emacs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;has&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;number&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;rather&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;obscure&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;generalized&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;variables&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;defined&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="n"&gt;that&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;instance&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;allowed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;you&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;say&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;things&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;like&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;setf&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;point&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;min&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;These&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;never&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;caught&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;have&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;been&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;made&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;obsolete&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;above&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;instance&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;same&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;saying&lt;/span&gt;
+
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;narrow&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;region&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;point&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="n"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;following&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;generalized&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;variables&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;have&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;been&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;made&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;obsolete&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;buffer-file-name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;buffer-local-value&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;buffer-modified-p&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;buffer-name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;buffer-string&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;buffer-substring&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;current-buffer&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;current-column&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;current-global-map&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;current-input-mode&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;current-local-map&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;current-window-configuration&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;default-file-modes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;documentation-property&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;frame-height&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;frame-visible-p&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;global-key-binding&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;local-key-binding&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;mark&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;mark-marker&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;marker-position&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;mouse-position&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;point&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;point-marker&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;point-max&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;point-min&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;read-mouse-position&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;screen-height&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;screen-width&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;selected-frame&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;selected-screen&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;selected-window&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;standard-case-table&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;syntax-table&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;visited-file-modtime&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;window-height&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;window-width&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;x-get-secondary-selection&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;As suggested above... this is my thing, this is how I coded some Elisp
+stuff. Look through much of my &lt;a href="https://elisp.dev/"&gt;Emacs Lisp code&lt;/a&gt; and
+you'll find me &lt;code&gt;setf&lt;/code&gt;ing stuff all over the place.&lt;/p&gt;
+&lt;p&gt;Apparently my style is "obscure". Actually, I'm kinda okay with that if I'm
+honest.&lt;/p&gt;
+&lt;p&gt;This is going to be a bit of a pain in the arse; I'm going to have to go
+through a whole bunch of code and make it "less obscure", at some point.&lt;/p&gt;
+&lt;p&gt;But...&lt;/p&gt;
+&lt;p&gt;This isn't the part that had me thinking I must be getting old. Oh no. The
+&lt;code&gt;NEWS&lt;/code&gt; file had another little surprise in store:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;quickurl&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;library&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;now&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;obsolete&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="nx"&gt;Use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="nx"&gt;abbrev&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="nx"&gt;skeleton&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="nx"&gt;tempo&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;instead&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;That.... that's me that is. Well, it's one of the me things. If you run
+&lt;code&gt;about-emacs&lt;/code&gt;, dive into &lt;code&gt;Authors&lt;/code&gt;, and search for my name, in any copy of
+GNU Emacs from the last decade or two, you'll find this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Dave Pearson: wrote 5x5.el quickurl.el
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/davep/quickurl.el/blob/master/quickurl.el"&gt;&lt;code&gt;quickurl.el&lt;/code&gt;&lt;/a&gt;
+was a package I wrote back in the late 1990s, back when I was a very heavy
+user of &lt;a href="https://en.wikipedia.org/wiki/Usenet"&gt;Usenet&lt;/a&gt;, and often found
+myself posting the same URLs in posts again and again; especially in
+&lt;code&gt;comp.lang.clipper&lt;/code&gt;. As a fairly quick hack I wrote the code so that I could
+very quickly insert often-used URLs.&lt;/p&gt;
+&lt;p&gt;Some time later, I got an email from the
+&lt;a href="https://en.wikipedia.org/wiki/Free_Software_Foundation"&gt;FSF&lt;/a&gt; (I actually
+think it was from &lt;a href="https://en.wikipedia.org/wiki/Richard_Stallman"&gt;RMS&lt;/a&gt; --
+but that's an &lt;a href="https://en.wikipedia.org/wiki/Mbox"&gt;&lt;code&gt;mbox&lt;/code&gt;&lt;/a&gt; I've long ago
+lost -- or a backup of it might be in storage back in England, on a DVD),
+asking if I wanted to contribute it to Emacs proper. This seemed like an odd
+thing to add to Emacs but, sure, why the hell not?&lt;/p&gt;
+&lt;p&gt;And so I had my second contribution to a body of code I used a lot (the
+first being &lt;a href="https://github.com/davep/5x5.el"&gt;&lt;code&gt;5x5.el&lt;/code&gt;&lt;/a&gt; -- which itself was
+my first ever attempt at writing some non-trivial Elisp code).&lt;/p&gt;
+&lt;p&gt;So... yeah... here we are. I'm now old enough to have written some Emacs
+Lisp code, had it required by the FSF for inclusion in Emacs, had it live in
+there for something like two decades, and then &lt;em&gt;become obselete&lt;/em&gt;!&lt;/p&gt;</content><category term="Emacs"></category><category term="Emacs"></category><category term="Lisp"></category><category term="Emacs Lisp"></category></entry><entry><title>My journey to the dark side is complete</title><link href="https://blog.davep.org/2020/06/14/my-journey-to-the-dark-side-is-complete.html" rel="alternate"></link><published>2020-06-14T20:00:00+01:00</published><updated>2020-06-14T20:00:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-06-14:/2020/06/14/my-journey-to-the-dark-side-is-complete.html</id><summary type="html">&lt;p&gt;Ever since the whole business of "light mode" and "dark mode" really kicked
+off in the mobile OS world, I've been a fan of the dark modes. On both
+Android and iOS/iPadOS, when apps became available with dark modes, I'd
+switch to it. When the operating systems themselves adopted …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Ever since the whole business of "light mode" and "dark mode" really kicked
+off in the mobile OS world, I've been a fan of the dark modes. On both
+Android and iOS/iPadOS, when apps became available with dark modes, I'd
+switch to it. When the operating systems themselves adopted the switch,
+that's what I went for. As well as having a love for all things black
+(anyone who knows me personally will know that), I think it just looks
+better on mobile devices. I can't quite say why, but it just works best for
+me.&lt;/p&gt;
+&lt;p&gt;So, when macOS got a supported dark mode, I instantly switched it on,
+obviously. Then, within a day, I switched it back to light mode.
+Surprisingly it just didn't work for me, and I wasn't sure why. Since then
+I've tried living with it a few times and it's rarely lasted more than a few
+hours. There was something, something I couldn't quite put my finger on,
+that didn't sit right.&lt;/p&gt;
+&lt;p&gt;Last Monday I decided to give it another go. This time, however, I thought
+I'd figured it out. The "problem" was Emacs! As mentioned &lt;a href="/2020/01/11/where-i-live-and-work.html"&gt;back in
+January&lt;/a&gt;,
+for as long as I've used it (so since the mid-1990s), my Emacs has always
+had a light background -- probably because that's how it came "out of the
+box" (I'm talking Emacs in graphical mode here; I started with it on &lt;a href="https://en.wikipedia.org/wiki/OS/2#1994%E2%80%931996:_The_%22Warp%22_years"&gt;OS/2
+Warp&lt;/a&gt;
+and then moved to a GNU/Linux X-based desktop). I figured that the contrast
+between the colour scheme of Emacs, and the rest of the machine, was the
+issue here.&lt;/p&gt;
+&lt;p&gt;I spend most of my working day either in Emacs, or in
+&lt;a href="https://www.iterm2.com/"&gt;iTerm2&lt;/a&gt; -- often rapidly switching between the
+two. I've always run iTerm2 in the usual dark background mode with light
+text. So I figured the problem was having a dark OS desktop, dark terminal,
+and then a light editing environment. Eventually that'd feel wrong.&lt;/p&gt;
+&lt;p&gt;So I decided that, for the first time in about 25 years, I should give Emacs
+a go with a dark mode. Taking a quick look at &lt;a href="https://pawelbx.github.io/emacs-theme-gallery/"&gt;popular dark
+themes&lt;/a&gt; I noticed
+&lt;a href="https://github.com/purcell/color-theme-sanityinc-tomorrow"&gt;&lt;code&gt;sanityinc-tomorrow-night&lt;/code&gt;&lt;/a&gt;
+looked easy on the eye, so I gave that a go (actually, I gave each of the
+themes in that set a go, &lt;a href="https://github.com/davep/.emacs.d/commit/07f1c4c4c8c0c476f1e5e34845a834956d2be0c4"&gt;initially starting with
+&lt;code&gt;sanityinc-tomorrow-eighties&lt;/code&gt;&lt;/a&gt;,
+but I finally settled on &lt;code&gt;sanityinc-tomorrow-night&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;To start with it didn't look too good; not because of a problem with the
+theme itself, but because, over time, I'd made changes and tweaks to my
+setup that assumed I'd be using my usual light theme. After some dabbling
+and tinkering and trying things out, I got it looking "just so".&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot 2020-06-14 at 19.40.43.png" src="/attachments/2020/06/14/Screenshot 2020-06-14 at 19.40.43.png"&gt;&lt;/p&gt;
+&lt;p&gt;Having got that working, I then thought it would be nice to be able to have
+Emacs -- at least on restart -- adapt to me switching between dark and light
+mode on macOS. It turns out that detecting if macOS is in dark mode is easy
+enough, the command &lt;code&gt;defaults read -g AppleInterfaceStyle&lt;/code&gt; will emit &lt;code&gt;Dark&lt;/code&gt;
+if in dark mode. So, knowing that, I updated &lt;a href="https://github.com/davep/is-a.el/blob/2b3eb99a213454536d789325f01477e3ce7eec87/is-a.el#L67-L70"&gt;my personal package for
+checking things about the environment that Emacs is in to use that
+information&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;defconst&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;is-a-macOS-dark-mode-window-p&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;and&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nv"&gt;is-a-macOS-window-p&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;string=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;shell-command-to-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;defaults read -g AppleInterfaceStyle&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Dark\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Are we running in a macOS window in dark mode?&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;So, as of now, my Emacs setup is such that, &lt;a href="https://github.com/davep/.emacs.d/blob/f8389ac8f93b66c614ef82705929b86f01efc130/init.d/init-style.el#L15-L24"&gt;if I'm in graphical mode on
+macOS and I'm in dark mode, Emacs will use a dark theme, otherwise it'll do
+what it did before -- with a light background in a graphical mode and a more
+Borland-a-like blue background when in CHUI
+mode&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This seems to have made a difference. Almost one week on my work Macbook is
+still in dark mode, and I've switched both of my personal Macbooks, and my
+iMac, into dark mode too. I think it's sticking this time. Next up is to
+give some serious consideration to darkening the web in general. Only now am
+I noticing just how damn bright most of it is!&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;As a slight aside to the above, I've also made one other change to Emacs:
+I've finally dropped the display of scroll bars. In the themes I'm using
+they didn't look so great, appearing to be distracting. For the past 25
+years I've had the scrollbars there, but never actually &lt;em&gt;used&lt;/em&gt; them; all
+they've ever done is serve as a visual aid to where I am in a file. Thing
+is, I'm not sure I ever really pay that much attention to that either. So,
+as a test, I've also been running with them turned off and, so far, I'm
+really not noticing them been gone.&lt;/p&gt;
+&lt;p&gt;The habits we form that we convince ourselves make sense...&lt;/p&gt;</content><category term="Emacs"></category><category term="Emacs"></category></entry><entry><title>Some more ~/.emacs.d evolution</title><link href="https://blog.davep.org/2020/06/07/some-more-dot-emacs-dot-d-evolution.html" rel="alternate"></link><published>2020-06-07T16:48:00+01:00</published><updated>2020-06-07T16:48:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-06-07:/2020/06/07/some-more-dot-emacs-dot-d-evolution.html</id><summary type="html">&lt;p&gt;When I started with this version of the blog on Hashnode&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;, my plan was to
+try and write something at least once a week. I managed to do that as far as
+January this year, give or take, but then things got a little busy, the
+world got trickier …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When I started with this version of the blog on Hashnode&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;, my plan was to
+try and write something at least once a week. I managed to do that as far as
+January this year, give or take, but then things got a little busy, the
+world got trickier, and... Well, &lt;a href="https://en.wikipedia.org/wiki/COVID-19_pandemic"&gt;you don't need me to tell you about
+that&lt;/a&gt;. Anyway, I'm back to
+write some more and, hopefully, try and keep up with writing. I feel it'll
+do me good.&lt;/p&gt;
+&lt;p&gt;I have been busy since January. Work has, as far as possible, carried on as
+normal. The only big difference being I'm back working from home. It's an
+odd turn of events personally given that I'd worked from home for 21 years,
+then (with some trepidation) &lt;a href="/2017/12/12/on_to_something_new.html"&gt;went back to working in an
+office&lt;/a&gt;. Having got used to being in
+an office and being around people, it took some adjusting to working alone
+again.&lt;/p&gt;
+&lt;p&gt;So, on to the main point of this post... During that period I've spent a lot
+more time at my machine than I would normally, and so it was inevitable that
+I'd end up tinkering with &lt;a href="https://github.com/davep/.emacs.d"&gt;my Emacs
+configuration&lt;/a&gt;. While it's true that
+&lt;a href="/2019/11/23/visual-evolution-of-emacs-config.html"&gt;there's hardly a week goes by where I don't tinker with some small
+thing&lt;/a&gt;, I try not to make
+huge changes too often. Huge changes do happen though.&lt;/p&gt;
+&lt;p&gt;A handful of weeks back was another one of those times where I made a big
+change.&lt;/p&gt;
+&lt;p&gt;After I &lt;a href="/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;burnt my original &lt;code&gt;~/.emacs&lt;/code&gt; file back in
+2016&lt;/a&gt; I've had an approach
+where I've tried to make things as modular as possible, and as easy to clone
+down to a new machine as possible. The design I came up with, &lt;a href="/2017/07/13/more_revamping_of_my_emacs_config.html"&gt;especially
+once I moved over to using
+&lt;code&gt;use-package&lt;/code&gt;&lt;/a&gt;, has
+served me well. But there was always one thing that bothered me: the files
+that handled the loading and configuration of packages were, in effect,
+&lt;a href="https://github.com/davep/.emacs.d/tree/728e74376bf5606d9ef2d297e36cc2d35e159d64/init.d/packages"&gt;still three large monolithic
+files&lt;/a&gt;.
+While this was better than a single monolithic &lt;code&gt;~/.emacs&lt;/code&gt;, it still didn't
+feel quite right.&lt;/p&gt;
+&lt;p&gt;Giving it a bit of thought, I decided that what I really wanted was a single
+directory in which I could drop lots of small &lt;code&gt;.el&lt;/code&gt; files that would handle
+the loading and configuration of all sorts of packages. While it didn't gain
+anything concrete, the idea felt tidier. Tidy is good. Feeling like the code
+smell is good, is good too.&lt;/p&gt;
+&lt;p&gt;First though I needed a way to load multiple files, ideally within a whole
+directory hierarchy, without needing to know in advance what files would be
+there. After a little bit of tinkering I settled on &lt;a href="https://github.com/davep/.emacs.d/blob/c3d53152b1adc9ba5e43baddb986870b3244b113/init.d/init-packages.el#L42-L46"&gt;this bit of
+code&lt;/a&gt;
+that revolves around the use of
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Contents-of-Directories.html"&gt;&lt;code&gt;directory-files-recursively&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;expand-file-name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;init.d/packages.d/&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;user-emacs-directory&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;when&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;file-exists-p&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;source&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cl-loop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;directory-files-recursively&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;.el&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;eol&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;             &lt;/span&gt;&lt;span class="nb"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;load&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;file-name-sans-extension&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;use&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Simply put, this code finds every file in and below
+&lt;a href="https://github.com/davep/.emacs.d/tree/master/init.d/packages.d"&gt;&lt;code&gt;~/.emacs.d/init.d/packages.d/&lt;/code&gt;&lt;/a&gt;
+whose name ends in &lt;code&gt;.el&lt;/code&gt; (note the use of a regular expression, using
+&lt;a href="/2019/12/01/being-phony-and-lispy-regular-expressions.html"&gt;&lt;code&gt;rx&lt;/code&gt;&lt;/a&gt;
+to create it), removes the extension from the name, and loads it with &lt;code&gt;load&lt;/code&gt;
+(dropping the extension means &lt;code&gt;load&lt;/code&gt; can decide if it wants to load the
+compiled version of the code, or the source, depending on what's available).&lt;/p&gt;
+&lt;p&gt;After writing that I could then start to populate
+&lt;code&gt;~/.emacs.d/init.d/packages.d/&lt;/code&gt; with lots of smaller files that handled the
+loading of packages. In some cases there's a file just for one package, in
+other cases there's a file that handles a logical grouping of packages
+(where there are obvious direct dependencies, or where one package is
+designed to extend the other, etc). For now I've decided to break things
+down into three directories that map to the three monolithic files I had
+before:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot 2020-06-07 at 16.36.28.png" src="/attachments/2020/06/07/Screenshot 2020-06-07 at 16.36.28.png"&gt;&lt;/p&gt;
+&lt;p&gt;However, I'm not totally wedded to this design and I may change this as time
+goes on.&lt;/p&gt;
+&lt;p&gt;While I've not spent any time properly testing it out, I've also not really
+noticed any obvious impact on startup speed. However, this tends not to be a
+real concern for me. I seldom &lt;em&gt;start&lt;/em&gt; Emacs anyway. I always have it running
+&lt;a href="https://github.com/davep/e"&gt;and use &lt;code&gt;emacsclient&lt;/code&gt; as my editor in most places so files open instantly
+in the running version of Emacs&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Note from future me: we're now back over on &lt;code&gt;blog.davep.org&lt;/code&gt; of
+course.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="Emacs"></category><category term="Emacs"></category><category term="Lisp"></category><category term="Emacs Lisp"></category></entry><entry><title>dnote.el - A wrapper for the dnote CLI</title><link href="https://blog.davep.org/2020/01/19/dnote-el.html" rel="alternate"></link><published>2020-01-19T16:35:00+00:00</published><updated>2020-01-19T16:35:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-01-19:/2020/01/19/dnote-el.html</id><summary type="html">&lt;p&gt;Late on last year I stumbled on an article about
+&lt;a href="https://www.getdnote.com/"&gt;dnote&lt;/a&gt;. Annoyingly, I can't recall now where I
+saw it, but I made a reminder to look at it over my Christmas break.&lt;/p&gt;
+&lt;p&gt;Dnote looked like a tool that would fill a hole I had in how I work. When …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Late on last year I stumbled on an article about
+&lt;a href="https://www.getdnote.com/"&gt;dnote&lt;/a&gt;. Annoyingly, I can't recall now where I
+saw it, but I made a reminder to look at it over my Christmas break.&lt;/p&gt;
+&lt;p&gt;Dnote looked like a tool that would fill a hole I had in how I work. When it
+comes to making notes about things, and keeping things for future reference,
+I use a few tools, each one being just right (for me) for the job in
+question. I use &lt;a href="https://evernote.com/"&gt;Evernote&lt;/a&gt; to track documents and
+other household type things. I use &lt;a href="https://www.google.com/keep/"&gt;Keep&lt;/a&gt; to
+make notes about stuff I need to remember short-term (say, the size of a
+space in my bedroom that I want furniture to go in) and also to record notes
+while in meetings at work. I use &lt;a href="https://journey.cloud/"&gt;Journey&lt;/a&gt; to keep a
+journal about... anything, really. Finally, &lt;a href="https://pinboard.in/u:davep"&gt;I use
+Pinboard&lt;/a&gt; to keep hold of URLs I might want to
+go back to (I also use it to create a to-read list).&lt;/p&gt;
+&lt;p&gt;Amongst all of this, however, I felt I was missing something for keeping
+track of things that don't really fall into any of the categories above.
+Mostly this would be work-based or hacking-based things that are short and
+sweet but I don't always use enough to easily remember. I wanted just the
+right tool that would let me ferret away useful one-liners, remind myself of
+obscure switches that get used once or twice a year, etc.&lt;/p&gt;
+&lt;p&gt;After reading up on dnote it seemed pretty clear that this was just such a
+tool.&lt;/p&gt;
+&lt;p&gt;After getting back to the office at the start of this month I decided to
+make use of it and see how it went. My idea was simple: I'd record any "TIL"
+stuff that I might want to remember in the future, as well as recording
+things I need now and again but can't always remember.&lt;/p&gt;
+&lt;p&gt;So far it's working quite well. I like that it has a simple CLI. I like that
+it's got a backend that you can use to sync between different machines. I
+like that it's got a web interface that's mobile-friendly. I like that &lt;a href="https://github.com/dnote/dnote"&gt;it's
+Free Software&lt;/a&gt; and so you can host your own
+server if you wish.&lt;/p&gt;
+&lt;p&gt;I found I liked it enough that, of course, I felt the need to start &lt;a href="https://github.com/davep/dnote.el"&gt;a
+simple Emacs wrapper for the CLI&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;At the moment dnote.el is designed to be a simple capture system. There are
+commands for capturing a one-liner (entered in the Emacs mini-buffer), for
+capturing the content of the current buffer, and for capturing
+freshly-entered multi-line text, entered in a buffer that uses
+&lt;code&gt;markdown-mode&lt;/code&gt;. There's also a command for syncing notes if you have
+configured dnote to talk to a backend.&lt;/p&gt;
+&lt;p&gt;What I don't have right now is the ability to navigate and view notes. So
+far I've not really felt the need for that because the CLI approach works so
+well. Longer-term though I can see my tweaking this and adding in commands
+for searching, viewing, editing and deleting notes.&lt;/p&gt;
+&lt;p&gt;But, for now, if you've not had a look at dnote, I'd highly recommend having
+a play and seeing if it makes sense for you. And, if it does, and you're an
+Emacs user, perhaps dnote.el will be useful too?&lt;/p&gt;</content><category term="Emacs"></category><category term="Emacs"></category><category term="Lisp"></category><category term="Emacs Lisp"></category></entry><entry><title>nuke-buffers.el -- Tidy up open buffers in Emacs</title><link href="https://blog.davep.org/2019/12/14/nuke-buffers-el.html" rel="alternate"></link><published>2019-12-14T13:17:00+00:00</published><updated>2019-12-14T13:17:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2019-12-14:/2019/12/14/nuke-buffers-el.html</id><summary type="html">&lt;p&gt;Both at work and at home I use Emacs by &lt;a href="https://github.com/davep/longmacs.el"&gt;keeping a copy running all the
+time&lt;/a&gt;, and use &lt;a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html#Emacs-Server"&gt;&lt;code&gt;emacsclient&lt;/code&gt; to open
+files inside
+it&lt;/a&gt;
+(including on remote machines thanks to a bit of
+&lt;a href="https://en.wikipedia.org/wiki/Secure_Shell"&gt;&lt;code&gt;ssh&lt;/code&gt;&lt;/a&gt; and heavy use of
+&lt;a href="https://www.gnu.org/software/tramp/"&gt;&lt;code&gt;tramp&lt;/code&gt;&lt;/a&gt; -- I might write this up at
+some point). This works …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Both at work and at home I use Emacs by &lt;a href="https://github.com/davep/longmacs.el"&gt;keeping a copy running all the
+time&lt;/a&gt;, and use &lt;a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html#Emacs-Server"&gt;&lt;code&gt;emacsclient&lt;/code&gt; to open
+files inside
+it&lt;/a&gt;
+(including on remote machines thanks to a bit of
+&lt;a href="https://en.wikipedia.org/wiki/Secure_Shell"&gt;&lt;code&gt;ssh&lt;/code&gt;&lt;/a&gt; and heavy use of
+&lt;a href="https://www.gnu.org/software/tramp/"&gt;&lt;code&gt;tramp&lt;/code&gt;&lt;/a&gt; -- I might write this up at
+some point). This works really well, but does mean I tend to build up a lot
+of buffers over time.&lt;/p&gt;
+&lt;p&gt;Having lots of buffers open isn't generally an issue, and if I'm working on
+lots of different files in a project during the course of a hacking session
+it's actually a good thing. But, quite often, I want to tidy up the buffer
+list, clearing it back to near-zero buffers open. Many years ago, when I had
+a "proper" tower system running 24/7, with Emacs open all the time, I'd use
+&lt;a href="https://www.emacswiki.org/emacs/MidnightMode"&gt;&lt;code&gt;clean-buffer-list&lt;/code&gt; as part of
+&lt;code&gt;midnight&lt;/code&gt;&lt;/a&gt;. Along the way
+that fell out of favour with me, likely because I drifted into using
+machines that had Emacs open all the time but where the machine wasn't awake
+all the time.&lt;/p&gt;
+&lt;p&gt;Eventually I decided to have some fun rolling my own solution, and
+&lt;a href="https://github.com/davep/nuke-buffers.el"&gt;&lt;code&gt;nuke-buffers&lt;/code&gt;&lt;/a&gt; was born.&lt;/p&gt;
+&lt;p&gt;Rather than try and do things in an automated way, this was designed to be
+&lt;a href="https://github.com/davep/.emacs.d/blob/ffc863ca0fb669d2f6639bda62e81764c35767ce/init.d/packages/init-packages-delpa.el#L98-L107"&gt;bound to a key (or
+two)&lt;/a&gt;
+and then be run when I wanted, being as harsh as possible about cleaning up
+the buffer list. Since first writing it it's worked well for me.&lt;/p&gt;
+&lt;p&gt;These days I tend to let the buffer list build up as I work on a new
+feature, or chase down a bug, etc. Then, once I've made the final commit for
+that period of focus, I'll hit the &lt;code&gt;nuke-buffer&lt;/code&gt; key combo as the final act
+of confirming that I've done the job. So not only does this help tidy my
+Emacs session a bit, it also feels like a physical form of punctuation --
+back in less sensible days, when I had some terrible habits, it would have
+been when I'd reach for the celebratory cigarette; buffer-tidying feels far
+more wholesome. ;)&lt;/p&gt;
+&lt;p&gt;The way the code works is, of course, mostly directed at how I work -- it's
+highly likely it wouldn't make sense for many other people. The main aim is
+to kill as many buffers as possible, but without disturbing anything else.
+The list of buffers it gathers for nuking avoids buffers that are &lt;a href="https://github.com/davep/nuke-buffers.el/blob/d018499b78968f074565c076068f657a1631aa07/nuke-buffers.el#L60-L62"&gt;visiting
+files but have unsaved
+content&lt;/a&gt;,
+avoids &lt;a href="https://github.com/davep/nuke-buffers.el/blob/d018499b78968f074565c076068f657a1631aa07/nuke-buffers.el#L54"&gt;the
+minibuffer&lt;/a&gt;
+(obviously), avoids &lt;a href="https://github.com/davep/nuke-buffers.el/blob/d018499b78968f074565c076068f657a1631aa07/nuke-buffers.el#L56"&gt;any "special"
+buffer&lt;/a&gt;
+(one that starts with a space then an asterisk), avoids &lt;a href="https://github.com/davep/nuke-buffers.el/blob/d018499b78968f074565c076068f657a1631aa07/nuke-buffers.el#L73"&gt;the current
+buffer&lt;/a&gt;
+and also avoids &lt;a href="https://github.com/davep/nuke-buffers.el/blob/d018499b78968f074565c076068f657a1631aa07/nuke-buffers.el#L58"&gt;any buffer in a list of names to
+avoid&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I've being using this on a daily basis for around 2.5 years now and it's
+done the job without ever losing me any work.&lt;/p&gt;</content><category term="Emacs"></category><category term="Emacs"></category><category term="Lisp"></category><category term="Emacs Lisp"></category></entry><entry><title>Being phony, and Lispy regular expressions</title><link href="https://blog.davep.org/2019/12/01/being-phony-and-lispy-regular-expressions.html" rel="alternate"></link><published>2019-12-01T16:42:00+00:00</published><updated>2019-12-01T16:42:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2019-12-01:/2019/12/01/being-phony-and-lispy-regular-expressions.html</id><summary type="html">&lt;p&gt;While it does seem that they're a little out of fashion these days, in some
+circles anyway, I'm still an avid fan of &lt;code&gt;make&lt;/code&gt; and make files. Even in
+environments where I don't need a &lt;code&gt;Makefile&lt;/code&gt; to actually build anything,
+I'll use one (or more) to help create handy shortcuts …&lt;/p&gt;</summary><content type="html">&lt;p&gt;While it does seem that they're a little out of fashion these days, in some
+circles anyway, I'm still an avid fan of &lt;code&gt;make&lt;/code&gt; and make files. Even in
+environments where I don't need a &lt;code&gt;Makefile&lt;/code&gt; to actually build anything,
+I'll use one (or more) to help create handy shortcuts for getting stuff
+done.&lt;/p&gt;
+&lt;p&gt;Looking at the main &lt;code&gt;Makefile&lt;/code&gt; for one of my major work projects, there's 45
+targets that help fire off various jobs (all of them &lt;a href="https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html"&gt;self-documenting using
+a variation on an approach I read a while
+back&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;In most cases the targets aren't real targets. That's to say, they don't
+build the thing they're called. They are &lt;a href="https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html"&gt;phony
+targets&lt;/a&gt;.
+So, as makes sense, I make a point of marking them all as such. I follow the
+convention that has the &lt;code&gt;.PHONY&lt;/code&gt; marker appear on the line before the
+target; this feels cleaner to me and easier to follow and maintain.&lt;/p&gt;
+&lt;p&gt;But.... I'm lazy. And I use Emacs. Typing out &lt;code&gt;.PHONY foo&lt;/code&gt; all the time
+feels like far too much work. So, some time ago, I quickly threw together
+&lt;a href="https://github.com/davep/make-phony.el"&gt;&lt;code&gt;make-phony.el&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;With this I could be &lt;em&gt;really&lt;/em&gt; lazy. I could type out the &lt;code&gt;Makefile&lt;/code&gt; target
+and then, with my cursor on it, press a key combination and have the
+&lt;code&gt;.PHONY&lt;/code&gt; marker put in place.&lt;/p&gt;
+&lt;p&gt;Does it save much time? Yeah, probably not really. But it was a fun little
+exercise and an excuse to write a little bit of Emacs Lisp.&lt;/p&gt;
+&lt;p&gt;There's one thing I made a point of doing in the heart of this too: using
+&lt;code&gt;rx&lt;/code&gt;. For anyone who doesn't know of it, think of it as a very Lispy way of
+writing regular expressions. I won't even try and explain it all here
+&lt;a href="http://francismurillo.github.io/2017-03-30-Exploring-Emacs-rx-Macro/"&gt;because others have done an excellent job
+already&lt;/a&gt;.
+What I will do is say this: if you're in the habit of writing some Emacs
+Lisp, or even tinkering with your configuration, and you find yourself
+writing a regular expression, consider looking at &lt;code&gt;rx&lt;/code&gt; -- it's well worth
+the time to get to know it.&lt;/p&gt;
+&lt;p&gt;Slowly, as time goes on, I'm weeding out "vanilla" regular expressions from
+my config and code and moving over to using &lt;code&gt;rx&lt;/code&gt;. I feel, quite rightly I
+think, that &lt;a href="https://github.com/davep/.emacs.d/blob/b3185a1dbaa0a16f540465844b84c5e1c6a77180/init.d/packages/init-packages-melpa.el#L117-L126"&gt;something like
+this&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;;; Ignore hidden files.&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;group&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;bol&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;;; I never want to edit the desktop.&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;group&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Desktop/&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;eol&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;;; Ignore compiled files.&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;group&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;.&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;pyc&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;elc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;eol&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;group&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;.egg-info/&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;eol&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;is much easier to write, read and maintain, than this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;quot;\\(^\\.\\)\\|\\(Desktop/$\\)\\|\\(\\.\\(?:\\(?:\\(?:el\\|py\\)c\\)\\)$\\)\\|\\(\\.egg-info/$\\)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I mean, even &lt;em&gt;if&lt;/em&gt; the regular expression above can be written in a more
+efficient way (and I imagine it can), as someone working in a Lisp
+environment, I'd much sooner write and work with the &lt;code&gt;rx&lt;/code&gt; version.&lt;/p&gt;</content><category term="Emacs"></category><category term="Emacs"></category><category term="Lisp"></category><category term="Emacs Lisp"></category></entry><entry><title>EmacsConf 2019 videos are out</title><link href="https://blog.davep.org/2019/11/24/emacsconf-2019-videos-are-out.html" rel="alternate"></link><published>2019-11-24T17:17:00+00:00</published><updated>2019-11-24T17:17:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2019-11-24:/2019/11/24/emacsconf-2019-videos-are-out.html</id><summary type="html">&lt;p&gt;At the start of this month &lt;a href="/2019/11/02/emacsconf-2019.html"&gt;I spent a very enjoyable Saturday afternoon
+watching EmacsConf 2019&lt;/a&gt;. If you missed it,
+or even if you didn't, you might like to know that &lt;a href="https://lists.gnu.org/r/emacsconf-discuss/2019-11/msg00002.html"&gt;the announcement has
+gone out&lt;/a&gt;
+that almost all of the videos are &lt;a href="https://emacsconf.org/2019/videos"&gt;now available for
+watching&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While I mean …&lt;/p&gt;</summary><content type="html">&lt;p&gt;At the start of this month &lt;a href="/2019/11/02/emacsconf-2019.html"&gt;I spent a very enjoyable Saturday afternoon
+watching EmacsConf 2019&lt;/a&gt;. If you missed it,
+or even if you didn't, you might like to know that &lt;a href="https://lists.gnu.org/r/emacsconf-discuss/2019-11/msg00002.html"&gt;the announcement has
+gone out&lt;/a&gt;
+that almost all of the videos are &lt;a href="https://emacsconf.org/2019/videos"&gt;now available for
+watching&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While I mean nothing negative about any other video, I think the two that
+stand out the most for me, in terms of things that grabbed my interest, were
+&lt;a href="https://media.emacsconf.org/2019/08.html"&gt;&lt;em&gt;How a Completely Blind Manager/Dev Uses Emacs Every
+Day&lt;/em&gt;&lt;/a&gt; and &lt;a href="https://media.emacsconf.org/2019/15.html"&gt;&lt;em&gt;Emacs as my Go To
+Script Language&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I seem to recall that both those talks were hit with technical issues (many
+talks on the day were -- part of the enjoyment for me was how the whole
+conference was an experiment in using Free Software to host the whole
+thing), but they're well worth a watch despite this.&lt;/p&gt;
+&lt;p&gt;If you have any sort of interest in Emacs I'd highly recommend dipping into
+the whole collection.&lt;/p&gt;
+&lt;p&gt;I really hope there's going to be a 2020 EmacsConf.&lt;/p&gt;</content><category term="Emacs"></category><category term="Emacs"></category></entry><entry><title>Visual evolution of ~/.emacs.d</title><link href="https://blog.davep.org/2019/11/23/visual-evolution-of-emacs-config.html" rel="alternate"></link><published>2019-11-23T14:42:00+00:00</published><updated>2019-11-23T14:42:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2019-11-23:/2019/11/23/visual-evolution-of-emacs-config.html</id><summary type="html">&lt;p&gt;As detailed in a blog post I wrote &lt;a href="/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;back in
+2016&lt;/a&gt;, I first got into
+using Emacs in the mid 1990s, starting with it on OS/2 and then moving over
+to GNU/Linux. It's been my often-used and much-loved development environment
+for most of those years (I even have …&lt;/p&gt;</summary><content type="html">&lt;p&gt;As detailed in a blog post I wrote &lt;a href="/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;back in
+2016&lt;/a&gt;, I first got into
+using Emacs in the mid 1990s, starting with it on OS/2 and then moving over
+to GNU/Linux. It's been my often-used and much-loved development environment
+for most of those years (I even have a couple of packages that are part of
+Emacs itself).&lt;/p&gt;
+&lt;p&gt;For most of that time my configuration was a single &lt;code&gt;~/.emacs&lt;/code&gt; file, which
+was around 1,000 lines in length (including comments and whitespace). It'd
+grown over the years, having special configuration sections for versions of
+Emacs I didn't use any more, and operating systems I didn't work on any more
+(yes, really, there were things in there specific to MS-DOS, for example).
+On top of that I always hand-installed packages I used -- Emacs' package
+management system having turned up long after I first got into using Emacs.&lt;/p&gt;
+&lt;p&gt;Then, in early 2016, I decided to nuke the whole thing and start from
+scratch. As mentioned above, the start of this &lt;a href="/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;is detailed in an older
+post&lt;/a&gt;. Another big round of
+changes &lt;a href="/2017/04/01/another_revamp_of_my_emacs_config.html"&gt;happened round a year
+later&lt;/a&gt; -- which included
+the birth of &lt;a href="http://blog.davep.org/delpa/"&gt;delpa&lt;/a&gt; to manage my personal
+packages. A couple or so months later there was &lt;a href="/2017/07/13/more_revamping_of_my_emacs_config.html"&gt;one last big round of
+changes&lt;/a&gt;, mostly killing
+off my enthusiastic embracing of
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Easy-Customization.html#Easy-Customization"&gt;&lt;code&gt;customize&lt;/code&gt;&lt;/a&gt;
+and instead going back to hand-set settings, only this time done via
+&lt;a href="https://github.com/jwiegley/use-package"&gt;&lt;code&gt;use-package&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The full history of this &lt;a href="https://github.com/davep/.emacs.d"&gt;can be found over on
+GitHub&lt;/a&gt;, starting with the first "throw
+everything away and start again" process and all the steps between then and
+where my Emacs configuration is now.&lt;/p&gt;
+&lt;p&gt;Which brings me to the fun part of this blog post. Earlier this week I
+stumbled on &lt;a href="https://gource.io/"&gt;Gource&lt;/a&gt;. It's a tool that's primarily
+designed to visualise changes in repositories, although it can be used to
+visualise anything that has a tree structure and changes over time (this
+week I produced a video of the growth of my employer's electronic lab
+notebook by hooking up the &lt;a href="https://www.benchling.com/"&gt;Benchling&lt;/a&gt; API with
+Gource, for example). So I got curious. What did it look like as I reworked
+and tweaked and changed and tinkered with my Emacs configuration?&lt;/p&gt;
+&lt;p&gt;This is what it looked like:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=bH4G80aZgsM"&gt;&lt;img alt="" src="https://img.youtube.com/vi/bH4G80aZgsM/0.jpg"&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Emacs"></category><category term="Emacs"></category><category term="Lisp"></category><category term="Emacs Lisp"></category></entry><entry><title>EmacsConf 2019</title><link href="https://blog.davep.org/2019/11/02/emacsconf-2019.html" rel="alternate"></link><published>2019-11-02T11:33:00+00:00</published><updated>2019-11-02T11:33:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2019-11-02:/2019/11/02/emacsconf-2019.html</id><summary type="html">&lt;p&gt;For anyone who doesn't know, today is the day for &lt;a href="https://emacsconf.org/2019/"&gt;EmacsConf
+2019&lt;/a&gt;. As you might gather from the name, it's
+a conference all about Emacs, the joys of Emacs, Emacs Lisp and other
+Emacs-related things.&lt;/p&gt;
+&lt;p&gt;Better still, it's an online conference (although there do appear to be a
+couple of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;For anyone who doesn't know, today is the day for &lt;a href="https://emacsconf.org/2019/"&gt;EmacsConf
+2019&lt;/a&gt;. As you might gather from the name, it's
+a conference all about Emacs, the joys of Emacs, Emacs Lisp and other
+Emacs-related things.&lt;/p&gt;
+&lt;p&gt;Better still, it's an online conference (although there do appear to be a
+couple of related physical gatherings around the world).&lt;/p&gt;
+&lt;p&gt;I've got snacks and drinks in and no plans for my Saturday, and I hope to
+follow the whole thing from start to finish.&lt;/p&gt;
+&lt;p&gt;If Emacs is your thing, or knowing more about Emacs is your thing, be sure
+to check it out!&lt;/p&gt;</content><category term="Emacs"></category><category term="Emacs"></category></entry><entry><title>gitweb.el -- Quickly visit a repo's forge from Emacs</title><link href="https://blog.davep.org/2019/10/21/gitweb-el.html" rel="alternate"></link><published>2019-10-21T10:41:00+01:00</published><updated>2019-10-21T10:41:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2019-10-21:/2019/10/21/gitweb-el.html</id><summary type="html">&lt;p&gt;&lt;code&gt;gh.fish&lt;/code&gt;, which &lt;a href="/2019/10/20/fg-fish.html"&gt;I wrote about yesterday&lt;/a&gt;,
+actually sprang from something I initially wrote for Emacs. I'm often
+spending my time switching between Emacs and the command line (which is fast
+and easy -- I normally work on macOS and have Emacs and
+&lt;a href="https://www.iterm2.com/"&gt;iTerm2&lt;/a&gt; running full screen, and I can switch …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;code&gt;gh.fish&lt;/code&gt;, which &lt;a href="/2019/10/20/fg-fish.html"&gt;I wrote about yesterday&lt;/a&gt;,
+actually sprang from something I initially wrote for Emacs. I'm often
+spending my time switching between Emacs and the command line (which is fast
+and easy -- I normally work on macOS and have Emacs and
+&lt;a href="https://www.iterm2.com/"&gt;iTerm2&lt;/a&gt; running full screen, and I can switch
+between them without ever taking my hands off the keyboard), so it makes
+sense to have some handy commands repeated in both places.&lt;/p&gt;
+&lt;p&gt;So, originally, I'd written
+&lt;a href="https://github.com/davep/gitweb.el"&gt;&lt;code&gt;gitweb.el&lt;/code&gt;&lt;/a&gt; to open the current repo's
+"forge" in the web browser.&lt;/p&gt;
+&lt;p&gt;As with the fish version, how it works is quite simple. I use
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Synchronous-Processes.html"&gt;&lt;code&gt;shell-command-to-string&lt;/code&gt;&lt;/a&gt;
+to call git and find the origin URL for the current repo, and then
+manipulate it a bit to turn it into a normal browser-friendly URL. Finally,
+if I get something workable, I use
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Browse_002dURL.html"&gt;&lt;code&gt;browser-url&lt;/code&gt;&lt;/a&gt;
+to have the resulting page open in the browsing environment of choice.&lt;/p&gt;
+&lt;p&gt;I have the command &lt;a href="https://github.com/davep/.emacs.d/blob/8f1be3a03e4be98155571939fe5d6fbb54de487f/init.d/packages/init-packages-delpa.el#L51-L54"&gt;bound to a key combination that's similar to the ones I
+use with magit and
+forge&lt;/a&gt;,
+so in terms of muscle-memory it's easy for me to remember what to press when
+I quickly want to skip over from a magit view to the repo forge itself.&lt;/p&gt;
+&lt;p&gt;Similar to what I wrote &lt;a href="/2019/10/19/pypath-el.html"&gt;a couple of days back&lt;/a&gt;,
+I think this again illustrates how handy Emacs is as a work environment.
+While it's absolutely true that there are other development environments out
+there that offer similar extensibility, Emacs is the one I'm comfortable
+with, and it has a &lt;em&gt;long&lt;/em&gt; history of offering this.&lt;/p&gt;</content><category term="Emacs"></category><category term="Emacs"></category><category term="git"></category></entry><entry><title>pypath.el -- A little Emacs hack to help with Django</title><link href="https://blog.davep.org/2019/10/19/pypath-el.html" rel="alternate"></link><published>2019-10-19T10:35:00+01:00</published><updated>2019-10-19T10:35:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2019-10-19:/2019/10/19/pypath-el.html</id><summary type="html">&lt;p&gt;One of the things I really like about coding with Emacs is how I can easily
+identify a repeated task and turn it into a command in my environment,
+saving me a load of work down the line.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/davep/pypath.el"&gt;&lt;code&gt;pypath.el&lt;/code&gt;&lt;/a&gt; is one such example.&lt;/p&gt;
+&lt;p&gt;In my day job I write …&lt;/p&gt;</summary><content type="html">&lt;p&gt;One of the things I really like about coding with Emacs is how I can easily
+identify a repeated task and turn it into a command in my environment,
+saving me a load of work down the line.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/davep/pypath.el"&gt;&lt;code&gt;pypath.el&lt;/code&gt;&lt;/a&gt; is one such example.&lt;/p&gt;
+&lt;p&gt;In my day job I write a lot of Django code. As part of that, I write a good
+number of unit tests too. Sometimes I'll write the tests as I'm writing the
+code they test, other times I'm writing them afterwards; it all really
+depends on where my head's at and how the code is flowing.&lt;/p&gt;
+&lt;p&gt;When I'm writing those tests, I often want to test them as I go. Given that
+starting up a test session can take a while, and given that running all the
+tests in the system can take a while, it's really handy if I can run that
+single test I'm working on.&lt;/p&gt;
+&lt;p&gt;This is easy enough with Django. In my work environment it's normally
+something like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;pipenv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;./manage.py&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;test&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-v&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;app.test.some.sub.module.TestClass.test_method
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Only... typing out the:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;test&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;some&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestClass&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;test_method&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;part is a bit of a pain. Sure, once you've typed it the once you can use
+your shell of choice (mine being &lt;a href="https://fishshell.com/"&gt;fish&lt;/a&gt; and on
+occasion
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_mono/eshell.html"&gt;eshell&lt;/a&gt;)
+to recall it from history, but typing it out the first time is the annoying
+part.&lt;/p&gt;
+&lt;p&gt;So this was the point where I took 1/2 hour or so to code up
+&lt;a href="https://github.com/davep/pypath.el"&gt;&lt;code&gt;pypath.el&lt;/code&gt;&lt;/a&gt; to solve the problem for
+me. It gives me two commands:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pypath&lt;/code&gt;: which simply places the dotted path of the &lt;a href="http://doc.endlessparentheses.com/Fun/python-info-current-defun.html"&gt;current
+  "defun"&lt;/a&gt;,
+  within the context of being part of a Django system, into the clipboard
+  buffer.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pypath-django-test&lt;/code&gt;: which works similar to the above but places the
+  whole Django testing command into the clipboard.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;With the above, I can work on a test, hit the latter command above, flip to
+my command line, paste and I'm running the test.&lt;/p&gt;
+&lt;p&gt;Of course, I'm sure there's plenty of other handy ways to do this. Doubtless
+there's work environments where the test can be run right there, in the edit
+buffer, without flipping away, and which takes into account the fact that
+there's a pipenv-managed virtual environment involved, etc. If there is,
+that's great, but I don't think it'd work with how I work.&lt;/p&gt;
+&lt;p&gt;And that's one of the things I really love about Emacs, and why it's still
+my work environment after almost 25 years of on and off use: with very
+little work on my part I can create a couple of commands that work exactly
+how I need them to. While it's great to create &lt;a href="https://melpa.org/"&gt;generally-useful code for
+Emacs that lots of people benefit from&lt;/a&gt;, sometimes the
+real value is that &lt;a href="https://blog.davep.org/delpa/"&gt;you can code up your own particular quirk and just get
+on with stuff&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To conclude: this post isn't to show off &lt;code&gt;pypath.el&lt;/code&gt;; really this post is to
+sing the praises of Emacs and why it still works so well for me after all
+these years.&lt;/p&gt;</content><category term="Emacs"></category><category term="Emacs"></category><category term="Python"></category><category term="Django"></category><category term="Lisp"></category></entry><entry><title>More revamping of my Emacs config</title><link href="https://blog.davep.org/2017/07/13/more_revamping_of_my_emacs_config.html" rel="alternate"></link><published>2017-07-13T15:25:29+01:00</published><updated>2017-07-13T15:25:29+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2017-07-13:/2017/07/13/more_revamping_of_my_emacs_config.html</id><summary type="html">&lt;p&gt;I've been pretty quiet on here since I last wrote about how I'd done a
+further revamp of my Emacs config, so I thought that subject would be a good
+reason to write another blog post.&lt;/p&gt;
+&lt;p&gt;It'll be a mostly short one, and one to muse over something that's been …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've been pretty quiet on here since I last wrote about how I'd done a
+further revamp of my Emacs config, so I thought that subject would be a good
+reason to write another blog post.&lt;/p&gt;
+&lt;p&gt;It'll be a mostly short one, and one to muse over something that's been
+bugging me for a while now: my decision to lean heavily on &lt;code&gt;customize&lt;/code&gt; to
+set all sorts of settings.&lt;/p&gt;
+&lt;p&gt;Initially,
+&lt;a href="/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;when I nuked my original config over a year ago&lt;/a&gt;,
+it seemed to make a lot of sense. Let all the tweaks and set values "hide"
+in a file of their own and try and keep the hand-edited config files as
+small and as clean as possible. Recently though I've got to thinking that
+this obscures too much, hides too much detail, and removes the ability to
+actually document what I'm doing and why. It also does make it tricky to
+adapt some settings to different platforms or even environments on a single
+platform.&lt;/p&gt;
+&lt;p&gt;Another problem I've run into is
+this:
+&lt;a href="/2017/04/01/another_revamp_of_my_emacs_config.html"&gt;when I made the second round of changes&lt;/a&gt; and
+decided to lean heavily
+on &lt;a href="https://github.com/jwiegley/use-package"&gt;&lt;code&gt;use-package&lt;/code&gt;&lt;/a&gt;, I soon ran into
+the minor issue of some packages not making sense, or even being needed, on
+some platforms (stuff that's useful on my macOS machines isn't always useful
+on my Windows machines, that sort of thing). While &lt;code&gt;use-package&lt;/code&gt; can handle
+this easily thanks to the &lt;code&gt;:if&lt;/code&gt; keyword, I'm still left with the fact that
+&lt;code&gt;package-selected-packages&lt;/code&gt; still gets populated.&lt;/p&gt;
+&lt;p&gt;Having &lt;code&gt;package-selected-packages&lt;/code&gt; contain a list of installed packages
+likely makes sense if you're using just the Emacs package system and you're
+not doing the installing with &lt;code&gt;use-package&lt;/code&gt; and &lt;code&gt;:ensure&lt;/code&gt;. But with
+&lt;code&gt;use-package&lt;/code&gt; and &lt;code&gt;:ensure&lt;/code&gt; I feel like I've got far more control over
+things and can adapt what gets installed when depending on which Emacs I'm
+running where.&lt;/p&gt;
+&lt;p&gt;But, because I'm syncing my &lt;code&gt;~/.emacs.d/.custom.el&lt;/code&gt; to all my machines too, any
+&lt;code&gt;use-package&lt;/code&gt; that has a &lt;code&gt;:if&lt;/code&gt; to not bother using a package has little
+effect because the package still ends up being listed/loaded/seen as part of
+the installation.&lt;/p&gt;
+&lt;p&gt;Ideally, I think, I'd like to be able to have &lt;code&gt;package-selected-packages&lt;/code&gt;
+held in its own file, or I'd only ever use &lt;code&gt;~/.emacs.d/.custom.el&lt;/code&gt; for local
+stuff (and so stop syncing it).&lt;/p&gt;
+&lt;p&gt;Starting today I'm going about a process of moving as much as I can out of
+&lt;code&gt;~/.emacs.d/.custom.el&lt;/code&gt; and into hand-edited files. In some respects I guess
+I am going back to how I used to manage Emacs configuration, but this time
+it's not a massive monolithic file-of-Lisp, it's neatly broken down into
+sensible sections and it's also biased towards a "grab and config this
+package" approach.&lt;/p&gt;
+&lt;p&gt;Meanwhile, I've not seen any good discussions online about &lt;code&gt;customize&lt;/code&gt; vs
+"hand-edit", which strikes me as a little odd as it feels like the perfect
+"religious issue" for people to have endless disagreements over. I guess,
+over the next couple or so weeks, I'll find out if switching back was a good
+idea.&lt;/p&gt;</content><category term="Emacs"></category><category term="Emacs"></category><category term="Lisp"></category><category term="programming"></category><category term="Emacs Lisp"></category></entry><entry><title>Another revamp of my emacs config</title><link href="https://blog.davep.org/2017/04/01/another_revamp_of_my_emacs_config.html" rel="alternate"></link><published>2017-04-01T10:02:18+01:00</published><updated>2017-04-01T10:02:18+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2017-04-01:/2017/04/01/another_revamp_of_my_emacs_config.html</id><summary type="html">&lt;p&gt;Just under a year ago I decided to
+&lt;a href="/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;totally rewrite my GNU emacs config&lt;/a&gt;.
+As I wrote at the time, it'd been following me around all sorts of machines
+since the early 1990s, starting life on an OS/2 Warp machine and travelling
+via MS-DOS, GNU/Linux, Windows and, these …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Just under a year ago I decided to
+&lt;a href="/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;totally rewrite my GNU emacs config&lt;/a&gt;.
+As I wrote at the time, it'd been following me around all sorts of machines
+since the early 1990s, starting life on an OS/2 Warp machine and travelling
+via MS-DOS, GNU/Linux, Windows and, these days, macOS.&lt;/p&gt;
+&lt;p&gt;The changes I made last year have served me really well, but there were two
+related issues with it that bothered me a little: the fact that I was
+maintaining a local library of elisp code in the repository and, worse
+still, I was storing the packages I'd installed from elpa and melpa in the
+repository as well.&lt;/p&gt;
+&lt;p&gt;While this did mean it was pretty easy for me to start up a new installation
+of emacs on a machine -- all I had to do was clone the repo and run up emacs
+-- I wasn't happy with the duplication involved. I didn't like holding code
+in my &lt;code&gt;.emacs.d&lt;/code&gt; repo that was already held in package archives.&lt;/p&gt;
+&lt;p&gt;The solution I saw was in two parts:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Get some of my code, that might be useful to others, into melpa.&lt;/li&gt;
+&lt;li&gt;Somehow sort my own package archive for my personal code.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Over the past week or so I've worked on this approach. It initially started
+with me tackling item 1 above: I tidied up and
+submitted
+&lt;a href="https://github.com/davep/obfusurl.el"&gt;&lt;code&gt;obfusurl.el&lt;/code&gt;&lt;/a&gt;,
+&lt;a href="https://github.com/davep/protocols.el"&gt;&lt;code&gt;protocols.el&lt;/code&gt;&lt;/a&gt;,
+&lt;a href="https://github.com/davep/services.el"&gt;&lt;code&gt;services.el&lt;/code&gt;&lt;/a&gt;,
+&lt;a href="https://github.com/davep/thinks.el"&gt;&lt;code&gt;thinks.el&lt;/code&gt;&lt;/a&gt; and
+&lt;a href="https://github.com/davep/uptimes.el"&gt;&lt;code&gt;uptimes.el&lt;/code&gt;&lt;/a&gt;. This was a really
+helpful process in that it allowed me to brush up on my elisp and emacs
+knowledge. It's a good 15+ years since I last wrote any significant elisp
+code and things have moved on a little in that time.&lt;/p&gt;
+&lt;p&gt;Having done that I'd managed to move a handful of my own packages out of my
+local library of code, and so out of my &lt;code&gt;.emacs.d&lt;/code&gt; repo, but it left me with
+the problem of what to do with the rest of it.&lt;/p&gt;
+&lt;p&gt;That's when I discovered &lt;code&gt;package-x&lt;/code&gt; and:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;----&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;upload&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;RET&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;upload&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;an&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;interactive&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;compiled&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Lisp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;el&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;upload&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Upload&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;current&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;single&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Emacs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Lisp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;If&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;archive&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;upload&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;does&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;specify&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;valid&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;upload&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;prompt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;one&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="o"&gt;----&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;(plus &lt;code&gt;package-upload-file&lt;/code&gt; too, of course). This meant I could, in effect,
+start my own personal package archive and look at tackling issue 2 above.&lt;/p&gt;
+&lt;p&gt;This did give me one small problem though: how and where would I host the
+archive? I did consider hosting it on a DigitalOcean droplet, but that felt
+a little like overkill for something so simple. And then I
+realised: &lt;a href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt;! All I needed to do was
+keep the package archive in its own repo (which I would have done anyway)
+and then make the whole repo the source for a GitHub Pages site. A quick
+test later and... it worked!&lt;/p&gt;
+&lt;p&gt;So, by this point, I'd farmed some of my code off to melpa, and now had the
+rest of it in "delpa" (which I'd called my personal archive). I could now
+use the emacs package management system to install third party packages and
+also my own.&lt;/p&gt;
+&lt;p&gt;But I was still left with one issue: I was still holding the installed
+packages inside my &lt;code&gt;.emacs.d&lt;/code&gt; repo by way of ensuring that all machines were
+in sync in terms of what was installed. Now I needed to work out how to
+solve that.&lt;/p&gt;
+&lt;p&gt;Around this time, as luck would have
+it, &lt;a href="https://github.com/tarsius"&gt;@tarsius&lt;/a&gt;
+had
+&lt;a href="https://github.com/davep/boxquote.el/pull/1#issuecomment-288462491"&gt;suggested I look at&lt;/a&gt; a
+package called &lt;a href="https://github.com/jwiegley/use-package"&gt;&lt;code&gt;use-package&lt;/code&gt;&lt;/a&gt;
+by &lt;a href="https://github.com/jwiegley"&gt;@jwiegley&lt;/a&gt;. This was the bit I was missing.&lt;/p&gt;
+&lt;p&gt;With &lt;code&gt;use-package&lt;/code&gt; I would be able to declare which packages I needed, how
+they'd be installed and, most important of all, it could be set to handle
+the fact that the package wasn't even installed. If a package is requested
+and there is no local install &lt;code&gt;use-package&lt;/code&gt; is smart enough to get the emacs
+package system to install it.&lt;/p&gt;
+&lt;p&gt;So, given that, all I need to do was &lt;a href="https://github.com/davep/.emacs.d/blob/1fa67c2895f345098057654f6acb3b57a77f1194/startup/davep-packages.el"&gt;create a startup file that would
+declare the packages I use&lt;/a&gt; and
+I'd have a setup that should, once I'd cloned &lt;code&gt;.emacs.d&lt;/code&gt;, self-install.&lt;/p&gt;
+&lt;p&gt;Except... yeah, one more issue. &lt;code&gt;use-package&lt;/code&gt; isn't part of GNU emacs yet so
+I'd need a method of getting it to auto-install so it could then handle
+everything else. As it was that was as easy as adding this to the start of
+my &lt;a href="https://github.com/davep/.emacs.d/blob/master/init.el"&gt;&lt;code&gt;init.el&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;&lt;/span&gt;
+&lt;span class="c1"&gt;;; Make sure the package system is up and running early on.&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;add-to-list&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;package-archives&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;melpa&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://melpa.org/packages/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;add-to-list&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;package-archives&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;delpa&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://blog.davep.org/delpa/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;package-initialize&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;&lt;/span&gt;
+&lt;span class="c1"&gt;;; Bootstrap `use-package&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;unless&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;package-installed-p&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;use-package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;package-refresh-contents&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;package-install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;use-package&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;With that in place I was able to nuke all my config on a machine, clone a
+fresh copy of &lt;code&gt;.emacs.d&lt;/code&gt; (having now ceased tracking and storing the
+installed packages in that repo), run up emacs, wait a few moments and then
+find that everything was installed and ready to use.&lt;/p&gt;
+&lt;p&gt;Perfect!&lt;/p&gt;
+&lt;p&gt;My &lt;a href="https://github.com/davep/.emacs.d"&gt;&lt;code&gt;.emacs.d&lt;/code&gt;&lt;/a&gt; is now a lot smaller than
+it was before and, I think, even easier to maintain. Right now I think I'm
+very close to the ideal emacs config that I wanted to create when I did the
+complete rewrite a year ago.&lt;/p&gt;</content><category term="Emacs"></category><category term="Emacs"></category><category term="Lisp"></category><category term="Emacs Lisp"></category><category term="Programming"></category></entry><entry><title>Starting fresh with GNU emacs</title><link href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html" rel="alternate"></link><published>2016-05-26T12:28:48+01:00</published><updated>2016-05-26T12:28:48+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2016-05-26:/2016/05/26/starting_fresh_with_gnu_emacs.html</id><summary type="html">&lt;p&gt;As I've mentioned elsewhere on this blog, over the past few years, my
+use of GNU emacs has lapsed somewhat. There was a time when it was my
+only editor (except for the odd dips into vim to do some quick
+editing) and, back when I used to use GNU …&lt;/p&gt;</summary><content type="html">&lt;p&gt;As I've mentioned elsewhere on this blog, over the past few years, my
+use of GNU emacs has lapsed somewhat. There was a time when it was my
+only editor (except for the odd dips into vim to do some quick
+editing) and, back when I used to use GNU Linux as a desktop machine a
+lot, I'd have an emacs session up and running pretty much non-stop (it
+was one of the reasons I wrote
+&lt;a href="https://github.com/davep/uptimes.el"&gt;uptimes.el&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;In more recent times I've been working more on Windows and often
+inside Visual Studio. Even for my own "for fun" programming, I've
+mostly being doing things that didn't involve emacs much. In fact,
+most of my recent "for fun" coding has been done using
+&lt;a href="https://www.sublimetext.com/"&gt;Sublime Text&lt;/a&gt; because it was powerful,
+cross-platform and also had great support for
+&lt;a href="http://wiki.secondlife.com/wiki/LSL_Portal"&gt;the language I code in a lot when it comes to personal amusement projects&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;During that time I've wanted to get back into emacs. Quite a bit seems
+to have changed since I was last a very avid user and this also meant
+wanting and needing to catch up.&lt;/p&gt;
+&lt;p&gt;The first thing I needed to do was finally get around to killing off
+my old &lt;code&gt;~/.emacs&lt;/code&gt; file. This has followed me around since I first got
+into emacs on OS/2 back in the mid 1990s. The file started out with a
+few &lt;code&gt;setq&lt;/code&gt; expressions to tweak some settings and just kept growing
+and growing. It'd got to a point where there was old stuff in there
+that I had no use for and sometimes even no idea what it was
+for. Heck, to give some idea of how old the file was: there were items
+in there that handled running emacs on MS-DOS!&lt;/p&gt;
+&lt;p&gt;So, a couple of weeks back, I dumped it. Dumped the whole lot. The
+plan then was to recreate it with as little hands-on coding as
+possible. I decided that, as much as I could, I'd tweak using
+&lt;code&gt;customize&lt;/code&gt; and only hand-code (in &lt;code&gt;~/.emacs.d/init.el&lt;/code&gt; this time
+around) things when there was no obvious other way to do it.&lt;/p&gt;
+&lt;p&gt;So far this is working out really well. Gone has the ugly and
+monolithic &lt;code&gt;.emacs&lt;/code&gt;, replaced with something far more modular, much
+more tidy and far easier to maintain. Whereas my old config was almost
+1,000 lines long, the new &lt;code&gt;init.el&lt;/code&gt; is currently just 50 lines:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;&lt;/span&gt;
+&lt;span class="c1"&gt;;; Make use of the Common Lisp compatibility module.&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;cl&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;&lt;/span&gt;
+&lt;span class="c1"&gt;;; Local config/lib directory support.&lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:user-path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Given &lt;/span&gt;&lt;span class="ss"&gt;`file&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;, return a path for it in the local config.&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;concat&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;user-emacs-directory&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;defvar&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:local&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;davep:user-path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;davep/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;My local config and code directory.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;defvar&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:startup&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;davep:user-path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;davep/startup&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;My local startup code.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;defvar&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:lib&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;davep:user-path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;davep/lib&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;My local library code.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;defvar&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:lib-3rd-party&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;davep:user-path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;davep/lib-3rd-party&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;My local third party code.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:local&lt;/span&gt;&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="nv"&gt;load-path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:startup&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="nv"&gt;load-path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:lib&lt;/span&gt;&lt;span class="w"&gt;           &lt;/span&gt;&lt;span class="nv"&gt;load-path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:lib-3rd-party&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;load-path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;have-own-package-p&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Does a package of my own exist in this environment?&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;locate-library&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:lib&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+&lt;span class="c1"&gt;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;&lt;/span&gt;
+&lt;span class="c1"&gt;;; Ensure custom values go in their own file.&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;setq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;custom-file&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;davep:user-path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;custom.el&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;load&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;custom-file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;&lt;/span&gt;
+&lt;span class="c1"&gt;;; Load various startup things.&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;load&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;env-tests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;davep-keys&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;davep-languages&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;davep-style&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;uptimes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;csrclr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;&lt;/span&gt;
+&lt;span class="c1"&gt;;; Local autoloading.&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;autoloading&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;load-davep-autoloads&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;All the other stuff, things to tweak language modes so they indent
+"just so", my own special keyboard bindings, that sort of thing,
+they're all farmed off into their own files:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;davep@Bellerophon:~/.emacs.d/davep/startup$&lt;span class="w"&gt; &lt;/span&gt;v
+total&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;40&lt;/span&gt;
+-rw-r--r--&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;davep&lt;span class="w"&gt;  &lt;/span&gt;staff&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="m"&gt;4211&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;24&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;May&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;14&lt;/span&gt;:38&lt;span class="w"&gt; &lt;/span&gt;davep-keys.el
+-rw-r--r--&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;davep&lt;span class="w"&gt;  &lt;/span&gt;staff&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="m"&gt;4078&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;May&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;13&lt;/span&gt;:51&lt;span class="w"&gt; &lt;/span&gt;davep-languages.el
+-rw-r--r--&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;davep&lt;span class="w"&gt;  &lt;/span&gt;staff&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="m"&gt;537&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;25&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;May&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;14&lt;/span&gt;:13&lt;span class="w"&gt; &lt;/span&gt;davep-style.el
+-rw-r--r--&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;davep&lt;span class="w"&gt;  &lt;/span&gt;staff&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="m"&gt;1339&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;May&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;09&lt;/span&gt;:39&lt;span class="w"&gt; &lt;/span&gt;env-tests.el
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Another thing I'm trying to do is dump all the old third party code I
+had locally and, instead, use emacs' own package manager
+now. Currently this is also working well for me given that I'm using
+both &lt;a href="https://elpa.gnu.org/"&gt;ELPA&lt;/a&gt; and &lt;a href="https://melpa.org/#/"&gt;MELPA&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I haven't managed to dump everything yet, but it's a useful exercise
+to slowly work through the various files I was carting around and
+deciding if I need them or not (like, I'm fairly sure I won't be
+needing a &lt;code&gt;cobol-mode&lt;/code&gt; any time soon -- that can go).&lt;/p&gt;
+&lt;p&gt;On top of all of this, on top of starting with a "clean slate" emacs,
+I've also started keeping track of what I do on GitHub. I've got a
+private repo for my &lt;code&gt;~/.emacs.d/&lt;/code&gt; that I can now easily sync between
+my various machines.&lt;/p&gt;
+&lt;p&gt;One final thing that I'm starting to try and do is actually make full
+use of emacs again. One example is that I'm writing this blog post in
+it. Until now I've been using SublimeText with
+&lt;a href="https://packagecontrol.io/packages/Jekyll"&gt;a Jekyll package to compose and manage things&lt;/a&gt;
+but, this time around I'm giving &lt;a href="https://melpa.org/#/hyde"&gt;hyde&lt;/a&gt; and
+&lt;a href="https://melpa.org/#/markdown-mode"&gt;markdown-mode&lt;/a&gt; a go. So far
+they're working out pretty well too (albeit hyde was a bit odd to set
+up and isn't 100% making sense to me yet).&lt;/p&gt;</content><category term="Emacs"></category><category term="Emacs"></category></entry></feed>

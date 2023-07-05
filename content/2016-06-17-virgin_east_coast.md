@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Virgin East Coast
-categories: []
+category: Life
 tags: travel, Virgin
 date: 2016-06-17 21:13:18+0100
 ---

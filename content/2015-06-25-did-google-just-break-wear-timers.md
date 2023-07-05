@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Did Google just break Wear timers?
-categories: []
+category: Tech
 tags: Google, Android, Wear, Android Wear, Watch, Moto360
 published: True
 date: 2015-06-25 22:27:02+0100

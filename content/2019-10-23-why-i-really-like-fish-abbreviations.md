@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Why I really like fish abbreviations
-category: TIL
+category: Tech
 tags: fish, shell
 date: 2019-10-23 00:18:00+0100
 ---

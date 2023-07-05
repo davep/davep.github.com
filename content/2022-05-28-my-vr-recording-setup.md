@@ -1,7 +1,7 @@
 ---
 layout: post
 title: My VR recording setup
-categories: []
+category: Tech
 tags: VR, YouTube, PCVR
 date: 2022-05-28 17:01:00+0100
 ---

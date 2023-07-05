@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Getting started
-categories: []
+category: Coding
 tags: Coding, learning
 date: 2019-11-17 11:36:00+0000
 ---

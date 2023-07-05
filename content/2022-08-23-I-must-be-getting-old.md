@@ -1,7 +1,7 @@
 ---
 layout: post
 title: I must be getting old
-categories: []
+category: Emacs
 tags: Emacs, Lisp, Emacs Lisp
 date: 2022-08-23 21:31:00 +0100
 ---

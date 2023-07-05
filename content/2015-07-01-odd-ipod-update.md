@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Odd iPod update
-categories: []
+category: Tech
 tags: Apple, Mac, iMac, iTunes, iPod, OS X
 published: True
 date: 2015-07-01 20:31:26+0100

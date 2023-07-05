@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Catching up
-categories: []
+category: Meta
 tags: Mac, Apple
 date: 2023-07-02 08:00:00 +0100
 ---

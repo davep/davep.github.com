@@ -1,7 +1,7 @@
 ---
 layout: post
 title: EmacsConf 2019 videos are out
-categories: []
+category: Emacs
 tags: Emacs
 date: 2019-11-24 17:17:00+0000
 ---

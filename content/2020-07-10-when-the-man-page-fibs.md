@@ -1,7 +1,7 @@
 ---
 layout: post
 title: When the man page fibs
-categories: []
+category: Coding
 tags: homebrew, macOS, Unix, Python
 date: 2020-07-10 20:58:00+0100
 ---

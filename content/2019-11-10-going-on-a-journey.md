@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Going on a journey
-categories: []
+category: Python
 tags: Python
 date: 2019-11-10 14:32:00+0000
 ---

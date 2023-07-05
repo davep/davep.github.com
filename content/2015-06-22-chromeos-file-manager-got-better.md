@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ChromeOS file manager got better
-categories: []
+category: Tech
 tags: ChromeOS, Chromebook
 published: True
 date: 2015-06-22 17:04:15+0100

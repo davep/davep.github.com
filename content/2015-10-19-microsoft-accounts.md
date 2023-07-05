@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Microsoft accounts
-categories: []
+category: Tech
 tags: Microsoft
 published: True
 date: 2015-10-19 12:14:27+0100

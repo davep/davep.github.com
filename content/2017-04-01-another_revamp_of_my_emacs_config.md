@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Another revamp of my emacs config
-categories: []
+category: Emacs
 tags: Emacs, Lisp, Emacs Lisp, Programming
 date: 2017-04-01 10:02:18+0100
 ---

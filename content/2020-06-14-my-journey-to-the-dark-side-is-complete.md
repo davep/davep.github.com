@@ -1,7 +1,7 @@
 ---
 layout: post
 title: My journey to the dark side is complete
-categories: []
+category: Emacs
 tags: Emacs
 date: 2020-06-14 20:00:00+0100
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Visual evolution of ~/.emacs.d
-categories: []
+category: Emacs
 tags: Emacs, Lisp, Emacs Lisp
 date: 2019-11-23 14:42:00+0000
 ---

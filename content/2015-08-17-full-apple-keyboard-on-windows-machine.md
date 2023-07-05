@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Full Apple keyboard on Windows machine
-categories: []
+category: Tech
 tags: Apple, keyboard, Windows
 published: True
 date: 2015-08-17 11:31:15+0100

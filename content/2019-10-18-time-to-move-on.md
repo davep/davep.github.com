@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Time to move on
-categories: []
+category: Meta
 tags: blogging
 date: 2019-10-18 17:42:00+0100
 ---

@@ -1,0 +1,1157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2023-07-03T08:15:00+01:00</updated><entry><title>A new GitHub profile README</title><link href="https://blog.davep.org/2023/07/03/making-my-github-banner.html" rel="alternate"></link><published>2023-07-03T08:15:00+01:00</published><updated>2023-07-03T08:15:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-07-03:/2023/07/03/making-my-github-banner.html</id><summary type="html">&lt;p&gt;&lt;img alt="" src="https://raw.githubusercontent.com/davep/davep/main/davep.svg"&gt;&lt;/p&gt;
+&lt;p&gt;Ever since GitHub introduced the &lt;a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme"&gt;profile
+README&lt;/a&gt;&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;
+I've had a massively low-effort one in place. I made the repo, quickly wrote
+the file, and then sort of forgot about it. Well, I didn't so much forget as
+just keep looking at it and thinking "I should do something better …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="" src="https://raw.githubusercontent.com/davep/davep/main/davep.svg"&gt;&lt;/p&gt;
+&lt;p&gt;Ever since GitHub introduced the &lt;a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme"&gt;profile
+README&lt;/a&gt;&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;
+I've had a massively low-effort one in place. I made the repo, quickly wrote
+the file, and then sort of forgot about it. Well, I didn't so much forget as
+just keep looking at it and thinking "I should do something better with that
+one day".&lt;/p&gt;
+&lt;p&gt;Thing is, while there are lots of fancy approaches out there, and lots of
+neat generator tools and the like... they just weren't for me.&lt;/p&gt;
+&lt;p&gt;Then yesterday, over my second morning coffee, after &lt;a href="/2023/07/02/catching-up.html"&gt;getting my blog
+environment up and going again&lt;/a&gt;, I had an
+idea. It could be cool to use &lt;a href="https://textual.textualize.io/api/app/#textual.app.App.save_screenshot"&gt;Textual's screenshot
+facility&lt;/a&gt;
+to make something terminal-themed! I mean, while it's not &lt;em&gt;all&lt;/em&gt; I am these
+days, so much of what I'm doing right now is aimed at the terminal.&lt;/p&gt;
+&lt;p&gt;So... what to do? Then I thought it could be cool to knock up some sort of
+login screen type thing; with a banner. One visit to an online large
+terminal text generator site later, I had some banner text. All that was
+left was to write &lt;a href="https://github.com/davep/davep/blob/main/make_banner.py"&gt;a simple Textual application to create the
+"screen"&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The main layout is simple enough:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;compose&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;ComposeResult&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;Label&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;NAME&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;classes&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;banner&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;Label&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PRATTLE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;Label&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;github.com/davep login: [reverse] [/]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;where &lt;code&gt;NAME&lt;/code&gt; contains the banner and &lt;code&gt;PRATTLE&lt;/code&gt; contains the "login message".
+With some &lt;a href="https://textual.textualize.io/guide/CSS/"&gt;Textual CSS&lt;/a&gt; sprinkled
+over it to give the exact layout and colour I wanted, all that was left was
+to make the snapshot. This was easy enough too.&lt;/p&gt;
+&lt;p&gt;While the whole thing isn't fully documented just yet, Textual does have &lt;a href="https://textual.textualize.io/api/app/#textual.app.App.run_test"&gt;a
+great tool for automatically running an application and interacting with
+it&lt;/a&gt;; that
+meant I could easily write a function to load up my app and save the
+screenshot:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;make_banner&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;GitHubBannerApp&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run_test&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;pilot&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;pilot&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save_screenshot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;davep.svg&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Of course, that needs running async, but that's simple enough:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;make_banner&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Throw in a &lt;code&gt;Makefile&lt;/code&gt; so I don't forget what I'm supposed to run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nl"&gt;.PHONY:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;all&lt;/span&gt;
+&lt;span class="nl"&gt;all:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;pipenv&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;run&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;make_banner.py&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and that's it! Job done!&lt;/p&gt;
+&lt;p&gt;From here onward I guess I could have some real fun with this. It would be
+simple enough I guess to modify the code so that it changes what's displayed
+over time; perhaps show a "last login" value that relates to recently
+activity or something; any number of things; and then run it in a cron job
+and update the repository.&lt;/p&gt;
+&lt;p&gt;For now though... I'll stick with keeping things nice and simple.&lt;/p&gt;
+&lt;hr&gt;
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;It was actually kind of annoying when they introduced it because the
+repo it uses is named after your user name. I already had a &lt;code&gt;davep&lt;/code&gt;
+repo: it was a private repo where I was slowly working on a (now
+abandoned, I'll start it again some day I'm sure) ground-up rewrite of
+my &lt;code&gt;davep.org&lt;/code&gt; website.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="Coding"></category><category term="GitHub"></category><category term="Python"></category><category term="Textual"></category></entry><entry><title>Build in public, even in private</title><link href="https://blog.davep.org/2022/10/06/build-in-public-even-in-private.html" rel="alternate"></link><published>2022-10-06T10:44:00+01:00</published><updated>2022-10-06T10:44:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2022-10-06:/2022/10/06/build-in-public-even-in-private.html</id><summary type="html">&lt;p&gt;As mentioned &lt;a href="/2022/10/05/on-to-something-new-redux.html"&gt;yesterday&lt;/a&gt;, I'm
+about to start working at &lt;a href="https://www.textualize.io"&gt;Textualize&lt;/a&gt;, and
+building Open-source software is important to the company.
+&lt;a href="https://twitter.com/willmcgugan"&gt;Will&lt;/a&gt; -- the CEO -- is all about building
+in public. If you follow him on Twitter you'll notice that his Python coding
+adventure tweets actually outnumber is cooking tweets!&lt;/p&gt;
+&lt;p&gt;As someone who …&lt;/p&gt;</summary><content type="html">&lt;p&gt;As mentioned &lt;a href="/2022/10/05/on-to-something-new-redux.html"&gt;yesterday&lt;/a&gt;, I'm
+about to start working at &lt;a href="https://www.textualize.io"&gt;Textualize&lt;/a&gt;, and
+building Open-source software is important to the company.
+&lt;a href="https://twitter.com/willmcgugan"&gt;Will&lt;/a&gt; -- the CEO -- is all about building
+in public. If you follow him on Twitter you'll notice that his Python coding
+adventure tweets actually outnumber is cooking tweets!&lt;/p&gt;
+&lt;p&gt;As someone who has long been a supporter of and fan of &lt;a href="https://www.gnu.org/philosophy/free-sw.en.html"&gt;Free
+Software&lt;/a&gt; and &lt;a href="https://en.wikipedia.org/wiki/Open-source_software"&gt;Open-source
+software&lt;/a&gt;, and has made
+some small contributions along the way, I've also always made a point of
+&lt;a href="https://github.com/davep/"&gt;building my own tools in public&lt;/a&gt;. In most cases
+they're things that are likely only helpful to me, but some are more
+generally useful. The point being though: it's all there in case it's
+helpfull to someone else.&lt;/p&gt;
+&lt;p&gt;Which means that, as much as possible, when I'm writing code, I write it as
+if it's going to be visible in public and someone else is going to be
+reading it. I try and make the code tidy. I try and comment it well. I try
+(but don't always manage for personal projects) to fully document it. The
+important thing here being that someone coming to the code fresh should be
+able to follow what's going on.&lt;/p&gt;
+&lt;p&gt;Against that background, and having just gone through the process of handing
+off almost 5 years of work to someone else as a left an employer, I got to
+thinking: we should always "build in public", even if it's in private.&lt;/p&gt;
+&lt;p&gt;When I started with my previous employer, and even to the day I left, I was
+the only software developer there. I worked with a team who wrote code, but
+being software developers wasn't what they did. Bioinformaticians and
+machine learning scientists have other things to be doing. But, as I wrote
+my code, I wrote every line assuming they, or some other developer down the
+line, would be reading it. Pretty much every line was written for an
+audience I couldn't see and didn't fully know. This, as mentioned above,
+meant trying to keep the code clean, ensuring it was commented in helpful
+ways, ensuring the documentation was helpful, and so on.&lt;/p&gt;
+&lt;p&gt;But it wasn't just about the code. Any non-trivial system will have more to
+it than code. We had an internal instance of GitLab and I tracked all of my
+work on there. So, as I planned and worked on new features, or went on bug
+hunts, I'd document the process in the issue tracker. As much as possible
+I'd be really verbose about the process. Often I wouldn't just open an
+issue, go work on it, and then mark it closed; as I worked through the issue
+I'd add comment after comment under it, documenting my thinking, problems,
+solutions, cite sources when looking something up, that sort of thing.&lt;/p&gt;
+&lt;p&gt;The whole process was an act in having a conversation with current or future
+team members if they ever needed to look; with future me (really, that
+helped more than once -- we all have those "that the &lt;em&gt;hell&lt;/em&gt; was I thinking?"
+moments); with any developer(s) who took over from me in the future.&lt;/p&gt;
+&lt;p&gt;I did all this as if I was broadcasting it in public &lt;a href="https://twitter.com/davepdotorg"&gt;on
+Twitter&lt;/a&gt; or &lt;a href="https://github.com/davep"&gt;on
+GitHub&lt;/a&gt;, etc. It was in private, of course, but I
+approached it as if it was in public.&lt;/p&gt;
+&lt;p&gt;There were always three main reasons for this, I felt:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Accountability. At any moment someone who I worked with could review what
+   I was doing and why I was doing it; it was an invitation to anyone
+   curious enough to talk with me about what I was building and how I was
+   building it.&lt;/li&gt;
+&lt;li&gt;Continuity of support for unplanned reasons. Life happens, sometimes you
+   may, unplanned, never be available at work again. I never wanted to leave
+   my employer in a position where picking up from such an event was a
+   nightmare.&lt;/li&gt;
+&lt;li&gt;Continuity of support for planned reasons. It was possible, and it became
+   inevitable, that I'd move on to something else. If that was to happen I
+   wanted to be sure that whoever picked up after me would be able to do so
+   without too much effort.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In the end item 3 seemed to really pay off. When it came time for me to hand
+over my work to someone else, as I left, the process was really smooth and
+trouble-free. I was able to point the developer at all the documentation and
+source code, at all the issues, and invite them to read through it all and
+then come back to me with questions. In terms of time actually spent talking
+about the main system I was handing over I'd say that 4 years of work was
+handed over with just a few hours of actual talking about it.&lt;/p&gt;
+&lt;p&gt;It remains to be seen if it really paid off, of course. If they get really
+stuck they do have an open invitation to ping me a question or two; I care
+enough about what I designed and built that I want it to carry on being
+useful for some time to come. But... I like to think that all of that
+building in public, in private, will ensure that this is an invitation that
+never needs to be called on. I like to think that, if something isn't clear,
+they'll be able to check the code, the documentation and the issue history
+and get to where they need to go.&lt;/p&gt;</content><category term="Coding"></category><category term="programming"></category></entry><entry><title>Reading 2bit files (for fun) - the sequence</title><link href="https://blog.davep.org/2020/09/26/reading-2bit-files-for-fun-the-sequence.html" rel="alternate"></link><published>2020-09-26T15:57:00+01:00</published><updated>2020-09-26T15:57:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-09-26:/2020/09/26/reading-2bit-files-for-fun-the-sequence.html</id><summary type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;This post will cover the most important content of a 2bit file: the actual
+sequence data itself. In &lt;a href="/2020/08/30/reading-2bit-files-for-fun.html"&gt;the first
+post&lt;/a&gt; I wrote about the format
+of the file's header, and in &lt;a href="/2020/09/05/reading-2bit-files-for-fun-the-index.html"&gt;the second
+post&lt;/a&gt; I wrote about
+the content of the file's index.&lt;/p&gt;
+&lt;p&gt;At this point that's enough …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;This post will cover the most important content of a 2bit file: the actual
+sequence data itself. In &lt;a href="/2020/08/30/reading-2bit-files-for-fun.html"&gt;the first
+post&lt;/a&gt; I wrote about the format
+of the file's header, and in &lt;a href="/2020/09/05/reading-2bit-files-for-fun-the-index.html"&gt;the second
+post&lt;/a&gt; I wrote about
+the content of the file's index.&lt;/p&gt;
+&lt;p&gt;At this point that's enough information to know what's in the file and where
+to find it. In other words we know the list of sequences that live in the
+file, and we know where each one is positioned within the file. So, assuming
+we have our index in memory (ideally some sort of key/value store of
+sequences names and their offsets in the file), given the name of a sequence
+we can know where to go in the file to load up the data.&lt;/p&gt;
+&lt;p&gt;So the next obvious question is, what will we find when we get there? Actual
+sequence data is stored like this:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Content&lt;/th&gt;
+&lt;th&gt;Type&lt;/th&gt;
+&lt;th&gt;Size&lt;/th&gt;
+&lt;th&gt;Comments&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;DNA size&lt;/td&gt;
+&lt;td&gt;Integer&lt;/td&gt;
+&lt;td&gt;4 bytes&lt;/td&gt;
+&lt;td&gt;Count of bases in the sequence&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;N block count&lt;/td&gt;
+&lt;td&gt;Integer&lt;/td&gt;
+&lt;td&gt;4 bytes&lt;/td&gt;
+&lt;td&gt;Count of N blocks in the sequence&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;N block starts&lt;/td&gt;
+&lt;td&gt;Integer Array&lt;/td&gt;
+&lt;td&gt;4*count bytes&lt;/td&gt;
+&lt;td&gt;Positions are zero-based&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;N block sizes&lt;/td&gt;
+&lt;td&gt;Integer Array&lt;/td&gt;
+&lt;td&gt;4*count bytes&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Mask block count&lt;/td&gt;
+&lt;td&gt;Integer&lt;/td&gt;
+&lt;td&gt;4 bytes&lt;/td&gt;
+&lt;td&gt;Count of mask blocks in the sequence&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Mask block starts&lt;/td&gt;
+&lt;td&gt;Integer Array&lt;/td&gt;
+&lt;td&gt;4*count bytes&lt;/td&gt;
+&lt;td&gt;Positions are zero-based&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Mask block sizes&lt;/td&gt;
+&lt;td&gt;Integer Array&lt;/td&gt;
+&lt;td&gt;4*count bytes&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Reserved&lt;/td&gt;
+&lt;td&gt;Integer&lt;/td&gt;
+&lt;td&gt;4 bytes&lt;/td&gt;
+&lt;td&gt;Should always be 0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;DNA data&lt;/td&gt;
+&lt;td&gt;Byte Array&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;See below&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Breaking the above down:&lt;/p&gt;
+&lt;h1&gt;N blocks&lt;/h1&gt;
+&lt;p&gt;As mentioned in passing in the first post: technically it's necessary to
+encode 5 different characters for the bases in the sequences. As well as the
+usual T, C, A and G, there also needs to be an N, which means the base is
+unknown. Now, of course, you can't pack 5 states into two bits, so the 2bit
+file format solves this by having an array of block positions and sizes
+where any data in the actual DNA itself should be ignored and an &lt;code&gt;N&lt;/code&gt; used in
+its place.&lt;/p&gt;
+&lt;h1&gt;Mask blocks&lt;/h1&gt;
+&lt;p&gt;This is where my ignorance of bioinformatics shows, and where it's made very
+obvious that I'm a software developer who likes to muck about with data and
+data structures, but who doesn't always understand why they're used. I'm
+actually not sure what purpose mask blocks serve in a 2bit file, but they
+&lt;em&gt;do&lt;/em&gt; affect the output. If a base falls within a mask block the value that
+is output should be a lower-case letter, rather then upper-case.&lt;/p&gt;
+&lt;h1&gt;The DNA data&lt;/h1&gt;
+&lt;p&gt;So this is the fun bit, where the real data is stored. This should be viewed
+as a sequence of bytes, each of which contains 4 bases (except for the last
+byte, of course, which might contain 1, 2 or 3 depending on the size of the
+sequence).&lt;/p&gt;
+&lt;p&gt;Each byte should be viewed as an array of 2 bit values, with the values
+mapping like this:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Binary&lt;/th&gt;
+&lt;th&gt;Decimal&lt;/th&gt;
+&lt;th&gt;Base&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;00&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;01&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;A&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;11&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;So, given a byte whose value is &lt;code&gt;27&lt;/code&gt;, you're looking at the sequence &lt;code&gt;TCAG&lt;/code&gt;.
+This is because &lt;code&gt;27&lt;/code&gt; in binary is &lt;code&gt;00011011&lt;/code&gt;, which breaks down as:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;00&lt;/th&gt;
+&lt;th&gt;01&lt;/th&gt;
+&lt;th&gt;10&lt;/th&gt;
+&lt;th&gt;11&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;td&gt;A&lt;/td&gt;
+&lt;td&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;How you pull that data out of the byte will depend on the language and what
+it makes available for bit-twiddling; those that don't have some form of
+&lt;a href="https://en.wikipedia.org/wiki/Bit_field"&gt;bit field&lt;/a&gt; will probably provide
+the ability to bit shift and do a bitwise &lt;code&gt;and&lt;/code&gt; (it's also likely that doing
+bitwise operations is better than using bit fields anyway). In the version I
+wrote in Emacs Lisp, it's simply a case of shifting the two bits I am
+interested in over to the right of the byte and then performing a bitwise
+and to get just its value. So, given an array called &lt;code&gt;2bit-bases&lt;/code&gt; whose
+content is this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;defconst&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;2bit-bases&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;T&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;C&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;A&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;G&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Vector of the bases.&lt;/span&gt;
+
+&lt;span class="s"&gt;Note that the positions of each base in the vector map to the 2bit decoding&lt;/span&gt;
+&lt;span class="s"&gt;for them.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I use this bit of code to pull out the individual bases:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;aref&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;2bit-bases&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;logand&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;ash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;shift&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mb"&gt;#b11&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Given code to unpack an individual byte, extracting all of the bases in a
+sequence then becomes the act of having two loops, the outer loop being over
+each byte in the file, the inner loop being over the positions within each
+individual byte.&lt;/p&gt;
+&lt;p&gt;In pseudo-code, assuming that &lt;code&gt;start&lt;/code&gt; and &lt;code&gt;end&lt;/code&gt; hold the base locations
+we're interested in and &lt;code&gt;dna_pos&lt;/code&gt; is the location in the file where the DNA
+starts, the main loop for unpacking the data looks something like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bases&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;bases&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt; &amp;quot;T&amp;quot;, &amp;quot;C&amp;quot;, &amp;quot;A&amp;quot;, &amp;quot;G&amp;quot; &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Calculate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;first&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;last&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pull&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;from&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;start_byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dna_pos&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;floor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;start&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;end_byte&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dna_pos&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;floor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Work&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;out&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;starting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;position&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="k"&gt;position&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;start_byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dna_pos&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Load&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;up&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;that&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;contain&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;DNA&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;read_n_bytes_from&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;start_byte&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;end_byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;start_byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Get&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;all&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;blocks&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;that&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;intersect&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;sequence&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;n_blocks&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;relevant_n_blocks&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;start&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Get&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;all&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;blocks&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;that&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;interest&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;sequence&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;mask_blocks&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;relevant_mask_blocks&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;start&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Start&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;with&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;an&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;empty&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;sequence&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="k"&gt;sequence&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Loop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;over&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;every&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;
+
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Stepping&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;down&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;each&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pair&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bits&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;byte&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;shift&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;downto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;by&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;If&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;we&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;re interested in this location.&lt;/span&gt;
+&lt;span class="s1"&gt;    if ( position &amp;gt;= start ) and ( position &amp;lt; end )&lt;/span&gt;
+
+&lt;span class="s1"&gt;      # If this position is in an N block, just collect an N.&lt;/span&gt;
+&lt;span class="s1"&gt;      if within( position, n_blocks )&lt;/span&gt;
+&lt;span class="s1"&gt;        sequence = sequence + &amp;quot;N&amp;quot;&lt;/span&gt;
+&lt;span class="s1"&gt;      else&lt;/span&gt;
+
+&lt;span class="s1"&gt;        # Not a N, so we should decode the base.&lt;/span&gt;
+&lt;span class="s1"&gt;        base = bases[ ( byte &amp;gt;&amp;gt; shift ) &amp;amp; 0b11 ]&lt;/span&gt;
+
+&lt;span class="s1"&gt;        # If we&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;block&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;go&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;lower&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;case&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;within&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;position&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mask_blocks&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="k"&gt;sequence&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;sequence&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="k"&gt;sequence&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;sequence&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;base&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Move&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;along&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;position&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;position&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that some of the detail is left out in the above, especially the
+business of loading up the relevant blocks; how that would be done will
+depend on language and the approach to writing the code. The Emacs Lisp code
+I've written has what I think is a fairly straightforward approach to it.
+There's a similar approach in the &lt;a href="https://github.com/davep/org-davep-2bit"&gt;Common Lisp code I've
+written&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;And that's pretty much it. There are a few other details that differ
+depending on how this is approached, the language used, and other
+considerations; one body of 2bit reader code that I've written attempts to
+optimise how it does things as much as possible because it's capable of
+reading the data locally or via ranged HTTP GETs from a web server; the
+Common Lisp version I wrote still needs some work because I was having fun
+getting back into Common Lisp; the Emacs Lisp version needs to try and keep
+data as small as possible because it's working with buffers, not direct file
+access.&lt;/p&gt;
+&lt;p&gt;Having got to know the format of 2bit files a fair bit, I'm adding this to
+my list of "fun to do a version of" problems when getting to know a new
+language, or even dabbling in a language I know.&lt;/p&gt;</content><category term="Coding"></category><category term="Bioinformatics"></category></entry><entry><title>Reading 2bit files (for fun) - the index</title><link href="https://blog.davep.org/2020/09/05/reading-2bit-files-for-fun-the-index.html" rel="alternate"></link><published>2020-09-05T10:59:00+01:00</published><updated>2020-09-05T10:59:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-09-05:/2020/09/05/reading-2bit-files-for-fun-the-index.html</id><summary type="html">&lt;p&gt;As mentioned in &lt;a href="/2020/08/30/reading-2bit-files-for-fun.html"&gt;the first
+post&lt;/a&gt;, once you've read in the
+header data for a 2bit file, the next step is to read the index. This is an
+index into all the different sequences held in the file. Reading the index
+itself is fairly straightforward.&lt;/p&gt;
+&lt;p&gt;The index comes right after …&lt;/p&gt;</summary><content type="html">&lt;p&gt;As mentioned in &lt;a href="/2020/08/30/reading-2bit-files-for-fun.html"&gt;the first
+post&lt;/a&gt;, once you've read in the
+header data for a 2bit file, the next step is to read the index. This is an
+index into all the different sequences held in the file. Reading the index
+itself is fairly straightforward.&lt;/p&gt;
+&lt;p&gt;The index comes right after the header -- so it starts on the 17th byte of
+the file. Each entry in the index contains three items of information:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Content&lt;/th&gt;
+&lt;th&gt;Type&lt;/th&gt;
+&lt;th&gt;Size&lt;/th&gt;
+&lt;th&gt;Comments&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Name length&lt;/td&gt;
+&lt;td&gt;Integer&lt;/td&gt;
+&lt;td&gt;1 byte&lt;/td&gt;
+&lt;td&gt;How many bytes long the name is&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Name&lt;/td&gt;
+&lt;td&gt;String&lt;/td&gt;
+&lt;td&gt;Varies&lt;/td&gt;
+&lt;td&gt;Length given by previous field&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Offset&lt;/td&gt;
+&lt;td&gt;Integer&lt;/td&gt;
+&lt;td&gt;4 bytes&lt;/td&gt;
+&lt;td&gt;Location in the file of the sequence&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;So, in some sort of pseudo-code, you'd read in the index as follows:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;index&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;dict&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;seq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;seq_count&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;seq_count&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;comes&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;header&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;name_len&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;int&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;read_bytes&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;read_bytes&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;name_len&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;offset&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;int&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;read_bytes&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;index&lt;/span&gt;[&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;]&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;offset&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Note, as mentioned in the &lt;a href="/2020/08/30/reading-2bit-files-for-fun.html"&gt;first
+post&lt;/a&gt;, the &lt;code&gt;index&lt;/code&gt; will need to
+be byte-swapped if the file is in an endian form other than the machine
+you're running your code on. How you'd go about this will, of course, vary
+from language to language, but the main idea is always going to be the same.&lt;/p&gt;
+&lt;p&gt;There's a fairly striking downside to this approach though: reading data can
+often be an expensive (in terms of time) operation -- this is especially
+true if the data is coming in from a remote machine, perhaps even one that's
+being accessed over the Internet. As such, it's best if you can make as few
+"trips" to the file as possible.&lt;/p&gt;
+&lt;p&gt;With this in mind, the best thing to do is to read the whole index into
+memory in one go and then process it from there -- the idea being that
+that's just one trip to the data source. The problem here, however, is that
+there's nothing in the header or the index that tells you how large the
+index actually is. What you can do though is work on the worst case scenario
+(assuming memory will allow). The worst case is fairly easy to handle: it's
+going to be 1 byte for the name length, plus 255 bytes for the name (the
+longest possible name), plus 4 bytes for the offset; multiply all that by
+the number of sequences in the index and you have the worst-case buffer
+size.&lt;/p&gt;
+&lt;p&gt;When reading this data in you might also want to ensure you're not going to
+run off the end of the file (perhaps the names are all quite small and so
+are the sequences).&lt;/p&gt;
+&lt;p&gt;Recently I've been working on &lt;a href="https://github.com/davep/2bit.el"&gt;a package for Emacs that can read data from
+2bit files&lt;/a&gt;, so here's the core code for
+reading in the index:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;2bit--read-index&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;source&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Read the sequence index from SOURCE.&lt;/span&gt;
+
+&lt;span class="s"&gt;As a side effect &lt;/span&gt;&lt;span class="ss"&gt;`2bit-data-pos&amp;#39;&lt;/span&gt;&lt;span class="s"&gt; of SOURCE will move.&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cl-loop&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; The index will be a hash of sequence names, with the values being the&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; offsets within the file.&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nv"&gt;with&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;index&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-hash-table&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:test&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;equal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; We could read each name/value pair one by one, but because we&amp;#39;re doing&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; this within Emacs, which means making a temp buffer for every read,&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; that could get pretty expensive pretty fast. So instead we&amp;#39;ll read the&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; index data in in one go. However, there is no easy-to-calculate size&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; for the index. The best we can do is calculate the worst case size. So&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; let&amp;#39;s do that. The worst case size is the maximum size of the name of&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; a sequence (255), plus the size of the byte that tells us the name&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; (1), plus the size of the word that is the offset in the file (4).&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nv"&gt;with&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;buffer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;2bit--read&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;2bit-data-sequence-count&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;source&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; For every sequence in the file...&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nv"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;2bit-data-sequence-count&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;source&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; Calculate the position within the buffer for this loop around. Note&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; that the skip is the last position plus 1 for the size byte plus the&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; size plus the length of the offset word.&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nv"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;pos&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;then&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;pos&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;size&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; Get the length of the name of the sequence.&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nv"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;size&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;aref&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;buffer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;pos&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; Pull out the name itself.&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nv"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;substring&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;buffer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;1+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;pos&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;pos&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;size&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; Pull out the offset.&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nv"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;offset&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;2bit--word-from-bytes&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;substring&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;buffer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;pos&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;pos&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;size&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; Collect the offset into the hash.&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nb"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;setf&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gethash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;index&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;offset&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;;; Once we&amp;#39;re all done.... return the index.&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nv"&gt;finally&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;index&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This code does what I mention above: it grabs enough data into a buffer in
+one go that I'll have the whole index in memory to pull apart, and then I
+work with the in-memory copy. The index is added to a hashing dictionary.
+Note that, in this case, I don't actually do the test for running off the
+end of the file because at the heart of the file reading code is
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Reading-from-Files.html"&gt;&lt;code&gt;insert-file-contents-literally&lt;/code&gt;&lt;/a&gt;
+and it doesn't error if you request too much.&lt;/p&gt;
+&lt;p&gt;With that done you'll have a list of all the sequences in the file. The next
+part, which will come in &lt;a href="/2020/09/26/reading-2bit-files-for-fun-the-sequence.html"&gt;the next
+post&lt;/a&gt;,
+is the properly tricky part: the decoding of the sequence data itself.&lt;/p&gt;</content><category term="Coding"></category><category term="Bioinformatics"></category></entry><entry><title>Reading 2bit files (for fun)</title><link href="https://blog.davep.org/2020/08/30/reading-2bit-files-for-fun.html" rel="alternate"></link><published>2020-08-30T15:20:00+01:00</published><updated>2020-08-30T15:20:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-08-30:/2020/08/30/reading-2bit-files-for-fun.html</id><summary type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;I've written a bit before about the value of having simple but interesting
+"problems", that you know the solution to, as &lt;a href="/2019/11/10/going-on-a-journey.html"&gt;a way of exercising yourself
+in a new environment&lt;/a&gt;. Recently I've
+added another to the list I already have, and I used it as an excuse to get …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;I've written a bit before about the value of having simple but interesting
+"problems", that you know the solution to, as &lt;a href="/2019/11/10/going-on-a-journey.html"&gt;a way of exercising yourself
+in a new environment&lt;/a&gt;. Recently I've
+added another to the list I already have, and I used it as an excuse to get
+back into writing &lt;a href="https://github.com/davep/org-davep-2bit"&gt;some Common
+Lisp&lt;/a&gt;; and then went on to use it
+as a reason to write &lt;a href="(https://elisp.dev/)"&gt;yet another&lt;/a&gt; package &lt;a href="https://github.com/davep/2bit.el"&gt;for
+Emacs&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Having gone through the process of writing code to handle 2bit files twice
+in about a month, and in two very similar but slightly different languages,
+I thought it might be interesting for me to then use it to exercise my
+ability to write blog posts (something I always struggle with -- I find
+writing &lt;em&gt;very hard&lt;/em&gt; on a number of levels) and especially posts that explain
+a particular problem and how I implemented code relating to that problem.&lt;/p&gt;
+&lt;p&gt;Also, because the initial version of this post rambled on a bit too much and
+I lost the ability to finish it, I'm starting again and will be breaking it
+up a number of posts spanning a number of days -- perhaps even weeks -- so
+that I don't feel too overwhelmed by the process of writing it. I will, of
+course, make sure every post links to the other posts.&lt;/p&gt;
+&lt;p&gt;Now, before I go on, I'll make the important point that everything here is
+written from the perspective of a software developer who happens to work as
+part of a bioinformatics team; I don't do bioinformatics, I don't claim to
+understand it, I just happen to sit with (well, used to sit with them --
+hopefully we'll all make it back to the office one day!) and work with them,
+and develop software that supports their work. Anything you see in any of
+the posts that's wrong about that subject: that's just my ignorance being
+shown through the lens of a software developer (all corrections are
+welcome).&lt;/p&gt;
+&lt;p&gt;So, with all those disclaimers aside, I'm going to go on a slow wander
+through what a 2bit file is, how you'd go about reading it, and related
+issues. This isn't designed as a tutorial or anything like that, this is
+simply me taking what I've learnt and writing it down. Perhaps someone else
+will benefit one day, but the purpose is to simply enjoy cementing it in my
+own mind and to enjoy the process of putting it all in writing.&lt;/p&gt;
+&lt;h1&gt;What is a "2bit file"?&lt;/h1&gt;
+&lt;p&gt;So what's this new "problem" I've added to my list? It's code to read
+sequence data from &lt;a href="https://genome.ucsc.edu/FAQ/FAQformat.html#format7"&gt;2bit format
+files&lt;/a&gt;. For anyone who
+doesn't know (&lt;em&gt;bioinformatics people look away now; a software developer is
+going to explain one of your file formats&lt;/em&gt;), this is a file format that is
+intended to hold sequences in an efficient way. As I'm sure you know,
+&lt;a href="https://en.wikipedia.org/wiki/DNA"&gt;DNA&lt;/a&gt; is made up of &lt;a href="https://en.wikipedia.org/wiki/Nucleobase"&gt;4
+bases&lt;/a&gt;, represented by the letters
+&lt;a href="https://en.wikipedia.org/wiki/Thymine"&gt;&lt;code&gt;T&lt;/code&gt;&lt;/a&gt;,
+&lt;a href="https://en.wikipedia.org/wiki/Cytosine"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/a&gt;,
+&lt;a href="https://en.wikipedia.org/wiki/Adenine"&gt;&lt;code&gt;A&lt;/code&gt;&lt;/a&gt; and
+&lt;a href="https://en.wikipedia.org/wiki/Guanine"&gt;&lt;code&gt;G&lt;/code&gt;&lt;/a&gt;. So, in the simplest case, we
+could just represent a genome using those four letters. Simple enough,
+right? Nice big text file with just those 4 letters in?&lt;/p&gt;
+&lt;p&gt;The thing is, something like the human genome is around &lt;a href="https://en.wikipedia.org/wiki/Human_genome#Molecular_organization_and_gene_content"&gt;3 billion bases in
+length&lt;/a&gt;.
+That'd make for a petty big file to have to store and move around. So why
+not compress it down a bit? That's where the 2bit format comes in.&lt;/p&gt;
+&lt;p&gt;Given this problem I'm sure most developers would quickly notice that, given
+4 different characters, you only need 2 bits to actually hold them all (two
+bits gets us &lt;code&gt;00&lt;/code&gt;, &lt;code&gt;01&lt;/code&gt;, &lt;code&gt;10&lt;/code&gt; and &lt;code&gt;11&lt;/code&gt;, so four different states). This
+means with a little bit of coding you can store 4 bases in a single byte.
+Just like that you've pretty much squished the whole thing down to 1/4 of
+the original size. And that's more or less what the 2bit format does. If you
+take a look at &lt;a href="http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/"&gt;the actual data for the human
+genome&lt;/a&gt; you'll see
+that &lt;code&gt;hg38.2bit&lt;/code&gt; is roughly 1/4 of 3 billion bytes, ish, give or take.&lt;/p&gt;
+&lt;p&gt;There is a wrinkle, however. There are parts of a genome where you might not
+know what base is there. Generally &lt;a href="https://www.bioinformatics.org/sms/iupac.html"&gt;an &lt;code&gt;N&lt;/code&gt; is used for
+that&lt;/a&gt;. So, actually, we want
+to be able to store 5 different characters. But 5 isn't going to go into 2
+bits... Damn! Well, it's okay, 2bit has a solution to that too, and I'll
+cover that later on.&lt;/p&gt;
+&lt;h1&gt;How is a 2bit file formatted?&lt;/h1&gt;
+&lt;p&gt;As you can see from &lt;a href="https://genome.ucsc.edu/FAQ/FAQformat.html#format7"&gt;the format information available
+online&lt;/a&gt;, a 2bit file is
+a binary file format that is split into 3 key parts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A fixed size header with some key information&lt;/li&gt;
+&lt;li&gt;An index into the rest of the file&lt;/li&gt;
+&lt;li&gt;A series of records that contain actual sequence information&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this first post I'll cover the details of the header. Subsequent posts
+will cover the index and the actual sequence data records.&lt;/p&gt;
+&lt;h2&gt;The header&lt;/h2&gt;
+&lt;p&gt;The header of a 2bit file is fixed in size and contains some key
+information. It can be broken down as follows:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Content&lt;/th&gt;
+&lt;th&gt;Type&lt;/th&gt;
+&lt;th&gt;Size&lt;/th&gt;
+&lt;th&gt;Comments&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Signature&lt;/td&gt;
+&lt;td&gt;Integer&lt;/td&gt;
+&lt;td&gt;4 bytes&lt;/td&gt;
+&lt;td&gt;See below for endian issues.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Version&lt;/td&gt;
+&lt;td&gt;Integer&lt;/td&gt;
+&lt;td&gt;4 bytes&lt;/td&gt;
+&lt;td&gt;Always 0.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Sequence count&lt;/td&gt;
+&lt;td&gt;Integer&lt;/td&gt;
+&lt;td&gt;4 bytes&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Reserved&lt;/td&gt;
+&lt;td&gt;Integer&lt;/td&gt;
+&lt;td&gt;4 bytes&lt;/td&gt;
+&lt;td&gt;Always ignored.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The signature value is used to test if what you're looking at is a 2bit
+file, but also tells you some vital information about how to read the file
+-- see below for more on that. The version value is always &lt;code&gt;0&lt;/code&gt; -- as such
+another useful test would be to error out if you get a valid signature but
+get a version other than &lt;code&gt;0&lt;/code&gt;. The sequence count is, as you'd guess, the
+number of sequences that are held within the file -- this is important when
+loading in the index of the file (more on that in the next post).&lt;/p&gt;
+&lt;h2&gt;The signature, big and little endianness, and byte swapping&lt;/h2&gt;
+&lt;p&gt;The header mentioned above comprises of 4 32-bit word values. The very first
+word is important to how you read the rest of the file. This is the
+&lt;code&gt;signature&lt;/code&gt; for the 2bit file and it should always be &lt;code&gt;0x1A412743&lt;/code&gt;. And this
+is where it gets interesting and fun right away. The 2bit file format allows
+for the fact that the file can be built in either &lt;a href="https://en.wikipedia.org/wiki/Endianness"&gt;a little-endian or a
+big-endian machine&lt;/a&gt;, and the
+32-bit word values can be binary-written to the file in the local
+architecture's byte order. The effect of this is that, from reading the very
+first value in the file, you need to decide if every other numeric value you
+read needs to be byte-swapped in some way. The early logic being (in no
+particular language) something like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;signature&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="nv"&gt;x1A412743&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;must_swap&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;False&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;byte_swap&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;signature&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="nv"&gt;x1A412743&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;must_swap&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;True&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;raise&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This isn&amp;#39;t a valid 2bit file&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Simply put, to read the rest of the file you will need a function that
+byte-swaps a 32bit numeric value, and a flag of some sort to mark that you
+need to do this every time you read such a value. Of course, depending on
+your language of choice, you could do it in a number of different ways. In a
+language like JavaScript or Scheme, where you can easily throw around
+functions, I'd probably just assign the appropriate 32bit-word-reading
+function to a global function name and call that regardless throughout the
+rest of the code. In other languages I'd probably just check the flag each
+time and call the swapping function if needed. In something like Python I'd
+likely just use the signature to decide on which format to pass to
+&lt;a href="https://docs.python.org/3.8/library/struct.html#struct.unpack"&gt;&lt;code&gt;struct.unpack&lt;/code&gt;&lt;/a&gt;.
+For example, some variation on:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Assuming that &amp;#39;header&amp;#39; is the whole header of the file read as a binary buffer.&lt;/span&gt;
+
+&lt;span class="n"&gt;word_fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;test_fmt&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;I&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;gt;I&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;test_fmt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;header&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;)[&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mh"&gt;0x1A412743&lt;/span&gt;
+        &lt;span class="n"&gt;word_fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;test_fmt&lt;/span&gt;
+        &lt;span class="k"&gt;break&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;word_fmt&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;Exception&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;This isn&amp;#39;t a 2bit file&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, the Python approach sort of hides the important detail here. With it
+we'd simply use &lt;code&gt;struct.unpack&lt;/code&gt;'s &lt;a href="https://docs.python.org/3.8/library/struct.html#byte-order-size-and-alignment"&gt;ability to handle different byte orders
+&lt;/a&gt;
+and not worry about the detail. Which isn't fun, right? So how might code to
+byte-swap a 32bit value look?&lt;/p&gt;
+&lt;p&gt;Assuming you've got the value as an actual numeric integer, it can be as
+simple as using a bit of bitwise anding and shifting. Here's the basic code
+I wrote in Common Lisp, for example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;swap-long&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Swap the endianness of a long integer VALUE.&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;logior&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;logand&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;ash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;-24&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;#xff&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;logand&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;ash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;-8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;#xff00&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;logand&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;ash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;#xff0000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;logand&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;ash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;#xff000000&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;JavaScript might be something like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;swapLong&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;24&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xff&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="w"&gt;           &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mf"&gt;8&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xff00&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="w"&gt;           &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mf"&gt;8&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xff0000&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="w"&gt;           &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;24&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xff000000&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and other variations on that theme in different languages.&lt;/p&gt;
+&lt;h2&gt;Up next&lt;/h2&gt;
+&lt;p&gt;In &lt;a href="/2020/09/05/reading-2bit-files-for-fun-the-index.html"&gt;the next post&lt;/a&gt;
+I'll write about how the sequence index is stored and how to load it,
+including some considerations about how to make the loading as efficient as
+possible.&lt;/p&gt;</content><category term="Coding"></category><category term="Bioinformatics"></category></entry><entry><title>When the man page fibs</title><link href="https://blog.davep.org/2020/07/10/when-the-man-page-fibs.html" rel="alternate"></link><published>2020-07-10T20:58:00+01:00</published><updated>2020-07-10T20:58:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-07-10:/2020/07/10/when-the-man-page-fibs.html</id><summary type="html">&lt;p&gt;Earlier this week something in my development environment, relating to
+&lt;a href="https://brew.sh/"&gt;Homebrew&lt;/a&gt;, Python,
+&lt;a href="https://github.com/pyenv/pyenv"&gt;pyenv&lt;/a&gt; and
+&lt;a href="https://pipenv.pypa.io/en/latest/"&gt;pipenv&lt;/a&gt;, got updated and broke a handful
+of repositories. Not in a way that I couldn't recover from, just in a way
+that was annoying, got in the way of my workflow, and needed attention.
+&lt;em&gt;(note …&lt;/em&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Earlier this week something in my development environment, relating to
+&lt;a href="https://brew.sh/"&gt;Homebrew&lt;/a&gt;, Python,
+&lt;a href="https://github.com/pyenv/pyenv"&gt;pyenv&lt;/a&gt; and
+&lt;a href="https://pipenv.pypa.io/en/latest/"&gt;pipenv&lt;/a&gt;, got updated and broke a handful
+of repositories. Not in a way that I couldn't recover from, just in a way
+that was annoying, got in the way of my workflow, and needed attention.
+&lt;em&gt;(note to self: how I set up for Python/Django development on a machine
+might be a good post in the future)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Once I was sure what the fix was (pretty much: nuke the virtual environment
+and recreate it with &lt;code&gt;pipenv&lt;/code&gt;, being very explicit about the version of
+Python to use) the next step was to figure out how many repositories were
+affected; not all were and there wasn't an obvious pattern to it. What was
+obvious was that the problem came down to &lt;code&gt;python&lt;/code&gt; in the &lt;code&gt;.venv&lt;/code&gt; directory
+pointing to a binary that didn't exist any more.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot 2020-07-10 at 20.21.15.png" src="/attachments/2020/07/10/Screenshot 2020-07-10 at 20.21.15.png"&gt;&lt;/p&gt;
+&lt;p&gt;So... tracking down problematic repositories would be simple enough, just
+look for every instance of &lt;code&gt;.venv/bin/python&lt;/code&gt; and be sure it points to
+something rather than nothing; if it points to nothing I need to remake the
+virtual environment.&lt;/p&gt;
+&lt;p&gt;I quickly knocked up a script that was based around looking over the results
+of a &lt;code&gt;find&lt;/code&gt;, and initially decided to use &lt;code&gt;file&lt;/code&gt; to perform the test on
+&lt;code&gt;python&lt;/code&gt;. It seemed to make sense, as I wrote the script I checked the &lt;code&gt;man&lt;/code&gt;
+page for &lt;code&gt;file(1)&lt;/code&gt; on macOS and sure enough, this exists:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;-E On filesystem errors (file not found etc), instead of handling the error as regular output as POSIX mandates and keep going, issue an error message and exit.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Given that &lt;code&gt;file&lt;/code&gt; dereferences links by default, that should get me an error
+for a broken link, right? Bit hacky I guess, but it was the first thing that
+came to mind for a quick bit of scripting and would do the trick. Only...&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;file&lt;span class="w"&gt; &lt;/span&gt;-E&lt;span class="w"&gt; &lt;/span&gt;does-not-exist
+file:&lt;span class="w"&gt; &lt;/span&gt;invalid&lt;span class="w"&gt; &lt;/span&gt;option&lt;span class="w"&gt; &lt;/span&gt;--&lt;span class="w"&gt; &lt;/span&gt;E
+Usage:&lt;span class="w"&gt; &lt;/span&gt;file&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;bcCdEhikLlNnprsvzZ0&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;-e&lt;span class="w"&gt; &lt;/span&gt;test&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;namefile&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;-F&lt;span class="w"&gt; &lt;/span&gt;separator&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;magicfiles&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;-M&lt;span class="w"&gt; &lt;/span&gt;magicfiles&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;file...
+&lt;span class="w"&gt;       &lt;/span&gt;file&lt;span class="w"&gt; &lt;/span&gt;-C&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;magicfiles
+Try&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;file&lt;span class="w"&gt; &lt;/span&gt;--help&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;more&lt;span class="w"&gt; &lt;/span&gt;information.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href="https://www.destroyallsoftware.com/talks/wat"&gt;Wat&lt;/a&gt;?!? But it's right there! It says so in the manual! &lt;code&gt;-E&lt;/code&gt; is documented right in the manual page! And yet it's not in the valid switch list as put out by the command, &lt;em&gt;and&lt;/em&gt; it's an &lt;code&gt;invalid option&lt;/code&gt;. The hell?&lt;/p&gt;
+&lt;p&gt;So I go back and look at the &lt;code&gt;man&lt;/code&gt; page again and then I notice it isn't in
+the list of switches in the synopsis.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SYNOPSIS&lt;br&gt;
+    file [-bcdDhiIkLnNprsvz] [--extension] [--mime-encoding] [--mime-type] [-f namefile] [-m magicfiles] [-P name=value] [-M magicfiles] file&lt;br&gt;
+    file -C [-m magicfiles]&lt;br&gt;
+    file [--help]  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I then did the obvious tests. Did I have &lt;code&gt;file&lt;/code&gt; aliased in some way? No. Was
+some other thing that works and acts like &lt;code&gt;file&lt;/code&gt; in my path? No. Was I
+absolutely 100% using &lt;code&gt;/usr/bin/file&lt;/code&gt;? Yes.&lt;/p&gt;
+&lt;p&gt;Long story short: it seems the &lt;code&gt;man&lt;/code&gt; page for &lt;code&gt;file&lt;/code&gt;, on macOS, fibs about
+what switches it supports; it says that &lt;code&gt;-E&lt;/code&gt; is a valid option, but it's not
+there.&lt;/p&gt;
+&lt;p&gt;What's even odder is the man page says it documents v5.04 of the command,
+but &lt;code&gt;--version&lt;/code&gt; reports v5.37. Meanwhile, if I check on a GNU/Linux box I
+have access to, it does support &lt;code&gt;-E&lt;/code&gt;, reports it in the switches, documents
+it in the &lt;code&gt;man&lt;/code&gt; page (in both the synopsis and in the main body of the page)
+and it is v5.25 (and so is its man page).&lt;/p&gt;
+&lt;p&gt;So that was something like 20 minutes lost to a very small problem, for
+which there was no real solution, but was time that had to be spent to get
+to the bottom of it.&lt;/p&gt;
+&lt;p&gt;In the end I went with what I probably should have gone with in the first
+place: &lt;code&gt;stat -L&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;venv&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;find&lt;span class="w"&gt; &lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;-name&lt;span class="w"&gt; &lt;/span&gt;.venv&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;do&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;!&lt;span class="w"&gt; &lt;/span&gt;stat&lt;span class="w"&gt; &lt;/span&gt;-L&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$venv&lt;/span&gt;&lt;span class="s2"&gt;/bin/python&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;/dev/null&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;dirname&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$venv&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And now I have that script in my &lt;code&gt;~/bin&lt;/code&gt; directory, ready for the next time
+Homebrew and friends conspire to throw my day off for a while.&lt;/p&gt;</content><category term="Coding"></category><category term="homebrew"></category><category term="macOS"></category><category term="Unix"></category><category term="Python"></category></entry><entry><title>Helping myself change the default git branch</title><link href="https://blog.davep.org/2020/07/09/helping-myself-change-the-default-git-branch.html" rel="alternate"></link><published>2020-07-09T20:17:00+01:00</published><updated>2020-07-09T20:17:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-07-09:/2020/07/09/helping-myself-change-the-default-git-branch.html</id><summary type="html">&lt;p&gt;This is something I've being meaning to do for a couple or so years now, and
+unsurprisingly it's bubbled up again recently: the business of swapping the
+name of the &lt;code&gt;master&lt;/code&gt; branch in &lt;code&gt;git&lt;/code&gt; out for something better.&lt;/p&gt;
+&lt;p&gt;Because it's one of those jobs that's simultaneously simple and also
+laborious …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is something I've being meaning to do for a couple or so years now, and
+unsurprisingly it's bubbled up again recently: the business of swapping the
+name of the &lt;code&gt;master&lt;/code&gt; branch in &lt;code&gt;git&lt;/code&gt; out for something better.&lt;/p&gt;
+&lt;p&gt;Because it's one of those jobs that's simultaneously simple and also
+laborious, I kept putting it off. Changing up the local configuration so
+that &lt;code&gt;main&lt;/code&gt; (or whatever name you prefer) is used "out of the box" &lt;a href="https://leigh.net.au/writing/git-init-main/"&gt;is
+simple enough&lt;/a&gt;; the laborious
+part is updating all of the repositories that live in the "forge of choice".
+In my case, &lt;a href="https://github.com/davep"&gt;over on GitHub&lt;/a&gt;, I have &lt;a href="https://github.com/davep?tab=repositories"&gt;getting on
+for 200 repositories&lt;/a&gt; -- 142 of
+which are public (as of the time of writing). At work we use
+&lt;a href="https://gitlab.com/"&gt;GitLab&lt;/a&gt; as our internal forge and I've got a
+non-trivial number of repositories on there too.&lt;/p&gt;
+&lt;p&gt;The obvious first step to tackling this is to knock up a little tool to help
+find the repos that still need swapping. That was &lt;a href="https://github.com/davep/git-archaic"&gt;simple
+enough&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Quick and dirty tool to find repositories that still make use of a&lt;/span&gt;
+&lt;span class="c1"&gt;# &amp;quot;master&amp;quot; branch. Helps with tracking down the ones that need&lt;/span&gt;
+&lt;span class="c1"&gt;# updating/improving.&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;repo&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;find&lt;span class="w"&gt; &lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;-name&lt;span class="w"&gt; &lt;/span&gt;.git&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;do&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;dirname&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$repo&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;git&lt;span class="w"&gt; &lt;/span&gt;branch&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;master&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;/dev/null&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;dirname&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$repo&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;done&lt;/span&gt;
+
+&lt;span class="c1"&gt;### git-archaic ends here&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It's not meant to be clever, just something I can run when I'm in a "default
+branch swapping" mood so find a repository or two to tackle. The idea being
+that it uses &lt;code&gt;find&lt;/code&gt; to pull out any instance of &lt;code&gt;.git&lt;/code&gt; in or below the
+current directory, changes to it (inside a sub-process to ensure the &lt;code&gt;PWD&lt;/code&gt;
+gets put back after the &lt;code&gt;cd&lt;/code&gt; that happens, before the next iteration of the
+loop), gets a list of the branches and, if &lt;code&gt;master&lt;/code&gt; is one of them, prints
+the directory name.&lt;/p&gt;
+&lt;p&gt;Using this, I can now slowly work through my more active repositories and
+make the swap -- the idea being that if I currently have them cloned down to
+my machine, they're obviously some level of "active". At some point I
+imagine I could get more clever and use the APIs of the forges to look at
+all the repositories I own; that's another job for another day.&lt;/p&gt;
+&lt;p&gt;This gives me enough to be going on with. :-)&lt;/p&gt;</content><category term="Coding"></category><category term="git"></category></entry><entry><title>A second attempt to learn Swift</title><link href="https://blog.davep.org/2020/06/21/a-second-attempt-to-learn-swift.html" rel="alternate"></link><published>2020-06-21T14:48:00+01:00</published><updated>2020-06-21T14:48:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-06-21:/2020/06/21/a-second-attempt-to-learn-swift.html</id><summary type="html">&lt;p&gt;It's five years ago this month that I bought myself my first macOS (then OS
+X) device. After many years of having a Windows machine as my daily driver,
+which was also my work machine (I worked from home), I decided it was high
+time that I returned to having …&lt;/p&gt;</summary><content type="html">&lt;p&gt;It's five years ago this month that I bought myself my first macOS (then OS
+X) device. After many years of having a Windows machine as my daily driver,
+which was also my work machine (I worked from home), I decided it was high
+time that I returned to having a Unix-a-like system on my desk too. For a
+decade or so, starting in the later-90s, I'd had a GNU/Linux desktop. I
+still had a Windows desktop (until a couple of years ago most of my work was
+on DOS and Windows), but thanks to the wonders of a KVM, and later an X
+server that ran on Windows, my personal hacking was done on a GNU/Linux
+desktop.&lt;/p&gt;
+&lt;p&gt;But as things moved around, priorities changed, as life moved on, the
+GNU/Linux boxes got retired and never quite replaced. Eventually, in 2015, I
+found myself with the means and desire to recover that sort of setup. Long
+story short, after a lot of reading up and weighing up options I decided
+that the best option for a desktop Unix was... an iMac!&lt;/p&gt;
+&lt;p&gt;I loved it. Sure, &lt;a href="/2015/06/27/my-first-couple-of-weeks-with-an-imac.html"&gt;there were lots of little things on the surface that were
+different or annoying or just plain not as cool as the Mac fans would tell
+you&lt;/a&gt;,
+but under the hood I found what I needed: a Unix CLI with all the things I
+knew well. And, of course, it ran GNU Emacs just fine; that was the really
+important thing for me.&lt;/p&gt;
+&lt;p&gt;Pretty much right away I decided that it might be fun to learn the tools
+necessary to develop native Mac apps, and perhaps even iOS apps. I
+downloaded XCode, bought a book, and started working through it. Having got
+that book, I decided it might be interesting to own an iOS device too. So,
+sort of needing an MP3 player, and having no wish to get an iPhone, &lt;a href="/2015/06/23/and-now-for-some-ios.html"&gt;I got
+myself an iPod
+Touch&lt;/a&gt;. So I
+was all set to devour the Swift book, write some stuff for OS X, create an
+iOS app or two, and... life happened. Stuff cropped up that distracted me
+from taking that further and I never really returned to working through the
+book.&lt;/p&gt;
+&lt;p&gt;Fast forward to now and that initial iMac and iPod purchase spiralled a wee
+bit. Next after the iPod was an iPad Mini, when my Nexus 7 was starting to
+show its age and it was obvious that Google wasn't going to produce any more
+good Android tablets. Then, when I needed a very portable Unix-a-like
+machine for trips between where I was living and Edinburgh, &lt;a href="/2016/04/28/i-now-own-a-macbook.html"&gt;I got myself a
+MacBook Air&lt;/a&gt;.
+Since then the iPod Touch has been replaced once, as has the iPad Mini. I
+now also own an iPad and a MacBook Pro. Unless Apple screw up and turn Macs
+into something unusable for developers (there are rumours), I imagine I'll
+be using Apple devices for some time to come now.&lt;/p&gt;
+&lt;p&gt;And then, last month, having finally got frustrated with where Google were
+going with Android and the Pixel series, I jumped ship to the iPhone 11.&lt;/p&gt;
+&lt;p&gt;As of right now I'm in a situation where I'm all about the Apple ecosystem
+regarding hardware and operating systems (including for my work machine),
+all of which is there to support my heavy use of the Google ecosystem
+(actually, the one bit of Google hardware I still lean on heavily is the
+Google Home -- I have 3 around my home).&lt;/p&gt;
+&lt;p&gt;So... given all of that, I thought it was time to look at returning to
+learning Swift, with a view to writing some native macOS and i(Pad)OS stuff.
+I soon realised that the book I'd bought back in 2015 was rather out of
+date. It covers Swift 1.2 -- &lt;a href="https://en.wikipedia.org/wiki/Swift_(programming_language)#Version_history"&gt;we're now up to
+5.2&lt;/a&gt;!
+Given this, and given I've forgotten pretty much everything I'd read at the
+time, I decided I should start again from scratch.&lt;/p&gt;
+&lt;p&gt;This weekend I've started reading my way though &lt;a href="https://www.oreilly.com/library/view/ios-13-programming/9781492074526/"&gt;&lt;em&gt;iOS Programming
+Fundamentals with
+Swift&lt;/em&gt;&lt;/a&gt;.
+While this obviously has an emphasis on iOS, I'm already finding that the
+first part of the book is a really great introduction to the Swift language
+in general. The pace seems just right, and the way topics are grouped makes
+it easy enough for me to skip over what's obvious (I don't need to know what
+objected-oriented programming is, and what the difference between a class
+and an object is, etc) and read up on the detail of this particular language
+when it comes to general concepts I know (knowing the differences between a
+class, struct and enum in the language is important, for example).&lt;/p&gt;
+&lt;p&gt;I've yet to write a line of code, but I'm fine with that. The book is
+spending a lot of time introducing the language before encouraging you to
+fire up XCode, and I'm okay with that. I'm never a fan of being asked to
+write out code that I can't properly follow -- that just makes stuff look
+like magic when it's far more educational to know what's going on. What I am
+finding is I'm making lots of notes that are either &lt;em&gt;"oh, yeah, this is
+cool, I like this idea!"&lt;/em&gt; or &lt;em&gt;"WTF are you kidding me?!?"&lt;/em&gt;. Which is really
+nice -- it's always great to learn a new language that's a bit different
+from what you normally use.&lt;/p&gt;
+&lt;p&gt;My plan then, over the next few weeks, it to keep at this and hopefully
+document my journey. I think I'd like to write a short series of TIL-type
+posts; nothing too long, just some new thing I read or discovered and my
+reaction to it. So, if you happen to follow this blog, I apologise in
+advance for any Swift-spam.&lt;/p&gt;
+&lt;p&gt;You have been warned. ;-)&lt;/p&gt;</content><category term="Coding"></category><category term="Swift"></category><category term="Apple"></category><category term="programming"></category></entry><entry><title>Where I live and work</title><link href="https://blog.davep.org/2020/01/11/where-i-live-and-work.html" rel="alternate"></link><published>2020-01-11T14:17:00+00:00</published><updated>2020-01-11T14:17:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-01-11:/2020/01/11/where-i-live-and-work.html</id><summary type="html">&lt;p&gt;It's no surprise that I spend a lot of time in Emacs. Especially when I'm
+developing software, either for work or for personal fun, most of my time is
+time spent in Emacs. While I do obviously flit over to Chrome, and mostly do
+my CLI stuff in &lt;a href="https://iterm2.com/"&gt;iTerm2&lt;/a&gt; (I …&lt;/p&gt;</summary><content type="html">&lt;p&gt;It's no surprise that I spend a lot of time in Emacs. Especially when I'm
+developing software, either for work or for personal fun, most of my time is
+time spent in Emacs. While I do obviously flit over to Chrome, and mostly do
+my CLI stuff in &lt;a href="https://iterm2.com/"&gt;iTerm2&lt;/a&gt; (I really like
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_mono/eshell.html"&gt;eshell&lt;/a&gt;
+but it just can't replace a good terminal for me), I spend a lot of time
+looking at Emacs.&lt;/p&gt;
+&lt;p&gt;Here's what my Emacs looks like:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot 2020-01-11 at 13.49.04.png" src="/attachments/2020/01/11/Screenshot 2020-01-11 at 13.49.04.png"&gt;&lt;/p&gt;
+&lt;p&gt;Key elements for me are as follows:&lt;/p&gt;
+&lt;h1&gt;Light background&lt;/h1&gt;
+&lt;p&gt;Something I've never really got on with when it comes to code editing is
+dark themes and dark backgrounds. I find it too much of an eye strain.
+Oddly, I tend to prefer dark themes everywhere else, but not when it comes
+to working in Emacs. The theme I use is &lt;a href="https://github.com/davep/.emacs.d/blob/b9a3df42f0708eabc31a6176d69a67bbdf31a087/init.d/init-style.el#L12-L13"&gt;the built-in adwaita
+theme&lt;/a&gt;.&lt;/p&gt;
+&lt;h1&gt;Less boring mode line&lt;/h1&gt;
+&lt;p&gt;I make use of &lt;a href="https://github.com/milkypostman/powerline"&gt;powerline&lt;/a&gt; to
+&lt;a href="https://github.com/davep/.emacs.d/blob/b9a3df42f0708eabc31a6176d69a67bbdf31a087/init.d/packages/init-packages-melpa.el#L386-L399"&gt;make the mode line a bit less
+boring-looking&lt;/a&gt;.
+While the colour scheme is such that it's kept in line with the light look,
+the style is nice in that it sort of matches the style of prompt I use in my
+shell.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot 2020-01-11 at 14.05.39.png" src="/attachments/2020/01/11/Screenshot 2020-01-11 at 14.05.39.png"&gt;&lt;/p&gt;
+&lt;h1&gt;Full screen&lt;/h1&gt;
+&lt;p&gt;I always run Emacs as a full-screen application, then splitting it into
+different tiled windows using its own internal window handling. This is
+something I've done from way back when I got started with my first GNU/Linux
+desktop machine, and still like to do on macOS.&lt;/p&gt;
+&lt;p&gt;I also &lt;a href="https://github.com/davep/longmacs.el"&gt;run Emacs as a server&lt;/a&gt; and
+then use &lt;a href="https://github.com/davep/e"&gt;a little wrapper around &lt;code&gt;emacsclient&lt;/code&gt;&lt;/a&gt;
+to open files (both locally and remotely) from the command line in that
+Emacs session.&lt;/p&gt;
+&lt;h1&gt;Comfortable eshell when I need it&lt;/h1&gt;
+&lt;p&gt;Although I say above that I generally don't use &lt;code&gt;eshell&lt;/code&gt;, preferring to use
+a full-featured terminal application, in combination with
+&lt;a href="https://fishshell.com/"&gt;fish&lt;/a&gt;, I do sometimes dip into eshell for quick
+things. So of course I have that configured to feel comfortable too.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot 2020-01-11 at 14.10.07.png" src="/attachments/2020/01/11/Screenshot 2020-01-11 at 14.10.07.png"&gt;&lt;/p&gt;
+&lt;p&gt;I do this easily &lt;a href="https://github.com/davep/.emacs.d/blob/b9a3df42f0708eabc31a6176d69a67bbdf31a087/init.d/packages/init-packages-melpa.el#L181-L192"&gt;thanks to
+&lt;code&gt;eshell-git-prompt&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"></category><category term="Emacs"></category><category term="shell"></category></entry><entry><title>Getting started</title><link href="https://blog.davep.org/2019/11/17/getting-started.html" rel="alternate"></link><published>2019-11-17T11:36:00+00:00</published><updated>2019-11-17T11:36:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2019-11-17:/2019/11/17/getting-started.html</id><summary type="html">&lt;p&gt;By coincidence, in a couple of different places over the last couple of
+weeks, the subject of &lt;em&gt;"how do I progress in leaning to program?"&lt;/em&gt; has
+cropped up. For me, I think the approaches and solutions tend to be the same
+for when I want to get my head around …&lt;/p&gt;</summary><content type="html">&lt;p&gt;By coincidence, in a couple of different places over the last couple of
+weeks, the subject of &lt;em&gt;"how do I progress in leaning to program?"&lt;/em&gt; has
+cropped up. For me, I think the approaches and solutions tend to be the same
+for when I want to get my head around a new language: read good examples of
+idiomatic code, read other related materials, find a problem you care about
+and implement a solution (ideally something you'll directly benefit from, or
+at least others may benefit from). Hence the &lt;a href="/2019/11/10/going-on-a-journey.html"&gt;5x5 puzzle and Norton Guide
+reader projects I mentioned in my previous
+post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Of course, not everyone has problems that they need solving in a way that
+would work for this approach. So another approach I've recommended in the
+past is to go looking on somewhere like GitHub and find projects that
+promote "low-hanging fruit" issues in a way that's designed to be friendly
+for those who are new to development, new to contributing or new to the
+problem domain.&lt;/p&gt;
+&lt;p&gt;While looking for examples of this yesterday I stumbled on &lt;a href="https://github.com/MunGell/awesome-for-beginners"&gt;&lt;em&gt;Awesome for
+Beginners&lt;/em&gt;&lt;/a&gt;. This looks
+like a great list and one I'm going to keep &lt;a href="https://pinboard.in/u:davep/"&gt;bookmarked for future
+reference&lt;/a&gt;. Now, this particular list does
+seem to have an emphasis on &lt;a href="https://github.com/MunGell/awesome-for-beginners/issues/215"&gt;pulling in people who are new to contributing
+to a project&lt;/a&gt;
+rather than new to development, but it does strike me as a good place to
+start looking no matter where you're coming from.&lt;/p&gt;
+&lt;p&gt;I know I'm going to start having a wander around that list. It's always nice
+to contribute and I feel there's real personal benefit in actively solving a
+problem that someone else has and welcomes help with.&lt;/p&gt;</content><category term="Coding"></category><category term="Coding"></category><category term="learning"></category></entry><entry><title>gh.fish -- Quickly visit a repo's forge</title><link href="https://blog.davep.org/2019/10/20/fg-fish.html" rel="alternate"></link><published>2019-10-20T13:15:00+01:00</published><updated>2019-10-20T13:15:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2019-10-20:/2019/10/20/fg-fish.html</id><summary type="html">&lt;p&gt;These days &lt;a href="https://fishshell.com/"&gt;fish&lt;/a&gt; is my shell of choice. I started
+out with &lt;a href="https://www.gnu.org/software/bash/"&gt;bash&lt;/a&gt; back in the 1990s, went
+through a bit of a
+&lt;a href="https://www.zsh.org/"&gt;zsh&lt;/a&gt;/&lt;a href="https://ohmyz.sh/"&gt;oh-my-zsh&lt;/a&gt; phase, but
+earlier this year finally settled on fish.&lt;/p&gt;
+&lt;p&gt;At some point I might write a post about my fish config, and why fish works …&lt;/p&gt;</summary><content type="html">&lt;p&gt;These days &lt;a href="https://fishshell.com/"&gt;fish&lt;/a&gt; is my shell of choice. I started
+out with &lt;a href="https://www.gnu.org/software/bash/"&gt;bash&lt;/a&gt; back in the 1990s, went
+through a bit of a
+&lt;a href="https://www.zsh.org/"&gt;zsh&lt;/a&gt;/&lt;a href="https://ohmyz.sh/"&gt;oh-my-zsh&lt;/a&gt; phase, but
+earlier this year finally settled on fish.&lt;/p&gt;
+&lt;p&gt;At some point I might write a post about my fish config, and why fish works
+well for me. But that's an idea for another time.&lt;/p&gt;
+&lt;p&gt;In this post I thought I'd share a little snippet of code that can come in
+handy now and again.&lt;/p&gt;
+&lt;p&gt;Sometimes I find myself inside a git repo, in the shell, and I want to get
+to the "&lt;a href="https://en.wikipedia.org/wiki/Forge_%28software%29"&gt;forge&lt;/a&gt;" for
+that repo. This is most often either on &lt;a href="https://github.com/"&gt;GitHub&lt;/a&gt;, or in
+a &lt;a href="https://about.gitlab.com/install/"&gt;company-local installation of GitLab&lt;/a&gt;.
+To get there quickly I wrote
+&lt;a href="https://gist.github.com/davep/3bac3b30e45a3560c265150e609219db"&gt;&lt;code&gt;gh.fish&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;##############################################################################&lt;/span&gt;
+&lt;span class="cp"&gt;# Attempt go visit the origin hub for the current repo.&lt;/span&gt;
+
+&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;gh&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Visit the repo in its origin hub&amp;quot;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="cp"&gt;# Check that there is some sort of origin.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;origin&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;origin&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="cp"&gt;# If we didn&amp;#39;t get anything...&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;test&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;$origin&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="cp"&gt;# ...complain and exit.&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;This doesn&amp;#39;t appear to be a git repo with an origin&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="cp"&gt;# Open in the browser.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;:&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;&amp;#39;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;git$&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;$origin&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+
+&lt;span class="n"&gt;end&lt;/span&gt;
+
+&lt;span class="cp"&gt;### gh.fish ends here&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The idea is pretty simple: I see if the repo has an origin of some
+description and, if it has, I &lt;a href="https://fishshell.com/docs/current/commands.html#string"&gt;slice and dice
+it&lt;/a&gt; into something
+that looks like the URL you'd expect to find for a GitHub or GitLab repo.
+Finally I use
+&lt;a href="https://fishshell.com/docs/current/commands.html#open"&gt;&lt;code&gt;open&lt;/code&gt;&lt;/a&gt; to open the
+URL in the environment's browser of choice.&lt;/p&gt;</content><category term="Coding"></category><category term="fish"></category><category term="git"></category></entry><entry><title>jsNG</title><link href="https://blog.davep.org/2017/03/10/jsng.html" rel="alternate"></link><published>2017-03-10T10:14:47+00:00</published><updated>2017-03-10T10:14:47+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2017-03-10:/2017/03/10/jsng.html</id><summary type="html">&lt;p&gt;Like many programmers, I have a couple of "Hello, World" projects that I've
+carried with me over the years. One is 5x5 (which has been used to get to
+grips with things as diverse as the Palm Pilot and GNU emacs). Another
+is &lt;a href="https://en.wikipedia.org/wiki/Norton_Guides"&gt;Norton Guides database&lt;/a&gt;
+&lt;a href="http://www.davep.org/norton-guides/"&gt;readers&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I've made Norton …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Like many programmers, I have a couple of "Hello, World" projects that I've
+carried with me over the years. One is 5x5 (which has been used to get to
+grips with things as diverse as the Palm Pilot and GNU emacs). Another
+is &lt;a href="https://en.wikipedia.org/wiki/Norton_Guides"&gt;Norton Guides database&lt;/a&gt;
+&lt;a href="http://www.davep.org/norton-guides/"&gt;readers&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I've made Norton Guides tools that have allowed web servers to serve guides
+(&lt;code&gt;w3ng&lt;/code&gt;), that have allowed you to convert guides to HTML (&lt;code&gt;ng2html&lt;/code&gt;), that
+have let you read guides on OS/2 and GNU/Linux (&lt;code&gt;eg&lt;/code&gt;) and also have let you
+read guides in Microsoft Windows (&lt;code&gt;weg&lt;/code&gt;). It's a problem I know fairly well
+and one where I know the solution well enough so I can concentrate on
+learning the new language or environment.&lt;/p&gt;
+&lt;p&gt;Recently I wanted to get to grips with some
+"pure" &lt;a href="http://es6-features.org/#Constants"&gt;ES6&lt;/a&gt; coding while also getting
+to know &lt;a href="https://nodejs.org/en/"&gt;node.js&lt;/a&gt;. A new version of the Norton Guide
+code, written for this environment, seemed like a good thing to do.&lt;/p&gt;
+&lt;p&gt;And so &lt;a href="https://github.com/davep/jsNG"&gt;jsNG&lt;/a&gt; was born.&lt;/p&gt;
+&lt;p&gt;At its core is &lt;a href="https://github.com/davep/jsNG/tree/master/lib"&gt;a library of code for opening and reading data from Norton
+Guides databases&lt;/a&gt;. While I
+doubt it's good ES6 code, or even good node.js code, it's been very useful
+in giving me a fun problem to solve and it'll carry on being something I'll
+tweak and tinker with by way of trying new things out.&lt;/p&gt;
+&lt;p&gt;On top of this I've built a handful of tools for working with Norton Guides
+databases. The most useful one at the moment (the others are more in the
+"test the library" than the "make something handy with the library"
+category) is &lt;code&gt;ngserve&lt;/code&gt;. This is designed as a simple Norton Guides database
+HTTP server.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ngserve in action" src="/attachments/2017/03/10/Screen Shot 2017-03-10 at 10.10.18.png"&gt;&lt;/p&gt;
+&lt;p&gt;When run, you give it a list of guides to serve:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Starting ngserve" src="/attachments/2017/03/10/Screen Shot 2017-03-10 at 10.26.44.png"&gt;&lt;/p&gt;
+&lt;p&gt;and it does the right thing. It has a small number of command line options
+that help configure what it does:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ngserve command line options" src="/attachments/2017/03/10/Screen Shot 2017-03-10 at 10.29.28.png"&gt;&lt;/p&gt;
+&lt;p&gt;Possibly the most useful are the ones that let you change how it handles
+"higher" DOS characters and, if you don't like the default colours and
+stuff, the option that lets you point to your own style sheet (note for now
+you'll need to host the stylesheet somewhere else -- ngserve won't serve it
+for you; I'm aiming to change that in some way in the near future).&lt;/p&gt;
+&lt;p&gt;jsNG does have a fairly basic design compromise at its heart. In the very
+early version I started out using the async functions for opening and
+reading the guides. This got very tedious very quickly and I could see that
+it was going to make for a very messy library with a very messy interface.
+While it might not be in the spirit of node.js programming I decided to go
+with the sync version of the file IO functions and code up the core library
+based around this.&lt;/p&gt;
+&lt;p&gt;This approach also means that I took another leap that I never have done
+with Norton Guides before: rather than doing the traditional thing of
+keeping an open handle into them and reading direct from the file as you
+navigate the guide, I simply read it all into a buffer in one go and keep it
+in memory. This is a "guides are small, memory is cheap, things will go
+faster" approach.&lt;/p&gt;
+&lt;p&gt;It does mean that when you load up a load of guides into &lt;code&gt;ngserve&lt;/code&gt; they're
+all sat in memory. The upside of this is that things should be a lot faster
+and the code is a lot easier to follow (I think). To put this in some
+perspective: I have a directory here that contains 110 Norton Guides files.
+They total 36M in size. If that seems like a lot of stuff to hold in
+memory... remind me how much is being used by your web browser so you can
+look at some hilarious kittens. ;)&lt;/p&gt;
+&lt;p&gt;Anyway, that's where I'm at with it right now. The code is mostly settled
+and mostly tidy. I need to write up some documentation for it (and so I need
+to take a look at good JavaScript documentation tools) and perhaps tinker
+with &lt;code&gt;ngserve&lt;/code&gt; a little more. I'd also like to do a new version of &lt;code&gt;ng2html&lt;/code&gt;
+with this -- a version that makes it &lt;em&gt;far&lt;/em&gt; easier to control the style of
+the output. I'm also tempted to do a CLI-based reader in pure ES6; something
+similar to &lt;code&gt;EG&lt;/code&gt; or &lt;code&gt;WEG&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;All in good time.&lt;/p&gt;</content><category term="Coding"></category><category term="Norton Guide"></category><category term="Development"></category><category term="JavaScript"></category></entry></feed>

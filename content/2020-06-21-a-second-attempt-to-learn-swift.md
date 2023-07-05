@@ -1,7 +1,7 @@
 ---
 layout: post
 title: A second attempt to learn Swift
-categories: []
+category: Coding
 tags: Swift, Apple, programming
 date: 2020-06-21 14:48:00+0100
 ---

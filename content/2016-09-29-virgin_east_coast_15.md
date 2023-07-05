@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Virgin East Coast 15
-categories: []
+category: Life
 tags: travel, Virgin
 date: 2016-09-29 13:12:19+0100
 ---

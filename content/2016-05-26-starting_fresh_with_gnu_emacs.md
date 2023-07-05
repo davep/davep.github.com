@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Starting fresh with GNU emacs
-categories: []
+category: Emacs
 tags: Emacs
 published: True
 date: 2016-05-26 12:28:48+0100

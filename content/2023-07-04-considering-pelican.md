@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Considering Pelican
-categories: []
+category: Meta
 tags: Python, Blogging
 date: 2023-07-04 08:32:00 +0100
 ---

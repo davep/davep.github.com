@@ -1,7 +1,7 @@
 ---
 layout: post
 title: A bit of a backlog at the Apple store
-categories: []
+category: Tech
 tags: Apple, iMac, OS X
 date: 2016-11-03 13:45:35+0000
 ---

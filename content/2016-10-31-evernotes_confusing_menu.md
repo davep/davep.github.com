@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Evernote's confusing menu
-categories: []
+category: Tech
 tags: Evernote, Programming
 date: 2016-10-31 11:38:41+0000
 ---

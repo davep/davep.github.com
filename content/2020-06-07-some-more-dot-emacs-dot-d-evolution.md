@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Some more ~/.emacs.d evolution
-categories: []
+category: Emacs
 tags: Emacs, Lisp, Emacs Lisp
 date: 2020-06-07 16:48:00+0100
 ---
