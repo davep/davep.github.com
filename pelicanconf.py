@@ -8,6 +8,7 @@ TIMEZONE        = "Europe/London"
 DEFAULT_LANG    = "en"
 DISQUS_SITENAME = "blogdaveporg"
 SITELOGO        = "/static/davep.jpeg"
+FAVICON         = "/static/favicon.ico"
 COPYRIGHT_NAME  = AUTHOR
 COPYRIGHT_YEAR  = "2015-2023"
 
