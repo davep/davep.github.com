@@ -6,7 +6,7 @@ tags: GitHub, Python, Textual
 date: 2023-07-03 08:15:00 +0100
 ---
 
-![](https://raw.githubusercontent.com/davep/davep/main/davep.svg)
+![My new GitHub banner](https://raw.githubusercontent.com/davep/davep/main/davep.svg)
 
 Ever since GitHub introduced the [profile
 README](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme)[^1]

@@ -50,6 +50,6 @@ and tweaked and changed and tinkered with my Emacs configuration?
 
 This is what it looked like:
 
-[![](https://img.youtube.com/vi/bH4G80aZgsM/0.jpg)](https://www.youtube.com/watch?v=bH4G80aZgsM)
+[![Visit YouTube](https://img.youtube.com/vi/bH4G80aZgsM/0.jpg)](https://www.youtube.com/watch?v=bH4G80aZgsM)
 
 [//]: # (2019-11-23-visual-evolution-of-emacs-config.md ends here)
