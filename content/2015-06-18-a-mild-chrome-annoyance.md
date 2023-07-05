@@ -48,3 +48,5 @@ I can happily pin it to the dock.
     It's that simple on ChromeOS too. In case you're wondering why I didn't
 also illustrate that, it's because you can't take a screenshot on ChromeOS
 while you've got a context menu open. O_o
+
+[//]: # (2015-06-18-a-mild-chrome-annoyance.md ends here)

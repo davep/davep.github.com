@@ -54,3 +54,5 @@ is just plain creepy (and who's responsible for having made the connection).
 to notice my tweet pointing to this post and [let me know the how and why of
 the above](https://twitter.com/caramev/status/614098764450496512). Turns out
 it's what Rich suggested in the comments.
+
+[//]: # (2015-06-25-medium-login-on-android-and-ios.md ends here)

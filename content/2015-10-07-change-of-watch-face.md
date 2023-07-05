@@ -39,3 +39,5 @@ going to be sticking with it for the next couple of days to see how I feel
 about it and see if I miss any of the other information.
 
 This might be a little bit of change I can cope with.
+
+[//]: # (2015-10-07-change-of-watch-face.md ends here)

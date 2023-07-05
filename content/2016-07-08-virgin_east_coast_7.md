@@ -38,3 +38,4 @@ backwards and forwards a few times to get to this point.
 
 Monday will be interesting.
 
+[//]: # (2016-07-08-virgin_east_coast_7.md ends here)

@@ -118,3 +118,5 @@ a company can't take the time to clearly and quickly state "yup, it's us, it's
 not you, we're looking into it..."
 
 [^1]: Don't even get me started on how the HH5 won't allow setting of DNS servers in the hub itself. That's stupid and frustrating beyond words.
+
+[//]: # (2015-11-18-my-first-proper-bt-broadband-outage.md ends here)

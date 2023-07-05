@@ -42,3 +42,5 @@ But taking "Until next alarm" away? That's just nuts.
 Sometimes I really get the impression that the Android developers are like the
 Chrome OS developers: they're having a ton of fun improving and onward developing
 the system but they have little connection to how people actually use this stuff.
+
+[//]: # (2015-11-12-i-miss-until-next-alarm.md ends here)

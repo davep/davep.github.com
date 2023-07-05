@@ -17,3 +17,5 @@ Well, it's now Thursday 14th and I've not had a peep out of them.
 I'm on a train today. I'm actually writing this on a train. I guess I'll
 have to think about chasing them up tomorrow (or perhaps at least chasing
 them up in email today).
+
+[//]: # (2016-07-14-virgin_east_coast_8.md ends here)

@@ -16,3 +16,5 @@ one anyway):
 I've never noticed it before. I'm not sure if this came about with
 [the upgrade to El Capitan](/2015/10/06/el-capitan.html) or not.
 But now I've seen it I can't unsee it.
+
+[//]: # (2015-10-07-imac-time-wiggle.md ends here)

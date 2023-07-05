@@ -24,3 +24,5 @@ It's a small thing, but it makes so much more sense and makes things so much
 easier (even if it's a trivial thing).
 
 Nice one Google. More of this please.
+
+[//]: # (2015-12-17-until-next-alarm-is-back.md ends here)

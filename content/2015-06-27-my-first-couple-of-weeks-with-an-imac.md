@@ -223,3 +223,5 @@ There's very few people I'd actually recommend one to though as it seems
 pretty clear to me that, generally, their money could buy them so much more.
 
 But it's a nice new shiny toy. ;)
+
+[//]: # (2015-06-27-my-first-couple-of-weeks-with-an-imac.md ends here)

@@ -79,3 +79,5 @@ Meanwhile.... the Ticket Wallet app is
 or password are incorrect.
 
 PS: "Thank you for your email dated 6th June 2016" -- it's July, not June.
+
+[//]: # (2016-07-06-virgin_east_coast_6.md ends here)

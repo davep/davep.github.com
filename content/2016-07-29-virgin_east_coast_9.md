@@ -94,3 +94,5 @@ So: I'm expecting a call back from them on Monday to get that process under
 way. I wonder if *this* callback will happen?
 
 [^1]: Do you see what I did there?
+
+[//]: # (2016-07-29-virgin_east_coast_9.md ends here)

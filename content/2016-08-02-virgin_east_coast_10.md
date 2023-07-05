@@ -23,3 +23,5 @@ It's starting to get a little tedious, always having to be the one to chase
 things up.
 
 But chase them up I will...
+
+[//]: # (2016-08-02-virgin_east_coast_10.md ends here)

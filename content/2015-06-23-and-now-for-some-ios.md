@@ -77,3 +77,5 @@ to be the case at all.
 
 Still, it's all a learning process and I know far more about Apple gear now
 than I did a week or so back, and I'm learning more as I go.
+
+[//]: # (2015-06-23-and-now-for-some-ios.md ends here)

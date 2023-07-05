@@ -133,3 +133,5 @@ we have that you're a liar, so ner."*
 
 Thank you Labour. At least I know where I stand now. You can safely assume
 that you'll never have my support ever again.
+
+[//]: # (2015-09-07-labour-said-no-thanks-to-my-support.md ends here)

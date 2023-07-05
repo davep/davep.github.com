@@ -2,7 +2,7 @@
 layout: post
 title: Hello, World!
 categories: []
-tags: blog, mac
+tags: blogging, Mac
 published: True
 date: 2015-06-18 14:53:00+0100
 ---

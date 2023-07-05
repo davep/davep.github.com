@@ -40,3 +40,5 @@ I need to use any more.
 And then there's my two Skype accounts (personal and work)...
 
 Make it stop! Please! And give me a merge facility!
+
+[//]: # (2015-10-19-microsoft-accounts.md ends here)

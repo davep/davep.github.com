@@ -26,3 +26,5 @@ I've tried rebooting the phone and that hasn't helped at all. While it's more
 of a vague annoyance than anything else (like I say above, my Android Wear
 device is my goto tool for talking to Google these days) it does frustrate a
 little when fairly expensive tools don't "just work".
+
+[//]: # (2015-11-11-voice-search-failing-on-nexus-6.md ends here)

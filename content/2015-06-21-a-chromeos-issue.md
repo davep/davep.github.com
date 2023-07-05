@@ -56,3 +56,5 @@ appeared to be getting worse as time went on.
 
 Hopefully this was a one-off and the problem isn't simply up in the beta
 cannel and waiting to head down to stable.
+
+[//]: # (2015-06-21-a-chromeos-issue.md ends here)

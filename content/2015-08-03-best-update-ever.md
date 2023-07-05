@@ -16,3 +16,5 @@ Oh! Improved update experience too! I really must install this then...
 ![Got an update](/attachments/2015/08/03/Screen Shot 2015-08-03 at 12.41.30.png)
 
 Well fuck.
+
+[//]: # (2015-08-03-best-update-ever.md ends here)

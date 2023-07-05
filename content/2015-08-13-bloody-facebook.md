@@ -59,3 +59,5 @@ They better.
 
 Meanwhile... I have a shiny new Facebook account. And I still find it confusing,
 ugly, unfriendly (in terms of design) and somewhat invasive.
+
+[//]: # (2015-08-13-bloody-facebook.md ends here)

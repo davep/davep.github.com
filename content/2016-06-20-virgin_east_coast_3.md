@@ -64,3 +64,5 @@ much the same link twice to say the same thing.
 
 Anyway, I tried it, it didn't work, they've had an email to say as much. Now
 I wait for the next step.
+
+[//]: # (2016-06-20-virgin_east_coast_3.md ends here)

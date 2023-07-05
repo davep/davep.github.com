@@ -59,3 +59,5 @@ open up and use.
 And that's what's happening with the Air. In fact, it's being used on the
 train right now; that's where I'm waffling on about this, to kill time,
 somewhere north of Newcastle, with the sea to my right and the snow coming down.
+
+[//]: # (2016-04-28-i-now-own-a-macbook.md ends here)

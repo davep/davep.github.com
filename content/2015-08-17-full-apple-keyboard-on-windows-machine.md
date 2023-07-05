@@ -65,3 +65,5 @@ work are worth it given just how comfortable this keyboard is to type on.
 
 I really do wish there was a Windows-oriented keyboard that had the exact same
 build quality.
+
+[//]: # (2015-08-17-full-apple-keyboard-on-windows-machine.md ends here)

@@ -61,3 +61,5 @@ as far as I can see, now that I've split the password I can't go back
 despite the fact that there's a method of doing it made available.
 
 Brilliant.
+
+[//]: # (2015-10-21-apple-accounts.md ends here)

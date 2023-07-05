@@ -37,3 +37,5 @@ I can make it happen every single time:
 
 So it looks like another fine example of the Apple "it just works" thing.
 For "doesn't always just work" values of "just works".
+
+[//]: # (2015-11-02-how-to-kill-os-xs-helpviewer.md ends here)

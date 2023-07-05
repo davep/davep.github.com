@@ -241,3 +241,5 @@ The main thing I take away from this today though is that, if you (as
 appears to have happened a few times today) follow a script and don't
 *actually* read what the customer is writing, it's going to turn into a very
 frustrating experience; especially for the customer.
+
+[//]: # (2016-06-17-virgin_east_coast.md ends here)

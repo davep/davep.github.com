@@ -62,3 +62,5 @@ without screwing up the apps that are assigned to actions?
 As much as I really like what Google offer, as much as I value their services
 and global platform over the other choices, this sort of thing frustrates the
 hell out of me.
+
+[//]: # (2015-06-25-did-google-just-break-wear-timers.md ends here)

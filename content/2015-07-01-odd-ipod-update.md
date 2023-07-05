@@ -41,3 +41,5 @@ turning it off and on again?"
 Once again I find myself running into things on a Mac that are very common
 elsewhere, on other operating systems, and which Mac owners would often have
 you believe weren't an issue.
+
+[//]: # (2015-07-01-odd-ipod-update.md ends here)

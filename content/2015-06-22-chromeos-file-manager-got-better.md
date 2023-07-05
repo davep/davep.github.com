@@ -39,3 +39,5 @@ the list of services you can install will grow over time.
 
 For people who want to do a little more than just browse the web, Chromebooks
 (and other Chrome* devices for that matter) just got a little more useful.
+
+[//]: # (2015-06-22-chromeos-file-manager-got-better.md ends here)

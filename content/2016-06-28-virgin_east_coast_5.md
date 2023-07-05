@@ -64,3 +64,5 @@ to ignore).
 
 So.... no still no solution, but some welcome help from them to be going on
 with. Can't grumble at that.
+
+[//]: # (2016-06-28-virgin_east_coast_5.md ends here)

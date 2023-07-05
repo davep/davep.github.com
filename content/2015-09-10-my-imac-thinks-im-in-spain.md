@@ -37,3 +37,5 @@ the remote chance that it was tickling some sort of odd bug in OS X.
 
 So, yes, another wonderful example of Apple stuff "just working" and being
 good for mortals. Well, for interesting values of "working" anyway.
+
+[//]: # (2015-09-10-my-imac-thinks-im-in-spain.md ends here)

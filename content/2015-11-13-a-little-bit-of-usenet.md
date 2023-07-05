@@ -60,3 +60,5 @@ and....
 Now that's all sorted I should try again with `slrn`. At which point I'll need
 to drag out and tidy up `post.el` ([the version that was being maintained
 by some other people seems to have gone very stale](http://post-mode.sourceforge.net/), sadly).
+
+[//]: # (2015-11-13-a-little-bit-of-usenet.md ends here)

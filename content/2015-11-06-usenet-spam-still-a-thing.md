@@ -34,3 +34,5 @@ with me look exactly like some old Usenet spam.
 
 **Edit to add:** I've since had it confrimed by the sender of the email that
 my address was indeed pulled from [comp.lang.clipper](news:comp.lang.clipper).
+
+[//]: # (2015-11-06-usenet-spam-still-a-thing.md ends here)

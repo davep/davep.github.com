@@ -32,3 +32,5 @@ those extensions was (and I wasn't even using it at the time):
 ![Chrome ssh extension crashes for no reason](/attachments/2015/06/19/Screen Shot 2015-06-19 at 09.12.34.png)
 
 Not exactly the best advert for the non-optional replacement.
+
+[//]: # (2015-06-19-chromeos-ssh-has-gone-sort-of.md ends here)

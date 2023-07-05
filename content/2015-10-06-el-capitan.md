@@ -53,3 +53,5 @@ have to do anything that required much in the way of knowledge to keep it
 all going.
 
 Doubtless that won't always be the case, such is the nature of OS upgrades.
+
+[//]: # (2015-10-06-el-capitan.md ends here)

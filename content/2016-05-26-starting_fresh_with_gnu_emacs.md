@@ -136,3 +136,5 @@ but, this time around I'm giving [hyde](https://melpa.org/#/hyde) and
 [markdown-mode](https://melpa.org/#/markdown-mode) a go. So far
 they're working out pretty well too (albeit hyde was a bit odd to set
 up and isn't 100% making sense to me yet).
+
+[//]: # (2016-05-26-starting_fresh_with_gnu_emacs.md ends here)

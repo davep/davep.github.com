@@ -43,3 +43,5 @@ I've tried setting timers in voice on the watch a few times since and it's yet
 to fail.
 
 It would appear, as odd as it is, that this is the fix. Well, a fix.
+
+[//]: # (2015-06-26-wear-timer-issue-fixed-sort-of.md ends here)

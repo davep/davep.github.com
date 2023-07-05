@@ -102,3 +102,5 @@ in the near future.
 Curious how the thing it didn't ask was what app I was using, what version
 it was, what mobile device it was being used on, what OS, what OS version,
 etc...
+
+[//]: # (2016-06-18-virgin_east_coast_2.md ends here)

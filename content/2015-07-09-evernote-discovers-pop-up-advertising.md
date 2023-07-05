@@ -55,3 +55,5 @@ It's having me wonder if, in fact, I should be looking for an alternative that
 isn't giving this impression.
 
 Yes, even one that I'd need to pay for.
+
+[//]: # (2015-07-09-evernote-discovers-pop-up-advertising.md ends here)

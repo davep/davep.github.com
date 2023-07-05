@@ -80,3 +80,5 @@ The serious side of this is, of course, I can't trust the Virgin East Coast
 website or their booking system, so I have to continue using a third party,
 which means Virgin still get to grab an extra tenner off me on every trip so
 I can have WiFi and get some work done.
+
+[//]: # (2016-06-27-virgin_east_coast_4.md ends here)

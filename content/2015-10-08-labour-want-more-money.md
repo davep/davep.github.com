@@ -88,3 +88,5 @@ up as a bad job and accept that, really, nothing has changed and they're as
 bad as ever. Corbyn might well be talking a good game but, under that cover,
 it's still just another money-grabbing organisation that wants power and
 very little change.
+
+[//]: # (2015-10-08-labour-want-more-money.md ends here)
