@@ -88,3 +88,5 @@ For now though... I'll stick with keeping things nice and simple.
     repo: it was a private repo where I was slowly working on a (now
     abandoned, I'll start it again some day I'm sure) ground-up rewrite of
     my `davep.org` website.
+
+[//]: # (2023-07-03-making-my-github-banner.md ends here)

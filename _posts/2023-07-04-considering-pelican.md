@@ -80,3 +80,5 @@ Let's see how long it takes me to actually get around to making the switch.
     for the blog to older versions because of Ruby version issues; I'm sure
     that Ruby has virtual environment solutions akin to Python, but diving
     into that just for one tool... nah.
+
+[//]: # (2023-07-04-considering-pelican.md ends here)
