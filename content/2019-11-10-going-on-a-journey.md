@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Going on a journey"
+title: Going on a journey
 categories: []
-tags: [ "python" ]
+tags: Python
 date: 2019-11-10 14:32:00+0000
 ---
 

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Seen by davep (the return)"
+title: Seen by davep (the return)
 categories: []
-tags: [ blog, photography ]
+tags: blog, photography
 date: 2016-11-15 15:52:15+0000
 ---
 
@@ -48,3 +48,5 @@ a post on the blog from it.
 
 As for how often and what the content will be... simple: it'll be when I see
 something that I need to capture.
+
+[//]: # (2016-11-15-seen_by_davep_(the_return).md ends here)

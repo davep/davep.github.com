@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Virgin East Coast 12"
+title: Virgin East Coast 12
 categories: []
-tags: [ travel, Virgin ]
+tags: travel, Virgin
 date: 2016-08-10 16:17:29+0100
 ---
 
@@ -150,10 +150,12 @@ get my issues solved. Here's the outcome of that conversation:
   a paying customer. While I'd never hold myself up as a typical customer,
   and especially not one who has any particular insight, I think it's an
   impressive approach to take.
-  
+
 I am, of course, feeling cautious about all of the above. It is "just"
 another set of promises that could be easily broken and, so far, VEC don't
 have a brilliant track record of doing that. But the promises appeared
 genuine and to think otherwise would be to not allow them to fix the issues.
 
 I'll write more about it on the blog as things happen.
+
+[//]: # (2016-08-10-virgin_east_coast_12.md ends here)

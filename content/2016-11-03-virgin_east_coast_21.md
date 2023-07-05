@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Virgin East Coast 21"
+title: Virgin East Coast 21
 categories: []
-tags: [ travel, Virgin ]
+tags: travel, Virgin
 date: 2016-11-03 13:00:25+0000
 ---
 
@@ -51,3 +51,5 @@ software is buggy, they can't fix it any time soon, and I'm out of luck.
 
 As for the extra free tickets I was promised a couple of weeks back now...
 they've still not appeared. Time for me to chase that up *again*.
+
+[//]: # (2016-11-03-virgin_east_coast_21.md ends here)

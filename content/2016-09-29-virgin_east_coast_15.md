@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Virgin East Coast 15"
+title: Virgin East Coast 15
 categories: []
-tags: [ travel, Virgin ]
+tags: travel, Virgin
 date: 2016-09-29 13:12:19+0100
 ---
 
@@ -41,3 +41,5 @@ bottom of the problem with the Ticket Wallet app.
 
 Frustratingly and amusingly I suspect I'll finally get an answer around the
 time I don't need to use the train quite so much.
+
+[//]: # (2016-09-29-virgin_east_coast_15.md ends here)

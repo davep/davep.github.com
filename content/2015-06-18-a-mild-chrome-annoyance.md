@@ -2,7 +2,7 @@
 layout: post
 title: A mild Chrome annoyance
 categories: []
-tags: Google Chrome Mac Windows
+tags: Google, Chrome, Mac, Windows
 published: True
 date: 2015-06-18 16:49:24+0100
 ---

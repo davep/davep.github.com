@@ -2,7 +2,7 @@
 layout: post
 title: Catching up
 categories: []
-tags: [ "Mac", "Apple" ]
+tags: Mac, Apple
 date: 2023-07-02 08:00:00 +0100
 ---
 
@@ -44,3 +44,5 @@ creating and recording.
 Note of course I said "try" and make a promise.
 
 We'll see. ;-)
+
+[//]: # (2023-07-02-catching-up.md ends here)

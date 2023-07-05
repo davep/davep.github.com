@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "EmacsConf 2019 videos are out"
+title: EmacsConf 2019 videos are out
 categories: []
-tags: [ "emacs" ]
+tags: Emacs
 date: 2019-11-24 17:17:00+0000
 ---
 

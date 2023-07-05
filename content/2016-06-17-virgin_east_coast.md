@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Virgin East Coast"
+title: Virgin East Coast
 categories: []
-tags: [ travel, Virgin ]
+tags: travel, Virgin
 date: 2016-06-17 21:13:18+0100
 ---
 
@@ -126,7 +126,7 @@ The reply? This:
 > registered that device before, it will ask you to name your device. That
 > name will then be shown in your account and when buying tickets, so you
 > can choose which device to send your tickets to.
-> 
+>
 > Thank you for contacting the Virgin Trains East Coast web support team,
 > should you require any further assistance please don’t hesitate to contact
 > us on 03457 225 111.
@@ -179,7 +179,7 @@ app (I was, of course) and if I'd registered with the website first. O_o
 
 So, after a lot of back and forth, I'd got nowhere with this. I did, a
 little while later, get an email asking for my phone number so they could
-call me; I replied with it. 
+call me; I replied with it.
 
 The phone call came a little later on. It didn't go well.
 

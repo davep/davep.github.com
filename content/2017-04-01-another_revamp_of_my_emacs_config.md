@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Another revamp of my emacs config"
+title: Another revamp of my emacs config
 categories: []
-tags: [emacs, lisp, programming]
+tags: Emacs, Lisp, Emacs Lisp, Programming
 date: 2017-04-01 10:02:18+0100
 ---
 
@@ -131,3 +131,4 @@ it was before and, I think, even easier to maintain. Right now I think I'm
 very close to the ideal emacs config that I wanted to create when I did the
 complete rewrite a year ago.
 
+[//]: # (2017-04-01-another_revamp_of_my_emacs_config.md ends here)

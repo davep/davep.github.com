@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "I want to like Gboard"
+title: I want to like Gboard
 categories: []
-tags: [ Google, Android ]
+tags: Google, Android
 date: 2017-03-13 08:29:16+0000
 ---
 
@@ -82,3 +82,5 @@ I guess I'm going to have to keep Gboard as a backup keyboard for those
 times when I need to find the perfect gif.
 
 ![Google WTF](http://i.imgur.com/0mw1I8e.gif)
+
+[//]: # (2017-03-13-i_want_to_like_gboard.md ends here)

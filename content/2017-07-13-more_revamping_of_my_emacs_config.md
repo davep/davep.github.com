@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "More revamping of my Emacs config"
+title: More revamping of my Emacs config
 categories: []
-tags: [emacs, lisp, programming]
+tags: Emacs, Lisp, programming, Emacs Lisp
 date: 2017-07-13 15:25:29+0100
 ---
 
@@ -63,3 +63,5 @@ Meanwhile, I've not seen any good discussions online about `customize` vs
 "religious issue" for people to have endless disagreements over. I guess,
 over the next couple or so weeks, I'll find out if switching back was a good
 idea.
+
+[//]: # (2017-07-13-more_revamping_of_my_emacs_config.md ends here)

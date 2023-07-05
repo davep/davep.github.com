@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Why I really like fish abbreviations"
-categories: []
-tags: [ "TIL", "fish", "shell" ]
+title: Why I really like fish abbreviations
+category: TIL
+tags: fish, shell
 date: 2019-10-23 00:18:00+0100
 ---
 

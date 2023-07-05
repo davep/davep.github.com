@@ -2,7 +2,7 @@
 layout: post
 title: My iMac thinks I'm in Spain
 categories: []
-tags: [ Mac, Apple, iMac ]
+tags: Mac, Apple, iMac
 published: True
 date: 2015-09-10 14:44:01+0100
 ---

@@ -2,7 +2,7 @@
 layout: post
 title: A ChromeOS issue
 categories: []
-tags: [ ChromeOS ChromeBook Samsung ]
+tags: ChromeOS, ChromeBook, Samsung
 published: True
 date: 2015-06-21 20:05:44+0100
 ---

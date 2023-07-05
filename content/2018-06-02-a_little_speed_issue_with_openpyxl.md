@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "A little speed issue with openpyxl"
+title: A little speed issue with openpyxl
 categories: []
-tags: [python openpyxl]
+tags: Python, openpyxl
 date: 2018-06-02 13:16:37+0100
 ---
 
@@ -106,3 +106,5 @@ was this wasn't exactly easy to find, I thought I'd write it all down too
 and [create a repository of some test code to illustrate the
 issue](https://github.com/davep/openpyxl-speed-issue). Hopefully someone
 else will benefit from this in the future.
+
+[//]: # (2018-06-02-a_little_speed_issue_with_openpyxl.md ends here)

@@ -2,7 +2,7 @@
 layout: post
 title: My first proper BT broadband outage
 categories: []
-tags: [ Broadband, BT, Communication ]
+tags: Broadband, BT, Communication
 published: True
 date: 2015-11-18 11:25:29+0000
 ---

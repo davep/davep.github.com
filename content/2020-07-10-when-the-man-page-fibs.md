@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "When the man page fibs"
+title: When the man page fibs
 categories: []
-tags: [ "homebrew", "macos", "unix", "python" ]
+tags: homebrew, macOS, Unix, Python
 date: 2020-07-10 20:58:00+0100
 ---
 

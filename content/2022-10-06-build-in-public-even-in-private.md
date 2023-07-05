@@ -2,7 +2,7 @@
 layout: post
 title: Build in public, even in private
 categories: []
-tags: [ "programming" ]
+tags: programming
 date: 2022-10-06 10:44:00 +0100
 ---
 

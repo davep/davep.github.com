@@ -2,7 +2,7 @@
 layout: post
 title: My first couple of weeks with an iMac
 categories: []
-tags: [ Mac, Apple, iMac, Unix, emacs ]
+tags: Mac, Apple, iMac, Unix, Emacs
 published: True
 date: 2015-06-27 18:41:57+0100
 ---

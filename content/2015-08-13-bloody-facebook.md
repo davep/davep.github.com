@@ -2,7 +2,7 @@
 layout: post
 title: Bloody Facebook
 categories: []
-tags: [ Facebook ]
+tags: Facebook
 published: True
 date: 2015-08-13 09:15:45+0100
 ---

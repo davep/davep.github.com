@@ -2,7 +2,7 @@
 layout: post
 title: El Capitan
 categories: []
-tags: [ Mac, Apple, iMac, OSX ]
+tags: Mac, Apple, iMac, OS X
 published: True
 date: 2015-10-06 13:53:12+0100
 ---

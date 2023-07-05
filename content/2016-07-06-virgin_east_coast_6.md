@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Virgin East Coast 6"
+title: Virgin East Coast 6
 categories: []
-tags: [ travel, Virgin ]
+tags: travel, Virgin
 date: 2016-07-06 17:22:28+0100
 ---
 
@@ -19,28 +19,28 @@ I'd asked them:
 Later on in the day I got a reply:
 
 > Dear Dave
-> 
+>
 > Thank you for your email dated 6th June 2016 concerning the tickets that
 > you have not booked with us yet and the fact that your Mobile App ticket
 > wallet is not able to show you anything after you have installed it.
-> 
+>
 > I am sorry to hear that there has been a mix up with the confirming to you
 > if your email address has been registered or not and a such I wish to
 > clarify this for you, also that there has been such a delay in responding
 > to you.
-> 
+>
 > I can now confirm that your email address davep.org+virgin@gmail.com is
 > registered on our website and that you have signed up for our Ticket
 > wallet app successfully. We apologise for telling you that it was not but
 > this could well have been that we were searching your email address that
 > you have been emailing us from and this is what has caused the confusion.
-> 
+>
 > With regards to the use of our Ticket Wallet app before you have made a
 > booking with us either on that or on our desktop site, it is believed that
 > you will not be able to see much at all within the app before you make a
 > booking with us however we have made the raise about this for you and we
 > chased this up on the 27th June when you emailed us previously.
-> 
+>
 > I will chase this up again however if possible please confirm what page
 > you get to in the ticket wallet app at the moment so that we can identify
 > if this is normal for a customer has no booking allocated to the app.

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Virgin East Coast 17"
+title: Virgin East Coast 17
 categories: []
-tags: [ travel, Virgin ]
+tags: travel, Virgin
 date: 2016-10-19 11:28:25+0100
 ---
 
@@ -64,3 +64,5 @@ I'm really not in the business of telling people how to do their jobs but...
 wouldn't customer relations involve actually talking to customers and
 delivering on promises made to them when you do talk to them? That strikes
 me as the sensible thing to do.
+
+[//]: # (2016-10-19-virgin_east_coast_17.md ends here)

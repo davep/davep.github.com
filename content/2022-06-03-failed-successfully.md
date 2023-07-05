@@ -2,7 +2,7 @@
 layout: post
 title: Failed successfully
 categories: []
-tags: [ "UI", "UX" ]
+tags: UI, UX
 date: 2022-06-03 09:05:05 +0100
 ---
 

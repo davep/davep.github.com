@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Virgin East Coast 4"
+title: Virgin East Coast 4
 categories: []
-tags: [ travel, Virgin ]
+tags: travel, Virgin
 date: 2016-06-27 10:00:14+0100
 ---
 
@@ -16,7 +16,7 @@ they'd gone so quiet.
 I've had a reply this morning:
 
 > Dear Dave
-> 
+>
 >
 > Thank you for your email chaser today with regards to the Mobile app that
 > you registered on and now cannot sign into it to test the device before
@@ -36,7 +36,7 @@ I've had a reply this morning:
 > registered on this but your email address does not show on our system as
 > being registered so we just want to ensure that we have explored all
 > areas.
-> 
+>
 > Once we have this from you we can then add this to the valuable
 > information that you have already provided and chase this up for you.
 

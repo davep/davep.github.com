@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Helping myself change the default git branch"
+title: Helping myself change the default git branch
 categories: []
-tags: [ "git" ]
+tags: git
 date: 2020-07-09 20:17:00+0100
 ---
 

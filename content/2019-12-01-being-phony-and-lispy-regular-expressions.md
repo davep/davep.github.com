@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Being phony, and Lispy regular expressions"
+title: Being phony, and Lispy regular expressions
 categories: []
-tags: [ "emacs", "lisp" ]
+tags: Emacs, Lisp, Emacs Lisp
 date: 2019-12-01 16:42:00+0000
 ---
 

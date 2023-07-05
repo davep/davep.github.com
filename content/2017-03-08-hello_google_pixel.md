@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Hello Google Pixel"
+title: Hello Google Pixel
 categories: []
-tags: [ Google, Android, Phone ]
+tags: Google, Android, Phone
 date: 2017-03-08 12:22:05+0000
 ---
 
@@ -58,3 +58,5 @@ gets exposed to rain would be nice.
 Other than that... there's not much else to say right now. It works and
 works well, the move from the N6 to it was pretty smooth and the Pixel has
 fallen perfectly into my normal routine.
+
+[//]: # (2017-03-08-hello_google_pixel.md ends here)

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Google Now Achievements?"
+title: Google Now Achievements?
 categories: []
-tags: [ Google ]
+tags: Google
 date: 2017-03-12 12:16:17+0000
 ---
 
@@ -38,3 +38,5 @@ don't *know* that's the case, but it has that sort of feel.
 So now I need to go looking for what this Achievements thing is all about.
 
 Using Google, obviously.
+
+[//]: # (2017-03-12-google_now_achievements?.md ends here)

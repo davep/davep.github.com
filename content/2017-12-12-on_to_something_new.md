@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "On to something new"
+title: On to something new
 categories: []
-tags: [programming, work, life]
+tags: programming, work, life
 date: 2017-12-12 13:59:01+0000
 ---
 
@@ -47,3 +47,5 @@ I'll be in and so that I can understand the needs of my users.
 
 Goodbye fashion retail and all related things. Hello genetics and... well, I
 don't know, I'm going to find out. :)
+
+[//]: # (2017-12-12-on_to_something_new.md ends here)

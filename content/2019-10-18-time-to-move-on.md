@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Time to move on"
+title: Time to move on
 categories: []
-tags: []
+tags: blogging
 date: 2019-10-18 17:42:00+0100
 ---
 
@@ -35,3 +35,5 @@ Anyway, enough of all this waffle. If you land here and it looks kind of
 quiet, that's because it has been quiet for a while and I'm now going to try
 and concentrate elsewhere, with a wish to do some coding-related writing now
 and again.
+
+[//]: # (2019-10-18-time-to-move-on.md ends here)

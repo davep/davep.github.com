@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Where I live and work"
+title: Where I live and work
 categories: []
-tags: [ "emacs", "shell" ]
+tags: Emacs, shell
 date: 2020-01-11 14:17:00+0000
 ---
 

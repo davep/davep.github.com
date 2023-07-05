@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Virgin East Coast 19"
+title: Virgin East Coast 19
 categories: []
-tags: [ travel, Virgin ]
+tags: travel, Virgin
 date: 2016-10-27 11:21:19+0100
 ---
 
@@ -34,3 +34,5 @@ I'm not surprised. I'm not in the least bit surprised. I am, however, rather
 disappointed.
 
 And, of course, I'm now going to have to chase things up *again*.
+
+[//]: # (2016-10-27-virgin_east_coast_19.md ends here)

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "A bit of a backlog at the Apple store"
+title: A bit of a backlog at the Apple store
 categories: []
-tags: [ Apple, iMac, OSX ]
+tags: Apple, iMac, OS X
 date: 2016-11-03 13:45:35+0000
 ---
 
@@ -54,3 +54,5 @@ a sticky key on my Macbook.
 
 Remind me again how the nice thing with Apple gear is that it "just
 works"...
+
+[//]: # (2016-11-03-a_bit_of_a_backlog_at_the_apple_store.md ends here)

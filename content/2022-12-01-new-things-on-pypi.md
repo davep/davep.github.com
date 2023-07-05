@@ -2,7 +2,7 @@
 layout: post
 title: New Things On PyPi
 categories: []
-tags: [ "python", "programming" ]
+tags: Python, programming
 date: 2022-12-01 22:13:00 +0000
 ---
 

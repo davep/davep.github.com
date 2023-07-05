@@ -2,7 +2,7 @@
 layout: post
 title: How to kill OS X's HelpViewer
 categories: []
-tags: [ Apple, iMac, OSX ]
+tags: Apple, iMac, OS X
 published: True
 date: 2015-11-02 15:38:26+0000
 ---

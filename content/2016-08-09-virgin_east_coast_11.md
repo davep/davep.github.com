@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Virgin East Coast 11"
+title: Virgin East Coast 11
 categories: []
-tags: [ travel, Virgin ]
+tags: travel, Virgin
 date: 2016-08-09 08:19:46+0100
 ---
 
@@ -22,7 +22,7 @@ arrive within a couple of working days. Given that was last Tuesday I think
 it's fair to say that it should have turned up by last Friday.
 
 Thing is, when I'd spoken to that chap the week before he'd assured me that
-they'd send this cheque by recorded delivery to ensure that it got through. 
+they'd send this cheque by recorded delivery to ensure that it got through.
 
 I still don't have the cheque.
 
@@ -34,7 +34,7 @@ I guess this means one of 3 things has happened:
   disappearing into.
 - He did send it, via recorded delivery, and we now have some clue as to
   where the above black hole is located.
-  
+
 Whatever the cause, I'm going to have to drop him a line again and find out
 what's happening.
 
@@ -103,10 +103,12 @@ all promised by them:
   promised on 2016-07-29 and which was supposed to have happened some time
   between 2016-08-01 and 2016-08-05. This contact to, in part, deal with the
   two contact failures above.
-  
+
 The unwillingness or inability to stay in contact with a customer who has
 problems does seem to be a persistent pattern. One that seems to go to the
 top.
 
 Right, time to publish this and start sending out even more chase-up emails.
 I guess it gives me something to keep me busy when I'm on the train.
+
+[//]: # (2016-08-09-virgin_east_coast_11.md ends here)

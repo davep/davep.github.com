@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "My VR recording setup"
+title: My VR recording setup
 categories: []
-tags: [ "VR", "YouTube", "PCVR" ]
+tags: VR, YouTube, PCVR
 date: 2022-05-28 17:01:00+0100
 ---
 

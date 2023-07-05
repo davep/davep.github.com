@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Virgin East Coast 3"
+title: Virgin East Coast 3
 categories: []
-tags: [ travel, Virgin ]
+tags: travel, Virgin
 date: 2016-06-20 10:33:19+0100
 ---
 
@@ -16,15 +16,15 @@ didn't contain anything in response to what I'd written (so it looks like
 I'm never going to find out what a TOC is! *sadface*) but it did say this:
 
 > To Dave Pearson,
->  
+>
 > Thank you for your response.
->  
+>
 > Please attempt to change your password via the ‘forgotten password’
 > process.
->  
+>
 > Once you have amended your password, please attempt to sign into your
 > Virgin Trains East Coast Ticket Wallet App.
->  
+>
 > I apologise for the inconvenience, and thank you for your patience.
 
 I'll admit that I wasn't convinced by this plan. There was no explanation as

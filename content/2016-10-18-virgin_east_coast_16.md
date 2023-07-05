@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Virgin East Coast 16"
+title: Virgin East Coast 16
 categories: []
-tags: [ travel, Virgin ]
+tags: travel, Virgin
 date: 2016-10-18 13:27:00+0100
 ---
 
@@ -90,3 +90,5 @@ the issue any more because I'm already receiving the best help that Virgin
 East Coast's MD can offer, apparently.
 
 Anyone got Richard Branson's phone number?
+
+[//]: # (2016-10-18-virgin_east_coast_16.md ends here)

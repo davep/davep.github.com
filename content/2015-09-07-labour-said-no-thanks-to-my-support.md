@@ -2,7 +2,7 @@
 layout: post
 title: Labour said no thanks to my support
 categories: []
-tags: [ Politics, Labour, Purge]
+tags: Politics, Labour, Labour Purge
 published: True
 date: 2015-09-07 12:16:30+0100
 ---

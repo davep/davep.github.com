@@ -2,7 +2,7 @@
 layout: post
 title: On to something new (redux)
 categories: []
-tags: [ "programming", "work", "life", "python" ]
+tags: Programming, work, life, Python
 date: 2022-10-05 09:24:00 +0100
 ---
 

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Reading 2bit files (for fun) - the index"
+title: Reading 2bit files (for fun) - the index
 categories: []
-tags: [ "bioinformatics" ]
+tags: Bioinformatics
 date: 2020-09-05 10:59:00+0100
 ---
 

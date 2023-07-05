@@ -2,7 +2,7 @@
 layout: post
 title: I miss "Until next alarm"
 categories: []
-tags: [ Android, Google, Marshmallow ]
+tags: Android, Google, Marshmallow
 published: True
 date: 2015-11-12 14:20:23+0000
 ---

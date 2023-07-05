@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Evernote's confusing menu"
+title: Evernote's confusing menu
 categories: []
-tags: [ Evernote, Programming ]
+tags: Evernote, Programming
 date: 2016-10-31 11:38:41+0000
 ---
 
@@ -66,3 +66,5 @@ and enabling the option, sorted it. It's still really odd they'd promote the
 facility via the blog and not mention it, and also very odd that the option
 would always show until the first time you're in a position to use it, and
 then it'd disappear.
+
+[//]: # (2016-10-31-evernotes_confusing_menu.md ends here)

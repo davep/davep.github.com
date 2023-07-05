@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Virgin East Coast 18"
+title: Virgin East Coast 18
 categories: []
-tags: [ travel, Virgin ]
+tags: travel, Virgin
 date: 2016-10-24 11:29:09+0100
 ---
 
@@ -41,3 +41,5 @@ be different.
 
 Will I get an update? Will I finally get a call about the Ticket Wallet app?
 Will the extra tickets turn up?
+
+[//]: # (2016-10-24-virgin_east_coast_18.md ends here)

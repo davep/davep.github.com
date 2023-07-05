@@ -2,7 +2,7 @@
 layout: post
 title: Until next alarm is back
 categories: []
-tags: [ Android, Google, Marshmallow ]
+tags: Android, Google, Marshmallow
 published: True
 date: 2015-12-17 11:32:44+0000
 ---

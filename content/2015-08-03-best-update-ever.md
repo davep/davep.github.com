@@ -2,7 +2,7 @@
 layout: post
 title: Best update ever
 categories: []
-tags: [ Adobe, iMac, OSX, Creative Cloud]
+tags: Adobe, iMac, OS X, Creative Cloud
 published: True
 date: 2015-08-03 12:46:12+0100
 ---

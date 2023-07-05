@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Virgin East Coast 20"
+title: Virgin East Coast 20
 categories: []
-tags: [ travel, Virgin ]
+tags: travel, Virgin
 date: 2016-10-29 16:53:00+0100
 ---
 
@@ -39,3 +39,5 @@ so easy to deliver on it (or address the issue of not delivering on it).
 
 So now I wait. Again. I'll be sure to update when something happens (or
 doesn't).
+
+[//]: # (2016-10-29-virgin_east_coast_20.md ends here)

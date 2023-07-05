@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "My Pylint shame"
+title: My Pylint shame
 categories: []
-tags: [ "python", "fish" ]
+tags: Python, fish
 date: 2019-11-04 20:39:00+0000
 ---
 

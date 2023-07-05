@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Virgin East Coast 5"
+title: Virgin East Coast 5
 categories: []
-tags: [ travel, Virgin ]
+tags: travel, Virgin
 date: 2016-06-28 14:46:36+0100
 ---
 
@@ -18,7 +18,7 @@ email from them. I replied (after writing yesterday's blog post):
 > than once now. During my first phone conversation with support I was told
 > I wasn't in the system and then, when I demonstrated that I had to be, I
 > was magically "found" after some magic "fix" was applied on the fly. Now
-> I'm being told I don't exist again. 
+> I'm being told I don't exist again.
 >
 > I seem to be going backwards with this rather than going forwards, and
 > what's even more frustrating is that any question I ask seems to get

@@ -2,7 +2,7 @@
 layout: post
 title: ChromeOS ssh has gone! (sort of)
 categories: []
-tags: chrome chromeos chromebook ssh
+tags: chrome, chromeos, chromebook, ssh
 published: True
 date: 2015-06-19 09:10:06+0100
 ---

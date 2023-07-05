@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Virgin East Coast 13"
+title: Virgin East Coast 13
 categories: []
-tags: [ travel, Virgin ]
+tags: travel, Virgin
 date: 2016-09-02 09:54:21+0100
 ---
 
@@ -82,3 +82,5 @@ So that's where I'm at: one problem solved (with an offshoot curiosity that
 I'm trying to get to the bottom of) and one outstanding.
 
 Not perfect. Not terrible either.
+
+[//]: # (2016-09-02-virgin_east_coast_13.md ends here)

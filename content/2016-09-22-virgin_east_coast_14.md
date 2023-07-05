@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Virgin East Coast 14"
+title: Virgin East Coast 14
 categories: []
-tags: [ travel, Virgin ]
+tags: travel, Virgin
 date: 2016-09-22 10:55:02+0100
 ---
 
@@ -36,3 +36,5 @@ It's
 [now over 3 months since I first reported the Ticket Wallet app problem](/2016/06/17/virgin_east_coast.html)
 and I seem to be no closer to seeing it resolved, or even having an
 explanation as to the cause of the problem.
+
+[//]: # (2016-09-22-virgin_east_coast_14.md ends here)

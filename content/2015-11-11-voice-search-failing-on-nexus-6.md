@@ -2,7 +2,7 @@
 layout: post
 title: Voice search failing on Nexus 6
 categories: []
-tags: [ Google, Android, Nexus ]
+tags: Google, Android, Nexus
 published: True
 date: 2015-11-11 16:07:25+0000
 ---

@@ -2,7 +2,7 @@
 layout: post
 title: Hello, World!
 categories: []
-tags: blog Mac
+tags: blog, mac
 published: True
 date: 2015-06-18 14:53:00+0100
 ---
@@ -55,3 +55,5 @@ attached to the blog. **Update:** This has now happened.
 
 Anyway, that's it for now. Time to push this up and think some more about
 where it'll go from here.
+
+[//]: # (2015-06-18-hello-world.md ends here)
