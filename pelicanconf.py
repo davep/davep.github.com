@@ -18,10 +18,6 @@ DELETE_OUTPUT_DIRECTORY = True
 STATIC_PATHS            = ["attachments", "static"]
 DATE_FORMATS            = {"en": "%Y-%m-%d"}
 
-# EXTRA_PATH_METADATA = {
-#     "static/davep.css": {"path": "static/davep.css"},
-# }
-
 ##############################################################################
 # Theme control.
 THEME                                      = "flex"
