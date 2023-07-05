@@ -7,8 +7,8 @@ themes  := $(run) pelican-themes
 
 ##############################################################################
 # Manage the site.
-.PHONY: publish
-publish:
+.PHONY: generate
+generate:
 	$(pelican) --settings publishconf.py
 
 .PHONY: serve
