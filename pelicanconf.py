@@ -40,11 +40,10 @@ AUTHOR_FEED_RSS       = None
 ##############################################################################
 # Menu configuration.
 MAIN_MENU = True
-LINKS = (
-    ("GitHub", "https://github.com/davep"),
-)
-SOCIAL = (
-    ("Mastodon", "https://fosstodon.org/@davep"),
+LINKS     = ()
+SOCIAL    = (
+    ("github", "https://github.com/davep"),
+    ("mastodon", "https://fosstodon.org/@davep"),
 )
 MENUITEMS = (
     ("Archives", "/archives.html"),
