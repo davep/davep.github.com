@@ -1,9 +1,8 @@
 ---
-layout: page
 title: About
 ---
 
-# About the site
+## About the site
 
 A blog that has wandered from place to place, but has (hopefully) settled
 back here. Mostly it's to do with tech/coding stuff, sometimes perhaps
@@ -11,7 +10,7 @@ gaming and video-making stuff, and on occasion personal stuff.
 
 Expect a bit of a mix.
 
-# About me
+## About me
 
 Initially self-taught back in the early 1980s, I started programming on a
 ZX81 and I've been in love with software development ever since. My
