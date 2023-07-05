@@ -35,9 +35,9 @@ GitHub and hosting it with [GitHub Pages](https://pages.github.com/).
 As this goes on I imagine much will change. I've started out with a basic
 setup, created by simply using:
 
-{% highlight bash %}
+```sh
 davep@Ariel:~/blogging$ jekyll new davep.github.com
-{% endhighlight %}
+```
 
 From now on I'll be playing with styles and my own layouts to see what I can
 come up with and what I like (although, I most say, for the most part I'm
