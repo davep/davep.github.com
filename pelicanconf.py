@@ -2,15 +2,15 @@
 
 ##############################################################################
 # General blog information.
-AUTHOR          = "Dave Pearson"
-SITENAME        = "blog.davep.org"
-TIMEZONE        = "Europe/London"
-DEFAULT_LANG    = "en"
-DISQUS_SITENAME = "blogdaveporg"
-SITELOGO        = "/static/davep.jpeg"
-FAVICON         = "/static/favicon.ico"
-COPYRIGHT_NAME  = AUTHOR
-COPYRIGHT_YEAR  = "2015-2023"
+AUTHOR           = "Dave Pearson"
+SITENAME         = "blog.davep.org"
+TIMEZONE         = "Europe/London"
+DEFAULT_LANG     = "en"
+DISQUS_SITENAME  = "blogdaveporg"
+SITELOGO         = "/static/davep.jpeg"
+FAVICON          = "/static/favicon.ico"
+COPYRIGHT_NAME   = AUTHOR
+COPYRIGHT_YEAR   = "2015-2023"
 
 ##############################################################################
 # General generation configuration.
@@ -45,14 +45,15 @@ AUTHOR_FEED_RSS       = None
 
 ##############################################################################
 # Menu configuration.
-MAIN_MENU = True
-LINKS     = (
+MAIN_MENU        = True
+LINKS_IN_NEW_TAB = "all"
+LINKS            = (
     ("davep.at", "http://davep.at/"),
     ("Pinboard", "https://pinboard.in/u:davep"),
     ("Photoblog", "https://seenbydavep.blogspot.com/"),
     ("Python Packages", "https://pypi.org/user/davepearson/"),
 )
-SOCIAL    = (
+SOCIAL           = (
     ("github", "https://github.com/davep"),
     ("mastodon", "https://fosstodon.org/@davep"),
     ("flickr", "https://www.flickr.com/photos/davepearson/"),
@@ -61,7 +62,7 @@ SOCIAL    = (
     ("youtube", "https://www.youtube.com/user/daveporg"),
     ("steam", "https://steamcommunity.com/id/davepdotorg")
 )
-MENUITEMS = (
+MENUITEMS        = (
     ("Archives", "/archives.html"),
     ("Categories", "/categories.html"),
     ("Tags", "/tags.html"),
