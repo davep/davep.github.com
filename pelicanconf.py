@@ -20,7 +20,7 @@ ARTICLE_URL             = "{date:%Y}/{date:%m}/{date:%d}/{slug}.html"
 ARTICLE_SAVE_AS         = ARTICLE_URL
 DELETE_OUTPUT_DIRECTORY = True
 STATIC_PATHS            = ["attachments", "static", "extras"]
-DATE_FORMATS            = {"en": "%Y-%m-%d"}
+DEFAULT_DATE_FORMAT     = "%Y-%m-%d %H:%M %z"
 FILENAME_METADATA       = r"\d{4}-\d{2}-\d{2}-(?P<slug>.*)"
 EXTRA_PATH_METADATA     = {"extras/CNAME": {"path": "CNAME"}}
 
