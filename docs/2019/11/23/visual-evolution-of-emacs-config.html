@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://blog.davep.org/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://blog.davep.org/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://blog.davep.org/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/static/davep.css">
+
+  <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
+
+  <link href="https://blog.davep.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom">
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Dave Pearson" />
+<meta name="description" content="As detailed in a blog post I wrote back in 2016, I first got into using Emacs in the mid 1990s, starting with it on OS/2 and then moving over to GNU/Linux. It&#39;s been my often-used and much-loved development environment for most of those years (I even have a couple of packages that are part of Emacs itself). For most of that time my configuration was a single ~/.emacs file, which was around 1,000 lines in length (including comments and whitespace). It&#39;d grown over the years, having special configuration sections for versions of Emacs I didn&#39;t use any more, and operating systems I didn&#39;t work on any more (yes, really, there were things in there specific to MS-DOS, for example). On top of that I always hand-installed packages I used -- Emacs&#39; package management system having turned up long after I first got into using Emacs. Then, in early 2016, I decided to nuke the whole thing and start from scratch. As mentioned above, the start of this is detailed in an older post. Another big round of changes happened round a year later -- which included the birth of delpa to manage my personal packages. A couple or so months later there was one last big round of changes, mostly killing off my enthusiastic embracing of customize and instead going back to hand-set settings, only this time done via use-package. The full history of this can be found over on GitHub, starting with the first &#34;throw everything away and start again&#34; process and all the steps between then and where my Emacs configuration is now. Which brings me to the fun part of this blog post. Earlier this week I stumbled on Gource. It&#39;s a tool that&#39;s primarily designed to visualise changes in repositories, although it can be used to visualise anything that has a tree structure and changes over time (this week I produced a video of the growth of my employer&#39;s electronic lab notebook by hooking up the Benchling API with Gource, for example). So I got curious. What did it look like as I reworked and tweaked and changed and tinkered with my Emacs configuration? This is what it looked like:" />
+<meta name="keywords" content="Emacs, Lisp, Emacs Lisp">
+
+
+  <meta property="og:site_name" content="blog.davep.org"/>
+  <meta property="og:title" content="Visual evolution of ~/.emacs.d"/>
+  <meta property="og:description" content="As detailed in a blog post I wrote back in 2016, I first got into using Emacs in the mid 1990s, starting with it on OS/2 and then moving over to GNU/Linux. It&#39;s been my often-used and much-loved development environment for most of those years (I even have a couple of packages that are part of Emacs itself). For most of that time my configuration was a single ~/.emacs file, which was around 1,000 lines in length (including comments and whitespace). It&#39;d grown over the years, having special configuration sections for versions of Emacs I didn&#39;t use any more, and operating systems I didn&#39;t work on any more (yes, really, there were things in there specific to MS-DOS, for example). On top of that I always hand-installed packages I used -- Emacs&#39; package management system having turned up long after I first got into using Emacs. Then, in early 2016, I decided to nuke the whole thing and start from scratch. As mentioned above, the start of this is detailed in an older post. Another big round of changes happened round a year later -- which included the birth of delpa to manage my personal packages. A couple or so months later there was one last big round of changes, mostly killing off my enthusiastic embracing of customize and instead going back to hand-set settings, only this time done via use-package. The full history of this can be found over on GitHub, starting with the first &#34;throw everything away and start again&#34; process and all the steps between then and where my Emacs configuration is now. Which brings me to the fun part of this blog post. Earlier this week I stumbled on Gource. It&#39;s a tool that&#39;s primarily designed to visualise changes in repositories, although it can be used to visualise anything that has a tree structure and changes over time (this week I produced a video of the growth of my employer&#39;s electronic lab notebook by hooking up the Benchling API with Gource, for example). So I got curious. What did it look like as I reworked and tweaked and changed and tinkered with my Emacs configuration? This is what it looked like:"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://blog.davep.org/2019/11/23/visual-evolution-of-emacs-config.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2019-11-23 14:42:00+00:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://blog.davep.org/author/dave-pearson.html">
+  <meta property="article:section" content="Emacs"/>
+  <meta property="article:tag" content="Emacs"/>
+  <meta property="article:tag" content="Lisp"/>
+  <meta property="article:tag" content="Emacs Lisp"/>
+  <meta property="og:image" content="/static/davep.jpeg">
+
+  <title>blog.davep.org &ndash; Visual evolution of ~/.emacs.d</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://blog.davep.org/">
+      <img src="/static/davep.jpeg" alt="" title="">
+    </a>
+
+    <h1>
+      <a href="https://blog.davep.org/"></a>
+    </h1>
+
+
+
+    <nav>
+      <ul class="list">
+
+
+            <li>
+              <a target="_self"
+                 href="https://blog.davep.org/pages/about.html#about">
+                About
+              </a>
+            </li>
+
+          <li>
+            <a target="_self" href="http://davep.at/" >davep.at</a>
+          </li>
+          <li>
+            <a target="_self" href="https://pinboard.in/u:davep" >Pinboard</a>
+          </li>
+          <li>
+            <a target="_self" href="https://seenbydavep.blogspot.com/" >Photoblog</a>
+          </li>
+          <li>
+            <a target="_self" href="https://pypi.org/user/davepearson/" >Python Packages</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-github"
+           href="https://github.com/davep"
+           target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-mastodon"
+rel="me"           href="https://fosstodon.org/@davep"
+           target="_blank">
+          <i class="fa-brands fa-mastodon"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-flickr"
+           href="https://www.flickr.com/photos/davepearson/"
+           target="_blank">
+          <i class="fa-brands fa-flickr"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-lastfm"
+           href="https://www.last.fm/user/davepdotorg"
+           target="_blank">
+          <i class="fa-brands fa-lastfm"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-npm"
+           href="https://www.npmjs.com/~davep.org"
+           target="_blank">
+          <i class="fa-brands fa-npm"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-youtube"
+           href="https://www.youtube.com/user/daveporg"
+           target="_blank">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-steam"
+           href="https://steamcommunity.com/id/davepdotorg"
+           target="_blank">
+          <i class="fa-brands fa-steam"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://blog.davep.org/">Home</a>
+
+  <a href="/archives.html">Archives</a>
+  <a href="/categories.html">Categories</a>
+  <a href="/tags.html">Tags</a>
+
+  <a href="https://blog.davep.org/feeds/all.atom.xml">Atom</a>
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="visual-evolution-of-emacs-config">Visual evolution of ~/.emacs.d</h1>
+    <p>
+      Posted on 2019-11-23 14:42 +0000 in <a href="https://blog.davep.org/category/emacs.html">Emacs</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>As detailed in a blog post I wrote <a href="/2016/05/26/starting_fresh_with_gnu_emacs.html">back in
+2016</a>, I first got into
+using Emacs in the mid 1990s, starting with it on OS/2 and then moving over
+to GNU/Linux. It's been my often-used and much-loved development environment
+for most of those years (I even have a couple of packages that are part of
+Emacs itself).</p>
+<p>For most of that time my configuration was a single <code>~/.emacs</code> file, which
+was around 1,000 lines in length (including comments and whitespace). It'd
+grown over the years, having special configuration sections for versions of
+Emacs I didn't use any more, and operating systems I didn't work on any more
+(yes, really, there were things in there specific to MS-DOS, for example).
+On top of that I always hand-installed packages I used -- Emacs' package
+management system having turned up long after I first got into using Emacs.</p>
+<p>Then, in early 2016, I decided to nuke the whole thing and start from
+scratch. As mentioned above, the start of this <a href="/2016/05/26/starting_fresh_with_gnu_emacs.html">is detailed in an older
+post</a>. Another big round of
+changes <a href="/2017/04/01/another_revamp_of_my_emacs_config.html">happened round a year
+later</a> -- which included
+the birth of <a href="http://blog.davep.org/delpa/">delpa</a> to manage my personal
+packages. A couple or so months later there was <a href="/2017/07/13/more_revamping_of_my_emacs_config.html">one last big round of
+changes</a>, mostly killing
+off my enthusiastic embracing of
+<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Easy-Customization.html#Easy-Customization"><code>customize</code></a>
+and instead going back to hand-set settings, only this time done via
+<a href="https://github.com/jwiegley/use-package"><code>use-package</code></a>.</p>
+<p>The full history of this <a href="https://github.com/davep/.emacs.d">can be found over on
+GitHub</a>, starting with the first "throw
+everything away and start again" process and all the steps between then and
+where my Emacs configuration is now.</p>
+<p>Which brings me to the fun part of this blog post. Earlier this week I
+stumbled on <a href="https://gource.io/">Gource</a>. It's a tool that's primarily
+designed to visualise changes in repositories, although it can be used to
+visualise anything that has a tree structure and changes over time (this
+week I produced a video of the growth of my employer's electronic lab
+notebook by hooking up the <a href="https://www.benchling.com/">Benchling</a> API with
+Gource, for example). So I got curious. What did it look like as I reworked
+and tweaked and changed and tinkered with my Emacs configuration?</p>
+<p>This is what it looked like:</p>
+<p><a href="https://www.youtube.com/watch?v=bH4G80aZgsM"><img alt="Visit YouTube" src="https://img.youtube.com/vi/bH4G80aZgsM/0.jpg"></a></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://blog.davep.org/tag/emacs.html">Emacs</a>
+      <a href="https://blog.davep.org/tag/lisp.html">Lisp</a>
+      <a href="https://blog.davep.org/tag/emacs-lisp.html">Emacs Lisp</a>
+    </p>
+  </div>
+
+
+
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>&copy; 2015-2023 Dave Pearson</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://blog.davep.org/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " blog.davep.org ",
+  "url" : "https://blog.davep.org",
+  "image": "/static/davep.jpeg",
+  "description": ""
+}
+</script>
+</body>
+</html>

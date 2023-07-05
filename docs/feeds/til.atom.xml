@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - TIL</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/til.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2020-07-18T10:16:00+01:00</updated><entry><title>Swift TIL 12</title><link href="https://blog.davep.org/2020/07/18/swift-til-12.html" rel="alternate"></link><published>2020-07-18T10:16:00+01:00</published><updated>2020-07-18T10:16:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-07-18:/2020/07/18/swift-til-12.html</id><content type="html">&lt;p&gt;First a small aside: To be honest, the &lt;code&gt;T&lt;/code&gt; part of &lt;code&gt;TIL&lt;/code&gt; is getting to be
+less and less true with this series of posts, but the posts themselves serve
+a useful purpose for me. As I've been reading the book I'm working through,
+I've also been making notes on my iPad in the &lt;a href="https://apps.apple.com/us/app/notes/id1110145109"&gt;Apple Notes
+application&lt;/a&gt;. I'm not
+really convinced that that's the best final location for such notes, so
+early on I made an extra step in keeping track of what I'm doing and trying
+to reinforce what I'm learning: transfer the notes into
+&lt;a href="https://orgmode.org/"&gt;Org-Mode&lt;/a&gt; documents in my notebook repository.&lt;/p&gt;
+&lt;p&gt;This repository contains lots of Org-Mode files, broken down into subject
+directories, that hang on to longer-form information I want to keep track of
+regarding software development and general operating system use. I'm sure
+you know the sort of thing, the things where you know you know them but you
+can't always retain all the detail -- so having the detail where you know
+you'll find it is useful.&lt;/p&gt;
+&lt;p&gt;So I've made that part of the process: read book, find thing worth noting,
+note in Apple Notes, a wee while later re-read and test out by writing
+sample code and transfer to the Org-Mode notebook. During that latter step I
+sometimes also write up something that I really liked or found interesting
+here to further reinforce the learning process.&lt;/p&gt;
+&lt;p&gt;The "TIL" I wanted to note quickly today is how happy I was to see that
+Swift has something that's a reasonably recent addition to Emacs Lisp:
+conditional binding. Skipping off into Emacs Lisp for a moment, it would be
+very common for me to find myself writing something like this (this actually
+happens in all languages really):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;foo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;get-something-from-elsewhere&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;when&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;foo&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;do-something-with&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Quite simply: I'd get a value from elsewhere, that value could possibly be
+&lt;code&gt;nil&lt;/code&gt; to mark that there was a failure to get a value, but that failure
+wasn't in any way fatal or even a problem worthy of note: I just needed to
+skip along. But that binding followed by the test was always a little
+jarring. And then, &lt;a href="https://endlessparentheses.com/new-in-emacs-25-1-more-flow-control-macros.html"&gt;back in
+25.1&lt;/a&gt;,
+&lt;code&gt;if-let&lt;/code&gt; and &lt;code&gt;when-let&lt;/code&gt; got added (of course, this being Lisp, &lt;a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Macros.html#Macros"&gt;it would
+have been very simple to add them
+anyway&lt;/a&gt;),
+and it was easier to &lt;a href="https://github.com/davep/pinboard.el/blob/d426f9d2ebec5f907c8a89d6b38ccbcb13750d4f/pinboard.el#L308"&gt;write the code so it looked just a little
+nicer&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;when-let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;foo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;get-something-from-elsewhere&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;do-something-with&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It's a small difference, but I find it a pleasing one.&lt;/p&gt;
+&lt;p&gt;So of course I was pleased to find that Swift has something similar with
+&lt;code&gt;if&lt;/code&gt; and
+&lt;a href="https://developer.apple.com/documentation/swift/optional"&gt;&lt;code&gt;Optional&lt;/code&gt;&lt;/a&gt;
+values, where you can write something like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;foo&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;getSomethingFromElsewhere&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// Do something with foo but only if it&amp;#39;s not nil&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Which means you can do things like this (not that I'd really do things like
+this, but it was a handy test on the command line):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nf"&gt;oddRand&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;?&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.&lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt;&lt;span class="mi"&gt;99&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="p"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;nil&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="kc"&gt;_&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="mf"&gt;0.&lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;oddRand&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Nope&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;As usual... of course that's horrible code, it was just thrown together to
+test/experience the language feature on the command line.&lt;/p&gt;
+&lt;p&gt;I like it though. I figure &lt;a href="https://clojuredocs.org/clojure.core/when-let"&gt;all the best languages have conditional
+binding&lt;/a&gt;. ;-)&lt;/p&gt;</content><category term="TIL"></category><category term="Swift"></category><category term="Apple"></category></entry><entry><title>Swift TIL 11</title><link href="https://blog.davep.org/2020/07/11/swift-til-11.html" rel="alternate"></link><published>2020-07-11T21:34:00+01:00</published><updated>2020-07-11T21:34:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-07-11:/2020/07/11/swift-til-11.html</id><content type="html">&lt;p&gt;This is one of those things, especially this little play to help appreciate
+the feature, that I'm filing under "kinda cool, but I am &lt;em&gt;never&lt;/em&gt; doing this
+in production".&lt;/p&gt;
+&lt;p&gt;So Swift has operator overriding, and then some. Moreover, operators are, in
+effect, functions, just with some extra syntax support. None of this is new
+to me, I've worked in and with other languages that have this ability,
+expect... I don't ever recall working in a language that, at the time I did,
+supported creating brand new operators (okay, fine, Lisp is a bit of an
+outlier here and there's all sorts of fun conversations to be had there --
+but still, let's stick with more "conventional" syntax here). Support always
+seemed to be about extending the ability of an existing operator.&lt;/p&gt;
+&lt;p&gt;Swift though... yeah, you get to pick from a huge character space when it
+comes to creating operators.&lt;/p&gt;
+&lt;p&gt;Which got me thinking... How cool would it be to have a prefix operator that
+turns a floating point number into a currency-friendly number (you know, the
+sort of number type that can be used for currency-friendly calculations).&lt;/p&gt;
+&lt;p&gt;Swift has the
+&lt;a href="https://developer.apple.com/documentation/foundation/decimal"&gt;&lt;code&gt;decimal&lt;/code&gt;&lt;/a&gt;
+type which, at first glance anyway, looks to be a sensible candidate; even
+if it isn't (and, really, how to actually sensibly handle currency is a
+whole series of blog posts in their own right, that I have no wish to write
+myself because such things are a previous working life for me, and other
+people have doubtless done a very comprehensive job elsewhere over the
+years) it will serve as a good stand-in for the little bit of horror I'm
+going to write next.&lt;/p&gt;
+&lt;p&gt;So... Let's say we want to use &lt;code&gt;£&lt;/code&gt; as a prefix operator to say "see this
+number? make it a &lt;code&gt;decimal&lt;/code&gt;", we could do something as simple as this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;import&lt;/span&gt; &lt;span class="nc"&gt;Foundation&lt;/span&gt;
+
+&lt;span class="kr"&gt;prefix&lt;/span&gt; &lt;span class="kd"&gt;operator&lt;/span&gt; &lt;span class="err"&gt;£&lt;/span&gt;
+&lt;span class="kr"&gt;prefix&lt;/span&gt; &lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="err"&gt;£&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Decimal&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Decimal&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="err"&gt;£&lt;/span&gt;&lt;span class="mf"&gt;1.20&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="err"&gt;£&lt;/span&gt;&lt;span class="mf"&gt;0.75&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="err"&gt;£&lt;/span&gt;&lt;span class="mf"&gt;0.01&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Horrifically and delightfully, it works:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;swift&lt;span class="w"&gt; &lt;/span&gt;run
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;/3&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Linking&lt;span class="w"&gt; &lt;/span&gt;opover
+&lt;span class="m"&gt;1&lt;/span&gt;.96
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I know, I know, I feel bad for even trying. But it's also kinda cool that
+the language has this.&lt;/p&gt;
+&lt;p&gt;It gets better though...&lt;/p&gt;
+&lt;p&gt;While reading up on what characters can and can't be used as operators, one
+thing that stood out was the fact that, more or less, any character that
+isn't a valid identifier can be used as an operator. So... hang on, we can
+use "emoji" as identifiers?&lt;/p&gt;
+&lt;p&gt;Like this?&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;import&lt;/span&gt; &lt;span class="nc"&gt;Foundation&lt;/span&gt;
+
+&lt;span class="kr"&gt;prefix&lt;/span&gt; &lt;span class="kd"&gt;operator&lt;/span&gt; &lt;span class="err"&gt;£&lt;/span&gt;
+&lt;span class="kr"&gt;prefix&lt;/span&gt; &lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="err"&gt;£&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Decimal&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Decimal&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="err"&gt;💵&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="err"&gt;£&lt;/span&gt;&lt;span class="mf"&gt;1.20&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="err"&gt;£&lt;/span&gt;&lt;span class="mf"&gt;0.75&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="err"&gt;£&lt;/span&gt;&lt;span class="mf"&gt;0.01&lt;/span&gt;
+
+&lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="err"&gt;💵&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Why yes. Yes we can. 😈&lt;/p&gt;</content><category term="TIL"></category><category term="Swift"></category><category term="Apple"></category></entry><entry><title>Swift TIL 10</title><link href="https://blog.davep.org/2020/07/05/swift-til-10.html" rel="alternate"></link><published>2020-07-05T15:27:00+01:00</published><updated>2020-07-05T15:27:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-07-05:/2020/07/05/swift-til-10.html</id><content type="html">&lt;p&gt;My leisurely journey into getting to know Swift by reading and then making
+notes to myself in my blog continues, and this weekend I encountered
+&lt;code&gt;defer&lt;/code&gt;. As I was reading about Swift I did keep wondering when something
+like &lt;code&gt;try&lt;/code&gt; (it has &lt;code&gt;try&lt;/code&gt;), &lt;code&gt;catch&lt;/code&gt; (it has &lt;code&gt;catch&lt;/code&gt;) and &lt;code&gt;finally&lt;/code&gt; (it
+doesn't have &lt;code&gt;finally&lt;/code&gt;, but...) might crop up. This weekend I hit the part
+of the book that covered this sort of thing.&lt;/p&gt;
+&lt;p&gt;Given Swift's apparent general reliance on &lt;em&gt;not&lt;/em&gt; throwing errors but instead
+using &lt;code&gt;Optional&lt;/code&gt; and &lt;code&gt;nil&lt;/code&gt; to signify issues, it sort of came as no surprise
+that its approach to implementing something like &lt;code&gt;try&lt;/code&gt;...&lt;code&gt;finally&lt;/code&gt; is
+actually divorced from &lt;code&gt;try&lt;/code&gt;. I'm not sure how I feel about it yet, but
+&lt;code&gt;defer&lt;/code&gt; makes sense.&lt;/p&gt;
+&lt;p&gt;Here's an utterly useless bit of code that demonstrates how it works:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nf"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="kc"&gt;_&lt;/span&gt; &lt;span class="n"&gt;n1&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;_&lt;/span&gt; &lt;span class="n"&gt;n2&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;Int&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;Int&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="k"&gt;defer&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Huh! We did some adding!&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;About to do the add and then return&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;n1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;n2&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;When run, the output is this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;swift&lt;span class="w"&gt; &lt;/span&gt;run
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;/3&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Linking&lt;span class="w"&gt; &lt;/span&gt;try-defer
+About&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;and&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;
+Huh!&lt;span class="w"&gt; &lt;/span&gt;We&lt;span class="w"&gt; &lt;/span&gt;did&lt;span class="w"&gt; &lt;/span&gt;some&lt;span class="w"&gt; &lt;/span&gt;adding!
+&lt;span class="m"&gt;4&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;A &lt;code&gt;defer&lt;/code&gt; (and there can be multiple) is tied to the block that it's
+declared in, and is executed when the block exits. This is, of course, going
+to be really handy for things like resource-management where you don't want
+to be leaking something, although I can imagine a few other uses too (none
+of which are really going to be novel for someone who's coded in other
+languages with similar constructs).&lt;/p&gt;
+&lt;p&gt;What I find interesting about this is that one or more &lt;code&gt;defer&lt;/code&gt; blocks can be
+declared at various locations within a block of code; this obviously makes
+sense in that you might not want to be handling the tidy-up of something
+you've not got around to creating yet. But there's also part of me feels
+uneasy about the "exit" code being declared further up the body of code,
+rather than down towards the end. On the other hand I think I do appreciate
+the idea of, up front, writing "look, any time there's a GTFO in the code
+that follows, this will happen" -- you're made aware pretty quickly of what
+to expect.&lt;/p&gt;
+&lt;p&gt;Anyway, it's good to know Swift has something similar to a &lt;code&gt;finally&lt;/code&gt;.&lt;/p&gt;</content><category term="TIL"></category><category term="Swift"></category><category term="Apple"></category></entry><entry><title>Swift TIL 9</title><link href="https://blog.davep.org/2020/06/30/swift-til-9.html" rel="alternate"></link><published>2020-06-30T21:02:00+01:00</published><updated>2020-06-30T21:02:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-06-30:/2020/06/30/swift-til-9.html</id><content type="html">&lt;p&gt;&lt;em&gt;Some may be happy to know that the frequency of these little notes to
+myself may reduce real soon, as I'm sort of caught up with my notes, mostly,
+and I'm unlikely to pick up the book that I'm reading for a couple or so
+days now&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I'm used to the idea of structures and classes from other languages, going
+way back, but as I first started reading about Swift it wasn't obvious to me
+why it had them both too. At first glance they appeared to be very similar.
+It was only as I got a little further into reading that I found out one huge
+difference (there are others, that pretty much stem from this one): objects
+created from classes are &lt;em&gt;reference types&lt;/em&gt; (which you'd expect, of course),
+structures on the other hand are &lt;em&gt;value types&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;A quick illustration of the difference, in my head anyway, can be found if I
+go back to &lt;a href="/2020/06/24/swift-til-3.html"&gt;using an
+observer&lt;/a&gt;.
+Take this daft bit of illustrative code for example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Person&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;No name&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;dave&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kr"&gt;didSet&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;dave was set&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;dave&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Dave&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If I run that, I get no output. That makes sense. The variable &lt;code&gt;dave&lt;/code&gt; is
+initialised to an instance of a &lt;code&gt;Person&lt;/code&gt; but is never subsequently set to
+anything else. The following assignment is to a property of the object.
+We're working on a reference to an existing object.&lt;/p&gt;
+&lt;p&gt;But simply change &lt;code&gt;Person&lt;/code&gt; to being a &lt;code&gt;struct&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;Person&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;No name&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;dave&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kr"&gt;didSet&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;dave was set&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;dave&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Dave&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and the output looks like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;swift&lt;span class="w"&gt; &lt;/span&gt;run
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;/3&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Linking&lt;span class="w"&gt; &lt;/span&gt;ref-vs-val
+dave&lt;span class="w"&gt; &lt;/span&gt;was&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;set&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;That's because the assignment to &lt;code&gt;dave.name&lt;/code&gt; means a new value is created.&lt;/p&gt;
+&lt;p&gt;This, of course, is just the tip of the iceberg; there are all sorts of
+other things to keep in mind that follow on from this, generally relating to
+mutability (or the lack thereof). I also imagine this means that, when
+there's no obvious benefit either way, the choice of using &lt;code&gt;class&lt;/code&gt; vs
+&lt;code&gt;struct&lt;/code&gt; is something that could have performance implications. That's
+something for me to look into more another day; but this is a note here to
+myself that it's a thing to keep in mind.&lt;/p&gt;</content><category term="TIL"></category><category term="Swift"></category><category term="Apple"></category></entry><entry><title>Swift TIL 8</title><link href="https://blog.davep.org/2020/06/29/swift-til-8.html" rel="alternate"></link><published>2020-06-29T22:48:00+01:00</published><updated>2020-06-29T22:48:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-06-29:/2020/06/29/swift-til-8.html</id><content type="html">&lt;p&gt;Although I read up on it a few days back, it was only this evening that I
+fired up Emacs (well of course I'm testing Swift with Emacs, what did you
+think I'd do?!?) and dabbled with some code to really get a feel for how
+casting works in Swift.&lt;/p&gt;
+&lt;p&gt;Swift seems to be one of those languages that does it with a keyword rather
+than a non-keyword approach. The two main keywords being &lt;code&gt;as?&lt;/code&gt; and &lt;code&gt;as!&lt;/code&gt;. I
+kind of like how there's a polite version and a bossy version. Having the
+two makes a lot of sense from what I read too.&lt;/p&gt;
+&lt;p&gt;To try and illustrate my understanding so far (and do keep in mind I'm not
+writing this with the express purpose of explaining it to anyone else -- I'm
+writing this to try and retain it all in my head by working through it),
+here's a bit of utterly pointless and highly-contrived code that defines
+three classes in a fairly ordinary hierarchy:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Animal&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+
+&lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Dog&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Animal&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+
+&lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Cat&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Animal&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nf"&gt;beAdorable&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Purrrrrr!&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;So, so far, so good: we have animals, we have dogs which are a kind of
+animal, and we have cats, which are also a kind of animal, but they have the
+special ability of actually being adorable. 😼&lt;/p&gt;
+&lt;p&gt;Now, for the purposes of just testing all of this out, here's a horrible
+function that makes little sense other than for testing:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nf"&gt;adore&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="kc"&gt;_&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Animal&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="p"&gt;!&lt;/span&gt; &lt;span class="n"&gt;Cat&lt;/span&gt; &lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;beAdorable&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Given an animal, it forces it to be a cat (by casting it with &lt;code&gt;as!&lt;/code&gt;), and
+then asks it to be adorable (because, of course, cats always do as they're
+asked).&lt;/p&gt;
+&lt;p&gt;So, if we then had:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;adore&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;Cat&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;we'd get what we expect when run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Purrrrrr!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;So far so good. But what about:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;adore&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;Dog&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Yeah, that's not so good:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;~/d/p/s/casting$&lt;span class="w"&gt; &lt;/span&gt;swift&lt;span class="w"&gt; &lt;/span&gt;run
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;/3&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Linking&lt;span class="w"&gt; &lt;/span&gt;casting
+Could&lt;span class="w"&gt; &lt;/span&gt;not&lt;span class="w"&gt; &lt;/span&gt;cast&lt;span class="w"&gt; &lt;/span&gt;value&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;casting.Dog&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;0x10a1f8830&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;casting.Cat&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;0x10a1f88c0&lt;span class="o"&gt;)&lt;/span&gt;.
+fish:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;swift run&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;terminated&lt;span class="w"&gt; &lt;/span&gt;by&lt;span class="w"&gt; &lt;/span&gt;signal&lt;span class="w"&gt; &lt;/span&gt;SIGABRT&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;Abort&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;One way around this would be to use &lt;code&gt;as?&lt;/code&gt;, which has the effect of casting
+the result to an
+&lt;a href="https://developer.apple.com/documentation/swift/optional"&gt;&lt;code&gt;Optional&lt;/code&gt;&lt;/a&gt;. This
+means I can re-write the &lt;code&gt;adore&lt;/code&gt; function like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nf"&gt;adore&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="kc"&gt;_&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Animal&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="p"&gt;?&lt;/span&gt; &lt;span class="n"&gt;Cat&lt;/span&gt; &lt;span class="p"&gt;)?.&lt;/span&gt;&lt;span class="n"&gt;beAdorable&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, if &lt;code&gt;a&lt;/code&gt; can be cast to a &lt;code&gt;Cat&lt;/code&gt;, you get an optional that wraps the
+&lt;code&gt;Cat&lt;/code&gt;, otherwise you get an optional that wraps &lt;code&gt;nil&lt;/code&gt; (hence the second &lt;code&gt;?&lt;/code&gt;
+before attempting to call the &lt;code&gt;beAdorable&lt;/code&gt; member function).&lt;/p&gt;
+&lt;p&gt;So now, if I run the problematic dog call above again:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;~/d/p/s/casting$&lt;span class="w"&gt; &lt;/span&gt;swift&lt;span class="w"&gt; &lt;/span&gt;run
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;/3&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Linking&lt;span class="w"&gt; &lt;/span&gt;casting
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In other words, no output at all. Which is the idea here.&lt;/p&gt;
+&lt;p&gt;I think I like this, I think it makes sense, and I think I can see why both
+&lt;code&gt;as!&lt;/code&gt; and &lt;code&gt;as?&lt;/code&gt; exist. The latter also means, of course, that you can do
+something like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nf"&gt;adore&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="kc"&gt;_&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Animal&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;cat&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="p"&gt;?&lt;/span&gt; &lt;span class="n"&gt;Cat&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="kc"&gt;nil&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;!.&lt;/span&gt;&lt;span class="n"&gt;beAdorable&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;That totally wasn&amp;#39;t a cat&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;which, in the messy dog call again, now results in:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;~/d/p/s/casting$&lt;span class="w"&gt; &lt;/span&gt;swift&lt;span class="w"&gt; &lt;/span&gt;run
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;/3&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Linking&lt;span class="w"&gt; &lt;/span&gt;casting
+That&lt;span class="w"&gt; &lt;/span&gt;totally&lt;span class="w"&gt; &lt;/span&gt;wasn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;cat
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or, of course, the same effect could be had with:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nf"&gt;adore&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="kc"&gt;_&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Animal&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;Cat&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="p"&gt;!&lt;/span&gt; &lt;span class="n"&gt;Cat&lt;/span&gt; &lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;beAdorable&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;That totally wasn&amp;#39;t a cat&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It should be stressed, of course, that the example code is terrible design,
+so given the above I'd ensure I never end up in this sort of situation in
+the first place. But for the purposes of writing and compiling and running
+code and seeing what the different situations result in, it helped.&lt;/p&gt;</content><category term="TIL"></category><category term="Swift"></category><category term="Apple"></category></entry><entry><title>Swift TIL 7</title><link href="https://blog.davep.org/2020/06/28/swift-til-7.html" rel="alternate"></link><published>2020-06-28T16:25:00+01:00</published><updated>2020-06-28T16:25:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-06-28:/2020/06/28/swift-til-7.html</id><content type="html">&lt;p&gt;This post is &lt;em&gt;very&lt;/em&gt; much a case of me writing it down to try and get it all
+straight in my head, and to make sure it sticks. The other day I was reading
+about Swift's types and type-equality checks, and as I'd expect from plenty
+of other languages I've worked with, there's a way for checking that two
+types are the same, such that super/subclasses aren't taken into account,
+and a way where they are. So, given this silly code:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Animal&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+
+&lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Cat&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Animal&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+
+&lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;Cat&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="kc"&gt;self&lt;/span&gt; &lt;span class="p"&gt;==&lt;/span&gt; &lt;span class="n"&gt;Animal&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="kc"&gt;self&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;          &lt;span class="c1"&gt;// False&lt;/span&gt;
+&lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;Cat&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="kc"&gt;self&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;Animal&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="kr"&gt;Type&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;          &lt;span class="c1"&gt;// True&lt;/span&gt;
+&lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Cat&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;Animal&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="kr"&gt;Type&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;// True&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;it's made clear that &lt;code&gt;==&lt;/code&gt; checks for strict equality and a super/subclass
+relationship isn't taken into account. On the other hand &lt;code&gt;is&lt;/code&gt; does take it
+into account.&lt;/p&gt;
+&lt;p&gt;Only... what's with this whole &lt;code&gt;.self&lt;/code&gt; sometimes and &lt;code&gt;.Type&lt;/code&gt; other times
+business? That took a little bit of writing code and playing to get
+comfortable with. Here's how I understand it now (and do feel free to
+correct me below if I'm way off):&lt;/p&gt;
+&lt;p&gt;Given the above code, &lt;code&gt;Animal.Type&lt;/code&gt; is the type of a value that expresses
+the type of &lt;code&gt;Animal&lt;/code&gt;. On the other hand, &lt;code&gt;Animal.self&lt;/code&gt; is a value that is
+the type of an &lt;code&gt;Animal&lt;/code&gt;. Yeah, I know, that still reads oddly. But written
+as code:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;feline&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Cat&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="kr"&gt;Type&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Cat&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="kc"&gt;self&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I think it makes a lot more sense. And having got there I felt I better
+understood it. I'm not 100% sure I'm 100% with it, but I'm getting there.&lt;/p&gt;</content><category term="TIL"></category><category term="Swift"></category><category term="Apple"></category></entry><entry><title>Swift TIL 6</title><link href="https://blog.davep.org/2020/06/27/swift-til-6.html" rel="alternate"></link><published>2020-06-27T21:23:00+01:00</published><updated>2020-06-27T21:23:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-06-27:/2020/06/27/swift-til-6.html</id><content type="html">&lt;p&gt;I'm going to file this one under "it seems really unnecessary, but it's also
+kinda cool". While reading up about
+&lt;a href="https://docs.swift.org/swift-book/LanguageGuide/Protocols.html"&gt;protocols&lt;/a&gt;
+the book I'm reading introduced the &lt;code&gt;ExpressibleBy*Literal&lt;/code&gt; protocols, where
+the &lt;code&gt;*&lt;/code&gt; is one of a number of obvious literals. For example:
+&lt;code&gt;ExpressibleByStringLiteral&lt;/code&gt;. As you might imagine, it lets you create a
+class that can be initialised with a literal value, as opposed to needing to
+appear to call the constructor for a class.&lt;/p&gt;
+&lt;p&gt;So, for a silly example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Hello&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ExpressibleByStringLiteral&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;what&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt;
+
+    &lt;span class="kr"&gt;required&lt;/span&gt; &lt;span class="kd"&gt;init&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;stringLiteral&lt;/span&gt; &lt;span class="n"&gt;what&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kc"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;what&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;what&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nf"&gt;say&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Hello, &lt;/span&gt;&lt;span class="si"&gt;\(&lt;/span&gt;&lt;span class="kc"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;what&lt;/span&gt;&lt;span class="si"&gt;)&lt;/span&gt;&lt;span class="s"&gt;!&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You could, of course, write this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;v1&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Hello&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;world&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;v1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;say&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;but because of &lt;code&gt;ExpressibleByStringLiteral&lt;/code&gt; you can also write:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;v2&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Hello&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;universe&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;v2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;say&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, sure, in this case it saves you nothing, but this does also mean that
+parameters of functions whose type uses one of the &lt;code&gt;`ExpressibleBy*Literal&lt;/code&gt;
+protocols can be passed a literal, rather than a "long-hand" instantiated
+object. For example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nf"&gt;Greet&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="kc"&gt;_&lt;/span&gt; &lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Hello&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;h&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;say&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;Greet&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;davep&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I can see that being quite handy.&lt;/p&gt;</content><category term="TIL"></category><category term="Swift"></category><category term="Apple"></category></entry><entry><title>Swift TIL 5</title><link href="https://blog.davep.org/2020/06/26/switch-til-5.html" rel="alternate"></link><published>2020-06-26T15:44:00+01:00</published><updated>2020-06-26T15:44:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-06-26:/2020/06/26/switch-til-5.html</id><content type="html">&lt;p&gt;I'm going to file this one under "it makes perfect sense, but I don't think
+it aids in making the code readable" -- something which I'm finding is a bit
+of a theme with Swift.&lt;/p&gt;
+&lt;p&gt;In Swift &lt;code&gt;self&lt;/code&gt; gets used and gets used in a way you'd expect from many
+other languages. So far so good. But, it seems, &lt;code&gt;Self&lt;/code&gt; is also a thing too,
+and it's different from &lt;code&gt;self&lt;/code&gt;. Whereas &lt;code&gt;self&lt;/code&gt; is the current instance,
+&lt;code&gt;Self&lt;/code&gt; is the current type. So consider this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Greeting&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;func&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;Ayup!&amp;quot;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nf"&gt;message&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;Well hello there&amp;quot;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nf"&gt;emit&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="kc"&gt;Self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="kc"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;Greeting&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;emit&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;When run, the output is:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Ayup!
+Well hello there
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It makes sense that that's the case. I actually really like the ability to
+use &lt;code&gt;Self&lt;/code&gt; rather than having to use &lt;code&gt;Greeting&lt;/code&gt;, but damn that's really
+setting things up for either mistyping or misreading code. You're going to
+want to hope that your development environment makes it super obvious what's
+a value and what's a type when it comes to using font choices.&lt;/p&gt;</content><category term="TIL"></category><category term="Swift"></category><category term="Apple"></category></entry><entry><title>Swift TIL 4</title><link href="https://blog.davep.org/2020/06/25/swift-til-4.html" rel="alternate"></link><published>2020-06-25T13:21:00+01:00</published><updated>2020-06-25T13:21:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-06-25:/2020/06/25/swift-til-4.html</id><content type="html">&lt;p&gt;Some languages favour a &lt;a href="https://www.python.org/dev/peps/pep-0020/"&gt;"one way to do
+it"&lt;/a&gt; approach, some favour
+&lt;a href="https://en.wikipedia.org/wiki/There%27s_more_than_one_way_to_do_it"&gt;"there's more than one way to do
+it"&lt;/a&gt;.
+I'm not sure I'm at a point where I have a feel for what Swift's approach
+is, but I'm getting the impression it's more the latter than the former.&lt;/p&gt;
+&lt;p&gt;If there was one thing that made me think that, it was when I found out that
+Swift's &lt;code&gt;bool&lt;/code&gt; type has a &lt;code&gt;toggle&lt;/code&gt; method.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;cool&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;
+
+&lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;cool&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;cool&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;cool&lt;/span&gt;
+&lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;cool&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;cool&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;toggle&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;cool&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;giving:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;swift&lt;span class="w"&gt; &lt;/span&gt;run
+&lt;span class="nb"&gt;false&lt;/span&gt;
+&lt;span class="nb"&gt;true&lt;/span&gt;
+&lt;span class="nb"&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I can see a number of reasons why that's actually going to be handy -- the
+main one being when you want to throw around a toggling method -- but it
+still struck me as rather odd on first reading. I also think it's worth me
+making a personal note about it because &lt;code&gt;foo.toggle()&lt;/code&gt; isn't going to stand
+out as much as &lt;code&gt;foo = !foo&lt;/code&gt; when reading code. At least not for a short
+while.&lt;/p&gt;</content><category term="TIL"></category><category term="Swift"></category><category term="Apple"></category></entry><entry><title>Swift TIL 3</title><link href="https://blog.davep.org/2020/06/24/swift-til-3.html" rel="alternate"></link><published>2020-06-24T16:38:00+01:00</published><updated>2020-06-24T16:38:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-06-24:/2020/06/24/swift-til-3.html</id><content type="html">&lt;p&gt;Today's little "Swift TIL" is observers. While reading up on the language I
+was delighted to find that it has observer support baked right into the
+language, for any sort of variable. So code like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt;  &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;David&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="kr"&gt;willSet&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;About to change name from &lt;/span&gt;&lt;span class="si"&gt;\(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="si"&gt;)&lt;/span&gt;&lt;span class="s"&gt; to &lt;/span&gt;&lt;span class="si"&gt;\(&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="si"&gt;)&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kr"&gt;didSet&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;old&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Name changed from &lt;/span&gt;&lt;span class="si"&gt;\(&lt;/span&gt;&lt;span class="n"&gt;old&lt;/span&gt;&lt;span class="si"&gt;)&lt;/span&gt;&lt;span class="s"&gt; to &lt;/span&gt;&lt;span class="si"&gt;\(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="si"&gt;)&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;davep&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Does what you'd imagine:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;About to change name from David to davep
+Name changed from David to davep
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Not only can I see how that'd be useful for the main sorts of purposes that
+Swift is put to, I can think of many times when I'd have benefitted from
+that in my general day-to-day work. Of course, you can create an observer
+approach in any language really, but having an idiom that's part of the
+language feels nice and tidy.&lt;/p&gt;</content><category term="TIL"></category><category term="Swift"></category><category term="Apple"></category></entry><entry><title>Swift TIL 2</title><link href="https://blog.davep.org/2020/06/23/swift-til-2.html" rel="alternate"></link><published>2020-06-23T14:21:00+01:00</published><updated>2020-06-23T14:21:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-06-23:/2020/06/23/swift-til-2.html</id><content type="html">&lt;p&gt;&lt;a href="/2020/06/22/swift-til-1.html"&gt;Following on&lt;/a&gt; with writing little notes to
+myself so I remember some key things as I learn about Swift...&lt;/p&gt;
+&lt;p&gt;I sort of feel like this will make reading code a little harder, so it's one
+I want to keep in mind. When calling an instance method, if it's not
+ambiguous, you can omit &lt;code&gt;self.&lt;/code&gt; from the call. For example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Foo&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nf"&gt;inner&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Foo&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nf"&gt;outer&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;inner&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="kc"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inner&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;Foo&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;outer&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This makes me feel a little uneasy, and I strongly suspect I'll always use
+&lt;code&gt;self.&lt;/code&gt; when writing such code: I'm a big fan of the idea that we write code
+for people, not for compilers.&lt;/p&gt;</content><category term="TIL"></category><category term="Swift"></category><category term="Apple"></category></entry><entry><title>Swift TIL 1</title><link href="https://blog.davep.org/2020/06/22/swift-til-1.html" rel="alternate"></link><published>2020-06-22T13:18:00+01:00</published><updated>2020-06-22T13:18:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-06-22:/2020/06/22/swift-til-1.html</id><content type="html">&lt;p&gt;As &lt;a href="/2020/06/21/a-second-attempt-to-learn-swift.html"&gt;I mentioned
+yesterday&lt;/a&gt;,
+I'm going to make a small series of posts where I write down things that
+I've stumbled on while getting to know Swift that are, for me personally,
+worthy of note, different, unusual, cool, or just simply "WTF!?!".&lt;/p&gt;
+&lt;p&gt;Because learning new stuff is fun.&lt;/p&gt;
+&lt;p&gt;My first one is that you can use keywords as identifiers if you "escape"
+them with backticks. Kind of like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="p"&gt;`&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="p"&gt;`&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;let&amp;quot;&lt;/span&gt;
+
+&lt;span class="bp"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="p"&gt;`&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="p"&gt;`&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I'm struggling to imagine a situation where I'd ever want to do this. I'm
+still unsure if my reaction is "that's cool" or "WTF?!?".&lt;/p&gt;</content><category term="TIL"></category><category term="Swift"></category><category term="Apple"></category></entry></feed>

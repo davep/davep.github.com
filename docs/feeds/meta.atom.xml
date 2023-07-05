@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Meta</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/meta.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2023-07-04T08:32:00+01:00</updated><entry><title>Considering Pelican</title><link href="https://blog.davep.org/2023/07/04/considering-pelican.html" rel="alternate"></link><published>2023-07-04T08:32:00+01:00</published><updated>2023-07-04T08:32:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-07-04:/2023/07/04/considering-pelican.html</id><content type="html">&lt;p&gt;Since getting my blog editing environment set up on the "new" machine &lt;a href="/2023/07/02/catching-up.html"&gt;a
+couple of days back&lt;/a&gt; I've been thinking some
+more about moving away from Jekyll. Jekyll itself has served me well since I
+started this blog &lt;a href="/2015/06/18/hello-world.html"&gt;back in 2015&lt;/a&gt;, but I was
+reminded again when installing it on the Mac Mini that it's Ruby-based and I
+have very little understanding of how to get a good Ruby experience on
+macOS&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Having &lt;a href="https://fosstodon.org/@davep/110643256889173912"&gt;mentioned on Mastodon that I was thinking about finally looking at
+moving my blog management/generation to something
+new&lt;/a&gt;, and specifically
+something Python-based and ideally some sort of site generator, I got a few
+suggestions.&lt;/p&gt;
+&lt;p&gt;One that looks promising so far is &lt;a href="https://getpelican.com/"&gt;Pelican&lt;/a&gt;. At
+first glance it seems to tick a few boxes for me:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python-based (so easy for me to grok in terms of installing, and also more
+  chance of being hackable).&lt;/li&gt;
+&lt;li&gt;Uses Markdown (curiously as an alternative, to reStructuredText, which
+  looks to be the default).&lt;/li&gt;
+&lt;li&gt;Does article-based stuff as well as page-based stuff.&lt;/li&gt;
+&lt;li&gt;Lots of themes, and themes are Jinja2-based (I'm pretty familiar with
+  Jinja thanks to my Django days and also &lt;a href="https://github.com/davep/ng2web"&gt;using the library when kicking
+  off &lt;code&gt;ng2web&lt;/code&gt;&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;RSS feed generation.&lt;/li&gt;
+&lt;li&gt;Syntax-highlighted code blocks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;While I'm not quite ready to dive in and make the move just yet (I am on a
+"muck about at home" holiday this week, but I've got enough planned without
+losing a day to rebooting my blog), I did do a quick experiment to see if
+Pelican would work for me.&lt;/p&gt;
+&lt;p&gt;Key to this is can I keep the URLs for all the posts the same? If I can't
+that's a non-starter.&lt;/p&gt;
+&lt;p&gt;Things got off to a good start with an easy install:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pelican[markdown]&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I then used the &lt;code&gt;pelican-quickstart&lt;/code&gt; to kick off a test site, copied in my
+existing Markdown files, dived into the docs and found how to configure the
+generated URLs and... yeah, within like 10 minutes I had a &lt;em&gt;very&lt;/em&gt; rough
+version of my blog up and going.&lt;/p&gt;
+&lt;p&gt;It looked like garbage, the theme really wasn't to my taste at all, but the
+core of the blog was working.&lt;/p&gt;
+&lt;p&gt;I've nuked it all for now but a more considered evaluation is now on my TODO
+list. Things I'll need to drive into properly are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Find a base theme that's to my taste.&lt;/li&gt;
+&lt;li&gt;Get Disqus working it so that any old comments remain in place.&lt;/li&gt;
+&lt;li&gt;Get my image/attachment layout back in place.&lt;/li&gt;
+&lt;li&gt;Go through and tidy up all the tagging (which has been a mess with this
+  blog because I never did get round to getting Jekyll to actually use
+  tags).&lt;/li&gt;
+&lt;li&gt;Figure out the best way to do the publishing to GitHub pages.&lt;/li&gt;
+&lt;li&gt;Likely a bunch of other stuff I've not thought about yet.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;But, yeah, for a brief "over first coffee of the day" tinker to see if I
+like it... I like!&lt;/p&gt;
+&lt;p&gt;Let's see how long it takes me to actually get around to making the switch.
+;-)&lt;/p&gt;
+&lt;hr&gt;
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;When setting this up a couple of days back, I had to pin some packages
+for the blog to older versions because of Ruby version issues; I'm sure
+that Ruby has virtual environment solutions akin to Python, but diving
+into that just for one tool... nah.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="Meta"></category><category term="Python"></category><category term="Blogging"></category></entry><entry><title>Catching up</title><link href="https://blog.davep.org/2023/07/02/catching-up.html" rel="alternate"></link><published>2023-07-02T08:00:00+01:00</published><updated>2023-07-02T08:00:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-07-02:/2023/07/02/catching-up.html</id><content type="html">&lt;p&gt;So... erm... yeah... I did it again. I looked away for a moment and somehow
+&lt;a href="/2022/12/16/oidia.html"&gt;almost 7 months passed without a post&lt;/a&gt;! It's so
+easily done too isn't it? While, &lt;a href="/2022/05/20/im-back.html"&gt;when I revived this blog last
+year&lt;/a&gt;, I didn't make a point of intending to write
+lots and often, I had hope that I'd manage something at least once a week;
+perhaps at least once a month.&lt;/p&gt;
+&lt;p&gt;Ahh well.&lt;/p&gt;
+&lt;p&gt;There's been two main reasons why it's been quiet around here. The first is
+that &lt;a href="/2022/10/05/on-to-something-new-redux.html"&gt;my (now not so) new job&lt;/a&gt;
+keeps me busy (in a good way). It involves a reasonable amount of trekking
+into town and back (which I don't mind on the whole), and once I'm home in
+the evening I'm generally (but not always) done with the keyboard and desk.&lt;/p&gt;
+&lt;p&gt;The second reason, which is probably the dafter one, is that a bit earlier
+this year I finally upgraded my desktop setup from the 2019 Intel MacBook
+Pro I was using to a recently-released M2Pro Mac Mini (and &lt;em&gt;what&lt;/em&gt; an
+upgrade!). How this plays into blogging being even more quiet is... I needed
+to set up jekyll again, and I'd forgotten how I got it running in the first
+place, so I kept putting off getting it going, and...&lt;/p&gt;
+&lt;p&gt;Well, this morning, I sat down with coffee, grepped the &lt;code&gt;history&lt;/code&gt; on my
+previous machine, and got it running in like 5 minutes (of course).&lt;/p&gt;
+&lt;p&gt;So, here I am, back adding another blog post. I'm writing this as much to
+test that the setup works as anything else.&lt;/p&gt;
+&lt;p&gt;But also, this time, I'm going to try and make a promise to myself: I'm
+going to try and write more. I can and should write about anything. I can
+and should write short things as well as long things. I can and should
+remember that it's not about writing things that are going to be super
+important or anything like that, it's about just getting stuff down and
+creating and recording.&lt;/p&gt;
+&lt;p&gt;Note of course I said "try" and make a promise.&lt;/p&gt;
+&lt;p&gt;We'll see. ;-)&lt;/p&gt;</content><category term="Meta"></category><category term="Mac"></category><category term="Apple"></category></entry><entry><title>I'm back!</title><link href="https://blog.davep.org/2022/05/20/im-back.html" rel="alternate"></link><published>2022-05-20T12:44:00+01:00</published><updated>2022-05-20T12:44:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2022-05-20:/2022/05/20/im-back.html</id><content type="html">&lt;p&gt;I'm back! Almost. More or less. In more ways than one. First off, as often
+happens with blogs (we've all been there right?), I've been away from
+blogging for a while. I've still been online, still been waffling away &lt;a href="https://twitter.com/davepdotorg"&gt;on
+twitter&lt;/a&gt;, and have also stumbled into
+&lt;a href="https://fosstodon.org/@davep"&gt;fosstodon as well&lt;/a&gt;. Doubtless plenty of other
+things.&lt;/p&gt;
+&lt;p&gt;A big distraction for me, and one that is ongoing, is &lt;a href="https://www.youtube.com/user/daveporg"&gt;mucking about on
+YouTube&lt;/a&gt;. Since the last time I wrote
+anything on the blog I got myself a VR setup, and then a PCVR setup, and
+then finally fibre came to the village and I could stream, and... well, you
+can see how that would go.&lt;/p&gt;
+&lt;p&gt;So, in short, that's where I've been and that's what's been keeping me busy.
+Now that I'm paying some attention to blogging again (hopefully!) I imagine
+some of that will end up on here -- I'd quite like to write about VR and
+gaming amongst other things.&lt;/p&gt;
+&lt;p&gt;Now, I said I'd been away in more ways than one. Another way is explained by
+&lt;a href="/2019/10/18/time-to-move-on.html"&gt;this post from back in 2019&lt;/a&gt;, where I
+said I was going to head &lt;a href="https://blog.davep.dev/"&gt;over to Hashnode&lt;/a&gt; and
+carry on blogging there, obviously with an emphasis on development and just
+development.&lt;/p&gt;
+&lt;p&gt;That kept me busy for a while and worked out well, mostly. But... well, see
+above in part; I sort of ran out of steam when it came to purely-development
+topics. But I still wanted to write, a bit, and wanted to write about more
+than just development.&lt;/p&gt;
+&lt;p&gt;Also, something else was bothering me about being over on Hashnode. In the
+past year, in terms of what they promote themselves, especially blogs and
+posts they promote on their Twitter feed, they seem to have started to lean
+really hard into &lt;a href="https://www.youtube.com/watch?v=YQ_xWvX1n9g"&gt;crypto and web3 and
+NFTs&lt;/a&gt; and all that stuff. This
+left me feeling like that was all a bit icky and it was time to put some
+distance between that platform and myself.&lt;/p&gt;
+&lt;p&gt;So over the past couple of weeks, low-level and as a background task, I've
+been back-porting posts from over there back into this blog. Starting with
+this post all new blog content, be it about software development or anything
+else, will be on here. If I'm really sensible and don't get distracted by
+new shiny... this should be how it remains now.&lt;/p&gt;
+&lt;p&gt;Expect some changes over the next few weeks. While I'm aiming to stick with
+the core tech (Github pages, Markdown and Jekyll, Emacs to edit, etc), I'd
+like to tinker with the look and layout of the blog. The content will remain
+the same though.&lt;/p&gt;
+&lt;p&gt;So, yeah, anyway, if you're reading this... hey, it's good to be back. :-)&lt;/p&gt;</content><category term="Meta"></category><category term="news"></category><category term="blogging"></category></entry><entry><title>Time to move on</title><link href="https://blog.davep.org/2019/10/18/time-to-move-on.html" rel="alternate"></link><published>2019-10-18T17:42:00+01:00</published><updated>2019-10-18T17:42:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2019-10-18:/2019/10/18/time-to-move-on.html</id><content type="html">&lt;p&gt;It's well over a year since I last wrote something on this blog. As
+mentioned in the last post (and the one before), it's not for bad reasons or
+anything like that. Being in a new job, which actually isn't all that new
+now, has kept me busy in all the best ways possible.&lt;/p&gt;
+&lt;p&gt;There's been other stuff going on too which has drawn on my attention and
+the time and motivation to blog, either random stuff, or more
+development-related stuff, just hasn't been there.&lt;/p&gt;
+&lt;p&gt;Also... blogging via GitHub, using Jekyll, has lost a lot of its shine. It
+sort of makes sense, well, sort of &lt;em&gt;made&lt;/em&gt; sense, but in the end it felt like
+more work than it should. Whereas most blogging systems tend to encourage
+just diving in and banging on the keyboard, there's just a bit more faff
+with the GitHub pages approach.&lt;/p&gt;
+&lt;p&gt;So, with that in mind, and with no desire right now to roll my own (which
+would be fun, it has to be said), I'm going to &lt;a href="https://blog.davep.dev/"&gt;skip off over to Hashnode's
+blogging system&lt;/a&gt;. It seems to have everything I'd
+want and I can slap it on a domain of mine.&lt;/p&gt;
+&lt;p&gt;Most of my random musings about random things really happen on Twitter, so I
+can't imagine I'll be wanting to blog about normal/mundane things. What I
+would like to do is write about development-related things from time to
+time. So that would seem to fit even better.&lt;/p&gt;
+&lt;p&gt;Anyway, enough of all this waffle. If you land here and it looks kind of
+quiet, that's because it has been quiet for a while and I'm now going to try
+and concentrate elsewhere, with a wish to do some coding-related writing now
+and again.&lt;/p&gt;</content><category term="Meta"></category><category term="blogging"></category></entry><entry><title>Hello, World!</title><link href="https://blog.davep.org/2015/06/18/hello-world.html" rel="alternate"></link><published>2015-06-18T14:53:00+01:00</published><updated>2015-06-18T14:53:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2015-06-18:/2015/06/18/hello-world.html</id><content type="html">&lt;p&gt;Hello, world.&lt;/p&gt;
+&lt;p&gt;So I've decided that it's time I had a blog again. An actual blog. Not a set
+of posts on &lt;a href="https://plus.google.com/+DavePearson/posts"&gt;Google+&lt;/a&gt; or a torrent
+of 140-character thoughts on &lt;a href="https://twitter.com/davepdotorg"&gt;twitter&lt;/a&gt; but
+an actual blog.&lt;/p&gt;
+&lt;p&gt;Part of the reason for this is that there's a couple of personal coding projects
+I want to have a go at over the next few months and writing about them as I
+work on them might be fun. Another reason is that I've being wanting to explore
+the business of hosting a blog on GitHub pages for quite some time and now's
+the perfect time to do it.&lt;/p&gt;
+&lt;p&gt;So how am I doing this? Well, for starters, I recently acquired an iMac. The
+reasons for how and why I chose to do this are varied and mostly uninteresting
+but what it does mean is that, for the first time in quite a long time, I
+have a Unix desktop machine again. This fact alone means it's nice and easy
+for me to play with the likes of Git (or, at the moment more
+&lt;a href="https://mac.github.com/"&gt;GitHub for Mac&lt;/a&gt; than the command line git), ruby,
+&lt;a href="http://jekyllrb.com/"&gt;Jekyll&lt;/a&gt; and
+&lt;a href="http://www.sublimetext.com/"&gt;SublimeText&lt;/a&gt; (along with
+&lt;a href="https://packagecontrol.io/packages/Jekyll"&gt;a rather nifty package for quickly kicking off a blog post&lt;/a&gt;).
+So that's how I'm doing it. Writing it all locally and pushing it up to
+GitHub and hosting it with &lt;a href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As this goes on I imagine much will change. I've started out with a basic
+setup, created by simply using:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;davep@Ariel:~/blogging$&lt;span class="w"&gt; &lt;/span&gt;jekyll&lt;span class="w"&gt; &lt;/span&gt;new&lt;span class="w"&gt; &lt;/span&gt;davep.github.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;From now on I'll be playing with styles and my own layouts to see what I can
+come up with and what I like (although, I most say, for the most part I'm
+actually liking the clean look it delivers out of the box).&lt;/p&gt;
+&lt;p&gt;One thing that's obviously missing right now is a facility for commenting.
+That's something I'll look into should I feel it's necessary -- from what I've
+seen elsewhere it's easy enough to make use of something like
+&lt;a href="https://disqus.com/"&gt;disqus&lt;/a&gt;. &lt;strong&gt;Update:&lt;/strong&gt; This has now happened.&lt;/p&gt;
+&lt;p&gt;One other thing I might look at doing is putting this behind my own domain.
+For the moment it's only available via github.io and I guess it might look
+nicer if it was actually available via a URL that looks like the name I've
+attached to the blog. &lt;strong&gt;Update:&lt;/strong&gt; This has now happened.&lt;/p&gt;
+&lt;p&gt;Anyway, that's it for now. Time to push this up and think some more about
+where it'll go from here.&lt;/p&gt;</content><category term="Meta"></category><category term="blogging"></category><category term="Mac"></category></entry></feed>
