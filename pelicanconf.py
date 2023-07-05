@@ -21,6 +21,7 @@ ARTICLE_SAVE_AS         = ARTICLE_URL
 DELETE_OUTPUT_DIRECTORY = True
 STATIC_PATHS            = ["attachments", "static"]
 DATE_FORMATS            = {"en": "%Y-%m-%d"}
+FILENAME_METADATA       = r"\d{4}-\d{2}-\d{2}-(?P<slug>.*)"
 
 ##############################################################################
 # Theme control.
