@@ -41,10 +41,20 @@ AUTHOR_FEED_RSS       = None
 ##############################################################################
 # Menu configuration.
 MAIN_MENU = True
-LINKS     = ()
+LINKS     = (
+    ("davep.at", "http://davep.at/"),
+    ("Pinboard", "https://pinboard.in/u:davep"),
+    ("Photoblog", "https://seenbydavep.blogspot.com/"),
+    ("Python Packages", "https://pypi.org/user/davepearson/"),
+)
 SOCIAL    = (
     ("github", "https://github.com/davep"),
     ("mastodon", "https://fosstodon.org/@davep"),
+    ("flickr", "https://www.flickr.com/photos/davepearson/"),
+    ("lastfm", "https://www.last.fm/user/davepdotorg"),
+    ("npm", "https://www.npmjs.com/~davep.org"),
+    ("youtube", "https://www.youtube.com/user/daveporg"),
+    ("steam", "https://steamcommunity.com/id/davepdotorg")
 )
 MENUITEMS = (
     ("Archives", "/archives.html"),
