@@ -1,0 +1,319 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://blog.davep.org/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://blog.davep.org/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://blog.davep.org/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/static/davep.css">
+
+  <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
+
+  <link href="https://blog.davep.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom">
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Dave Pearson" />
+<meta name="description" content="Something I always try to do when I&#39;m coding is be consistent. I feel this is important. While people&#39;s coding standards may differ, I think different approaches are easier to handle if someone has been consistent with their style across all of their code. This also stands for documentation too …" />
+<meta name="keywords" content="Python, documentation">
+
+
+  <meta property="og:site_name" content="blog.davep.org"/>
+  <meta property="og:title" content="pydscheck -- A quick hack that keeps slowly growing"/>
+  <meta property="og:description" content="Something I always try to do when I&#39;m coding is be consistent. I feel this is important. While people&#39;s coding standards may differ, I think different approaches are easier to handle if someone has been consistent with their style across all of their code. This also stands for documentation too …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://blog.davep.org/2019/10/26/pydscheck-a-quick-hack-that-keeps-slowly-growing.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2019-10-26 13:19:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://blog.davep.org/author/dave-pearson.html">
+  <meta property="article:section" content="misc"/>
+  <meta property="article:tag" content="Python"/>
+  <meta property="article:tag" content="documentation"/>
+  <meta property="og:image" content="/static/davep.jpeg">
+
+  <title>blog.davep.org &ndash; pydscheck -- A quick hack that keeps slowly growing</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://blog.davep.org/">
+      <img src="/static/davep.jpeg" alt="" title="">
+    </a>
+
+    <h1>
+      <a href="https://blog.davep.org/"></a>
+    </h1>
+
+
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://davep.at/" >davep.at</a>
+          </li>
+          <li>
+            <a target="_self" href="https://pinboard.in/u:davep" >Pinboard</a>
+          </li>
+          <li>
+            <a target="_self" href="https://seenbydavep.blogspot.com/" >Photoblog</a>
+          </li>
+          <li>
+            <a target="_self" href="https://pypi.org/user/davepearson/" >Python Packages</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-github"
+           href="https://github.com/davep"
+           target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-mastodon"
+rel="me"           href="https://fosstodon.org/@davep"
+           target="_blank">
+          <i class="fa-brands fa-mastodon"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-flickr"
+           href="https://www.flickr.com/photos/davepearson/"
+           target="_blank">
+          <i class="fa-brands fa-flickr"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-lastfm"
+           href="https://www.last.fm/user/davepdotorg"
+           target="_blank">
+          <i class="fa-brands fa-lastfm"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-npm"
+           href="https://www.npmjs.com/~davep.org"
+           target="_blank">
+          <i class="fa-brands fa-npm"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-youtube"
+           href="https://www.youtube.com/user/daveporg"
+           target="_blank">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-steam"
+           href="https://steamcommunity.com/id/davepdotorg"
+           target="_blank">
+          <i class="fa-brands fa-steam"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://blog.davep.org/">Home</a>
+
+  <a href="/archives.html">Archives</a>
+  <a href="/categories.html">Categories</a>
+  <a href="/tags.html">Tags</a>
+
+  <a href="https://blog.davep.org/feeds/all.atom.xml">Atom</a>
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="pydscheck-a-quick-hack-that-keeps-slowly-growing">pydscheck -- A quick hack that keeps slowly growing</h1>
+    <p>
+      Posted on 2019-10-26 in <a href="https://blog.davep.org/category/misc.html">misc</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Something I always try to do when I'm coding is be consistent. I feel this
+is important. While people's coding standards may differ, I think different
+approaches are easier to handle if someone has been consistent with their
+style across all of their code.</p>
+<p>This also stands for documentation too.</p>
+<p>In my current position, I do a <em>lot</em> of Python coding, and one of the things
+I like about Python (there are things I don't like too, but that's not for
+now) is that it has doc-strings (just like my <a href="https://en.wikipedia.org/wiki/Common_Lisp">favourite
+language</a>). I use them
+extensively, ensuring every function and method has some form of
+documentation, and generally I use
+<a href="http://www.sphinx-doc.org/en/master/">Sphinx</a> to generate documentation
+from those doc-strings.</p>
+<p>Early on I was bothered by the fact that, just by the simple act of making
+typos, I wasn't keeping the form of the doc-strings consistent. And in this
+case it was a <em>really</em> simple thing that was bugging me. Normally, if I'm
+writing a single-line doc-string, I'll write like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">one_liner</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Here is a one-line doc-string.&quot;&quot;&quot;</span>
+</code></pre></div>
+
+<p>So far, so good. But, if the doc-string is a multi-liner, I prefer the
+ending quotes to be on a line of their own, like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">multi_liner</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Here is the first line.</span>
+<span class="sd">    Here is another line.</span>
+<span class="sd">    Here is the final line.</span>
+<span class="sd">    &quot;&quot;&quot;</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+<p>But, sometimes, by accident, I'd leave a doc-string like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">multi_liner</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Here is the first line.</span>
+<span class="sd">    Here is another line.</span>
+<span class="sd">    Here is the final line.&quot;&quot;&quot;</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+<p>While it's really not a big deal, it would bug me and every time I found one
+like this I'd "fix" it.</p>
+<p>Eventually, it bugged me enough that I decided I was going to write a little
+tool to find all such instances in my code and report them. My first
+approach was to think "I could just do this with some regexp magic", <a href="http://regex.info/blog/2006-09-15/247">which
+was really a bad idea</a>. Then I
+though, I know, I should use this as an excuse to to play with <a href="https://docs.python.org/3/library/ast.html">Python's ast
+library</a>.</p>
+<p>That worked really well! I had <a href="https://github.com/davep/pydscheck/blob/dc5052002690b1f898ccd68f815cdedbe9172b74/pydscheck">the first version of the
+code</a>
+up and running in no time. It was simple but did the job. It ran through
+Python code I threw at it and alerted me to both missing doc-strings, and
+doc-strings with the ending I didn't like.</p>
+<p>That served me for a while, until one day I realised that it wasn't quite
+doing the job correctly; it was only really looking at top-level functions
+and top-level methods in classes. Sometimes, not often, but sometimes, I'll
+define functions within functions, and I feel they deserve documentation
+too. So then I modified the code to ensure it walked every part of the AST.</p>
+<p>Since then, when I've run into new things and had new ideas, <code>pydscheck</code> has
+grown and grown. I've added checks that all mentioned parameters have a
+type; I've added checks that any function/method that returns something
+actually documents the return value; I've added checks that any
+documentation of a returned value includes its type; I've added checks that
+any function or method that yields a value documents that fact; I've added
+checks that ensure that every parameter is documented in some way.</p>
+<p>Each time I've done this it's helped uncover issues in my code's
+documentation that could be cleaner, and it's also given me a pet project to
+slowly better understand Python's AST.</p>
+<p>It could be that there are better tools out there, I'd have thought that a
+good doc-string linting tool would be something someone had already written.
+But this time around I was happy to
+<a href="https://en.wikipedia.org/wiki/Not_invented_here">NIH</a> it because I needed a
+fun learning exercise that would also have some benefits for my day-to-day
+work.</p>
+<p>I'll caveat this with the fact that it's very particular to how I work and
+how I like my documentation to look, but if it sounds useful, here it is:
+<a href="https://github.com/davep/pydscheck">https://github.com/davep/pydscheck</a>.</p>
+<p>There's still lots I could do with it. First off I should really properly
+package it up so it can be installed as a command line tool via pip. Other
+things that would be handy would be to allow some form of customisation of
+how it works. I'm sure there's other fun things I can do with it too.</p>
+<p>That's part of the fun of having a pet project: you can tinker when you like
+and also get benefits from it as you use it.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://blog.davep.org/tag/python.html">Python</a>
+      <a href="https://blog.davep.org/tag/documentation.html">documentation</a>
+    </p>
+  </div>
+
+
+
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>&copy; 2015-2023 Dave Pearson</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://blog.davep.org/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " blog.davep.org ",
+  "url" : "https://blog.davep.org",
+  "image": "/static/davep.jpeg",
+  "description": ""
+}
+</script>
+</body>
+</html>

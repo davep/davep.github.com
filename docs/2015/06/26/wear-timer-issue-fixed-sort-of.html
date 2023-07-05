@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://blog.davep.org/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://blog.davep.org/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://blog.davep.org/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/static/davep.css">
+
+  <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
+
+  <link href="https://blog.davep.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom">
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Dave Pearson" />
+<meta name="description" content="Following on from yesterday&#39;s problem with the Android Wear timer I think I now have a solution. It came up while chatting with Mike McLoughlin about the issue. I got to thinking that this problem felt like one that I&#39;ve seen a number of times before with Google stuff. One …" />
+<meta name="keywords" content="Google, Android, Wear, Android Wear, Watch, Moto360">
+
+
+  <meta property="og:site_name" content="blog.davep.org"/>
+  <meta property="og:title" content="Wear timer issue fixed, sort of"/>
+  <meta property="og:description" content="Following on from yesterday&#39;s problem with the Android Wear timer I think I now have a solution. It came up while chatting with Mike McLoughlin about the issue. I got to thinking that this problem felt like one that I&#39;ve seen a number of times before with Google stuff. One …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://blog.davep.org/2015/06/26/wear-timer-issue-fixed-sort-of.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2015-06-26 12:02:31+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://blog.davep.org/author/dave-pearson.html">
+  <meta property="article:section" content="misc"/>
+  <meta property="article:tag" content="Google"/>
+  <meta property="article:tag" content="Android"/>
+  <meta property="article:tag" content="Wear"/>
+  <meta property="article:tag" content="Android Wear"/>
+  <meta property="article:tag" content="Watch"/>
+  <meta property="article:tag" content="Moto360"/>
+  <meta property="og:image" content="/static/davep.jpeg">
+
+  <title>blog.davep.org &ndash; Wear timer issue fixed, sort of</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://blog.davep.org/">
+      <img src="/static/davep.jpeg" alt="" title="">
+    </a>
+
+    <h1>
+      <a href="https://blog.davep.org/"></a>
+    </h1>
+
+
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://davep.at/" >davep.at</a>
+          </li>
+          <li>
+            <a target="_self" href="https://pinboard.in/u:davep" >Pinboard</a>
+          </li>
+          <li>
+            <a target="_self" href="https://seenbydavep.blogspot.com/" >Photoblog</a>
+          </li>
+          <li>
+            <a target="_self" href="https://pypi.org/user/davepearson/" >Python Packages</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-github"
+           href="https://github.com/davep"
+           target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-mastodon"
+rel="me"           href="https://fosstodon.org/@davep"
+           target="_blank">
+          <i class="fa-brands fa-mastodon"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-flickr"
+           href="https://www.flickr.com/photos/davepearson/"
+           target="_blank">
+          <i class="fa-brands fa-flickr"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-lastfm"
+           href="https://www.last.fm/user/davepdotorg"
+           target="_blank">
+          <i class="fa-brands fa-lastfm"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-npm"
+           href="https://www.npmjs.com/~davep.org"
+           target="_blank">
+          <i class="fa-brands fa-npm"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-youtube"
+           href="https://www.youtube.com/user/daveporg"
+           target="_blank">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-steam"
+           href="https://steamcommunity.com/id/davepdotorg"
+           target="_blank">
+          <i class="fa-brands fa-steam"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://blog.davep.org/">Home</a>
+
+  <a href="/archives.html">Archives</a>
+  <a href="/categories.html">Categories</a>
+  <a href="/tags.html">Tags</a>
+
+  <a href="https://blog.davep.org/feeds/all.atom.xml">Atom</a>
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="wear-timer-issue-fixed-sort-of">Wear timer issue fixed, sort of</h1>
+    <p>
+      Posted on 2015-06-26 in <a href="https://blog.davep.org/category/misc.html">misc</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Following on from
+<a href="http://127.0.0.1:4000/2015/06/25/did-google-just-break-wear-timers.html">yesterday's problem with the Android Wear timer</a>
+I think I now have a solution. It came up
+<a href="https://plus.google.com/+DavePearson/posts/RZujypG7EyF">while chatting with Mike McLoughlin about the issue</a>.</p>
+<p>I got to thinking that this problem felt like one that I've seen a number of
+times before with Google stuff. One thing that's rather common (in many cases
+for very obvious reasons -- you can't cover the whole world in one go) with
+Google is how they struggle to get languages and localisation right. This
+felt like it was a similar issue. Mike had reported that his watch appeared
+to be unaffected by the issue (I'm guessing he's on the latest version of
+Wear -- the conversation headed off in a different direction before that
+became necessary) so I checked what his language was on his phone. Turns out
+he was the same as me: British English.</p>
+<p>So much for that idea.</p>
+<p>But then he suggested switching to US English and back again.</p>
+<p>Happy enough to apply a very Microsoft "turn it off and on again" approach to
+a Google device (really, all big tech companies really are the same and
+really do suffer the same issues) I switched to en-US on the phone and tried
+setting a timer in voice on the watch.</p>
+<p>It worked!</p>
+<p>So then I switched back to en-GB on the phone and...</p>
+<p><img alt="I appear to have timers working again" src="/attachments/2015/06/26/Timer Running on Watch.png"></p>
+<p>...it still worked!</p>
+<p>I've tried setting timers in voice on the watch a few times since and it's yet
+to fail.</p>
+<p>It would appear, as odd as it is, that this is the fix. Well, a fix.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://blog.davep.org/tag/google.html">Google</a>
+      <a href="https://blog.davep.org/tag/android.html">Android</a>
+      <a href="https://blog.davep.org/tag/wear.html">Wear</a>
+      <a href="https://blog.davep.org/tag/android-wear.html">Android Wear</a>
+      <a href="https://blog.davep.org/tag/watch.html">Watch</a>
+      <a href="https://blog.davep.org/tag/moto360.html">Moto360</a>
+    </p>
+  </div>
+
+
+
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>&copy; 2015-2023 Dave Pearson</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://blog.davep.org/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " blog.davep.org ",
+  "url" : "https://blog.davep.org",
+  "image": "/static/davep.jpeg",
+  "description": ""
+}
+</script>
+</body>
+</html>

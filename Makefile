@@ -7,6 +7,10 @@ themes  := $(run) pelican-themes
 
 ##############################################################################
 # Manage the site.
+.PHONY: publish
+publish:
+	$(pelican) --settings publishconf.py
+
 .PHONY: serve
 serve:				# Locally serve the site for testing.
 	$(pelican) -r -l

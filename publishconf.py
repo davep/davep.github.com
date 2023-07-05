@@ -8,6 +8,7 @@ from pelicanconf import *
 
 ##############################################################################
 # Patch in the things we want for publishing.
-SITEURL = "https://blog.davep.org"
+SITEURL     = "https://blog.davep.org"
+OUTPUT_PATH = "docs"
 
 ### publishconf.py ends here
