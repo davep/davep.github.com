@@ -2,7 +2,7 @@
 layout: post
 title: Evernote's confusing menu
 category: Tech
-tags: Evernote, Programming
+tags: Evernote, coding
 date: 2016-10-31 11:38:41+0000
 ---
 

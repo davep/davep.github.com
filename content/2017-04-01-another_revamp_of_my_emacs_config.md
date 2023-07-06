@@ -2,7 +2,7 @@
 layout: post
 title: Another revamp of my emacs config
 category: Emacs
-tags: Emacs, Lisp, Emacs Lisp, Programming
+tags: Emacs, Lisp, Emacs Lisp, coding
 date: 2017-04-01 10:02:18+0100
 ---
 

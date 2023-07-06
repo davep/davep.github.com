@@ -49,7 +49,7 @@
 
 <meta name="author" content="Dave Pearson" />
 <meta name="description" content="I&#39;ve been pretty quiet on here since I last wrote about how I&#39;d done a further revamp of my Emacs config, so I thought that subject would be a good reason to write another blog post. It&#39;ll be a mostly short one, and one to muse over something that&#39;s been bugging me for a while now: my decision to lean heavily on customize to set all sorts of settings. Initially, when I nuked my original config over a year ago, it seemed to make a lot of sense. Let all the tweaks and set values &#34;hide&#34; in a file of their own and try and keep the hand-edited config files as small and as clean as possible. Recently though I&#39;ve got to thinking that this obscures too much, hides too much detail, and removes the ability to actually document what I&#39;m doing and why. It also does make it tricky to adapt some settings to different platforms or even environments on a single platform. Another problem I&#39;ve run into is this: when I made the second round of changes and decided to lean heavily on use-package, I soon ran into the minor issue of some packages not making sense, or even being needed, on some platforms (stuff that&#39;s useful on my macOS machines isn&#39;t always useful on my Windows machines, that sort of thing). While use-package can handle this easily thanks to the :if keyword, I&#39;m still left with the fact that package-selected-packages still gets populated. Having package-selected-packages contain a list of installed packages likely makes sense if you&#39;re using just the Emacs package system and you&#39;re not doing the installing with use-package and :ensure. But with use-package and :ensure I feel like I&#39;ve got far more control over things and can adapt what gets installed when depending on which Emacs I&#39;m running where. But, because I&#39;m syncing my ~/.emacs.d/.custom.el to all my machines too, any use-package that has a :if to not bother using a package has little effect because the package still ends up being listed/loaded/seen as part of the installation. Ideally, I think, I&#39;d like to be able to have package-selected-packages held in its own file, or I&#39;d only ever use ~/.emacs.d/.custom.el for local stuff (and so stop syncing it). Starting today I&#39;m going about a process of moving as much as I can out of ~/.emacs.d/.custom.el and into hand-edited files. In some respects I guess I am going back to how I used to manage Emacs configuration, but this time it&#39;s not a massive monolithic file-of-Lisp, it&#39;s neatly broken down into sensible sections and it&#39;s also biased towards a &#34;grab and config this package&#34; approach. Meanwhile, I&#39;ve not seen any good discussions online about customize vs &#34;hand-edit&#34;, which strikes me as a little odd as it feels like the perfect &#34;religious issue&#34; for people to have endless disagreements over. I guess, over the next couple or so weeks, I&#39;ll find out if switching back was a good idea." />
-<meta name="keywords" content="Emacs, Lisp, programming, Emacs Lisp">
+<meta name="keywords" content="Emacs, Lisp, coding, Emacs Lisp">
 
 
   <meta property="og:site_name" content="blog.davep.org"/>
@@ -64,7 +64,7 @@
   <meta property="article:section" content="Emacs"/>
   <meta property="article:tag" content="Emacs"/>
   <meta property="article:tag" content="Lisp"/>
-  <meta property="article:tag" content="programming"/>
+  <meta property="article:tag" content="coding"/>
   <meta property="article:tag" content="Emacs Lisp"/>
   <meta property="og:image" content="/static/davep.jpeg">
 
@@ -246,7 +246,7 @@ idea.</p>
     <p>
       <a href="https://blog.davep.org/tag/emacs.html">Emacs</a>
       <a href="https://blog.davep.org/tag/lisp.html">Lisp</a>
-      <a href="https://blog.davep.org/tag/programming.html">programming</a>
+      <a href="https://blog.davep.org/tag/coding.html">coding</a>
       <a href="https://blog.davep.org/tag/emacs-lisp.html">Emacs Lisp</a>
     </p>
   </div>

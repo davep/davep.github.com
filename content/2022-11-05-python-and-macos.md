@@ -2,7 +2,7 @@
 layout: post
 title: Python and macOS
 category: Python
-tags: Python, macOS, programming
+tags: Python, macOS, coding
 date: 2022-11-05 08:49:00 +0000
 ---
 
