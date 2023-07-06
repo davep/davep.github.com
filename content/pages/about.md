@@ -5,8 +5,10 @@ title: About
 ## About the site
 
 A blog that has wandered from place to place, but has (hopefully) settled
-back here. Mostly it's to do with tech/coding stuff, sometimes perhaps
-gaming and video-making stuff, and on occasion personal stuff.
+back here. Mostly it's to do with
+[tech](/category/tech.html)/[coding](/category/coding.html) stuff, sometimes
+perhaps gaming and video-making stuff, and on occasion [personal
+stuff](/category/life.html).
 
 Expect a bit of a mix.
 
@@ -20,8 +22,8 @@ effort to get to know and work with plenty of others.
 These days I do a lot of Python work, working as part of the [Textualize
 team](https://www.textualize.io/).
 
-Evenings and weekends I spend a fair bit of time playing, recording and
-streaming VR games.
+Evenings and weekends I spend a fair bit of time playing, recording and on
+occasion streaming [VR](/tag/vr.html) games.
 
 When I'm not in VR I'm likely out running, or tinkering with personal code
 projects.
