@@ -173,6 +173,45 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/07/06/dark-waters.html#dark-waters">Dark Waters</a></h2>
+    <p>
+      Posted on 2023-07-06 07:36 +0100 in <a href="https://blog.davep.org/category/music.html">Music</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/music.html">Music</a>
+    </p>
+  </header>
+  <div>
+      <div><p>More than ever I'm listening to music while I work. Despite having grown up
+in the 80s, and so having a good vinyl collection, and then having got into
+buying all the CDs in the 90s and 00s, these days I have managed to embrace
+the "just stream all the things" approach. After a long time using Spotify I
+finally ended up migrating to Apple Music.</p>
+<p>One of the things I do find Apple Music does well is the whole "you seem to
+like this, have you tried this?" thing; which on occasion has resulted in a
+pretty neat rabbit hole of discovery.</p>
+<p>Earlier this year this happened with female-fronted Dutch goth/rock type
+bands. I don't even remember how that happened, but it's a thing that
+happened and I gleefully dived right in. I came away with a few names I
+didn't know before, but one album has really stuck in my head and, now that
+we're just over 1/2 way through the year, I feel it's the one that gets
+played more than anything else.</p>
+<p><img alt="Delain Dark Waters" src="/attachments/2023/07/06/Delain Dark Waters.jpeg#centre"></p>
+<p>This keeps creeping back to the top of things I'm playing; sometimes when
+I'm in "bang on the keyboard lots" coding mode (you know the sort of coding
+mode: where you don't have to think too much because you have a good plan
+for what you're doing, but you've got a lot of tapping away to do), plus
+also often while I'm in the car.</p>
+<p>I won't be the least it surprised to find that this ends up being my
+most-played album this year. According to last.fm it's at the top of the
+albums I've played (in places where I have scrobbling set up) in the last
+365 days.</p>
+<p><img alt="My last 365 days of albums on last.fm" src="/attachments/2023/07/06/AlbumsInLast365Days.png#centre"></p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/07/05/the-switch-has-been-made.html#the-switch-has-been-made">The switch has been made</a></h2>
     <p>
       Posted on 2023-07-05 17:56 +0100 in <a href="https://blog.davep.org/category/meta.html">Meta</a>
@@ -1057,107 +1096,6 @@ team as part of Textualize.</p>
 <p>Or, as I put it on Twitter a few days ago: <a href="https://twitter.com/davepdotorg/status/1574121611413921792">I'm going to be a Python
 impostor syndrome
 speedrunner</a>!</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2022/08/23/I-must-be-getting-old.html#I-must-be-getting-old">I must be getting old</a></h2>
-    <p>
-      Posted on 2022-08-23 21:31 +0100 in <a href="https://blog.davep.org/category/emacs.html">Emacs</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/emacs.html">Emacs</a>,              <a href="https://blog.davep.org/tag/lisp.html">Lisp</a>,              <a href="https://blog.davep.org/tag/emacs-lisp.html">Emacs Lisp</a>
-    </p>
-  </header>
-  <div>
-      <div><p>A little earlier this evening I got <a href="https://github.com/davep/boxquote.el/issues/7">a new
-issue</a> raised against
-<a href="(https://github.com/davep/boxquote.el/issues/7)"><code>boxquote.el</code></a>. Apparently
-Emacs 29 (I'm running 28.1 as of the time of writing) is moaning about the
-likes of:</p>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">setf</span><span class="w"> </span><span class="p">(</span><span class="nf">point</span><span class="p">)</span><span class="w"> </span><span class="nv">some-location-or-other</span><span class="p">)</span>
-</code></pre></div>
-
-<p>and</p>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">setf</span><span class="w"> </span><span class="p">(</span><span class="nf">buffer-string</span><span class="p">)</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<p>There's a whole background to why I've tended to code like that, that stems
-from enjoying Common Lisp, my days reading (and sometimes posting to)
-<code>comp.lang.lisp</code>, and I <em>think</em> some of the stuff <a href="https://en.wikipedia.org/wiki/Erik_Naggum">Erik
-Naggum</a> wrote back in the day. I
-won't get into it all now; I'm not sure I can even remember a lot of how I
-got there given how far back it was.</p>
-<p>But...</p>
-<p>Wanting to quickly get to the bottom of why the above was suddenly an issue,
-I dived into the <code>NEWS</code> file and <a href="https://github.com/emacs-mirror/emacs/blob/67a15ce1564ce35ece24a19f00e03a36e0575746/etc/NEWS#L2585">found the
-following</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="o">**</span><span class="w"> </span><span class="n">Many</span><span class="w"> </span><span class="n">seldom</span><span class="o">-</span><span class="n">used</span><span class="w"> </span><span class="n">generalized</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">been</span><span class="w"> </span><span class="n">made</span><span class="w"> </span><span class="n">obsolete</span><span class="o">.</span>
-<span class="n">Emacs</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">rather</span><span class="w"> </span><span class="n">obscure</span><span class="w"> </span><span class="n">generalized</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="n">defined</span><span class="p">,</span>
-<span class="n">that</span><span class="p">,</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">instance</span><span class="p">,</span><span class="w"> </span><span class="n">allowed</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">say</span><span class="w"> </span><span class="n">things</span><span class="w"> </span><span class="n">like</span><span class="p">:</span>
-
-<span class="w">   </span><span class="p">(</span><span class="n">setf</span><span class="w"> </span><span class="p">(</span><span class="n">point</span><span class="o">-</span><span class="nb">min</span><span class="p">)</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
-
-<span class="n">These</span><span class="w"> </span><span class="n">never</span><span class="w"> </span><span class="n">caught</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">been</span><span class="w"> </span><span class="n">made</span><span class="w"> </span><span class="n">obsolete</span><span class="o">.</span><span class="w">  </span><span class="n">The</span><span class="w"> </span><span class="n">form</span><span class="w"> </span><span class="n">above</span><span class="p">,</span>
-<span class="k">for</span><span class="w"> </span><span class="n">instance</span><span class="p">,</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">saying</span>
-
-<span class="w">   </span><span class="p">(</span><span class="n">narrow</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">region</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">(</span><span class="n">point</span><span class="o">-</span><span class="nb">max</span><span class="p">))</span>
-
-<span class="n">The</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="n">generalized</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">been</span><span class="w"> </span><span class="n">made</span><span class="w"> </span><span class="n">obsolete</span><span class="p">:</span>
-<span class="s1">&#39;buffer-file-name&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;buffer-local-value&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;buffer-modified-p&#39;</span><span class="p">,</span>
-<span class="s1">&#39;buffer-name&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;buffer-string&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;buffer-substring&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;current-buffer&#39;</span><span class="p">,</span>
-<span class="s1">&#39;current-column&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;current-global-map&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;current-input-mode&#39;</span><span class="p">,</span>
-<span class="s1">&#39;current-local-map&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;current-window-configuration&#39;</span><span class="p">,</span>
-<span class="s1">&#39;default-file-modes&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;documentation-property&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;frame-height&#39;</span><span class="p">,</span>
-<span class="s1">&#39;frame-visible-p&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;global-key-binding&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;local-key-binding&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;mark&#39;</span><span class="p">,</span>
-<span class="s1">&#39;mark-marker&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;marker-position&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;mouse-position&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;point&#39;</span><span class="p">,</span>
-<span class="s1">&#39;point-marker&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;point-max&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;point-min&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;read-mouse-position&#39;</span><span class="p">,</span>
-<span class="s1">&#39;screen-height&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;screen-width&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;selected-frame&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;selected-screen&#39;</span><span class="p">,</span>
-<span class="s1">&#39;selected-window&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;standard-case-table&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;syntax-table&#39;</span><span class="p">,</span>
-<span class="s1">&#39;visited-file-modtime&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;window-height&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;window-width&#39;</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span>
-<span class="s1">&#39;x-get-secondary-selection&#39;</span><span class="o">.</span>
-</code></pre></div>
-
-<p>As suggested above... this is my thing, this is how I coded some Elisp
-stuff. Look through much of my <a href="https://elisp.dev/">Emacs Lisp code</a> and
-you'll find me <code>setf</code>ing stuff all over the place.</p>
-<p>Apparently my style is "obscure". Actually, I'm kinda okay with that if I'm
-honest.</p>
-<p>This is going to be a bit of a pain in the arse; I'm going to have to go
-through a whole bunch of code and make it "less obscure", at some point.</p>
-<p>But...</p>
-<p>This isn't the part that had me thinking I must be getting old. Oh no. The
-<code>NEWS</code> file had another little surprise in store:</p>
-<div class="highlight"><pre><span></span><code><span class="o">**</span><span class="w"> </span><span class="nx">The</span><span class="w"> </span><span class="nx">quickurl</span><span class="p">.</span><span class="nx">el</span><span class="w"> </span><span class="kn">library</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">now</span><span class="w"> </span><span class="nx">obsolete</span><span class="p">.</span>
-<span class="nx">Use</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">abbrev</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">skeleton</span><span class="err">&#39;</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">tempo</span><span class="err">&#39;</span><span class="w"> </span><span class="nx">instead</span><span class="p">.</span>
-</code></pre></div>
-
-<p>That.... that's me that is. Well, it's one of the me things. If you run
-<code>about-emacs</code>, dive into <code>Authors</code>, and search for my name, in any copy of
-GNU Emacs from the last decade or two, you'll find this:</p>
-<div class="highlight"><pre><span></span><code>Dave Pearson: wrote 5x5.el quickurl.el
-</code></pre></div>
-
-<p><a href="https://github.com/davep/quickurl.el/blob/master/quickurl.el"><code>quickurl.el</code></a>
-was a package I wrote back in the late 1990s, back when I was a very heavy
-user of <a href="https://en.wikipedia.org/wiki/Usenet">Usenet</a>, and often found
-myself posting the same URLs in posts again and again; especially in
-<code>comp.lang.clipper</code>. As a fairly quick hack I wrote the code so that I could
-very quickly insert often-used URLs.</p>
-<p>Some time later, I got an email from the
-<a href="https://en.wikipedia.org/wiki/Free_Software_Foundation">FSF</a> (I actually
-think it was from <a href="https://en.wikipedia.org/wiki/Richard_Stallman">RMS</a> --
-but that's an <a href="https://en.wikipedia.org/wiki/Mbox"><code>mbox</code></a> I've long ago
-lost -- or a backup of it might be in storage back in England, on a DVD),
-asking if I wanted to contribute it to Emacs proper. This seemed like an odd
-thing to add to Emacs but, sure, why the hell not?</p>
-<p>And so I had my second contribution to a body of code I used a lot (the
-first being <a href="https://github.com/davep/5x5.el"><code>5x5.el</code></a> -- which itself was
-my first ever attempt at writing some non-trivial Elisp code).</p>
-<p>So... yeah... here we are. I'm now old enough to have written some Emacs
-Lisp code, had it required by the FSF for inclusion in Emacs, had it live in
-there for something like two decades, and then <em>become obselete</em>!</p></div>
   </div>
 </article>
 
