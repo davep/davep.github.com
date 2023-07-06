@@ -31,7 +31,7 @@ mode: where you don't have to think too much because you have a good plan
 for what you're doing, but you've got a lot of tapping away to do), plus
 also often while I'm in the car.
 
-I won't be the least it surprised to find that this ends up being my
+I won't be the least bit surprised to find that this ends up being my
 most-played album this year. According to last.fm it's at the top of the
 albums I've played (in places where I have scrobbling set up) in the last
 365 days.
