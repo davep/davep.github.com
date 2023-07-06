@@ -16,12 +16,13 @@ One of the things I do find Apple Music does well is the whole "you seem to
 like this, have you tried this?" thing; which on occasion has resulted in a
 pretty neat rabbit hole of discovery.
 
-Earlier this year this happened with female-fronted Dutch goth/rock type
-bands. I don't even remember how that happened, but it's a thing that
-happened and I gleefully dived right in. I came away with a few names I
-didn't know before, but one album has really stuck in my head and, now that
-we're just over 1/2 way through the year, I feel it's the one that gets
-played more than anything else.
+Earlier this year this happened with [female-fronted Dutch goth/rock type
+bands](https://fosstodon.org/@davep/109709660400107128). I don't even
+remember how that happened, but it's a thing that happened and I gleefully
+dived right in. I came away with a few names I didn't know before, but one
+album has really stuck in my head and, now that we're just over 1/2 way
+through the year, I feel it's the one that gets played more than anything
+else.
 
 ![Delain Dark Waters](/attachments/2023/07/06/Delain Dark Waters.jpeg#centre)
 
