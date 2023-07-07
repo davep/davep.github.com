@@ -54,6 +54,7 @@ LINKS            = (
     ("davep.at", "http://davep.at/"),
     ("Pinboard", "https://pinboard.in/u:davep"),
     ("Photoblog", "https://seenbydavep.blogspot.com/"),
+    ("Emacs Packages", "https://elisp.dev/"),
     ("Python Packages", "https://pypi.org/user/davepearson/"),
 )
 SOCIAL           = (
