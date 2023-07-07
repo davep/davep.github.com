@@ -24,7 +24,7 @@ DELETE_OUTPUT_DIRECTORY = True
 STATIC_PATHS            = ["attachments", "static", "extras"]
 DEFAULT_DATE_FORMAT     = "%Y-%m-%d %H:%M %z"
 FILENAME_METADATA       = r"\d{4}-\d{2}-\d{2}-(?P<slug>.*)"
-EXTRA_PATH_METADATA     = {"extras/CNAME": {"path": "CNAME"}}
+EXTRA_PATH_METADATA     = {"extras/CNAME": {"path": "CNAME"}, "static/humans.txt": {"path": "humans.txt"}}
 SUMMARY_MAX_LENGTH      = 1_000_000
 
 ##############################################################################
