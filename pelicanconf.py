@@ -4,7 +4,7 @@
 # General blog information.
 AUTHOR           = "Dave Pearson"
 SITENAME         = "blog.davep.org"
-SITETITLE        = SITENAME
+SITETITLE        = "davep"
 SITESUBTITLE     = "Code, Emacs, VR, Stuff..."
 TIMEZONE         = "Europe/London"
 DEFAULT_LANG     = "en"
