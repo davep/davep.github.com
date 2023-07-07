@@ -4,7 +4,7 @@ title: Dark Waters
 category: Music
 tags: Music
 date: 2023-07-06 07:36:00 +0100
-cover: attachments/2023/07/06/Delain Dark Waters.jpeg
+cover: attachments/2023/07/06/Delain%20Dark%20Waters.jpeg
 ---
 
 More than ever I'm listening to music while I work. Despite having grown up
