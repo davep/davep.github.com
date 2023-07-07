@@ -51,7 +51,7 @@ AUTHOR_FEED_RSS       = None
 MAIN_MENU        = True
 LINKS_IN_NEW_TAB = "all"
 LINKS            = (
-    ("davep.at", "http://davep.at/"),
+    ("davep@", "http://davep.at/"),
     ("Pinboard", "https://pinboard.in/u:davep"),
     ("Photoblog", "https://seenbydavep.blogspot.com/"),
     ("Emacs Packages", "https://elisp.dev/"),
