@@ -177,6 +177,47 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2020/06/24/swift-til-3.html#swift-til-3">Swift TIL 3</a></h2>
+    <p>
+      Posted on 2020-06-24 16:38 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/swift.html">Swift</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Today's little "Swift TIL" is observers. While reading up on the language I
+was delighted to find that it has observer support baked right into the
+language, for any sort of variable. So code like this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nv">name</span>  <span class="p">=</span> <span class="s">&quot;David&quot;</span> <span class="p">{</span>
+
+    <span class="kr">willSet</span><span class="p">(</span> <span class="n">new</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;About to change name from </span><span class="si">\(</span><span class="n">name</span><span class="si">)</span><span class="s"> to </span><span class="si">\(</span><span class="n">new</span><span class="si">)</span><span class="s">&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kr">didSet</span><span class="p">(</span> <span class="n">old</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;Name changed from </span><span class="si">\(</span><span class="n">old</span><span class="si">)</span><span class="s"> to </span><span class="si">\(</span><span class="n">name</span><span class="si">)</span><span class="s">&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">name</span> <span class="p">=</span> <span class="s">&quot;davep&quot;</span>
+</code></pre></div>
+
+<p>Does what you'd imagine:</p>
+<div class="highlight"><pre><span></span><code>About to change name from David to davep
+Name changed from David to davep
+</code></pre></div>
+
+<p>Not only can I see how that'd be useful for the main sorts of purposes that
+Swift is put to, I can think of many times when I'd have benefitted from
+that in my general day-to-day work. Of course, you can create an observer
+approach in any language really, but having an idiom that's part of the
+language feels nice and tidy.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2020/06/23/swift-til-2.html#swift-til-2">Swift TIL 2</a></h2>
     <p>
       Posted on 2020-06-23 14:21 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
@@ -769,74 +810,6 @@ approach and use something else entirely).</p>
 <p>Meanwhile though, if you're looking for something quick and dirty that will
 help you visualise what you've been working on and when for a good period of
 time... perhaps this will help.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2019/12/01/being-phony-and-lispy-regular-expressions.html#being-phony-and-lispy-regular-expressions">Being phony, and Lispy regular expressions</a></h2>
-    <p>
-      Posted on 2019-12-01 16:42 +0000 in <a href="https://blog.davep.org/category/emacs.html">Emacs</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/emacs.html">Emacs</a>,              <a href="https://blog.davep.org/tag/lisp.html">Lisp</a>,              <a href="https://blog.davep.org/tag/emacs-lisp.html">Emacs Lisp</a>
-    </p>
-  </header>
-  <div>
-      <div><p>While it does seem that they're a little out of fashion these days, in some
-circles anyway, I'm still an avid fan of <code>make</code> and make files. Even in
-environments where I don't need a <code>Makefile</code> to actually build anything,
-I'll use one (or more) to help create handy shortcuts for getting stuff
-done.</p>
-<p>Looking at the main <code>Makefile</code> for one of my major work projects, there's 45
-targets that help fire off various jobs (all of them <a href="https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html">self-documenting using
-a variation on an approach I read a while
-back</a>).</p>
-<p>In most cases the targets aren't real targets. That's to say, they don't
-build the thing they're called. They are <a href="https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html">phony
-targets</a>.
-So, as makes sense, I make a point of marking them all as such. I follow the
-convention that has the <code>.PHONY</code> marker appear on the line before the
-target; this feels cleaner to me and easier to follow and maintain.</p>
-<p>But.... I'm lazy. And I use Emacs. Typing out <code>.PHONY foo</code> all the time
-feels like far too much work. So, some time ago, I quickly threw together
-<a href="https://github.com/davep/make-phony.el"><code>make-phony.el</code></a>.</p>
-<p>With this I could be <em>really</em> lazy. I could type out the <code>Makefile</code> target
-and then, with my cursor on it, press a key combination and have the
-<code>.PHONY</code> marker put in place.</p>
-<p>Does it save much time? Yeah, probably not really. But it was a fun little
-exercise and an excuse to write a little bit of Emacs Lisp.</p>
-<p>There's one thing I made a point of doing in the heart of this too: using
-<code>rx</code>. For anyone who doesn't know of it, think of it as a very Lispy way of
-writing regular expressions. I won't even try and explain it all here
-<a href="http://francismurillo.github.io/2017-03-30-Exploring-Emacs-rx-Macro/">because others have done an excellent job
-already</a>.
-What I will do is say this: if you're in the habit of writing some Emacs
-Lisp, or even tinkering with your configuration, and you find yourself
-writing a regular expression, consider looking at <code>rx</code> -- it's well worth
-the time to get to know it.</p>
-<p>Slowly, as time goes on, I'm weeding out "vanilla" regular expressions from
-my config and code and moving over to using <code>rx</code>. I feel, quite rightly I
-think, that <a href="https://github.com/davep/.emacs.d/blob/b3185a1dbaa0a16f540465844b84c5e1c6a77180/init.d/packages/init-packages-melpa.el#L117-L126">something like
-this</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">rx</span>
-<span class="w"> </span><span class="p">(</span><span class="k">or</span>
-<span class="w">  </span><span class="c1">;; Ignore hidden files.</span>
-<span class="w">  </span><span class="p">(</span><span class="nv">group</span><span class="w"> </span><span class="nv">bol</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="p">)</span>
-<span class="w">  </span><span class="c1">;; I never want to edit the desktop.</span>
-<span class="w">  </span><span class="p">(</span><span class="nv">group</span><span class="w"> </span><span class="s">&quot;Desktop/&quot;</span><span class="w"> </span><span class="nv">eol</span><span class="p">)</span>
-<span class="w">  </span><span class="c1">;; Ignore compiled files.</span>
-<span class="w">  </span><span class="p">(</span><span class="nv">group</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="w"> </span><span class="p">(</span><span class="k">or</span><span class="w"> </span><span class="s">&quot;pyc&quot;</span><span class="w"> </span><span class="s">&quot;elc&quot;</span><span class="p">)</span><span class="w"> </span><span class="nv">eol</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nv">group</span><span class="w"> </span><span class="s">&quot;.egg-info/&quot;</span><span class="w"> </span><span class="nv">eol</span><span class="p">)))</span>
-</code></pre></div>
-
-<p>is much easier to write, read and maintain, than this:</p>
-<div class="highlight"><pre><span></span><code>&quot;\\(^\\.\\)\\|\\(Desktop/$\\)\\|\\(\\.\\(?:\\(?:\\(?:el\\|py\\)c\\)\\)$\\)\\|\\(\\.egg-info/$\\)&quot;
-</code></pre></div>
-
-<p>I mean, even <em>if</em> the regular expression above can be written in a more
-efficient way (and I imagine it can), as someone working in a Lisp
-environment, I'd much sooner write and work with the <code>rx</code> version.</p></div>
   </div>
 </article>
 
