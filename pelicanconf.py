@@ -28,6 +28,8 @@ EXTRA_PATH_METADATA     = {"extras/CNAME": {"path": "CNAME"}, "static/humans.txt
 SUMMARY_MAX_LENGTH      = 1_000_000
 ROBOTS                  = "all"
 
+PLUGINS = ["post_stats"]
+
 ##############################################################################
 # Theme control.
 THEME                                      = "flex"

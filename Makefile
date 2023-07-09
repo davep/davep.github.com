@@ -21,6 +21,12 @@ themes:			# List the installed themes.
 
 ##############################################################################
 # Utility.
+.PHONY: setup
+setup:				# Set up the environment.
+	pipenv sync
+	git clone https://github.com/alexandrevicenzi/Flex
+	$(themes) -i Flex
+
 .PHONY: repl
 repl:				# Start a Python REPL
 	$(python)
