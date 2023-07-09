@@ -29,6 +29,11 @@ SUMMARY_MAX_LENGTH      = 1_000_000
 ROBOTS                  = "all"
 
 ##############################################################################
+# Plugin control.
+PLUGIN_PATHS = ["pelican-plugins"]
+PLUGINS      = ["post_stats"]
+
+##############################################################################
 # Theme control.
 THEME                                      = "flex"
 THEME_COLOR                                = "dark"

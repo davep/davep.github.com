@@ -26,6 +26,7 @@ setup:				# Set up the environment.
 	pipenv sync
 	git clone https://github.com/alexandrevicenzi/Flex
 	$(themes) -i Flex
+	git clone --recursive git@github.com:getpelican/pelican-plugins.git
 
 .PHONY: repl
 repl:				# Start a Python REPL
