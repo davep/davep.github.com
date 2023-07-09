@@ -31,7 +31,7 @@ ROBOTS                  = "all"
 ##############################################################################
 # Plugin control.
 PLUGIN_PATHS = ["pelican-plugins"]
-PLUGINS      = ["post_stats"]
+PLUGINS      = ["neighbors", "post_stats"]
 
 ##############################################################################
 # Theme control.
