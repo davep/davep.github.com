@@ -86,6 +86,12 @@
                 About
               </a>
             </li>
+            <li>
+              <a target="_blank"
+                 href="https://blog.davep.org/pages/dot-files.html#dot-files">
+                Dot Files
+              </a>
+            </li>
 
           <li>
             <a target="_blank" href="http://davep.at/" >davep@</a>
@@ -175,6 +181,83 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 
 
+<article>
+  <header>
+    <h2><a href="https://blog.davep.org/2019/12/08/git2gantt.html#git2gantt">git2gantt -- Simple tool to visualise coding runs</a></h2>
+    <p>
+      Posted on 2019-12-08 13:44 +0000 in <a href="https://blog.davep.org/category/python.html">Python</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/documentation.html">documentation</a>
+        &#8226; 3 min read
+    </p>
+  </header>
+  <div>
+      <div><p>At the start of this year, as part of a much bigger process to review the
+work that had taken place over the previous 12 months, I was asked (at work)
+to provide some information about how much time I'd spent on various
+projects. Now, for me, there's really only one project, but there's lots of
+different tools and libraries that I've written to support the main work I
+do. All of these are split into different repositories in the
+company-internal instance of <a href="https://about.gitlab.com/">GitLab</a>. This meant
+that getting a rough idea of what I was working on and when would be easy
+enough -- it's all there in the commit history.</p>
+<p>Given that this information would make up a couple of slides at most during
+a far bigger presentation, I wanted something that would be snappy and easy
+for non-developers to follow and understand. I spent a bit of time pondering
+some options and decided that (ab)using a <a href="https://en.wikipedia.org/wiki/Gantt_chart">gantt
+chart</a> layout would make sense.</p>
+<p>That choice was made all the more easier given that <a href="https://docs.gitlab.com/ee/user/markdown.html#mermaid">GitLab
+supports</a> the use of
+<a href="https://mermaid-js.github.io/mermaid/#/">mermaid charts</a> within its
+Markdown. This meant I could quickly write some code that took the git log
+of each repository, turned it into mermaid code, and then render it (by
+hand, this was all about getting things done quickly) via GitLab.</p>
+<p>This sounded like it could be a fun personal project. The result was some
+Python code called <a href="https://github.com/davep/git2gantt">git2gantt</a>.</p>
+<p>As mentioned above, the output isn't anything too clever, it's just code
+that can be used to create a plot via mermaid. For example, running
+git2gannt over itself:</p>
+<div class="highlight"><pre><span></span><code>gantt
+  title git2gantt output
+  dateFormat YYYY-MM-DD
+
+  section git2gantt
+  Development: devgit2gantt20190208, 2019-02-08, 2019-02-13
+  Development: devgit2gantt20190214, 2019-02-14, 2019-02-15
+  Development: devgit2gantt20190303, 2019-03-03, 2019-03-04
+  Development: devgit2gantt20191203, 2019-12-03, 2019-12-04
+</code></pre></div>
+
+<p>Usage is pretty straightforward: <img alt="Screenshot 2019-12-08 at
+13.18.12.png" src="/attachments/2019/12/08/Screenshot 2019-12-08 at 13.18.12.png">
+As you can see, it can be run over multiple repos at once, and there's also
+an option to have it consider every branch within each repository. Another
+handy option is the ability to limit the output to just one author --
+perhaps you just want to document what you've done on a repo, not the
+contributions of other people.</p>
+<p>Also especially handy, if you don't want to bore people with too much
+detail, is the "fuzz" option. This lets you tell <code>git2gannt</code> how relaxed you
+want it to be when it tries to decide how long a run of work on a repo
+lasted. So, perhaps, you're working on and off on a library that supports
+some other system you're documenting, but you might only be making changes
+every other day or so. With the correct fuzz value you can make it clear you
+were working <em>on</em> the library for a couple of weeks, despite there only
+being a commit every other day.</p>
+<p>An example of running the output over a handful of projects would look
+something like this:</p>
+<p><img alt="Screenshot 2019-12-08 at 13.34.41.png" src="/attachments/2019/12/08/Screenshot 2019-12-08 at 13.34.41.png"></p>
+<p>This is one of those tools I knocked up quickly to get a job done, and
+haven't quite got round to finishing off fully. One thing I'd really like to
+do is add mermaid support directly within it, so that it actually has the
+option to emit plots, not just mermaid code (or, perhaps, drop the mermaid
+approach and use something else entirely).</p>
+<p>Meanwhile though, if you're looking for something quick and dirty that will
+help you visualise what you've been working on and when for a good period of
+time... perhaps this will help.</p></div>
+  </div>
+  <hr />
+</article>
 <article>
   <header>
     <h2><a href="https://blog.davep.org/2019/12/01/being-phony-and-lispy-regular-expressions.html#being-phony-and-lispy-regular-expressions">Being phony, and Lispy regular expressions</a></h2>
@@ -813,48 +896,6 @@ type magically expand as you do things, it makes you look like you can type
 even faster than you normally can! ;-)</p>
 <p>PS: If you've never tried <code>fish</code> before and you're curious, it's easy to
 <a href="https://rootnroll.com/d/fish-shell/">try in your browser</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2019/10/21/gitweb-el.html#gitweb-el">gitweb.el -- Quickly visit a repo's forge from Emacs</a></h2>
-    <p>
-      Posted on 2019-10-21 10:41 +0100 in <a href="https://blog.davep.org/category/emacs.html">Emacs</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/emacs.html">Emacs</a>,              <a href="https://blog.davep.org/tag/git.html">git</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p><code>gh.fish</code>, which <a href="/2019/10/20/fg-fish.html">I wrote about yesterday</a>,
-actually sprang from something I initially wrote for Emacs. I'm often
-spending my time switching between Emacs and the command line (which is fast
-and easy -- I normally work on macOS and have Emacs and
-<a href="https://www.iterm2.com/">iTerm2</a> running full screen, and I can switch
-between them without ever taking my hands off the keyboard), so it makes
-sense to have some handy commands repeated in both places.</p>
-<p>So, originally, I'd written
-<a href="https://github.com/davep/gitweb.el"><code>gitweb.el</code></a> to open the current repo's
-"forge" in the web browser.</p>
-<p>As with the fish version, how it works is quite simple. I use
-<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Synchronous-Processes.html"><code>shell-command-to-string</code></a>
-to call git and find the origin URL for the current repo, and then
-manipulate it a bit to turn it into a normal browser-friendly URL. Finally,
-if I get something workable, I use
-<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Browse_002dURL.html"><code>browser-url</code></a>
-to have the resulting page open in the browsing environment of choice.</p>
-<p>I have the command <a href="https://github.com/davep/.emacs.d/blob/8f1be3a03e4be98155571939fe5d6fbb54de487f/init.d/packages/init-packages-delpa.el#L51-L54">bound to a key combination that's similar to the ones I
-use with magit and
-forge</a>,
-so in terms of muscle-memory it's easy for me to remember what to press when
-I quickly want to skip over from a magit view to the repo forge itself.</p>
-<p>Similar to what I wrote <a href="/2019/10/19/pypath-el.html">a couple of days back</a>,
-I think this again illustrates how handy Emacs is as a work environment.
-While it's absolutely true that there are other development environments out
-there that offer similar extensibility, Emacs is the one I'm comfortable
-with, and it has a <em>long</em> history of offering this.</p></div>
   </div>
 </article>
 
