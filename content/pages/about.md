@@ -25,7 +25,8 @@ team](https://www.textualize.io/).
 Evenings and weekends I spend a fair bit of time playing, recording and on
 occasion streaming [VR](/tag/vr.html) games.
 
-When I'm not in VR I'm likely out running, or tinkering with personal code
-projects.
+When I'm not [in VR](https://www.youtube.com/user/daveporg) I'm likely out
+running, or tinkering with [personal code
+projects](https://github.com/davep).
 
 [//]: # (about.md ends here)
