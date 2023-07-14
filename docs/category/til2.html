@@ -183,6 +183,48 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2020/06/24/swift-til-3.html#swift-til-3">Swift TIL 3</a></h2>
+    <p>
+      Posted on 2020-06-24 16:38 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/swift.html">Swift</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
+        &#8226; 1 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Today's little "Swift TIL" is observers. While reading up on the language I
+was delighted to find that it has observer support baked right into the
+language, for any sort of variable. So code like this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nv">name</span>  <span class="p">=</span> <span class="s">&quot;David&quot;</span> <span class="p">{</span>
+
+    <span class="kr">willSet</span><span class="p">(</span> <span class="n">new</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;About to change name from </span><span class="si">\(</span><span class="n">name</span><span class="si">)</span><span class="s"> to </span><span class="si">\(</span><span class="n">new</span><span class="si">)</span><span class="s">&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kr">didSet</span><span class="p">(</span> <span class="n">old</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;Name changed from </span><span class="si">\(</span><span class="n">old</span><span class="si">)</span><span class="s"> to </span><span class="si">\(</span><span class="n">name</span><span class="si">)</span><span class="s">&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">name</span> <span class="p">=</span> <span class="s">&quot;davep&quot;</span>
+</code></pre></div>
+
+<p>Does what you'd imagine:</p>
+<div class="highlight"><pre><span></span><code>About to change name from David to davep
+Name changed from David to davep
+</code></pre></div>
+
+<p>Not only can I see how that'd be useful for the main sorts of purposes that
+Swift is put to, I can think of many times when I'd have benefitted from
+that in my general day-to-day work. Of course, you can create an observer
+approach in any language really, but having an idiom that's part of the
+language feels nice and tidy.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2020/06/23/swift-til-2.html#swift-til-2">Swift TIL 2</a></h2>
     <p>
       Posted on 2020-06-23 14:21 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
