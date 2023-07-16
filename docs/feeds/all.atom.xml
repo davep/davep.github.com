@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2023-07-14T07:56:00+01:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Cmd-Tab switcher on all screens</title><link href="https://blog.davep.org/2023/07/14/cmd-tab-switcher-on-all-screens.html" rel="alternate"></link><published>2023-07-14T07:56:00+01:00</published><updated>2023-07-14T07:56:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-07-14:/2023/07/14/cmd-tab-switcher-on-all-screens.html</id><content type="html">&lt;p&gt;This week, on Monday gone in fact, &lt;a href="https://www.textualize.io/"&gt;we&lt;/a&gt; moved
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2023-07-16T09:00:00+01:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>textual-canvas v0.2.0</title><link href="https://blog.davep.org/2023/07/16/textual-canvas-0-2-0.html" rel="alternate"></link><published>2023-07-16T09:00:00+01:00</published><updated>2023-07-16T09:00:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-07-16:/2023/07/16/textual-canvas-0-2-0.html</id><content type="html">&lt;p&gt;&lt;img alt="Demo of textual-canvas" src="/attachments/2023/07/16/textual-canvas.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;Given that for a good chunk of this year I've been a bit lax about writing
+here, there's a couple or so coding projects I've not written about (well,
+not on &lt;em&gt;here&lt;/em&gt; anyway -- I have spoken lots about them &lt;a href="https://fosstodon.org/@davep"&gt;over on
+Fosstodon&lt;/a&gt;). One such project is
+&lt;a href="https://pypi.org/project/textual-canvas/"&gt;&lt;code&gt;textual-canvas&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As the name might suggest, it's a "canvas" for Textual applications, which
+provides a pretty basic interface for drawing pixels, lines and circles --
+and of course any other shape you are able to build up from those basics.&lt;/p&gt;
+&lt;p&gt;I've just &lt;a href="https://github.com/davep/textual-canvas/releases/tag/v0.2.0"&gt;released a quick
+update&lt;/a&gt; after
+it was &lt;a href="https://github.com/davep/textual-canvas/discussions/1"&gt;requested that I add a &lt;code&gt;clear&lt;/code&gt; method to the &lt;code&gt;Canvas&lt;/code&gt;
+widget&lt;/a&gt;; a request
+that makes perfect sense.&lt;/p&gt;</content><category term="Python"></category><category term="Python"></category><category term="Textual"></category><category term="coding"></category><category term="PyPi"></category></entry><entry><title>Cmd-Tab switcher on all screens</title><link href="https://blog.davep.org/2023/07/14/cmd-tab-switcher-on-all-screens.html" rel="alternate"></link><published>2023-07-14T07:56:00+01:00</published><updated>2023-07-14T07:56:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-07-14:/2023/07/14/cmd-tab-switcher-on-all-screens.html</id><content type="html">&lt;p&gt;This week, on Monday gone in fact, &lt;a href="https://www.textualize.io/"&gt;we&lt;/a&gt; moved
 office. We've now got a bigger space and, as part of that, bigger desks.
 Somewhat (but not entirely) coincidentally the work desk will also convert
 into a standing desk&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Also also... I inherited a second screen for the
@@ -1525,207 +1538,4 @@ and it doesn't error if you request too much.&lt;/p&gt;
 &lt;p&gt;With that done you'll have a list of all the sequences in the file. The next
 part, which will come in &lt;a href="/2020/09/26/reading-2bit-files-for-fun-the-sequence.html"&gt;the next
 post&lt;/a&gt;,
-is the properly tricky part: the decoding of the sequence data itself.&lt;/p&gt;</content><category term="Coding"></category><category term="Bioinformatics"></category></entry><entry><title>Reading 2bit files (for fun)</title><link href="https://blog.davep.org/2020/08/30/reading-2bit-files-for-fun.html" rel="alternate"></link><published>2020-08-30T15:20:00+01:00</published><updated>2020-08-30T15:20:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-08-30:/2020/08/30/reading-2bit-files-for-fun.html</id><content type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
-&lt;p&gt;I've written a bit before about the value of having simple but interesting
-"problems", that you know the solution to, as &lt;a href="/2019/11/10/going-on-a-journey.html"&gt;a way of exercising yourself
-in a new environment&lt;/a&gt;. Recently I've
-added another to the list I already have, and I used it as an excuse to get
-back into writing &lt;a href="https://github.com/davep/org-davep-2bit"&gt;some Common
-Lisp&lt;/a&gt;; and then went on to use it
-as a reason to write &lt;a href="(https://elisp.dev/)"&gt;yet another&lt;/a&gt; package &lt;a href="https://github.com/davep/2bit.el"&gt;for
-Emacs&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Having gone through the process of writing code to handle 2bit files twice
-in about a month, and in two very similar but slightly different languages,
-I thought it might be interesting for me to then use it to exercise my
-ability to write blog posts (something I always struggle with -- I find
-writing &lt;em&gt;very hard&lt;/em&gt; on a number of levels) and especially posts that explain
-a particular problem and how I implemented code relating to that problem.&lt;/p&gt;
-&lt;p&gt;Also, because the initial version of this post rambled on a bit too much and
-I lost the ability to finish it, I'm starting again and will be breaking it
-up a number of posts spanning a number of days -- perhaps even weeks -- so
-that I don't feel too overwhelmed by the process of writing it. I will, of
-course, make sure every post links to the other posts.&lt;/p&gt;
-&lt;p&gt;Now, before I go on, I'll make the important point that everything here is
-written from the perspective of a software developer who happens to work as
-part of a bioinformatics team; I don't do bioinformatics, I don't claim to
-understand it, I just happen to sit with (well, used to sit with them --
-hopefully we'll all make it back to the office one day!) and work with them,
-and develop software that supports their work. Anything you see in any of
-the posts that's wrong about that subject: that's just my ignorance being
-shown through the lens of a software developer (all corrections are
-welcome).&lt;/p&gt;
-&lt;p&gt;So, with all those disclaimers aside, I'm going to go on a slow wander
-through what a 2bit file is, how you'd go about reading it, and related
-issues. This isn't designed as a tutorial or anything like that, this is
-simply me taking what I've learnt and writing it down. Perhaps someone else
-will benefit one day, but the purpose is to simply enjoy cementing it in my
-own mind and to enjoy the process of putting it all in writing.&lt;/p&gt;
-&lt;h1&gt;What is a "2bit file"?&lt;/h1&gt;
-&lt;p&gt;So what's this new "problem" I've added to my list? It's code to read
-sequence data from &lt;a href="https://genome.ucsc.edu/FAQ/FAQformat.html#format7"&gt;2bit format
-files&lt;/a&gt;. For anyone who
-doesn't know (&lt;em&gt;bioinformatics people look away now; a software developer is
-going to explain one of your file formats&lt;/em&gt;), this is a file format that is
-intended to hold sequences in an efficient way. As I'm sure you know,
-&lt;a href="https://en.wikipedia.org/wiki/DNA"&gt;DNA&lt;/a&gt; is made up of &lt;a href="https://en.wikipedia.org/wiki/Nucleobase"&gt;4
-bases&lt;/a&gt;, represented by the letters
-&lt;a href="https://en.wikipedia.org/wiki/Thymine"&gt;&lt;code&gt;T&lt;/code&gt;&lt;/a&gt;,
-&lt;a href="https://en.wikipedia.org/wiki/Cytosine"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/a&gt;,
-&lt;a href="https://en.wikipedia.org/wiki/Adenine"&gt;&lt;code&gt;A&lt;/code&gt;&lt;/a&gt; and
-&lt;a href="https://en.wikipedia.org/wiki/Guanine"&gt;&lt;code&gt;G&lt;/code&gt;&lt;/a&gt;. So, in the simplest case, we
-could just represent a genome using those four letters. Simple enough,
-right? Nice big text file with just those 4 letters in?&lt;/p&gt;
-&lt;p&gt;The thing is, something like the human genome is around &lt;a href="https://en.wikipedia.org/wiki/Human_genome#Molecular_organization_and_gene_content"&gt;3 billion bases in
-length&lt;/a&gt;.
-That'd make for a petty big file to have to store and move around. So why
-not compress it down a bit? That's where the 2bit format comes in.&lt;/p&gt;
-&lt;p&gt;Given this problem I'm sure most developers would quickly notice that, given
-4 different characters, you only need 2 bits to actually hold them all (two
-bits gets us &lt;code&gt;00&lt;/code&gt;, &lt;code&gt;01&lt;/code&gt;, &lt;code&gt;10&lt;/code&gt; and &lt;code&gt;11&lt;/code&gt;, so four different states). This
-means with a little bit of coding you can store 4 bases in a single byte.
-Just like that you've pretty much squished the whole thing down to 1/4 of
-the original size. And that's more or less what the 2bit format does. If you
-take a look at &lt;a href="http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/"&gt;the actual data for the human
-genome&lt;/a&gt; you'll see
-that &lt;code&gt;hg38.2bit&lt;/code&gt; is roughly 1/4 of 3 billion bytes, ish, give or take.&lt;/p&gt;
-&lt;p&gt;There is a wrinkle, however. There are parts of a genome where you might not
-know what base is there. Generally &lt;a href="https://www.bioinformatics.org/sms/iupac.html"&gt;an &lt;code&gt;N&lt;/code&gt; is used for
-that&lt;/a&gt;. So, actually, we want
-to be able to store 5 different characters. But 5 isn't going to go into 2
-bits... Damn! Well, it's okay, 2bit has a solution to that too, and I'll
-cover that later on.&lt;/p&gt;
-&lt;h1&gt;How is a 2bit file formatted?&lt;/h1&gt;
-&lt;p&gt;As you can see from &lt;a href="https://genome.ucsc.edu/FAQ/FAQformat.html#format7"&gt;the format information available
-online&lt;/a&gt;, a 2bit file is
-a binary file format that is split into 3 key parts:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;A fixed size header with some key information&lt;/li&gt;
-&lt;li&gt;An index into the rest of the file&lt;/li&gt;
-&lt;li&gt;A series of records that contain actual sequence information&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In this first post I'll cover the details of the header. Subsequent posts
-will cover the index and the actual sequence data records.&lt;/p&gt;
-&lt;h2&gt;The header&lt;/h2&gt;
-&lt;p&gt;The header of a 2bit file is fixed in size and contains some key
-information. It can be broken down as follows:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Content&lt;/th&gt;
-&lt;th&gt;Type&lt;/th&gt;
-&lt;th&gt;Size&lt;/th&gt;
-&lt;th&gt;Comments&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Signature&lt;/td&gt;
-&lt;td&gt;Integer&lt;/td&gt;
-&lt;td&gt;4 bytes&lt;/td&gt;
-&lt;td&gt;See below for endian issues.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Version&lt;/td&gt;
-&lt;td&gt;Integer&lt;/td&gt;
-&lt;td&gt;4 bytes&lt;/td&gt;
-&lt;td&gt;Always 0.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Sequence count&lt;/td&gt;
-&lt;td&gt;Integer&lt;/td&gt;
-&lt;td&gt;4 bytes&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Reserved&lt;/td&gt;
-&lt;td&gt;Integer&lt;/td&gt;
-&lt;td&gt;4 bytes&lt;/td&gt;
-&lt;td&gt;Always ignored.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;The signature value is used to test if what you're looking at is a 2bit
-file, but also tells you some vital information about how to read the file
--- see below for more on that. The version value is always &lt;code&gt;0&lt;/code&gt; -- as such
-another useful test would be to error out if you get a valid signature but
-get a version other than &lt;code&gt;0&lt;/code&gt;. The sequence count is, as you'd guess, the
-number of sequences that are held within the file -- this is important when
-loading in the index of the file (more on that in the next post).&lt;/p&gt;
-&lt;h2&gt;The signature, big and little endianness, and byte swapping&lt;/h2&gt;
-&lt;p&gt;The header mentioned above comprises of 4 32-bit word values. The very first
-word is important to how you read the rest of the file. This is the
-&lt;code&gt;signature&lt;/code&gt; for the 2bit file and it should always be &lt;code&gt;0x1A412743&lt;/code&gt;. And this
-is where it gets interesting and fun right away. The 2bit file format allows
-for the fact that the file can be built in either &lt;a href="https://en.wikipedia.org/wiki/Endianness"&gt;a little-endian or a
-big-endian machine&lt;/a&gt;, and the
-32-bit word values can be binary-written to the file in the local
-architecture's byte order. The effect of this is that, from reading the very
-first value in the file, you need to decide if every other numeric value you
-read needs to be byte-swapped in some way. The early logic being (in no
-particular language) something like:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;signature&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="nv"&gt;x1A412743&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;must_swap&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;False&lt;/span&gt;
-&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;byte_swap&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;signature&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="nv"&gt;x1A412743&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;must_swap&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;True&lt;/span&gt;
-&lt;span class="k"&gt;else&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;raise&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This isn&amp;#39;t a valid 2bit file&amp;quot;&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Simply put, to read the rest of the file you will need a function that
-byte-swaps a 32bit numeric value, and a flag of some sort to mark that you
-need to do this every time you read such a value. Of course, depending on
-your language of choice, you could do it in a number of different ways. In a
-language like JavaScript or Scheme, where you can easily throw around
-functions, I'd probably just assign the appropriate 32bit-word-reading
-function to a global function name and call that regardless throughout the
-rest of the code. In other languages I'd probably just check the flag each
-time and call the swapping function if needed. In something like Python I'd
-likely just use the signature to decide on which format to pass to
-&lt;a href="https://docs.python.org/3.8/library/struct.html#struct.unpack"&gt;&lt;code&gt;struct.unpack&lt;/code&gt;&lt;/a&gt;.
-For example, some variation on:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Assuming that &amp;#39;header&amp;#39; is the whole header of the file read as a binary buffer.&lt;/span&gt;
-
-&lt;span class="n"&gt;word_fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
-
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;test_fmt&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;I&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;gt;I&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;test_fmt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;header&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;)[&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mh"&gt;0x1A412743&lt;/span&gt;
-        &lt;span class="n"&gt;word_fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;test_fmt&lt;/span&gt;
-        &lt;span class="k"&gt;break&lt;/span&gt;
-
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;word_fmt&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;Exception&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;This isn&amp;#39;t a 2bit file&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Now, the Python approach sort of hides the important detail here. With it
-we'd simply use &lt;code&gt;struct.unpack&lt;/code&gt;'s &lt;a href="https://docs.python.org/3.8/library/struct.html#byte-order-size-and-alignment"&gt;ability to handle different byte orders
-&lt;/a&gt;
-and not worry about the detail. Which isn't fun, right? So how might code to
-byte-swap a 32bit value look?&lt;/p&gt;
-&lt;p&gt;Assuming you've got the value as an actual numeric integer, it can be as
-simple as using a bit of bitwise anding and shifting. Here's the basic code
-I wrote in Common Lisp, for example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;swap-long&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Swap the endianness of a long integer VALUE.&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;logior&lt;/span&gt;
-&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;logand&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;ash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;-24&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;#xff&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;logand&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;ash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;-8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;#xff00&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;logand&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;ash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;#xff0000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;logand&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;ash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;#xff000000&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;JavaScript might be something like:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;swapLong&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;24&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xff&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
-&lt;span class="w"&gt;           &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mf"&gt;8&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xff00&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
-&lt;span class="w"&gt;           &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mf"&gt;8&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xff0000&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
-&lt;span class="w"&gt;           &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;24&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xff000000&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;and other variations on that theme in different languages.&lt;/p&gt;
-&lt;h2&gt;Up next&lt;/h2&gt;
-&lt;p&gt;In &lt;a href="/2020/09/05/reading-2bit-files-for-fun-the-index.html"&gt;the next post&lt;/a&gt;
-I'll write about how the sequence index is stored and how to load it,
-including some considerations about how to make the loading as efficient as
-possible.&lt;/p&gt;</content><category term="Coding"></category><category term="Bioinformatics"></category></entry></feed>
+is the properly tricky part: the decoding of the sequence data itself.&lt;/p&gt;</content><category term="Coding"></category><category term="Bioinformatics"></category></entry></feed>
