@@ -183,6 +183,57 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2020/06/26/switch-til-5.html#switch-til-5">Swift TIL 5</a></h2>
+    <p>
+      Posted on 2020-06-26 15:44 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/swift.html">Swift</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
+        &#8226; 1 min read
+    </p>
+  </header>
+  <div>
+      <div><p>I'm going to file this one under "it makes perfect sense, but I don't think
+it aids in making the code readable" -- something which I'm finding is a bit
+of a theme with Swift.</p>
+<p>In Swift <code>self</code> gets used and gets used in a way you'd expect from many
+other languages. So far so good. But, it seems, <code>Self</code> is also a thing too,
+and it's different from <code>self</code>. Whereas <code>self</code> is the current instance,
+<code>Self</code> is the current type. So consider this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Greeting</span> <span class="p">{</span>
+
+    <span class="kd">class</span> <span class="nc">func</span> <span class="n">message</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
+        <span class="s">&quot;Ayup!&quot;</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">message</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
+        <span class="s">&quot;Well hello there&quot;</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">emit</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="kc">Self</span><span class="p">.</span><span class="n">message</span><span class="p">()</span> <span class="p">)</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="kc">self</span><span class="p">.</span><span class="n">message</span><span class="p">()</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">Greeting</span><span class="p">().</span><span class="n">emit</span><span class="p">()</span>
+</code></pre></div>
+
+<p>When run, the output is:</p>
+<div class="highlight"><pre><span></span><code>Ayup!
+Well hello there
+</code></pre></div>
+
+<p>It makes sense that that's the case. I actually really like the ability to
+use <code>Self</code> rather than having to use <code>Greeting</code>, but damn that's really
+setting things up for either mistyping or misreading code. You're going to
+want to hope that your development environment makes it super obvious what's
+a value and what's a type when it comes to using font choices.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2020/06/25/swift-til-4.html#swift-til-4">Swift TIL 4</a></h2>
     <p>
       Posted on 2020-06-25 13:21 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
@@ -624,28 +675,6 @@ SMB sharing altogether. This doesn't seem to make any difference. Right now,
 as far as I can see, now that I've split the password I can't go back
 despite the fact that there's a method of doing it made available.</p>
 <p>Brilliant.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2015/10/07/imac-time-wiggle.html#imac-time-wiggle">iMac Time Wiggle</a></h2>
-    <p>
-      Posted on 2015-10-07 11:38 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/imac.html">iMac</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>,              <a href="https://blog.davep.org/tag/os-x.html">OS X</a>
-        &#8226; 1 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Apparently that famous Apple obsession with design doesn't apply to the time
-display on the OS X login screen (the wake-from-sleep password confirmation
-one anyway):</p>
-<p><img alt="Time wiggle" src="/attachments/2015/10/07/iMac-Login-Screen-Time-Wiggle.gif"></p>
-<p>I've never noticed it before. I'm not sure if this came about with
-<a href="/2015/10/06/el-capitan.html">the upgrade to El Capitan</a> or not.
-But now I've seen it I can't unsee it.</p></div>
   </div>
 </article>
 

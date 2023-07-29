@@ -183,6 +183,44 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/07/29/home-pod-stuck-installing.html#home-pod-stuck-installing">HomePod Stuck Installing Update</a></h2>
+    <p>
+      Posted on 2023-07-29 08:00 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>I have three HomePods. I have a Mini in the kitchen and one in the bedroom.
+I then have one of the newer-gen "big" HomePods in the living room, which
+amongst other things is the speaker for my Apple TV device (yeah, I'm kinda
+Apple all over the place these days).</p>
+<p>This week there was an update to the software, updating to 16.6. The two
+Minis updated just fine. The big one, however, days later...</p>
+<p><img alt="HomePod stuck installing the update" src="/attachments/2023/07/29/HomePodStuck.png"></p>
+<p>It's been like this all the time since the update turned up. I've tried a
+reboot from the Home app. I've tried pulling the plug and plugging it in
+again. Nope. It just keeps sitting there like this.</p>
+<p>Meanwhile... it's working (more or less) fine. It's still playing music.
+It's still being the speaker for the Apple TV. It still answers most
+questions and performs most commands (most of the commands I give it are to
+add stuff to my Reminders).</p>
+<p>On occasion if I ask it questions about other devices in the apartment ("hey
+siri, what's the temperature in the bedroom?") it'll do the "working on it"
+thing and then give up saying the thing wasn't responding. That seems to be
+about the worst of it.</p>
+<p>Having check this online it looks like, annoyingly, the one option I have
+left is to do a full reset, removing it from my Home, doing a factory reset,
+and then setting it up again. I'm sure it's something that'll take 10
+minutes or so; but it's an annoyance.</p>
+<p>Apple: <code>#ItJustWorks</code>.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/07/14/cmd-tab-switcher-on-all-screens.html#cmd-tab-switcher-on-all-screens">Cmd-Tab switcher on all screens</a></h2>
     <p>
       Posted on 2023-07-14 07:56 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
@@ -817,57 +855,6 @@ object. For example:</p>
 </code></pre></div>
 
 <p>I can see that being quite handy.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2020/06/26/switch-til-5.html#switch-til-5">Swift TIL 5</a></h2>
-    <p>
-      Posted on 2020-06-26 15:44 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/swift.html">Swift</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
-        &#8226; 1 min read
-    </p>
-  </header>
-  <div>
-      <div><p>I'm going to file this one under "it makes perfect sense, but I don't think
-it aids in making the code readable" -- something which I'm finding is a bit
-of a theme with Swift.</p>
-<p>In Swift <code>self</code> gets used and gets used in a way you'd expect from many
-other languages. So far so good. But, it seems, <code>Self</code> is also a thing too,
-and it's different from <code>self</code>. Whereas <code>self</code> is the current instance,
-<code>Self</code> is the current type. So consider this:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Greeting</span> <span class="p">{</span>
-
-    <span class="kd">class</span> <span class="nc">func</span> <span class="n">message</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
-        <span class="s">&quot;Ayup!&quot;</span>
-    <span class="p">}</span>
-
-    <span class="kd">func</span> <span class="nf">message</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
-        <span class="s">&quot;Well hello there&quot;</span>
-    <span class="p">}</span>
-
-    <span class="kd">func</span> <span class="nf">emit</span><span class="p">()</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span> <span class="kc">Self</span><span class="p">.</span><span class="n">message</span><span class="p">()</span> <span class="p">)</span>
-        <span class="bp">print</span><span class="p">(</span> <span class="kc">self</span><span class="p">.</span><span class="n">message</span><span class="p">()</span> <span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="n">Greeting</span><span class="p">().</span><span class="n">emit</span><span class="p">()</span>
-</code></pre></div>
-
-<p>When run, the output is:</p>
-<div class="highlight"><pre><span></span><code>Ayup!
-Well hello there
-</code></pre></div>
-
-<p>It makes sense that that's the case. I actually really like the ability to
-use <code>Self</code> rather than having to use <code>Greeting</code>, but damn that's really
-setting things up for either mistyping or misreading code. You're going to
-want to hope that your development environment makes it super obvious what's
-a value and what's a type when it comes to using font choices.</p></div>
   </div>
 </article>
 

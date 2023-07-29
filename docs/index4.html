@@ -183,6 +183,81 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2020/06/30/swift-til-9.html#swift-til-9">Swift TIL 9</a></h2>
+    <p>
+      Posted on 2020-06-30 21:02 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/swift.html">Swift</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p><em>Some may be happy to know that the frequency of these little notes to
+myself may reduce real soon, as I'm sort of caught up with my notes, mostly,
+and I'm unlikely to pick up the book that I'm reading for a couple or so
+days now</em></p>
+<p>I'm used to the idea of structures and classes from other languages, going
+way back, but as I first started reading about Swift it wasn't obvious to me
+why it had them both too. At first glance they appeared to be very similar.
+It was only as I got a little further into reading that I found out one huge
+difference (there are others, that pretty much stem from this one): objects
+created from classes are <em>reference types</em> (which you'd expect, of course),
+structures on the other hand are <em>value types</em>.</p>
+<p>A quick illustration of the difference, in my head anyway, can be found if I
+go back to <a href="/2020/06/24/swift-til-3.html">using an
+observer</a>.
+Take this daft bit of illustrative code for example:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">name</span> <span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;No name&quot;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nv">dave</span> <span class="p">=</span> <span class="n">Person</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">didSet</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;dave was set&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">dave</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Dave&quot;</span>
+</code></pre></div>
+
+<p>If I run that, I get no output. That makes sense. The variable <code>dave</code> is
+initialised to an instance of a <code>Person</code> but is never subsequently set to
+anything else. The following assignment is to a property of the object.
+We're working on a reference to an existing object.</p>
+<p>But simply change <code>Person</code> to being a <code>struct</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">name</span> <span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;No name&quot;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nv">dave</span> <span class="p">=</span> <span class="n">Person</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">didSet</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;dave was set&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">dave</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Dave&quot;</span>
+</code></pre></div>
+
+<p>and the output looks like this:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>ref-vs-val
+dave<span class="w"> </span>was<span class="w"> </span><span class="nb">set</span>
+</code></pre></div>
+
+<p>That's because the assignment to <code>dave.name</code> means a new value is created.</p>
+<p>This, of course, is just the tip of the iceberg; there are all sorts of
+other things to keep in mind that follow on from this, generally relating to
+mutability (or the lack thereof). I also imagine this means that, when
+there's no obvious benefit either way, the choice of using <code>class</code> vs
+<code>struct</code> is something that could have performance implications. That's
+something for me to look into more another day; but this is a note here to
+myself that it's a thing to keep in mind.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2020/06/29/swift-til-8.html#swift-til-8">Swift TIL 8</a></h2>
     <p>
       Posted on 2020-06-29 22:48 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
@@ -701,97 +776,6 @@ posts; nothing too long, just some new thing I read or discovered and my
 reaction to it. So, if you happen to follow this blog, I apologise in
 advance for any Swift-spam.</p>
 <p>You have been warned. ;-)</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2020/06/14/my-journey-to-the-dark-side-is-complete.html#my-journey-to-the-dark-side-is-complete">My journey to the dark side is complete</a></h2>
-    <p>
-      Posted on 2020-06-14 20:00 +0100 in <a href="https://blog.davep.org/category/emacs.html">Emacs</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/emacs.html">Emacs</a>
-        &#8226; 4 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Ever since the whole business of "light mode" and "dark mode" really kicked
-off in the mobile OS world, I've been a fan of the dark modes. On both
-Android and iOS/iPadOS, when apps became available with dark modes, I'd
-switch to it. When the operating systems themselves adopted the switch,
-that's what I went for. As well as having a love for all things black
-(anyone who knows me personally will know that), I think it just looks
-better on mobile devices. I can't quite say why, but it just works best for
-me.</p>
-<p>So, when macOS got a supported dark mode, I instantly switched it on,
-obviously. Then, within a day, I switched it back to light mode.
-Surprisingly it just didn't work for me, and I wasn't sure why. Since then
-I've tried living with it a few times and it's rarely lasted more than a few
-hours. There was something, something I couldn't quite put my finger on,
-that didn't sit right.</p>
-<p>Last Monday I decided to give it another go. This time, however, I thought
-I'd figured it out. The "problem" was Emacs! As mentioned <a href="/2020/01/11/where-i-live-and-work.html">back in
-January</a>,
-for as long as I've used it (so since the mid-1990s), my Emacs has always
-had a light background -- probably because that's how it came "out of the
-box" (I'm talking Emacs in graphical mode here; I started with it on <a href="https://en.wikipedia.org/wiki/OS/2#1994%E2%80%931996:_The_%22Warp%22_years">OS/2
-Warp</a>
-and then moved to a GNU/Linux X-based desktop). I figured that the contrast
-between the colour scheme of Emacs, and the rest of the machine, was the
-issue here.</p>
-<p>I spend most of my working day either in Emacs, or in
-<a href="https://www.iterm2.com/">iTerm2</a> -- often rapidly switching between the
-two. I've always run iTerm2 in the usual dark background mode with light
-text. So I figured the problem was having a dark OS desktop, dark terminal,
-and then a light editing environment. Eventually that'd feel wrong.</p>
-<p>So I decided that, for the first time in about 25 years, I should give Emacs
-a go with a dark mode. Taking a quick look at <a href="https://pawelbx.github.io/emacs-theme-gallery/">popular dark
-themes</a> I noticed
-<a href="https://github.com/purcell/color-theme-sanityinc-tomorrow"><code>sanityinc-tomorrow-night</code></a>
-looked easy on the eye, so I gave that a go (actually, I gave each of the
-themes in that set a go, <a href="https://github.com/davep/.emacs.d/commit/07f1c4c4c8c0c476f1e5e34845a834956d2be0c4">initially starting with
-<code>sanityinc-tomorrow-eighties</code></a>,
-but I finally settled on <code>sanityinc-tomorrow-night</code>).</p>
-<p>To start with it didn't look too good; not because of a problem with the
-theme itself, but because, over time, I'd made changes and tweaks to my
-setup that assumed I'd be using my usual light theme. After some dabbling
-and tinkering and trying things out, I got it looking "just so".</p>
-<p><img alt="Screenshot 2020-06-14 at 19.40.43.png" src="/attachments/2020/06/14/Screenshot 2020-06-14 at 19.40.43.png"></p>
-<p>Having got that working, I then thought it would be nice to be able to have
-Emacs -- at least on restart -- adapt to me switching between dark and light
-mode on macOS. It turns out that detecting if macOS is in dark mode is easy
-enough, the command <code>defaults read -g AppleInterfaceStyle</code> will emit <code>Dark</code>
-if in dark mode. So, knowing that, I updated <a href="https://github.com/davep/is-a.el/blob/2b3eb99a213454536d789325f01477e3ce7eec87/is-a.el#L67-L70">my personal package for
-checking things about the environment that Emacs is in to use that
-information</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">defconst</span><span class="w"> </span><span class="nv">is-a-macOS-dark-mode-window-p</span>
-<span class="w">  </span><span class="p">(</span><span class="k">and</span>
-<span class="w">   </span><span class="nv">is-a-macOS-window-p</span>
-<span class="w">   </span><span class="p">(</span><span class="nf">string=</span><span class="w"> </span><span class="p">(</span><span class="nv">shell-command-to-string</span><span class="w"> </span><span class="s">&quot;defaults read -g AppleInterfaceStyle&quot;</span><span class="p">)</span><span class="w"> </span><span class="s">&quot;Dark\n&quot;</span><span class="p">))</span>
-<span class="w">  </span><span class="s">&quot;Are we running in a macOS window in dark mode?&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<p>So, as of now, my Emacs setup is such that, <a href="https://github.com/davep/.emacs.d/blob/f8389ac8f93b66c614ef82705929b86f01efc130/init.d/init-style.el#L15-L24">if I'm in graphical mode on
-macOS and I'm in dark mode, Emacs will use a dark theme, otherwise it'll do
-what it did before -- with a light background in a graphical mode and a more
-Borland-a-like blue background when in CHUI
-mode</a>.</p>
-<p>This seems to have made a difference. Almost one week on my work Macbook is
-still in dark mode, and I've switched both of my personal Macbooks, and my
-iMac, into dark mode too. I think it's sticking this time. Next up is to
-give some serious consideration to darkening the web in general. Only now am
-I noticing just how damn bright most of it is!</p>
-<hr>
-<p>As a slight aside to the above, I've also made one other change to Emacs:
-I've finally dropped the display of scroll bars. In the themes I'm using
-they didn't look so great, appearing to be distracting. For the past 25
-years I've had the scrollbars there, but never actually <em>used</em> them; all
-they've ever done is serve as a visual aid to where I am in a file. Thing
-is, I'm not sure I ever really pay that much attention to that either. So,
-as a test, I've also been running with them turned off and, so far, I'm
-really not noticing them been gone.</p>
-<p>The habits we form that we convince ourselves make sense...</p></div>
   </div>
 </article>
 
