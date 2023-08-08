@@ -183,6 +183,49 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/08/08/strange-obsidian-sync-issue.html#strange-obsidian-sync-issue">Strange Obsidian sync issue</a></h2>
+    <p>
+      Posted on 2023-08-08 20:55 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/obsidian.html">Obsidian</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>,              <a href="https://blog.davep.org/tag/icloud.html">iCloud</a>,              <a href="https://blog.davep.org/tag/iphone.html">iPhone</a>,              <a href="https://blog.davep.org/tag/mac.html">Mac</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Since October last year I've been getting into using
+<a href="https://obsidian.md/">Obsidian</a>. Not that heavily, not to the extent some
+people do, but just as a way to keep a daily journal of work-related things.
+Each day at <a href="https://www.textualize.io/">Textual HQ</a>
+<a href="https://www.textualize.io/about-us/">we</a> finish off with a chat about how
+our day has gone, stuff we're wondering about, etc, etc... So I don't lose
+tack of what I've been up to I keep notes and Obsidian is how I do that.</p>
+<p>One of the things I really like about it is how I can have iPhone, iPad and
+macOS versions on the go and have it all sync via iCloud. It generally works
+well.</p>
+<p>But in the last couple of days I've noted the oddest problem, and I've yet
+to pin down the exact flow. But it seems to be this:</p>
+<ul>
+<li>If I create or edit a note on my iPhone, it doesn't turn up on my Mac.</li>
+<li>If I create or edit a note on my Mac, it turns up on my iPhone.</li>
+</ul>
+<p>I <em>think</em> I might have seen variations on that theme but I've not made
+careful note -- normally I'm made aware of it when I'm trying to get
+something done.</p>
+<p>What's super weird is this: on the iPhone, if I create a note, and then go
+into the <code>Files</code> app and look at the iCloud folders for Obsidian, the file
+isn't there! It's there in Obsidian itself, I can move it about, edit it,
+etc, etc... but it's not in the "vault" as seen from the <code>Files</code> app.</p>
+<p>It's the last part that has be really puzzled.</p>
+<p>If I get to the bottom of this I'll try and remember to write up what I
+find. I suspect I'm going to need some proper clear time, without other
+distractions, and experiment with all the edit and sync options and see what
+works and what fails.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/07/29/home-pod-stuck-installing.html#home-pod-stuck-installing">HomePod Stuck Installing Update</a></h2>
     <p>
       Posted on 2023-07-29 07:56 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
@@ -795,66 +838,6 @@ as code:</p>
 
 <p>I think it makes a lot more sense. And having got there I felt I better
 understood it. I'm not 100% sure I'm 100% with it, but I'm getting there.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2020/06/27/swift-til-6.html#swift-til-6">Swift TIL 6</a></h2>
-    <p>
-      Posted on 2020-06-27 21:23 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/swift.html">Swift</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
-        &#8226; 1 min read
-    </p>
-  </header>
-  <div>
-      <div><p>I'm going to file this one under "it seems really unnecessary, but it's also
-kinda cool". While reading up about
-<a href="https://docs.swift.org/swift-book/LanguageGuide/Protocols.html">protocols</a>
-the book I'm reading introduced the <code>ExpressibleBy*Literal</code> protocols, where
-the <code>*</code> is one of a number of obvious literals. For example:
-<code>ExpressibleByStringLiteral</code>. As you might imagine, it lets you create a
-class that can be initialised with a literal value, as opposed to needing to
-appear to call the constructor for a class.</p>
-<p>So, for a silly example:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Hello</span> <span class="p">:</span> <span class="n">ExpressibleByStringLiteral</span> <span class="p">{</span>
-
-    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">what</span> <span class="p">:</span> <span class="nb">String</span>
-
-    <span class="kr">required</span> <span class="kd">init</span><span class="p">(</span> <span class="n">stringLiteral</span> <span class="n">what</span> <span class="p">:</span> <span class="nb">String</span> <span class="p">)</span> <span class="p">{</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">what</span> <span class="p">=</span> <span class="n">what</span>
-    <span class="p">}</span>
-
-    <span class="kd">func</span> <span class="nf">say</span><span class="p">()</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;Hello, </span><span class="si">\(</span><span class="kc">self</span><span class="p">.</span><span class="n">what</span><span class="si">)</span><span class="s">!&quot;</span> <span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>You could, of course, write this:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">v1</span> <span class="p">=</span> <span class="n">Hello</span><span class="p">(</span> <span class="s">&quot;world&quot;</span> <span class="p">)</span>
-<span class="n">v1</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
-</code></pre></div>
-
-<p>but because of <code>ExpressibleByStringLiteral</code> you can also write:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">v2</span> <span class="p">:</span> <span class="n">Hello</span> <span class="p">=</span> <span class="s">&quot;universe&quot;</span>
-<span class="n">v2</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
-</code></pre></div>
-
-<p>Now, sure, in this case it saves you nothing, but this does also mean that
-parameters of functions whose type uses one of the <code>`ExpressibleBy*Literal</code>
-protocols can be passed a literal, rather than a "long-hand" instantiated
-object. For example:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">Greet</span><span class="p">(</span> <span class="kc">_</span> <span class="n">h</span> <span class="p">:</span> <span class="n">Hello</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="n">h</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
-<span class="p">}</span>
-
-<span class="n">Greet</span><span class="p">(</span> <span class="s">&quot;davep&quot;</span> <span class="p">)</span>
-</code></pre></div>
-
-<p>I can see that being quite handy.</p></div>
   </div>
 </article>
 

@@ -183,6 +183,66 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2020/06/27/swift-til-6.html#swift-til-6">Swift TIL 6</a></h2>
+    <p>
+      Posted on 2020-06-27 21:23 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/swift.html">Swift</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
+        &#8226; 1 min read
+    </p>
+  </header>
+  <div>
+      <div><p>I'm going to file this one under "it seems really unnecessary, but it's also
+kinda cool". While reading up about
+<a href="https://docs.swift.org/swift-book/LanguageGuide/Protocols.html">protocols</a>
+the book I'm reading introduced the <code>ExpressibleBy*Literal</code> protocols, where
+the <code>*</code> is one of a number of obvious literals. For example:
+<code>ExpressibleByStringLiteral</code>. As you might imagine, it lets you create a
+class that can be initialised with a literal value, as opposed to needing to
+appear to call the constructor for a class.</p>
+<p>So, for a silly example:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Hello</span> <span class="p">:</span> <span class="n">ExpressibleByStringLiteral</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">what</span> <span class="p">:</span> <span class="nb">String</span>
+
+    <span class="kr">required</span> <span class="kd">init</span><span class="p">(</span> <span class="n">stringLiteral</span> <span class="n">what</span> <span class="p">:</span> <span class="nb">String</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">what</span> <span class="p">=</span> <span class="n">what</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">say</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;Hello, </span><span class="si">\(</span><span class="kc">self</span><span class="p">.</span><span class="n">what</span><span class="si">)</span><span class="s">!&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>You could, of course, write this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">v1</span> <span class="p">=</span> <span class="n">Hello</span><span class="p">(</span> <span class="s">&quot;world&quot;</span> <span class="p">)</span>
+<span class="n">v1</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
+</code></pre></div>
+
+<p>but because of <code>ExpressibleByStringLiteral</code> you can also write:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">v2</span> <span class="p">:</span> <span class="n">Hello</span> <span class="p">=</span> <span class="s">&quot;universe&quot;</span>
+<span class="n">v2</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Now, sure, in this case it saves you nothing, but this does also mean that
+parameters of functions whose type uses one of the <code>`ExpressibleBy*Literal</code>
+protocols can be passed a literal, rather than a "long-hand" instantiated
+object. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">Greet</span><span class="p">(</span> <span class="kc">_</span> <span class="n">h</span> <span class="p">:</span> <span class="n">Hello</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">h</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="n">Greet</span><span class="p">(</span> <span class="s">&quot;davep&quot;</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>I can see that being quite handy.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2020/06/26/switch-til-5.html#switch-til-5">Swift TIL 5</a></h2>
     <p>
       Posted on 2020-06-26 15:44 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
@@ -621,60 +681,6 @@ I can make it happen every single time:</p>
 <p></center></p>
 <p>So it looks like another fine example of the Apple "it just works" thing.
 For "doesn't always just work" values of "just works".</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2015/10/21/apple-accounts.html#apple-accounts">Apple Accounts</a></h2>
-    <p>
-      Posted on 2015-10-21 15:36 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/apple.html">Apple</a>,              <a href="https://blog.davep.org/tag/os-x.html">OS X</a>,              <a href="https://blog.davep.org/tag/imac.html">iMac</a>,              <a href="https://blog.davep.org/tag/smb.html">SMB</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>As much as I like my iMac, and as much as I am generally impressed with OS X
-the more I use it, I'm constantly frustrated by the little issues I run into
-that make life so much more interesting and which fly in the face of the
-"it just works with Apple" fandom thing. The more I use the iMac, the more I
-appreciate that Macs and OS X are just as "fun" as anything running Windows.</p>
-<p>A little earlier was a good example. I wanted to share part of the iMac's
-filesystem using <a href="https://en.wikipedia.org/wiki/Server_Message_Block">SMB</a>.
-This seemed easy enough, the instructions on how to do it were clear and,
-after following them, it utterly failed.</p>
-<p>Brilliant.</p>
-<p>So I Googled the issue a bit and ran into
-<a href="https://discussions.apple.com/thread/6629743?start=0&amp;tstart=0">this handy forum post</a>.
-Apparently you can't actually connect with SMB if the account you're going to
-be using to connect with is using iCloud login rather than a separate login.</p>
-<p>Brilliant.</p>
-<p>Not an obvious thing. Nothing said this was the case. According to the forum
-post even Apple couldn't help the person who'd been trying to make it work.
-But at least there was a workaround. All I'd need to do is split the password,
-have a login for the machine that <em>wasn't</em> the iCloud login and I'd be all good.</p>
-<p>I did it, it worked. I could browse the iMac's filesystem from my Windows
-machine and all was good (I'd been able to do this the other way around
-for ages and with no problems whatsoever).</p>
-<p><img alt="Finally got to allow SMB for me" src="/attachments/2015/10/21/Screen Shot 2015-10-21 at 15.29.11.png"></p>
-<p>Then I got curious.</p>
-<p>What would happen if, once I had this set up, I "unsplit" the password and
-went back to using the iCloud password to log in? That's when it got really fun.</p>
-<p>To do this it asks you for the current password and also your iCloud password.
-I entered both and...</p>
-<p><img alt="Finally got to allow SMB for me" src="/attachments/2015/10/21/Screen Shot 2015-10-21 at 15.28.46.png"></p>
-<p>Yup. It refuses, every single time, to accept that the iCloud password I'm
-entering is valid. Trust me, it is. I'm entering the correct password. I can
-log in to the iCloud website with it just fine. But when I use it to try and
-"unsplit" my password.... nope.</p>
-<p>Brilliant.</p>
-<p>I've even tried disabling SMB sharing for my account, and even turning off
-SMB sharing altogether. This doesn't seem to make any difference. Right now,
-as far as I can see, now that I've split the password I can't go back
-despite the fact that there's a method of doing it made available.</p>
-<p>Brilliant.</p></div>
   </div>
 </article>
 

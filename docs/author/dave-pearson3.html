@@ -183,6 +183,52 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2022/06/03/failed-successfully.html#failed-successfully">Failed successfully</a></h2>
+    <p>
+      Posted on 2022-06-03 09:05 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/ui.html">UI</a>,              <a href="https://blog.davep.org/tag/ux.html">UX</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>A couple of days back (for vague values of "couple", of course), first of
+the month, having my morning coffee, I go and open my bank's mobile app to
+move a bit of money about and pay a couple of things. This happens every
+month. This is so routine I do it almost on autopilot.</p>
+<p>Yeah, yeah, I know, it's banking, pay attention! But still... morning,
+coffee, routine.</p>
+<p>I get to the final movement/payment and then notice something:</p>
+<p><img alt="Useless error message" src="/attachments/2022/06/03/Unexpected-error.jpeg"></p>
+<p>That.... that text! WTF? So then I look back at my payment history and
+notice that all but one payment <em>hadn't</em> gone through! O_o</p>
+<p>This alone is fine. Stuff happens. Things fail. I'm okay with that. It's an
+inconvenience for sure but doubtless whatever the problem is will be fixed
+and I can make the payments again later. But...</p>
+<p>That result. There's a tick. A <strong>GREEN</strong> tick. And a "Thank you". It's
+natural to see that image, know that it's always meant "shit worked" and
+just carry on.</p>
+<p>In one of my systems at work there's a tool I wrote for checking a
+repository of code to make sure it conforms to a certain standard. When folk
+use it they get a night big, bold and bright green thumb-up above the text
+that says everything is cool. If there's a problem, any sort of problem at
+all, then the display is red and there's no jolly icon and it's obvious that
+things are different and you likely want to pay attention to the explanation
+of what isn't right.</p>
+<p>This isn't news, of course. This isn't some revelation about UI design or
+anything. We know this stuff. I think what boggles my mind a little bit
+about this is that something as important -- and hopefully by this point as
+mature -- as a mobile banking app should get something as obvious as this
+right.</p>
+<p>But here we are, with a nice friendly green icon showing a tick and a
+friendly big "Thank you" followed by smaller text going "aye shit didn't
+work pal".</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2022/05/28/my-vr-recording-setup.html#my-vr-recording-setup">My VR recording setup</a></h2>
     <p>
       Posted on 2022-05-28 17:01 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
@@ -1328,71 +1374,6 @@ place: <code>stat -L</code>.</p>
 
 <p>And now I have that script in my <code>~/bin</code> directory, ready for the next time
 Homebrew and friends conspire to throw my day off for a while.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2020/07/09/helping-myself-change-the-default-git-branch.html#helping-myself-change-the-default-git-branch">Helping myself change the default git branch</a></h2>
-    <p>
-      Posted on 2020-07-09 20:17 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/git.html">git</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>This is something I've being meaning to do for a couple or so years now, and
-unsurprisingly it's bubbled up again recently: the business of swapping the
-name of the <code>master</code> branch in <code>git</code> out for something better.</p>
-<p>Because it's one of those jobs that's simultaneously simple and also
-laborious, I kept putting it off. Changing up the local configuration so
-that <code>main</code> (or whatever name you prefer) is used "out of the box" <a href="https://leigh.net.au/writing/git-init-main/">is
-simple enough</a>; the laborious
-part is updating all of the repositories that live in the "forge of choice".
-In my case, <a href="https://github.com/davep">over on GitHub</a>, I have <a href="https://github.com/davep?tab=repositories">getting on
-for 200 repositories</a> -- 142 of
-which are public (as of the time of writing). At work we use
-<a href="https://gitlab.com/">GitLab</a> as our internal forge and I've got a
-non-trivial number of repositories on there too.</p>
-<p>The obvious first step to tackling this is to knock up a little tool to help
-find the repos that still need swapping. That was <a href="https://github.com/davep/git-archaic">simple
-enough</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-
-<span class="c1"># Quick and dirty tool to find repositories that still make use of a</span>
-<span class="c1"># &quot;master&quot; branch. Helps with tracking down the ones that need</span>
-<span class="c1"># updating/improving.</span>
-
-<span class="k">for</span><span class="w"> </span>repo<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span>.git<span class="k">)</span>
-<span class="k">do</span>
-<span class="w">    </span><span class="o">(</span>
-<span class="w">        </span><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$repo</span><span class="k">)</span><span class="s2">&quot;</span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>master<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
-<span class="w">        </span><span class="k">then</span>
-<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$repo</span><span class="k">)</span><span class="s2">&quot;</span>
-<span class="w">        </span><span class="k">fi</span>
-<span class="w">    </span><span class="o">)</span>
-<span class="k">done</span>
-
-<span class="c1">### git-archaic ends here</span>
-</code></pre></div>
-
-<p>It's not meant to be clever, just something I can run when I'm in a "default
-branch swapping" mood so find a repository or two to tackle. The idea being
-that it uses <code>find</code> to pull out any instance of <code>.git</code> in or below the
-current directory, changes to it (inside a sub-process to ensure the <code>PWD</code>
-gets put back after the <code>cd</code> that happens, before the next iteration of the
-loop), gets a list of the branches and, if <code>master</code> is one of them, prints
-the directory name.</p>
-<p>Using this, I can now slowly work through my more active repositories and
-make the swap -- the idea being that if I currently have them cloned down to
-my machine, they're obviously some level of "active". At some point I
-imagine I could get more clever and use the APIs of the forges to look at
-all the repositories I own; that's another job for another day.</p>
-<p>This gives me enough to be going on with. :-)</p></div>
   </div>
 </article>
 
