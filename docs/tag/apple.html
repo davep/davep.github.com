@@ -183,6 +183,42 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/08/10/i-turned-it-off-and-on-again.html#i-turned-it-off-and-on-again">I turned it off and on again</a></h2>
+    <p>
+      Posted on 2023-08-10 18:17 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/obsidian.html">Obsidian</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>,              <a href="https://blog.davep.org/tag/icloud.html">iCloud</a>,              <a href="https://blog.davep.org/tag/iphone.html">iPhone</a>,              <a href="https://blog.davep.org/tag/mac.html">Mac</a>
+        &#8226; 1 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Following on from <a href="/2023/08/08/strange-obsidian-sync-issue.html">the previous
+entry</a>, where I outlined a
+weird problem I'd started having with syncing Obsidian via iCloud, I finally
+decided to sit down and try and work out the exact flow of the problem.
+Today, for example, I'd created an entry in two different vaults on my phone
+while on the bus into work, and when I got to my desk the vault I use on my
+work machine had updated.</p>
+<p>However, when I got home this evening, the vault for my personal stuff
+hadn't updated on my home Mac Mini. I tried a few edits, in both vaults, on
+the iPhone, and nothing came through to the Mac.</p>
+<p>So... before I started really diving into things I decided to <em>"turn it off
+and on again"</em> -- the iPhone that is -- and when it came back I ran up
+Obsidian, which told me it wasn't allowed to access my iCloud drive!</p>
+<p>I took a moment to go into the settings to try and figure it out, didn't
+find what I wanted right away, then got to thinking that perhaps some of the
+phone's services were still spinning up, so I ran Obsidian up again (after
+killing it).</p>
+<p>Sure enough, this time, it saw my vaults. With both vaults open on my Mac I
+made edits to open entries and <strong>the edits started to flow</strong>.</p>
+<p>So, yup, looks like it was a simple case of <em>"turn it off and on again"</em>.</p>
+<p>Apple: <code>#ItJustWorks</code>.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/08/08/strange-obsidian-sync-issue.html#strange-obsidian-sync-issue">Strange Obsidian sync issue</a></h2>
     <p>
       Posted on 2023-08-08 20:55 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
@@ -792,52 +828,6 @@ That<span class="w"> </span>totally<span class="w"> </span>wasn<span class="err"
 so given the above I'd ensure I never end up in this sort of situation in
 the first place. But for the purposes of writing and compiling and running
 code and seeing what the different situations result in, it helped.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2020/06/28/swift-til-7.html#swift-til-7">Swift TIL 7</a></h2>
-    <p>
-      Posted on 2020-06-28 16:25 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/swift.html">Swift</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
-        &#8226; 1 min read
-    </p>
-  </header>
-  <div>
-      <div><p>This post is <em>very</em> much a case of me writing it down to try and get it all
-straight in my head, and to make sure it sticks. The other day I was reading
-about Swift's types and type-equality checks, and as I'd expect from plenty
-of other languages I've worked with, there's a way for checking that two
-types are the same, such that super/subclasses aren't taken into account,
-and a way where they are. So, given this silly code:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Animal</span> <span class="p">{}</span>
-
-<span class="kd">class</span> <span class="nc">Cat</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">{}</span>
-
-<span class="bp">print</span><span class="p">(</span> <span class="n">Cat</span><span class="p">.</span><span class="kc">self</span> <span class="p">==</span> <span class="n">Animal</span><span class="p">.</span><span class="kc">self</span> <span class="p">)</span>          <span class="c1">// False</span>
-<span class="bp">print</span><span class="p">(</span> <span class="n">Cat</span><span class="p">.</span><span class="kc">self</span> <span class="k">is</span> <span class="n">Animal</span><span class="p">.</span><span class="kr">Type</span> <span class="p">)</span>          <span class="c1">// True</span>
-<span class="bp">print</span><span class="p">(</span> <span class="n">type</span><span class="p">(</span> <span class="n">of</span><span class="p">:</span> <span class="n">Cat</span><span class="p">()</span> <span class="p">)</span> <span class="k">is</span> <span class="n">Animal</span><span class="p">.</span><span class="kr">Type</span> <span class="p">)</span> <span class="c1">// True</span>
-</code></pre></div>
-
-<p>it's made clear that <code>==</code> checks for strict equality and a super/subclass
-relationship isn't taken into account. On the other hand <code>is</code> does take it
-into account.</p>
-<p>Only... what's with this whole <code>.self</code> sometimes and <code>.Type</code> other times
-business? That took a little bit of writing code and playing to get
-comfortable with. Here's how I understand it now (and do feel free to
-correct me below if I'm way off):</p>
-<p>Given the above code, <code>Animal.Type</code> is the type of a value that expresses
-the type of <code>Animal</code>. On the other hand, <code>Animal.self</code> is a value that is
-the type of an <code>Animal</code>. Yeah, I know, that still reads oddly. But written
-as code:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">feline</span> <span class="p">:</span> <span class="n">Cat</span><span class="p">.</span><span class="kr">Type</span> <span class="p">=</span> <span class="n">Cat</span><span class="p">.</span><span class="kc">self</span>
-</code></pre></div>
-
-<p>I think it makes a lot more sense. And having got there I felt I better
-understood it. I'm not 100% sure I'm 100% with it, but I'm getting there.</p></div>
   </div>
 </article>
 

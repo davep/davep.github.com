@@ -183,6 +183,52 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2020/06/28/swift-til-7.html#swift-til-7">Swift TIL 7</a></h2>
+    <p>
+      Posted on 2020-06-28 16:25 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/swift.html">Swift</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
+        &#8226; 1 min read
+    </p>
+  </header>
+  <div>
+      <div><p>This post is <em>very</em> much a case of me writing it down to try and get it all
+straight in my head, and to make sure it sticks. The other day I was reading
+about Swift's types and type-equality checks, and as I'd expect from plenty
+of other languages I've worked with, there's a way for checking that two
+types are the same, such that super/subclasses aren't taken into account,
+and a way where they are. So, given this silly code:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Animal</span> <span class="p">{}</span>
+
+<span class="kd">class</span> <span class="nc">Cat</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">{}</span>
+
+<span class="bp">print</span><span class="p">(</span> <span class="n">Cat</span><span class="p">.</span><span class="kc">self</span> <span class="p">==</span> <span class="n">Animal</span><span class="p">.</span><span class="kc">self</span> <span class="p">)</span>          <span class="c1">// False</span>
+<span class="bp">print</span><span class="p">(</span> <span class="n">Cat</span><span class="p">.</span><span class="kc">self</span> <span class="k">is</span> <span class="n">Animal</span><span class="p">.</span><span class="kr">Type</span> <span class="p">)</span>          <span class="c1">// True</span>
+<span class="bp">print</span><span class="p">(</span> <span class="n">type</span><span class="p">(</span> <span class="n">of</span><span class="p">:</span> <span class="n">Cat</span><span class="p">()</span> <span class="p">)</span> <span class="k">is</span> <span class="n">Animal</span><span class="p">.</span><span class="kr">Type</span> <span class="p">)</span> <span class="c1">// True</span>
+</code></pre></div>
+
+<p>it's made clear that <code>==</code> checks for strict equality and a super/subclass
+relationship isn't taken into account. On the other hand <code>is</code> does take it
+into account.</p>
+<p>Only... what's with this whole <code>.self</code> sometimes and <code>.Type</code> other times
+business? That took a little bit of writing code and playing to get
+comfortable with. Here's how I understand it now (and do feel free to
+correct me below if I'm way off):</p>
+<p>Given the above code, <code>Animal.Type</code> is the type of a value that expresses
+the type of <code>Animal</code>. On the other hand, <code>Animal.self</code> is a value that is
+the type of an <code>Animal</code>. Yeah, I know, that still reads oddly. But written
+as code:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">feline</span> <span class="p">:</span> <span class="n">Cat</span><span class="p">.</span><span class="kr">Type</span> <span class="p">=</span> <span class="n">Cat</span><span class="p">.</span><span class="kc">self</span>
+</code></pre></div>
+
+<p>I think it makes a lot more sense. And having got there I felt I better
+understood it. I'm not 100% sure I'm 100% with it, but I'm getting there.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2020/06/27/swift-til-6.html#swift-til-6">Swift TIL 6</a></h2>
     <p>
       Posted on 2020-06-27 21:23 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
@@ -642,45 +688,6 @@ open up and use.</p>
 <p>And that's what's happening with the Air. In fact, it's being used on the
 train right now; that's where I'm waffling on about this, to kill time,
 somewhere north of Newcastle, with the sea to my right and the snow coming down.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2015/11/02/how-to-kill-os-xs-helpviewer.html#how-to-kill-os-xs-helpviewer">How to kill OS X's HelpViewer</a></h2>
-    <p>
-      Posted on 2015-11-02 15:38 +0000 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/apple.html">Apple</a>,              <a href="https://blog.davep.org/tag/imac.html">iMac</a>,              <a href="https://blog.davep.org/tag/os-x.html">OS X</a>
-        &#8226; 1 min read
-    </p>
-  </header>
-  <div>
-      <div><p>A little earlier today I decided it was time that I read up a little more about
-the abilities of OS X's Spotlight facility. I use it a little -- it's a handy
-tool to get at some often-used applications that I don't really need laying
-around in the dock -- but I was starting to wonder if I could get more out of
-it.</p>
-<p>The obvious first place to look was in the HelpViewer; all the information I'm
-ever going to need will be on the local machine, right?</p>
-<p>So I open the HelpViewer, from the Spotlight bar, and type in that I want
-information about Spotlight. The page comes up blank. The page was pretty small
-so, while I pondered why it might be blank, I resized it and it disappeared!
-I tried to open it again and.... nothing. Nothing I did would make the
-HelpViewer show again.</p>
-<p>I then tried following the advice
-<a href="http://guides.macrumors.com/Troubleshooting_Help_Viewer">on this page</a> but
-none of that appeared to help. I then looked for the HelpViewer in the
-Activity Monitor and killed it with that.</p>
-<p>Running it again after that got me back to where I started. I tried the while
-process again and, sure enough, trying to resize the window made it disappear.
-I can make it happen every single time:</p>
-<p><center></p>
-<iframe width="480" height="360" src="https://www.youtube.com/embed/id9Gb8SDYrg" frameborder="0" allowfullscreen></iframe>
-<p></center></p>
-<p>So it looks like another fine example of the Apple "it just works" thing.
-For "doesn't always just work" values of "just works".</p></div>
   </div>
 </article>
 
