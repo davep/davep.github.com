@@ -183,6 +183,56 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/08/11/the-reboot-begins.html#the-reboot-begins">The reboot begins</a></h2>
+    <p>
+      Posted on 2023-08-11 13:19 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/html.html">html</a>,              <a href="https://blog.davep.org/tag/web.html">web</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>And I'm off! This morning I spent a good amount of time going through the
+sources for the old version of [<code>davep.org</code>] (http://www,davep.org) and
+removing everything that won't be needed any more, and also building up a
+rough TODO list of things I may want to recreate as content.</p>
+<p>With that done, <a href="/2023/08/11/admitting-defeat-on-my-website.html">as mentioned earlier
+today</a>, I started work on
+building the site around Pelican. Pretty quickly though I started to feel
+that that was going to be a bad choice. While Pelican felt like a <em>perfect</em>
+fit for this blog -- mainly because it seems to be very blog-oriented -- it
+was feeling a bit clunky for a general website that would have a handful of
+static pages at best; likely something I wouldn't be updating too often.</p>
+<p>So I put it aside and went on with my morning, doing normal Friday domestic
+stuff like the weekly supermarket shop. It was while I was out doing that
+that I realised the obvious answer: use <a href="https://textual.textualize.io/">what we use for the Textual
+docs</a> and what's been used for
+<a href="https://label.dev/"><code>label.dev</code></a>: <a href="https://squidfunk.github.io/mkdocs-material/">Material for
+MkDocs</a>!</p>
+<p>I've just spent about 40 minutes after lunch kicking that off and it was
+really straightforward. Of course the result is horrifically cookie-cutter
+in terms of its look -- such is the way that <code>mkdocs-material</code> sites end up
+looking out of the box -- but I don't much care about that; what's important
+is that I've got a placeholder page in place, and I've quickly built a
+framework for writing and publishing the content.</p>
+<p>So that's the plan: now that the welcome page is in place and there's
+<em>something</em> on my domain that looks like a working website again I can start
+to slowly drag in old content in a new format. Heck, if I'm careful I might
+even be able to retain some of the old URLs!</p>
+<p>Longer-term plans might involve finally sorting out <code>https</code> support (yes,
+even today, my site is <code>http</code>-only), and perhaps adding some sort of RSS
+feed so there's a record of when changes are made.</p>
+<p>After that... hopefully that'll be about it and perhaps the website will
+last another 22 years running on top of the same engine (actually that part
+should be easier because the "engine" is now local and it generates a static
+site).</p>
+<p>The question then becomes who'll last longer, the site or me?</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/08/11/admitting-defeat-on-my-website.html#admitting-defeat-on-my-website">Admitting defeat on my website</a></h2>
     <p>
       Posted on 2023-08-11 08:44 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -541,62 +591,6 @@ update</a> after
 it was <a href="https://github.com/davep/textual-canvas/discussions/1">requested that I add a <code>clear</code> method to the <code>Canvas</code>
 widget</a>; a request
 that makes perfect sense.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2023/07/14/cmd-tab-switcher-on-all-screens.html#cmd-tab-switcher-on-all-screens">Cmd-Tab switcher on all screens</a></h2>
-    <p>
-      Posted on 2023-07-14 07:56 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/apple.html">Apple</a>,              <a href="https://blog.davep.org/tag/mac.html">Mac</a>,              <a href="https://blog.davep.org/tag/macos.html">macOS</a>,              <a href="https://blog.davep.org/tag/work.html">Work</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>This week, on Monday gone in fact, <a href="https://www.textualize.io/">we</a> moved
-office. We've now got a bigger space and, as part of that, bigger desks.
-Somewhat (but not entirely) coincidentally the work desk will also convert
-into a standing desk<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. Also also... I inherited a second screen for the
-desk too. Ever since the days of CRTs and video cards that supported it,
-I've been a fan of having at least a couple of screens in front of me, and
-now at my work desk I've got 3 (two external displays and the display of the
-MacBook Pro itself).</p>
-<p>This caused a slight problem though: horizontally there's quite the spread
-of things to look at. This is fine, mostly I'm looking at the screen that's
-in front of me; the MacBook is to the left and the "second" screen is to the
-right, both with "other" stuff on them. In front of me is Emacs and my
-browser, which I flip between lots.</p>
-<p>The problem is this: the MacBook needs to go to the left (because of
-physical layout), which means that despite me setting the screen in front of
-me as the "main" screen, the <kbd>Cmd</kbd>-<kbd>Tab</kbd> display (you know
-the thing: when you hit <kbd>Cmd</kbd>-<kbd>Tab</kbd> you see the icons of
-all your active applications) appears on the left-most display, which is the
-MacBook.</p>
-<p>Not great. If I'm looking at the right-most display, and want to switch
-using the keyboard, I've got to look over to the left, as a worst case. That
-makes for a lot of unnecessary head-swivelling.</p>
-<p>One quick Google later and <em>Today I Learnt</em> that the following pretty much
-solves the problem:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>defaults<span class="w"> </span>write<span class="w"> </span>com.apple.Dock<span class="w"> </span>appswitcher-all-displays<span class="w"> </span>-bool<span class="w"> </span><span class="nb">true</span>
-$<span class="w"> </span>killall<span class="w"> </span>Dock
-</code></pre></div>
-
-<p>As the name of the setting would suggest: once done, the switcher appears on
-<em>all</em> displays.</p>
-<p>That's perfect.</p>
-<div class="footnote">
-<hr>
-<ol>
-<li id="fn:1">
-<p>Although the work one is manual hand-cranked, not electronic
-button-push goodness like <a href="2023/07/08/new-desk.html">my new one at
-home</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div></div>
   </div>
 </article>
 
