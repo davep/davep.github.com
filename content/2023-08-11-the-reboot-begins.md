@@ -7,7 +7,7 @@ date: 2023-08-11 13:19:00 +0100
 ---
 
 And I'm off! This morning I spent a good amount of time going through the
-sources for the old version of [`davep.org`](http://www,davep.org) and
+sources for the old version of [`davep.org`](http://www.davep.org) and
 removing everything that won't be needed any more, and also building up a
 rough TODO list of things I may want to recreate as content.
 
