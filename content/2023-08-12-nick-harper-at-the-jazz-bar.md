@@ -70,7 +70,7 @@ comes to music), I'm glad to see [he's got a full
 Bandcamp](https://nickharper.bandcamp.com/), so I'll be paying that a visit!
 
 I hope he swings back this way some time soon, not during the Fringe, and
-with a proper song set. It's been too long since I got to enjoy [him really
+with a proper long set. It's been too long since I got to enjoy [him really
 going for it and having a ton of
 fun](https://www.youtube.com/watch?v=dTD03-3qgmg).
 
