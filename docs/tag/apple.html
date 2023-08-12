@@ -183,6 +183,45 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/08/12/the-homepod-fixed-itself.html#the-homepod-fixed-itself">The HomePod fixed itself</a></h2>
+    <p>
+      Posted on 2023-08-12 07:46 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p><a href="/2023/07/29/home-pod-stuck-installing.html#home-pod-stuck-installing">A couple of weeks
+back</a>
+I mentioned home my main HomePod had got stuck installing 16.6 of the
+software that runs it. This situation persisted for days after writing that
+post and I kept promising myself that I was going to see if I could unstick
+it by removing it from the Home, doing a factory reset and adding it back
+again.</p>
+<p>Of course, during the week that followed, I never got round to that. You can
+imagine what it's like: no time in the morning, and by the time I get home
+in the evening I want to watch TV and use the HomePod as the speaker for the
+Apple TV, I don't want to be doing tech support shit.</p>
+<p>The following weekend... yeah, I kinda forgot.</p>
+<p>So, here I am, a couple of Saturdays on, it's early morning, I've had
+breakfast and I'm having coffee and I think it's the perfect time to do
+this. I hope the Home app my on iPad and... it's sorted!</p>
+<p><img alt="HomePod all good again" src="/attachments/2023/08/12/Screenshot 2023-08-12 at 07.25.44.png#centre"></p>
+<p>So, yeah, it looks like it somehow managed to unstick itself in the end. A
+quick test of some of the issues I was seeing suggested there was still an
+issue, for example asking for the temperature in the bedroom would still
+result in a <em>"working on it"</em> reply followed by it telling me it wasn't
+responding. A quick reset seems to have fixed that.</p>
+<p>I guess it's good to know: if it happens again, it'll keep on working as the
+speaker for my Apple TV, and it'll eventually sort itself out even if I
+don't muck about with a hard reset.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/08/10/i-turned-it-off-and-on-again.html#i-turned-it-off-and-on-again">I turned it off and on again</a></h2>
     <p>
       Posted on 2023-08-10 18:17 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
@@ -706,128 +745,6 @@ there's no obvious benefit either way, the choice of using <code>class</code> vs
 <code>struct</code> is something that could have performance implications. That's
 something for me to look into more another day; but this is a note here to
 myself that it's a thing to keep in mind.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2020/06/29/swift-til-8.html#swift-til-8">Swift TIL 8</a></h2>
-    <p>
-      Posted on 2020-06-29 22:48 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/swift.html">Swift</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
-        &#8226; 3 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Although I read up on it a few days back, it was only this evening that I
-fired up Emacs (well of course I'm testing Swift with Emacs, what did you
-think I'd do?!?) and dabbled with some code to really get a feel for how
-casting works in Swift.</p>
-<p>Swift seems to be one of those languages that does it with a keyword rather
-than a non-keyword approach. The two main keywords being <code>as?</code> and <code>as!</code>. I
-kind of like how there's a polite version and a bossy version. Having the
-two makes a lot of sense from what I read too.</p>
-<p>To try and illustrate my understanding so far (and do keep in mind I'm not
-writing this with the express purpose of explaining it to anyone else -- I'm
-writing this to try and retain it all in my head by working through it),
-here's a bit of utterly pointless and highly-contrived code that defines
-three classes in a fairly ordinary hierarchy:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Animal</span> <span class="p">{}</span>
-
-<span class="kd">class</span> <span class="nc">Dog</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">{}</span>
-
-<span class="kd">class</span> <span class="nc">Cat</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">{</span>
-    <span class="kd">func</span> <span class="nf">beAdorable</span><span class="p">()</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;Purrrrrr!&quot;</span> <span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>So, so far, so good: we have animals, we have dogs which are a kind of
-animal, and we have cats, which are also a kind of animal, but they have the
-special ability of actually being adorable. 😼</p>
-<p>Now, for the purposes of just testing all of this out, here's a horrible
-function that makes little sense other than for testing:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">adore</span><span class="p">(</span> <span class="kc">_</span> <span class="n">a</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="p">(</span> <span class="n">a</span> <span class="k">as</span><span class="p">!</span> <span class="n">Cat</span> <span class="p">).</span><span class="n">beAdorable</span><span class="p">()</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Given an animal, it forces it to be a cat (by casting it with <code>as!</code>), and
-then asks it to be adorable (because, of course, cats always do as they're
-asked).</p>
-<p>So, if we then had:</p>
-<div class="highlight"><pre><span></span><code><span class="n">adore</span><span class="p">(</span> <span class="n">Cat</span><span class="p">()</span> <span class="p">)</span>
-</code></pre></div>
-
-<p>we'd get what we expect when run:</p>
-<div class="highlight"><pre><span></span><code>Purrrrrr!
-</code></pre></div>
-
-<p>So far so good. But what about:</p>
-<div class="highlight"><pre><span></span><code><span class="n">adore</span><span class="p">(</span> <span class="n">Dog</span><span class="p">()</span> <span class="p">)</span>
-</code></pre></div>
-
-<p>Yeah, that's not so good:</p>
-<div class="highlight"><pre><span></span><code>~/d/p/s/casting$<span class="w"> </span>swift<span class="w"> </span>run
-<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>casting
-Could<span class="w"> </span>not<span class="w"> </span>cast<span class="w"> </span>value<span class="w"> </span>of<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s1">&#39;casting.Dog&#39;</span><span class="w"> </span><span class="o">(</span>0x10a1f8830<span class="o">)</span><span class="w"> </span>to<span class="w"> </span><span class="s1">&#39;casting.Cat&#39;</span><span class="w"> </span><span class="o">(</span>0x10a1f88c0<span class="o">)</span>.
-fish:<span class="w"> </span><span class="s1">&#39;swift run&#39;</span><span class="w"> </span>terminated<span class="w"> </span>by<span class="w"> </span>signal<span class="w"> </span>SIGABRT<span class="w"> </span><span class="o">(</span>Abort<span class="o">)</span>
-</code></pre></div>
-
-<p>One way around this would be to use <code>as?</code>, which has the effect of casting
-the result to an
-<a href="https://developer.apple.com/documentation/swift/optional"><code>Optional</code></a>. This
-means I can re-write the <code>adore</code> function like this:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">adore</span><span class="p">(</span> <span class="kc">_</span> <span class="n">a</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="p">(</span> <span class="n">a</span> <span class="k">as</span><span class="p">?</span> <span class="n">Cat</span> <span class="p">)?.</span><span class="n">beAdorable</span><span class="p">()</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Now, if <code>a</code> can be cast to a <code>Cat</code>, you get an optional that wraps the
-<code>Cat</code>, otherwise you get an optional that wraps <code>nil</code> (hence the second <code>?</code>
-before attempting to call the <code>beAdorable</code> member function).</p>
-<p>So now, if I run the problematic dog call above again:</p>
-<div class="highlight"><pre><span></span><code>~/d/p/s/casting$<span class="w"> </span>swift<span class="w"> </span>run
-<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>casting
-</code></pre></div>
-
-<p>In other words, no output at all. Which is the idea here.</p>
-<p>I think I like this, I think it makes sense, and I think I can see why both
-<code>as!</code> and <code>as?</code> exist. The latter also means, of course, that you can do
-something like:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">adore</span><span class="p">(</span> <span class="kc">_</span> <span class="n">a</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nv">cat</span> <span class="p">=</span> <span class="n">a</span> <span class="k">as</span><span class="p">?</span> <span class="n">Cat</span>
-    <span class="k">if</span> <span class="n">cat</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-        <span class="n">cat</span><span class="p">!.</span><span class="n">beAdorable</span><span class="p">()</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;That totally wasn&#39;t a cat&quot;</span> <span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>which, in the messy dog call again, now results in:</p>
-<div class="highlight"><pre><span></span><code>~/d/p/s/casting$<span class="w"> </span>swift<span class="w"> </span>run
-<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>casting
-That<span class="w"> </span>totally<span class="w"> </span>wasn<span class="err">&#39;</span>t<span class="w"> </span>a<span class="w"> </span>cat
-</code></pre></div>
-
-<p>Or, of course, the same effect could be had with:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">adore</span><span class="p">(</span> <span class="kc">_</span> <span class="n">a</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="n">a</span> <span class="k">is</span> <span class="n">Cat</span> <span class="p">{</span>
-        <span class="p">(</span> <span class="n">a</span> <span class="k">as</span><span class="p">!</span> <span class="n">Cat</span> <span class="p">).</span><span class="n">beAdorable</span><span class="p">()</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;That totally wasn&#39;t a cat&quot;</span> <span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>It should be stressed, of course, that the example code is terrible design,
-so given the above I'd ensure I never end up in this sort of situation in
-the first place. But for the purposes of writing and compiling and running
-code and seeing what the different situations result in, it helped.</p></div>
   </div>
 </article>
 
