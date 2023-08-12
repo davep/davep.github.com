@@ -50,8 +50,9 @@ for the new release.
 
 While there was only an hour for his slot, he did manage to get a couple of
 old favourites of mine in; I was delighted when he launched into [By My
-Rocket Comes Fire](https://www.youtube.com/watch?v=fNQAebSpqVw), and even
-squeezed in a quick [Galaxy
+Rocket Comes Fire](https://www.youtube.com/watch?v=fNQAebSpqVw), did a
+wonderful [She Rules My World](https://www.youtube.com/watch?v=IH6TqeeM5ZY),
+and even squeezed in a quick [Galaxy
 Song](https://www.youtube.com/watch?v=7Yz7mQ_i6pg).
 
 ![Nick Harper](/attachments/2023/08/12/IMG_2705.jpeg#centre)
