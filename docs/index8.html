@@ -183,6 +183,70 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2017/07/13/more_revamping_of_my_emacs_config.html#more_revamping_of_my_emacs_config">More revamping of my Emacs config</a></h2>
+    <p>
+      Posted on 2017-07-13 15:25 +0100 in <a href="https://blog.davep.org/category/emacs.html">Emacs</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/emacs.html">Emacs</a>,              <a href="https://blog.davep.org/tag/lisp.html">Lisp</a>,              <a href="https://blog.davep.org/tag/coding.html">coding</a>,              <a href="https://blog.davep.org/tag/emacs-lisp.html">Emacs Lisp</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>I've been pretty quiet on here since I last wrote about how I'd done a
+further revamp of my Emacs config, so I thought that subject would be a good
+reason to write another blog post.</p>
+<p>It'll be a mostly short one, and one to muse over something that's been
+bugging me for a while now: my decision to lean heavily on <code>customize</code> to
+set all sorts of settings.</p>
+<p>Initially,
+<a href="/2016/05/26/starting_fresh_with_gnu_emacs.html">when I nuked my original config over a year ago</a>,
+it seemed to make a lot of sense. Let all the tweaks and set values "hide"
+in a file of their own and try and keep the hand-edited config files as
+small and as clean as possible. Recently though I've got to thinking that
+this obscures too much, hides too much detail, and removes the ability to
+actually document what I'm doing and why. It also does make it tricky to
+adapt some settings to different platforms or even environments on a single
+platform.</p>
+<p>Another problem I've run into is
+this:
+<a href="/2017/04/01/another_revamp_of_my_emacs_config.html">when I made the second round of changes</a> and
+decided to lean heavily
+on <a href="https://github.com/jwiegley/use-package"><code>use-package</code></a>, I soon ran into
+the minor issue of some packages not making sense, or even being needed, on
+some platforms (stuff that's useful on my macOS machines isn't always useful
+on my Windows machines, that sort of thing). While <code>use-package</code> can handle
+this easily thanks to the <code>:if</code> keyword, I'm still left with the fact that
+<code>package-selected-packages</code> still gets populated.</p>
+<p>Having <code>package-selected-packages</code> contain a list of installed packages
+likely makes sense if you're using just the Emacs package system and you're
+not doing the installing with <code>use-package</code> and <code>:ensure</code>. But with
+<code>use-package</code> and <code>:ensure</code> I feel like I've got far more control over
+things and can adapt what gets installed when depending on which Emacs I'm
+running where.</p>
+<p>But, because I'm syncing my <code>~/.emacs.d/.custom.el</code> to all my machines too, any
+<code>use-package</code> that has a <code>:if</code> to not bother using a package has little
+effect because the package still ends up being listed/loaded/seen as part of
+the installation.</p>
+<p>Ideally, I think, I'd like to be able to have <code>package-selected-packages</code>
+held in its own file, or I'd only ever use <code>~/.emacs.d/.custom.el</code> for local
+stuff (and so stop syncing it).</p>
+<p>Starting today I'm going about a process of moving as much as I can out of
+<code>~/.emacs.d/.custom.el</code> and into hand-edited files. In some respects I guess
+I am going back to how I used to manage Emacs configuration, but this time
+it's not a massive monolithic file-of-Lisp, it's neatly broken down into
+sensible sections and it's also biased towards a "grab and config this
+package" approach.</p>
+<p>Meanwhile, I've not seen any good discussions online about <code>customize</code> vs
+"hand-edit", which strikes me as a little odd as it feels like the perfect
+"religious issue" for people to have endless disagreements over. I guess,
+over the next couple or so weeks, I'll find out if switching back was a good
+idea.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2017/04/01/another_revamp_of_my_emacs_config.html#another_revamp_of_my_emacs_config">Another revamp of my emacs config</a></h2>
     <p>
       Posted on 2017-04-01 10:02 +0100 in <a href="https://blog.davep.org/category/emacs.html">Emacs</a>
@@ -764,49 +828,6 @@ and enabling the option, sorted it. It's still really odd they'd promote the
 facility via the blog and not mention it, and also very odd that the option
 would always show until the first time you're in a position to use it, and
 then it'd disappear.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2016/10/29/virgin_east_coast_20.html#virgin_east_coast_20">Virgin East Coast 20</a></h2>
-    <p>
-      Posted on 2016-10-29 16:53 +0100 in <a href="https://blog.davep.org/category/life.html">Life</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/travel.html">travel</a>,              <a href="https://blog.davep.org/tag/virgin.html">Virgin</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>After my <a href="/2016/10/27/virgin_east_coast_19.html">last post</a> I sent off an
-email to chase up what was happening with the promised phone calls about the
-Ticket Wallet app and the general delays with getting things sorted. Here's
-what I wrote:</p>
-<blockquote>
-<p>Hi again Mike.</p>
-<p>It's now a week since you replied and, I think it's fair to note, it's no
-longer "early" this week. I've had no call -- neither form yourself nor
-from anyone related to the Ticket Wall App -- and I've not received the
-promised tickets either. While I do try to be patient I have to admit that
-it's starting to get very frustrating, being made lots of promises about
-progress that simply never happen. This has been going on for months now
-and I'm always having to chase things up.</p>
-<p>I'd very much appreciate it if you could explain to me what's going on,
-and why.</p>
-</blockquote>
-<p>A while later I got a reply. He said he'd be getting the tickets in the post
-the following day (so a Friday, which I think I can safely say isn't the
-start of the week) and would also phone me.</p>
-<p>The following day he did keep his promise. He called (I managed to miss him
-the first time, but when I was finally free I called back and we got to
-chat). He promised I'd get some more tickets early next week and also that
-someone with technical knowledge would finally call about the app problem.</p>
-<p>I have, of course, been here before. This is exactly the promise that was
-made a couple of months ago. It's easy to make the promise, apparently not
-so easy to deliver on it (or address the issue of not delivering on it).</p>
-<p>So now I wait. Again. I'll be sure to update when something happens (or
-doesn't).</p></div>
   </div>
 </article>
 
