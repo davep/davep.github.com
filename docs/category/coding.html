@@ -183,6 +183,48 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/08/14/website-misc-stuff-moved.html#website-misc-stuff-moved">Website: Miscellaneous Stuff moved</a></h2>
+    <p>
+      Posted on 2023-08-14 22:04 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/html.html">html</a>,              <a href="https://blog.davep.org/tag/web.html">web</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>This evening I've spent more time working on <a href="/2023/08/11/the-reboot-begins.html">the planned complete remake of
+my personal website</a>, in this case
+"porting" over many of the files that made up the old "miscellaneous stuff"
+section of the site. If I'm honest, most if not all of the things in there
+are no longer relevant (like: who really needs a shell script to make
+<code>gnuplot</code> plots from files pulled off a 1990s-era Garmin handheld GPS
+unit?), but I thought I'd keep them kicking around "just in case".</p>
+<p>One wee section I wasn't going to get rid of though was my scans of three
+pages from a UK magazine called <em>Personal Computer News</em>. These contain
+<a href="https://www.davep.org/misc/grid-bike/">Grid Bike</a>; a game I wrote for the
+VIC-20, all in BASIC, and got published. For my efforts I got a <em>huge</em>
+cheque for £40! If that doesn't seem like much to you, trust me, to 1983 me
+this was <em>huge</em>.</p>
+<p>I bought a 16k RAM pack with the money.</p>
+<p>Funnily enough, while trying to improve some of the links in the text, I
+decided to see if there was now an archive online somewhere and, sure
+enough, there is: <a href="https://archive.org/details/PersonalComputerNews/PersonalComputerNews001-18Mar1983/">in the obvious
+place</a>.
+This means that my web site isn't the only copy of my program on the net. If
+you go to the <a href="https://archive.org/details/PersonalComputerNews/PersonalComputerNews041-21Dec1983/page/n9/mode/2up">December 21st 1983
+edition</a>
+and turn to around page 84, there I am!</p>
+<p><img alt="The cover of PCN" src="/attachments/2023/08/14/PCN-cover.png#centre"></p>
+<p>At this point I'm almost tempted to try and get an emulator up and running
+and get the code going again. How much fun would it be to add a video to <a href="https://www.youtube.com/@DavePearson">my
+YouTube channel</a>, of my playing one of
+the very first games I wrote?</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/08/13/website-norton-guide-information-moved.html#website-norton-guide-information-moved">Website: Norton Guide information moved</a></h2>
     <p>
       Posted on 2023-08-13 10:02 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -1215,71 +1257,6 @@ place: <code>stat -L</code>.</p>
 
 <p>And now I have that script in my <code>~/bin</code> directory, ready for the next time
 Homebrew and friends conspire to throw my day off for a while.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2020/07/09/helping-myself-change-the-default-git-branch.html#helping-myself-change-the-default-git-branch">Helping myself change the default git branch</a></h2>
-    <p>
-      Posted on 2020-07-09 20:17 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/git.html">git</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>This is something I've being meaning to do for a couple or so years now, and
-unsurprisingly it's bubbled up again recently: the business of swapping the
-name of the <code>master</code> branch in <code>git</code> out for something better.</p>
-<p>Because it's one of those jobs that's simultaneously simple and also
-laborious, I kept putting it off. Changing up the local configuration so
-that <code>main</code> (or whatever name you prefer) is used "out of the box" <a href="https://leigh.net.au/writing/git-init-main/">is
-simple enough</a>; the laborious
-part is updating all of the repositories that live in the "forge of choice".
-In my case, <a href="https://github.com/davep">over on GitHub</a>, I have <a href="https://github.com/davep?tab=repositories">getting on
-for 200 repositories</a> -- 142 of
-which are public (as of the time of writing). At work we use
-<a href="https://gitlab.com/">GitLab</a> as our internal forge and I've got a
-non-trivial number of repositories on there too.</p>
-<p>The obvious first step to tackling this is to knock up a little tool to help
-find the repos that still need swapping. That was <a href="https://github.com/davep/git-archaic">simple
-enough</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-
-<span class="c1"># Quick and dirty tool to find repositories that still make use of a</span>
-<span class="c1"># &quot;master&quot; branch. Helps with tracking down the ones that need</span>
-<span class="c1"># updating/improving.</span>
-
-<span class="k">for</span><span class="w"> </span>repo<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span>.git<span class="k">)</span>
-<span class="k">do</span>
-<span class="w">    </span><span class="o">(</span>
-<span class="w">        </span><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$repo</span><span class="k">)</span><span class="s2">&quot;</span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>master<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
-<span class="w">        </span><span class="k">then</span>
-<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$repo</span><span class="k">)</span><span class="s2">&quot;</span>
-<span class="w">        </span><span class="k">fi</span>
-<span class="w">    </span><span class="o">)</span>
-<span class="k">done</span>
-
-<span class="c1">### git-archaic ends here</span>
-</code></pre></div>
-
-<p>It's not meant to be clever, just something I can run when I'm in a "default
-branch swapping" mood so find a repository or two to tackle. The idea being
-that it uses <code>find</code> to pull out any instance of <code>.git</code> in or below the
-current directory, changes to it (inside a sub-process to ensure the <code>PWD</code>
-gets put back after the <code>cd</code> that happens, before the next iteration of the
-loop), gets a list of the branches and, if <code>master</code> is one of them, prints
-the directory name.</p>
-<p>Using this, I can now slowly work through my more active repositories and
-make the swap -- the idea being that if I currently have them cloned down to
-my machine, they're obviously some level of "active". At some point I
-imagine I could get more clever and use the APIs of the forges to look at
-all the repositories I own; that's another job for another day.</p>
-<p>This gives me enough to be going on with. :-)</p></div>
   </div>
 </article>
 

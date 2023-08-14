@@ -183,6 +183,101 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2018/06/02/a_little_speed_issue_with_openpyxl.html#a_little_speed_issue_with_openpyxl">A little speed issue with openpyxl</a></h2>
+    <p>
+      Posted on 2018-06-02 13:16 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/openpyxl.html">openpyxl</a>
+        &#8226; 4 min read
+    </p>
+  </header>
+  <div>
+      <div><p>It's been very quiet on the blogging front, I'm afraid, mostly for <a href="/2017/12/12/on_to_something_new.html">the
+reasons I wrote about back in December last
+year</a>. In that time I've been really
+very busy with work (in a good way, in a <em>very</em> good way) and there's not a
+whole lot of time to be toying with pet projects at home.</p>
+<p>However, finding myself with a spare hour or so, I wanted to write about
+something I did run into as part of some development at work, and which I
+thought might be worth writing about in case it helps someone else.</p>
+<p>Recently I've needed to write a library of code for loading data from Excel
+Workbooks. Given that the vast majority of coding I do at the moment is in
+Python, it made sense to make use of
+<a href="https://openpyxl.readthedocs.io/">openpyxl</a>. The initial prototype code I
+wrote worked well and it soon grew into a full-blown library that'll be used
+in a couple of work-related projects.</p>
+<p>But one thing kept niggling me... It just wasn't as fast as I'd expected.
+The workbooks I'm pulling data from aren't that large, and yet it was taking
+a noticeable number of seconds to read in the data, and when I let the code
+have a go at a directory full of such workbooks... even the fan on the
+machine would ramp up.</p>
+<p>It didn't seem right.</p>
+<p>I did a little bit of profiling and could see that the code was spending
+most of its time deep in the guts of some XML-parsing functions. While I
+know that an <code>xlsx</code> file is pretty much an XML document, it seemed odd to me
+that it would take so much time and effort to pull the data out from it.</p>
+<p>Given that I had other code to be writing, and given that the
+workbook-parsing code was "good enough" for the moment, I moved on for a
+short while.</p>
+<p>But, a couple of weeks back, I had a bit of spare time and decided to
+revisit it. I did some more searching on openpyxl and speed issues and
+almost everything I found said that the common problem was failing to open
+the workbook in <code>read_only</code> mode. That can't have been my problem because
+I'd being doing that from the very start.</p>
+<p>Eventually I came across a post somewhere (sorry, I've lost it for now --
+I'll try and track it down again) that suggested that openpyxl was very slow
+to read from a workbook if you were reading one cell at a time, rather than
+using generators. The suggestion being that every time you pull a value form
+a cell, it has to parse the whole sheet up to that cell. Generators, on the
+other hand, would allow access to all the cells during one parse.</p>
+<p>This seemed a little unlikely to me -- I'd have expected the code to cache
+the parsing results or something like that -- but it also would explain what
+I was seeing. So I decided to give it a test.</p>
+<p><a href="https://github.com/davep/openpyxl-speed-issue"><code>openpyxl-speed-issue</code></a> is a
+version of the tests I wrote and ran and they absolutely show that there's a
+huge difference between cell-by-cell access vs generator access.</p>
+<p>Code like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sheet</span><span class="o">.</span><span class="n">max_row</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">):</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sheet</span><span class="o">.</span><span class="n">max_column</span> <span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">[</span> <span class="n">row</span> <span class="p">][</span> <span class="n">col</span> <span class="p">]</span><span class="o">.</span><span class="n">value</span>
+</code></pre></div>
+
+<p>is <em>far slower</em> than something like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">wb</span><span class="p">[</span> <span class="s2">&quot;Test Sheet&quot;</span> <span class="p">]</span><span class="o">.</span><span class="n">rows</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">value</span>
+</code></pre></div>
+
+<p>Here's an example of the difference in time, as seen on my iMac:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>make<span class="w"> </span><span class="nb">test</span>
+pipenv<span class="w"> </span>run<span class="w"> </span><span class="nb">time</span><span class="w"> </span>./read-using-generators
+<span class="w">        </span><span class="m">1</span>.59<span class="w"> </span>real<span class="w">         </span><span class="m">0</span>.44<span class="w"> </span>user<span class="w">         </span><span class="m">0</span>.04<span class="w"> </span>sys
+pipenv<span class="w"> </span>run<span class="w"> </span><span class="nb">time</span><span class="w"> </span>./read-using-peeking
+<span class="w">       </span><span class="m">25</span>.02<span class="w"> </span>real<span class="w">        </span><span class="m">24</span>.88<span class="w"> </span>user<span class="w">         </span><span class="m">0</span>.10<span class="w"> </span>sys
+</code></pre></div>
+
+<p>As you can see, the cell-by-cell approach is about 16 times slower than the
+generator approach.</p>
+<p>In most circumstances the generator approach would make most sense anyway,
+and in any other situation I probably would have used it and never have
+noticed this. However, the nature of the workbooks I need to pull data from
+means I need to "peek ahead" to make decisions about what I'm doing, so a
+more traditional loop over, with an index, made more sense.</p>
+<p>I can easily "fix" this by using the generator approach to build up a
+two-dimensional array of cells, acquired via the generator; so I can still
+do what I want <em>and</em> benefit from using generators.</p>
+<p>In conclusion: given that I found it difficult to find information about my
+speed issue, and given that the one off-hand comment I saw that suggested it
+was this wasn't exactly easy to find, I thought I'd write it all down too
+and <a href="https://github.com/davep/openpyxl-speed-issue">create a repository of some test code to illustrate the
+issue</a>. Hopefully someone
+else will benefit from this in the future.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2017/12/12/on_to_something_new.html#on_to_something_new">On to something new</a></h2>
     <p>
       Posted on 2017-12-12 13:59 +0000 in <a href="https://blog.davep.org/category/life.html">Life</a>
@@ -765,57 +860,6 @@ future and make a special trip into Edinburgh just so someone can check out
 a sticky key on my Macbook.</p>
 <p>Remind me again how the nice thing with Apple gear is that it "just
 works"...</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2016/11/03/virgin_east_coast_21.html#virgin_east_coast_21">Virgin East Coast 21</a></h2>
-    <p>
-      Posted on 2016-11-03 13:00 +0000 in <a href="https://blog.davep.org/category/life.html">Life</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/travel.html">travel</a>,              <a href="https://blog.davep.org/tag/virgin.html">Virgin</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Yesterday I got the call about the Virgin East Coast Ticket Wallet app that
-I was <a href="/2016/10/29/virgin_east_coast_20.html">promised last week</a> (well,
-actually, promised a couple of months back). It didn't go well.</p>
-<p>Well, I say "didn't go well", the conversation itself went very well, the
-chap I spoke to was polite and apologetic and helpful, but the outcome
-wasn't really very brilliant.</p>
-<p>It didn't get off to a brilliant start when I was first told that the
-solution to my problem was that I needed to uninstall and then reinstall the
-app (something I've done more than once while trying to get to the bottom of
-the problem). I asked if that was really necessary and I was informed that
-it was the only way to fix the problem of the tickets not showing. Problem
-is... that wasn't my problem. So I then had to explain the exact nature of
-the fault I was experiencing (and also explained my guess as to what the
-cause of the problem was).</p>
-<p>After that, much of the content of the conversation involved vaguely
-confidential information (nothing too terrible or that big a secret -- just
-stuff that isn't generally known yet) which I'm not going to repeat here.
-The upshot of the chat though is this: they can't do anything for me.</p>
-<p>Simply put: they acknowledge there's a problem with the app, the problem is
-at their end, it's a problem that needs to be fixed and there's nothing they
-can do to fix it any time soon.</p>
-<p>The causes of this will sound familiar to anyone with experience of large
-companies who outsource much of their development and get involved in areas
-that they might not have much experience with.</p>
-<p>I also found out the cause of <em>some</em> of the delay in actually getting back
-to me: the person who was supposed to originally call me went on maternity
-leave just after they'd first tried to call and, it seems, nobody thought to
-pick up their workload. This left me in the bizarre position of trying to
-call someone who was off work for an extended period of time, and whose
-phone wasn't being answered in any way.</p>
-<p>Of course, it doesn't explain why that person's boss, who I was promised a
-call from a short while after, never bothered to call.</p>
-<p>So, I think, to some degree, that's the end of this silly saga. Their
-software is buggy, they can't fix it any time soon, and I'm out of luck.</p>
-<p>As for the extra free tickets I was promised a couple of weeks back now...
-they've still not appeared. Time for me to chase that up <em>again</em>.</p></div>
   </div>
 </article>
 
