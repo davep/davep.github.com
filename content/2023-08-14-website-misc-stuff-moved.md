@@ -36,7 +36,7 @@ and turn to around page 84, there I am!
 
 At this point I'm almost tempted to try and get an emulator up and running
 and get the code going again. How much fun would it be to add a video to [my
-YouTube channel](https://www.youtube.com/@DavePearson), of my playing one of
+YouTube channel](https://www.youtube.com/@DavePearson), of me playing one of
 the very first games I wrote?
 
 [//]: # (2023-08-14-website-misc-stuff-moved.md ends here)
