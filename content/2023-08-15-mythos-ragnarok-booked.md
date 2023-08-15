@@ -39,4 +39,4 @@ not this weekend, the weekend after.
 There might even be a beer afterwards. Perhaps not *quite* so many as last
 year though.
 
-[//]: # (2023-08-15-mythos-ragnarow-booked.md ends here)
+[//]: # (2023-08-15-mythos-ragnarok-booked.md ends here)
