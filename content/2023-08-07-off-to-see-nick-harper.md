@@ -6,7 +6,7 @@ tags: Music, Gig, Fringe, Nick Harper
 date: 2023-08-07 21:56:00 +0100
 ---
 
-![Poaster from likely the last time I saw Nick](/attachments/2023/08/07/2009-05-08-19-14-07.jpg#centre)
+![Poster from likely the last time I saw Nick](/attachments/2023/08/07/2009-05-08-19-14-07.jpg#centre)
 
 I've lived near Edinburgh for getting on well over 6 years now and, aside
 form the odd show here and there, I've never really *done* the Fringe. As
