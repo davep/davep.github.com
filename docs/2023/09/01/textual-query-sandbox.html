@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="all" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://blog.davep.org/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://blog.davep.org/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://blog.davep.org/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/static/davep.css">
+
+  <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
+
+  <link href="https://blog.davep.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom">
+
+  <link href="https://blog.davep.org/feed.xml" type="application/rss+xml" rel="alternate" title="blog.davep.org RSS">
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Dave Pearson" />
+<meta name="description" content="Sometimes I can have an idea for a Textual widget, library or application on my ideas list for weeks, months even, before I get around to it -- mostly just due to not having the clear time to make a run at getting it going -- and then other times an idea can pop into my head and it has to be created there and then. Has to be! This happened yesterday evening. While the tool I built is something I&#39;d thought of before (back around November last year I think) it hadn&#39;t even made it to my &#34;list of stuff I should make&#34; that I keep in Apple Reminders; not sure why really. But then yesterday evening a question cropped up on the Textual Discord server that related to the subject and I was reminded of it. The subject being: Textual DOM queries. I like to think that DOM queries in Textual are pretty easy to do, and well-explained in the docs, but it&#39;s fair to admit that they need a bit of practice first, just like any powerful tool. So I was reminded that I&#39;d wanted to write a sandbox application, that would have a practice DOM inside it, an input field to type in a query, and a way of displaying the results. So textual-sandbox-query was born! In this very first version (which was really quickly put together -- it was something like 15 minutes to write the main code and then probably 45 minutes tweaking styles, adding all the admin stuff to allow deployment to PyPi and writing the README) there&#39;s an Input, a display of a group of nested containers with different IDs and classes, and then a Pretty widget at the bottom to show the query result. If you think this looks like it might be useful to you, it can be installed using either pip or (ideally) pipx: $ pipx install textual-query-sandbox and then you can run it with: $ tqs At which point load up the Textual query docs, type queries into the input field, hit enter and see what gets highlighted and which widgets end up in the result set at the bottom of the screen. Like I say: this was a quick hack yesterday evening, I think there&#39;s a lot more can go into this. For one thing I think a more interesting practice DOM would be a good idea, with a good mix of widgets; another thing could be having a collection of different DOM playgrounds that can be switched between (a TabbedContent of different playgrounds could be fun here); this could even be taken further such that the user can create their own playground DOM to practice against. Eventually it would be neat if this could be turned into a library that can be included in a Textual application, as a development-time debug tool, so that on-the-fly test queries can be made. For now though, it&#39;s started, it&#39;s under way, and I think the current version probably covers 90% of the use cases for something like this; making for a really quick and easy tool to double-check how to query something." />
+<meta name="keywords" content="PyPi, Python, coding, Textual">
+
+
+  <meta property="og:site_name" content="blog.davep.org"/>
+  <meta property="og:title" content="Textual Query Sandbox"/>
+  <meta property="og:description" content="Sometimes I can have an idea for a Textual widget, library or application on my ideas list for weeks, months even, before I get around to it -- mostly just due to not having the clear time to make a run at getting it going -- and then other times an idea can pop into my head and it has to be created there and then. Has to be! This happened yesterday evening. While the tool I built is something I&#39;d thought of before (back around November last year I think) it hadn&#39;t even made it to my &#34;list of stuff I should make&#34; that I keep in Apple Reminders; not sure why really. But then yesterday evening a question cropped up on the Textual Discord server that related to the subject and I was reminded of it. The subject being: Textual DOM queries. I like to think that DOM queries in Textual are pretty easy to do, and well-explained in the docs, but it&#39;s fair to admit that they need a bit of practice first, just like any powerful tool. So I was reminded that I&#39;d wanted to write a sandbox application, that would have a practice DOM inside it, an input field to type in a query, and a way of displaying the results. So textual-sandbox-query was born! In this very first version (which was really quickly put together -- it was something like 15 minutes to write the main code and then probably 45 minutes tweaking styles, adding all the admin stuff to allow deployment to PyPi and writing the README) there&#39;s an Input, a display of a group of nested containers with different IDs and classes, and then a Pretty widget at the bottom to show the query result. If you think this looks like it might be useful to you, it can be installed using either pip or (ideally) pipx: $ pipx install textual-query-sandbox and then you can run it with: $ tqs At which point load up the Textual query docs, type queries into the input field, hit enter and see what gets highlighted and which widgets end up in the result set at the bottom of the screen. Like I say: this was a quick hack yesterday evening, I think there&#39;s a lot more can go into this. For one thing I think a more interesting practice DOM would be a good idea, with a good mix of widgets; another thing could be having a collection of different DOM playgrounds that can be switched between (a TabbedContent of different playgrounds could be fun here); this could even be taken further such that the user can create their own playground DOM to practice against. Eventually it would be neat if this could be turned into a library that can be included in a Textual application, as a development-time debug tool, so that on-the-fly test queries can be made. For now though, it&#39;s started, it&#39;s under way, and I think the current version probably covers 90% of the use cases for something like this; making for a really quick and easy tool to double-check how to query something."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://blog.davep.org/2023/09/01/textual-query-sandbox.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-09-01 07:42:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://blog.davep.org/author/dave-pearson.html">
+  <meta property="article:section" content="Python"/>
+  <meta property="article:tag" content="PyPi"/>
+  <meta property="article:tag" content="Python"/>
+  <meta property="article:tag" content="coding"/>
+  <meta property="article:tag" content="Textual"/>
+  <meta property="og:image" content="/static/davep.jpeg">
+
+  <title>blog.davep.org &ndash; Textual Query Sandbox</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://blog.davep.org/">
+      <img src="/static/davep.jpeg" alt="davep" title="davep">
+    </a>
+
+    <h1>
+      <a href="https://blog.davep.org/">davep</a>
+    </h1>
+
+    <p>Code, Emacs, VR, Stuff...</p>
+
+
+    <nav>
+      <ul class="list">
+
+
+            <li>
+              <a target="_blank"
+                 href="https://blog.davep.org/pages/about.html#about">
+                About
+              </a>
+            </li>
+            <li>
+              <a target="_blank"
+                 href="https://blog.davep.org/pages/dot-files.html#dot-files">
+                Dot Files
+              </a>
+            </li>
+
+          <li>
+            <a target="_blank" href="http://davep.at/" >davep@</a>
+          </li>
+          <li>
+            <a target="_blank" href="https://pinboard.in/u:davep" >Pinboard</a>
+          </li>
+          <li>
+            <a target="_blank" href="https://seenbydavep.blogspot.com/" >Photoblog</a>
+          </li>
+          <li>
+            <a target="_blank" href="https://elisp.dev/" >Emacs Packages</a>
+          </li>
+          <li>
+            <a target="_blank" href="https://pypi.org/user/davepearson/" >Python Packages</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-github"
+           href="https://github.com/davep"
+           target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-mastodon"
+rel="me"           href="https://fosstodon.org/@davep"
+           target="_blank">
+          <i class="fa-brands fa-mastodon"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-flickr"
+           href="https://www.flickr.com/photos/davepearson/"
+           target="_blank">
+          <i class="fa-brands fa-flickr"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-lastfm"
+           href="https://www.last.fm/user/davepdotorg"
+           target="_blank">
+          <i class="fa-brands fa-lastfm"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-npm"
+           href="https://www.npmjs.com/~davep.org"
+           target="_blank">
+          <i class="fa-brands fa-npm"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-youtube"
+           href="https://www.youtube.com/user/daveporg"
+           target="_blank">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-steam"
+           href="https://steamcommunity.com/id/davepdotorg"
+           target="_blank">
+          <i class="fa-brands fa-steam"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://blog.davep.org/">Home</a>
+
+  <a href="/archives.html">Archives</a>
+  <a href="/categories.html">Categories</a>
+  <a href="/tags.html">Tags</a>
+
+  <a href="https://blog.davep.org/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://blog.davep.org/feed.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="textual-query-sandbox">Textual Query Sandbox</h1>
+    <p>
+      Posted on 2023-09-01 07:42 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
+
+        &#8226; 3 min read
+    </p>
+  </header>
+
+
+  <div>
+    <p>Sometimes I can have an idea for a Textual widget, library or application on
+my ideas list for weeks, months even, before I get around to it -- mostly
+just due to not having the clear time to make a run at getting it going --
+and then other times an idea can pop into my head and it <em>has</em> to be created
+there and then. <strong>Has</strong> to be!</p>
+<p>This happened yesterday evening.</p>
+<p>While the tool I built is something I'd thought of before (back around
+November last year I think) it hadn't even made it to my <em>"list of stuff I
+should make"</em> that I keep in Apple Reminders; not sure why really. But then
+yesterday evening a question cropped up on the <a href="https://discord.gg/Enf6Z3qhVr">Textual Discord
+server</a> that related to the subject and I was
+reminded of it.</p>
+<p>The subject being: <a href="https://textual.textualize.io/guide/queries/">Textual DOM
+queries</a>. I like to think that
+DOM queries in Textual are pretty easy to do, and well-explained in the
+docs, but it's fair to admit that they need a bit of practice first, just
+like any powerful tool. So I was reminded that I'd wanted to write a sandbox
+application, that would have a practice DOM inside it, an input field to
+type in a query, and a way of displaying the results.</p>
+<p>So <a href="https://github.com/davep/textual-query-sandbox"><code>textual-sandbox-query</code></a>
+was born!</p>
+<p><img alt="Textual Query Sandbox" src="/attachments/2023/09/01/tqs.png#centre"></p>
+<p>In this very first version (which was <em>really</em> quickly put together -- it
+was something like 15 minutes to write the main code and then probably 45
+minutes tweaking styles, adding all the admin stuff to allow <a href="https://pypi.org/project/textual-query-sandbox/">deployment to
+PyPi</a> and writing the
+README) there's an <a href="https://textual.textualize.io/widgets/input/"><code>Input</code></a>,
+a display of a group of nested containers with different IDs and classes,
+and then a <a href="https://textual.textualize.io/widgets/pretty/"><code>Pretty</code></a> widget
+at the bottom to show the
+<a href="https://textual.textualize.io/guide/queries/#query-objects"><code>query</code></a>
+result.</p>
+<p>If you think this looks like it might be useful to you, it can be installed
+using either <code>pip</code> or (ideally) <code>pipx</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>textual-query-sandbox
+</code></pre></div>
+
+<p>and then you can run it with:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>tqs
+</code></pre></div>
+
+<p>At which point load up the Textual query docs, type queries into the input
+field, hit enter and see what gets highlighted and which widgets end up in
+the result set at the bottom of the screen.</p>
+<p>Like I say: this was a quick hack yesterday evening, I think there's a lot
+more can go into this. For one thing I think a more interesting practice DOM
+would be a good idea, with a good mix of widgets; another thing could be
+having a collection of different DOM playgrounds that can be switched
+between (a <code>TabbedContent</code> of different playgrounds could be fun here); this
+could even be taken further such that the user can create their own
+playground DOM to practice against.</p>
+<p>Eventually it would be neat if this could be turned into a library that can
+be included in a Textual application, as a development-time debug tool, so
+that on-the-fly test queries can be made.</p>
+<p>For now though, it's started, it's under way, and I think the current
+version probably covers 90% of the use cases for something like this; making
+for a really quick and easy tool to double-check how to query something.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://blog.davep.org/tag/pypi.html">PyPi</a>
+      <a href="https://blog.davep.org/tag/python.html">Python</a>
+      <a href="https://blog.davep.org/tag/coding.html">coding</a>
+      <a href="https://blog.davep.org/tag/textual.html">Textual</a>
+    </p>
+  </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://blog.davep.org/2023/08/27/mythos-ragnarok.html" title="Mythos: Ragnarok (plus Oppenheimer)">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'blogdaveporg';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>&copy; 2015-2023 Dave Pearson</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://blog.davep.org/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " blog.davep.org ",
+  "url" : "https://blog.davep.org",
+  "image": "/static/davep.jpeg",
+  "description": ""
+}
+</script>
+</body>
+</html>
