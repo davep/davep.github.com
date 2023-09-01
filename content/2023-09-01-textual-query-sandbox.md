@@ -4,6 +4,7 @@ title: Textual Query Sandbox
 category: Python
 tags: PyPi, Python, coding, Textual
 date: 2023-09-01 07:42:00 +0100
+cover: attachments/2023/09/01/tqs-cover.png
 ---
 
 Sometimes I can have an idea for a Textual widget, library or application on
