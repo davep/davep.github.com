@@ -30,7 +30,7 @@ like any powerful tool. So I was reminded that I'd wanted to write a sandbox
 application, that would have a practice DOM inside it, an input field to
 type in a query, and a way of displaying the results.
 
-So [`textual-sandbox-query`](https://github.com/davep/textual-query-sandbox)
+So [`textual-query-sandbox`](https://github.com/davep/textual-query-sandbox)
 was born!
 
 ![Textual Query Sandbox](/attachments/2023/09/01/tqs.png#centre)
