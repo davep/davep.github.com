@@ -36,7 +36,7 @@ the norm, thankfully!), I'm also going to be working in an industry (as a
 developer still, of course) that I have no background in and no real
 knowledge of. It's going to be a seriously exciting challenge.
 
-![New book](/attachments/2017/12/12/IMG_20171212_140656-01.jpeg)
+![New book](/attachments/2017/12/12/IMG_20171212_140656-01.jpeg#centre)
 
 Over the next couple of weeks I've got a fair amount of background reading
 (and video watching) to be doing. This isn't so much that I can get on with
