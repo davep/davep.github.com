@@ -183,6 +183,67 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/09/10/textual-query-sandbox-update.html#textual-query-sandbox-update">Textual Query Sandbox Update</a></h2>
+    <p>
+      Posted on 2023-09-10 09:22 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/pypi.html">PyPi</a>,              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/coding.html">coding</a>,              <a href="https://blog.davep.org/tag/textual.html">Textual</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Since <a href="/2023/09/01/textual-query-sandbox.html">quickly hacking together <code>textual-query-sandbox</code> a few days
+back</a>, I've made a bunch of small
+changes here and there. While most have been cosmetic and playing with some
+ideas, some have also been internal improvements that should make the tool
+work better.</p>
+<p>The most prominent change is one I pondered in the previous post, where I
+thought it might be interesting to have a small collection of playgrounds
+grounded together with a <code>TabbedContent</code>. So as of now the tool still has
+the original playground which had an emphasis on nested containers:</p>
+<p><img alt="Playground 1" src="/attachments/2023/09/10/tqs-1.png#centre"></p>
+<p>There's now a playground with an emphasis on selecting widgets within
+containers<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>:</p>
+<p><img alt="Playground 2" src="/attachments/2023/09/10/tqs-2.png#centre"></p>
+<p>There's also now a playground that has an emphasis on pulling out widgets
+based on ID and classes:</p>
+<p><img alt="Playground 3" src="/attachments/2023/09/10/tqs-3.png#centre"></p>
+<p>The other change you will notice from the original post is the DOM tree
+shown in the bottom right corner. Note that that isn't there to show your
+query result (that's the bottom left panel), it's there to help picture how
+the DOM in the current playground hangs together, and will hopefully help in
+picturing the structure for when you write a query.</p>
+<p>I sense there's still a lot of fun things I could add to this, and I'm still
+keen on the idea of having the playgrounds "soft coded" in some way, so
+people can make their own and load them up.</p>
+<p>Another thing I want to try and work on is making the display as useful as
+possible. While I think it's actually pretty neat and clear, there's not a
+<em>lot</em> of space<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> available to show the playground and the results. Finding
+a good balance is an interesting problem.</p>
+<p>For a number of reasons this is turning into a really enjoyable tinker
+project.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>This is, of course, slightly nonsensical wording. Containers <em>are</em>
+widgets in Textual. Pretty much everything you see in your terminal is a
+widget, even a <code>Screen</code> is a widget.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>A lot of this of course hinges on how big someone's terminal is. I
+tend to run a fairly high resolutions with the smallest font I find
+readable so my terminal windows are often pretty "big"; other people
+tend to have something much smaller in terms of cell with/height.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/09/01/textual-query-sandbox.html#textual-query-sandbox">Textual Query Sandbox</a></h2>
     <p>
       Posted on 2023-09-01 07:42 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
@@ -1045,47 +1106,6 @@ posts; nothing too long, just some new thing I read or discovered and my
 reaction to it. So, if you happen to follow this blog, I apologise in
 advance for any Swift-spam.</p>
 <p>You have been warned. ;-)</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2019/11/17/getting-started.html#getting-started">Getting started</a></h2>
-    <p>
-      Posted on 2019-11-17 11:36 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/coding.html">Coding</a>,              <a href="https://blog.davep.org/tag/learning.html">learning</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>By coincidence, in a couple of different places over the last couple of
-weeks, the subject of <em>"how do I progress in leaning to program?"</em> has
-cropped up. For me, I think the approaches and solutions tend to be the same
-for when I want to get my head around a new language: read good examples of
-idiomatic code, read other related materials, find a problem you care about
-and implement a solution (ideally something you'll directly benefit from, or
-at least others may benefit from). Hence the <a href="/2019/11/10/going-on-a-journey.html">5x5 puzzle and Norton Guide
-reader projects I mentioned in my previous
-post</a>.</p>
-<p>Of course, not everyone has problems that they need solving in a way that
-would work for this approach. So another approach I've recommended in the
-past is to go looking on somewhere like GitHub and find projects that
-promote "low-hanging fruit" issues in a way that's designed to be friendly
-for those who are new to development, new to contributing or new to the
-problem domain.</p>
-<p>While looking for examples of this yesterday I stumbled on <a href="https://github.com/MunGell/awesome-for-beginners"><em>Awesome for
-Beginners</em></a>. This looks
-like a great list and one I'm going to keep <a href="https://pinboard.in/u:davep/">bookmarked for future
-reference</a>. Now, this particular list does
-seem to have an emphasis on <a href="https://github.com/MunGell/awesome-for-beginners/issues/215">pulling in people who are new to contributing
-to a project</a>
-rather than new to development, but it does strike me as a good place to
-start looking no matter where you're coming from.</p>
-<p>I know I'm going to start having a wander around that list. It's always nice
-to contribute and I feel there's real personal benefit in actively solving a
-problem that someone else has and welcomes help with.</p></div>
   </div>
 </article>
 
