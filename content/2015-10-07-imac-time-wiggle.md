@@ -11,7 +11,7 @@ Apparently that famous Apple obsession with design doesn't apply to the time
 display on the OS X login screen (the wake-from-sleep password confirmation
 one anyway):
 
-![Time wiggle](/attachments/2015/10/07/iMac-Login-Screen-Time-Wiggle.gif)
+![Time wiggle](/attachments/2015/10/07/iMac-Login-Screen-Time-Wiggle.gif#centre)
 
 I've never noticed it before. I'm not sure if this came about with
 [the upgrade to El Capitan](/2015/10/06/el-capitan.html) or not.
