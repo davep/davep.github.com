@@ -20,7 +20,7 @@ way of doing that was to grab an iPod.
 
 So I did.
 
-![I now own an iPod](/attachments/2015/06/23/Photo 23-06-2015 22 50 51.png)
+![I now own an iPod](/attachments/2015/06/23/Photo 23-06-2015 22 50 51.png#centre)
 
 One of the first things I did, and I'm glad to find it was possible, was to
 load it up with apps that make it into a reasonable Google device (so, so far,
@@ -51,7 +51,7 @@ even remove apps I've installed, but I can't remove/hide Apple's own apps
 at all. The best I've managed to do is drop all of them in a folder together
 and ignore that folder.
 
-I'm finding the whole navigation thing kind of frustrating too. The back of
+I'm finding the whole navigation thing kind of frustrating too. The lack of
 a standard back button -- as you have on Android -- means that different apps
 seem to do different things in terms of allowing back navigation. I'm also
 still unsure how you can easily task switch (if there is a way of doing that
