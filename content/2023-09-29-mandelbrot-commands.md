@@ -46,7 +46,7 @@ and prompt for arguments would be a neat and obvious enhancement (especially
 if done in a way that's reminiscent of how commands could be defined in
 [CLIM](https://en.wikipedia.org/wiki/Common_Lisp_Interface_Manager) -- I
 remember [really liking](https://github.com/davep/org-davep-cldict/) how you
-could create self-documenting and self-competing commands in that).
+could create self-documenting and self-completing commands in that).
 
 All in good time...
 
