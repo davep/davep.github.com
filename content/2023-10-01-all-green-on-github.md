@@ -4,7 +4,7 @@ title: All green on GitHub
 category: Coding
 tags: GitHub
 date: 2023-10-01 09:14:00 +0100
-cover:
+cover: attachments/2023/10/01/full-time.png
 ---
 
 In about a week's time I'll have had a GitHub account for 15 years! I can't
