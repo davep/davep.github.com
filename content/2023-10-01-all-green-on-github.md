@@ -61,6 +61,10 @@ the project has pulled the full history into GitHub.
 
 My [contribution history on
 GitHub](/attachments/2023/10/01/contributions.png) is actually older than my
-adult son. I suspect it's older than at least one person I work with. :-/
+adult son. I suspect it's older than at least one person I work with. :-/ [^1]
+
+[^1]: I'm imformed that this isn't the case[^2]; apparently I'm either bad at
+    estimating people's ages, or bad at remembering them; or both.
+[^2]: Although it's not *too* far off. :-/
 
 [//]: # (2023-10-01-all-green-on-github.md ends here)
