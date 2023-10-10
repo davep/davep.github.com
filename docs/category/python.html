@@ -183,6 +183,46 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/10/10/astare-0-8-0.html#astare-0-8-0">astare v0.8.0 released</a></h2>
+    <p>
+      Posted on 2023-10-10 21:42 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/pypi.html">PyPi</a>,              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/coding.html">coding</a>,              <a href="https://blog.davep.org/tag/textual.html">Textual</a>
+        &#8226; 1 min read
+    </p>
+  </header>
+  <div>
+      <div><p><a href="https://github.com/davep/textual-astview"><code>textual-astare</code></a> is another
+Textual-based Python project that I've developed in the last year and I
+don't believe I've mentioned on this blog. Simply put, it's a took for
+viewing the abstract syntax tree of Python code, in the terminal.</p>
+<p><img alt="astare in action" src="/attachments/2023/10/10/astare.png#centre"></p>
+<p>I've just made a small update to it this evening after someone asked <a href="https://github.com/davep/textual-astview/discussions/12">for a
+sensible change I've been meaning to do for a
+while</a>. When I
+first read the request I <em>was</em> going to look at it next week, when I have
+some time off work, but you know how it is when you sit at your desk and
+have a "quick look".</p>
+<p>So anyway, yeah, <a href="https://pypi.org/project/textual-astview/">v0.8.0</a> is out
+there and can be installed, with the main changes being:</p>
+<ul>
+<li>Updated <a href="https://github.com/davep/textual-fspicker"><code>textual-fspicker</code></a></li>
+<li>Updated <a href="https://github.com/Textualize/textual/releases/tag/v0.39.0"><code>textual</code></a></li>
+<li>Made it so you can open a directory to browser from the command line.</li>
+<li>Made opening the current working directory the default.</li>
+<li>Tweaked the way dark/light mode get toggled so that it's now
+  command-palette-friendly.</li>
+</ul>
+<p>I think the code does need a wee bit of tidying -- this was one of my
+earliest apps built with Textual and my approach to writing Textual apps has
+changed a fair bit this year, and Textual itself has grown and improved in
+that time -- but it's still working well for now.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/09/29/mandelbrot-commands.html#mandelbrot-commands">Mandelbrot Commands</a></h2>
     <p>
       Posted on 2023-09-29 12:42 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
@@ -960,83 +1000,6 @@ was a bit of a learning curve and epic battle over a couple of days, and one
 that had me first encounter
 <a href="https://pypi.org/project/pycodestyle/"><code>pycodestyle</code></a>. I may still tell the
 tale...</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2019/12/08/git2gantt.html#git2gantt">git2gantt -- Simple tool to visualise coding runs</a></h2>
-    <p>
-      Posted on 2019-12-08 13:44 +0000 in <a href="https://blog.davep.org/category/python.html">Python</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/documentation.html">documentation</a>
-        &#8226; 3 min read
-    </p>
-  </header>
-  <div>
-      <div><p>At the start of this year, as part of a much bigger process to review the
-work that had taken place over the previous 12 months, I was asked (at work)
-to provide some information about how much time I'd spent on various
-projects. Now, for me, there's really only one project, but there's lots of
-different tools and libraries that I've written to support the main work I
-do. All of these are split into different repositories in the
-company-internal instance of <a href="https://about.gitlab.com/">GitLab</a>. This meant
-that getting a rough idea of what I was working on and when would be easy
-enough -- it's all there in the commit history.</p>
-<p>Given that this information would make up a couple of slides at most during
-a far bigger presentation, I wanted something that would be snappy and easy
-for non-developers to follow and understand. I spent a bit of time pondering
-some options and decided that (ab)using a <a href="https://en.wikipedia.org/wiki/Gantt_chart">gantt
-chart</a> layout would make sense.</p>
-<p>That choice was made all the more easier given that <a href="https://docs.gitlab.com/ee/user/markdown.html#mermaid">GitLab
-supports</a> the use of
-<a href="https://mermaid-js.github.io/mermaid/#/">mermaid charts</a> within its
-Markdown. This meant I could quickly write some code that took the git log
-of each repository, turned it into mermaid code, and then render it (by
-hand, this was all about getting things done quickly) via GitLab.</p>
-<p>This sounded like it could be a fun personal project. The result was some
-Python code called <a href="https://github.com/davep/git2gantt">git2gantt</a>.</p>
-<p>As mentioned above, the output isn't anything too clever, it's just code
-that can be used to create a plot via mermaid. For example, running
-git2gannt over itself:</p>
-<div class="highlight"><pre><span></span><code>gantt
-  title git2gantt output
-  dateFormat YYYY-MM-DD
-
-  section git2gantt
-  Development: devgit2gantt20190208, 2019-02-08, 2019-02-13
-  Development: devgit2gantt20190214, 2019-02-14, 2019-02-15
-  Development: devgit2gantt20190303, 2019-03-03, 2019-03-04
-  Development: devgit2gantt20191203, 2019-12-03, 2019-12-04
-</code></pre></div>
-
-<p>Usage is pretty straightforward: <img alt="Screenshot 2019-12-08 at
-13.18.12.png" src="/attachments/2019/12/08/Screenshot 2019-12-08 at 13.18.12.png">
-As you can see, it can be run over multiple repos at once, and there's also
-an option to have it consider every branch within each repository. Another
-handy option is the ability to limit the output to just one author --
-perhaps you just want to document what you've done on a repo, not the
-contributions of other people.</p>
-<p>Also especially handy, if you don't want to bore people with too much
-detail, is the "fuzz" option. This lets you tell <code>git2gannt</code> how relaxed you
-want it to be when it tries to decide how long a run of work on a repo
-lasted. So, perhaps, you're working on and off on a library that supports
-some other system you're documenting, but you might only be making changes
-every other day or so. With the correct fuzz value you can make it clear you
-were working <em>on</em> the library for a couple of weeks, despite there only
-being a commit every other day.</p>
-<p>An example of running the output over a handful of projects would look
-something like this:</p>
-<p><img alt="Screenshot 2019-12-08 at 13.34.41.png" src="/attachments/2019/12/08/Screenshot 2019-12-08 at 13.34.41.png"></p>
-<p>This is one of those tools I knocked up quickly to get a job done, and
-haven't quite got round to finishing off fully. One thing I'd really like to
-do is add mermaid support directly within it, so that it actually has the
-option to emit plots, not just mermaid code (or, perhaps, drop the mermaid
-approach and use something else entirely).</p>
-<p>Meanwhile though, if you're looking for something quick and dirty that will
-help you visualise what you've been working on and when for a good period of
-time... perhaps this will help.</p></div>
   </div>
 </article>
 
