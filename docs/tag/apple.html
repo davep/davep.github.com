@@ -183,6 +183,44 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/10/14/going-full-apple-search.html#going-full-apple-search">Going full Apple search</a></h2>
+    <p>
+      Posted on 2023-10-14 08:39 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>For as long as I've had a smartphone -- so ever since the <a href="https://en.wikipedia.org/wiki/HTC_Magic">HTC
+Magic</a> was released -- I've used
+whatever search tool Google have had available as my way of searching for
+stuff from my phone. Even when I made the switch to the iPhone, back when
+the iPhone 11 was around, I still installed and used the Google Search app.</p>
+<p>Since jumping ship from Android to iPhone, I've followed the usual track
+that some do of "embracing the ecosystem", and it generally has paid off.
+The more I lean into "the Apple way", the more stuff actually does work
+together and work together well (I won't say "it just works", because that
+can sometimes so <em>very</em> not be true, but really I do find that Apple's
+ecosystem is more coherent and more stable than the one Google provided).
+But searching for stuff... that stuck with the Google search app.</p>
+<p>So, more as an experiment than anything else, starting this morning I've
+removed the Google search app from the home screens of my iPhone and my iPad
+and I'm going to force myself to use Spotlight to do all my searching, and
+see how I get on with it.</p>
+<p><img alt="Searching with Apple" src="/attachments/2023/10/14/apple-search.png#centre"></p>
+<p>Of course, when it comes to searching for stuff on the web, it's not going
+to make a whole heap of difference; it's sill going to end up searching with
+Google, but I do like the idea of search leaning into what Spotlight knows
+about my stuff too.</p>
+<p>Also, on my phone at least, it has the added benefit of freeing up a slot in
+the dock at the bottom of the home screen.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/09/23/apple-design.html#apple-design">Apple Design</a></h2>
     <p>
       Posted on 2023-09-23 08:10 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
@@ -651,70 +689,6 @@ use "emoji" as identifiers?</p>
 </code></pre></div>
 
 <p>Why yes. Yes we can. 😈</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2020/07/05/swift-til-10.html#swift-til-10">Swift TIL 10</a></h2>
-    <p>
-      Posted on 2020-07-05 15:27 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/swift.html">Swift</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>My leisurely journey into getting to know Swift by reading and then making
-notes to myself in my blog continues, and this weekend I encountered
-<code>defer</code>. As I was reading about Swift I did keep wondering when something
-like <code>try</code> (it has <code>try</code>), <code>catch</code> (it has <code>catch</code>) and <code>finally</code> (it
-doesn't have <code>finally</code>, but...) might crop up. This weekend I hit the part
-of the book that covered this sort of thing.</p>
-<p>Given Swift's apparent general reliance on <em>not</em> throwing errors but instead
-using <code>Optional</code> and <code>nil</code> to signify issues, it sort of came as no surprise
-that its approach to implementing something like <code>try</code>...<code>finally</code> is
-actually divorced from <code>try</code>. I'm not sure how I feel about it yet, but
-<code>defer</code> makes sense.</p>
-<p>Here's an utterly useless bit of code that demonstrates how it works:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">add</span><span class="p">(</span> <span class="kc">_</span> <span class="n">n1</span> <span class="p">:</span> <span class="nb">Int</span><span class="p">,</span> <span class="kc">_</span> <span class="n">n2</span> <span class="p">:</span> <span class="nb">Int</span> <span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span>
-
-    <span class="k">defer</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;Huh! We did some adding!&quot;</span> <span class="p">)</span>
-    <span class="p">}</span>
-
-    <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;About to do the add and then return&quot;</span> <span class="p">)</span>
-    <span class="k">return</span> <span class="n">n1</span> <span class="o">+</span> <span class="n">n2</span>
-<span class="p">}</span>
-
-<span class="bp">print</span><span class="p">(</span> <span class="n">add</span><span class="p">(</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">)</span>
-</code></pre></div>
-
-<p>When run, the output is this:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>swift<span class="w"> </span>run
-<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>try-defer
-About<span class="w"> </span>to<span class="w"> </span><span class="k">do</span><span class="w"> </span>the<span class="w"> </span>add<span class="w"> </span>and<span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">return</span>
-Huh!<span class="w"> </span>We<span class="w"> </span>did<span class="w"> </span>some<span class="w"> </span>adding!
-<span class="m">4</span>
-</code></pre></div>
-
-<p>A <code>defer</code> (and there can be multiple) is tied to the block that it's
-declared in, and is executed when the block exits. This is, of course, going
-to be really handy for things like resource-management where you don't want
-to be leaking something, although I can imagine a few other uses too (none
-of which are really going to be novel for someone who's coded in other
-languages with similar constructs).</p>
-<p>What I find interesting about this is that one or more <code>defer</code> blocks can be
-declared at various locations within a block of code; this obviously makes
-sense in that you might not want to be handling the tidy-up of something
-you've not got around to creating yet. But there's also part of me feels
-uneasy about the "exit" code being declared further up the body of code,
-rather than down towards the end. On the other hand I think I do appreciate
-the idea of, up front, writing "look, any time there's a GTFO in the code
-that follows, this will happen" -- you're made aware pretty quickly of what
-to expect.</p>
-<p>Anyway, it's good to know Swift has something similar to a <code>finally</code>.</p></div>
   </div>
 </article>
 
