@@ -33,11 +33,11 @@ During a recent dip in I saw this:
 
 ![A suggestion from LinkedIn](/attachments/2023/10/16/linkedin-suggestion.jpeg#centre)
 
-Huh! Okay! That... that's actually kind sensible! While I'm nowhere near
+Huh! Okay! That... that's actually kind of sensible! While I'm nowhere near
 looking for anything else to do, showing off the public projects you care
 about seems like a good idea. GitHub repos can be a good CV, I believe.
 
-So I click though...
+So I click through...
 
 ![The project add form](/attachments/2023/10/16/linkedin-add.jpeg#centre)
 
