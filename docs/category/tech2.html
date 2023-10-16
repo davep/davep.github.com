@@ -183,6 +183,125 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2019/10/23/why-i-really-like-fish-abbreviations.html#why-i-really-like-fish-abbreviations">Why I really like fish abbreviations</a></h2>
+    <p>
+      Posted on 2019-10-23 00:18 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/fish.html">fish</a>,              <a href="https://blog.davep.org/tag/shell.html">shell</a>
+        &#8226; 4 min read
+    </p>
+  </header>
+  <div>
+      <div><p><em>I'm filing this as a TIL because, while it wasn't T, I did L it very
+recently and it was a new trick that impacted on around 25 years if prior
+working practice.</em></p>
+<p>I think it must have been around 1991 when I first encountered
+<a href="https://en.wikipedia.org/wiki/4DOS">4DOS</a>. While I'd used the odd Unix
+shell here and there previously, it'd only been in passing. It was 4DOS that
+first introduced me to the power of aliases on the command line. Many of the
+aliases I set up and used in 4DOS still remain with me to this day, on
+GNU/Linux and macOS, in some form or another.</p>
+<p>I'm sure I don't need to tell anyone reading this why aliases and cool and
+handy and pretty much vital if you do lots of work on the command line.</p>
+<p>And then, a couple or so weeks ago, as a very recent convert to
+<a href="https://fishshell.com/">fish</a>, I discovered the
+<a href="https://fishshell.com/docs/current/commands.html#abbr"><code>abbr</code></a> command. At
+first glance it didn't seem to make much sense. It was like
+<a href="https://fishshell.com/docs/current/commands.html#alias"><code>alias</code></a>, only it
+expanded what you typed rather than acted as a command in its own right.</p>
+<p>I did a bit of digging and some of it started to make sense. One thing that
+really won me over -- and while it's something that doesn't directly impact
+on me -- was the argument that it allows for a far more transparent command
+history; especially if you're likely to use a transcript of a shell session
+in a place where people might not know or have access to your aliases.</p>
+<p>Imagine being in a position where you have loads of handy and cool aliases,
+but you also need to record what you've done so other people can follow your
+work (does it show that I sit amongst people who maintain lab notebooks?);
+it seems like it would be a bit of a bother needing to record all of the
+aliases in your own work environment up front. Without that information few
+people will be able to make sense of the recorded commands, with that
+information they'd still need to double-check what each command does.</p>
+<p>So imagine an alias that, when used, expands in place. Then you'd get all of
+the benefit of aliases while also having a full and readable record of what
+you <em>actually</em> did.</p>
+<p>Seems neat!</p>
+<p>Here's a silly example. For a long time I've carried around an alias called
+<code>greedy</code> that runs something like this:</p>
+<div class="highlight"><pre><span></span><code>du<span class="w"> </span>-hs<span class="w"> </span>*<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rh
+</code></pre></div>
+
+<p>It's pretty straightforward: I'm using <code>du</code> to get a sense of which
+directories are using what space, and then using <code>sort</code> to make a
+worst-to-best-offender list out of it. So I could use an alias:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">alias</span><span class="w"> </span><span class="nv">greedy</span><span class="o">=</span><span class="s2">&quot;du -hs * | sort -rh&quot;</span>
+</code></pre></div>
+
+<p>The only downside to this is that, any time I run it, if I were to record
+the shell session and make it available for someone else to read, they'd
+just see:</p>
+<div class="highlight"><pre><span></span><code>~/develop$<span class="w"> </span>greedy
+<span class="m">1</span>.1G<span class="w">    </span>JavaScript
+824M<span class="w">    </span>C
+699M<span class="w">    </span>rust
+<span class="w"> </span>93M<span class="w">    </span>python
+<span class="w"> </span>33M<span class="w">    </span>fonts
+<span class="w"> </span>33M<span class="w">    </span>elisp
+<span class="m">3</span>.4M<span class="w">    </span>zsh
+<span class="m">3</span>.0M<span class="w">    </span>misc
+<span class="m">1</span>.1M<span class="w">    </span>bash
+840K<span class="w">    </span>ocaml
+428K<span class="w">    </span>C++
+316K<span class="w">    </span>lisp
+172K<span class="w">    </span>Swift
+152K<span class="w">    </span>git
+132K<span class="w">    </span>ruby
+<span class="w"> </span>28K<span class="w">    </span>ObjC
+</code></pre></div>
+
+<p>Now, with an abbreviation rather than an alias, I'd type <code>greedy</code> but as
+soon as I hit <code>Enter</code> it'd get expanded to something anyone could read and
+follow:</p>
+<div class="highlight"><pre><span></span><code>~/develop$<span class="w"> </span>du<span class="w"> </span>-hs<span class="w"> </span>*<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rh
+<span class="m">1</span>.1G<span class="w">    </span>JavaScript
+824M<span class="w">    </span>C
+699M<span class="w">    </span>rust
+<span class="w"> </span>93M<span class="w">    </span>python
+<span class="w"> </span>33M<span class="w">    </span>fonts
+<span class="w"> </span>33M<span class="w">    </span>elisp
+<span class="m">3</span>.4M<span class="w">    </span>zsh
+<span class="m">3</span>.0M<span class="w">    </span>misc
+<span class="m">1</span>.1M<span class="w">    </span>bash
+840K<span class="w">    </span>ocaml
+428K<span class="w">    </span>C++
+316K<span class="w">    </span>lisp
+172K<span class="w">    </span>Swift
+152K<span class="w">    </span>git
+132K<span class="w">    </span>ruby
+<span class="w"> </span>28K<span class="w">    </span>ObjC
+</code></pre></div>
+
+<p>This is far from the only benefit of abbreviations; for most people it
+probably isn't one of the most important ones, but I find it neat and
+compelling and this alone drove me to rework almost all of my aliases as
+abbreviations.</p>
+<p>Having done that, I get other benefits too. For example, fish (like other
+shells) has good support for argument completion for well-known commands.
+The problem is, if you alias such a command, you don't get that completion.
+With an abbreviation though you do! All you need to do is type the
+abbreviation, hit <code>space</code> and it'll expand to the underlying command and
+then the full range of completion can happen.</p>
+<p>There's also one last reason why I like abbreviations over aliases, and it's
+kind of a silly one, but in a good way. It's actually fun to see what you
+type magically expand as you do things, it makes you look like you can type
+even faster than you normally can! ;-)</p>
+<p>PS: If you've never tried <code>fish</code> before and you're curious, it's easy to
+<a href="https://rootnroll.com/d/fish-shell/">try in your browser</a>.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2017/03/13/i_want_to_like_gboard.html#i_want_to_like_gboard">I want to like Gboard</a></h2>
     <p>
       Posted on 2017-03-13 08:29 +0000 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
@@ -710,47 +829,6 @@ and....</p>
 <p>Now that's all sorted I should try again with <code>slrn</code>. At which point I'll need
 to drag out and tidy up <code>post.el</code> (<a href="http://post-mode.sourceforge.net/">the version that was being maintained
 by some other people seems to have gone very stale</a>, sadly).</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2015/11/12/i-miss-until-next-alarm.html#i-miss-until-next-alarm">I miss "Until next alarm"</a></h2>
-    <p>
-      Posted on 2015-11-12 14:20 +0000 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/android.html">Android</a>,              <a href="https://blog.davep.org/tag/google.html">Google</a>,              <a href="https://blog.davep.org/tag/marshmallow.html">Marshmallow</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>I actually can't remember when the change was now, it was either Android 5.0
-or one of the 5.x point releases, but I can recall the frustration of Google
-having changed how you make an Android device silent, or not. The idea seemed
-clever enough but it was a real pain to switch to and use. Previously there'd
-simply been this neat system of setting he volume to either be some non-off
-value, vibrate or totally silent. I even had a neat little widget on the home
-screen of my phone to allow me to toggle between these 3 states.</p>
-<p>It was simple, and worked well.</p>
-<p>The new system though.... ugh. It was confusing and so much more long-winded
-to work with.</p>
-<p>At some point though they added one big redeeming feature: "Until next alarm".
-When I got into bed I could tell my tablet to go totally silent until my
-alarm went off in the morning, and then it would all work as normal. That was
-an utterly brilliant idea.</p>
-<p>So it made sense that if they changed anything about this in Marshmallow they'd
-keep that in and make it even more awesome, right? Right?!?</p>
-<p><img alt="Nope" src="/attachments/2015/11/12/Screenshot_20151112-140600.png"></p>
-<p>Well fuck!</p>
-<p>Why? Just..... why?!? I actually prefer how the new one works. They've more or
-less solved the problem of how it was more faff to deal with, they've solved
-the problem of having to cock about with the volume rocker to get at the
-settings and then set the settings. I like all that.</p>
-<p>But taking "Until next alarm" away? That's just nuts.</p>
-<p>Sometimes I really get the impression that the Android developers are like the
-Chrome OS developers: they're having a ton of fun improving and onward developing
-the system but they have little connection to how people actually use this stuff.</p></div>
   </div>
 </article>
 
