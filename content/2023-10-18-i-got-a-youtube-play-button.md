@@ -20,7 +20,7 @@ with the weather station I ran for a few years, some things related to my
 photography, couple of things related to hacking with code; that's about it.
 
 Then, a couple or so years back, when I got heavily into PCVR gaming, I
-started to record my gaming sessions and [uploading
+started to record my gaming sessions and [upload
 them](https://www.youtube.com/playlist?list=PLUY2FpMDyORCk74IQ3sfWsxg242qLwQ8g).
 
 As of the time of writing there are 1,109 videos in the PCVR playlist, and
