@@ -1,5 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2023-10-01T09:14:00+01:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>All green on GitHub</title><link href="https://blog.davep.org/2023/10/01/all-green-on-github.html" rel="alternate"></link><published>2023-10-01T09:14:00+01:00</published><updated>2023-10-01T09:14:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-10-01:/2023/10/01/all-green-on-github.html</id><content type="html">&lt;p&gt;In about a week's time I'll have had a GitHub account for 15 years! I can't
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2023-10-26T18:50:00+01:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Visual Selection</title><link href="https://blog.davep.org/2023/10/26/visual-selection.html" rel="alternate"></link><published>2023-10-26T18:50:00+01:00</published><updated>2023-10-26T18:50:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-10-26:/2023/10/26/visual-selection.html</id><content type="html">&lt;p&gt;Over the last few weeks I've had a couple of sessions of working on a
+library to wrap &lt;a href="https://pypi.org/project/plotext/"&gt;Plotext&lt;/a&gt; -- a popular
+terminal-based plotting library for Python -- so that it can easily be used
+in Textual apps;
+&lt;a href="https://textual.textualize.io/blog/2023/10/04/announcing-textual-plotext/"&gt;&lt;code&gt;textual-plotext&lt;/code&gt;&lt;/a&gt;
+is the result.&lt;/p&gt;
+&lt;p&gt;I feel it's come together pretty well&lt;/p&gt;
+&lt;p&gt;But... I've been itching to find a reason to use it in a project of my own.&lt;/p&gt;
+&lt;p&gt;Meanwhile...&lt;/p&gt;
+&lt;p&gt;Back in the mid-2000s, when &lt;a href="https://en.wikipedia.org/wiki/PhpBB"&gt;phpBB&lt;/a&gt;
+systems were still the fashion, I used to hang out on a site that was
+chiefly aimed at the atheist and secular humanist crowd. We'd get a good
+number of drive-by
+&lt;a href="https://en.wikipedia.org/wiki/Young_Earth_creationism"&gt;YEC&lt;/a&gt; types who'd
+want to argue (sorry... debate) and often talk nonsense about biology and
+the like.&lt;/p&gt;
+&lt;p&gt;Now, I'm no biologist, I'm no scientist, I'm just a hacker who likes to
+write code for fun and profit; so any time there was a chance to write some
+code to help illustrate an idea I'd jump at the chance. I forget the detail
+now -- this was back in 2008; 15 years ago as of the time of writing -- but
+one time I remember a conversation was taking place where someone was just
+flat out claiming that "random mutation" can only cause "loss of
+information" and could never lead to a "desired result", or some such thing.&lt;/p&gt;
+&lt;p&gt;If you've ever had, read or watched those debates, you'll know the sort of
+thing I mean.&lt;/p&gt;
+&lt;p&gt;So that got me thinking back then, could I write something that could give a
+simple illustration of how this doesn't quite make sense?&lt;/p&gt;
+&lt;p&gt;So I had a little hacking session and came up with some Ruby code&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt; that
+did what I felt was the job. You'd give it a phrase you wanted it to
+generate (a stand-in for the current "fitness landscape", in effect), it
+would then generate a totally random string of that length, and then would
+set about mutating it, finding mutations that were "fitter" than others (a
+stand in for selection), breed the best two so far (randomly copy one chunk
+from another to create a child), then repeat over and over.&lt;/p&gt;
+&lt;p&gt;When I first wrote it I wasn't sure what to expect; would it ever finish
+given a reasonably large target string?&lt;/p&gt;
+&lt;p&gt;It did.&lt;/p&gt;
+&lt;p&gt;It was fun to code.&lt;/p&gt;
+&lt;p&gt;It got posted to the BB and of course wasn't in any way persuasive to them
+(honestly I never expected it would be). I seem to recall it being
+hand-waved away with calls of there obviously being an intelligent designer
+involved&lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Anyway, the "meanwhile..." in this: a few times this year I've thought it
+could be fun to rework this in Python (it's really not that complex after
+all; just a string-chopping loop really) and use Textual to put a fun UI on
+it.&lt;/p&gt;
+&lt;p&gt;So, that's what I did, complete with &lt;code&gt;textual-plotext&lt;/code&gt; plot:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Visual Selection in action" src="/attachments/2023/10/26/visual-selection.png"&gt;&lt;/p&gt;
+&lt;p&gt;While, 15 years on, this isn't going to convince anyone of the underlying
+point, I think it does serve a good educational purpose. It shows that you
+can create a fun UI for the terminal, with Textual, with not a lot of code.
+It also shows off how you can easily create dynamic plots. Plus -- and I
+think this might be the really important one -- it shows you can write
+"traditional" tight-loop code in a Textual application and &lt;em&gt;still&lt;/em&gt; have a
+responsive UI; all thanks to the &lt;a href="https://textual.textualize.io/guide/workers/"&gt;worker
+API&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The heart of the code for this application is this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;environment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is the target string we want to create!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;best_fit_found&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shit_happens&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Sure, there's some detail in the &lt;code&gt;Environment&lt;/code&gt; class, but you get the idea:
+while we've not hit the target, let &lt;a href="https://www.youtube.com/watch?v=kiVVzxoPTtg"&gt;life find a
+way&lt;/a&gt;. A loop like that would
+totally bog down an application with a UI without some other work taking
+place. With Textual and workers the resulting method in the application,
+complete with code to send updates to the UI, really doesn't look much
+different:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nd"&gt;@work&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;thread&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;exclusive&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;run_world&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;worker&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_current_worker&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;environment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;iterations&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;post_message&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;WorldUpdate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;iterations&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;best&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;worker&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_cancelled&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;best_fit_found&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shit_happens&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;iterations&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iterations&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;best_fit_found&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;post_message&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+                &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;WorldUpdate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;iterations&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;best&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;best_fit_found&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;post_message&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Finished&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iterations&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I honestly think the worker API is one of the coolest things added to
+Textual and I so often see people have real &lt;em&gt;"woah!"&lt;/em&gt; moments when they get
+to grips with it.&lt;/p&gt;
+&lt;p&gt;Anyway... I've covered science, religion, and how Ruby is better than
+Python, so I'm sure I've annoyed almost everyone. Job done I guess. ;-)&lt;/p&gt;
+&lt;p&gt;If you want to check out the app itself there's &lt;a href="https://github.com/davep/visual-selection"&gt;a GitHub
+repo&lt;/a&gt; and it can also be
+installed &lt;a href="https://pypi.org/project/visual-selection/"&gt;from PyPi&lt;/a&gt; using
+&lt;code&gt;pipx&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Expect it to be my tinker project of choice for a wee while; there's a
+couple of other things I'd like to add to it.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Possibly unpopular opinion with some folk who will read this, but I've
+long been a fan of Ruby as a language and actually generally prefer it
+to Python.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;Me, the coder. While utterly missing the point of a simple
+illustration, while apparently not understanding the concept of an
+analogy, I guess at least they felt I was intelligent?&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="Coding"></category><category term="Python"></category><category term="evolution"></category><category term="biology"></category><category term="terminal"></category><category term="textual"></category></entry><entry><title>All green on GitHub</title><link href="https://blog.davep.org/2023/10/01/all-green-on-github.html" rel="alternate"></link><published>2023-10-01T09:14:00+01:00</published><updated>2023-10-01T09:14:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-10-01:/2023/10/01/all-green-on-github.html</id><content type="html">&lt;p&gt;In about a week's time I'll have had a GitHub account for 15 years! I can't
 even remember what motivated me to create one now, but back in October 2008
 I grabbed the &lt;code&gt;davep&lt;/code&gt; account...&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Making my account" src="/attachments/2023/10/01/account-made.png#centre"&gt;&lt;/p&gt;

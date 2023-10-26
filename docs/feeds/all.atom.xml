@@ -1,5 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2023-10-20T13:04:00+01:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Constant Siri voice loss</title><link href="https://blog.davep.org/2023/10/20/constant-siri-voice-loss.html" rel="alternate"></link><published>2023-10-20T13:04:00+01:00</published><updated>2023-10-20T13:04:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-10-20:/2023/10/20/constant-siri-voice-loss.html</id><content type="html">&lt;p&gt;This seems to have started with iOS 17, and I can't narrow down the how and
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2023-10-26T18:50:00+01:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Visual Selection</title><link href="https://blog.davep.org/2023/10/26/visual-selection.html" rel="alternate"></link><published>2023-10-26T18:50:00+01:00</published><updated>2023-10-26T18:50:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-10-26:/2023/10/26/visual-selection.html</id><content type="html">&lt;p&gt;Over the last few weeks I've had a couple of sessions of working on a
+library to wrap &lt;a href="https://pypi.org/project/plotext/"&gt;Plotext&lt;/a&gt; -- a popular
+terminal-based plotting library for Python -- so that it can easily be used
+in Textual apps;
+&lt;a href="https://textual.textualize.io/blog/2023/10/04/announcing-textual-plotext/"&gt;&lt;code&gt;textual-plotext&lt;/code&gt;&lt;/a&gt;
+is the result.&lt;/p&gt;
+&lt;p&gt;I feel it's come together pretty well&lt;/p&gt;
+&lt;p&gt;But... I've been itching to find a reason to use it in a project of my own.&lt;/p&gt;
+&lt;p&gt;Meanwhile...&lt;/p&gt;
+&lt;p&gt;Back in the mid-2000s, when &lt;a href="https://en.wikipedia.org/wiki/PhpBB"&gt;phpBB&lt;/a&gt;
+systems were still the fashion, I used to hang out on a site that was
+chiefly aimed at the atheist and secular humanist crowd. We'd get a good
+number of drive-by
+&lt;a href="https://en.wikipedia.org/wiki/Young_Earth_creationism"&gt;YEC&lt;/a&gt; types who'd
+want to argue (sorry... debate) and often talk nonsense about biology and
+the like.&lt;/p&gt;
+&lt;p&gt;Now, I'm no biologist, I'm no scientist, I'm just a hacker who likes to
+write code for fun and profit; so any time there was a chance to write some
+code to help illustrate an idea I'd jump at the chance. I forget the detail
+now -- this was back in 2008; 15 years ago as of the time of writing -- but
+one time I remember a conversation was taking place where someone was just
+flat out claiming that "random mutation" can only cause "loss of
+information" and could never lead to a "desired result", or some such thing.&lt;/p&gt;
+&lt;p&gt;If you've ever had, read or watched those debates, you'll know the sort of
+thing I mean.&lt;/p&gt;
+&lt;p&gt;So that got me thinking back then, could I write something that could give a
+simple illustration of how this doesn't quite make sense?&lt;/p&gt;
+&lt;p&gt;So I had a little hacking session and came up with some Ruby code&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt; that
+did what I felt was the job. You'd give it a phrase you wanted it to
+generate (a stand-in for the current "fitness landscape", in effect), it
+would then generate a totally random string of that length, and then would
+set about mutating it, finding mutations that were "fitter" than others (a
+stand in for selection), breed the best two so far (randomly copy one chunk
+from another to create a child), then repeat over and over.&lt;/p&gt;
+&lt;p&gt;When I first wrote it I wasn't sure what to expect; would it ever finish
+given a reasonably large target string?&lt;/p&gt;
+&lt;p&gt;It did.&lt;/p&gt;
+&lt;p&gt;It was fun to code.&lt;/p&gt;
+&lt;p&gt;It got posted to the BB and of course wasn't in any way persuasive to them
+(honestly I never expected it would be). I seem to recall it being
+hand-waved away with calls of there obviously being an intelligent designer
+involved&lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Anyway, the "meanwhile..." in this: a few times this year I've thought it
+could be fun to rework this in Python (it's really not that complex after
+all; just a string-chopping loop really) and use Textual to put a fun UI on
+it.&lt;/p&gt;
+&lt;p&gt;So, that's what I did, complete with &lt;code&gt;textual-plotext&lt;/code&gt; plot:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Visual Selection in action" src="/attachments/2023/10/26/visual-selection.png"&gt;&lt;/p&gt;
+&lt;p&gt;While, 15 years on, this isn't going to convince anyone of the underlying
+point, I think it does serve a good educational purpose. It shows that you
+can create a fun UI for the terminal, with Textual, with not a lot of code.
+It also shows off how you can easily create dynamic plots. Plus -- and I
+think this might be the really important one -- it shows you can write
+"traditional" tight-loop code in a Textual application and &lt;em&gt;still&lt;/em&gt; have a
+responsive UI; all thanks to the &lt;a href="https://textual.textualize.io/guide/workers/"&gt;worker
+API&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The heart of the code for this application is this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;environment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is the target string we want to create!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;best_fit_found&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shit_happens&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Sure, there's some detail in the &lt;code&gt;Environment&lt;/code&gt; class, but you get the idea:
+while we've not hit the target, let &lt;a href="https://www.youtube.com/watch?v=kiVVzxoPTtg"&gt;life find a
+way&lt;/a&gt;. A loop like that would
+totally bog down an application with a UI without some other work taking
+place. With Textual and workers the resulting method in the application,
+complete with code to send updates to the UI, really doesn't look much
+different:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nd"&gt;@work&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;thread&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;exclusive&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;run_world&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;worker&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_current_worker&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;environment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;iterations&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;post_message&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;WorldUpdate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;iterations&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;best&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;worker&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_cancelled&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;best_fit_found&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shit_happens&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;iterations&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iterations&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;best_fit_found&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;post_message&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+                &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;WorldUpdate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;iterations&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;best&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;best_fit_found&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;post_message&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Finished&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iterations&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I honestly think the worker API is one of the coolest things added to
+Textual and I so often see people have real &lt;em&gt;"woah!"&lt;/em&gt; moments when they get
+to grips with it.&lt;/p&gt;
+&lt;p&gt;Anyway... I've covered science, religion, and how Ruby is better than
+Python, so I'm sure I've annoyed almost everyone. Job done I guess. ;-)&lt;/p&gt;
+&lt;p&gt;If you want to check out the app itself there's &lt;a href="https://github.com/davep/visual-selection"&gt;a GitHub
+repo&lt;/a&gt; and it can also be
+installed &lt;a href="https://pypi.org/project/visual-selection/"&gt;from PyPi&lt;/a&gt; using
+&lt;code&gt;pipx&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Expect it to be my tinker project of choice for a wee while; there's a
+couple of other things I'd like to add to it.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Possibly unpopular opinion with some folk who will read this, but I've
+long been a fan of Ruby as a language and actually generally prefer it
+to Python.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;Me, the coder. While utterly missing the point of a simple
+illustration, while apparently not understanding the concept of an
+analogy, I guess at least they felt I was intelligent?&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="Coding"></category><category term="Python"></category><category term="evolution"></category><category term="biology"></category><category term="terminal"></category><category term="textual"></category></entry><entry><title>Constant Siri voice loss</title><link href="https://blog.davep.org/2023/10/20/constant-siri-voice-loss.html" rel="alternate"></link><published>2023-10-20T13:04:00+01:00</published><updated>2023-10-20T13:04:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-10-20:/2023/10/20/constant-siri-voice-loss.html</id><content type="html">&lt;p&gt;This seems to have started with iOS 17, and I can't narrow down the how and
 the when of it happening, but over the last week or so I've found that every
 couple of days Siri seems to lose their voice. By this I mean the high
 quality voice that's used when they speak seems to disappear. I notice this
@@ -738,56 +849,4 @@ and the like with the configuration to do too. But the ball is rolling now.
 Ever time I get a spare hour and the desire to sit at my desk I can pick a
 section, look it over, decide if it deserves to come over, and act on that.&lt;/p&gt;
 &lt;p&gt;Heck, at this rate I might even end up with an actively-maintained website
-again!&lt;/p&gt;</content><category term="Coding"></category><category term="html"></category><category term="web"></category></entry><entry><title>Nick Harper at the Jazz Bar</title><link href="https://blog.davep.org/2023/08/12/nick-harper-at-the-jazz-bar.html" rel="alternate"></link><published>2023-08-12T08:15:00+01:00</published><updated>2023-08-12T08:15:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-08-12:/2023/08/12/nick-harper-at-the-jazz-bar.html</id><content type="html">&lt;p&gt;As mentioned &lt;a href="/2023/08/07/off-to-see-nick-harper.html"&gt;about a week back&lt;/a&gt;,
-my first show booked for this year's Edinburgh Fringe was to see &lt;a href="https://harperspace.com/home"&gt;Nick
-Harper&lt;/a&gt;. It's been a long time since I've seen
-him; far too long. As best as I can tell the last gig I made it to was in
-2009.&lt;/p&gt;
-&lt;p&gt;Fourteen years. Shit's changed in that time, for me, for the world. O_o&lt;/p&gt;
-&lt;p&gt;On first getting into town it was warm and crowded, with that fun "town is
-doing festival shit" vibe that I like, so I went and grabbed an ice cream to
-kill some time until the venue opened. I knew I was in the right spot when,
-as I stood on Chambers Street, enjoying the cooldown, the man himself dashed
-passed, guitar case in hand!&lt;/p&gt;
-&lt;p&gt;When I got into the venue I grabbed a drink and tried to find a seat; most
-were taken; except for one right at the front and off to the side. So I
-grabbed it. Moments later Nick himself came over to say hello to the folk
-sat in this spot. We had a wee chat about how long it was since I'd last
-seen him, nattered about general stuff, and he said very nice things about
-my hat.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Nick Harper" src="/attachments/2023/08/12/IMG_2682.jpeg#centre"&gt;&lt;/p&gt;
-&lt;p&gt;The gig itself was fantastic. While I love his recorded work anyway, Nick's
-always been one of those artists who I enjoy most live. He's got this way of
-singing and playing guitar that fills whatever time he's got to play; never
-once have I ever found myself looking at my watch, wondering if it's near
-the end; or if I have it's because I'm worried it'll be over soon.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Nick Harper" src="/attachments/2023/08/12/IMG_2684.jpeg#centre"&gt;&lt;/p&gt;
-&lt;p&gt;A good number of the tracks he played I didn't recognise; at least two of
-them I know are from a new album that's coming, and I have to admit that
-when I do listen to his stuff it's the earlier works that tend to go into
-heavy rotation (I think the last album of his I bought was &lt;em&gt;The Last
-Guitar&lt;/em&gt;). But I loved everything I got to hear. I'll be diving back into
-&lt;a href="https://harperspace.com/shop"&gt;his catalogue&lt;/a&gt; and also keeping an eye out
-for the new release.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Nick Harper" src="/attachments/2023/08/12/IMG_2689.jpeg#centre"&gt;&lt;/p&gt;
-&lt;p&gt;While there was only an hour for his slot, he did manage to get a couple of
-old favourites of mine in; I was delighted when he launched into &lt;a href="https://www.youtube.com/watch?v=fNQAebSpqVw"&gt;By My
-Rocket Comes Fire&lt;/a&gt;, did a
-wonderful &lt;a href="https://www.youtube.com/watch?v=IH6TqeeM5ZY"&gt;She Rules My World&lt;/a&gt;,
-and even squeezed in a quick &lt;a href="https://www.youtube.com/watch?v=7Yz7mQ_i6pg"&gt;Galaxy
-Song&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Nick Harper" src="/attachments/2023/08/12/IMG_2705.jpeg#centre"&gt;&lt;/p&gt;
-&lt;p&gt;All too quickly though, the hour was up. It was kind of fitting that many of
-the songs he did have on the set list were all about time (on purpose, I'm
-sure). I'm happy to say I got to say a quick thank you and goodbye and then
-it was time for me to head out of town again.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Nick Harper" src="/attachments/2023/08/12/IMG_2701.jpeg#centre"&gt;&lt;/p&gt;
-&lt;p&gt;Seeing Nick brought back a lot of good memories, and reminded me that I need
-to catch up on his more recent works. While most of his stuff doesn't seem
-to be on Apple Music (what can I say, I'm very online these days when it
-comes to music), I'm glad to see &lt;a href="https://nickharper.bandcamp.com/"&gt;he's got a full
-Bandcamp&lt;/a&gt;, so I'll be paying that a visit!&lt;/p&gt;
-&lt;p&gt;I hope he swings back this way some time soon, not during the Fringe, and
-with a proper long set. It's been too long since I got to enjoy &lt;a href="https://www.youtube.com/watch?v=dTD03-3qgmg"&gt;him really
-going for it and having a ton of
-fun&lt;/a&gt;.&lt;/p&gt;</content><category term="Life"></category><category term="Music"></category><category term="Gig"></category><category term="Fringe"></category><category term="Nick Harper"></category></entry></feed>
+again!&lt;/p&gt;</content><category term="Coding"></category><category term="html"></category><category term="web"></category></entry></feed>
