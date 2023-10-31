@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2023-10-26T18:50:00+01:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Visual Selection</title><link href="https://blog.davep.org/2023/10/26/visual-selection.html" rel="alternate"></link><published>2023-10-26T18:50:00+01:00</published><updated>2023-10-26T18:50:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-10-26:/2023/10/26/visual-selection.html</id><content type="html">&lt;p&gt;Over the last few weeks I've had a couple of sessions of working on a
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2023-10-31T21:39:00+01:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Evolve Words</title><link href="https://blog.davep.org/2023/10/31/evolve-words.html" rel="alternate"></link><published>2023-10-31T21:39:00+01:00</published><updated>2023-10-31T21:39:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-10-31:/2023/10/31/evolve-words.html</id><content type="html">&lt;p&gt;This follows on from my &lt;a href="/2023/10/26/visual-selection.html"&gt;previous post&lt;/a&gt;.
+If you've not read that, it's worth having a dive in first for the
+background.&lt;/p&gt;
+&lt;p&gt;The Ruby code I mention, that was written back in 2008, was actually a pair
+of scripts. The first one, called &lt;code&gt;selection&lt;/code&gt;, did what &lt;code&gt;visual-selection&lt;/code&gt;
+does, only &lt;code&gt;visual-selection&lt;/code&gt; does it with a nice TUI interface: it takes a
+random collection of letters and symbols and evolves them into a target
+phrase.&lt;/p&gt;
+&lt;p&gt;As covered before: I don't remember all of the details of the conversation
+that was going on at the time, but I do seem to remember something along the
+lines of &lt;em&gt;"yes, but you start out and end up with something the same
+length"&lt;/em&gt; and &lt;em&gt;"nothing more complex is made"&lt;/em&gt; (let's gloss over the whole
+"complex" thing for now... well okay let's just gloss over it, end of story;
+this is just a fun coding exercise).&lt;/p&gt;
+&lt;p&gt;What I do remember is that the seed of an idea was planted. Fine: how about
+I start off with one small word, and using a list of English words as the
+"fitness landscape" that the mutations had to survive in, mutate a
+population over and over and see what happens. Would I "randomly" create
+known words, with fewer letters, with the same letters, with more letters?&lt;/p&gt;
+&lt;p&gt;So this version of the code randomly did three forms of mutation: it would
+randomly flip a letter, or randomly delete a letter, or randomly insert a
+random letter. It would do this over and over and eliminate words that
+aren't in the original list (the simple form of selecting for survival
+within the landscape).&lt;/p&gt;
+&lt;p&gt;Like I said last time: never going to convince anyone of anything, but fun
+to write some code.&lt;/p&gt;
+&lt;p&gt;This version became &lt;code&gt;selection2&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;So, having turned &lt;code&gt;selection&lt;/code&gt; into a TUI application with Textual, I &lt;em&gt;had&lt;/em&gt;
+to do the same with this code...&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Evolve Words" src="/attachments/2023/10/31/evolve-words.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;As before, because it's fun to do so, this leans heavily on the &lt;a href="https://textual.textualize.io/guide/workers/"&gt;worker
+API&lt;/a&gt; and
+&lt;a href="https://textual.textualize.io/blog/2023/10/04/announcing-textual-plotext/"&gt;&lt;code&gt;textual-plotext&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you want to check out the app itself there's &lt;a href="https://github.com/davep/evolve-words"&gt;a GitHub
+repo&lt;/a&gt; and it can also be
+installed &lt;a href="https://pypi.org/project/evolve-words/"&gt;from PyPi&lt;/a&gt; using
+&lt;code&gt;pipx&lt;/code&gt;.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="evolution"></category><category term="biology"></category><category term="terminal"></category><category term="textual"></category></entry><entry><title>Visual Selection</title><link href="https://blog.davep.org/2023/10/26/visual-selection.html" rel="alternate"></link><published>2023-10-26T18:50:00+01:00</published><updated>2023-10-26T18:50:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-10-26:/2023/10/26/visual-selection.html</id><content type="html">&lt;p&gt;Over the last few weeks I've had a couple of sessions of working on a
 library to wrap &lt;a href="https://pypi.org/project/plotext/"&gt;Plotext&lt;/a&gt; -- a popular
 terminal-based plotting library for Python -- so that it can easily be used
 in Textual apps;
@@ -824,29 +860,4 @@ application and the needs to keep on top of changes to Textual.&lt;/p&gt;
 dependency for your applications, and upgrade in a controlled and tested
 way; for this though it's less crucial and is a good test of the state of
 the ecosystem, and on the remote chance that anyone is using it, it'll be
-helpful to me if it &lt;em&gt;does&lt;/em&gt; break and they yell.&lt;/p&gt;</content><category term="Python"></category><category term="PyPi"></category><category term="Python"></category><category term="coding"></category><category term="Textual"></category></entry><entry><title>Website: Norton Guide information moved</title><link href="https://blog.davep.org/2023/08/13/website-norton-guide-information-moved.html" rel="alternate"></link><published>2023-08-13T10:02:00+01:00</published><updated>2023-08-13T10:02:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-08-13:/2023/08/13/website-norton-guide-information-moved.html</id><content type="html">&lt;p&gt;This morning I've spent a wee bit of time tinkering with the configuration
-of &lt;a href="/2023/08/11/the-reboot-begins.html"&gt;the planned complete remake of my personal
-website&lt;/a&gt;. As part of this I made an
-effort to "port" over a section of the site. The choice for the first
-section to move was easy enough: &lt;a href="https://www.davep.org/norton-guides/"&gt;Norton
-Guides&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Of all the parts of my old site, this is probably the most useful in terms
-of &lt;em&gt;"contains information that isn't generally available out there on the
-web elsewhere and some folk might find it useful"&lt;/em&gt;. I mean, at some point in
-the past, someone edited the Wikipedia page for Norton Guides and linked to
-mine as a source.&lt;/p&gt;
-&lt;p&gt;So getting that one back up and running as soon as possible made sense.&lt;/p&gt;
-&lt;p&gt;I've not added &lt;em&gt;every&lt;/em&gt; bit of Norton Guide code to the main page, instead
-just pulling over and tidying up what was there before. On the other hand,
-just hacking on Markdown makes it all so much easier so I may expand on it a
-bit.&lt;/p&gt;
-&lt;p&gt;The really important part was moving over &lt;a href="https://www.davep.org/norton-guides/file-format/"&gt;the file format
-details&lt;/a&gt;. This, I feel, is
-the information that people will be looking for, if anyone is ever looking.&lt;/p&gt;
-&lt;p&gt;So, proper start made; there's content beyond the landing page. There's
-still a lot to weed out and move over, and I think there's a lot of tweaking
-and the like with the configuration to do too. But the ball is rolling now.
-Ever time I get a spare hour and the desire to sit at my desk I can pick a
-section, look it over, decide if it deserves to come over, and act on that.&lt;/p&gt;
-&lt;p&gt;Heck, at this rate I might even end up with an actively-maintained website
-again!&lt;/p&gt;</content><category term="Coding"></category><category term="html"></category><category term="web"></category></entry></feed>
+helpful to me if it &lt;em&gt;does&lt;/em&gt; break and they yell.&lt;/p&gt;</content><category term="Python"></category><category term="PyPi"></category><category term="Python"></category><category term="coding"></category><category term="Textual"></category></entry></feed>

@@ -183,6 +183,128 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2020/06/29/swift-til-8.html#swift-til-8">Swift TIL 8</a></h2>
+    <p>
+      Posted on 2020-06-29 22:48 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/swift.html">Swift</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
+        &#8226; 3 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Although I read up on it a few days back, it was only this evening that I
+fired up Emacs (well of course I'm testing Swift with Emacs, what did you
+think I'd do?!?) and dabbled with some code to really get a feel for how
+casting works in Swift.</p>
+<p>Swift seems to be one of those languages that does it with a keyword rather
+than a non-keyword approach. The two main keywords being <code>as?</code> and <code>as!</code>. I
+kind of like how there's a polite version and a bossy version. Having the
+two makes a lot of sense from what I read too.</p>
+<p>To try and illustrate my understanding so far (and do keep in mind I'm not
+writing this with the express purpose of explaining it to anyone else -- I'm
+writing this to try and retain it all in my head by working through it),
+here's a bit of utterly pointless and highly-contrived code that defines
+three classes in a fairly ordinary hierarchy:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Animal</span> <span class="p">{}</span>
+
+<span class="kd">class</span> <span class="nc">Dog</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">{}</span>
+
+<span class="kd">class</span> <span class="nc">Cat</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">beAdorable</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;Purrrrrr!&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>So, so far, so good: we have animals, we have dogs which are a kind of
+animal, and we have cats, which are also a kind of animal, but they have the
+special ability of actually being adorable. 😼</p>
+<p>Now, for the purposes of just testing all of this out, here's a horrible
+function that makes little sense other than for testing:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">adore</span><span class="p">(</span> <span class="kc">_</span> <span class="n">a</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="p">(</span> <span class="n">a</span> <span class="k">as</span><span class="p">!</span> <span class="n">Cat</span> <span class="p">).</span><span class="n">beAdorable</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Given an animal, it forces it to be a cat (by casting it with <code>as!</code>), and
+then asks it to be adorable (because, of course, cats always do as they're
+asked).</p>
+<p>So, if we then had:</p>
+<div class="highlight"><pre><span></span><code><span class="n">adore</span><span class="p">(</span> <span class="n">Cat</span><span class="p">()</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>we'd get what we expect when run:</p>
+<div class="highlight"><pre><span></span><code>Purrrrrr!
+</code></pre></div>
+
+<p>So far so good. But what about:</p>
+<div class="highlight"><pre><span></span><code><span class="n">adore</span><span class="p">(</span> <span class="n">Dog</span><span class="p">()</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>Yeah, that's not so good:</p>
+<div class="highlight"><pre><span></span><code>~/d/p/s/casting$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>casting
+Could<span class="w"> </span>not<span class="w"> </span>cast<span class="w"> </span>value<span class="w"> </span>of<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s1">&#39;casting.Dog&#39;</span><span class="w"> </span><span class="o">(</span>0x10a1f8830<span class="o">)</span><span class="w"> </span>to<span class="w"> </span><span class="s1">&#39;casting.Cat&#39;</span><span class="w"> </span><span class="o">(</span>0x10a1f88c0<span class="o">)</span>.
+fish:<span class="w"> </span><span class="s1">&#39;swift run&#39;</span><span class="w"> </span>terminated<span class="w"> </span>by<span class="w"> </span>signal<span class="w"> </span>SIGABRT<span class="w"> </span><span class="o">(</span>Abort<span class="o">)</span>
+</code></pre></div>
+
+<p>One way around this would be to use <code>as?</code>, which has the effect of casting
+the result to an
+<a href="https://developer.apple.com/documentation/swift/optional"><code>Optional</code></a>. This
+means I can re-write the <code>adore</code> function like this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">adore</span><span class="p">(</span> <span class="kc">_</span> <span class="n">a</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="p">(</span> <span class="n">a</span> <span class="k">as</span><span class="p">?</span> <span class="n">Cat</span> <span class="p">)?.</span><span class="n">beAdorable</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Now, if <code>a</code> can be cast to a <code>Cat</code>, you get an optional that wraps the
+<code>Cat</code>, otherwise you get an optional that wraps <code>nil</code> (hence the second <code>?</code>
+before attempting to call the <code>beAdorable</code> member function).</p>
+<p>So now, if I run the problematic dog call above again:</p>
+<div class="highlight"><pre><span></span><code>~/d/p/s/casting$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>casting
+</code></pre></div>
+
+<p>In other words, no output at all. Which is the idea here.</p>
+<p>I think I like this, I think it makes sense, and I think I can see why both
+<code>as!</code> and <code>as?</code> exist. The latter also means, of course, that you can do
+something like:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">adore</span><span class="p">(</span> <span class="kc">_</span> <span class="n">a</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">cat</span> <span class="p">=</span> <span class="n">a</span> <span class="k">as</span><span class="p">?</span> <span class="n">Cat</span>
+    <span class="k">if</span> <span class="n">cat</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="n">cat</span><span class="p">!.</span><span class="n">beAdorable</span><span class="p">()</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;That totally wasn&#39;t a cat&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>which, in the messy dog call again, now results in:</p>
+<div class="highlight"><pre><span></span><code>~/d/p/s/casting$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>casting
+That<span class="w"> </span>totally<span class="w"> </span>wasn<span class="err">&#39;</span>t<span class="w"> </span>a<span class="w"> </span>cat
+</code></pre></div>
+
+<p>Or, of course, the same effect could be had with:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">adore</span><span class="p">(</span> <span class="kc">_</span> <span class="n">a</span> <span class="p">:</span> <span class="n">Animal</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="k">is</span> <span class="n">Cat</span> <span class="p">{</span>
+        <span class="p">(</span> <span class="n">a</span> <span class="k">as</span><span class="p">!</span> <span class="n">Cat</span> <span class="p">).</span><span class="n">beAdorable</span><span class="p">()</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;That totally wasn&#39;t a cat&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>It should be stressed, of course, that the example code is terrible design,
+so given the above I'd ensure I never end up in this sort of situation in
+the first place. But for the purposes of writing and compiling and running
+code and seeing what the different situations result in, it helped.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2020/06/28/swift-til-7.html#swift-til-7">Swift TIL 7</a></h2>
     <p>
       Posted on 2020-06-28 16:25 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
@@ -670,105 +792,6 @@ is, I'm not sure I ever really pay that much attention to that either. So,
 as a test, I've also been running with them turned off and, so far, I'm
 really not noticing them been gone.</p>
 <p>The habits we form that we convince ourselves make sense...</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2020/06/07/some-more-dot-emacs-dot-d-evolution.html#some-more-dot-emacs-dot-d-evolution">Some more ~/.emacs.d evolution</a></h2>
-    <p>
-      Posted on 2020-06-07 16:48 +0100 in <a href="https://blog.davep.org/category/emacs.html">Emacs</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/emacs.html">Emacs</a>,              <a href="https://blog.davep.org/tag/lisp.html">Lisp</a>,              <a href="https://blog.davep.org/tag/emacs-lisp.html">Emacs Lisp</a>
-        &#8226; 3 min read
-    </p>
-  </header>
-  <div>
-      <div><p>When I started with this version of the blog on Hashnode<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, my plan was to
-try and write something at least once a week. I managed to do that as far as
-January this year, give or take, but then things got a little busy, the
-world got trickier, and... Well, <a href="https://en.wikipedia.org/wiki/COVID-19_pandemic">you don't need me to tell you about
-that</a>. Anyway, I'm back to
-write some more and, hopefully, try and keep up with writing. I feel it'll
-do me good.</p>
-<p>I have been busy since January. Work has, as far as possible, carried on as
-normal. The only big difference being I'm back working from home. It's an
-odd turn of events personally given that I'd worked from home for 21 years,
-then (with some trepidation) <a href="/2017/12/12/on_to_something_new.html">went back to working in an
-office</a>. Having got used to being in
-an office and being around people, it took some adjusting to working alone
-again.</p>
-<p>So, on to the main point of this post... During that period I've spent a lot
-more time at my machine than I would normally, and so it was inevitable that
-I'd end up tinkering with <a href="https://github.com/davep/.emacs.d">my Emacs
-configuration</a>. While it's true that
-<a href="/2019/11/23/visual-evolution-of-emacs-config.html">there's hardly a week goes by where I don't tinker with some small
-thing</a>, I try not to make
-huge changes too often. Huge changes do happen though.</p>
-<p>A handful of weeks back was another one of those times where I made a big
-change.</p>
-<p>After I <a href="/2016/05/26/starting_fresh_with_gnu_emacs.html">burnt my original <code>~/.emacs</code> file back in
-2016</a> I've had an approach
-where I've tried to make things as modular as possible, and as easy to clone
-down to a new machine as possible. The design I came up with, <a href="/2017/07/13/more_revamping_of_my_emacs_config.html">especially
-once I moved over to using
-<code>use-package</code></a>, has
-served me well. But there was always one thing that bothered me: the files
-that handled the loading and configuration of packages were, in effect,
-<a href="https://github.com/davep/.emacs.d/tree/728e74376bf5606d9ef2d297e36cc2d35e159d64/init.d/packages">still three large monolithic
-files</a>.
-While this was better than a single monolithic <code>~/.emacs</code>, it still didn't
-feel quite right.</p>
-<p>Giving it a bit of thought, I decided that what I really wanted was a single
-directory in which I could drop lots of small <code>.el</code> files that would handle
-the loading and configuration of all sorts of packages. While it didn't gain
-anything concrete, the idea felt tidier. Tidy is good. Feeling like the code
-smell is good, is good too.</p>
-<p>First though I needed a way to load multiple files, ideally within a whole
-directory hierarchy, without needing to know in advance what files would be
-there. After a little bit of tinkering I settled on <a href="https://github.com/davep/.emacs.d/blob/c3d53152b1adc9ba5e43baddb986870b3244b113/init.d/init-packages.el#L42-L46">this bit of
-code</a>
-that revolves around the use of
-<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Contents-of-Directories.html"><code>directory-files-recursively</code></a>:</p>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="nv">source</span><span class="w"> </span><span class="p">(</span><span class="nf">expand-file-name</span><span class="w"> </span><span class="s">&quot;init.d/packages.d/&quot;</span><span class="w"> </span><span class="nv">user-emacs-directory</span><span class="p">)))</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">when</span><span class="w"> </span><span class="p">(</span><span class="nf">file-exists-p</span><span class="w"> </span><span class="nv">source</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">cl-loop</span><span class="w"> </span><span class="nv">for</span><span class="w"> </span><span class="nv">use</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="p">(</span><span class="nv">directory-files-recursively</span><span class="w"> </span><span class="nv">source</span><span class="w"> </span><span class="p">(</span><span class="nb">rx</span><span class="w"> </span><span class="s">&quot;.el&quot;</span><span class="w"> </span><span class="nv">eol</span><span class="p">))</span>
-<span class="w">             </span><span class="nb">do</span><span class="w"> </span><span class="p">(</span><span class="nf">load</span><span class="w"> </span><span class="p">(</span><span class="nv">file-name-sans-extension</span><span class="w"> </span><span class="nv">use</span><span class="p">)))))</span>
-</code></pre></div>
-
-<p>Simply put, this code finds every file in and below
-<a href="https://github.com/davep/.emacs.d/tree/master/init.d/packages.d"><code>~/.emacs.d/init.d/packages.d/</code></a>
-whose name ends in <code>.el</code> (note the use of a regular expression, using
-<a href="/2019/12/01/being-phony-and-lispy-regular-expressions.html"><code>rx</code></a>
-to create it), removes the extension from the name, and loads it with <code>load</code>
-(dropping the extension means <code>load</code> can decide if it wants to load the
-compiled version of the code, or the source, depending on what's available).</p>
-<p>After writing that I could then start to populate
-<code>~/.emacs.d/init.d/packages.d/</code> with lots of smaller files that handled the
-loading of packages. In some cases there's a file just for one package, in
-other cases there's a file that handles a logical grouping of packages
-(where there are obvious direct dependencies, or where one package is
-designed to extend the other, etc). For now I've decided to break things
-down into three directories that map to the three monolithic files I had
-before:</p>
-<p><img alt="Screenshot 2020-06-07 at 16.36.28.png" src="/attachments/2020/06/07/Screenshot 2020-06-07 at 16.36.28.png"></p>
-<p>However, I'm not totally wedded to this design and I may change this as time
-goes on.</p>
-<p>While I've not spent any time properly testing it out, I've also not really
-noticed any obvious impact on startup speed. However, this tends not to be a
-real concern for me. I seldom <em>start</em> Emacs anyway. I always have it running
-<a href="https://github.com/davep/e">and use <code>emacsclient</code> as my editor in most places so files open instantly
-in the running version of Emacs</a>.</p>
-<div class="footnote">
-<hr>
-<ol>
-<li id="fn:1">
-<p>Note from future me: we're now back over on <code>blog.davep.org</code> of
-course.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div></div>
   </div>
 </article>
 

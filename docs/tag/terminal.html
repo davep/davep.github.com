@@ -183,6 +183,58 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/10/31/evolve-words.html#evolve-words">Evolve Words</a></h2>
+    <p>
+      Posted on 2023-10-31 21:39 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/evolution.html">evolution</a>,              <a href="https://blog.davep.org/tag/biology.html">biology</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>This follows on from my <a href="/2023/10/26/visual-selection.html">previous post</a>.
+If you've not read that, it's worth having a dive in first for the
+background.</p>
+<p>The Ruby code I mention, that was written back in 2008, was actually a pair
+of scripts. The first one, called <code>selection</code>, did what <code>visual-selection</code>
+does, only <code>visual-selection</code> does it with a nice TUI interface: it takes a
+random collection of letters and symbols and evolves them into a target
+phrase.</p>
+<p>As covered before: I don't remember all of the details of the conversation
+that was going on at the time, but I do seem to remember something along the
+lines of <em>"yes, but you start out and end up with something the same
+length"</em> and <em>"nothing more complex is made"</em> (let's gloss over the whole
+"complex" thing for now... well okay let's just gloss over it, end of story;
+this is just a fun coding exercise).</p>
+<p>What I do remember is that the seed of an idea was planted. Fine: how about
+I start off with one small word, and using a list of English words as the
+"fitness landscape" that the mutations had to survive in, mutate a
+population over and over and see what happens. Would I "randomly" create
+known words, with fewer letters, with the same letters, with more letters?</p>
+<p>So this version of the code randomly did three forms of mutation: it would
+randomly flip a letter, or randomly delete a letter, or randomly insert a
+random letter. It would do this over and over and eliminate words that
+aren't in the original list (the simple form of selecting for survival
+within the landscape).</p>
+<p>Like I said last time: never going to convince anyone of anything, but fun
+to write some code.</p>
+<p>This version became <code>selection2</code>.</p>
+<p>So, having turned <code>selection</code> into a TUI application with Textual, I <em>had</em>
+to do the same with this code...</p>
+<p><img alt="Evolve Words" src="/attachments/2023/10/31/evolve-words.png#centre"></p>
+<p>As before, because it's fun to do so, this leans heavily on the <a href="https://textual.textualize.io/guide/workers/">worker
+API</a> and
+<a href="https://textual.textualize.io/blog/2023/10/04/announcing-textual-plotext/"><code>textual-plotext</code></a>.</p>
+<p>If you want to check out the app itself there's <a href="https://github.com/davep/evolve-words">a GitHub
+repo</a> and it can also be
+installed <a href="https://pypi.org/project/evolve-words/">from PyPi</a> using
+<code>pipx</code>.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/10/26/visual-selection.html#visual-selection">Visual Selection</a></h2>
     <p>
       Posted on 2023-10-26 18:50 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
