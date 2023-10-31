@@ -46,7 +46,7 @@ to do the same with this code...
 
 ![Evolve Words](/attachments/2023/10/31/evolve-words.png#centre)
 
-As before, because it's fun to do so, this leans heavily on the [worker
+As before, because it's fun not to do so, this leans heavily on the [worker
 API](https://textual.textualize.io/guide/workers/) and
 [`textual-plotext`](https://textual.textualize.io/blog/2023/10/04/announcing-textual-plotext/).
 
