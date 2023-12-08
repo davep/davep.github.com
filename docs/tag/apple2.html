@@ -183,6 +183,102 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2020/07/18/swift-til-12.html#swift-til-12">Swift TIL 12</a></h2>
+    <p>
+      Posted on 2020-07-18 10:16 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/swift.html">Swift</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
+        &#8226; 3 min read
+    </p>
+  </header>
+  <div>
+      <div><p>First a small aside: To be honest, the <code>T</code> part of <code>TIL</code> is getting to be
+less and less true with this series of posts, but the posts themselves serve
+a useful purpose for me. As I've been reading the book I'm working through,
+I've also been making notes on my iPad in the <a href="https://apps.apple.com/us/app/notes/id1110145109">Apple Notes
+application</a>. I'm not
+really convinced that that's the best final location for such notes, so
+early on I made an extra step in keeping track of what I'm doing and trying
+to reinforce what I'm learning: transfer the notes into
+<a href="https://orgmode.org/">Org-Mode</a> documents in my notebook repository.</p>
+<p>This repository contains lots of Org-Mode files, broken down into subject
+directories, that hang on to longer-form information I want to keep track of
+regarding software development and general operating system use. I'm sure
+you know the sort of thing, the things where you know you know them but you
+can't always retain all the detail -- so having the detail where you know
+you'll find it is useful.</p>
+<p>So I've made that part of the process: read book, find thing worth noting,
+note in Apple Notes, a wee while later re-read and test out by writing
+sample code and transfer to the Org-Mode notebook. During that latter step I
+sometimes also write up something that I really liked or found interesting
+here to further reinforce the learning process.</p>
+<p>The "TIL" I wanted to note quickly today is how happy I was to see that
+Swift has something that's a reasonably recent addition to Emacs Lisp:
+conditional binding. Skipping off into Emacs Lisp for a moment, it would be
+very common for me to find myself writing something like this (this actually
+happens in all languages really):</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="nv">foo</span><span class="w"> </span><span class="p">(</span><span class="nv">get-something-from-elsewhere</span><span class="p">)))</span>
+<span class="w">  </span><span class="p">(</span><span class="nb">when</span><span class="w"> </span><span class="nv">foo</span>
+<span class="w">    </span><span class="p">(</span><span class="nv">do-something-with</span><span class="w"> </span><span class="nv">foo</span><span class="p">)))</span>
+</code></pre></div>
+
+<p>Quite simply: I'd get a value from elsewhere, that value could possibly be
+<code>nil</code> to mark that there was a failure to get a value, but that failure
+wasn't in any way fatal or even a problem worthy of note: I just needed to
+skip along. But that binding followed by the test was always a little
+jarring. And then, <a href="https://endlessparentheses.com/new-in-emacs-25-1-more-flow-control-macros.html">back in
+25.1</a>,
+<code>if-let</code> and <code>when-let</code> got added (of course, this being Lisp, <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Macros.html#Macros">it would
+have been very simple to add them
+anyway</a>),
+and it was easier to <a href="https://github.com/davep/pinboard.el/blob/d426f9d2ebec5f907c8a89d6b38ccbcb13750d4f/pinboard.el#L308">write the code so it looked just a little
+nicer</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nv">when-let</span><span class="w"> </span><span class="p">((</span><span class="nv">foo</span><span class="w"> </span><span class="p">(</span><span class="nv">get-something-from-elsewhere</span><span class="p">)))</span>
+<span class="w">  </span><span class="p">(</span><span class="nv">do-something-with</span><span class="w"> </span><span class="nv">foo</span><span class="p">))</span>
+</code></pre></div>
+
+<p>It's a small difference, but I find it a pleasing one.</p>
+<p>So of course I was pleased to find that Swift has something similar with
+<code>if</code> and
+<a href="https://developer.apple.com/documentation/swift/optional"><code>Optional</code></a>
+values, where you can write something like:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="kd">let</span> <span class="nv">foo</span> <span class="p">=</span> <span class="n">getSomethingFromElsewhere</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Do something with foo but only if it&#39;s not nil</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Which means you can do things like this (not that I'd really do things like
+this, but it was a handy test on the command line):</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">oddRand</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Int</span><span class="p">?</span> <span class="p">{</span>
+
+    <span class="kd">let</span> <span class="nv">n</span> <span class="p">=</span> <span class="nb">Int</span><span class="p">.</span><span class="n">random</span><span class="p">(</span> <span class="k">in</span><span class="p">:</span> <span class="mf">0.</span><span class="p">..</span><span class="mi">99</span> <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="p">==</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">nil</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">n</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="kc">_</span> <span class="k">in</span> <span class="mf">0.</span><span class="p">..</span><span class="mi">10</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="kd">let</span> <span class="nv">n</span> <span class="p">=</span> <span class="n">oddRand</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="n">n</span> <span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;Nope&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>As usual... of course that's horrible code, it was just thrown together to
+test/experience the language feature on the command line.</p>
+<p>I like it though. I figure <a href="https://clojuredocs.org/clojure.core/when-let">all the best languages have conditional
+binding</a>. ;-)</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2020/07/11/swift-til-11.html#swift-til-11">Swift TIL 11</a></h2>
     <p>
       Posted on 2020-07-11 21:34 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
@@ -758,37 +854,6 @@ Swift is put to, I can think of many times when I'd have benefitted from
 that in my general day-to-day work. Of course, you can create an observer
 approach in any language really, but having an idiom that's part of the
 language feels nice and tidy.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2020/06/23/swift-til-2.html#swift-til-2">Swift TIL 2</a></h2>
-    <p>
-      Posted on 2020-06-23 14:21 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/swift.html">Swift</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
-        &#8226; 1 min read
-    </p>
-  </header>
-  <div>
-      <div><p><a href="/2020/06/22/swift-til-1.html">Following on</a> with writing little notes to
-myself so I remember some key things as I learn about Swift...</p>
-<p>I sort of feel like this will make reading code a little harder, so it's one
-I want to keep in mind. When calling an instance method, if it's not
-ambiguous, you can omit <code>self.</code> from the call. For example:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Foo</span> <span class="p">{</span>
-    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">inner</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span> <span class="s">&quot;Foo&quot;</span> <span class="p">}</span>
-    <span class="kd">func</span> <span class="nf">outer</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span> <span class="n">inner</span><span class="p">()</span> <span class="o">+</span> <span class="kc">self</span><span class="p">.</span><span class="n">inner</span><span class="p">()</span> <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="bp">print</span><span class="p">(</span> <span class="n">Foo</span><span class="p">().</span><span class="n">outer</span><span class="p">()</span> <span class="p">)</span>
-</code></pre></div>
-
-<p>This makes me feel a little uneasy, and I strongly suspect I'll always use
-<code>self.</code> when writing such code: I'm a big fan of the idea that we write code
-for people, not for compilers.</p></div>
   </div>
 </article>
 
