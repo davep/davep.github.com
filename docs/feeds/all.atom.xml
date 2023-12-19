@@ -1,5 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2023-12-14T16:47:00+01:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Steam Deck</title><link href="https://blog.davep.org/2023/12/14/Steam-Deck.html" rel="alternate"></link><published>2023-12-14T16:47:00+01:00</published><updated>2023-12-14T16:47:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-12-14:/2023/12/14/Steam-Deck.html</id><content type="html">&lt;p&gt;Back in 2021, I think it was, when Value first announced the Steam Deck, I
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2023-12-19T09:47:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Tinboard</title><link href="https://blog.davep.org/2023/12/19/tinboard.html" rel="alternate"></link><published>2023-12-19T09:47:00+00:00</published><updated>2023-12-19T09:47:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-12-19:/2023/12/19/tinboard.html</id><content type="html">&lt;p&gt;Over the past few weeks I've been working on a new pet project, in part done
+as a &lt;a href="https://textual.textualize.io/"&gt;Textual&lt;/a&gt; "dogfooding" project, but
+also because this is a tool I've been wanting for a while now: a
+terminal-based client for the &lt;a href="https://pinboard.in/"&gt;Pinboard bookmarking
+service&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The dogfooding side of the development has been helping, uncovering a couple
+of fun bugs in Textual; plus the act of building this has let me try out a
+few of the newer features we've recently added to the framework.&lt;/p&gt;
+&lt;p&gt;What's &lt;em&gt;really&lt;/em&gt; important though is this is a tool I actually &lt;strong&gt;wanted&lt;/strong&gt;,
+and I'm using pretty often. I've written a &lt;em&gt;lot&lt;/em&gt; of Textual-based
+applications over the past year, most small examples, &lt;a href="https://github.com/Textualize/frogmouth"&gt;some quite a bit
+bigger&lt;/a&gt;, but none them really form
+part of my daily workflow. This changes with Tinboard.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Tinboard in action" src="/attachments/2023/12/19/tinboard.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;Tinboard is designed as a fully-featured client, allowing for the creation
+of new Bookmarks, complete with tag suggestion support:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Adding a new bookmark" src="/attachments/2023/12/19/new-bookmark.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;Not only are tag suggestions pulled from Pinboard, but entry of tags can
+auto-complete, taking completions from both the suggested tags and also tags
+used amongst your own bookmarks:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Auto-complete of tags" src="/attachments/2023/12/19/tag-suggest.gif#centre"&gt;&lt;/p&gt;
+&lt;p&gt;That feature was really easy to add thanks to &lt;a href="https://textual.textualize.io/api/suggester/"&gt;the &lt;code&gt;Suggester&lt;/code&gt;
+API&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Thanks to the
+&lt;a href="https://textual.textualize.io/blog/2023/09/21/textual-0380-adds-a-syntax-aware-textarea/"&gt;recently-added&lt;/a&gt;
+&lt;code&gt;TextArea&lt;/code&gt; widget the add/edit dialog allows for proper full editing of the
+extended text description of the bookmark too:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Editing a bookmark" src="/attachments/2023/12/19/edit.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;One caveat here is a lack of word-wrapping; but this will be arriving in an
+update to Textual early in the new year.&lt;/p&gt;
+&lt;p&gt;As well as all the usual add/edit/delete facilities, Tinboard is also
+designed to make it pretty easy to find bookmarks too. There are filtering
+options for seeing all read/unread, public/private and tagged/untagged
+bookmarks; this makes bookmark management really easy for me because I can
+filter for all the untagged and private bookmarks, which are likely the ones
+that need editing and expanding on, and tidy up my bookmark library.&lt;/p&gt;
+&lt;p&gt;There is also, of course, full text search too.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Text search entry" src="/attachments/2023/12/19/search-entry.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;When a filter or search is in operation, the related tags and the like react
+too:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A search result being shown" src="/attachments/2023/12/19/search-result.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;Another thing I've made a point of doing in Tinboard is leaning pretty hard
+on the &lt;a href="https://textual.textualize.io/guide/command_palette/"&gt;Command
+Palette&lt;/a&gt;. No
+functionality is &lt;em&gt;only&lt;/em&gt; available by it (I've done my best to make sure that
+keyboard is the primary input device here, with keyboard shortcuts for as
+much as possible). Initially I approached this as a "for the sake of
+completeness" feature, but already I'm finding that it's a pretty quick
+method of pulling up a tag filter.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The command palette in action" src="/attachments/2023/12/19/command-palette.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;To help make all the features as discoverable possible, I've also ensured
+there's a pretty comprehensive help screen:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Help" src="/attachments/2023/12/19/help.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;Anyway; that's v0.1.0 out in the wild. I'm pleased with out it's turned out
+and there's a few more things I'd like to add. It's licensed GPL-3.0 and
+available &lt;a href="https://github.com/davep/tinboard"&gt;via GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/tinboard/"&gt;via
+PyPi&lt;/a&gt;. If you have an environment that
+has &lt;code&gt;pipx&lt;/code&gt; installed you should be able to get up and going with:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;tinboard
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I hope this is useful to someone else. :-)&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry><entry><title>Steam Deck</title><link href="https://blog.davep.org/2023/12/14/Steam-Deck.html" rel="alternate"></link><published>2023-12-14T16:47:00+01:00</published><updated>2023-12-14T16:47:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-12-14:/2023/12/14/Steam-Deck.html</id><content type="html">&lt;p&gt;Back in 2021, I think it was, when Value first announced the Steam Deck, I
 was all &lt;em&gt;"hell yes sign me up!"&lt;/em&gt;; like... really, I signed up there and then
 to go on the waiting list. The idea of a wee device that would let me play a
 ton of games in my Steam library seemed like a great idea. The price seemed
@@ -950,34 +1011,4 @@ Twitter account that you actively use, what the hell is wrong with you?
 Multiply that lots if you have a blue tick.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</content><category term="Creative"></category><category term="blogging"></category><category term="photography"></category></entry><entry><title>Little Shop of Horrors at the Fringe</title><link href="https://blog.davep.org/2023/08/19/little-shop-of-horrors-at-the-fringe.html" rel="alternate"></link><published>2023-08-19T15:00:00+01:00</published><updated>2023-08-19T15:00:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-08-19:/2023/08/19/little-shop-of-horrors-at-the-fringe.html</id><content type="html">&lt;p&gt;As mentioned &lt;a href="/2023/08/10/little-shop-of-horrors.html"&gt;just over a week
-back&lt;/a&gt;, last night I went to see a
-Fringe show that was a production of &lt;em&gt;The Little Shop of Horrors&lt;/em&gt;. Before
-going I had no idea what to expect (in terms of how it would be done, not
-what the content would be): I wasn't clear if it would be a really small
-affair, or something on a bigger stage with reasonably high production
-values (what can I say? It was LSoH, it was a Fringe show, it was booked
-knowing nothing else).&lt;/p&gt;
-&lt;p&gt;When we got there and got into the venue it was... small, oh so very small!
-No real set to speak of. The cast who were about to kick off the performance
-didn't really seem to have much of a costume going on. So, without
-judgement, I settled down to expect the next 90 minutes or so to be... a
-Fringe experience.&lt;/p&gt;
-&lt;p&gt;First impressions were oh so wrong! While there was (for obvious reasons) a
-lack of any real set, the effort that went into the performance really
-worked and I absolutely enjoyed every single moment. Also, because it was a
-production of the musical (which I haven't seen), rather than an adaption of
-the movie (which I have), I got to experience a fresh ending (spoilers!).&lt;/p&gt;
-&lt;p&gt;The seats were uncomfortable. The room was down in the basement, with no
-ventilation, and so was uncomfortably hot. Physically it wasn't a great
-space to be. And yet I really wasn't wishing for it to be over. I think that
-says a lot about the show itself.&lt;/p&gt;
-&lt;p&gt;I think special mention has to be given to the Audrey II models, of which
-there were three different sizes. Someone put some real effort into them.&lt;/p&gt;
-&lt;p&gt;So, yeah, a fun night, topped and tailed with pre-show dinner and post-show
-drinks with friends. I couldn't have asked for more.&lt;/p&gt;
-&lt;p&gt;Unless I last-moment book anything else over the next week, &lt;a href="/2023/08/15/mythos-ragnarok-booked.html"&gt;there's one
-more show to go&lt;/a&gt; in my &lt;a href="/2023/08/07/off-to-see-nick-harper.html"&gt;push to go
-and see at least one show per week of the
-Fringe&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;PS: Sadly no photos. I wasn't sat in a great spot to take photos.&lt;/p&gt;</content><category term="Life"></category><category term="Music"></category><category term="Gig"></category><category term="Fringe"></category></entry></feed>
+&lt;/div&gt;</content><category term="Creative"></category><category term="blogging"></category><category term="photography"></category></entry></feed>

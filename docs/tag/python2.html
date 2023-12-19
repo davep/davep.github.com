@@ -183,6 +183,91 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/07/04/considering-pelican.html#considering-pelican">Considering Pelican</a></h2>
+    <p>
+      Posted on 2023-07-04 08:32 +0100 in <a href="https://blog.davep.org/category/meta.html">Meta</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/blogging.html">Blogging</a>
+        &#8226; 3 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Since getting my blog editing environment set up on the "new" machine <a href="/2023/07/02/catching-up.html">a
+couple of days back</a> I've been thinking some
+more about moving away from Jekyll. Jekyll itself has served me well since I
+started this blog <a href="/2015/06/18/hello-world.html">back in 2015</a>, but I was
+reminded again when installing it on the Mac Mini that it's Ruby-based and I
+have very little understanding of how to get a good Ruby experience on
+macOS<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
+<p>Having <a href="https://fosstodon.org/@davep/110643256889173912">mentioned on Mastodon that I was thinking about finally looking at
+moving my blog management/generation to something
+new</a>, and specifically
+something Python-based and ideally some sort of site generator, I got a few
+suggestions.</p>
+<p>One that looks promising so far is <a href="https://getpelican.com/">Pelican</a>. At
+first glance it seems to tick a few boxes for me:</p>
+<ul>
+<li>Python-based (so easy for me to grok in terms of installing, and also more
+  chance of being hackable).</li>
+<li>Uses Markdown (curiously as an alternative, to reStructuredText, which
+  looks to be the default).</li>
+<li>Does article-based stuff as well as page-based stuff.</li>
+<li>Lots of themes, and themes are Jinja2-based (I'm pretty familiar with
+  Jinja thanks to my Django days and also <a href="https://github.com/davep/ng2web">using the library when kicking
+  off <code>ng2web</code></a>).</li>
+<li>RSS feed generation.</li>
+<li>Syntax-highlighted code blocks.</li>
+</ul>
+<p>While I'm not quite ready to dive in and make the move just yet (I am on a
+"muck about at home" holiday this week, but I've got enough planned without
+losing a day to rebooting my blog), I did do a quick experiment to see if
+Pelican would work for me.</p>
+<p>Key to this is can I keep the URLs for all the posts the same? If I can't
+that's a non-starter.</p>
+<p>Things got off to a good start with an easy install:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pelican[markdown]&quot;</span>
+</code></pre></div>
+
+<p>I then used the <code>pelican-quickstart</code> to kick off a test site, copied in my
+existing Markdown files, dived into the docs and found how to configure the
+generated URLs and... yeah, within like 10 minutes I had a <em>very</em> rough
+version of my blog up and going.</p>
+<p>It looked like garbage, the theme really wasn't to my taste at all, but the
+core of the blog was working.</p>
+<p>I've nuked it all for now but a more considered evaluation is now on my TODO
+list. Things I'll need to drive into properly are:</p>
+<ul>
+<li>Find a base theme that's to my taste.</li>
+<li>Get Disqus working it so that any old comments remain in place.</li>
+<li>Get my image/attachment layout back in place.</li>
+<li>Go through and tidy up all the tagging (which has been a mess with this
+  blog because I never did get round to getting Jekyll to actually use
+  tags).</li>
+<li>Figure out the best way to do the publishing to GitHub pages.</li>
+<li>Likely a bunch of other stuff I've not thought about yet.</li>
+</ul>
+<p>But, yeah, for a brief "over first coffee of the day" tinker to see if I
+like it... I like!</p>
+<p>Let's see how long it takes me to actually get around to making the switch.
+;-)</p>
+<hr>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>When setting this up a couple of days back, I had to pin some packages
+for the blog to older versions because of Ruby version issues; I'm sure
+that Ruby has virtual environment solutions akin to Python, but diving
+into that just for one tool... nah.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/07/03/making-my-github-banner.html#making-my-github-banner">A new GitHub profile README</a></h2>
     <p>
       Posted on 2023-07-03 08:15 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -1123,123 +1208,6 @@ fun of it.</p>
 <p>I think that's what I like about this little problem. It's a good way to do
 a bit of programming exercise; it's like the perfect way to do the
 programming equivalent of going for a short run.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2019/11/04/my-pylint-shame.html#my-pylint-shame">My Pylint shame</a></h2>
-    <p>
-      Posted on 2019-11-04 20:39 +0000 in <a href="https://blog.davep.org/category/python.html">Python</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/fish.html">fish</a>
-        &#8226; 3 min read
-    </p>
-  </header>
-  <div>
-      <div><p>I first got into Python in the mid-to-late 1990s. It's so far back that I
-think the copy of <a href="https://www.python.org/doc/essays/foreword/">Programming
-Python</a> that I have (sadly in
-storage at the moment) might be a first edition. I probably fell out of the
-habit of using Python some time in the early 2000s (that was when I met
-Ruby). It was only 22 months ago that I started using Python a <em>lot</em> thanks
-to <a href="/2017/12/12/on_to_something_new.html">a change of
-employer</a>.</p>
-<p>As you might imagine, much had changed in the 15+ years since I'd last
-written a line of Python in anger. So, early on, I made a point of making
-<a href="https://www.pylint.org/">Pylint</a> part of my development process. All my
-projects have a <code>make lint</code> make target. All of my projects lint the code
-when I push to <code>master</code> in the company GitLab instance. These days I even
-use <a href="https://www.flycheck.org/en/latest/">flycheck</a> to keep me honest as I
-write my code; mostly gone are the days where I don't know of problems until
-I do a <code>make lint</code>.</p>
-<p>Leaning on Pylint in the early days of my new position made for a great
-Python refresher for me. Now, I still lean on it to make sure I don't make
-daft mistakes.</p>
-<p>But...</p>
-<p>Pylint and I don't always agree. And that's fine. For example, I really
-can't stand Pylint's approach to whitespace, and that is a hill I'll happily
-die on. Ditto the obsession with lines being no more than 80 characters wide
-(120 should be fine thanks). As such any project's <code>.pylintrc</code> has, as a
-bare minimum, this:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[FORMAT]</span>
-<span class="na">max-line-length</span><span class="o">=</span><span class="s">120</span>
-
-<span class="k">[MESSAGES CONTROL]</span>
-<span class="na">disable</span><span class="o">=</span><span class="s">bad-whitespace</span>
-</code></pre></div>
-
-<p>Beyond that though, aside from one or two extras that pertain to particular
-projects, I'm happy with what Pylint complains about.</p>
-<p>There are exceptions though. There are times, simply due to the nature of
-the code involved, that Pylint's insistence on code purity isn't going to
-work. That's where I use its inline <a href="https://pylint.readthedocs.io/en/latest/user_guide/message-control.html#block-disables">block disabling
-feature</a>.
-It's handy and helps keep things clean (I won't deploy code that doesn't
-pass 10/10), but there is always this nagging doubt: if I've disabled a
-warning in the code, am I ever going to come back and revisit it?</p>
-<p>To help me think about coming back to such disables now and again, I thought
-it might be interesting to write a tool that'll show which warnings I
-disable most. It resulted in <a href="https://github.com/davep/fish/blob/dd2721e0565928b4145698a42c9c74e4534c578a/conf.d/abbr.d/python.fish#L5">this fish
-abbr</a>:</p>
-<div class="highlight"><pre><span></span><code>abbr<span class="w"> </span>-g<span class="w"> </span>pylintshame<span class="w"> </span><span class="s2">&quot;rg --no-messages \&quot;pylint:disable=\&quot; | awk &#39;BEGIN{FS=\&quot;disable=\&quot;;}{print \$2}&#39; | tr \&quot;,\&quot; \&quot;\n\&quot; | sort | uniq -c | sort -hr&quot;</span>
-</code></pre></div>
-
-<p>The idea here being that it produces a "Pylint hall of shame", something
-like this:</p>
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="mi">12</span><span class="w"> </span><span class="n">wildcard</span><span class="o">-</span><span class="n">import</span>
-<span class="w">  </span><span class="mi">12</span><span class="w"> </span><span class="n">unused</span><span class="o">-</span><span class="n">wildcard</span><span class="o">-</span><span class="n">import</span>
-<span class="w">   </span><span class="mi">8</span><span class="w"> </span><span class="n">no</span><span class="o">-</span><span class="n">member</span>
-<span class="w">   </span><span class="mi">6</span><span class="w"> </span><span class="n">invalid</span><span class="o">-</span><span class="n">name</span>
-<span class="w">   </span><span class="mi">5</span><span class="w"> </span><span class="n">no</span><span class="o">-</span><span class="bp">self</span><span class="o">-</span><span class="n">use</span>
-<span class="w">   </span><span class="mi">4</span><span class="w"> </span><span class="n">import</span><span class="o">-</span><span class="n">outside</span><span class="o">-</span><span class="n">toplevel</span>
-<span class="w">   </span><span class="mi">4</span><span class="w"> </span><span class="n">bare</span><span class="o">-</span><span class="n">except</span>
-<span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="n">unused</span><span class="o">-</span><span class="n">argument</span>
-<span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="n">too</span><span class="o">-</span><span class="n">many</span><span class="o">-</span><span class="n">public</span><span class="o">-</span><span class="n">methods</span>
-<span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="n">too</span><span class="o">-</span><span class="n">many</span><span class="o">-</span><span class="n">instance</span><span class="o">-</span><span class="n">attributes</span>
-<span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="ow">not</span><span class="o">-</span><span class="n">callable</span>
-<span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="n">broad</span><span class="o">-</span><span class="n">except</span>
-<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">wrong</span><span class="o">-</span><span class="n">import</span><span class="o">-</span><span class="n">position</span>
-<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">wrong</span><span class="o">-</span><span class="n">import</span><span class="o">-</span><span class="n">order</span>
-<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">unused</span><span class="o">-</span><span class="n">variable</span>
-<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">unexpected</span><span class="o">-</span><span class="n">keyword</span><span class="o">-</span><span class="n">arg</span>
-<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">too</span><span class="o">-</span><span class="n">many</span><span class="o">-</span><span class="n">locals</span>
-<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">arguments</span><span class="o">-</span><span class="n">differ</span>
-</code></pre></div>
-
-<p>To break the pipeline down:</p>
-<div class="highlight"><pre><span></span><code>rg --no-messages &quot;pylint:disable=&quot;
-</code></pre></div>
-
-<p>First off, I use <a href="https://github.com/BurntSushi/ripgrep"><code>ripgrep</code></a> (if you
-don't, you might want to have a good look at it -- I find it amazingly
-handy) to find everywhere in the code in and below the current directory
-(the <code>--no-messages</code> switch just stops any file I/O errors that might result
-from permission issues -- they're not interesting here) that contains a line
-that has a Pylint block disable (if you tend to format yours differently,
-you'll need to tweak the regular expression, of course).</p>
-<p>I then pipe it through <code>awk</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">awk</span> <span class="s">&#39;BEGIN{FS=&quot;disable=&quot;;}{print $2}&#39;</span>
-</code></pre></div>
-
-<p>so I can lazily <a href="https://docs.freebsd.org/info/gawk/gawk.info.Field_Separators.html">extract everything after the
-<code>disable=</code></a>.</p>
-<p>Next up, because it's a possible list of things that can be disabled, I use
-<code>tr</code>:</p>
-<div class="highlight"><pre><span></span><code>tr &quot;,&quot; &quot;\n&quot;
-</code></pre></div>
-
-<p>to turn any comma-separated list into multiple lines.</p>
-<p>Having got to this point, I <code>sort</code> the list, <code>uniq</code> the result, while
-prepending a count (<code>-c</code>), and then <code>sort</code> the result again, in reverse and
-sorting the numbers based on how a human would read the result (<code>-hr</code>).</p>
-<div class="highlight"><pre><span></span><code>sort | uniq -c | sort -hr
-</code></pre></div>
-
-<p>It's short, sweet and hacky, but does the job quite nicely. From now on, any
-time I get curious about which disables I'm leaning on too much, I can use
-this to take stock.</p></div>
   </div>
 </article>
 
