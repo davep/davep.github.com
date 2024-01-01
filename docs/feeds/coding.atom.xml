@@ -1,5 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2023-12-25T10:43:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Tinboard v0.4.0</title><link href="https://blog.davep.org/2023/12/25/tinboard-0-4-0.html" rel="alternate"></link><published>2023-12-25T10:43:00+00:00</published><updated>2023-12-25T10:43:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-12-25:/2023/12/25/tinboard-0-4-0.html</id><content type="html">&lt;p&gt;Although it's not planned this way, so far it looks like I'm on a "every
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2024-01-01T10:17:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Orange Site Hit</title><link href="https://blog.davep.org/2024/01/01/oshit.html" rel="alternate"></link><published>2024-01-01T10:17:00+00:00</published><updated>2024-01-01T10:17:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-01-01:/2024/01/01/oshit.html</id><content type="html">&lt;p&gt;I know I'm not alone in having a relationship with &lt;a href="https://news.ycombinator.com/"&gt;the orange
+site&lt;/a&gt; that is... weird. I generally dislike
+the culture there, it's almost impossible to read any of the comments
+without being frustrated about the industry I work in or am adjacent to and
+some of the people who inhabit it; but as a link aggregator of stuff I might
+find interesting... I honestly can't think of anywhere better. So, yes, I've
+been a fairly avid reader of HackerNews for many years, and have even had an
+account there for over 4 years.&lt;/p&gt;
+&lt;p&gt;Given this, for a wee while now, I've been meaning to knock up a
+terminal-based client for it using
+&lt;a href="https://textual.textualize.io/"&gt;Textual&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So after work on &lt;a href="/2023/12/19/tinboard.html"&gt;Tinboard&lt;/a&gt; settled down I got
+the urge to start a new pet project (not abandoning Tinboard, I'm still
+going to be tweaking and extending it of course) and finally knocking up
+that client seemed like the one.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Orange Site Hit&lt;/em&gt; is the result.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="OShit" src="/attachments/2024/01/01/oshit-index.png"&gt;&lt;/p&gt;
+&lt;p&gt;It's worth making clear from the very start: this is a read-only reader.
+There is no logging in, there is no voting, there is no posting of things.
+This is a client built with &lt;a href="https://github.com/HackerNews/API"&gt;their own
+API&lt;/a&gt; and it doesn't provide such a thing;
+at least not now and despite me seeing past promises that this will change,
+there's no API for doing that sort of thing.&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;The idea of this application is you can run it up in the terminal, check the
+top, best and latest from the categories provided by the API, perhaps dive
+off into your web browser if needed, and then got on with other things.&lt;/p&gt;
+&lt;p&gt;It's there for when you're in the terminal you just &lt;em&gt;need&lt;/em&gt; your hit of the
+orange site.&lt;/p&gt;
+&lt;p&gt;The main screen of the app revolves around the index of items, most of which
+are going to be stories. You can see an example of that above. For people
+who prefer things to be slightly less cramped, I've also added a "relaxed
+layout" mode too:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The index in relaxed mode" src="/attachments/2024/01/01/oshit-index-relaxed.png"&gt;&lt;/p&gt;
+&lt;p&gt;From the index you can head off into your web-browser by hitting
+&lt;kbd&gt;Enter&lt;/kbd&gt; on any item; if the item is a story that links to somewhere
+that link will be opened; if it's something more like &lt;em&gt;AskHN&lt;/em&gt;, or a job,
+it'll open the related page on HackerNews itself.&lt;/p&gt;
+&lt;p&gt;Pressing &lt;kbd&gt;u&lt;/kbd&gt; with an item selected will let you view the details
+for the user who posted the item:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Viewing the details of a user" src="/attachments/2024/01/01/oshit-user-dialog.png"&gt;&lt;/p&gt;
+&lt;p&gt;If you're the sort of person who wants to torture themselves by reading the
+comments (oh come on we all do it!), there's a comment reader/navigator too.
+With an item selected press &lt;kbd&gt;c&lt;/kbd&gt; and the comment dialog will open:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Viewing the real meat of HackerNews" src="/attachments/2024/01/01/oshit-comments.png"&gt;&lt;/p&gt;
+&lt;p&gt;I &lt;em&gt;think&lt;/em&gt; the navigation within that dialog is fine; although I can see some
+scope for improvement. At the moment it uses a widget-per-comment (actually,
+it's at least 4 widgets per comment), which is fine and Textual handles that
+without an issue, even on items with lots of comments, but longer-term I can
+see me having some fun using &lt;a href="https://textual.textualize.io/guide/widgets/#line-api"&gt;the line
+API&lt;/a&gt; to build a
+super-efficient comment presentation and navigation widget.&lt;/p&gt;
+&lt;p&gt;That's it for now; it feels like a good v0.1.0 spot to be in. There are a
+bunch of things I still want to do with it (better cleaning up of the text,
+perhaps with some markup support so links get handled, etc; plus lots of
+ways of searching for stuff), but I felt it was in a place where I could
+start using it.&lt;/p&gt;
+&lt;p&gt;Anyway, if this sounds like your sort of thing, it can be installed with
+&lt;code&gt;pip&lt;/code&gt; or (ideally) &lt;code&gt;pipx&lt;/code&gt; &lt;a href="https://pypi.org/project/oshit/"&gt;from PyPi&lt;/a&gt;. The
+&lt;a href="https://github.com/davep/oshit"&gt;source is available over on GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Yes, there are lots of clients that do all sorts of HTML-scraping of
+the actual website to make this possible; this ain't that. This ain't
+going to be that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry><entry><title>Tinboard v0.4.0</title><link href="https://blog.davep.org/2023/12/25/tinboard-0-4-0.html" rel="alternate"></link><published>2023-12-25T10:43:00+00:00</published><updated>2023-12-25T10:43:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-12-25:/2023/12/25/tinboard-0-4-0.html</id><content type="html">&lt;p&gt;Although it's not planned this way, so far it looks like I'm on a "every
 other day" release cycle with Tinboard right now! Today's release is a small
 but handy one, I think.&lt;/p&gt;
 &lt;p&gt;Thanks to the handy little library
@@ -1376,44 +1444,4 @@ document my journey. I think I'd like to write a short series of TIL-type
 posts; nothing too long, just some new thing I read or discovered and my
 reaction to it. So, if you happen to follow this blog, I apologise in
 advance for any Swift-spam.&lt;/p&gt;
-&lt;p&gt;You have been warned. ;-)&lt;/p&gt;</content><category term="Coding"></category><category term="Swift"></category><category term="Apple"></category><category term="coding"></category></entry><entry><title>Where I live and work</title><link href="https://blog.davep.org/2020/01/11/where-i-live-and-work.html" rel="alternate"></link><published>2020-01-11T14:17:00+00:00</published><updated>2020-01-11T14:17:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-01-11:/2020/01/11/where-i-live-and-work.html</id><content type="html">&lt;p&gt;It's no surprise that I spend a lot of time in Emacs. Especially when I'm
-developing software, either for work or for personal fun, most of my time is
-time spent in Emacs. While I do obviously flit over to Chrome, and mostly do
-my CLI stuff in &lt;a href="https://iterm2.com/"&gt;iTerm2&lt;/a&gt; (I really like
-&lt;a href="https://www.gnu.org/software/emacs/manual/html_mono/eshell.html"&gt;eshell&lt;/a&gt;
-but it just can't replace a good terminal for me), I spend a lot of time
-looking at Emacs.&lt;/p&gt;
-&lt;p&gt;Here's what my Emacs looks like:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Screenshot 2020-01-11 at 13.49.04.png" src="/attachments/2020/01/11/Screenshot 2020-01-11 at 13.49.04.png"&gt;&lt;/p&gt;
-&lt;p&gt;Key elements for me are as follows:&lt;/p&gt;
-&lt;h1&gt;Light background&lt;/h1&gt;
-&lt;p&gt;Something I've never really got on with when it comes to code editing is
-dark themes and dark backgrounds. I find it too much of an eye strain.
-Oddly, I tend to prefer dark themes everywhere else, but not when it comes
-to working in Emacs. The theme I use is &lt;a href="https://github.com/davep/.emacs.d/blob/b9a3df42f0708eabc31a6176d69a67bbdf31a087/init.d/init-style.el#L12-L13"&gt;the built-in adwaita
-theme&lt;/a&gt;.&lt;/p&gt;
-&lt;h1&gt;Less boring mode line&lt;/h1&gt;
-&lt;p&gt;I make use of &lt;a href="https://github.com/milkypostman/powerline"&gt;powerline&lt;/a&gt; to
-&lt;a href="https://github.com/davep/.emacs.d/blob/b9a3df42f0708eabc31a6176d69a67bbdf31a087/init.d/packages/init-packages-melpa.el#L386-L399"&gt;make the mode line a bit less
-boring-looking&lt;/a&gt;.
-While the colour scheme is such that it's kept in line with the light look,
-the style is nice in that it sort of matches the style of prompt I use in my
-shell.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Screenshot 2020-01-11 at 14.05.39.png" src="/attachments/2020/01/11/Screenshot 2020-01-11 at 14.05.39.png"&gt;&lt;/p&gt;
-&lt;h1&gt;Full screen&lt;/h1&gt;
-&lt;p&gt;I always run Emacs as a full-screen application, then splitting it into
-different tiled windows using its own internal window handling. This is
-something I've done from way back when I got started with my first GNU/Linux
-desktop machine, and still like to do on macOS.&lt;/p&gt;
-&lt;p&gt;I also &lt;a href="https://github.com/davep/longmacs.el"&gt;run Emacs as a server&lt;/a&gt; and
-then use &lt;a href="https://github.com/davep/e"&gt;a little wrapper around &lt;code&gt;emacsclient&lt;/code&gt;&lt;/a&gt;
-to open files (both locally and remotely) from the command line in that
-Emacs session.&lt;/p&gt;
-&lt;h1&gt;Comfortable eshell when I need it&lt;/h1&gt;
-&lt;p&gt;Although I say above that I generally don't use &lt;code&gt;eshell&lt;/code&gt;, preferring to use
-a full-featured terminal application, in combination with
-&lt;a href="https://fishshell.com/"&gt;fish&lt;/a&gt;, I do sometimes dip into eshell for quick
-things. So of course I have that configured to feel comfortable too.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Screenshot 2020-01-11 at 14.10.07.png" src="/attachments/2020/01/11/Screenshot 2020-01-11 at 14.10.07.png"&gt;&lt;/p&gt;
-&lt;p&gt;I do this easily &lt;a href="https://github.com/davep/.emacs.d/blob/b9a3df42f0708eabc31a6176d69a67bbdf31a087/init.d/packages/init-packages-melpa.el#L181-L192"&gt;thanks to
-&lt;code&gt;eshell-git-prompt&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"></category><category term="Emacs"></category><category term="shell"></category></entry></feed>
+&lt;p&gt;You have been warned. ;-)&lt;/p&gt;</content><category term="Coding"></category><category term="Swift"></category><category term="Apple"></category><category term="coding"></category></entry></feed>

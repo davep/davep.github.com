@@ -1,5 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2023-12-25T10:43:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Tinboard v0.4.0</title><link href="https://blog.davep.org/2023/12/25/tinboard-0-4-0.html" rel="alternate"></link><published>2023-12-25T10:43:00+00:00</published><updated>2023-12-25T10:43:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-12-25:/2023/12/25/tinboard-0-4-0.html</id><content type="html">&lt;p&gt;Although it's not planned this way, so far it looks like I'm on a "every
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2024-01-01T10:17:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Orange Site Hit</title><link href="https://blog.davep.org/2024/01/01/oshit.html" rel="alternate"></link><published>2024-01-01T10:17:00+00:00</published><updated>2024-01-01T10:17:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-01-01:/2024/01/01/oshit.html</id><content type="html">&lt;p&gt;I know I'm not alone in having a relationship with &lt;a href="https://news.ycombinator.com/"&gt;the orange
+site&lt;/a&gt; that is... weird. I generally dislike
+the culture there, it's almost impossible to read any of the comments
+without being frustrated about the industry I work in or am adjacent to and
+some of the people who inhabit it; but as a link aggregator of stuff I might
+find interesting... I honestly can't think of anywhere better. So, yes, I've
+been a fairly avid reader of HackerNews for many years, and have even had an
+account there for over 4 years.&lt;/p&gt;
+&lt;p&gt;Given this, for a wee while now, I've been meaning to knock up a
+terminal-based client for it using
+&lt;a href="https://textual.textualize.io/"&gt;Textual&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So after work on &lt;a href="/2023/12/19/tinboard.html"&gt;Tinboard&lt;/a&gt; settled down I got
+the urge to start a new pet project (not abandoning Tinboard, I'm still
+going to be tweaking and extending it of course) and finally knocking up
+that client seemed like the one.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Orange Site Hit&lt;/em&gt; is the result.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="OShit" src="/attachments/2024/01/01/oshit-index.png"&gt;&lt;/p&gt;
+&lt;p&gt;It's worth making clear from the very start: this is a read-only reader.
+There is no logging in, there is no voting, there is no posting of things.
+This is a client built with &lt;a href="https://github.com/HackerNews/API"&gt;their own
+API&lt;/a&gt; and it doesn't provide such a thing;
+at least not now and despite me seeing past promises that this will change,
+there's no API for doing that sort of thing.&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;The idea of this application is you can run it up in the terminal, check the
+top, best and latest from the categories provided by the API, perhaps dive
+off into your web browser if needed, and then got on with other things.&lt;/p&gt;
+&lt;p&gt;It's there for when you're in the terminal you just &lt;em&gt;need&lt;/em&gt; your hit of the
+orange site.&lt;/p&gt;
+&lt;p&gt;The main screen of the app revolves around the index of items, most of which
+are going to be stories. You can see an example of that above. For people
+who prefer things to be slightly less cramped, I've also added a "relaxed
+layout" mode too:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The index in relaxed mode" src="/attachments/2024/01/01/oshit-index-relaxed.png"&gt;&lt;/p&gt;
+&lt;p&gt;From the index you can head off into your web-browser by hitting
+&lt;kbd&gt;Enter&lt;/kbd&gt; on any item; if the item is a story that links to somewhere
+that link will be opened; if it's something more like &lt;em&gt;AskHN&lt;/em&gt;, or a job,
+it'll open the related page on HackerNews itself.&lt;/p&gt;
+&lt;p&gt;Pressing &lt;kbd&gt;u&lt;/kbd&gt; with an item selected will let you view the details
+for the user who posted the item:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Viewing the details of a user" src="/attachments/2024/01/01/oshit-user-dialog.png"&gt;&lt;/p&gt;
+&lt;p&gt;If you're the sort of person who wants to torture themselves by reading the
+comments (oh come on we all do it!), there's a comment reader/navigator too.
+With an item selected press &lt;kbd&gt;c&lt;/kbd&gt; and the comment dialog will open:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Viewing the real meat of HackerNews" src="/attachments/2024/01/01/oshit-comments.png"&gt;&lt;/p&gt;
+&lt;p&gt;I &lt;em&gt;think&lt;/em&gt; the navigation within that dialog is fine; although I can see some
+scope for improvement. At the moment it uses a widget-per-comment (actually,
+it's at least 4 widgets per comment), which is fine and Textual handles that
+without an issue, even on items with lots of comments, but longer-term I can
+see me having some fun using &lt;a href="https://textual.textualize.io/guide/widgets/#line-api"&gt;the line
+API&lt;/a&gt; to build a
+super-efficient comment presentation and navigation widget.&lt;/p&gt;
+&lt;p&gt;That's it for now; it feels like a good v0.1.0 spot to be in. There are a
+bunch of things I still want to do with it (better cleaning up of the text,
+perhaps with some markup support so links get handled, etc; plus lots of
+ways of searching for stuff), but I felt it was in a place where I could
+start using it.&lt;/p&gt;
+&lt;p&gt;Anyway, if this sounds like your sort of thing, it can be installed with
+&lt;code&gt;pip&lt;/code&gt; or (ideally) &lt;code&gt;pipx&lt;/code&gt; &lt;a href="https://pypi.org/project/oshit/"&gt;from PyPi&lt;/a&gt;. The
+&lt;a href="https://github.com/davep/oshit"&gt;source is available over on GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Yes, there are lots of clients that do all sorts of HTML-scraping of
+the actual website to make this possible; this ain't that. This ain't
+going to be that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry><entry><title>Tinboard v0.4.0</title><link href="https://blog.davep.org/2023/12/25/tinboard-0-4-0.html" rel="alternate"></link><published>2023-12-25T10:43:00+00:00</published><updated>2023-12-25T10:43:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-12-25:/2023/12/25/tinboard-0-4-0.html</id><content type="html">&lt;p&gt;Although it's not planned this way, so far it looks like I'm on a "every
 other day" release cycle with Tinboard right now! Today's release is a small
 but handy one, I think.&lt;/p&gt;
 &lt;p&gt;Thanks to the handy little library
@@ -835,49 +903,4 @@ directory hierarchy full of Markdown files, all tagged and filled with
 information, which I'll be able to &lt;code&gt;grep&lt;/code&gt; and slice and dice and count and
 perhaps pull into a database and cross-reference with stuff and things.&lt;/p&gt;
 &lt;p&gt;Or perhaps it's all just really me not having a good use for Obsidian but
-inventing one anyway. ;-)&lt;/p&gt;</content><category term="Life"></category><category term="journal"></category><category term="Obsidian"></category><category term="graph"></category></entry><entry><title>Textual Query Sandbox Update</title><link href="https://blog.davep.org/2023/09/10/textual-query-sandbox-update.html" rel="alternate"></link><published>2023-09-10T09:22:00+01:00</published><updated>2023-09-10T09:22:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-09-10:/2023/09/10/textual-query-sandbox-update.html</id><content type="html">&lt;p&gt;Since &lt;a href="/2023/09/01/textual-query-sandbox.html"&gt;quickly hacking together &lt;code&gt;textual-query-sandbox&lt;/code&gt; a few days
-back&lt;/a&gt;, I've made a bunch of small
-changes here and there. While most have been cosmetic and playing with some
-ideas, some have also been internal improvements that should make the tool
-work better.&lt;/p&gt;
-&lt;p&gt;The most prominent change is one I pondered in the previous post, where I
-thought it might be interesting to have a small collection of playgrounds
-grounded together with a &lt;code&gt;TabbedContent&lt;/code&gt;. So as of now the tool still has
-the original playground which had an emphasis on nested containers:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Playground 1" src="/attachments/2023/09/10/tqs-1.png#centre"&gt;&lt;/p&gt;
-&lt;p&gt;There's now a playground with an emphasis on selecting widgets within
-containers&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Playground 2" src="/attachments/2023/09/10/tqs-2.png#centre"&gt;&lt;/p&gt;
-&lt;p&gt;There's also now a playground that has an emphasis on pulling out widgets
-based on ID and classes:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Playground 3" src="/attachments/2023/09/10/tqs-3.png#centre"&gt;&lt;/p&gt;
-&lt;p&gt;The other change you will notice from the original post is the DOM tree
-shown in the bottom right corner. Note that that isn't there to show your
-query result (that's the bottom left panel), it's there to help picture how
-the DOM in the current playground hangs together, and will hopefully help in
-picturing the structure for when you write a query.&lt;/p&gt;
-&lt;p&gt;I sense there's still a lot of fun things I could add to this, and I'm still
-keen on the idea of having the playgrounds "soft coded" in some way, so
-people can make their own and load them up.&lt;/p&gt;
-&lt;p&gt;Another thing I want to try and work on is making the display as useful as
-possible. While I think it's actually pretty neat and clear, there's not a
-&lt;em&gt;lot&lt;/em&gt; of space&lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2"&gt;2&lt;/a&gt;&lt;/sup&gt; available to show the playground and the results. Finding
-a good balance is an interesting problem.&lt;/p&gt;
-&lt;p&gt;For a number of reasons this is turning into a really enjoyable tinker
-project.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li id="fn:1"&gt;
-&lt;p&gt;This is, of course, slightly nonsensical wording. Containers &lt;em&gt;are&lt;/em&gt;
-widgets in Textual. Pretty much everything you see in your terminal is a
-widget, even a &lt;code&gt;Screen&lt;/code&gt; is a widget.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:2"&gt;
-&lt;p&gt;A lot of this of course hinges on how big someone's terminal is. I
-tend to run a fairly high resolutions with the smallest font I find
-readable so my terminal windows are often pretty "big"; other people
-tend to have something much smaller in terms of cell with/height.&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content><category term="Python"></category><category term="PyPi"></category><category term="Python"></category><category term="coding"></category><category term="Textual"></category></entry></feed>
+inventing one anyway. ;-)&lt;/p&gt;</content><category term="Life"></category><category term="journal"></category><category term="Obsidian"></category><category term="graph"></category></entry></feed>
