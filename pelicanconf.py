@@ -12,7 +12,7 @@ DEFAULT_LANG     = "en"
 SITELOGO         = "/static/davep.jpeg"
 FAVICON          = "/static/favicon.ico"
 COPYRIGHT_NAME   = AUTHOR
-COPYRIGHT_YEAR   = "2015-2023"
+COPYRIGHT_YEAR   = "2015-2024"
 
 ##############################################################################
 # General generation configuration.
