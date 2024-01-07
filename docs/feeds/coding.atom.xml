@@ -1,5 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2024-01-01T10:17:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Orange Site Hit</title><link href="https://blog.davep.org/2024/01/01/oshit.html" rel="alternate"></link><published>2024-01-01T10:17:00+00:00</published><updated>2024-01-01T10:17:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-01-01:/2024/01/01/oshit.html</id><content type="html">&lt;p&gt;I know I'm not alone in having a relationship with &lt;a href="https://news.ycombinator.com/"&gt;the orange
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2024-01-07T10:17:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Orange Site Hit</title><link href="https://blog.davep.org/2024/01/07/oshit-0-2-0.html" rel="alternate"></link><published>2024-01-07T10:17:00+00:00</published><updated>2024-01-07T10:17:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-01-07:/2024/01/07/oshit-0-2-0.html</id><content type="html">&lt;p&gt;This is actually the second release of OSHit since &lt;a href="/2024/01/01/oshit.html"&gt;I first announced it a
+week back&lt;/a&gt;, and I'll get to that other release in a
+moment.&lt;/p&gt;
+&lt;p&gt;I've just published v0.2.0, which isn't a very substantial release, but
+which bumps the required version of Textual to
+&lt;a href="https://github.com/Textualize/textual/releases/tag/v0.47.1"&gt;v0.47.1&lt;/a&gt; and
+has some fun with &lt;a href="https://github.com/Textualize/textual/releases/tag/v0.47.0"&gt;the new nested CSS
+feature&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Underlying the point of this release was me taking a &lt;em&gt;"real world"&lt;/em&gt;
+application of mine and nesting as much of the CSS within it as possible, in
+part to get a feel for how and when it's useful, but also to give it a
+proper test in a &lt;em&gt;"proper"&lt;/em&gt; application. In doing so &lt;a href="https://github.com/Textualize/textual/issues/3969"&gt;I think I've found one
+bug&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Dogfooding is always a good idea.&lt;/p&gt;
+&lt;p&gt;The main visible change in this release is I've played around with the look
+of the comments dialog a bit:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="OSHit you have comments" src="/attachments/2024/01/07/oshit-comments.png"&gt;&lt;/p&gt;
+&lt;p&gt;I'm still narrowing this down, but I think I prefer this look to what I
+started out with.&lt;/p&gt;
+&lt;p&gt;Another change I made was also to the comments dialog. Before, if you
+performed the &lt;em&gt;"expand comments"&lt;/em&gt; action on a comment card that already had
+its comments expanded, it would move focus to the first child comment; this
+was a deliberate choice that felt right at the time. Having used the app for
+a few days now I've realised that making it an open/close toggle is far more
+useful. So that's what I've done.&lt;/p&gt;
+&lt;p&gt;Now... as for &lt;a href="https://github.com/davep/oshit/releases/tag/v0.1.1"&gt;the previous
+release&lt;/a&gt; I mentioned
+above. That was a fun one.&lt;/p&gt;
+&lt;p&gt;Back when I released v0.1.0 some joker decided that it would be fun to
+&lt;a href="https://news.ycombinator.com/item?id=38831083"&gt;submit the blog post about it to the Orange
+Site&lt;/a&gt;. The comments there
+went as you'd expected:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Some riffed off the opening paragraph, ignoring the tool itself.&lt;/li&gt;
+&lt;li&gt;Some riffed off the opening paragraph in self-reflective way.&lt;/li&gt;
+&lt;li&gt;Some riffed off the opening paragraph in a &lt;em&gt;"I never see the problem"&lt;/em&gt;
+  way.&lt;/li&gt;
+&lt;li&gt;One or two did the usual &lt;em&gt;"why even bother building that when
+  &lt;code&gt;$TOOL_OF_CHOICE&lt;/code&gt; exists?"&lt;/em&gt; dance to show their terminal purity.&lt;/li&gt;
+&lt;li&gt;One or two posted genuinely useful links to other similar projects.&lt;/li&gt;
+&lt;li&gt;The biggest tree of comments was kind of a fight.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;One comment caught my eye though; someone reported having a problem running
+it. My initial thought on reading it was &lt;em&gt;"my dude, seriously, you're going
+to report the problem in some random comment on HN rather than raise an
+issue with the author?!?"&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;For once &lt;a href="https://github.com/davep/oshit/issues/2"&gt;I was wrong to be so cynical&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So, yeah, that was the reminder I needed that I'd been intentionally
+reckless while writing the original code, and hadn't &lt;a href="https://github.com/davep/oshit/pull/4"&gt;gone back to the API
+code I'd written and made it behave&lt;/a&gt;
+before doing the initial release.&lt;/p&gt;
+&lt;p&gt;All of which is to say: if you run into a problem with some FOSS project, be
+like &lt;a href="https://github.com/mihaitodor"&gt;@mihaitodor&lt;/a&gt;. Issue that thing so the
+developer gets to know about it; don't assume they'll be reading some random
+comment section, social media site or Discord server!&lt;/p&gt;
+&lt;p&gt;That and don't make 500+ HTTP requests at once; that might not end well for
+some.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry><entry><title>Orange Site Hit</title><link href="https://blog.davep.org/2024/01/01/oshit.html" rel="alternate"></link><published>2024-01-01T10:17:00+00:00</published><updated>2024-01-01T10:17:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-01-01:/2024/01/01/oshit.html</id><content type="html">&lt;p&gt;I know I'm not alone in having a relationship with &lt;a href="https://news.ycombinator.com/"&gt;the orange
 site&lt;/a&gt; that is... weird. I generally dislike
 the culture there, it's almost impossible to read any of the comments
 without being frustrated about the industry I work in or am adjacent to and
@@ -1364,84 +1420,4 @@ make the swap -- the idea being that if I currently have them cloned down to
 my machine, they're obviously some level of "active". At some point I
 imagine I could get more clever and use the APIs of the forges to look at
 all the repositories I own; that's another job for another day.&lt;/p&gt;
-&lt;p&gt;This gives me enough to be going on with. :-)&lt;/p&gt;</content><category term="Coding"></category><category term="git"></category></entry><entry><title>A second attempt to learn Swift</title><link href="https://blog.davep.org/2020/06/21/a-second-attempt-to-learn-swift.html" rel="alternate"></link><published>2020-06-21T14:48:00+01:00</published><updated>2020-06-21T14:48:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-06-21:/2020/06/21/a-second-attempt-to-learn-swift.html</id><content type="html">&lt;p&gt;It's five years ago this month that I bought myself my first macOS (then OS
-X) device. After many years of having a Windows machine as my daily driver,
-which was also my work machine (I worked from home), I decided it was high
-time that I returned to having a Unix-a-like system on my desk too. For a
-decade or so, starting in the later-90s, I'd had a GNU/Linux desktop. I
-still had a Windows desktop (until a couple of years ago most of my work was
-on DOS and Windows), but thanks to the wonders of a KVM, and later an X
-server that ran on Windows, my personal hacking was done on a GNU/Linux
-desktop.&lt;/p&gt;
-&lt;p&gt;But as things moved around, priorities changed, as life moved on, the
-GNU/Linux boxes got retired and never quite replaced. Eventually, in 2015, I
-found myself with the means and desire to recover that sort of setup. Long
-story short, after a lot of reading up and weighing up options I decided
-that the best option for a desktop Unix was... an iMac!&lt;/p&gt;
-&lt;p&gt;I loved it. Sure, &lt;a href="/2015/06/27/my-first-couple-of-weeks-with-an-imac.html"&gt;there were lots of little things on the surface that were
-different or annoying or just plain not as cool as the Mac fans would tell
-you&lt;/a&gt;,
-but under the hood I found what I needed: a Unix CLI with all the things I
-knew well. And, of course, it ran GNU Emacs just fine; that was the really
-important thing for me.&lt;/p&gt;
-&lt;p&gt;Pretty much right away I decided that it might be fun to learn the tools
-necessary to develop native Mac apps, and perhaps even iOS apps. I
-downloaded XCode, bought a book, and started working through it. Having got
-that book, I decided it might be interesting to own an iOS device too. So,
-sort of needing an MP3 player, and having no wish to get an iPhone, &lt;a href="/2015/06/23/and-now-for-some-ios.html"&gt;I got
-myself an iPod
-Touch&lt;/a&gt;. So I
-was all set to devour the Swift book, write some stuff for OS X, create an
-iOS app or two, and... life happened. Stuff cropped up that distracted me
-from taking that further and I never really returned to working through the
-book.&lt;/p&gt;
-&lt;p&gt;Fast forward to now and that initial iMac and iPod purchase spiralled a wee
-bit. Next after the iPod was an iPad Mini, when my Nexus 7 was starting to
-show its age and it was obvious that Google wasn't going to produce any more
-good Android tablets. Then, when I needed a very portable Unix-a-like
-machine for trips between where I was living and Edinburgh, &lt;a href="/2016/04/28/i-now-own-a-macbook.html"&gt;I got myself a
-MacBook Air&lt;/a&gt;.
-Since then the iPod Touch has been replaced once, as has the iPad Mini. I
-now also own an iPad and a MacBook Pro. Unless Apple screw up and turn Macs
-into something unusable for developers (there are rumours), I imagine I'll
-be using Apple devices for some time to come now.&lt;/p&gt;
-&lt;p&gt;And then, last month, having finally got frustrated with where Google were
-going with Android and the Pixel series, I jumped ship to the iPhone 11.&lt;/p&gt;
-&lt;p&gt;As of right now I'm in a situation where I'm all about the Apple ecosystem
-regarding hardware and operating systems (including for my work machine),
-all of which is there to support my heavy use of the Google ecosystem
-(actually, the one bit of Google hardware I still lean on heavily is the
-Google Home -- I have 3 around my home).&lt;/p&gt;
-&lt;p&gt;So... given all of that, I thought it was time to look at returning to
-learning Swift, with a view to writing some native macOS and i(Pad)OS stuff.
-I soon realised that the book I'd bought back in 2015 was rather out of
-date. It covers Swift 1.2 -- &lt;a href="https://en.wikipedia.org/wiki/Swift_(programming_language)#Version_history"&gt;we're now up to
-5.2&lt;/a&gt;!
-Given this, and given I've forgotten pretty much everything I'd read at the
-time, I decided I should start again from scratch.&lt;/p&gt;
-&lt;p&gt;This weekend I've started reading my way though &lt;a href="https://www.oreilly.com/library/view/ios-13-programming/9781492074526/"&gt;&lt;em&gt;iOS Programming
-Fundamentals with
-Swift&lt;/em&gt;&lt;/a&gt;.
-While this obviously has an emphasis on iOS, I'm already finding that the
-first part of the book is a really great introduction to the Swift language
-in general. The pace seems just right, and the way topics are grouped makes
-it easy enough for me to skip over what's obvious (I don't need to know what
-objected-oriented programming is, and what the difference between a class
-and an object is, etc) and read up on the detail of this particular language
-when it comes to general concepts I know (knowing the differences between a
-class, struct and enum in the language is important, for example).&lt;/p&gt;
-&lt;p&gt;I've yet to write a line of code, but I'm fine with that. The book is
-spending a lot of time introducing the language before encouraging you to
-fire up XCode, and I'm okay with that. I'm never a fan of being asked to
-write out code that I can't properly follow -- that just makes stuff look
-like magic when it's far more educational to know what's going on. What I am
-finding is I'm making lots of notes that are either &lt;em&gt;"oh, yeah, this is
-cool, I like this idea!"&lt;/em&gt; or &lt;em&gt;"WTF are you kidding me?!?"&lt;/em&gt;. Which is really
-nice -- it's always great to learn a new language that's a bit different
-from what you normally use.&lt;/p&gt;
-&lt;p&gt;My plan then, over the next few weeks, it to keep at this and hopefully
-document my journey. I think I'd like to write a short series of TIL-type
-posts; nothing too long, just some new thing I read or discovered and my
-reaction to it. So, if you happen to follow this blog, I apologise in
-advance for any Swift-spam.&lt;/p&gt;
-&lt;p&gt;You have been warned. ;-)&lt;/p&gt;</content><category term="Coding"></category><category term="Swift"></category><category term="Apple"></category><category term="coding"></category></entry></feed>
+&lt;p&gt;This gives me enough to be going on with. :-)&lt;/p&gt;</content><category term="Coding"></category><category term="git"></category></entry></feed>
