@@ -183,6 +183,47 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2019/11/17/getting-started.html#getting-started">Getting started</a></h2>
+    <p>
+      Posted on 2019-11-17 11:36 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/coding.html">Coding</a>,              <a href="https://blog.davep.org/tag/learning.html">learning</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>By coincidence, in a couple of different places over the last couple of
+weeks, the subject of <em>"how do I progress in leaning to program?"</em> has
+cropped up. For me, I think the approaches and solutions tend to be the same
+for when I want to get my head around a new language: read good examples of
+idiomatic code, read other related materials, find a problem you care about
+and implement a solution (ideally something you'll directly benefit from, or
+at least others may benefit from). Hence the <a href="/2019/11/10/going-on-a-journey.html">5x5 puzzle and Norton Guide
+reader projects I mentioned in my previous
+post</a>.</p>
+<p>Of course, not everyone has problems that they need solving in a way that
+would work for this approach. So another approach I've recommended in the
+past is to go looking on somewhere like GitHub and find projects that
+promote "low-hanging fruit" issues in a way that's designed to be friendly
+for those who are new to development, new to contributing or new to the
+problem domain.</p>
+<p>While looking for examples of this yesterday I stumbled on <a href="https://github.com/MunGell/awesome-for-beginners"><em>Awesome for
+Beginners</em></a>. This looks
+like a great list and one I'm going to keep <a href="https://pinboard.in/u:davep/">bookmarked for future
+reference</a>. Now, this particular list does
+seem to have an emphasis on <a href="https://github.com/MunGell/awesome-for-beginners/issues/215">pulling in people who are new to contributing
+to a project</a>
+rather than new to development, but it does strike me as a good place to
+start looking no matter where you're coming from.</p>
+<p>I know I'm going to start having a wander around that list. It's always nice
+to contribute and I feel there's real personal benefit in actively solving a
+problem that someone else has and welcomes help with.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2019/11/10/going-on-a-journey.html#going-on-a-journey">Going on a journey</a></h2>
     <p>
       Posted on 2019-11-10 14:32 +0000 in <a href="https://blog.davep.org/category/python.html">Python</a>
@@ -833,101 +874,6 @@ time. So that would seem to fit even better.</p>
 quiet, that's because it has been quiet for a while and I'm now going to try
 and concentrate elsewhere, with a wish to do some coding-related writing now
 and again.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2018/06/02/a_little_speed_issue_with_openpyxl.html#a_little_speed_issue_with_openpyxl">A little speed issue with openpyxl</a></h2>
-    <p>
-      Posted on 2018-06-02 13:16 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/openpyxl.html">openpyxl</a>
-        &#8226; 4 min read
-    </p>
-  </header>
-  <div>
-      <div><p>It's been very quiet on the blogging front, I'm afraid, mostly for <a href="/2017/12/12/on_to_something_new.html">the
-reasons I wrote about back in December last
-year</a>. In that time I've been really
-very busy with work (in a good way, in a <em>very</em> good way) and there's not a
-whole lot of time to be toying with pet projects at home.</p>
-<p>However, finding myself with a spare hour or so, I wanted to write about
-something I did run into as part of some development at work, and which I
-thought might be worth writing about in case it helps someone else.</p>
-<p>Recently I've needed to write a library of code for loading data from Excel
-Workbooks. Given that the vast majority of coding I do at the moment is in
-Python, it made sense to make use of
-<a href="https://openpyxl.readthedocs.io/">openpyxl</a>. The initial prototype code I
-wrote worked well and it soon grew into a full-blown library that'll be used
-in a couple of work-related projects.</p>
-<p>But one thing kept niggling me... It just wasn't as fast as I'd expected.
-The workbooks I'm pulling data from aren't that large, and yet it was taking
-a noticeable number of seconds to read in the data, and when I let the code
-have a go at a directory full of such workbooks... even the fan on the
-machine would ramp up.</p>
-<p>It didn't seem right.</p>
-<p>I did a little bit of profiling and could see that the code was spending
-most of its time deep in the guts of some XML-parsing functions. While I
-know that an <code>xlsx</code> file is pretty much an XML document, it seemed odd to me
-that it would take so much time and effort to pull the data out from it.</p>
-<p>Given that I had other code to be writing, and given that the
-workbook-parsing code was "good enough" for the moment, I moved on for a
-short while.</p>
-<p>But, a couple of weeks back, I had a bit of spare time and decided to
-revisit it. I did some more searching on openpyxl and speed issues and
-almost everything I found said that the common problem was failing to open
-the workbook in <code>read_only</code> mode. That can't have been my problem because
-I'd being doing that from the very start.</p>
-<p>Eventually I came across a post somewhere (sorry, I've lost it for now --
-I'll try and track it down again) that suggested that openpyxl was very slow
-to read from a workbook if you were reading one cell at a time, rather than
-using generators. The suggestion being that every time you pull a value form
-a cell, it has to parse the whole sheet up to that cell. Generators, on the
-other hand, would allow access to all the cells during one parse.</p>
-<p>This seemed a little unlikely to me -- I'd have expected the code to cache
-the parsing results or something like that -- but it also would explain what
-I was seeing. So I decided to give it a test.</p>
-<p><a href="https://github.com/davep/openpyxl-speed-issue"><code>openpyxl-speed-issue</code></a> is a
-version of the tests I wrote and ran and they absolutely show that there's a
-huge difference between cell-by-cell access vs generator access.</p>
-<p>Code like this:</p>
-<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sheet</span><span class="o">.</span><span class="n">max_row</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">):</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sheet</span><span class="o">.</span><span class="n">max_column</span> <span class="p">):</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">[</span> <span class="n">row</span> <span class="p">][</span> <span class="n">col</span> <span class="p">]</span><span class="o">.</span><span class="n">value</span>
-</code></pre></div>
-
-<p>is <em>far slower</em> than something like this:</p>
-<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">wb</span><span class="p">[</span> <span class="s2">&quot;Test Sheet&quot;</span> <span class="p">]</span><span class="o">.</span><span class="n">rows</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">value</span>
-</code></pre></div>
-
-<p>Here's an example of the difference in time, as seen on my iMac:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>make<span class="w"> </span><span class="nb">test</span>
-pipenv<span class="w"> </span>run<span class="w"> </span><span class="nb">time</span><span class="w"> </span>./read-using-generators
-<span class="w">        </span><span class="m">1</span>.59<span class="w"> </span>real<span class="w">         </span><span class="m">0</span>.44<span class="w"> </span>user<span class="w">         </span><span class="m">0</span>.04<span class="w"> </span>sys
-pipenv<span class="w"> </span>run<span class="w"> </span><span class="nb">time</span><span class="w"> </span>./read-using-peeking
-<span class="w">       </span><span class="m">25</span>.02<span class="w"> </span>real<span class="w">        </span><span class="m">24</span>.88<span class="w"> </span>user<span class="w">         </span><span class="m">0</span>.10<span class="w"> </span>sys
-</code></pre></div>
-
-<p>As you can see, the cell-by-cell approach is about 16 times slower than the
-generator approach.</p>
-<p>In most circumstances the generator approach would make most sense anyway,
-and in any other situation I probably would have used it and never have
-noticed this. However, the nature of the workbooks I need to pull data from
-means I need to "peek ahead" to make decisions about what I'm doing, so a
-more traditional loop over, with an index, made more sense.</p>
-<p>I can easily "fix" this by using the generator approach to build up a
-two-dimensional array of cells, acquired via the generator; so I can still
-do what I want <em>and</em> benefit from using generators.</p>
-<p>In conclusion: given that I found it difficult to find information about my
-speed issue, and given that the one off-hand comment I saw that suggested it
-was this wasn't exactly easy to find, I thought I'd write it all down too
-and <a href="https://github.com/davep/openpyxl-speed-issue">create a repository of some test code to illustrate the
-issue</a>. Hopefully someone
-else will benefit from this in the future.</p></div>
   </div>
 </article>
 

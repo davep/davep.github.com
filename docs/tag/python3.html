@@ -183,6 +183,139 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2022/12/16/oidia.html#oidia">OIDIA</a></h2>
+    <p>
+      Posted on 2022-12-16 09:30 +0000 in <a href="https://blog.davep.org/category/python.html">Python</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/coding.html">coding</a>,              <a href="https://blog.davep.org/tag/textual.html">Textual</a>,              <a href="https://blog.davep.org/tag/pypi.html">PyPi</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Another little thing that's up on PyPi now, which is the final bit of
+fallout from <a href="/2022/12/01/new-things-on-pypi.html">the Textual dogfooding
+sessions</a>, is a little project I'm
+calling OIDIA.</p>
+<p>The application is a streak tracker. I'm quite the fan of streak trackers.
+I've used a few over the years, both to help keep me motivated and honest,
+and also to help me track that I've avoided unhelpful things too. Now, most
+of the apps I've used, and use now, tend to have reminders and counts and
+stats and are all about "DO NOT BREAK THE STREAK OR ELSE" and that's mostly
+fine, but...</p>
+<p>To keep things simple and to purely concentrate on how to build Textual
+apps, I made this a "non-judgement" streak tracker. It's designed to be
+really simple: you add a streak, you bump up/down the number of times you
+did (or didn't do) the thing related to that streak, for each day, and
+that's it.</p>
+<p>No totals. No stats. No reminders and bugging. No judgement.</p>
+<p>Here it is in action:</p>
+<div style="text-align: center;">
+    <iframe
+        width="560" height="315"
+        src="https://www.youtube.com/embed/3Kz8eUzO9-8"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+</div>
+
+<p>When I started it, I wasn't quite sure how I wanted to store the data.
+Throwing it in a SQLite database held some appeal, but that also felt like a
+lot of faff for something so simple. Also, I wanted to make the data as easy
+to get at, to use elsewhere, and to hack on, as possible. So in the end I
+went with a simple JSON file.</p>
+<p>On macOS and GNU/Linux <code>streaks.json</code> lives in <code>~/.local/share/oidia</code>, on
+Windows it'll be in... I'm not sure off the top of my head actually; it'll
+be in whatever directory <a href="https://pypi.org/project/xdg/">the handy <code>xdg</code>
+library</a> has chosen. and because it's JSON
+that means that something like this:</p>
+<p><img alt="OIDIA in action" src="/attachments/2022/12/16/oidia.png"></p>
+<p>ends up looking like this:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hack some Python&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;days&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-02&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-03&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-04&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-05&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-06&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-07&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-08&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-01&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-11-30&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-11-29&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-11-28&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Brush my teeth&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;days&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-02&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-03&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-04&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-05&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-06&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-07&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-08&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-01&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-11-30&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-11-29&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-11-28&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Walk&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;days&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-02&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-03&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-04&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-05&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-06&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-07&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-08&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-01&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-11-30&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-11-29&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-11-28&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Run 5k&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;days&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-03&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-05&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-11-30&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-11-28&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Run 10k&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;days&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;2022-12-03&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;2022-11-28&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<p>Of course, it remains to be seen how well that actually scales; possibly not
+so well over a long period of time, but this was written more as another way
+to explore Textual than anything else. Even then, it would be pretty trivial
+to update to something better for holding the data.</p>
+<p>If this seems like your thing (and I will be supporting it and onward
+developing it) you <a href="https://pypi.org/project/oidia/">can find it over on
+PyPi</a>, which means it can be installed with
+<code>pip</code> or the ever-handy <code>pipx</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>oidia
+</code></pre></div></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2022/12/01/new-things-on-pypi.html#new-things-on-pypi">New Things On PyPi</a></h2>
     <p>
       Posted on 2022-12-01 22:13 +0000 in <a href="https://blog.davep.org/category/python.html">Python</a>
@@ -1116,76 +1249,6 @@ things that would be handy would be to allow some form of customisation of
 how it works. I'm sure there's other fun things I can do with it too.</p>
 <p>That's part of the fun of having a pet project: you can tinker when you like
 and also get benefits from it as you use it.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2019/10/19/pypath-el.html#pypath-el">pypath.el -- A little Emacs hack to help with Django</a></h2>
-    <p>
-      Posted on 2019-10-19 10:35 +0100 in <a href="https://blog.davep.org/category/emacs.html">Emacs</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/emacs.html">Emacs</a>,              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/django.html">Django</a>,              <a href="https://blog.davep.org/tag/lisp.html">Lisp</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>One of the things I really like about coding with Emacs is how I can easily
-identify a repeated task and turn it into a command in my environment,
-saving me a load of work down the line.</p>
-<p><a href="https://github.com/davep/pypath.el"><code>pypath.el</code></a> is one such example.</p>
-<p>In my day job I write a lot of Django code. As part of that, I write a good
-number of unit tests too. Sometimes I'll write the tests as I'm writing the
-code they test, other times I'm writing them afterwards; it all really
-depends on where my head's at and how the code is flowing.</p>
-<p>When I'm writing those tests, I often want to test them as I go. Given that
-starting up a test session can take a while, and given that running all the
-tests in the system can take a while, it's really handy if I can run that
-single test I'm working on.</p>
-<p>This is easy enough with Django. In my work environment it's normally
-something like:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipenv<span class="w"> </span>run<span class="w"> </span>./manage.py<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-v<span class="w"> </span><span class="m">2</span><span class="w"> </span>app.test.some.sub.module.TestClass.test_method
-</code></pre></div>
-
-<p>Only... typing out the:</p>
-<div class="highlight"><pre><span></span><code><span class="n">app</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">some</span><span class="o">.</span><span class="n">sub</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">TestClass</span><span class="o">.</span><span class="n">test_method</span>
-</code></pre></div>
-
-<p>part is a bit of a pain. Sure, once you've typed it the once you can use
-your shell of choice (mine being <a href="https://fishshell.com/">fish</a> and on
-occasion
-<a href="https://www.gnu.org/software/emacs/manual/html_mono/eshell.html">eshell</a>)
-to recall it from history, but typing it out the first time is the annoying
-part.</p>
-<p>So this was the point where I took 1/2 hour or so to code up
-<a href="https://github.com/davep/pypath.el"><code>pypath.el</code></a> to solve the problem for
-me. It gives me two commands:</p>
-<ul>
-<li><code>pypath</code>: which simply places the dotted path of the <a href="http://doc.endlessparentheses.com/Fun/python-info-current-defun.html">current
-  "defun"</a>,
-  within the context of being part of a Django system, into the clipboard
-  buffer.</li>
-<li><code>pypath-django-test</code>: which works similar to the above but places the
-  whole Django testing command into the clipboard.</li>
-</ul>
-<p>With the above, I can work on a test, hit the latter command above, flip to
-my command line, paste and I'm running the test.</p>
-<p>Of course, I'm sure there's plenty of other handy ways to do this. Doubtless
-there's work environments where the test can be run right there, in the edit
-buffer, without flipping away, and which takes into account the fact that
-there's a pipenv-managed virtual environment involved, etc. If there is,
-that's great, but I don't think it'd work with how I work.</p>
-<p>And that's one of the things I really love about Emacs, and why it's still
-my work environment after almost 25 years of on and off use: with very
-little work on my part I can create a couple of commands that work exactly
-how I need them to. While it's great to create <a href="https://melpa.org/">generally-useful code for
-Emacs that lots of people benefit from</a>, sometimes the
-real value is that <a href="https://blog.davep.org/delpa/">you can code up your own particular quirk and just get
-on with stuff</a>.</p>
-<p>To conclude: this post isn't to show off <code>pypath.el</code>; really this post is to
-sing the praises of Emacs and why it still works so well for me after all
-these years.</p></div>
   </div>
 </article>
 

@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2024-01-07T09:50:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Orange Site Hit v0.2.0</title><link href="https://blog.davep.org/2024/01/07/oshit-0-2-0.html" rel="alternate"></link><published>2024-01-07T09:50:00+00:00</published><updated>2024-01-07T09:50:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-01-07:/2024/01/07/oshit-0-2-0.html</id><content type="html">&lt;p&gt;This is actually the second release of OSHit since &lt;a href="/2024/01/01/oshit.html"&gt;I first announced it a
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2024-01-17T21:36:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Orange Site Hit v0.5.0</title><link href="https://blog.davep.org/2024/01/17/oshit-0-5-0.html" rel="alternate"></link><published>2024-01-17T21:36:00+00:00</published><updated>2024-01-17T21:36:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-01-17:/2024/01/17/oshit-0-5-0.html</id><content type="html">&lt;p&gt;Just a wee catch-up post about OSHit, &lt;a href="https://github.com/davep/oshit"&gt;my terminal-based HackerNews
+browser&lt;/a&gt;. Over the past couple of weeks I've
+made some small changes, so I thought I'd make mention of what I've done.&lt;/p&gt;
+&lt;p&gt;As of v0.5.0, which I released earlier today, I've:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Added a quick way of following links while viewing a comment. While a
+  comment is highlighted you can press &lt;kbd&gt;l&lt;/kbd&gt; to follow a link; if
+  there's more than one link in the comment a menu will be shown and you can
+  select which one to follow.&lt;/li&gt;
+&lt;li&gt;Added support for viewing polls. Polls seem to be few and far between on
+  HackerNews, so when I published the first version of OSHit I didn't have
+  one to hand to test any code against. Eventually one turned up and broke
+  OSHit (on purpose; I wanted to see when that happened) so I could then add
+  the code to load polls and show them. Right now it just shows scores; I
+  might do actual charts at some point.&lt;/li&gt;
+&lt;li&gt;Added optional item numbers in the lists; turned on/off with
+  &lt;kbd&gt;F4&lt;/kbd&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So far all small things, but handy little improvements. There's still a nice
+TODO list in the README and I will slowly work through it. Along with
+&lt;a href="https://github.com/davep/tinboard"&gt;tinboard&lt;/a&gt; these are two applications
+that have absolutely turned into "daily drivers", so they're going to get a
+lot of tweaking over the next few weeks, probably even months.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry><entry><title>Orange Site Hit v0.2.0</title><link href="https://blog.davep.org/2024/01/07/oshit-0-2-0.html" rel="alternate"></link><published>2024-01-07T09:50:00+00:00</published><updated>2024-01-07T09:50:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-01-07:/2024/01/07/oshit-0-2-0.html</id><content type="html">&lt;p&gt;This is actually the second release of OSHit since &lt;a href="/2024/01/01/oshit.html"&gt;I first announced it a
 week back&lt;/a&gt;, and I'll get to that other release in a
 moment.&lt;/p&gt;
 &lt;p&gt;I've just published v0.2.0, which isn't a very substantial release, but
@@ -1371,53 +1393,4 @@ place: &lt;code&gt;stat -L&lt;/code&gt;.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;And now I have that script in my &lt;code&gt;~/bin&lt;/code&gt; directory, ready for the next time
-Homebrew and friends conspire to throw my day off for a while.&lt;/p&gt;</content><category term="Coding"></category><category term="homebrew"></category><category term="macOS"></category><category term="Unix"></category><category term="Python"></category></entry><entry><title>Helping myself change the default git branch</title><link href="https://blog.davep.org/2020/07/09/helping-myself-change-the-default-git-branch.html" rel="alternate"></link><published>2020-07-09T20:17:00+01:00</published><updated>2020-07-09T20:17:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-07-09:/2020/07/09/helping-myself-change-the-default-git-branch.html</id><content type="html">&lt;p&gt;This is something I've being meaning to do for a couple or so years now, and
-unsurprisingly it's bubbled up again recently: the business of swapping the
-name of the &lt;code&gt;master&lt;/code&gt; branch in &lt;code&gt;git&lt;/code&gt; out for something better.&lt;/p&gt;
-&lt;p&gt;Because it's one of those jobs that's simultaneously simple and also
-laborious, I kept putting it off. Changing up the local configuration so
-that &lt;code&gt;main&lt;/code&gt; (or whatever name you prefer) is used "out of the box" &lt;a href="https://leigh.net.au/writing/git-init-main/"&gt;is
-simple enough&lt;/a&gt;; the laborious
-part is updating all of the repositories that live in the "forge of choice".
-In my case, &lt;a href="https://github.com/davep"&gt;over on GitHub&lt;/a&gt;, I have &lt;a href="https://github.com/davep?tab=repositories"&gt;getting on
-for 200 repositories&lt;/a&gt; -- 142 of
-which are public (as of the time of writing). At work we use
-&lt;a href="https://gitlab.com/"&gt;GitLab&lt;/a&gt; as our internal forge and I've got a
-non-trivial number of repositories on there too.&lt;/p&gt;
-&lt;p&gt;The obvious first step to tackling this is to knock up a little tool to help
-find the repos that still need swapping. That was &lt;a href="https://github.com/davep/git-archaic"&gt;simple
-enough&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Quick and dirty tool to find repositories that still make use of a&lt;/span&gt;
-&lt;span class="c1"&gt;# &amp;quot;master&amp;quot; branch. Helps with tracking down the ones that need&lt;/span&gt;
-&lt;span class="c1"&gt;# updating/improving.&lt;/span&gt;
-
-&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;repo&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;find&lt;span class="w"&gt; &lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;-name&lt;span class="w"&gt; &lt;/span&gt;.git&lt;span class="k"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;do&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;dirname&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$repo&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
-
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;git&lt;span class="w"&gt; &lt;/span&gt;branch&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;master&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;/dev/null&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;dirname&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$repo&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;fi&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;done&lt;/span&gt;
-
-&lt;span class="c1"&gt;### git-archaic ends here&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;It's not meant to be clever, just something I can run when I'm in a "default
-branch swapping" mood so find a repository or two to tackle. The idea being
-that it uses &lt;code&gt;find&lt;/code&gt; to pull out any instance of &lt;code&gt;.git&lt;/code&gt; in or below the
-current directory, changes to it (inside a sub-process to ensure the &lt;code&gt;PWD&lt;/code&gt;
-gets put back after the &lt;code&gt;cd&lt;/code&gt; that happens, before the next iteration of the
-loop), gets a list of the branches and, if &lt;code&gt;master&lt;/code&gt; is one of them, prints
-the directory name.&lt;/p&gt;
-&lt;p&gt;Using this, I can now slowly work through my more active repositories and
-make the swap -- the idea being that if I currently have them cloned down to
-my machine, they're obviously some level of "active". At some point I
-imagine I could get more clever and use the APIs of the forges to look at
-all the repositories I own; that's another job for another day.&lt;/p&gt;
-&lt;p&gt;This gives me enough to be going on with. :-)&lt;/p&gt;</content><category term="Coding"></category><category term="git"></category></entry></feed>
+Homebrew and friends conspire to throw my day off for a while.&lt;/p&gt;</content><category term="Coding"></category><category term="homebrew"></category><category term="macOS"></category><category term="Unix"></category><category term="Python"></category></entry></feed>
