@@ -183,6 +183,66 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/07/05/the-switch-has-been-made.html#the-switch-has-been-made">The switch has been made</a></h2>
+    <p>
+      Posted on 2023-07-05 17:56 +0100 in <a href="https://blog.davep.org/category/meta.html">Meta</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/blogging.html">Blogging</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Well, it didn't take as long as I expected it to. Just <a href="/2023/07/04/considering-pelican.html#considering-pelican">yesterday
+morning</a> I was
+giving <a href="https://getpelican.com/">Pelican</a> a look over as a possible engine
+for generating my blog, having wanted to move away from Jekyll for a while
+now. Having tried it and liked what I saw to start with, I wrote about how I
+liked it and wondered how long it would take me to make the switch.</p>
+<p>By the evening I was making a proper effort to get the switchover started,
+and just a wee while earlier, before writing this post, the switch was made!</p>
+<p>The process of making the switch was roughly this (and keep in mind I'm
+coming from using Jekyll):</p>
+<ol>
+<li>Made a branch in the repo to work in.</li>
+<li>Removed all of the Jekyll-oriented files.</li>
+<li>Decided to set up Pelican and related tools in a virtual environment,
+   managed using <code>pipenv</code>.</li>
+<li>Ran <code>pelican-quickstart</code> to kick things off and give me a framework to
+   start with.</li>
+<li>Renamed the old <code>_posts</code> directory to <code>content</code>.</li>
+<li>Kept tweaking the hell out of the <a href="https://github.com/davep/davep.github.com/blob/main/pelicanconf.py">Pelican config
+   file</a>
+   until it started to look "just so" (this is a process that has been
+   ongoing, and doubtless will keep happening for some time to come).</li>
+<li>Tried out a few themes and settled on
+   <a href="https://github.com/alexandrevicenzi/Flex">Flex</a>; while not <em>exactly</em>
+   what I wanted, it was close enough to help keep me motivated (while
+   rolling my own theme from scratch would seem fun, I just know it would
+   mean the work would never get done, or at least finished).</li>
+<li>Did a mass tidy up of all the tags in all the posts; something I'd never
+   really paid too much attention to as the Jekyll-based blog never actually
+   allowed for following tags.</li>
+<li>Went though all the posts and removed double quotes from a lot of the
+   titles in the frontmatter (something Jekyll seems to have stripped, but
+   which Pelican doesn't).</li>
+<li>Tweaked the <code>FILE_METADATA</code> to ensure that the slugs for the URLs came
+    from the filenames -- by default Pelican seems to slugify the title of a
+    post and this meant that some of the URLs were changing.</li>
+</ol>
+<p>All in all I probably spent 6 or 7 hours on making the move; a lot of that
+involving reading up on how to configure Pelican and researching themes. The
+rest of it was a lot of repetitive work to fix or tidy things.</p>
+<p><em>The</em> most important aspect of this was keeping the post URLs the same all
+the way back to the first post; as best as I can tell I've managed that.</p>
+<p>So far I'm pleased with the result. I'm going to live with the look/theme
+for a wee while and see how it sits for me. I'm sure I'll tweak it a bit as
+time goes on, but at the moment I'm comfortable with how it looks.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/07/04/considering-pelican.html#considering-pelican">Considering Pelican</a></h2>
     <p>
       Posted on 2023-07-04 08:32 +0100 in <a href="https://blog.davep.org/category/meta.html">Meta</a>
@@ -1118,52 +1178,6 @@ my first ever attempt at writing some non-trivial Elisp code).</p>
 <p>So... yeah... here we are. I'm now old enough to have written some Emacs
 Lisp code, had it required by the FSF for inclusion in Emacs, had it live in
 there for something like two decades, and then <em>become obselete</em>!</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2022/06/03/failed-successfully.html#failed-successfully">Failed successfully</a></h2>
-    <p>
-      Posted on 2022-06-03 09:05 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/ui.html">UI</a>,              <a href="https://blog.davep.org/tag/ux.html">UX</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>A couple of days back (for vague values of "couple", of course), first of
-the month, having my morning coffee, I go and open my bank's mobile app to
-move a bit of money about and pay a couple of things. This happens every
-month. This is so routine I do it almost on autopilot.</p>
-<p>Yeah, yeah, I know, it's banking, pay attention! But still... morning,
-coffee, routine.</p>
-<p>I get to the final movement/payment and then notice something:</p>
-<p><img alt="Useless error message" src="/attachments/2022/06/03/Unexpected-error.jpeg"></p>
-<p>That.... that text! WTF? So then I look back at my payment history and
-notice that all but one payment <em>hadn't</em> gone through! O_o</p>
-<p>This alone is fine. Stuff happens. Things fail. I'm okay with that. It's an
-inconvenience for sure but doubtless whatever the problem is will be fixed
-and I can make the payments again later. But...</p>
-<p>That result. There's a tick. A <strong>GREEN</strong> tick. And a "Thank you". It's
-natural to see that image, know that it's always meant "shit worked" and
-just carry on.</p>
-<p>In one of my systems at work there's a tool I wrote for checking a
-repository of code to make sure it conforms to a certain standard. When folk
-use it they get a night big, bold and bright green thumb-up above the text
-that says everything is cool. If there's a problem, any sort of problem at
-all, then the display is red and there's no jolly icon and it's obvious that
-things are different and you likely want to pay attention to the explanation
-of what isn't right.</p>
-<p>This isn't news, of course. This isn't some revelation about UI design or
-anything. We know this stuff. I think what boggles my mind a little bit
-about this is that something as important -- and hopefully by this point as
-mature -- as a mobile banking app should get something as obvious as this
-right.</p>
-<p>But here we are, with a nice friendly green icon showing a tick and a
-friendly big "Thank you" followed by smaller text going "aye shit didn't
-work pal".</p></div>
   </div>
 </article>
 

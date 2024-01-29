@@ -183,6 +183,101 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2019/10/26/pydscheck.html#pydscheck">pydscheck -- A quick hack that keeps slowly growing</a></h2>
+    <p>
+      Posted on 2019-10-26 13:19 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/documentation.html">documentation</a>
+        &#8226; 3 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Something I always try to do when I'm coding is be consistent. I feel this
+is important. While people's coding standards may differ, I think different
+approaches are easier to handle if someone has been consistent with their
+style across all of their code.</p>
+<p>This also stands for documentation too.</p>
+<p>In my current position, I do a <em>lot</em> of Python coding, and one of the things
+I like about Python (there are things I don't like too, but that's not for
+now) is that it has doc-strings (just like my <a href="https://en.wikipedia.org/wiki/Common_Lisp">favourite
+language</a>). I use them
+extensively, ensuring every function and method has some form of
+documentation, and generally I use
+<a href="http://www.sphinx-doc.org/en/master/">Sphinx</a> to generate documentation
+from those doc-strings.</p>
+<p>Early on I was bothered by the fact that, just by the simple act of making
+typos, I wasn't keeping the form of the doc-strings consistent. And in this
+case it was a <em>really</em> simple thing that was bugging me. Normally, if I'm
+writing a single-line doc-string, I'll write like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">one_liner</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Here is a one-line doc-string.&quot;&quot;&quot;</span>
+</code></pre></div>
+
+<p>So far, so good. But, if the doc-string is a multi-liner, I prefer the
+ending quotes to be on a line of their own, like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">multi_liner</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Here is the first line.</span>
+<span class="sd">    Here is another line.</span>
+<span class="sd">    Here is the final line.</span>
+<span class="sd">    &quot;&quot;&quot;</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+<p>But, sometimes, by accident, I'd leave a doc-string like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">multi_liner</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Here is the first line.</span>
+<span class="sd">    Here is another line.</span>
+<span class="sd">    Here is the final line.&quot;&quot;&quot;</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+<p>While it's really not a big deal, it would bug me and every time I found one
+like this I'd "fix" it.</p>
+<p>Eventually, it bugged me enough that I decided I was going to write a little
+tool to find all such instances in my code and report them. My first
+approach was to think "I could just do this with some regexp magic", <a href="http://regex.info/blog/2006-09-15/247">which
+was really a bad idea</a>. Then I
+though, I know, I should use this as an excuse to to play with <a href="https://docs.python.org/3/library/ast.html">Python's ast
+library</a>.</p>
+<p>That worked really well! I had <a href="https://github.com/davep/pydscheck/blob/dc5052002690b1f898ccd68f815cdedbe9172b74/pydscheck">the first version of the
+code</a>
+up and running in no time. It was simple but did the job. It ran through
+Python code I threw at it and alerted me to both missing doc-strings, and
+doc-strings with the ending I didn't like.</p>
+<p>That served me for a while, until one day I realised that it wasn't quite
+doing the job correctly; it was only really looking at top-level functions
+and top-level methods in classes. Sometimes, not often, but sometimes, I'll
+define functions within functions, and I feel they deserve documentation
+too. So then I modified the code to ensure it walked every part of the AST.</p>
+<p>Since then, when I've run into new things and had new ideas, <code>pydscheck</code> has
+grown and grown. I've added checks that all mentioned parameters have a
+type; I've added checks that any function/method that returns something
+actually documents the return value; I've added checks that any
+documentation of a returned value includes its type; I've added checks that
+any function or method that yields a value documents that fact; I've added
+checks that ensure that every parameter is documented in some way.</p>
+<p>Each time I've done this it's helped uncover issues in my code's
+documentation that could be cleaner, and it's also given me a pet project to
+slowly better understand Python's AST.</p>
+<p>It could be that there are better tools out there, I'd have thought that a
+good doc-string linting tool would be something someone had already written.
+But this time around I was happy to
+<a href="https://en.wikipedia.org/wiki/Not_invented_here">NIH</a> it because I needed a
+fun learning exercise that would also have some benefits for my day-to-day
+work.</p>
+<p>I'll caveat this with the fact that it's very particular to how I work and
+how I like my documentation to look, but if it sounds useful, here it is:
+<a href="https://github.com/davep/pydscheck">https://github.com/davep/pydscheck</a>.</p>
+<p>There's still lots I could do with it. First off I should really properly
+package it up so it can be installed as a command line tool via pip. Other
+things that would be handy would be to allow some form of customisation of
+how it works. I'm sure there's other fun things I can do with it too.</p>
+<p>That's part of the fun of having a pet project: you can tinker when you like
+and also get benefits from it as you use it.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2019/10/19/pypath-el.html#pypath-el">pypath.el -- A little Emacs hack to help with Django</a></h2>
     <p>
       Posted on 2019-10-19 10:35 +0100 in <a href="https://blog.davep.org/category/emacs.html">Emacs</a>
