@@ -1,5 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>blog.davep.org</title><link>https://blog.davep.org/</link><description>Code, Emacs, VR, Stuff...</description><lastBuildDate>Mon, 29 Jan 2024 21:30:00 +0000</lastBuildDate><item><title>Quizzical</title><link>https://blog.davep.org/2024/01/29/quizzical.html</link><description>&lt;p&gt;I feel like I'm on a bit of a roll when it comes to building applications
+<rss version="2.0"><channel><title>blog.davep.org</title><link>https://blog.davep.org/</link><description>Code, Emacs, VR, Stuff...</description><lastBuildDate>Sun, 04 Feb 2024 11:27:00 +0000</lastBuildDate><item><title>How not to ask for help</title><link>https://blog.davep.org/2024/02/04/how-not-to-ask-for-help.html</link><description>&lt;p&gt;My association with Textual works on two levels: on the one hand, sure, it's
+&lt;a href="https://www.textualize.io/about-us/"&gt;currently my day job&lt;/a&gt;; on the other
+hand it's a FOSS project that I'm keen to support so &lt;em&gt;"free time me"&lt;/em&gt; tries
+to work with it and support others working with it too. For this reason
+you'll often see me being terminally&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt; online in the Textual Discord,
+trying to answer questions as they come up, every waking free moment.&lt;/p&gt;
+&lt;p&gt;Almost without exception the people who ask for help are appreciative and
+ask in the spirit of wanting help and wanting to work together with whoever
+is helping them to get an answer. That... that's actually quite a cool thing
+to be part of. I like the sense of community that comes from someone going
+&lt;em&gt;"bah I'm trying to do this thing and it isn't working PLEASE HELP!"&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;And then... well, let's just say that sometimes the odd question will crop
+up that seems to be asked from a less collaborative position.&lt;/p&gt;
+&lt;p&gt;Without wanting to appear to dunk on an individual (I don't wish to), I want
+to break down an example that happened yesterday. For some background, I'd
+been AFK all day, &lt;a href="https://fosstodon.org/@davep/111867694675165507"&gt;having a wonderful time in town with a
+friend&lt;/a&gt;, shopping,
+&lt;a href="https://fosstodon.org/@davep/111867942313370807"&gt;lunch&lt;/a&gt;, a movie, that sort
+of thing. A nicely-chilled day where I didn't even look at the Discord
+notifications that had popped up on my watch and phone.&lt;/p&gt;
+&lt;p&gt;However, later on that evening, finally home and flopped on the sofa, I saw
+a question pop up that, while lacking &lt;a href="https://label.dev/articles/minimal-reproducible-example/"&gt;any useful
+detail&lt;/a&gt; and
+possibly suffering a wee bit from being &lt;a href="https://label.dev/articles/xy-problem/"&gt;an XY
+problem&lt;/a&gt;, the immediate answer was
+clear:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;tt&gt;BadIdentifier: 'test.udp_json_client-input' is an invalid id; identifiers must
+contain only letters, numbers, underscores, or hyphens, and must not begin with
+a number.&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;????????????????? a dot isn't allowed?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Like I say: it lacks context and detail, and the number of question marks
+doesn't really clarify much, but the core question that seems to be at play
+here is &lt;em&gt;"is it true that a full stop can't be used as part of the ID of a
+widget?"&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;The answer is: no, it can't. There's a reason for that too, and if someone
+were to take a step back for a moment and think about how IDs play a part in
+queries and how they'd be used in a stylesheet, the reason for that might
+pop out. So, to help the person asking the question walk in the direction of
+the answer, I reply:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When you come to query that how would the parser know it’s not ID “test”
+combined with a class, if dot was allowed?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Before we go on, to illustrate my point, consider this ID: &lt;code&gt;foo.bar&lt;/code&gt;. When
+you come to query that back, or use it in a stylesheet, how would &lt;code&gt;#foo.bar&lt;/code&gt;
+look? Is it a widget with the ID &lt;code&gt;foo.bar&lt;/code&gt;; or is it a widget with the id
+&lt;code&gt;foo&lt;/code&gt; and the class &lt;code&gt;bar&lt;/code&gt;?&lt;/p&gt;
+&lt;p&gt;As far as Textual's CSS is concerned, it would be the latter.&lt;/p&gt;
+&lt;p&gt;But at this point it didn't seem necessary to get into all that detail; I
+like to try and assume knowledge on the part of the person asking the
+question, sans any other evidence, so for the moment I'll assume a &lt;em&gt;"oh,
+right, yeah, that's a damn good point"&lt;/em&gt; kind of reply. Or if not, perhaps a
+&lt;em&gt;"I don't quite follow, could you explain?"&lt;/em&gt; reply, in which case I'm happy
+to go into all the detail.&lt;/p&gt;
+&lt;p&gt;The reply was neither:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;why are element ID and classes co-mingled?&lt;/p&gt;
+&lt;p&gt;this was previously allowed so your question doesn't really make sense to
+me&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Now I'm confused. Asking why element IDs and classes &lt;em&gt;are&lt;/em&gt; co-mingled seems
+odd; but I'm used to chatting with people who don't have English as a first
+language so I'm going to assume it's just a wording choice; but the latter
+part is very odd: this has &lt;em&gt;never&lt;/em&gt; been allowed. Or, more to the point...
+without any proper context I can't really appreciate what claim is being
+made here.&lt;/p&gt;
+&lt;p&gt;You see... &lt;a href="https://github.com/Textualize/textual/issues/3954"&gt;I did notice a bug in Textual recently, when it came to widget
+IDs&lt;/a&gt;. Long story short:
+when you set your ID for the widget in your code, no actual validation of
+the ID was being done. This was an oversight &lt;a href="https://github.com/Textualize/textual/pull/4032"&gt;that was fixed in the latest
+release&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;But knowing that that's the case would be guesswork on my part; I'm also
+fresh at my desk after a day out; I'm probably not quite in the
+coding/Textual zone yet, so rather than try and guess half of the
+conversation, it's easier to just ask the person who is asking. So I ask
+them to restate the question, and give some more background.&lt;/p&gt;
+&lt;p&gt;The reply is:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;the objective is to put a string like test.udp_json_client-input as the
+label of a tab, which previously just used the ID property. from skimming
+release notes, is it better to explicitly set the label, and then assign
+something compliant for the ID separately?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Wait... what? I thought we were talking about valid widget IDs, now we're
+talking about tabs and labels? Do we mean &lt;code&gt;TabbeContent&lt;/code&gt; and the labels of a
+&lt;code&gt;TabPane&lt;/code&gt;? This is a bit different. So I'm sat there trying to figure out
+this person's thought process so I can offer the help they're after and this
+follows:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;okay @davep, you have a real bug. --content-tab- prefix is not ephemeral.
+if I create a tab and grab .id, that prefix comes with it, so if you save
+it for later and try to set .active, assigning .active doesn't agree that
+there is a tab --content-tab-thing&lt;/p&gt;
+&lt;p&gt;so I need to de-mangle the name manually before assigning .active I guess?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Wut? Like... wut? Okay, we do seem to be talking about &lt;code&gt;TabbedContent&lt;/code&gt;, I
+recognise the values being mentioned here; we did some work &lt;a href="https://github.com/Textualize/textual/pull/3815"&gt;late on last
+year&lt;/a&gt; that added some
+namespacing to parts of the &lt;code&gt;TabbedContent&lt;/code&gt; widget in an effort to &lt;a href="https://github.com/Textualize/textual/issues/3695"&gt;reduce
+some foot-gun
+situations&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;But... there's no &lt;code&gt;.&lt;/code&gt; being used in the IDs as part of that; why are we now
+proclaiming a bug in an unrelated PR? That's quite the leap with zero
+evidence. Like... sure, I'm &lt;em&gt;all&lt;/em&gt; for being alerted to bugs and fixing them,
+but this doesn't seem like that.&lt;/p&gt;
+&lt;p&gt;And then there's the &lt;em&gt;"so I need to..."&lt;/em&gt; conclusion that also seems to have
+no connection to the original question.&lt;/p&gt;
+&lt;p&gt;Anyone who has ever done support will recognise this situation, I'm sure.
+Someone has seen a problem, they've dug around a little and reached a
+conclusion about what the cause is, and turns up looking for help with the
+&lt;em&gt;conclusion&lt;/em&gt; they've reached (very much a variant of &lt;a href="https://label.dev/articles/xy-problem/"&gt;a XY
+problem&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;That almost never gets us where we want to go, so I do the obvious thing; I
+try and reboot the question; I try and get us back to the start and try and
+get some clarity; I try and encourage asking the question with zero
+assumptions:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I'm afraid I'm still not really understanding your question, as it now no
+longer seems to relate to what you very first asked. Perhaps you could
+start again, ideally with an
+&lt;a href="https://label.dev/articles/minimal-reproducible-example/"&gt;MRE&lt;/a&gt; of what
+you're looking at and trying to do, for clarity?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I figure, whatever the problem is, it can be illustrated with like a dozen
+lines of code. Also, when asking people to do this, it often actually helps
+them rubber-duck their own problem. There's been plenty of times on Discord
+where someone's "found a bug" in Textual, they're asked to make an MRE of
+it, and they come back and go &lt;em&gt;"oh, shoot, right, I did that and realised
+the bug was in my code"&lt;/em&gt;. It's cool when they happens; everyone learns
+something.&lt;/p&gt;
+&lt;p&gt;So... no MRE comes back, but this is the reply:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I'm trying to fix multiple breakages in my application from some recent
+changes. Right now I can't wrap my head around what to assign a
+tabbed_content.active for it to work how it did before (where if you have
+a tab with ID sample, you can assign tabbed_content.active = "sample", but
+you can't do that anymore)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;While not an MRE, I &lt;em&gt;can&lt;/em&gt; work with this. It seems clear that they have a
+&lt;code&gt;TabbedContent&lt;/code&gt; where they have a &lt;code&gt;TabPane&lt;/code&gt; with the ID &lt;code&gt;"sample"&lt;/code&gt; and they
+are struggling to make it the &lt;code&gt;active&lt;/code&gt; tab by setting &lt;code&gt;active&lt;/code&gt; to
+&lt;code&gt;"sample"&lt;/code&gt;. That seems hugely unlikely, this is what &lt;code&gt;TabbedContent&lt;/code&gt; is all
+about, I think we'd have noticed (I'm petty sure we've got unit tests that
+cover this), but I'm game. I can test this. And the MRE I write will
+illustrate there isn't a problem.&lt;/p&gt;
+&lt;p&gt;So I reply:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Again, I can only suggest that you make an MRE of the issue you're seeing.
+For example, here's me making a set of tabs, the last of which has the ID
+"four", and I set the active to "four":&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;and provide the code:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;textual.app&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;App&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ComposeResult&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;textual.widgets&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;TabbedContent&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;TabPane&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Label&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TabbedContentApp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;App&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;]):&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;compose&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;ComposeResult&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;TabbedContent&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+            &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;TabPane&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;One&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;one&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+                &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;Label&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;One&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;TabPane&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;two&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+                &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;Label&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Two&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;TabPane&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Three&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;three&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+                &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;Label&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Three&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;TabPane&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Four&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;four&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+                &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;Label&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Four&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;on_mount&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query_one&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TabbedContent&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;active&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;four&amp;quot;&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;TabbedContentApp&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Based on what they've most-recently said is the problem, I'm confident
+they'll see that this MRE is their situation in a nutshell, and we can work
+out from there and figure out what the problem is they're seeing and where
+this &lt;code&gt;.&lt;/code&gt; in their IDs is coming from (because I'm &lt;em&gt;very&lt;/em&gt; confident it isn't
+coming from the work that was done on &lt;code&gt;TabbedContent&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;This is good. We're getting close to heading down a good path; I can feel
+it!&lt;/p&gt;
+&lt;p&gt;I was wrong.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;https://github.com/Textualize/textual/blob/main/src/textual/widgets/_tabbed_content.py#L513&lt;/p&gt;
+&lt;p&gt;there's no way you can deny you just added a metric ton of shenanigans
+with the tab ID stuff. I can't get it to work at all anymore (assigning
+.active), but yes I will either come up with an MRE or find the bug and
+let you know&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So, rather than back up a wee bit, work with the MRE I wrote for them so we
+can take a walk through the problem, they instead decide to tell me that the
+PR I did last year (which &lt;em&gt;still&lt;/em&gt; isn't implicated in any of this outwith of
+them seemingly assuming it's the cause of all the issues, presented with
+zero evidence that it is) was simply &lt;em&gt;"a metric ton of shenanigans"&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;No!&lt;/p&gt;
+&lt;p&gt;Stop!&lt;/p&gt;
+&lt;p&gt;This is &lt;em&gt;not&lt;/em&gt; how you ask for help.&lt;/p&gt;
+&lt;p&gt;This isn't how you ask for help from a product or service you pay for. This
+&lt;em&gt;really&lt;/em&gt; isn't how you ask for help from a Free Software project, where the
+people who are offering you help are doing so in their free time because
+they want people to be able to build cool things with it.&lt;/p&gt;
+&lt;p&gt;It really isn't hard at all to show just a wee bit of respect for people's
+time and willingness to try and help you.&lt;/p&gt;
+&lt;p&gt;Now... I get it. I can imagine a scenario where someone has just updated
+Textual and their application suddenly starts throwing all sorts of weird
+and new errors. That happens. That happened to me &lt;a href="https://github.com/Textualize/textual/issues/4101"&gt;on Thursday evening just
+gone&lt;/a&gt;. But that's no
+reason for approaching getting help like this.&lt;/p&gt;
+&lt;p&gt;The way to approach it is this: pin the problem dependency, perhaps publish
+a new version of your application so there's no accidental update of the
+dependency, then head to any of the help resources for the dependency has
+and &lt;em&gt;work with people who want to help you to find the cause of the
+problem&lt;/em&gt;. Trust me, it'll go a lot faster if you work with them, take on
+board suggestions (no matter how odd they might first appear), and really
+don't call their code &lt;em&gt;"a metric ton of shenanigans"&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;The conclusion to all of this? The person asking the question eventually
+found they were setting some widget's ID to an invalid ID; one with a &lt;code&gt;.&lt;/code&gt; in
+it. So as I suspected and wanted to walk them to: they had invalid IDs all
+along and they only found out about this because ID validation was fixed.&lt;/p&gt;
+&lt;p&gt;Perhaps one day they'll retract the claim that my actually-unrelated code
+that wasn't "just" released &lt;a href="https://github.com/Textualize/textual/releases/tag/v0.46.0"&gt;but was from last
+year&lt;/a&gt; is &lt;em&gt;"a
+metric ton of shenanigans"&lt;/em&gt;. &lt;code&gt;¯\_(ツ)_/¯&lt;/code&gt;&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Geddit? GEDDIT?&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dave Pearson</dc:creator><pubDate>Sun, 04 Feb 2024 11:27:00 +0000</pubDate><guid isPermaLink="false">tag:blog.davep.org,2024-02-04:/2024/02/04/how-not-to-ask-for-help.html</guid><category>Coding</category><category>free-software</category><category>foss</category><category>help</category></item><item><title>Quizzical</title><link>https://blog.davep.org/2024/01/29/quizzical.html</link><description>&lt;p&gt;I feel like I'm on a bit of a roll when it comes to building applications
 for the terminal at the moment; while I'm still tinkering and improving
 &lt;a href="https://github.com/davep/tinboard"&gt;tinboard&lt;/a&gt; and
 &lt;a href="https://github.com/davep/oshit"&gt;OSHit&lt;/a&gt;, I had the urge to tackle another
@@ -912,26 +1145,4 @@ social graph. But...&lt;/p&gt;
 &lt;p&gt;The.&lt;/p&gt;
 &lt;p&gt;Repo. O_o&lt;/p&gt;
 &lt;p&gt;o_O&lt;/p&gt;
-&lt;p&gt;I can't even.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dave Pearson</dc:creator><pubDate>Mon, 16 Oct 2023 14:16:00 +0100</pubDate><guid isPermaLink="false">tag:blog.davep.org,2023-10-16:/2023/10/16/linkedin-is-useless.html</guid><category>Tech</category><category>LinkedIn</category></item><item><title>Going full Apple search</title><link>https://blog.davep.org/2023/10/14/going-full-apple-search.html</link><description>&lt;p&gt;For as long as I've had a smartphone -- so ever since the &lt;a href="https://en.wikipedia.org/wiki/HTC_Magic"&gt;HTC
-Magic&lt;/a&gt; was released -- I've used
-whatever search tool Google have had available as my way of searching for
-stuff from my phone. Even when I made the switch to the iPhone, back when
-the iPhone 11 was around, I still installed and used the Google Search app.&lt;/p&gt;
-&lt;p&gt;Since jumping ship from Android to iPhone, I've followed the usual track
-that some do of "embracing the ecosystem", and it generally has paid off.
-The more I lean into "the Apple way", the more stuff actually does work
-together and work together well (I won't say "it just works", because that
-can sometimes so &lt;em&gt;very&lt;/em&gt; not be true, but really I do find that Apple's
-ecosystem is more coherent and more stable than the one Google provided).
-But searching for stuff... that stuck with the Google search app.&lt;/p&gt;
-&lt;p&gt;So, more as an experiment than anything else, starting this morning I've
-removed the Google search app from the home screens of my iPhone and my iPad
-and I'm going to force myself to use Spotlight to do all my searching, and
-see how I get on with it.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Searching with Apple" src="/attachments/2023/10/14/apple-search.png#centre"&gt;&lt;/p&gt;
-&lt;p&gt;Of course, when it comes to searching for stuff on the web, it's not going
-to make a whole heap of difference; it's sill going to end up searching with
-Google, but I do like the idea of search leaning into what Spotlight knows
-about my stuff too.&lt;/p&gt;
-&lt;p&gt;Also, on my phone at least, it has the added benefit of freeing up a slot in
-the dock at the bottom of the home screen.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dave Pearson</dc:creator><pubDate>Sat, 14 Oct 2023 08:39:00 +0100</pubDate><guid isPermaLink="false">tag:blog.davep.org,2023-10-14:/2023/10/14/going-full-apple-search.html</guid><category>Tech</category><category>Apple</category></item></channel></rss>
+&lt;p&gt;I can't even.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dave Pearson</dc:creator><pubDate>Mon, 16 Oct 2023 14:16:00 +0100</pubDate><guid isPermaLink="false">tag:blog.davep.org,2023-10-16:/2023/10/16/linkedin-is-useless.html</guid><category>Tech</category><category>LinkedIn</category></item></channel></rss>

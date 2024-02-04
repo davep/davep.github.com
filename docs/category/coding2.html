@@ -183,6 +183,133 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/10/26/visual-selection.html#visual-selection">Visual Selection</a></h2>
+    <p>
+      Posted on 2023-10-26 18:50 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/evolution.html">evolution</a>,              <a href="https://blog.davep.org/tag/biology.html">biology</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
+        &#8226; 4 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Over the last few weeks I've had a couple of sessions of working on a
+library to wrap <a href="https://pypi.org/project/plotext/">Plotext</a> -- a popular
+terminal-based plotting library for Python -- so that it can easily be used
+in Textual apps;
+<a href="https://textual.textualize.io/blog/2023/10/04/announcing-textual-plotext/"><code>textual-plotext</code></a>
+is the result.</p>
+<p>I feel it's come together pretty well</p>
+<p>But... I've been itching to find a reason to use it in a project of my own.</p>
+<p>Meanwhile...</p>
+<p>Back in the mid-2000s, when <a href="https://en.wikipedia.org/wiki/PhpBB">phpBB</a>
+systems were still the fashion, I used to hang out on a site that was
+chiefly aimed at the atheist and secular humanist crowd. We'd get a good
+number of drive-by
+<a href="https://en.wikipedia.org/wiki/Young_Earth_creationism">YEC</a> types who'd
+want to argue (sorry... debate) and often talk nonsense about biology and
+the like.</p>
+<p>Now, I'm no biologist, I'm no scientist, I'm just a hacker who likes to
+write code for fun and profit; so any time there was a chance to write some
+code to help illustrate an idea I'd jump at the chance. I forget the detail
+now -- this was back in 2008; 15 years ago as of the time of writing -- but
+one time I remember a conversation was taking place where someone was just
+flat out claiming that "random mutation" can only cause "loss of
+information" and could never lead to a "desired result", or some such thing.</p>
+<p>If you've ever had, read or watched those debates, you'll know the sort of
+thing I mean.</p>
+<p>So that got me thinking back then, could I write something that could give a
+simple illustration of how this doesn't quite make sense?</p>
+<p>So I had a little hacking session and came up with some Ruby code<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> that
+did what I felt was the job. You'd give it a phrase you wanted it to
+generate (a stand-in for the current "fitness landscape", in effect), it
+would then generate a totally random string of that length, and then would
+set about mutating it, finding mutations that were "fitter" than others (a
+stand in for selection), breed the best two so far (randomly copy one chunk
+from another to create a child), then repeat over and over.</p>
+<p>When I first wrote it I wasn't sure what to expect; would it ever finish
+given a reasonably large target string?</p>
+<p>It did.</p>
+<p>It was fun to code.</p>
+<p>It got posted to the BB and of course wasn't in any way persuasive to them
+(honestly I never expected it would be). I seem to recall it being
+hand-waved away with calls of there obviously being an intelligent designer
+involved<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.</p>
+<p>Anyway, the "meanwhile..." in this: a few times this year I've thought it
+could be fun to rework this in Python (it's really not that complex after
+all; just a string-chopping loop really) and use Textual to put a fun UI on
+it.</p>
+<p>So, that's what I did, complete with <code>textual-plotext</code> plot:</p>
+<p><img alt="Visual Selection in action" src="/attachments/2023/10/26/visual-selection.png"></p>
+<p>While, 15 years on, this isn't going to convince anyone of the underlying
+point, I think it does serve a good educational purpose. It shows that you
+can create a fun UI for the terminal, with Textual, with not a lot of code.
+It also shows off how you can easily create dynamic plots. Plus -- and I
+think this might be the really important one -- it shows you can write
+"traditional" tight-loop code in a Textual application and <em>still</em> have a
+responsive UI; all thanks to the <a href="https://textual.textualize.io/guide/workers/">worker
+API</a>.</p>
+<p>The heart of the code for this application is this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">environment</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span><span class="s2">&quot;This is the target string we want to create!&quot;</span><span class="p">)</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">environment</span><span class="o">.</span><span class="n">best_fit_found</span><span class="p">:</span>
+    <span class="n">environment</span><span class="o">.</span><span class="n">shit_happens</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Sure, there's some detail in the <code>Environment</code> class, but you get the idea:
+while we've not hit the target, let <a href="https://www.youtube.com/watch?v=kiVVzxoPTtg">life find a
+way</a>. A loop like that would
+totally bog down an application with a UI without some other work taking
+place. With Textual and workers the resulting method in the application,
+complete with code to send updates to the UI, really doesn't look much
+different:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@work</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exclusive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">run_world</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">worker</span> <span class="o">=</span> <span class="n">get_current_worker</span><span class="p">()</span>
+    <span class="n">environment</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+    <span class="n">iterations</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">post_message</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">WorldUpdate</span><span class="p">(</span><span class="n">environment</span><span class="p">,</span> <span class="n">iterations</span><span class="p">,</span> <span class="o">*</span><span class="n">environment</span><span class="o">.</span><span class="n">best</span><span class="p">))</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">worker</span><span class="o">.</span><span class="n">is_cancelled</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">environment</span><span class="o">.</span><span class="n">best_fit_found</span><span class="p">:</span>
+        <span class="n">environment</span><span class="o">.</span><span class="n">shit_happens</span><span class="p">()</span>
+        <span class="n">iterations</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">iterations</span> <span class="o">%</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">environment</span><span class="o">.</span><span class="n">best_fit_found</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">post_message</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">WorldUpdate</span><span class="p">(</span><span class="n">environment</span><span class="p">,</span> <span class="n">iterations</span><span class="p">,</span> <span class="o">*</span><span class="n">environment</span><span class="o">.</span><span class="n">best</span><span class="p">)</span>
+            <span class="p">)</span>
+    <span class="k">if</span> <span class="n">environment</span><span class="o">.</span><span class="n">best_fit_found</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">post_message</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Finished</span><span class="p">(</span><span class="n">iterations</span><span class="p">))</span>
+</code></pre></div>
+
+<p>I honestly think the worker API is one of the coolest things added to
+Textual and I so often see people have real <em>"woah!"</em> moments when they get
+to grips with it.</p>
+<p>Anyway... I've covered science, religion, and how Ruby is better than
+Python, so I'm sure I've annoyed almost everyone. Job done I guess. ;-)</p>
+<p>If you want to check out the app itself there's <a href="https://github.com/davep/visual-selection">a GitHub
+repo</a> and it can also be
+installed <a href="https://pypi.org/project/visual-selection/">from PyPi</a> using
+<code>pipx</code>.</p>
+<p>Expect it to be my tinker project of choice for a wee while; there's a
+couple of other things I'd like to add to it.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Possibly unpopular opinion with some folk who will read this, but I've
+long been a fan of Ruby as a language and actually generally prefer it
+to Python.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Me, the coder. While utterly missing the point of a simple
+illustration, while apparently not understanding the concept of an
+analogy, I guess at least they felt I was intelligent?&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/10/01/all-green-on-github.html#all-green-on-github">All green on GitHub</a></h2>
     <p>
       Posted on 2023-10-01 09:14 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -1017,225 +1144,6 @@ and it doesn't error if you request too much.</p>
 part, which will come in <a href="/2020/09/26/reading-2bit-files-for-fun-the-sequence.html">the next
 post</a>,
 is the properly tricky part: the decoding of the sequence data itself.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2020/08/30/reading-2bit-files-for-fun.html#reading-2bit-files-for-fun">Reading 2bit files (for fun)</a></h2>
-    <p>
-      Posted on 2020-08-30 15:20 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/bioinformatics.html">Bioinformatics</a>
-        &#8226; 6 min read
-    </p>
-  </header>
-  <div>
-      <div><h1>Introduction</h1>
-<p>I've written a bit before about the value of having simple but interesting
-"problems", that you know the solution to, as <a href="/2019/11/10/going-on-a-journey.html">a way of exercising yourself
-in a new environment</a>. Recently I've
-added another to the list I already have, and I used it as an excuse to get
-back into writing <a href="https://github.com/davep/org-davep-2bit">some Common
-Lisp</a>; and then went on to use it
-as a reason to write <a href="(https://elisp.dev/)">yet another</a> package <a href="https://github.com/davep/2bit.el">for
-Emacs</a>.</p>
-<p>Having gone through the process of writing code to handle 2bit files twice
-in about a month, and in two very similar but slightly different languages,
-I thought it might be interesting for me to then use it to exercise my
-ability to write blog posts (something I always struggle with -- I find
-writing <em>very hard</em> on a number of levels) and especially posts that explain
-a particular problem and how I implemented code relating to that problem.</p>
-<p>Also, because the initial version of this post rambled on a bit too much and
-I lost the ability to finish it, I'm starting again and will be breaking it
-up a number of posts spanning a number of days -- perhaps even weeks -- so
-that I don't feel too overwhelmed by the process of writing it. I will, of
-course, make sure every post links to the other posts.</p>
-<p>Now, before I go on, I'll make the important point that everything here is
-written from the perspective of a software developer who happens to work as
-part of a bioinformatics team; I don't do bioinformatics, I don't claim to
-understand it, I just happen to sit with (well, used to sit with them --
-hopefully we'll all make it back to the office one day!) and work with them,
-and develop software that supports their work. Anything you see in any of
-the posts that's wrong about that subject: that's just my ignorance being
-shown through the lens of a software developer (all corrections are
-welcome).</p>
-<p>So, with all those disclaimers aside, I'm going to go on a slow wander
-through what a 2bit file is, how you'd go about reading it, and related
-issues. This isn't designed as a tutorial or anything like that, this is
-simply me taking what I've learnt and writing it down. Perhaps someone else
-will benefit one day, but the purpose is to simply enjoy cementing it in my
-own mind and to enjoy the process of putting it all in writing.</p>
-<h1>What is a "2bit file"?</h1>
-<p>So what's this new "problem" I've added to my list? It's code to read
-sequence data from <a href="https://genome.ucsc.edu/FAQ/FAQformat.html#format7">2bit format
-files</a>. For anyone who
-doesn't know (<em>bioinformatics people look away now; a software developer is
-going to explain one of your file formats</em>), this is a file format that is
-intended to hold sequences in an efficient way. As I'm sure you know,
-<a href="https://en.wikipedia.org/wiki/DNA">DNA</a> is made up of <a href="https://en.wikipedia.org/wiki/Nucleobase">4
-bases</a>, represented by the letters
-<a href="https://en.wikipedia.org/wiki/Thymine"><code>T</code></a>,
-<a href="https://en.wikipedia.org/wiki/Cytosine"><code>C</code></a>,
-<a href="https://en.wikipedia.org/wiki/Adenine"><code>A</code></a> and
-<a href="https://en.wikipedia.org/wiki/Guanine"><code>G</code></a>. So, in the simplest case, we
-could just represent a genome using those four letters. Simple enough,
-right? Nice big text file with just those 4 letters in?</p>
-<p>The thing is, something like the human genome is around <a href="https://en.wikipedia.org/wiki/Human_genome#Molecular_organization_and_gene_content">3 billion bases in
-length</a>.
-That'd make for a petty big file to have to store and move around. So why
-not compress it down a bit? That's where the 2bit format comes in.</p>
-<p>Given this problem I'm sure most developers would quickly notice that, given
-4 different characters, you only need 2 bits to actually hold them all (two
-bits gets us <code>00</code>, <code>01</code>, <code>10</code> and <code>11</code>, so four different states). This
-means with a little bit of coding you can store 4 bases in a single byte.
-Just like that you've pretty much squished the whole thing down to 1/4 of
-the original size. And that's more or less what the 2bit format does. If you
-take a look at <a href="http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/">the actual data for the human
-genome</a> you'll see
-that <code>hg38.2bit</code> is roughly 1/4 of 3 billion bytes, ish, give or take.</p>
-<p>There is a wrinkle, however. There are parts of a genome where you might not
-know what base is there. Generally <a href="https://www.bioinformatics.org/sms/iupac.html">an <code>N</code> is used for
-that</a>. So, actually, we want
-to be able to store 5 different characters. But 5 isn't going to go into 2
-bits... Damn! Well, it's okay, 2bit has a solution to that too, and I'll
-cover that later on.</p>
-<h1>How is a 2bit file formatted?</h1>
-<p>As you can see from <a href="https://genome.ucsc.edu/FAQ/FAQformat.html#format7">the format information available
-online</a>, a 2bit file is
-a binary file format that is split into 3 key parts:</p>
-<ul>
-<li>A fixed size header with some key information</li>
-<li>An index into the rest of the file</li>
-<li>A series of records that contain actual sequence information</li>
-</ul>
-<p>In this first post I'll cover the details of the header. Subsequent posts
-will cover the index and the actual sequence data records.</p>
-<h2>The header</h2>
-<p>The header of a 2bit file is fixed in size and contains some key
-information. It can be broken down as follows:</p>
-<table>
-<thead>
-<tr>
-<th>Content</th>
-<th>Type</th>
-<th>Size</th>
-<th>Comments</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Signature</td>
-<td>Integer</td>
-<td>4 bytes</td>
-<td>See below for endian issues.</td>
-</tr>
-<tr>
-<td>Version</td>
-<td>Integer</td>
-<td>4 bytes</td>
-<td>Always 0.</td>
-</tr>
-<tr>
-<td>Sequence count</td>
-<td>Integer</td>
-<td>4 bytes</td>
-<td></td>
-</tr>
-<tr>
-<td>Reserved</td>
-<td>Integer</td>
-<td>4 bytes</td>
-<td>Always ignored.</td>
-</tr>
-</tbody>
-</table>
-<p>The signature value is used to test if what you're looking at is a 2bit
-file, but also tells you some vital information about how to read the file
--- see below for more on that. The version value is always <code>0</code> -- as such
-another useful test would be to error out if you get a valid signature but
-get a version other than <code>0</code>. The sequence count is, as you'd guess, the
-number of sequences that are held within the file -- this is important when
-loading in the index of the file (more on that in the next post).</p>
-<h2>The signature, big and little endianness, and byte swapping</h2>
-<p>The header mentioned above comprises of 4 32-bit word values. The very first
-word is important to how you read the rest of the file. This is the
-<code>signature</code> for the 2bit file and it should always be <code>0x1A412743</code>. And this
-is where it gets interesting and fun right away. The 2bit file format allows
-for the fact that the file can be built in either <a href="https://en.wikipedia.org/wiki/Endianness">a little-endian or a
-big-endian machine</a>, and the
-32-bit word values can be binary-written to the file in the local
-architecture's byte order. The effect of this is that, from reading the very
-first value in the file, you need to decide if every other numeric value you
-read needs to be byte-swapped in some way. The early logic being (in no
-particular language) something like:</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="nv">signature</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="nv">x1A412743</span><span class="w"> </span><span class="k">then</span>
-<span class="w">  </span><span class="nv">must_swap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">False</span>
-<span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">byte_swap</span><span class="ss">(</span><span class="w"> </span><span class="nv">signature</span><span class="w"> </span><span class="ss">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="nv">x1A412743</span><span class="w"> </span><span class="k">then</span>
-<span class="w">  </span><span class="nv">must_swap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">True</span>
-<span class="k">else</span>
-<span class="w">  </span><span class="nv">raise</span><span class="w"> </span><span class="s2">&quot;This isn&#39;t a valid 2bit file&quot;</span>
-<span class="k">end</span>
-</code></pre></div>
-
-<p>Simply put, to read the rest of the file you will need a function that
-byte-swaps a 32bit numeric value, and a flag of some sort to mark that you
-need to do this every time you read such a value. Of course, depending on
-your language of choice, you could do it in a number of different ways. In a
-language like JavaScript or Scheme, where you can easily throw around
-functions, I'd probably just assign the appropriate 32bit-word-reading
-function to a global function name and call that regardless throughout the
-rest of the code. In other languages I'd probably just check the flag each
-time and call the swapping function if needed. In something like Python I'd
-likely just use the signature to decide on which format to pass to
-<a href="https://docs.python.org/3.8/library/struct.html#struct.unpack"><code>struct.unpack</code></a>.
-For example, some variation on:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Assuming that &#39;header&#39; is the whole header of the file read as a binary buffer.</span>
-
-<span class="n">word_fmt</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-
-<span class="k">for</span> <span class="n">test_fmt</span> <span class="ow">in</span> <span class="p">(</span> <span class="s2">&quot;&lt;I&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;I&quot;</span> <span class="p">):</span>
-    <span class="k">if</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span> <span class="n">test_fmt</span><span class="p">,</span> <span class="n">header</span><span class="p">[</span> <span class="mi">0</span><span class="p">:</span><span class="mi">4</span> <span class="p">]</span> <span class="p">)[</span> <span class="mi">0</span> <span class="p">]</span> <span class="o">==</span> <span class="mh">0x1A412743</span>
-        <span class="n">word_fmt</span> <span class="o">=</span> <span class="n">test_fmt</span>
-        <span class="k">break</span>
-
-<span class="k">if</span> <span class="ow">not</span> <span class="n">word_fmt</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span> <span class="s2">&quot;This isn&#39;t a 2bit file&quot;</span> <span class="p">)</span>
-</code></pre></div>
-
-<p>Now, the Python approach sort of hides the important detail here. With it
-we'd simply use <code>struct.unpack</code>'s <a href="https://docs.python.org/3.8/library/struct.html#byte-order-size-and-alignment">ability to handle different byte orders
-</a>
-and not worry about the detail. Which isn't fun, right? So how might code to
-byte-swap a 32bit value look?</p>
-<p>Assuming you've got the value as an actual numeric integer, it can be as
-simple as using a bit of bitwise anding and shifting. Here's the basic code
-I wrote in Common Lisp, for example:</p>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">defun</span><span class="w"> </span><span class="nv">swap-long</span><span class="w"> </span><span class="p">(</span><span class="nv">value</span><span class="p">)</span>
-<span class="w">  </span><span class="s">&quot;Swap the endianness of a long integer VALUE.&quot;</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">logior</span>
-<span class="w">   </span><span class="p">(</span><span class="nb">logand</span><span class="w"> </span><span class="p">(</span><span class="nb">ash</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="mi">-24</span><span class="p">)</span><span class="w"> </span><span class="mh">#xff</span><span class="p">)</span>
-<span class="w">   </span><span class="p">(</span><span class="nb">logand</span><span class="w"> </span><span class="p">(</span><span class="nb">ash</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="mi">-8</span><span class="p">)</span><span class="w"> </span><span class="mh">#xff00</span><span class="p">)</span>
-<span class="w">   </span><span class="p">(</span><span class="nb">logand</span><span class="w"> </span><span class="p">(</span><span class="nb">ash</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="mh">#xff0000</span><span class="p">)</span>
-<span class="w">   </span><span class="p">(</span><span class="nb">logand</span><span class="w"> </span><span class="p">(</span><span class="nb">ash</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="mi">24</span><span class="p">)</span><span class="w"> </span><span class="mh">#xff000000</span><span class="p">)))</span>
-</code></pre></div>
-
-<p>JavaScript might be something like:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">swapLong</span><span class="p">(</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mf">24</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xff</span><span class="w">       </span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w">  </span><span class="mf">8</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xff00</span><span class="w">     </span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w">  </span><span class="mf">8</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xff0000</span><span class="w">   </span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
-<span class="w">           </span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mf">24</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xff000000</span><span class="w"> </span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>and other variations on that theme in different languages.</p>
-<h2>Up next</h2>
-<p>In <a href="/2020/09/05/reading-2bit-files-for-fun-the-index.html">the next post</a>
-I'll write about how the sequence index is stored and how to load it,
-including some considerations about how to make the loading as efficient as
-possible.</p></div>
   </div>
 </article>
 
