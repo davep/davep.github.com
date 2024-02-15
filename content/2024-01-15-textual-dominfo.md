@@ -61,7 +61,7 @@ Thing is... Textual tooltips can't be functions (which would be the obvious
 approach to make it dynamic); so there was no way to get this on-the-fly
 behaviour I wanted.
 
-Expect there was! The type of
+Except there was! The type of
 [`tooltip`](https://textual.textualize.io/api/widget/#textual.widget.Widget.tooltip)
 is `RenderableType`. So that means I could assign it an object that is a
 Rich renderable; that in turn means I could write a `__rich__` method for a
