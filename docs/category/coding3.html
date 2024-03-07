@@ -183,6 +183,140 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2020/09/05/reading-2bit-files-for-fun-the-index.html#reading-2bit-files-for-fun-the-index">Reading 2bit files (for fun) - the index</a></h2>
+    <p>
+      Posted on 2020-09-05 10:59 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/bioinformatics.html">Bioinformatics</a>
+        &#8226; 4 min read
+    </p>
+  </header>
+  <div>
+      <div><p>As mentioned in <a href="/2020/08/30/reading-2bit-files-for-fun.html">the first
+post</a>, once you've read in the
+header data for a 2bit file, the next step is to read the index. This is an
+index into all the different sequences held in the file. Reading the index
+itself is fairly straightforward.</p>
+<p>The index comes right after the header -- so it starts on the 17th byte of
+the file. Each entry in the index contains three items of information:</p>
+<table>
+<thead>
+<tr>
+<th>Content</th>
+<th>Type</th>
+<th>Size</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name length</td>
+<td>Integer</td>
+<td>1 byte</td>
+<td>How many bytes long the name is</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>String</td>
+<td>Varies</td>
+<td>Length given by previous field</td>
+</tr>
+<tr>
+<td>Offset</td>
+<td>Integer</td>
+<td>4 bytes</td>
+<td>Location in the file of the sequence</td>
+</tr>
+</tbody>
+</table>
+<p>So, in some sort of pseudo-code, you'd read in the index as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">dict</span><span class="ss">()</span>
+<span class="k">for</span><span class="w"> </span><span class="nv">seq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">seq_count</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nv">seq_count</span><span class="w"> </span><span class="nv">comes</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">header</span>
+<span class="w">  </span><span class="nv">name_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">(</span><span class="nv">int</span><span class="ss">)</span><span class="w"> </span><span class="nv">read_bytes</span><span class="ss">(</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="ss">)</span>
+<span class="w">  </span><span class="nv">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="ss">(</span><span class="nv">string</span><span class="ss">)</span><span class="w"> </span><span class="nv">read_bytes</span><span class="ss">(</span><span class="w"> </span><span class="nv">name_len</span><span class="w"> </span><span class="ss">)</span>
+<span class="w">  </span><span class="nv">offset</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="ss">(</span><span class="nv">int</span><span class="ss">)</span><span class="w"> </span><span class="nv">read_bytes</span><span class="ss">(</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="ss">)</span>
+<span class="w">  </span><span class="nv">index</span>[<span class="w"> </span><span class="nv">name</span><span class="w"> </span>]<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">offset</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p>Note, as mentioned in the <a href="/2020/08/30/reading-2bit-files-for-fun.html">first
+post</a>, the <code>index</code> will need to
+be byte-swapped if the file is in an endian form other than the machine
+you're running your code on. How you'd go about this will, of course, vary
+from language to language, but the main idea is always going to be the same.</p>
+<p>There's a fairly striking downside to this approach though: reading data can
+often be an expensive (in terms of time) operation -- this is especially
+true if the data is coming in from a remote machine, perhaps even one that's
+being accessed over the Internet. As such, it's best if you can make as few
+"trips" to the file as possible.</p>
+<p>With this in mind, the best thing to do is to read the whole index into
+memory in one go and then process it from there -- the idea being that
+that's just one trip to the data source. The problem here, however, is that
+there's nothing in the header or the index that tells you how large the
+index actually is. What you can do though is work on the worst case scenario
+(assuming memory will allow). The worst case is fairly easy to handle: it's
+going to be 1 byte for the name length, plus 255 bytes for the name (the
+longest possible name), plus 4 bytes for the offset; multiply all that by
+the number of sequences in the index and you have the worst-case buffer
+size.</p>
+<p>When reading this data in you might also want to ensure you're not going to
+run off the end of the file (perhaps the names are all quite small and so
+are the sequences).</p>
+<p>Recently I've been working on <a href="https://github.com/davep/2bit.el">a package for Emacs that can read data from
+2bit files</a>, so here's the core code for
+reading in the index:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">defun</span><span class="w"> </span><span class="nv">2bit--read-index</span><span class="w"> </span><span class="p">(</span><span class="nv">source</span><span class="p">)</span>
+<span class="w">  </span><span class="s">&quot;Read the sequence index from SOURCE.</span>
+
+<span class="s">As a side effect </span><span class="ss">`2bit-data-pos&#39;</span><span class="s"> of SOURCE will move.&quot;</span>
+<span class="w">  </span><span class="p">(</span><span class="nb">cl-loop</span>
+<span class="w">   </span><span class="c1">;; The index will be a hash of sequence names, with the values being the</span>
+<span class="w">   </span><span class="c1">;; offsets within the file.</span>
+<span class="w">   </span><span class="nv">with</span><span class="w"> </span><span class="nv">index</span><span class="w"> </span><span class="nf">=</span><span class="w"> </span><span class="p">(</span><span class="nf">make-hash-table</span><span class="w"> </span><span class="nb">:test</span><span class="w"> </span><span class="nf">#&#39;equal</span><span class="p">)</span>
+<span class="w">   </span><span class="c1">;; We could read each name/value pair one by one, but because we&#39;re doing</span>
+<span class="w">   </span><span class="c1">;; this within Emacs, which means making a temp buffer for every read,</span>
+<span class="w">   </span><span class="c1">;; that could get pretty expensive pretty fast. So instead we&#39;ll read the</span>
+<span class="w">   </span><span class="c1">;; index data in in one go. However, there is no easy-to-calculate size</span>
+<span class="w">   </span><span class="c1">;; for the index. The best we can do is calculate the worst case size. So</span>
+<span class="w">   </span><span class="c1">;; let&#39;s do that. The worst case size is the maximum size of the name of</span>
+<span class="w">   </span><span class="c1">;; a sequence (255), plus the size of the byte that tells us the name</span>
+<span class="w">   </span><span class="c1">;; (1), plus the size of the word that is the offset in the file (4).</span>
+<span class="w">   </span><span class="nv">with</span><span class="w"> </span><span class="nv">buffer</span><span class="w"> </span><span class="nf">=</span><span class="w"> </span><span class="p">(</span><span class="nv">2bit--read</span><span class="w"> </span><span class="nv">source</span><span class="w"> </span><span class="p">(</span><span class="nf">*</span><span class="w"> </span><span class="p">(</span><span class="nv">2bit-data-sequence-count</span><span class="w"> </span><span class="nv">source</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nf">+</span><span class="w"> </span><span class="mi">255</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">4</span><span class="p">)))</span>
+<span class="w">   </span><span class="c1">;; For every sequence in the file...</span>
+<span class="w">   </span><span class="nv">for</span><span class="w"> </span><span class="nv">n</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="p">(</span><span class="nv">2bit-data-sequence-count</span><span class="w"> </span><span class="nv">source</span><span class="p">)</span>
+<span class="w">   </span><span class="c1">;; Calculate the position within the buffer for this loop around. Note</span>
+<span class="w">   </span><span class="c1">;; that the skip is the last position plus 1 for the size byte plus the</span>
+<span class="w">   </span><span class="c1">;; size plus the length of the offset word.</span>
+<span class="w">   </span><span class="nv">for</span><span class="w"> </span><span class="nv">pos</span><span class="w"> </span><span class="nf">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nv">then</span><span class="w"> </span><span class="p">(</span><span class="nf">+</span><span class="w"> </span><span class="nv">pos</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
+<span class="w">   </span><span class="c1">;; Get the length of the name of the sequence.</span>
+<span class="w">   </span><span class="nv">for</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="nf">=</span><span class="w"> </span><span class="p">(</span><span class="nf">aref</span><span class="w"> </span><span class="nv">buffer</span><span class="w"> </span><span class="nv">pos</span><span class="p">)</span>
+<span class="w">   </span><span class="c1">;; Pull out the name itself.</span>
+<span class="w">   </span><span class="nv">for</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="nf">=</span><span class="w"> </span><span class="p">(</span><span class="nf">substring</span><span class="w"> </span><span class="nv">buffer</span><span class="w"> </span><span class="p">(</span><span class="nf">1+</span><span class="w"> </span><span class="nv">pos</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nf">+</span><span class="w"> </span><span class="nv">pos</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">size</span><span class="p">))</span>
+<span class="w">   </span><span class="c1">;; Pull out the offset.</span>
+<span class="w">   </span><span class="nv">for</span><span class="w"> </span><span class="nv">offset</span><span class="w"> </span><span class="nf">=</span><span class="w"> </span><span class="p">(</span><span class="nv">2bit--word-from-bytes</span><span class="w"> </span><span class="nv">source</span><span class="w"> </span><span class="p">(</span><span class="nf">substring</span><span class="w"> </span><span class="nv">buffer</span><span class="w"> </span><span class="p">(</span><span class="nf">+</span><span class="w"> </span><span class="nv">pos</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">size</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nf">+</span><span class="w"> </span><span class="nv">pos</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="mi">4</span><span class="p">)))</span>
+<span class="w">   </span><span class="c1">;; Collect the offset into the hash.</span>
+<span class="w">   </span><span class="nb">do</span><span class="w"> </span><span class="p">(</span><span class="nb">setf</span><span class="w"> </span><span class="p">(</span><span class="nf">gethash</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="nv">index</span><span class="p">)</span><span class="w"> </span><span class="nv">offset</span><span class="p">)</span>
+<span class="w">   </span><span class="c1">;; Once we&#39;re all done.... return the index.</span>
+<span class="w">   </span><span class="nv">finally</span><span class="w"> </span><span class="nb">return</span><span class="w"> </span><span class="nv">index</span><span class="p">))</span>
+</code></pre></div>
+
+<p>This code does what I mention above: it grabs enough data into a buffer in
+one go that I'll have the whole index in memory to pull apart, and then I
+work with the in-memory copy. The index is added to a hashing dictionary.
+Note that, in this case, I don't actually do the test for running off the
+end of the file because at the heart of the file reading code is
+<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Reading-from-Files.html"><code>insert-file-contents-literally</code></a>
+and it doesn't error if you request too much.</p>
+<p>With that done you'll have a list of all the sequences in the file. The next
+part, which will come in <a href="/2020/09/26/reading-2bit-files-for-fun-the-sequence.html">the next
+post</a>,
+is the properly tricky part: the decoding of the sequence data itself.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2020/08/30/reading-2bit-files-for-fun.html#reading-2bit-files-for-fun">Reading 2bit files (for fun)</a></h2>
     <p>
       Posted on 2020-08-30 15:20 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>

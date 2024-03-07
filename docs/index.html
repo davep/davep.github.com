@@ -183,6 +183,62 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2024/03/07/tinboard-0-10-0.html#tinboard-0-10-0">Tinboard v0.10.0</a></h2>
+    <p>
+      Posted on 2024-03-07 08:45 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>I just realised that it's been a while since I <a href="/2023/12/25/tinboard-0-4-0.html">last posted an
+update</a> about <code>tinboard</code>. This is probably
+my most-used Textual-based application, and one I'm constantly tinkering
+with, and just this morning I published v0.10.0.</p>
+<p>Often the changes are small tweaks or fixes to how it works, sometimes
+they're simply updates to the version of Textual used, making use of some
+new feature or other; I've yet to add another "major" feature so far. They
+will come, but so far the ideas I have for the application haven't actually
+felt that necessary. Although I say so myself it does what I need it to do
+and it does it really well.</p>
+<p>So, as a quick catch-up of what's changed since v0.4.0 (which was the last
+version I posted about):</p>
+<ul>
+<li>v0.5.0 was released 2024-01-04; this included all the tags of a bookmark
+when doing full-text searching.</li>
+<li>v0.6.0 was released 2024-01-10; it fixed a small bug where the tag
+suggestion facility got confused by trailing spaces in the input field.</li>
+<li>v0.7.0 was released 2024-02-02; this updated the minimum Textual version to
+v0.48.2 and removed all the custom changes to the Textual <code>TextArea</code> widget,
+making use of the updates to <code>TextArea</code> that version of Textual made
+available.</li>
+<li>v0.8.0 was released 2024-02-18; this fixed a crash on startup caused by a
+newer release of Textual (the fault was in <code>tinboard</code>; the update to Textual
+helped reveal the problem).</li>
+<li>v0.9.0 was released 2024-02-29; it simply added support for using
+<kbd>Esc</kbd> at the top level of the application to quit (I like to camp
+on <kbd>Esc</kbd> to GTFO).</li>
+</ul>
+<p>Then, just now, I released v0.10.0. This release makes full use of <a href="https://github.com/Textualize/textual/pull/4154">some
+work I recently did to enhance Textual's <code>CommandPalette</code>
+widget</a>, which added a
+"discover" system. The change in <code>tinboard</code> is that all of the <a href="https://github.com/davep/tinboard/tree/main/tinboard/commands">command
+palette
+providers</a>
+now have <code>discover</code> methods too. The result of this change is that when you
+open the command palette in <code>tinboard</code> (<kbd>ctrl</kbd>+<kbd>p</kbd>) you
+can see <em>every</em> possible command right away.</p>
+<p><img alt="The command palette in discovery mode" src="/attachments/2024/03/07/command-palette.png#centre"></p>
+<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
+PyPi</a>. The <a href="https://github.com/davep/tinboard">source is available on
+GitHub</a>.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2024/02/05/back-to-death-stranding.html#back-to-death-stranding">Back to Death Stranding</a></h2>
     <p>
       Posted on 2024-02-05 07:45 +0000 in <a href="https://blog.davep.org/category/gaming.html">Gaming</a>
@@ -907,52 +963,6 @@ perhaps also how to format it or something. Like, often, if I'm copying a
 bookmark's URL, it's because I want to paste it into some Markdown document,
 or some location that will handle Markdown markup.</p>
 <p>Perhaps that'll turn up in v0.5.0 in a couple of days? ;-)</p>
-<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
-PyPi</a>. The <a href="https://github.com/davep/tinboard">source is available on
-GitHub</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2023/12/23/tinboard-0-3-0.html#tinboard-0-3-0">Tinboard v0.3.0</a></h2>
-    <p>
-      Posted on 2023-12-23 08:49 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>It looks like I'm in a wee period of small incremental changes and release
-of <a href="/2023/12/19/tinboard.html">Tinboard</a>. This morning I've release v0.3.0,
-which has a couple of small but useful changes.</p>
-<p>The first is more of a cosmetic thing. The <a href="https://textual.textualize.io/widgets/footer/"><code>Footer</code> widget in
-Textual</a> is handy for showing
-the current keyboard bindings in a given context, but it can get massively
-cluttered very quickly (we do have plans to revisit this); in Tinboard this
-clutter creep was turning into a thing.</p>
-<p>So I've removed almost every binding from being displayed in the <code>Footer</code>,
-and have placed an emphasis on the user pressing <kbd>F1</kbd> to get
-context-sensitive help, and have also left the most useful bindings in the
-footer with very minimal descriptions.</p>
-<p>Given that this is a keyboard-first application, and I've tried to make the
-bindings easy to remember, I think it's going to make more sense to do it
-like this, and will make for a tidier UI too.</p>
-<p>There is one disadvantage here of course: by removing the display of
-bindings from the footer, the mouse-heavy user becomes disadvantaged; if a
-particular binding doesn't have a UI feature that favours the mouse to cover
-it too there's no way to initiate that action with the mouse. I'm going to
-think on this a little. Again, Tinboard is designed for <em>me</em> first and
-foremost, and my preference is to be keyboard-first when using the
-application; but finding a good compromise would be advantageous when it
-comes to advising people asking about Textual application design.</p>
-<p>The second change is a simple but useful one. I've added a toggle of the
-sort order of the tags menu in the left-hand column (bound to
-<kbd>F4</kbd>). Right now it simply toggles between alphabetical order, or
-bookmark count order (most to least). At some point I might make it more of
-a cycle than a toggle, but this serves my purposes for now.</p>
 <p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
 PyPi</a>. The <a href="https://github.com/davep/tinboard">source is available on
 GitHub</a>.</p></div>
