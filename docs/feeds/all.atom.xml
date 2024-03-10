@@ -1,5 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2024-03-07T08:45:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Tinboard v0.10.0</title><link href="https://blog.davep.org/2024/03/07/tinboard-0-10-0.html" rel="alternate"></link><published>2024-03-07T08:45:00+00:00</published><updated>2024-03-07T08:45:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-03-07:/2024/03/07/tinboard-0-10-0.html</id><content type="html">&lt;p&gt;I just realised that it's been a while since I &lt;a href="/2023/12/25/tinboard-0-4-0.html"&gt;last posted an
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2024-03-10T14:12:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Homebrew all the Python things</title><link href="https://blog.davep.org/2024/03/10/homebrew-all-the-python-things.html" rel="alternate"></link><published>2024-03-10T14:12:00+00:00</published><updated>2024-03-10T14:12:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-03-10:/2024/03/10/homebrew-all-the-python-things.html</id><content type="html">&lt;p&gt;Over the past year and a half I've written a &lt;em&gt;lot&lt;/em&gt; of Python code, and a lot
+of that Python code has been Textual applications; most of those Textual
+applications have been very quick demonstration or test applications built
+to help support someone asking for help; some of them have been less-trivial
+applications written in my own time and for my own use and amusement. Of
+them I'd say there are two near-daily-drivers, and a couple that I either
+have more plans for, or like to maintain just for the hell of it.&lt;/p&gt;
+&lt;p&gt;Those latter applications are all ones that &lt;a href="https://pypi.org/user/davepearson/"&gt;I've deployed to
+PyPI&lt;/a&gt;, and because of that are all ones
+that I've recommenced be installed using
+&lt;a href="https://pipx.pypa.io/stable/"&gt;&lt;code&gt;pipx&lt;/code&gt;&lt;/a&gt;. During that time though I've had
+half an inclination to make them &lt;a href="https://brew.sh/"&gt;installable via
+Homebrew&lt;/a&gt;. While probably not installable from the core
+Homebrew repository&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;, at least installable from a "tap"&lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2"&gt;2&lt;/a&gt;&lt;/sup&gt; that's under
+my own GitHub account or something.&lt;/p&gt;
+&lt;p&gt;To this end I've had &lt;a href="https://til.simonwillison.net/homebrew/packaging-python-cli-for-homebrew"&gt;a blog post about packaging Python apps for
+Homebrew&lt;/a&gt;
+saved in Pinboard for a while now, and every time I look at it I think
+&lt;em&gt;"this is a lot of faff, maybe later"&lt;/em&gt;. Today was that "later".&lt;/p&gt;
+&lt;p&gt;As it turned out, it was &lt;em&gt;way&lt;/em&gt; easier than I first realised. The evolution
+of today pretty much went like this:&lt;/p&gt;
+&lt;h2&gt;Deciding to use a single repository as the "tap"&lt;/h2&gt;
+&lt;p&gt;The blog post above seemed to suggest that for every application repository
+you want a tap for, you probably want a parallel &lt;code&gt;homebrew-&lt;/code&gt;-prefixed
+repository. This in turn would suggest that every time someone wants to
+install one of your tools, they'd need to add a new tap&lt;sup id="fnref:3"&gt;&lt;a class="footnote-ref" href="#fn:3"&gt;3&lt;/a&gt;&lt;/sup&gt;. As I looked at
+it this seemed like way too much faff, so in the end I decided &lt;a href="https://github.com/davep/homebrew-homebrew"&gt;to create a
+single repository that I'd keep all my formula files
+in&lt;/a&gt;. The naming of
+&lt;code&gt;homebrew-homebrew&lt;/code&gt; meant that the tap name would simply be
+&lt;code&gt;davep/homebrew&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Simple and clean, I think: things for homebrew, things that can be installed
+via homebrew, that come from davep. To add the tap it's simply:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;tap&lt;span class="w"&gt; &lt;/span&gt;davep/homebrew
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Ensuring that all my applications and libraries publish source&lt;/h2&gt;
+&lt;p&gt;Although it seems that it might be (possibly, maybe, perhaps, who can tell?)
+deprecated, it looked like
+&lt;a href="https://github.com/tdsmith/homebrew-pypi-poet"&gt;&lt;code&gt;homebrew-pypi-poet&lt;/code&gt;&lt;/a&gt; was a
+tool I'd need to do all the heavy work on making the formula file. A quick
+test threw up a problem where it was complaining that my test package (one
+of my own applications) didn't have an &lt;code&gt;sdist&lt;/code&gt;. Sure enough, through nothing
+more than never having bothered to make it happen, the source of my
+libraries and applications wasn't been uploaded to PyPI when I published.&lt;/p&gt;
+&lt;p&gt;So I went through some of my repositories and fixed that, making patch
+releases as I went.&lt;/p&gt;
+&lt;h2&gt;Making a &lt;code&gt;Makefile&lt;/code&gt; to let me be lazy&lt;/h2&gt;
+&lt;p&gt;The next thing to do was to figure out the most lazy way of building the
+formula files. From what I could see the main steps to making all of this
+work were:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Make a venv and activate it&lt;/li&gt;
+&lt;li&gt;Install &lt;code&gt;homebrew-pypi-poet&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Install the package you want to package for Homebrew&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;poet&lt;/code&gt; to make the formula&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Seemed simple enough. For all sorts of lazy reasons I still tend to use
+&lt;code&gt;pipenv&lt;/code&gt; to get things done quickly, and that seemed to work fine here too.
+I'm also a fan of &lt;code&gt;PIPENV_VENV_IN_PROJECT=true&lt;/code&gt; which makes things clean and
+tidy, so I figured a rule in a &lt;code&gt;Makefile&lt;/code&gt; like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;clean&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;rm&lt;span class="w"&gt; &lt;/span&gt;-rf&lt;span class="w"&gt; &lt;/span&gt;.venv
+&lt;span class="w"&gt;        &lt;/span&gt;rm&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;Pipfile&lt;span class="w"&gt; &lt;/span&gt;Pipfile.lock
+&lt;span class="w"&gt;        &lt;/span&gt;pipenv&lt;span class="w"&gt; &lt;/span&gt;--python&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.12
+&lt;span class="w"&gt;        &lt;/span&gt;pipenv&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--dev&lt;span class="w"&gt; &lt;/span&gt;homebrew-pypi-poet
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;would be fine to make a clean venv ready to build the formula, and then I'd
+have a rule for the package itself that depended on the above, like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;oshit&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;clean&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;pipenv&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;oshit
+&lt;span class="w"&gt;        &lt;/span&gt;pipenv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;poet&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;oshit&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;Formula/oshit.rb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Fixing the package description&lt;/h2&gt;
+&lt;p&gt;The above was great, and worked really well. But there was one issue that I
+could see: the resulting formula file always had this &lt;code&gt;desc&lt;/code&gt; inside it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;desc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Shiny new formula&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;From what I could see there was no way to tell &lt;code&gt;poet&lt;/code&gt; what I wanted the
+description to be, and neither did I want to have to remember to edit that
+line each time I regenerated the formula file. So &lt;code&gt;sed&lt;/code&gt; to the rescue then I
+guess, with this sort of thing:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sed&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s/Shiny new formula/The actual text I want/&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Formula/coolapp.rb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;The result&lt;/h2&gt;
+&lt;p&gt;The result of all of this is that I now have &lt;a href="https://github.com/davep/homebrew-homebrew"&gt;a repository that I or anyone
+else can use as a tap&lt;/a&gt; to be
+able to install my stuff using the &lt;code&gt;brew&lt;/code&gt; command. So now if you want a
+little Hacker News reader for the terminal but you don't want to be messing
+with installing &lt;code&gt;pipx&lt;/code&gt; and the like, but you do use &lt;code&gt;brew&lt;/code&gt; on your machine,
+it's just this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;tap&lt;span class="w"&gt; &lt;/span&gt;davep/homebrew
+$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;oshit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Fingers crossed it all "just works" when I next upgrade one of those
+packages. I will, of course, have to remember to go into
+&lt;code&gt;davep/homebrew-homebrew&lt;/code&gt; and &lt;code&gt;make the-app&lt;/code&gt; for the relevant application,
+and then commit and push the changes, but that's really not too difficult to
+remember and do.&lt;/p&gt;
+&lt;p&gt;Hopefully it'll then all just work.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;I do actually &lt;a href="https://formulae.brew.sh/formula/eg"&gt;have one package in
+Homebrew&lt;/a&gt;, but it wasn't me who put
+it there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;I really like Homebrew as a tool for getting stuff installed, by oh my
+gods the naming of things in its ecosystem is terrible and confusing!&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;No, really, I mean it, this naming convention is kinda cringe right?&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category><category term="Homebrew"></category><category term="Makefile"></category></entry><entry><title>Tinboard v0.10.0</title><link href="https://blog.davep.org/2024/03/07/tinboard-0-10-0.html" rel="alternate"></link><published>2024-03-07T08:45:00+00:00</published><updated>2024-03-07T08:45:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-03-07:/2024/03/07/tinboard-0-10-0.html</id><content type="html">&lt;p&gt;I just realised that it's been a while since I &lt;a href="/2023/12/25/tinboard-0-4-0.html"&gt;last posted an
 update&lt;/a&gt; about &lt;code&gt;tinboard&lt;/code&gt;. This is probably
 my most-used Textual-based application, and one I'm constantly tinkering
 with, and just this morning I published v0.10.0.&lt;/p&gt;
@@ -1103,67 +1224,4 @@ download it again.&lt;/p&gt;
 track of when it happens -- and I think I should from now on -- but it feels
 like it happens every couple of days; I almost always notice it first thing
 in the morning, the first time I ask the phone or the headphones something.&lt;/p&gt;
-&lt;p&gt;I hope it is some sort of iOS 17 weirdness and is gone when 17.1 turns up.&lt;/p&gt;</content><category term="Tech"></category><category term="Apple"></category><category term="iPhone"></category><category term="Siri"></category></entry><entry><title>A new guitar</title><link href="https://blog.davep.org/2023/10/20/a-new-guitar.html" rel="alternate"></link><published>2023-10-20T08:39:00+01:00</published><updated>2023-10-20T08:39:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-10-20:/2023/10/20/a-new-guitar.html</id><content type="html">&lt;p&gt;This one has been brewing for a year, more or less. Now that I commute into
-and back from Edinburgh most days of the working week, I find myself walking
-past a couple of music shops. Seeing these reminds me of the days, back in
-my 20s, when I &lt;a href="https://www.flickr.com/photos/davepearson/albums/72157600225099352"&gt;mucked around in a couple of
-bands&lt;/a&gt;
-and had fun making noises on a bass guitar. Since that time I've also owned
-a cheap six string electric, which is currently in storage (and has been
-since 2016) and an acoustic, which I have with me but I live in an apartment
-building and I'm not an arsehole so I never play it.&lt;/p&gt;
-&lt;p&gt;So, yeah, walking past those shops has made me want to muck about on a
-guitar again. I've never properly learnt the guitar, I've just managed to
-learn enough chords to make some noises I like for my own amusement, but
-even then I've not picked one up since around 2016 and what little I do know
-is very rusty.&lt;/p&gt;
-&lt;p&gt;Add to the above: earlier this year I was at a friend's and admiring her
-collection of bass and six string guitars and picked a couple up and
-realised I could not play anything. It had been too long, I'd lost most
-muscle memory and coordination, and what little knowledge I had.&lt;/p&gt;
-&lt;p&gt;So this made me want to fix this even more.&lt;/p&gt;
-&lt;p&gt;Given the apartment thing I decided on a plan: how about I get an eclectic,
-and then some sort of amplification that would always rely on headphones?
-Given such a setup I could knuckle down and try and learn properly.&lt;/p&gt;
-&lt;p&gt;So, this week, being on holiday, I told myself I'd pop into Edinburgh one
-day and have a look at my options; perhaps even come home with something.
-Yesterday was that day.&lt;/p&gt;
-&lt;p&gt;It didn't quite go to plan, but the outcome was that I ended up with
-something to play.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="My new Höfner" src="/attachments/2023/10/20/IMG_3329.jpeg#centre"&gt;&lt;/p&gt;
-&lt;p&gt;So, on getting into the shop, and explaining what I was after and why to the
-chap in there, I tried the usual Stratocaster and Telecaster thing. Both
-were fine (I think I liked the feel of the Telecaster more in my hand). I
-had one eye on a Les Paul too, but never tried that. What I did see though
-was this rather lovely black Höfner.&lt;/p&gt;
-&lt;p&gt;Now, of course, it's hollow body, so sort of has that acoustic thing going
-on. This isn't what I wanted for playing in an apartment. But I had to try
-it anyway. As soon as I started dabbling I was sold. The sound was enough
-that it would be easy to pick up and play without having to faff with
-amplification of any sort, on the other hand it was nowhere near as loud as
-my acoustic. I felt like it bridged the gap between easy to pick up, and
-versatile enough should I ever want to plug it into something.&lt;/p&gt;
-&lt;p&gt;And... let's be honest: it was black. Sooooo black. I like black.&lt;/p&gt;
-&lt;p&gt;Long story short... it had to come home with me!&lt;/p&gt;
-&lt;p&gt;As mentioned earlier: most of my guitar stuff is still in storage, from when
-I moved to Scotland, but I &lt;em&gt;did&lt;/em&gt; find my old tin of plectrums and the tuner.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Standard guitar kit" src="/attachments/2023/10/20/IMG_3330.jpeg#centre"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;center&gt;
-    &lt;em&gt;(Yes, the tin was once mine and was once full; the early 90s were a
-    different time)&lt;/em&gt;
-&lt;/center&gt;&lt;/p&gt;
-&lt;p&gt;I even found one of my old stands, that I've had since around 1991! So now
-it's set up in my living room, next to the PCVR rig, ready to go at a
-moment's notice.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="On its stand, ready to go" src="/attachments/2023/10/20/IMG_3331.jpeg#centre"&gt;&lt;/p&gt;
-&lt;p&gt;This is my plan now: each weekend I aim to put in at least an hour a day of
-practice, to try and get my fingers up to strength again, and to build up
-the muscle memory of where the strings are, to get the coordination between
-both hands, etc. I'm also going to be working through beginner's lessons
-from a tutor application. I'm going to treat this like I'm the complete
-novice I am and slowly work on improving.&lt;/p&gt;
-&lt;p&gt;There's no end goal; other than just get proficient enough that I can muck
-about on my own and be happy that I can play the sorts of things I want to
-be able to play.&lt;/p&gt;
-&lt;p&gt;Also, it's good to learn new stuff, &lt;em&gt;especially&lt;/em&gt; new stuff that isn't just
-more coding.&lt;/p&gt;</content><category term="Life"></category><category term="music"></category><category term="guitar"></category></entry></feed>
+&lt;p&gt;I hope it is some sort of iOS 17 weirdness and is gone when 17.1 turns up.&lt;/p&gt;</content><category term="Tech"></category><category term="Apple"></category><category term="iPhone"></category><category term="Siri"></category></entry></feed>

@@ -1,5 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2024-03-07T08:45:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Tinboard v0.10.0</title><link href="https://blog.davep.org/2024/03/07/tinboard-0-10-0.html" rel="alternate"></link><published>2024-03-07T08:45:00+00:00</published><updated>2024-03-07T08:45:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-03-07:/2024/03/07/tinboard-0-10-0.html</id><content type="html">&lt;p&gt;I just realised that it's been a while since I &lt;a href="/2023/12/25/tinboard-0-4-0.html"&gt;last posted an
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2024-03-10T14:12:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Homebrew all the Python things</title><link href="https://blog.davep.org/2024/03/10/homebrew-all-the-python-things.html" rel="alternate"></link><published>2024-03-10T14:12:00+00:00</published><updated>2024-03-10T14:12:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-03-10:/2024/03/10/homebrew-all-the-python-things.html</id><content type="html">&lt;p&gt;Over the past year and a half I've written a &lt;em&gt;lot&lt;/em&gt; of Python code, and a lot
+of that Python code has been Textual applications; most of those Textual
+applications have been very quick demonstration or test applications built
+to help support someone asking for help; some of them have been less-trivial
+applications written in my own time and for my own use and amusement. Of
+them I'd say there are two near-daily-drivers, and a couple that I either
+have more plans for, or like to maintain just for the hell of it.&lt;/p&gt;
+&lt;p&gt;Those latter applications are all ones that &lt;a href="https://pypi.org/user/davepearson/"&gt;I've deployed to
+PyPI&lt;/a&gt;, and because of that are all ones
+that I've recommenced be installed using
+&lt;a href="https://pipx.pypa.io/stable/"&gt;&lt;code&gt;pipx&lt;/code&gt;&lt;/a&gt;. During that time though I've had
+half an inclination to make them &lt;a href="https://brew.sh/"&gt;installable via
+Homebrew&lt;/a&gt;. While probably not installable from the core
+Homebrew repository&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;, at least installable from a "tap"&lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2"&gt;2&lt;/a&gt;&lt;/sup&gt; that's under
+my own GitHub account or something.&lt;/p&gt;
+&lt;p&gt;To this end I've had &lt;a href="https://til.simonwillison.net/homebrew/packaging-python-cli-for-homebrew"&gt;a blog post about packaging Python apps for
+Homebrew&lt;/a&gt;
+saved in Pinboard for a while now, and every time I look at it I think
+&lt;em&gt;"this is a lot of faff, maybe later"&lt;/em&gt;. Today was that "later".&lt;/p&gt;
+&lt;p&gt;As it turned out, it was &lt;em&gt;way&lt;/em&gt; easier than I first realised. The evolution
+of today pretty much went like this:&lt;/p&gt;
+&lt;h2&gt;Deciding to use a single repository as the "tap"&lt;/h2&gt;
+&lt;p&gt;The blog post above seemed to suggest that for every application repository
+you want a tap for, you probably want a parallel &lt;code&gt;homebrew-&lt;/code&gt;-prefixed
+repository. This in turn would suggest that every time someone wants to
+install one of your tools, they'd need to add a new tap&lt;sup id="fnref:3"&gt;&lt;a class="footnote-ref" href="#fn:3"&gt;3&lt;/a&gt;&lt;/sup&gt;. As I looked at
+it this seemed like way too much faff, so in the end I decided &lt;a href="https://github.com/davep/homebrew-homebrew"&gt;to create a
+single repository that I'd keep all my formula files
+in&lt;/a&gt;. The naming of
+&lt;code&gt;homebrew-homebrew&lt;/code&gt; meant that the tap name would simply be
+&lt;code&gt;davep/homebrew&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Simple and clean, I think: things for homebrew, things that can be installed
+via homebrew, that come from davep. To add the tap it's simply:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;tap&lt;span class="w"&gt; &lt;/span&gt;davep/homebrew
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Ensuring that all my applications and libraries publish source&lt;/h2&gt;
+&lt;p&gt;Although it seems that it might be (possibly, maybe, perhaps, who can tell?)
+deprecated, it looked like
+&lt;a href="https://github.com/tdsmith/homebrew-pypi-poet"&gt;&lt;code&gt;homebrew-pypi-poet&lt;/code&gt;&lt;/a&gt; was a
+tool I'd need to do all the heavy work on making the formula file. A quick
+test threw up a problem where it was complaining that my test package (one
+of my own applications) didn't have an &lt;code&gt;sdist&lt;/code&gt;. Sure enough, through nothing
+more than never having bothered to make it happen, the source of my
+libraries and applications wasn't been uploaded to PyPI when I published.&lt;/p&gt;
+&lt;p&gt;So I went through some of my repositories and fixed that, making patch
+releases as I went.&lt;/p&gt;
+&lt;h2&gt;Making a &lt;code&gt;Makefile&lt;/code&gt; to let me be lazy&lt;/h2&gt;
+&lt;p&gt;The next thing to do was to figure out the most lazy way of building the
+formula files. From what I could see the main steps to making all of this
+work were:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Make a venv and activate it&lt;/li&gt;
+&lt;li&gt;Install &lt;code&gt;homebrew-pypi-poet&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Install the package you want to package for Homebrew&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;poet&lt;/code&gt; to make the formula&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Seemed simple enough. For all sorts of lazy reasons I still tend to use
+&lt;code&gt;pipenv&lt;/code&gt; to get things done quickly, and that seemed to work fine here too.
+I'm also a fan of &lt;code&gt;PIPENV_VENV_IN_PROJECT=true&lt;/code&gt; which makes things clean and
+tidy, so I figured a rule in a &lt;code&gt;Makefile&lt;/code&gt; like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;clean&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;rm&lt;span class="w"&gt; &lt;/span&gt;-rf&lt;span class="w"&gt; &lt;/span&gt;.venv
+&lt;span class="w"&gt;        &lt;/span&gt;rm&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;Pipfile&lt;span class="w"&gt; &lt;/span&gt;Pipfile.lock
+&lt;span class="w"&gt;        &lt;/span&gt;pipenv&lt;span class="w"&gt; &lt;/span&gt;--python&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.12
+&lt;span class="w"&gt;        &lt;/span&gt;pipenv&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--dev&lt;span class="w"&gt; &lt;/span&gt;homebrew-pypi-poet
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;would be fine to make a clean venv ready to build the formula, and then I'd
+have a rule for the package itself that depended on the above, like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;oshit&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;clean&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;pipenv&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;oshit
+&lt;span class="w"&gt;        &lt;/span&gt;pipenv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;poet&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;oshit&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;Formula/oshit.rb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Fixing the package description&lt;/h2&gt;
+&lt;p&gt;The above was great, and worked really well. But there was one issue that I
+could see: the resulting formula file always had this &lt;code&gt;desc&lt;/code&gt; inside it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;desc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Shiny new formula&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;From what I could see there was no way to tell &lt;code&gt;poet&lt;/code&gt; what I wanted the
+description to be, and neither did I want to have to remember to edit that
+line each time I regenerated the formula file. So &lt;code&gt;sed&lt;/code&gt; to the rescue then I
+guess, with this sort of thing:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sed&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s/Shiny new formula/The actual text I want/&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Formula/coolapp.rb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;The result&lt;/h2&gt;
+&lt;p&gt;The result of all of this is that I now have &lt;a href="https://github.com/davep/homebrew-homebrew"&gt;a repository that I or anyone
+else can use as a tap&lt;/a&gt; to be
+able to install my stuff using the &lt;code&gt;brew&lt;/code&gt; command. So now if you want a
+little Hacker News reader for the terminal but you don't want to be messing
+with installing &lt;code&gt;pipx&lt;/code&gt; and the like, but you do use &lt;code&gt;brew&lt;/code&gt; on your machine,
+it's just this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;tap&lt;span class="w"&gt; &lt;/span&gt;davep/homebrew
+$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;oshit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Fingers crossed it all "just works" when I next upgrade one of those
+packages. I will, of course, have to remember to go into
+&lt;code&gt;davep/homebrew-homebrew&lt;/code&gt; and &lt;code&gt;make the-app&lt;/code&gt; for the relevant application,
+and then commit and push the changes, but that's really not too difficult to
+remember and do.&lt;/p&gt;
+&lt;p&gt;Hopefully it'll then all just work.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;I do actually &lt;a href="https://formulae.brew.sh/formula/eg"&gt;have one package in
+Homebrew&lt;/a&gt;, but it wasn't me who put
+it there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;I really like Homebrew as a tool for getting stuff installed, by oh my
+gods the naming of things in its ecosystem is terrible and confusing!&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;No, really, I mean it, this naming convention is kinda cringe right?&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category><category term="Homebrew"></category><category term="Makefile"></category></entry><entry><title>Tinboard v0.10.0</title><link href="https://blog.davep.org/2024/03/07/tinboard-0-10-0.html" rel="alternate"></link><published>2024-03-07T08:45:00+00:00</published><updated>2024-03-07T08:45:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-03-07:/2024/03/07/tinboard-0-10-0.html</id><content type="html">&lt;p&gt;I just realised that it's been a while since I &lt;a href="/2023/12/25/tinboard-0-4-0.html"&gt;last posted an
 update&lt;/a&gt; about &lt;code&gt;tinboard&lt;/code&gt;. This is probably
 my most-used Textual-based application, and one I'm constantly tinkering
 with, and just this morning I published v0.10.0.&lt;/p&gt;
@@ -1054,261 +1175,4 @@ useful for some time to come. But... I like to think that all of that
 building in public, in private, will ensure that this is an invitation that
 never needs to be called on. I like to think that, if something isn't clear,
 they'll be able to check the code, the documentation and the issue history
-and get to where they need to go.&lt;/p&gt;</content><category term="Coding"></category><category term="coding"></category></entry><entry><title>Reading 2bit files (for fun) - the sequence</title><link href="https://blog.davep.org/2020/09/26/reading-2bit-files-for-fun-the-sequence.html" rel="alternate"></link><published>2020-09-26T15:57:00+01:00</published><updated>2020-09-26T15:57:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2020-09-26:/2020/09/26/reading-2bit-files-for-fun-the-sequence.html</id><content type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
-&lt;p&gt;This post will cover the most important content of a 2bit file: the actual
-sequence data itself. In &lt;a href="/2020/08/30/reading-2bit-files-for-fun.html"&gt;the first
-post&lt;/a&gt; I wrote about the format
-of the file's header, and in &lt;a href="/2020/09/05/reading-2bit-files-for-fun-the-index.html"&gt;the second
-post&lt;/a&gt; I wrote about
-the content of the file's index.&lt;/p&gt;
-&lt;p&gt;At this point that's enough information to know what's in the file and where
-to find it. In other words we know the list of sequences that live in the
-file, and we know where each one is positioned within the file. So, assuming
-we have our index in memory (ideally some sort of key/value store of
-sequences names and their offsets in the file), given the name of a sequence
-we can know where to go in the file to load up the data.&lt;/p&gt;
-&lt;p&gt;So the next obvious question is, what will we find when we get there? Actual
-sequence data is stored like this:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Content&lt;/th&gt;
-&lt;th&gt;Type&lt;/th&gt;
-&lt;th&gt;Size&lt;/th&gt;
-&lt;th&gt;Comments&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;DNA size&lt;/td&gt;
-&lt;td&gt;Integer&lt;/td&gt;
-&lt;td&gt;4 bytes&lt;/td&gt;
-&lt;td&gt;Count of bases in the sequence&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;N block count&lt;/td&gt;
-&lt;td&gt;Integer&lt;/td&gt;
-&lt;td&gt;4 bytes&lt;/td&gt;
-&lt;td&gt;Count of N blocks in the sequence&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;N block starts&lt;/td&gt;
-&lt;td&gt;Integer Array&lt;/td&gt;
-&lt;td&gt;4*count bytes&lt;/td&gt;
-&lt;td&gt;Positions are zero-based&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;N block sizes&lt;/td&gt;
-&lt;td&gt;Integer Array&lt;/td&gt;
-&lt;td&gt;4*count bytes&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Mask block count&lt;/td&gt;
-&lt;td&gt;Integer&lt;/td&gt;
-&lt;td&gt;4 bytes&lt;/td&gt;
-&lt;td&gt;Count of mask blocks in the sequence&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Mask block starts&lt;/td&gt;
-&lt;td&gt;Integer Array&lt;/td&gt;
-&lt;td&gt;4*count bytes&lt;/td&gt;
-&lt;td&gt;Positions are zero-based&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Mask block sizes&lt;/td&gt;
-&lt;td&gt;Integer Array&lt;/td&gt;
-&lt;td&gt;4*count bytes&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Reserved&lt;/td&gt;
-&lt;td&gt;Integer&lt;/td&gt;
-&lt;td&gt;4 bytes&lt;/td&gt;
-&lt;td&gt;Should always be 0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;DNA data&lt;/td&gt;
-&lt;td&gt;Byte Array&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;See below&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;Breaking the above down:&lt;/p&gt;
-&lt;h1&gt;N blocks&lt;/h1&gt;
-&lt;p&gt;As mentioned in passing in the first post: technically it's necessary to
-encode 5 different characters for the bases in the sequences. As well as the
-usual T, C, A and G, there also needs to be an N, which means the base is
-unknown. Now, of course, you can't pack 5 states into two bits, so the 2bit
-file format solves this by having an array of block positions and sizes
-where any data in the actual DNA itself should be ignored and an &lt;code&gt;N&lt;/code&gt; used in
-its place.&lt;/p&gt;
-&lt;h1&gt;Mask blocks&lt;/h1&gt;
-&lt;p&gt;This is where my ignorance of bioinformatics shows, and where it's made very
-obvious that I'm a software developer who likes to muck about with data and
-data structures, but who doesn't always understand why they're used. I'm
-actually not sure what purpose mask blocks serve in a 2bit file, but they
-&lt;em&gt;do&lt;/em&gt; affect the output. If a base falls within a mask block the value that
-is output should be a lower-case letter, rather then upper-case.&lt;/p&gt;
-&lt;h1&gt;The DNA data&lt;/h1&gt;
-&lt;p&gt;So this is the fun bit, where the real data is stored. This should be viewed
-as a sequence of bytes, each of which contains 4 bases (except for the last
-byte, of course, which might contain 1, 2 or 3 depending on the size of the
-sequence).&lt;/p&gt;
-&lt;p&gt;Each byte should be viewed as an array of 2 bit values, with the values
-mapping like this:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Binary&lt;/th&gt;
-&lt;th&gt;Decimal&lt;/th&gt;
-&lt;th&gt;Base&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;00&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;td&gt;T&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;01&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;C&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;10&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;11&lt;/td&gt;
-&lt;td&gt;3&lt;/td&gt;
-&lt;td&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;So, given a byte whose value is &lt;code&gt;27&lt;/code&gt;, you're looking at the sequence &lt;code&gt;TCAG&lt;/code&gt;.
-This is because &lt;code&gt;27&lt;/code&gt; in binary is &lt;code&gt;00011011&lt;/code&gt;, which breaks down as:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;00&lt;/th&gt;
-&lt;th&gt;01&lt;/th&gt;
-&lt;th&gt;10&lt;/th&gt;
-&lt;th&gt;11&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;T&lt;/td&gt;
-&lt;td&gt;C&lt;/td&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;How you pull that data out of the byte will depend on the language and what
-it makes available for bit-twiddling; those that don't have some form of
-&lt;a href="https://en.wikipedia.org/wiki/Bit_field"&gt;bit field&lt;/a&gt; will probably provide
-the ability to bit shift and do a bitwise &lt;code&gt;and&lt;/code&gt; (it's also likely that doing
-bitwise operations is better than using bit fields anyway). In the version I
-wrote in Emacs Lisp, it's simply a case of shifting the two bits I am
-interested in over to the right of the byte and then performing a bitwise
-and to get just its value. So, given an array called &lt;code&gt;2bit-bases&lt;/code&gt; whose
-content is this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;defconst&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;2bit-bases&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;T&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;C&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;A&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;G&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Vector of the bases.&lt;/span&gt;
-
-&lt;span class="s"&gt;Note that the positions of each base in the vector map to the 2bit decoding&lt;/span&gt;
-&lt;span class="s"&gt;for them.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;I use this bit of code to pull out the individual bases:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;aref&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;2bit-bases&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;logand&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;ash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;shift&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mb"&gt;#b11&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Given code to unpack an individual byte, extracting all of the bases in a
-sequence then becomes the act of having two loops, the outer loop being over
-each byte in the file, the inner loop being over the positions within each
-individual byte.&lt;/p&gt;
-&lt;p&gt;In pseudo-code, assuming that &lt;code&gt;start&lt;/code&gt; and &lt;code&gt;end&lt;/code&gt; hold the base locations
-we're interested in and &lt;code&gt;dna_pos&lt;/code&gt; is the location in the file where the DNA
-starts, the main loop for unpacking the data looks something like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bases&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;bases&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt; &amp;quot;T&amp;quot;, &amp;quot;C&amp;quot;, &amp;quot;A&amp;quot;, &amp;quot;G&amp;quot; &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
-
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Calculate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;first&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;last&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pull&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;from&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;start_byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dna_pos&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;floor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;start&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;end_byte&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dna_pos&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;floor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Work&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;out&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;starting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;position&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="k"&gt;position&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;start_byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dna_pos&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;
-
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Load&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;up&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;that&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;contain&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;DNA&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;read_n_bytes_from&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;start_byte&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;end_byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;start_byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Get&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;all&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;blocks&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;that&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;intersect&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;sequence&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;n_blocks&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;relevant_n_blocks&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;start&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Get&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;all&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;blocks&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;that&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;interest&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;sequence&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;mask_blocks&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;relevant_mask_blocks&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;start&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Start&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;with&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;an&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;empty&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;sequence&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="k"&gt;sequence&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
-
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Loop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;over&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;every&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;
-
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Stepping&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;down&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;each&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pair&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bits&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;byte&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;shift&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;downto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;by&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;If&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;we&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;re interested in this location.&lt;/span&gt;
-&lt;span class="s1"&gt;    if ( position &amp;gt;= start ) and ( position &amp;lt; end )&lt;/span&gt;
-
-&lt;span class="s1"&gt;      # If this position is in an N block, just collect an N.&lt;/span&gt;
-&lt;span class="s1"&gt;      if within( position, n_blocks )&lt;/span&gt;
-&lt;span class="s1"&gt;        sequence = sequence + &amp;quot;N&amp;quot;&lt;/span&gt;
-&lt;span class="s1"&gt;      else&lt;/span&gt;
-
-&lt;span class="s1"&gt;        # Not a N, so we should decode the base.&lt;/span&gt;
-&lt;span class="s1"&gt;        base = bases[ ( byte &amp;gt;&amp;gt; shift ) &amp;amp; 0b11 ]&lt;/span&gt;
-
-&lt;span class="s1"&gt;        # If we&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;block&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;go&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;lower&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;case&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;within&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;position&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mask_blocks&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="k"&gt;sequence&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;sequence&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;
-&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="k"&gt;sequence&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;sequence&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;base&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;
-
-&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Move&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;along&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;position&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;position&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
-
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;
-
-&lt;span class="k"&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Note that some of the detail is left out in the above, especially the
-business of loading up the relevant blocks; how that would be done will
-depend on language and the approach to writing the code. The Emacs Lisp code
-I've written has what I think is a fairly straightforward approach to it.
-There's a similar approach in the &lt;a href="https://github.com/davep/org-davep-2bit"&gt;Common Lisp code I've
-written&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;And that's pretty much it. There are a few other details that differ
-depending on how this is approached, the language used, and other
-considerations; one body of 2bit reader code that I've written attempts to
-optimise how it does things as much as possible because it's capable of
-reading the data locally or via ranged HTTP GETs from a web server; the
-Common Lisp version I wrote still needs some work because I was having fun
-getting back into Common Lisp; the Emacs Lisp version needs to try and keep
-data as small as possible because it's working with buffers, not direct file
-access.&lt;/p&gt;
-&lt;p&gt;Having got to know the format of 2bit files a fair bit, I'm adding this to
-my list of "fun to do a version of" problems when getting to know a new
-language, or even dabbling in a language I know.&lt;/p&gt;</content><category term="Coding"></category><category term="Bioinformatics"></category></entry></feed>
+and get to where they need to go.&lt;/p&gt;</content><category term="Coding"></category><category term="coding"></category></entry></feed>

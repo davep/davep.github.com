@@ -47,17 +47,29 @@
 
  
 
-    <meta name="author" content="Dave Pearson" />
-    <meta name="description" content="" />
+<meta name="author" content="Dave Pearson" />
+<meta name="description" content="Over the past year and a half I&#39;ve written a lot of Python code, and a lot of that Python code has been Textual applications; most of those Textual applications have been very quick demonstration or test applications built to help support someone asking for help; some of them have been less-trivial applications written in my own time and for my own use and amusement. Of them I&#39;d say there are two near-daily-drivers, and a couple that I either have more plans for, or like to maintain just for the hell of it. Those latter applications are all ones that I&#39;ve deployed to PyPI, and because of that are all ones that I&#39;ve recommenced be installed using pipx. During that time though I&#39;ve had half an inclination to make them installable via Homebrew. While probably not installable from the core Homebrew repository1, at least installable from a &#34;tap&#34;2 that&#39;s under my own GitHub account or something. To this end I&#39;ve had a blog post about packaging Python apps for Homebrew saved in Pinboard for a while now, and every time I look at it I think &#34;this is a lot of faff, maybe later&#34;. Today was that &#34;later&#34;. As it turned out, it was way easier than I first realised. The evolution of today pretty much went like this: Deciding to use a single repository as the &#34;tap&#34; The blog post above seemed to suggest that for every application repository you want a tap for, you probably want a parallel homebrew--prefixed repository. This in turn would suggest that every time someone wants to install one of your tools, they&#39;d need to add a new tap3. As I looked at it this seemed like way too much faff, so in the end I decided to create a single repository that I&#39;d keep all my formula files in. The naming of homebrew-homebrew meant that the tap name would simply be davep/homebrew. Simple and clean, I think: things for homebrew, things that can be installed via homebrew, that come from davep. To add the tap it&#39;s simply: $ brew tap davep/homebrew Ensuring that all my applications and libraries publish source Although it seems that it might be (possibly, maybe, perhaps, who can tell?) deprecated, it looked like homebrew-pypi-poet was a tool I&#39;d need to do all the heavy work on making the formula file. A quick test threw up a problem where it was complaining that my test package (one of my own applications) didn&#39;t have an sdist. Sure enough, through nothing more than never having bothered to make it happen, the source of my libraries and applications wasn&#39;t been uploaded to PyPI when I published. So I went through some of my repositories and fixed that, making patch releases as I went. Making a Makefile to let me be lazy The next thing to do was to figure out the most lazy way of building the formula files. From what I could see the main steps to making all of this work were: Make a venv and activate it Install homebrew-pypi-poet Install the package you want to package for Homebrew Run poet to make the formula Seemed simple enough. For all sorts of lazy reasons I still tend to use pipenv to get things done quickly, and that seemed to work fine here too. I&#39;m also a fan of PIPENV_VENV_IN_PROJECT=true which makes things clean and tidy, so I figured a rule in a Makefile like this: clean: rm -rf .venv rm -f Pipfile Pipfile.lock pipenv --python 3.12 pipenv install --dev homebrew-pypi-poet would be fine to make a clean venv ready to build the formula, and then I&#39;d have a rule for the package itself that depended on the above, like this: oshit: clean pipenv install oshit pipenv run poet -f oshit &gt; Formula/oshit.rb Fixing the package description The above was great, and worked really well. But there was one issue that I could see: the resulting formula file always had this desc inside it: desc &#34;Shiny new formula&#34; From what I could see there was no way to tell poet what I wanted the description to be, and neither did I want to have to remember to edit that line each time I regenerated the formula file. So sed to the rescue then I guess, with this sort of thing: sed -i &#39;&#39; &#39;s/Shiny new formula/The actual text I want/&#39; Formula/coolapp.rb The result The result of all of this is that I now have a repository that I or anyone else can use as a tap to be able to install my stuff using the brew command. So now if you want a little Hacker News reader for the terminal but you don&#39;t want to be messing with installing pipx and the like, but you do use brew on your machine, it&#39;s just this: $ brew tap davep/homebrew $ brew install oshit Fingers crossed it all &#34;just works&#34; when I next upgrade one of those packages. I will, of course, have to remember to go into davep/homebrew-homebrew and make the-app for the relevant application, and then commit and push the changes, but that&#39;s really not too difficult to remember and do. Hopefully it&#39;ll then all just work. I do actually have one package in Homebrew, but it wasn&#39;t me who put it there. ↩ I really like Homebrew as a tool for getting stuff installed, by oh my gods the naming of things in its ecosystem is terrible and confusing! ↩ No, really, I mean it, this naming convention is kinda cringe right? ↩" />
+<meta name="keywords" content="Python, terminal, textual, Homebrew, Makefile">
+
+
   <meta property="og:site_name" content="blog.davep.org"/>
-  <meta property="og:type" content="blog"/>
-  <meta property="og:title" content="blog.davep.org"/>
-  <meta property="og:description" content=""/>
+  <meta property="og:title" content="Homebrew all the Python things"/>
+  <meta property="og:description" content="Over the past year and a half I&#39;ve written a lot of Python code, and a lot of that Python code has been Textual applications; most of those Textual applications have been very quick demonstration or test applications built to help support someone asking for help; some of them have been less-trivial applications written in my own time and for my own use and amusement. Of them I&#39;d say there are two near-daily-drivers, and a couple that I either have more plans for, or like to maintain just for the hell of it. Those latter applications are all ones that I&#39;ve deployed to PyPI, and because of that are all ones that I&#39;ve recommenced be installed using pipx. During that time though I&#39;ve had half an inclination to make them installable via Homebrew. While probably not installable from the core Homebrew repository1, at least installable from a &#34;tap&#34;2 that&#39;s under my own GitHub account or something. To this end I&#39;ve had a blog post about packaging Python apps for Homebrew saved in Pinboard for a while now, and every time I look at it I think &#34;this is a lot of faff, maybe later&#34;. Today was that &#34;later&#34;. As it turned out, it was way easier than I first realised. The evolution of today pretty much went like this: Deciding to use a single repository as the &#34;tap&#34; The blog post above seemed to suggest that for every application repository you want a tap for, you probably want a parallel homebrew--prefixed repository. This in turn would suggest that every time someone wants to install one of your tools, they&#39;d need to add a new tap3. As I looked at it this seemed like way too much faff, so in the end I decided to create a single repository that I&#39;d keep all my formula files in. The naming of homebrew-homebrew meant that the tap name would simply be davep/homebrew. Simple and clean, I think: things for homebrew, things that can be installed via homebrew, that come from davep. To add the tap it&#39;s simply: $ brew tap davep/homebrew Ensuring that all my applications and libraries publish source Although it seems that it might be (possibly, maybe, perhaps, who can tell?) deprecated, it looked like homebrew-pypi-poet was a tool I&#39;d need to do all the heavy work on making the formula file. A quick test threw up a problem where it was complaining that my test package (one of my own applications) didn&#39;t have an sdist. Sure enough, through nothing more than never having bothered to make it happen, the source of my libraries and applications wasn&#39;t been uploaded to PyPI when I published. So I went through some of my repositories and fixed that, making patch releases as I went. Making a Makefile to let me be lazy The next thing to do was to figure out the most lazy way of building the formula files. From what I could see the main steps to making all of this work were: Make a venv and activate it Install homebrew-pypi-poet Install the package you want to package for Homebrew Run poet to make the formula Seemed simple enough. For all sorts of lazy reasons I still tend to use pipenv to get things done quickly, and that seemed to work fine here too. I&#39;m also a fan of PIPENV_VENV_IN_PROJECT=true which makes things clean and tidy, so I figured a rule in a Makefile like this: clean: rm -rf .venv rm -f Pipfile Pipfile.lock pipenv --python 3.12 pipenv install --dev homebrew-pypi-poet would be fine to make a clean venv ready to build the formula, and then I&#39;d have a rule for the package itself that depended on the above, like this: oshit: clean pipenv install oshit pipenv run poet -f oshit &gt; Formula/oshit.rb Fixing the package description The above was great, and worked really well. But there was one issue that I could see: the resulting formula file always had this desc inside it: desc &#34;Shiny new formula&#34; From what I could see there was no way to tell poet what I wanted the description to be, and neither did I want to have to remember to edit that line each time I regenerated the formula file. So sed to the rescue then I guess, with this sort of thing: sed -i &#39;&#39; &#39;s/Shiny new formula/The actual text I want/&#39; Formula/coolapp.rb The result The result of all of this is that I now have a repository that I or anyone else can use as a tap to be able to install my stuff using the brew command. So now if you want a little Hacker News reader for the terminal but you don&#39;t want to be messing with installing pipx and the like, but you do use brew on your machine, it&#39;s just this: $ brew tap davep/homebrew $ brew install oshit Fingers crossed it all &#34;just works&#34; when I next upgrade one of those packages. I will, of course, have to remember to go into davep/homebrew-homebrew and make the-app for the relevant application, and then commit and push the changes, but that&#39;s really not too difficult to remember and do. Hopefully it&#39;ll then all just work. I do actually have one package in Homebrew, but it wasn&#39;t me who put it there. ↩ I really like Homebrew as a tool for getting stuff installed, by oh my gods the naming of things in its ecosystem is terrible and confusing! ↩ No, really, I mean it, this naming convention is kinda cringe right? ↩"/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://blog.davep.org"/>
+  <meta property="og:url" content="https://blog.davep.org/2024/03/10/homebrew-all-the-python-things.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-03-10 14:12:00+00:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://blog.davep.org/author/dave-pearson.html">
+  <meta property="article:section" content="Coding"/>
+  <meta property="article:tag" content="Python"/>
+  <meta property="article:tag" content="terminal"/>
+  <meta property="article:tag" content="textual"/>
+  <meta property="article:tag" content="Homebrew"/>
+  <meta property="article:tag" content="Makefile"/>
   <meta property="og:image" content="/static/davep.jpeg">
 
-  <title>blog.davep.org &ndash; Tag Homebrew</title>
+  <title>blog.davep.org &ndash; Homebrew all the Python things</title>
 
 
 </head>
@@ -179,21 +191,20 @@ rel="me"           href="https://fosstodon.org/@davep"
   <a href="https://blog.davep.org/feed.xml">RSS</a>
 </nav>
 
-
-
-<article>
+<article class="single">
   <header>
-    <h2><a href="https://blog.davep.org/2024/03/10/homebrew-all-the-python-things.html#homebrew-all-the-python-things">Homebrew all the Python things</a></h2>
+      
+    <h1 id="homebrew-all-the-python-things">Homebrew all the Python things</h1>
     <p>
       Posted on 2024-03-10 14:12 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
 
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/homebrew.html">Homebrew</a>,              <a href="https://blog.davep.org/tag/makefile.html">Makefile</a>
         &#8226; 4 min read
     </p>
   </header>
+
+
   <div>
-      <div><p>Over the past year and a half I've written a <em>lot</em> of Python code, and a lot
+    <p>Over the past year and a half I've written a <em>lot</em> of Python code, and a lot
 of that Python code has been Textual applications; most of those Textual
 applications have been very quick demonstration or test applications built
 to help support someone asking for help; some of them have been less-trivial
@@ -314,157 +325,29 @@ gods the naming of things in its ecosystem is terrible and confusing!&#160;<a cl
 <p>No, really, I mean it, this naming convention is kinda cringe right?&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
-</div></div>
+</div>
   </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2020/07/10/when-the-man-page-fibs.html#when-the-man-page-fibs">When the man page fibs</a></h2>
+  <div class="tag-cloud">
     <p>
-      Posted on 2020-07-10 20:58 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/homebrew.html">homebrew</a>,              <a href="https://blog.davep.org/tag/macos.html">macOS</a>,              <a href="https://blog.davep.org/tag/unix.html">Unix</a>,              <a href="https://blog.davep.org/tag/python.html">Python</a>
-        &#8226; 3 min read
+      <a href="https://blog.davep.org/tag/python.html">Python</a>
+      <a href="https://blog.davep.org/tag/terminal.html">terminal</a>
+      <a href="https://blog.davep.org/tag/textual.html">textual</a>
+      <a href="https://blog.davep.org/tag/homebrew.html">Homebrew</a>
+      <a href="https://blog.davep.org/tag/makefile.html">Makefile</a>
     </p>
-  </header>
-  <div>
-      <div><p>Earlier this week something in my development environment, relating to
-<a href="https://brew.sh/">Homebrew</a>, Python,
-<a href="https://github.com/pyenv/pyenv">pyenv</a> and
-<a href="https://pipenv.pypa.io/en/latest/">pipenv</a>, got updated and broke a handful
-of repositories. Not in a way that I couldn't recover from, just in a way
-that was annoying, got in the way of my workflow, and needed attention.
-<em>(note to self: how I set up for Python/Django development on a machine
-might be a good post in the future)</em></p>
-<p>Once I was sure what the fix was (pretty much: nuke the virtual environment
-and recreate it with <code>pipenv</code>, being very explicit about the version of
-Python to use) the next step was to figure out how many repositories were
-affected; not all were and there wasn't an obvious pattern to it. What was
-obvious was that the problem came down to <code>python</code> in the <code>.venv</code> directory
-pointing to a binary that didn't exist any more.</p>
-<p><img alt="Screenshot 2020-07-10 at 20.21.15.png" src="/attachments/2020/07/10/Screenshot 2020-07-10 at 20.21.15.png"></p>
-<p>So... tracking down problematic repositories would be simple enough, just
-look for every instance of <code>.venv/bin/python</code> and be sure it points to
-something rather than nothing; if it points to nothing I need to remake the
-virtual environment.</p>
-<p>I quickly knocked up a script that was based around looking over the results
-of a <code>find</code>, and initially decided to use <code>file</code> to perform the test on
-<code>python</code>. It seemed to make sense, as I wrote the script I checked the <code>man</code>
-page for <code>file(1)</code> on macOS and sure enough, this exists:</p>
-<blockquote>
-<p>-E On filesystem errors (file not found etc), instead of handling the error as regular output as POSIX mandates and keep going, issue an error message and exit.</p>
-</blockquote>
-<p>Given that <code>file</code> dereferences links by default, that should get me an error
-for a broken link, right? Bit hacky I guess, but it was the first thing that
-came to mind for a quick bit of scripting and would do the trick. Only...</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>file<span class="w"> </span>-E<span class="w"> </span>does-not-exist
-file:<span class="w"> </span>invalid<span class="w"> </span>option<span class="w"> </span>--<span class="w"> </span>E
-Usage:<span class="w"> </span>file<span class="w"> </span><span class="o">[</span>bcCdEhikLlNnprsvzZ0<span class="o">]</span><span class="w"> </span><span class="o">[</span>-e<span class="w"> </span>test<span class="o">]</span><span class="w"> </span><span class="o">[</span>-f<span class="w"> </span>namefile<span class="o">]</span><span class="w"> </span><span class="o">[</span>-F<span class="w"> </span>separator<span class="o">]</span><span class="w"> </span><span class="o">[</span>-m<span class="w"> </span>magicfiles<span class="o">]</span><span class="w"> </span><span class="o">[</span>-M<span class="w"> </span>magicfiles<span class="o">]</span><span class="w"> </span>file...
-<span class="w">       </span>file<span class="w"> </span>-C<span class="w"> </span>-m<span class="w"> </span>magicfiles
-Try<span class="w"> </span><span class="sb">`</span>file<span class="w"> </span>--help<span class="err">&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.
-</code></pre></div>
-
-<p><a href="https://www.destroyallsoftware.com/talks/wat">Wat</a>?!? But it's right there! It says so in the manual! <code>-E</code> is documented right in the manual page! And yet it's not in the valid switch list as put out by the command, <em>and</em> it's an <code>invalid option</code>. The hell?</p>
-<p>So I go back and look at the <code>man</code> page again and then I notice it isn't in
-the list of switches in the synopsis.</p>
-<blockquote>
-<p>SYNOPSIS<br>
-    file [-bcdDhiIkLnNprsvz] [--extension] [--mime-encoding] [--mime-type] [-f namefile] [-m magicfiles] [-P name=value] [-M magicfiles] file<br>
-    file -C [-m magicfiles]<br>
-    file [--help]  </p>
-</blockquote>
-<p>I then did the obvious tests. Did I have <code>file</code> aliased in some way? No. Was
-some other thing that works and acts like <code>file</code> in my path? No. Was I
-absolutely 100% using <code>/usr/bin/file</code>? Yes.</p>
-<p>Long story short: it seems the <code>man</code> page for <code>file</code>, on macOS, fibs about
-what switches it supports; it says that <code>-E</code> is a valid option, but it's not
-there.</p>
-<p>What's even odder is the man page says it documents v5.04 of the command,
-but <code>--version</code> reports v5.37. Meanwhile, if I check on a GNU/Linux box I
-have access to, it does support <code>-E</code>, reports it in the switches, documents
-it in the <code>man</code> page (in both the synopsis and in the main body of the page)
-and it is v5.25 (and so is its man page).</p>
-<p>So that was something like 20 minutes lost to a very small problem, for
-which there was no real solution, but was time that had to be spent to get
-to the bottom of it.</p>
-<p>In the end I went with what I probably should have gone with in the first
-place: <code>stat -L</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>venv<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span>.venv<span class="k">)</span>
-<span class="k">do</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>stat<span class="w"> </span>-L<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$venv</span><span class="s2">/bin/python&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
-<span class="w">    </span><span class="k">then</span>
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$venv</span><span class="k">)</span><span class="s2">&quot;</span>
-<span class="w">    </span><span class="k">fi</span>
-<span class="k">done</span>
-</code></pre></div>
-
-<p>And now I have that script in my <code>~/bin</code> directory, ready for the next time
-Homebrew and friends conspire to throw my day off for a while.</p></div>
   </div>
-  <hr />
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://blog.davep.org/2024/03/07/tinboard-0-10-0.html" title="Tinboard v0.10.0">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+
+
 </article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2015/11/13/a-little-bit-of-usenet.html#a-little-bit-of-usenet">A little bit of usenet</a></h2>
-    <p>
-      Posted on 2015-11-13 15:45 +0000 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/os-x.html">OS X</a>,              <a href="https://blog.davep.org/tag/imac.html">iMac</a>,              <a href="https://blog.davep.org/tag/nntp.html">NNTP</a>,              <a href="https://blog.davep.org/tag/usenet.html">usenet</a>,              <a href="https://blog.davep.org/tag/homebrew.html">Homebrew</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Earlier on today I needed a copy of
-<a href="https://www.gnu.org/software/wget/"><code>wget</code></a> on my iMac. It's not "native" to
-it so I got to wondering how you go about getting something like that onto it.
-Sure, I could have just grabbed the source and built myself, but really it's
-a lot nicer to use some sort of package manager.</p>
-<p>A quick search lead me to <a href="http://brew.sh/">Homebrew</a> and I was then up and
-running in no time.</p>
-<p>This in turn got me to thinking about how it might be fun to get some of the
-software I used to use on my GNU/Linux machine up and running again. The first
-one that came to mind was <a href="http://slrn.sourceforge.net/"><code>slrn</code></a>. Sure enough
-slrn is available via Homebrew and installing it was dead simple.</p>
-<p>But then I was faced with a problem: I needed an <a href="https://en.wikipedia.org/wiki/Network_News_Transfer_Protocol">NNTP</a> server.
-Way back I used to run a local one in my office that fed from and to my
-ISP's. Back then my ISP was Demon Internet; these days I'm with BT. A quick
-search lead me to an article or two that BT had a NNTP server, of sorts,
-provided by a third party. So I did a quick check:</p>
-<p><img alt="Is the server there?" src="/attachments/2015/11/13/Screen Shot 2015-11-13 at 15.27.43.png"></p>
-<p>Yay! This looked good.</p>
-<p>After that I fired up <code>slrn</code> and.... problems. It kept asking me to log in,
-to provide a user name and password. The only problem was that I'd read in more
-than one place that a user name and password weren't needed for BT's server;
-all that was required was you be on a BT IP address. Checking the slrn docs
-I found <a href="http://slrn.sourceforge.net/docs/slrn-manual-6.html#ss6.32"><code>force_authentication</code></a>
-but ensuring that was off made no difference.</p>
-<p>At this point I removed <code>slrn</code> and gave up.</p>
-<p>Later, thinking it might be an issue with just <code>slrn</code> and perhaps it was worth
-trying a native NNTP client, I grabbed Unison
-(<a href="https://www.panic.com/blog/the-future-of-unison/">which is no longer supported</a>
-but seems to work fine). I got that set up and ran into the same issue: it
-wanted login details.</p>
-<p>Finally, after a bit more digging, I stumbled on the reason why I was struggling
-to make any of this work: <a href="http://bt.custhelp.com/app/answers/detail/a_id/51205/?s_cid=con_FURL_giganews">BT had closed support for the server back in
-December last year</a>!</p>
-<p>A quick search around the web and I stumbled on <a href="http://www.eternal-september.org/">Eternal September</a>.
-Given all I was interested in was the good old text groups this looked perfect.
-I quickly registered an account, ran up Unison again and plugged in my details
-and....</p>
-<p><img alt="Is the server there?" src="/attachments/2015/11/13/Screen Shot 2015-11-13 at 15.19.17.png"></p>
-<p>Now that's all sorted I should try again with <code>slrn</code>. At which point I'll need
-to drag out and tidy up <code>post.el</code> (<a href="http://post-mode.sourceforge.net/">the version that was being maintained
-by some other people seems to have gone very stale</a>, sadly).</p></div>
-  </div>
-</article>
-
-  <div class="pagination">
-  </div>
-
-
 
 <footer>
 <p>&copy; 2015-2024 Dave Pearson</p>
