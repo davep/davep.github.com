@@ -183,6 +183,67 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/09/10/textual-query-sandbox-update.html#textual-query-sandbox-update">Textual Query Sandbox Update</a></h2>
+    <p>
+      Posted on 2023-09-10 09:22 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/pypi.html">PyPi</a>,              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/coding.html">coding</a>,              <a href="https://blog.davep.org/tag/textual.html">Textual</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Since <a href="/2023/09/01/textual-query-sandbox.html">quickly hacking together <code>textual-query-sandbox</code> a few days
+back</a>, I've made a bunch of small
+changes here and there. While most have been cosmetic and playing with some
+ideas, some have also been internal improvements that should make the tool
+work better.</p>
+<p>The most prominent change is one I pondered in the previous post, where I
+thought it might be interesting to have a small collection of playgrounds
+grounded together with a <code>TabbedContent</code>. So as of now the tool still has
+the original playground which had an emphasis on nested containers:</p>
+<p><img alt="Playground 1" src="/attachments/2023/09/10/tqs-1.png#centre"></p>
+<p>There's now a playground with an emphasis on selecting widgets within
+containers<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>:</p>
+<p><img alt="Playground 2" src="/attachments/2023/09/10/tqs-2.png#centre"></p>
+<p>There's also now a playground that has an emphasis on pulling out widgets
+based on ID and classes:</p>
+<p><img alt="Playground 3" src="/attachments/2023/09/10/tqs-3.png#centre"></p>
+<p>The other change you will notice from the original post is the DOM tree
+shown in the bottom right corner. Note that that isn't there to show your
+query result (that's the bottom left panel), it's there to help picture how
+the DOM in the current playground hangs together, and will hopefully help in
+picturing the structure for when you write a query.</p>
+<p>I sense there's still a lot of fun things I could add to this, and I'm still
+keen on the idea of having the playgrounds "soft coded" in some way, so
+people can make their own and load them up.</p>
+<p>Another thing I want to try and work on is making the display as useful as
+possible. While I think it's actually pretty neat and clear, there's not a
+<em>lot</em> of space<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> available to show the playground and the results. Finding
+a good balance is an interesting problem.</p>
+<p>For a number of reasons this is turning into a really enjoyable tinker
+project.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>This is, of course, slightly nonsensical wording. Containers <em>are</em>
+widgets in Textual. Pretty much everything you see in your terminal is a
+widget, even a <code>Screen</code> is a widget.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>A lot of this of course hinges on how big someone's terminal is. I
+tend to run a fairly high resolutions with the smallest font I find
+readable so my terminal windows are often pretty "big"; other people
+tend to have something much smaller in terms of cell with/height.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/09/01/textual-query-sandbox.html#textual-query-sandbox">Textual Query Sandbox</a></h2>
     <p>
       Posted on 2023-09-01 07:42 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
@@ -713,45 +774,6 @@ Bandcamp</a>, so I'll be paying that a visit!</p>
 with a proper long set. It's been too long since I got to enjoy <a href="https://www.youtube.com/watch?v=dTD03-3qgmg">him really
 going for it and having a ton of
 fun</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2023/08/12/the-homepod-fixed-itself.html#the-homepod-fixed-itself">The HomePod fixed itself</a></h2>
-    <p>
-      Posted on 2023-08-12 07:46 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p><a href="/2023/07/29/home-pod-stuck-installing.html#home-pod-stuck-installing">A couple of weeks
-back</a>
-I mentioned home my main HomePod had got stuck installing 16.6 of the
-software that runs it. This situation persisted for days after writing that
-post and I kept promising myself that I was going to see if I could unstick
-it by removing it from the Home, doing a factory reset and adding it back
-again.</p>
-<p>Of course, during the week that followed, I never got round to that. You can
-imagine what it's like: no time in the morning, and by the time I get home
-in the evening I want to watch TV and use the HomePod as the speaker for the
-Apple TV, I don't want to be doing tech support shit.</p>
-<p>The following weekend... yeah, I kinda forgot.</p>
-<p>So, here I am, a couple of Saturdays on, it's early morning, I've had
-breakfast and I'm having coffee and I think it's the perfect time to do
-this. I hope the Home app my on iPad and... it's sorted!</p>
-<p><img alt="HomePod all good again" src="/attachments/2023/08/12/Screenshot 2023-08-12 at 07.25.44.png#centre"></p>
-<p>So, yeah, it looks like it somehow managed to unstick itself in the end. A
-quick test of some of the issues I was seeing suggested there was still an
-issue, for example asking for the temperature in the bedroom would still
-result in a <em>"working on it"</em> reply followed by it telling me it wasn't
-responding. A quick reset seems to have fixed that.</p>
-<p>I guess it's good to know: if it happens again, it'll keep on working as the
-speaker for my Apple TV, and it'll eventually sort itself out even if I
-don't muck about with a hard reset.</p></div>
   </div>
 </article>
 
