@@ -183,6 +183,133 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/10/26/visual-selection.html#visual-selection">Visual Selection</a></h2>
+    <p>
+      Posted on 2023-10-26 18:50 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/evolution.html">evolution</a>,              <a href="https://blog.davep.org/tag/biology.html">biology</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
+        &#8226; 4 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Over the last few weeks I've had a couple of sessions of working on a
+library to wrap <a href="https://pypi.org/project/plotext/">Plotext</a> -- a popular
+terminal-based plotting library for Python -- so that it can easily be used
+in Textual apps;
+<a href="https://textual.textualize.io/blog/2023/10/04/announcing-textual-plotext/"><code>textual-plotext</code></a>
+is the result.</p>
+<p>I feel it's come together pretty well</p>
+<p>But... I've been itching to find a reason to use it in a project of my own.</p>
+<p>Meanwhile...</p>
+<p>Back in the mid-2000s, when <a href="https://en.wikipedia.org/wiki/PhpBB">phpBB</a>
+systems were still the fashion, I used to hang out on a site that was
+chiefly aimed at the atheist and secular humanist crowd. We'd get a good
+number of drive-by
+<a href="https://en.wikipedia.org/wiki/Young_Earth_creationism">YEC</a> types who'd
+want to argue (sorry... debate) and often talk nonsense about biology and
+the like.</p>
+<p>Now, I'm no biologist, I'm no scientist, I'm just a hacker who likes to
+write code for fun and profit; so any time there was a chance to write some
+code to help illustrate an idea I'd jump at the chance. I forget the detail
+now -- this was back in 2008; 15 years ago as of the time of writing -- but
+one time I remember a conversation was taking place where someone was just
+flat out claiming that "random mutation" can only cause "loss of
+information" and could never lead to a "desired result", or some such thing.</p>
+<p>If you've ever had, read or watched those debates, you'll know the sort of
+thing I mean.</p>
+<p>So that got me thinking back then, could I write something that could give a
+simple illustration of how this doesn't quite make sense?</p>
+<p>So I had a little hacking session and came up with some Ruby code<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> that
+did what I felt was the job. You'd give it a phrase you wanted it to
+generate (a stand-in for the current "fitness landscape", in effect), it
+would then generate a totally random string of that length, and then would
+set about mutating it, finding mutations that were "fitter" than others (a
+stand in for selection), breed the best two so far (randomly copy one chunk
+from another to create a child), then repeat over and over.</p>
+<p>When I first wrote it I wasn't sure what to expect; would it ever finish
+given a reasonably large target string?</p>
+<p>It did.</p>
+<p>It was fun to code.</p>
+<p>It got posted to the BB and of course wasn't in any way persuasive to them
+(honestly I never expected it would be). I seem to recall it being
+hand-waved away with calls of there obviously being an intelligent designer
+involved<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.</p>
+<p>Anyway, the "meanwhile..." in this: a few times this year I've thought it
+could be fun to rework this in Python (it's really not that complex after
+all; just a string-chopping loop really) and use Textual to put a fun UI on
+it.</p>
+<p>So, that's what I did, complete with <code>textual-plotext</code> plot:</p>
+<p><img alt="Visual Selection in action" src="/attachments/2023/10/26/visual-selection.png"></p>
+<p>While, 15 years on, this isn't going to convince anyone of the underlying
+point, I think it does serve a good educational purpose. It shows that you
+can create a fun UI for the terminal, with Textual, with not a lot of code.
+It also shows off how you can easily create dynamic plots. Plus -- and I
+think this might be the really important one -- it shows you can write
+"traditional" tight-loop code in a Textual application and <em>still</em> have a
+responsive UI; all thanks to the <a href="https://textual.textualize.io/guide/workers/">worker
+API</a>.</p>
+<p>The heart of the code for this application is this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">environment</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span><span class="s2">&quot;This is the target string we want to create!&quot;</span><span class="p">)</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">environment</span><span class="o">.</span><span class="n">best_fit_found</span><span class="p">:</span>
+    <span class="n">environment</span><span class="o">.</span><span class="n">shit_happens</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Sure, there's some detail in the <code>Environment</code> class, but you get the idea:
+while we've not hit the target, let <a href="https://www.youtube.com/watch?v=kiVVzxoPTtg">life find a
+way</a>. A loop like that would
+totally bog down an application with a UI without some other work taking
+place. With Textual and workers the resulting method in the application,
+complete with code to send updates to the UI, really doesn't look much
+different:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@work</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exclusive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">run_world</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">worker</span> <span class="o">=</span> <span class="n">get_current_worker</span><span class="p">()</span>
+    <span class="n">environment</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+    <span class="n">iterations</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">post_message</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">WorldUpdate</span><span class="p">(</span><span class="n">environment</span><span class="p">,</span> <span class="n">iterations</span><span class="p">,</span> <span class="o">*</span><span class="n">environment</span><span class="o">.</span><span class="n">best</span><span class="p">))</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">worker</span><span class="o">.</span><span class="n">is_cancelled</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">environment</span><span class="o">.</span><span class="n">best_fit_found</span><span class="p">:</span>
+        <span class="n">environment</span><span class="o">.</span><span class="n">shit_happens</span><span class="p">()</span>
+        <span class="n">iterations</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">iterations</span> <span class="o">%</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">environment</span><span class="o">.</span><span class="n">best_fit_found</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">post_message</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">WorldUpdate</span><span class="p">(</span><span class="n">environment</span><span class="p">,</span> <span class="n">iterations</span><span class="p">,</span> <span class="o">*</span><span class="n">environment</span><span class="o">.</span><span class="n">best</span><span class="p">)</span>
+            <span class="p">)</span>
+    <span class="k">if</span> <span class="n">environment</span><span class="o">.</span><span class="n">best_fit_found</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">post_message</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Finished</span><span class="p">(</span><span class="n">iterations</span><span class="p">))</span>
+</code></pre></div>
+
+<p>I honestly think the worker API is one of the coolest things added to
+Textual and I so often see people have real <em>"woah!"</em> moments when they get
+to grips with it.</p>
+<p>Anyway... I've covered science, religion, and how Ruby is better than
+Python, so I'm sure I've annoyed almost everyone. Job done I guess. ;-)</p>
+<p>If you want to check out the app itself there's <a href="https://github.com/davep/visual-selection">a GitHub
+repo</a> and it can also be
+installed <a href="https://pypi.org/project/visual-selection/">from PyPi</a> using
+<code>pipx</code>.</p>
+<p>Expect it to be my tinker project of choice for a wee while; there's a
+couple of other things I'd like to add to it.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Possibly unpopular opinion with some folk who will read this, but I've
+long been a fan of Ruby as a language and actually generally prefer it
+to Python.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Me, the coder. While utterly missing the point of a simple
+illustration, while apparently not understanding the concept of an
+analogy, I guess at least they felt I was intelligent?&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/10/20/constant-siri-voice-loss.html#constant-siri-voice-loss">Constant Siri voice loss</a></h2>
     <p>
       Posted on 2023-10-20 13:04 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
@@ -626,73 +753,6 @@ look so terrible.</p>
 <p>The <em>"eh, let's just shove it here"</em> approach that seems to be on display
 here almost reminds me of <a href="/2015/10/07/imac-time-wiggle.html">the "time wiggle" that used to mildly annoy me
 back on my iMac</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2023/09/11/a-map-of-my-year-in-obsidian.html#a-map-of-my-year-in-obsidian">A map of my year in Obsidian</a></h2>
-    <p>
-      Posted on 2023-09-11 20:07 +0100 in <a href="https://blog.davep.org/category/life.html">Life</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/journal.html">journal</a>,              <a href="https://blog.davep.org/tag/obsidian.html">Obsidian</a>,              <a href="https://blog.davep.org/tag/graph.html">graph</a>
-        &#8226; 3 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Some time around late October or early November last year, around the time I
-started working at <a href="https://www.textualize.io/">Textualize</a>, I "discovered"
-<a href="https://obsidian.md/">Obsidian</a>. While I didn't need another note-taking
-application (having gone through Evernote, trying to use
-<a href="https://orgmode.org/">Org</a>, dabbling with a couple of other things and
-finally settling mainly on Apple Notes), I was quite taken by its style and
-ubiquity and the fact that it was, at heart, just a bunch of Markdown files.</p>
-<p>So quite quickly I started using it; not to replace Apple Notes (which is
-still my general note-taking tool of choice), but to keep work notes and a
-daily coding journal, the latter coming in useful for the quick end-of-day
-meetings we normally have.</p>
-<p>One of the things I was quite taken by was the graph. It was interesting and
-fun to see how each of my work days related to other work days, and what
-subjects kept getting pulled in, etc.</p>
-<p>So come the start of this year I had an idea: what would it be like to keep
-a personal vault, but one where I track things I've done. Not a journal as
-such (I do keep one of those too, have done for many years now, but that's
-for other far more important reasons -- perhaps I'll write about that one
-day too), just a daily record of stuff I've achieved, stuff I've actually
-done, the routine things and the exceptional things?</p>
-<p>What would that graph look like?</p>
-<p>While it's not the end of this year yet, here's how that's shaping up:</p>
-<p><img alt="The main graph" src="/attachments/2023/09/11/MainGraph.png#centre"></p>
-<p>Each of the yellow circles is a day, each of the blue ones is a tag of some
-sort. As you'd imagine, the size of the circles relates to how often that
-item is tagged. So I can see what proportion of my days so far this year
-have been tagged with being heavily involved with work:</p>
-<p><img alt="Work" src="/attachments/2023/09/11/Work.png#centre"></p>
-<p>Likewise, if I want to see how many days this year have involved a
-significant spot of gaming:</p>
-<p><img alt="Gaming" src="/attachments/2023/09/11/Gaming.png#centre"></p>
-<p>Ditto for days where I've done some coding on pet projects, or even some
-personal-time coding relating to work projects (it might be work, but it's
-also Free Software and I do like to support FOSS!)</p>
-<p><img alt="Coding" src="/attachments/2023/09/11/Coding.png#centre"></p>
-<p>I sort of have a curated set of tags I apply, but I've not made it a strict
-set; if some new situation crops up that calls for a new tag I'll use it.
-Mostly though I try and keep the tags pretty general so lots of days can
-relate to the same general subject.</p>
-<p>Another thing I've done is tag each and every day with the day of the week,
-so while it's not really surprising to find that Sunday doesn't dominate
-over other days, I can see which days are Sundays and perhaps wander along
-the connections and see what I get up to:</p>
-<p><img alt="Sunday" src="/attachments/2023/09/11/Sunday.png#centre"></p>
-<p>I don't quite know what I hope to get out of this, I don't really know if
-there's anything useful to be had here at all, but it will be interesting to
-look back over it at the end of the year. It also means that I'll have a
-directory hierarchy full of Markdown files, all tagged and filled with
-information, which I'll be able to <code>grep</code> and slice and dice and count and
-perhaps pull into a database and cross-reference with stuff and things.</p>
-<p>Or perhaps it's all just really me not having a good use for Obsidian but
-inventing one anyway. ;-)</p></div>
   </div>
 </article>
 

@@ -183,6 +183,53 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2024/04/09/tinboard-0-11-0.html#tinboard-0-11-0">Tinboard v0.11.0</a></h2>
+    <p>
+      Posted on 2024-04-09 15:43 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
+        &#8226; 1 min read
+    </p>
+  </header>
+  <div>
+      <div><p>While <a href="/2024/03/28/goodbye-textualize.html">my time working on Textual might have come to an
+end</a>, my time working <em>with</em> Textual
+hasn't. Three days back <a href="https://www.youtube.com/watch?v=U66oHFLWmG4">I experimented with Textual's newly-added "inline
+mode"</a>:</p>
+<div style="text-align: center;">
+    <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/U66oHFLWmG4?si=kCQba6vMoxpKMtBG"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+    </iframe>
+</div>
+
+<p>In doing so I extended the application so that it's possible to run
+<code>tinboard add</code> and quickly enter a new bookmark and then carry on in the
+terminal, without needing to "go fullscreen". I'll admit it's of limited
+use, but it seemed like a good shakedown of the feature and in working on it
+I was able to discover a couple of bugs
+(<a href="https://github.com/Textualize/textual/issues/4385">#4385</a>,
+<a href="https://github.com/Textualize/textual/issues/4403">#4403</a>).</p>
+<p>The effect of this is this:</p>
+<p><img alt="Tinboard inline addition in action" src="/attachments/2024/04/09/tinboard-inline-add.gif#centre"></p>
+<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
+PyPi</a>. It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>tinboard</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>tinboard
+</code></pre></div>
+
+<p>The <a href="https://github.com/davep/tinboard">source is available on GitHub</a>.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2024/03/10/homebrew-all-the-python-things.html#homebrew-all-the-python-things">Homebrew all the Python things</a></h2>
     <p>
       Posted on 2024-03-10 14:12 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -737,83 +784,6 @@ and marked as read. This is already helping me get to untagged-zero.</p>
 <p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
 PyPi</a>. The <a href="https://github.com/davep/tinboard">source is available on
 GitHub</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2023/12/19/tinboard.html#tinboard">Tinboard</a></h2>
-    <p>
-      Posted on 2023-12-19 09:47 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Over the past few weeks I've been working on a new pet project, in part done
-as a <a href="https://textual.textualize.io/">Textual</a> "dogfooding" project, but
-also because this is a tool I've been wanting for a while now: a
-terminal-based client for the <a href="https://pinboard.in/">Pinboard bookmarking
-service</a>.</p>
-<p>The dogfooding side of the development has been helping, uncovering a couple
-of fun bugs in Textual; plus the act of building this has let me try out a
-few of the newer features we've recently added to the framework.</p>
-<p>What's <em>really</em> important though is this is a tool I actually <strong>wanted</strong>,
-and I'm using pretty often. I've written a <em>lot</em> of Textual-based
-applications over the past year, most small examples, <a href="https://github.com/Textualize/frogmouth">some quite a bit
-bigger</a>, but none of them really
-form part of my daily workflow. This changes with Tinboard.</p>
-<p><img alt="Tinboard in action" src="/attachments/2023/12/19/tinboard.png#centre"></p>
-<p>Tinboard is designed as a fully-featured client, allowing for the creation
-of new Bookmarks, complete with tag suggestion support:</p>
-<p><img alt="Adding a new bookmark" src="/attachments/2023/12/19/new-bookmark.png#centre"></p>
-<p>Not only are tag suggestions pulled from Pinboard, but entry of tags can
-auto-complete, taking completions from both the suggested tags and also tags
-used amongst your own bookmarks:</p>
-<p><img alt="Auto-complete of tags" src="/attachments/2023/12/19/tag-suggest.gif#centre"></p>
-<p>That feature was really easy to add thanks to <a href="https://textual.textualize.io/api/suggester/">the <code>Suggester</code>
-API</a>.</p>
-<p>Thanks to the
-<a href="https://textual.textualize.io/blog/2023/09/21/textual-0380-adds-a-syntax-aware-textarea/">recently-added</a>
-<code>TextArea</code> widget the add/edit dialog allows for proper full editing of the
-extended text description of the bookmark too:</p>
-<p><img alt="Editing a bookmark" src="/attachments/2023/12/19/edit.png#centre"></p>
-<p>One caveat here is a lack of word-wrapping; but this will be arriving in an
-update to Textual early in the new year.</p>
-<p>As well as all the usual add/edit/delete facilities, Tinboard is also
-designed to make it pretty easy to find bookmarks too. There are filtering
-options for seeing all read/unread, public/private and tagged/untagged
-bookmarks; this makes bookmark management really easy for me because I can
-filter for all the untagged and private bookmarks, which are likely the ones
-that need editing and expanding on, and tidy up my bookmark library.</p>
-<p>There is also, of course, full text search too.</p>
-<p><img alt="Text search entry" src="/attachments/2023/12/19/search-entry.png#centre"></p>
-<p>When a filter or search is in operation, the related tags and the like react
-too:</p>
-<p><img alt="A search result being shown" src="/attachments/2023/12/19/search-result.png#centre"></p>
-<p>Another thing I've made a point of doing in Tinboard is leaning pretty hard
-on the <a href="https://textual.textualize.io/guide/command_palette/">Command
-Palette</a>. No
-functionality is <em>only</em> available by it (I've done my best to make sure that
-keyboard is the primary input device here, with keyboard shortcuts for as
-much as possible). Initially I approached this as a "for the sake of
-completeness" feature, but already I'm finding that it's a pretty quick
-method of pulling up a tag filter.</p>
-<p><img alt="The command palette in action" src="/attachments/2023/12/19/command-palette.png#centre"></p>
-<p>To help make all the features as discoverable possible, I've also ensured
-there's a pretty comprehensive help screen:</p>
-<p><img alt="Help" src="/attachments/2023/12/19/help.png#centre"></p>
-<p>Anyway; that's v0.1.0 out in the wild. I'm pleased with how it's turned out
-and there's a few more things I'd like to add. It's licensed GPL-3.0 and
-available <a href="https://github.com/davep/tinboard">via GitHub</a> and also <a href="https://pypi.org/project/tinboard/">via
-PyPi</a>. If you have an environment that
-has <code>pipx</code> installed you should be able to get up and going with:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>tinboard
-</code></pre></div>
-
-<p>I hope this is useful to someone else. :-)</p></div>
   </div>
 </article>
 
