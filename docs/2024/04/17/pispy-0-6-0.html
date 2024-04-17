@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="all" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://blog.davep.org/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://blog.davep.org/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://blog.davep.org/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/static/davep.css">
+
+  <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
+
+  <link href="https://blog.davep.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom">
+
+  <link href="https://blog.davep.org/feed.xml" type="application/rss+xml" rel="alternate" title="blog.davep.org RSS">
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Dave Pearson" />
+<meta name="description" content="Back in the very early days of the Textual adventure, within the first month or so of working on the framework, we had a period of dogfooding. One of the projects I wrote during that time was a little tool I called PISpy. The initial version was pretty much a quick hack; during that dogfooding period I did my best to try and develop a new project every couple of days. Since then I&#39;ve let PISpy descend into bit rot. In the last week or so I&#39;ve turned my attention back to it and made an effort to tidy up the code, tidy it some more, and some more, and even some more. This morning I put the finishing touches to these changes and released v0.6.0. PISpy can be installed with pip or (ideallty) pipx from PyPI. It can also be installed with Homebrew by tapping davep/homebrew and then installing pispy: $ brew tap davep/homebrew $ brew install pispy The source is available on GitHub." />
+<meta name="keywords" content="Python, terminal, textual, YouTube">
+
+
+  <meta property="og:site_name" content="blog.davep.org"/>
+  <meta property="og:title" content="PISpy v0.6.0"/>
+  <meta property="og:description" content="Back in the very early days of the Textual adventure, within the first month or so of working on the framework, we had a period of dogfooding. One of the projects I wrote during that time was a little tool I called PISpy. The initial version was pretty much a quick hack; during that dogfooding period I did my best to try and develop a new project every couple of days. Since then I&#39;ve let PISpy descend into bit rot. In the last week or so I&#39;ve turned my attention back to it and made an effort to tidy up the code, tidy it some more, and some more, and even some more. This morning I put the finishing touches to these changes and released v0.6.0. PISpy can be installed with pip or (ideallty) pipx from PyPI. It can also be installed with Homebrew by tapping davep/homebrew and then installing pispy: $ brew tap davep/homebrew $ brew install pispy The source is available on GitHub."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://blog.davep.org/2024/04/17/pispy-0-6-0.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-04-17 11:30:00+00:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://blog.davep.org/author/dave-pearson.html">
+  <meta property="article:section" content="Coding"/>
+  <meta property="article:tag" content="Python"/>
+  <meta property="article:tag" content="terminal"/>
+  <meta property="article:tag" content="textual"/>
+  <meta property="article:tag" content="YouTube"/>
+  <meta property="og:image" content="https://blog.davep.org/attachments/2024/04/17/pispy-cover.png">
+
+  <title>blog.davep.org &ndash; PISpy v0.6.0</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://blog.davep.org/">
+      <img src="/static/davep.jpeg" alt="davep" title="davep">
+    </a>
+
+    <h1>
+      <a href="https://blog.davep.org/">davep</a>
+    </h1>
+
+    <p>Code, Emacs, VR, Stuff...</p>
+
+
+    <nav>
+      <ul class="list">
+
+
+            <li>
+              <a target="_blank"
+                 href="https://blog.davep.org/pages/about.html#about">
+                About
+              </a>
+            </li>
+            <li>
+              <a target="_blank"
+                 href="https://blog.davep.org/pages/dot-files.html#dot-files">
+                Dot Files
+              </a>
+            </li>
+
+          <li>
+            <a target="_blank" href="http://davep.at/" >davep@</a>
+          </li>
+          <li>
+            <a target="_blank" href="https://pinboard.in/u:davep" >Pinboard</a>
+          </li>
+          <li>
+            <a target="_blank" href="https://seenbydavep.blogspot.com/" >Photoblog</a>
+          </li>
+          <li>
+            <a target="_blank" href="https://elisp.dev/" >Emacs Packages</a>
+          </li>
+          <li>
+            <a target="_blank" href="https://pypi.org/user/davepearson/" >Python Packages</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-github"
+           href="https://github.com/davep"
+           target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-mastodon"
+rel="me"           href="https://fosstodon.org/@davep"
+           target="_blank">
+          <i class="fa-brands fa-mastodon"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-flickr"
+           href="https://www.flickr.com/photos/davepearson/"
+           target="_blank">
+          <i class="fa-brands fa-flickr"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-lastfm"
+           href="https://www.last.fm/user/davepdotorg"
+           target="_blank">
+          <i class="fa-brands fa-lastfm"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-npm"
+           href="https://www.npmjs.com/~davep.org"
+           target="_blank">
+          <i class="fa-brands fa-npm"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-youtube"
+           href="https://www.youtube.com/user/daveporg"
+           target="_blank">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-steam"
+           href="https://steamcommunity.com/id/davepdotorg"
+           target="_blank">
+          <i class="fa-brands fa-steam"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://blog.davep.org/">Home</a>
+
+  <a href="/archives.html">Archives</a>
+  <a href="/categories.html">Categories</a>
+  <a href="/tags.html">Tags</a>
+
+  <a href="https://blog.davep.org/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://blog.davep.org/feed.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="pispy-0-6-0">PISpy v0.6.0</h1>
+    <p>
+      Posted on 2024-04-17 11:30 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+        &#8226; 1 min read
+    </p>
+  </header>
+
+
+  <div>
+    <p>Back in the very early days of the <a href="https://blog.davep.org/2024/03/28/goodbye-textualize.html">Textual
+adventure</a>,
+within the first month or so of working on the framework, we <a href="https://textual.textualize.io/blog/2022/11/26/on-dog-food-the-original-metaverse-and-not-being-bored/">had a period
+of
+dogfooding</a>.
+One of the projects I wrote during that time was a little tool <a href="https://textual.textualize.io/blog/2022/12/08/be-the-keymaster/#pispy">I called
+PISpy</a>.</p>
+<p>The initial version was pretty much a quick hack; during that dogfooding
+period I did my best to try and develop a new project every couple of days.
+Since then I've let PISpy descend into <a href="https://en.wikipedia.org/wiki/Software_rot">bit
+rot</a>.</p>
+<p>In the last week or so I've turned my attention back to it and made an
+effort to <a href="https://www.youtube.com/watch?v=CepsN8TDq1E">tidy up the code</a>,
+<a href="https://www.youtube.com/watch?v=t2EUXA8RkN0">tidy it some more</a>, <a href="https://www.youtube.com/watch?v=2u5CfrgZWcc">and some
+more</a>, and <a href="https://www.youtube.com/watch?v=CDCvWCZx1AM">even some
+more</a>.</p>
+<p>This morning I put the finishing touches to these changes and released
+<a href="https://github.com/davep/pispy/releases/tag/v0.6.0">v0.6.0</a>.</p>
+<p><a href="https://www.youtube.com/shorts/67xtMdstbx4"><img alt="PISpy in action" src="/attachments/2024/04/17/pispy-in-action.gif#centre"></a></p>
+<p>PISpy can be installed with <code>pip</code> or (ideallty) <code>pipx</code> <a href="https://pypi.org/project/pispy-client/">from
+PyPI</a>. It can also be installed with
+Homebrew by tapping <code>davep/homebrew</code> and then installing <code>pispy</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>pispy
+</code></pre></div>
+
+<p>The <a href="https://github.com/davep/pispy">source is available on GitHub</a>.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://blog.davep.org/tag/python.html">Python</a>
+      <a href="https://blog.davep.org/tag/terminal.html">terminal</a>
+      <a href="https://blog.davep.org/tag/textual.html">textual</a>
+      <a href="https://blog.davep.org/tag/youtube.html">YouTube</a>
+    </p>
+  </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://blog.davep.org/2024/04/17/macos-desktop-widget-switching.html" title="macOS desktop widget switching">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; 2015-2024 Dave Pearson</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://blog.davep.org/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " blog.davep.org ",
+  "url" : "https://blog.davep.org",
+  "image": "/static/davep.jpeg",
+  "description": ""
+}
+</script>
+</body>
+</html>
