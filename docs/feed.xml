@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>blog.davep.org</title><link>https://blog.davep.org/</link><description>Code, Emacs, VR, Stuff...</description><lastBuildDate>Tue, 09 Apr 2024 15:43:00 +0000</lastBuildDate><item><title>Tinboard v0.11.0</title><link>https://blog.davep.org/2024/04/09/tinboard-0-11-0.html</link><description>&lt;p&gt;While &lt;a href="/2024/03/28/goodbye-textualize.html"&gt;my time working on Textual might have come to an
+<rss version="2.0"><channel><title>blog.davep.org</title><link>https://blog.davep.org/</link><description>Code, Emacs, VR, Stuff...</description><lastBuildDate>Wed, 17 Apr 2024 09:26:00 +0000</lastBuildDate><item><title>macOS desktop widget switching</title><link>https://blog.davep.org/2024/04/17/macos-desktop-widget-switching.html</link><description>&lt;p&gt;When &lt;a href="https://support.apple.com/en-gb/108996"&gt;desktop widgets&lt;/a&gt; first turned
+up in macOS I was pretty quick to embrace them. On my personal Mac Mini I
+use a pair of screens, the right one mostly given over to Emacs, and there
+was generally room to space there. These days that screen generally looks
+something like this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The usual layout of my right screen" src="/attachments/2024/04/17/right-screen.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;Recently I've got into &lt;a href="https://www.youtube.com/@davep-codes/streams"&gt;streaming while I do some
+coding&lt;/a&gt; and it's the
+right-hand screen that I work on and capture using OBS. When I was setting
+this up I realised that the widgets being there could be a problem; not
+because they could distract or anything, more that they could, at times,
+contain sensitive information (there's my reminder list and my calendar
+there after all).&lt;/p&gt;
+&lt;p&gt;What I needed was a quick method of hiding all the widgets, and showing them
+again later, without it being a lot of faff.&lt;/p&gt;
+&lt;p&gt;With a little bit of digging around on the net I finally came up with a pair
+of &lt;code&gt;fish&lt;/code&gt; abbreviations that do just the job!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;abbr -g widoff &amp;quot;defaults write com.apple.WindowManager StandardHideWidgets -int 1&amp;quot;
+abbr -g widon &amp;quot;defaults write com.apple.WindowManager StandardHideWidgets -int 0&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, when I'm going to stream, part of my "getting stuff ready to go live"
+checklist is to run &lt;code&gt;widoff&lt;/code&gt; in the terminal; once I'm finished I can then
+just run &lt;code&gt;widon&lt;/code&gt; again to have them come back.&lt;/p&gt;
+&lt;p&gt;Fast, clean, handy.&lt;/p&gt;
+&lt;p&gt;I've also got a pair for when I'm using &lt;a href="https://support.apple.com/en-gb/guide/mac-help/mchl534ba392/mac"&gt;Stage
+Manager&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;abbr -g smwidoff &amp;quot;defaults write com.apple.WindowManager StageManagerHideWidgets -int 1&amp;quot;
+abbr -g smwidon &amp;quot;defaults write com.apple.WindowManager StageManagerHideWidgets -int 0&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Although, really, I can't remember the last time I used Stage Manager. I
+dabbled with it for a wee while, found it vaguely handy in a couple of
+situations, but it doesn't seem to have stuck as part of my workflow or work
+environment.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dave Pearson</dc:creator><pubDate>Wed, 17 Apr 2024 09:26:00 +0000</pubDate><guid isPermaLink="false">tag:blog.davep.org,2024-04-17:/2024/04/17/macos-desktop-widget-switching.html</guid><category>Tech</category><category>macOS</category><category>fish</category><category>shell</category><category>streaming</category></item><item><title>Tinboard v0.11.0</title><link>https://blog.davep.org/2024/04/09/tinboard-0-11-0.html</link><description>&lt;p&gt;While &lt;a href="/2024/03/28/goodbye-textualize.html"&gt;my time working on Textual might have come to an
 end&lt;/a&gt;, my time working &lt;em&gt;with&lt;/em&gt; Textual
 hasn't. Three days back &lt;a href="https://www.youtube.com/watch?v=U66oHFLWmG4"&gt;I experimented with Textual's newly-added "inline
 mode"&lt;/a&gt;:&lt;/p&gt;
@@ -30,7 +64,7 @@ PyPi&lt;/a&gt;. It can also be installed with
 $&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;tinboard
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;The &lt;a href="https://github.com/davep/tinboard"&gt;source is available on GitHub&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dave Pearson</dc:creator><pubDate>Tue, 09 Apr 2024 15:43:00 +0000</pubDate><guid isPermaLink="false">tag:blog.davep.org,2024-04-09:/2024/04/09/tinboard-0-11-0.html</guid><category>Coding</category><category>Python</category><category>terminal</category><category>textual</category></item><item><title>Goodbye Textualize</title><link>https://blog.davep.org/2024/03/28/goodbye-textualize.html</link><description>&lt;p&gt;While I have been &lt;a href="/2017/12/12/on_to_something_new.html"&gt;on the receiving end of redundancy once
+&lt;p&gt;The &lt;a href="https://github.com/davep/tinboard"&gt;source is available on GitHub&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dave Pearson</dc:creator><pubDate>Tue, 09 Apr 2024 15:43:00 +0000</pubDate><guid isPermaLink="false">tag:blog.davep.org,2024-04-09:/2024/04/09/tinboard-0-11-0.html</guid><category>Coding</category><category>Python</category><category>terminal</category><category>textual</category><category>YouTube</category></item><item><title>Goodbye Textualize</title><link>https://blog.davep.org/2024/03/28/goodbye-textualize.html</link><description>&lt;p&gt;While I have been &lt;a href="/2017/12/12/on_to_something_new.html"&gt;on the receiving end of redundancy once
 before&lt;/a&gt;, that was after 21 years of
 service at a company that, while it was in part about software development,
 I would never have called it a "tech" company.&lt;/p&gt;
@@ -1141,40 +1175,4 @@ already it's giving me a bit more confidence to experiment and doodle away
 in idle moments. Also, the USB connection means it can be plugged into my
 Mac, presumably allowing me to record with GarageBand or similar software.
 While I wouldn't use it to subject anyone to my terrible playing, that will
-be something for me to explore in terms of keeping a record of my progress.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dave Pearson</dc:creator><pubDate>Sun, 05 Nov 2023 20:28:00 +0100</pubDate><guid isPermaLink="false">tag:blog.davep.org,2023-11-05:/2023/11/05/fender-mustang-micro.html</guid><category>Life</category><category>music</category><category>guitar</category></item><item><title>Evolve Words</title><link>https://blog.davep.org/2023/10/31/evolve-words.html</link><description>&lt;p&gt;This follows on from my &lt;a href="/2023/10/26/visual-selection.html"&gt;previous post&lt;/a&gt;.
-If you've not read that, it's worth having a dive in first for the
-background.&lt;/p&gt;
-&lt;p&gt;The Ruby code I mention, that was written back in 2008, was actually a pair
-of scripts. The first one, called &lt;code&gt;selection&lt;/code&gt;, did what &lt;code&gt;visual-selection&lt;/code&gt;
-does, only &lt;code&gt;visual-selection&lt;/code&gt; does it with a nice TUI interface: it takes a
-random collection of letters and symbols and evolves them into a target
-phrase.&lt;/p&gt;
-&lt;p&gt;As covered before: I don't remember all of the details of the conversation
-that was going on at the time, but I do seem to remember something along the
-lines of &lt;em&gt;"yes, but you start out and end up with something the same
-length"&lt;/em&gt; and &lt;em&gt;"nothing more complex is made"&lt;/em&gt; (let's gloss over the whole
-"complex" thing for now... well okay let's just gloss over it, end of story;
-this is just a fun coding exercise).&lt;/p&gt;
-&lt;p&gt;What I do remember is that the seed of an idea was planted. Fine: how about
-I start off with one small word, and using a list of English words as the
-"fitness landscape" that the mutations had to survive in, mutate a
-population over and over and see what happens. Would I "randomly" create
-known words, with fewer letters, with the same letters, with more letters?&lt;/p&gt;
-&lt;p&gt;So this version of the code randomly did three forms of mutation: it would
-randomly flip a letter, or randomly delete a letter, or randomly insert a
-random letter. It would do this over and over and eliminate words that
-aren't in the original list (the simple form of selecting for survival
-within the landscape).&lt;/p&gt;
-&lt;p&gt;Like I said last time: never going to convince anyone of anything, but fun
-to write some code.&lt;/p&gt;
-&lt;p&gt;This version became &lt;code&gt;selection2&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;So, having turned &lt;code&gt;selection&lt;/code&gt; into a TUI application with Textual, I &lt;em&gt;had&lt;/em&gt;
-to do the same with this code...&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Evolve Words" src="/attachments/2023/10/31/evolve-words.png#centre"&gt;&lt;/p&gt;
-&lt;p&gt;As before, because it's fun to do so, this leans heavily on the &lt;a href="https://textual.textualize.io/guide/workers/"&gt;worker
-API&lt;/a&gt; and
-&lt;a href="https://textual.textualize.io/blog/2023/10/04/announcing-textual-plotext/"&gt;&lt;code&gt;textual-plotext&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;If you want to check out the app itself there's &lt;a href="https://github.com/davep/evolve-words"&gt;a GitHub
-repo&lt;/a&gt; and it can also be
-installed &lt;a href="https://pypi.org/project/evolve-words/"&gt;from PyPi&lt;/a&gt; using
-&lt;code&gt;pipx&lt;/code&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dave Pearson</dc:creator><pubDate>Tue, 31 Oct 2023 21:39:00 +0100</pubDate><guid isPermaLink="false">tag:blog.davep.org,2023-10-31:/2023/10/31/evolve-words.html</guid><category>Coding</category><category>Python</category><category>evolution</category><category>biology</category><category>terminal</category><category>textual</category></item></channel></rss>
+be something for me to explore in terms of keeping a record of my progress.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dave Pearson</dc:creator><pubDate>Sun, 05 Nov 2023 20:28:00 +0100</pubDate><guid isPermaLink="false">tag:blog.davep.org,2023-11-05:/2023/11/05/fender-mustang-micro.html</guid><category>Life</category><category>music</category><category>guitar</category></item></channel></rss>

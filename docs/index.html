@@ -183,12 +183,62 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2024/04/17/macos-desktop-widget-switching.html#macos-desktop-widget-switching">macOS desktop widget switching</a></h2>
+    <p>
+      Posted on 2024-04-17 09:26 +0000 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/macos.html">macOS</a>,              <a href="https://blog.davep.org/tag/fish.html">fish</a>,              <a href="https://blog.davep.org/tag/shell.html">shell</a>,              <a href="https://blog.davep.org/tag/streaming.html">streaming</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>When <a href="https://support.apple.com/en-gb/108996">desktop widgets</a> first turned
+up in macOS I was pretty quick to embrace them. On my personal Mac Mini I
+use a pair of screens, the right one mostly given over to Emacs, and there
+was generally room to space there. These days that screen generally looks
+something like this:</p>
+<p><img alt="The usual layout of my right screen" src="/attachments/2024/04/17/right-screen.png#centre"></p>
+<p>Recently I've got into <a href="https://www.youtube.com/@davep-codes/streams">streaming while I do some
+coding</a> and it's the
+right-hand screen that I work on and capture using OBS. When I was setting
+this up I realised that the widgets being there could be a problem; not
+because they could distract or anything, more that they could, at times,
+contain sensitive information (there's my reminder list and my calendar
+there after all).</p>
+<p>What I needed was a quick method of hiding all the widgets, and showing them
+again later, without it being a lot of faff.</p>
+<p>With a little bit of digging around on the net I finally came up with a pair
+of <code>fish</code> abbreviations that do just the job!</p>
+<div class="highlight"><pre><span></span><code>abbr -g widoff &quot;defaults write com.apple.WindowManager StandardHideWidgets -int 1&quot;
+abbr -g widon &quot;defaults write com.apple.WindowManager StandardHideWidgets -int 0&quot;
+</code></pre></div>
+
+<p>Now, when I'm going to stream, part of my "getting stuff ready to go live"
+checklist is to run <code>widoff</code> in the terminal; once I'm finished I can then
+just run <code>widon</code> again to have them come back.</p>
+<p>Fast, clean, handy.</p>
+<p>I've also got a pair for when I'm using <a href="https://support.apple.com/en-gb/guide/mac-help/mchl534ba392/mac">Stage
+Manager</a>:</p>
+<div class="highlight"><pre><span></span><code>abbr -g smwidoff &quot;defaults write com.apple.WindowManager StageManagerHideWidgets -int 1&quot;
+abbr -g smwidon &quot;defaults write com.apple.WindowManager StageManagerHideWidgets -int 0&quot;
+</code></pre></div>
+
+<p>Although, really, I can't remember the last time I used Stage Manager. I
+dabbled with it for a wee while, found it vaguely handy in a couple of
+situations, but it doesn't seem to have stuck as part of my workflow or work
+environment.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2024/04/09/tinboard-0-11-0.html#tinboard-0-11-0">Tinboard v0.11.0</a></h2>
     <p>
       Posted on 2024-04-09 15:43 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
 
           &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/youtube.html">YouTube</a>
         &#8226; 1 min read
     </p>
   </header>
@@ -986,42 +1036,6 @@ stuff.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to foot
 </li>
 </ol>
 </div></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/01/11/textual-countdown.html#textual-countdown">textual-countdown</a></h2>
-    <p>
-      Posted on 2024-01-11 22:52 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/pypi.html">PyPi</a>,              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/coding.html">coding</a>,              <a href="https://blog.davep.org/tag/textual.html">Textual</a>
-        &#8226; 1 min read
-    </p>
-  </header>
-  <div>
-      <div><p>The idea for this one popped into my head while on the bus back from Textual
-Towers this evening. So after dinner and some nonsense on TV I had to visit
-my desk and do a quick hack.</p>
-<p>This is <a href="https://github.com/davep/textual-countdown"><code>textual-countdown</code></a>, a
-subtle but I think useful countdown widget for Textual applications.</p>
-<p><img alt="Textual Countdown in action" src="/attachments/2024/01/11/textual-countdown.gif"></p>
-<p>The idea is that you compose it somewhere into your screen, and when you
-start the countdown the bar highlights and then starts to shrink down to
-"nothing" in the middle of its display. When the countdown ends a message is
-posted so you can then perform the task that was being waited for in an
-event handler.</p>
-<p>Not really a novel thing, I've seen this kind of thing before on the web;
-I'm sure we all have. I just thought it would be a fun idea for Textual
-applications too.</p>
-<p>I envisage using this where, perhaps, an application needs to wait for an
-API-visiting cooldown period, or perhaps as a subtle countdown for a
-question in a quiz; something like that.</p>
-<p>Anyway, if this sounds like it's something useful for your Textual
-applications, <a href="https://pypi.org/project/textual-countdown/">it's now available from
-PyPi</a> and, of course, the
-source is over <a href="https://github.com/davep/textual-countdown">on GitHub</a>.</p></div>
   </div>
 </article>
 

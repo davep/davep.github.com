@@ -183,6 +183,138 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html#starting_fresh_with_gnu_emacs">Starting fresh with GNU emacs</a></h2>
+    <p>
+      Posted on 2016-05-26 12:28 +0100 in <a href="https://blog.davep.org/category/emacs.html">Emacs</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/emacs.html">Emacs</a>
+        &#8226; 4 min read
+    </p>
+  </header>
+  <div>
+      <div><p>As I've mentioned elsewhere on this blog, over the past few years, my
+use of GNU emacs has lapsed somewhat. There was a time when it was my
+only editor (except for the odd dips into vim to do some quick
+editing) and, back when I used to use GNU Linux as a desktop machine a
+lot, I'd have an emacs session up and running pretty much non-stop (it
+was one of the reasons I wrote
+<a href="https://github.com/davep/uptimes.el">uptimes.el</a>).</p>
+<p>In more recent times I've been working more on Windows and often
+inside Visual Studio. Even for my own "for fun" programming, I've
+mostly being doing things that didn't involve emacs much. In fact,
+most of my recent "for fun" coding has been done using
+<a href="https://www.sublimetext.com/">Sublime Text</a> because it was powerful,
+cross-platform and also had great support for
+<a href="http://wiki.secondlife.com/wiki/LSL_Portal">the language I code in a lot when it comes to personal amusement projects</a>.</p>
+<p>During that time I've wanted to get back into emacs. Quite a bit seems
+to have changed since I was last a very avid user and this also meant
+wanting and needing to catch up.</p>
+<p>The first thing I needed to do was finally get around to killing off
+my old <code>~/.emacs</code> file. This has followed me around since I first got
+into emacs on OS/2 back in the mid 1990s. The file started out with a
+few <code>setq</code> expressions to tweak some settings and just kept growing
+and growing. It'd got to a point where there was old stuff in there
+that I had no use for and sometimes even no idea what it was
+for. Heck, to give some idea of how old the file was: there were items
+in there that handled running emacs on MS-DOS!</p>
+<p>So, a couple of weeks back, I dumped it. Dumped the whole lot. The
+plan then was to recreate it with as little hands-on coding as
+possible. I decided that, as much as I could, I'd tweak using
+<code>customize</code> and only hand-code (in <code>~/.emacs.d/init.el</code> this time
+around) things when there was no obvious other way to do it.</p>
+<p>So far this is working out really well. Gone has the ugly and
+monolithic <code>.emacs</code>, replaced with something far more modular, much
+more tidy and far easier to maintain. Whereas my old config was almost
+1,000 lines long, the new <code>init.el</code> is currently just 50 lines:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;; Make use of the Common Lisp compatibility module.</span>
+<span class="p">(</span><span class="nb">require</span><span class="w"> </span><span class="ss">&#39;cl</span><span class="p">)</span>
+
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;; Local config/lib directory support.</span>
+
+<span class="p">(</span><span class="nb">defun</span><span class="w"> </span><span class="nv">davep:user-path</span><span class="w"> </span><span class="p">(</span><span class="nv">path</span><span class="p">)</span>
+<span class="w">  </span><span class="s">&quot;Given </span><span class="ss">`file&#39;</span><span class="s">, return a path for it in the local config.&quot;</span>
+<span class="w">  </span><span class="p">(</span><span class="nf">concat</span><span class="w"> </span><span class="nv">user-emacs-directory</span><span class="w"> </span><span class="nv">path</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">defvar</span><span class="w"> </span><span class="nv">davep:local</span><span class="w"> </span><span class="p">(</span><span class="nv">davep:user-path</span><span class="w"> </span><span class="s">&quot;davep/&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="s">&quot;My local config and code directory.&quot;</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">defvar</span><span class="w"> </span><span class="nv">davep:startup</span><span class="w"> </span><span class="p">(</span><span class="nv">davep:user-path</span><span class="w"> </span><span class="s">&quot;davep/startup&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="s">&quot;My local startup code.&quot;</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">defvar</span><span class="w"> </span><span class="nv">davep:lib</span><span class="w"> </span><span class="p">(</span><span class="nv">davep:user-path</span><span class="w"> </span><span class="s">&quot;davep/lib&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="s">&quot;My local library code.&quot;</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">defvar</span><span class="w"> </span><span class="nv">davep:lib-3rd-party</span><span class="w"> </span><span class="p">(</span><span class="nv">davep:user-path</span><span class="w"> </span><span class="s">&quot;davep/lib-3rd-party&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="s">&quot;My local third party code.&quot;</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nb">push</span><span class="w"> </span><span class="nv">davep:local</span><span class="w">         </span><span class="nv">load-path</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">push</span><span class="w"> </span><span class="nv">davep:startup</span><span class="w">       </span><span class="nv">load-path</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">push</span><span class="w"> </span><span class="nv">davep:lib</span><span class="w">           </span><span class="nv">load-path</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">push</span><span class="w"> </span><span class="nv">davep:lib-3rd-party</span><span class="w"> </span><span class="nv">load-path</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span><span class="w"> </span><span class="nv">have-own-package-p</span><span class="w"> </span><span class="p">(</span><span class="nv">package</span><span class="p">)</span>
+<span class="w">  </span><span class="s">&quot;Does a package of my own exist in this environment?&quot;</span>
+<span class="w">  </span><span class="p">(</span><span class="nv">locate-library</span><span class="w"> </span><span class="nv">package</span><span class="w"> </span><span class="no">nil</span><span class="w"> </span><span class="p">(</span><span class="nf">list</span><span class="w"> </span><span class="nv">davep:lib</span><span class="p">)))</span>
+
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;; Ensure custom values go in their own file.</span>
+<span class="p">(</span><span class="k">setq</span><span class="w"> </span><span class="nv">custom-file</span><span class="w"> </span><span class="p">(</span><span class="nv">davep:user-path</span><span class="w"> </span><span class="s">&quot;custom.el&quot;</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">load</span><span class="w"> </span><span class="nv">custom-file</span><span class="p">)</span>
+
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;; Load various startup things.</span>
+<span class="p">(</span><span class="nf">load</span><span class="w"> </span><span class="s">&quot;env-tests&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">require</span><span class="w"> </span><span class="ss">&#39;davep-keys</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">require</span><span class="w"> </span><span class="ss">&#39;davep-languages</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">require</span><span class="w"> </span><span class="ss">&#39;davep-style</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">require</span><span class="w"> </span><span class="ss">&#39;uptimes</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">require</span><span class="w"> </span><span class="ss">&#39;csrclr</span><span class="p">)</span>
+
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;; Local autoloading.</span>
+<span class="p">(</span><span class="nb">require</span><span class="w"> </span><span class="ss">&#39;autoloading</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">load-davep-autoloads</span><span class="p">)</span>
+</code></pre></div>
+
+<p>All the other stuff, things to tweak language modes so they indent
+"just so", my own special keyboard bindings, that sort of thing,
+they're all farmed off into their own files:</p>
+<div class="highlight"><pre><span></span><code>davep@Bellerophon:~/.emacs.d/davep/startup$<span class="w"> </span>v
+total<span class="w"> </span><span class="m">40</span>
+-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>davep<span class="w">  </span>staff<span class="w">  </span><span class="m">4211</span><span class="w"> </span><span class="m">24</span><span class="w"> </span>May<span class="w"> </span><span class="m">14</span>:38<span class="w"> </span>davep-keys.el
+-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>davep<span class="w">  </span>staff<span class="w">  </span><span class="m">4078</span><span class="w"> </span><span class="m">16</span><span class="w"> </span>May<span class="w"> </span><span class="m">13</span>:51<span class="w"> </span>davep-languages.el
+-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>davep<span class="w">  </span>staff<span class="w">   </span><span class="m">537</span><span class="w"> </span><span class="m">25</span><span class="w"> </span>May<span class="w"> </span><span class="m">14</span>:13<span class="w"> </span>davep-style.el
+-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>davep<span class="w">  </span>staff<span class="w">  </span><span class="m">1339</span><span class="w"> </span><span class="m">16</span><span class="w"> </span>May<span class="w"> </span><span class="m">09</span>:39<span class="w"> </span>env-tests.el
+</code></pre></div>
+
+<p>Another thing I'm trying to do is dump all the old third party code I
+had locally and, instead, use emacs' own package manager
+now. Currently this is also working well for me given that I'm using
+both <a href="https://elpa.gnu.org/">ELPA</a> and <a href="https://melpa.org/#/">MELPA</a>.</p>
+<p>I haven't managed to dump everything yet, but it's a useful exercise
+to slowly work through the various files I was carting around and
+deciding if I need them or not (like, I'm fairly sure I won't be
+needing a <code>cobol-mode</code> any time soon -- that can go).</p>
+<p>On top of all of this, on top of starting with a "clean slate" emacs,
+I've also started keeping track of what I do on GitHub. I've got a
+private repo for my <code>~/.emacs.d/</code> that I can now easily sync between
+my various machines.</p>
+<p>One final thing that I'm starting to try and do is actually make full
+use of emacs again. One example is that I'm writing this blog post in
+it. Until now I've been using SublimeText with
+<a href="https://packagecontrol.io/packages/Jekyll">a Jekyll package to compose and manage things</a>
+but, this time around I'm giving <a href="https://melpa.org/#/hyde">hyde</a> and
+<a href="https://melpa.org/#/markdown-mode">markdown-mode</a> a go. So far
+they're working out pretty well too (albeit hyde was a bit odd to set
+up and isn't 100% making sense to me yet).</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2016/04/28/i-now-own-a-macbook.html#i-now-own-a-macbook">I now own a Macbook</a></h2>
     <p>
       Posted on 2016-04-28 20:07 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
@@ -624,44 +756,6 @@ SMB sharing altogether. This doesn't seem to make any difference. Right now,
 as far as I can see, now that I've split the password I can't go back
 despite the fact that there's a method of doing it made available.</p>
 <p>Brilliant.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2015/10/19/microsoft-accounts.html#microsoft-accounts">Microsoft accounts</a></h2>
-    <p>
-      Posted on 2015-10-19 12:14 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/microsoft.html">Microsoft</a>
-        &#8226; 1 min read
-    </p>
-  </header>
-  <div>
-      <div><p>I have too many Microsoft accounts. Far too many. And they still confuse
-the hell out of me.</p>
-<p><img alt="Too many MS logins" src="/attachments/2015/10/19/Screen Shot 2015-10-19 at 12.05.30.png"></p>
-<p>I found out over the weekend that the office was closing down the old internal
-email server. Everything moving to Office365. I use Gmail for my email (I have
-a freebie Google Apps account that I use as the front end for it -- when it
-comes to things like email I'm Gmail all the way). So, as of today, I have
-a new work-oriented Microsoft account.</p>
-<p>Problem is, I already had a work-oriented Microsoft account because that's how
-I use MSDN and download stuff from that.</p>
-<p>I also have a personal outlook.com account for reasons I can't remember now.</p>
-<p>And then there's the Windows gaming login, which might or might not be related
-the the one above.</p>
-<p>And then there's the old Xbox live account that I think has nothing to do with
-the above.</p>
-<p>And then...</p>
-<p>The problem I have is that I never seem to be able to log in with an existing
-MS account any time something new crops up, and so I somehow seem to end up
-having to make a new one. And now I have too many and there's no obvious way
-to merge them or kill them off without losing some service I don't even know
-I need to use any more.</p>
-<p>And then there's my two Skype accounts (personal and work)...</p>
-<p>Make it stop! Please! And give me a merge facility!</p></div>
   </div>
 </article>
 
