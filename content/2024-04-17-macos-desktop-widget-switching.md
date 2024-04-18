@@ -3,7 +3,7 @@ layout: post
 title: macOS desktop widget switching
 category: Tech
 tags: macOS, fish, shell, streaming
-date: 2024-04-17 09:26:00 +0000
+date: 2024-04-17 09:26:00 +0100
 ---
 
 When [desktop widgets](https://support.apple.com/en-gb/108996) first turned
