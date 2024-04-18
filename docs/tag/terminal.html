@@ -183,6 +183,55 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2024/04/18/tinboard-0-12-0.html#tinboard-0-12-0">Tinboard v0.12.0</a></h2>
+    <p>
+      Posted on 2024-04-18 16:23 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/youtube.html">YouTube</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p><a href="https://github.com/davep/tinboard">Tinboard</a> has turned into a tool I use
+pretty much every day; it's probably my most-used Textual/Python-developed
+application at this point. This is causing me to think more and more about
+how I can add things to it that are related to the core purpose, but are
+also outside of the main "interface with Pinboard" thing.</p>
+<p>A thing with keeping bookmarks for a long time is that some of them go
+stale, go away. Some will just plain 404, others the whole site will
+disappear. If I find myself going back to a bookmark and seeing this is the
+case, I'll hit the <a href="https://web.archive.org/">Wayback Machine</a> and see if
+there's an archive there.</p>
+<p>So I got to thinking: what if I add the ability to perform this check into
+Tinboard itself? <a href="https://www.youtube.com/watch?v=XDgiM6pUP2Y">So I did just that</a>.</p>
+<p>Now, in the application, if you press <kbd>w</kbd> with a bookmark
+highlighted, it will check with the Wayback Machine to see if the bookmark
+is in the archive. If it isn't you see this:</p>
+<p><img alt="No archive result" src="/attachments/2024/04/18/no-archive.png#centre"></p>
+<p>On the other hand, if it <em>is</em> in the archive, you'll see something like
+this:</p>
+<p><img alt="Is in the archive result" src="/attachments/2024/04/18/has-archive.png#centre"></p>
+<p>I sense this is going to be the first step in a couple of features related
+to this. I'm thinking that I may go on to add a <em>"swap the URL for this
+bookmark with the Wayback Machine archive URL"</em> feature, which will be handy
+for those bookmarks that have one away, and it would also be useful to look
+at the options for a <em>"please archive a copy of this bookmark"</em> feature.</p>
+<p>But, for now, v0.12.0 is available and has this handy (for me anyway) first
+step.</p>
+<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
+PyPi</a>. It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>tinboard</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>tinboard
+</code></pre></div>
+
+<p>The <a href="https://github.com/davep/tinboard">source is available on GitHub</a>.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2024/04/17/pispy-0-6-0.html#pispy-0-6-0">PISpy v0.6.0</a></h2>
     <p>
       Posted on 2024-04-17 11:30 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -740,52 +789,6 @@ perhaps also how to format it or something. Like, often, if I'm copying a
 bookmark's URL, it's because I want to paste it into some Markdown document,
 or some location that will handle Markdown markup.</p>
 <p>Perhaps that'll turn up in v0.5.0 in a couple of days? ;-)</p>
-<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
-PyPi</a>. The <a href="https://github.com/davep/tinboard">source is available on
-GitHub</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2023/12/23/tinboard-0-3-0.html#tinboard-0-3-0">Tinboard v0.3.0</a></h2>
-    <p>
-      Posted on 2023-12-23 08:49 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>It looks like I'm in a wee period of small incremental changes and release
-of <a href="/2023/12/19/tinboard.html">Tinboard</a>. This morning I've release v0.3.0,
-which has a couple of small but useful changes.</p>
-<p>The first is more of a cosmetic thing. The <a href="https://textual.textualize.io/widgets/footer/"><code>Footer</code> widget in
-Textual</a> is handy for showing
-the current keyboard bindings in a given context, but it can get massively
-cluttered very quickly (we do have plans to revisit this); in Tinboard this
-clutter creep was turning into a thing.</p>
-<p>So I've removed almost every binding from being displayed in the <code>Footer</code>,
-and have placed an emphasis on the user pressing <kbd>F1</kbd> to get
-context-sensitive help, and have also left the most useful bindings in the
-footer with very minimal descriptions.</p>
-<p>Given that this is a keyboard-first application, and I've tried to make the
-bindings easy to remember, I think it's going to make more sense to do it
-like this, and will make for a tidier UI too.</p>
-<p>There is one disadvantage here of course: by removing the display of
-bindings from the footer, the mouse-heavy user becomes disadvantaged; if a
-particular binding doesn't have a UI feature that favours the mouse to cover
-it too there's no way to initiate that action with the mouse. I'm going to
-think on this a little. Again, Tinboard is designed for <em>me</em> first and
-foremost, and my preference is to be keyboard-first when using the
-application; but finding a good compromise would be advantageous when it
-comes to advising people asking about Textual application design.</p>
-<p>The second change is a simple but useful one. I've added a toggle of the
-sort order of the tags menu in the left-hand column (bound to
-<kbd>F4</kbd>). Right now it simply toggles between alphabetical order, or
-bookmark count order (most to least). At some point I might make it more of
-a cycle than a toggle, but this serves my purposes for now.</p>
 <p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
 PyPi</a>. The <a href="https://github.com/davep/tinboard">source is available on
 GitHub</a>.</p></div>

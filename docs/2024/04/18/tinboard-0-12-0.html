@@ -48,17 +48,17 @@
  
 
 <meta name="author" content="Dave Pearson" />
-<meta name="description" content="Back in the very early days of the Textual adventure, within the first month or so of working on the framework, we had a period of dogfooding. One of the projects I wrote during that time was a little tool I called PISpy. The initial version was pretty much a quick hack; during that dogfooding period I did my best to try and develop a new project every couple of days. Since then I&#39;ve let PISpy descend into bit rot. In the last week or so I&#39;ve turned my attention back to it and made an effort to tidy up the code, tidy it some more, and some more, and even some more. This morning I put the finishing touches to these changes and released v0.6.0. PISpy can be installed with pip or (ideallty) pipx from PyPI. It can also be installed with Homebrew by tapping davep/homebrew and then installing pispy: $ brew tap davep/homebrew $ brew install pispy The source is available on GitHub." />
+<meta name="description" content="Tinboard has turned into a tool I use pretty much every day; it&#39;s probably my most-used Textual/Python-developed application at this point. This is causing me to think more and more about how I can add things to it that are related to the core purpose, but are also outside of the main &#34;interface with Pinboard&#34; thing. A thing with keeping bookmarks for a long time is that some of them go stale, go away. Some will just plain 404, others the whole site will disappear. If I find myself going back to a bookmark and seeing this is the case, I&#39;ll hit the Wayback Machine and see if there&#39;s an archive there. So I got to thinking: what if I add the ability to perform this check into Tinboard itself? So I did just that. Now, in the application, if you press w with a bookmark highlighted, it will check with the Wayback Machine to see if the bookmark is in the archive. If it isn&#39;t you see this: On the other hand, if it is in the archive, you&#39;ll see something like this: I sense this is going to be the first step in a couple of features related to this. I&#39;m thinking that I may go on to add a &#34;swap the URL for this bookmark with the Wayback Machine archive URL&#34; feature, which will be handy for those bookmarks that have one away, and it would also be useful to look at the options for a &#34;please archive a copy of this bookmark&#34; feature. But, for now, v0.12.0 is available and has this handy (for me anyway) first step. Tinboard can be installed with pip or (ideally) pipx from PyPi. It can also be installed with Homebrew by tapping davep/homebrew and then installing tinboard: $ brew tap davep/homebrew $ brew install tinboard The source is available on GitHub." />
 <meta name="keywords" content="Python, terminal, textual, YouTube">
 
 
   <meta property="og:site_name" content="blog.davep.org"/>
-  <meta property="og:title" content="PISpy v0.6.0"/>
-  <meta property="og:description" content="Back in the very early days of the Textual adventure, within the first month or so of working on the framework, we had a period of dogfooding. One of the projects I wrote during that time was a little tool I called PISpy. The initial version was pretty much a quick hack; during that dogfooding period I did my best to try and develop a new project every couple of days. Since then I&#39;ve let PISpy descend into bit rot. In the last week or so I&#39;ve turned my attention back to it and made an effort to tidy up the code, tidy it some more, and some more, and even some more. This morning I put the finishing touches to these changes and released v0.6.0. PISpy can be installed with pip or (ideallty) pipx from PyPI. It can also be installed with Homebrew by tapping davep/homebrew and then installing pispy: $ brew tap davep/homebrew $ brew install pispy The source is available on GitHub."/>
+  <meta property="og:title" content="Tinboard v0.12.0"/>
+  <meta property="og:description" content="Tinboard has turned into a tool I use pretty much every day; it&#39;s probably my most-used Textual/Python-developed application at this point. This is causing me to think more and more about how I can add things to it that are related to the core purpose, but are also outside of the main &#34;interface with Pinboard&#34; thing. A thing with keeping bookmarks for a long time is that some of them go stale, go away. Some will just plain 404, others the whole site will disappear. If I find myself going back to a bookmark and seeing this is the case, I&#39;ll hit the Wayback Machine and see if there&#39;s an archive there. So I got to thinking: what if I add the ability to perform this check into Tinboard itself? So I did just that. Now, in the application, if you press w with a bookmark highlighted, it will check with the Wayback Machine to see if the bookmark is in the archive. If it isn&#39;t you see this: On the other hand, if it is in the archive, you&#39;ll see something like this: I sense this is going to be the first step in a couple of features related to this. I&#39;m thinking that I may go on to add a &#34;swap the URL for this bookmark with the Wayback Machine archive URL&#34; feature, which will be handy for those bookmarks that have one away, and it would also be useful to look at the options for a &#34;please archive a copy of this bookmark&#34; feature. But, for now, v0.12.0 is available and has this handy (for me anyway) first step. Tinboard can be installed with pip or (ideally) pipx from PyPi. It can also be installed with Homebrew by tapping davep/homebrew and then installing tinboard: $ brew tap davep/homebrew $ brew install tinboard The source is available on GitHub."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://blog.davep.org/2024/04/17/pispy-0-6-0.html"/>
+  <meta property="og:url" content="https://blog.davep.org/2024/04/18/tinboard-0-12-0.html"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2024-04-17 11:30:00+00:00"/>
+  <meta property="article:published_time" content="2024-04-18 16:23:00+00:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://blog.davep.org/author/dave-pearson.html">
   <meta property="article:section" content="Coding"/>
@@ -66,9 +66,9 @@
   <meta property="article:tag" content="terminal"/>
   <meta property="article:tag" content="textual"/>
   <meta property="article:tag" content="YouTube"/>
-  <meta property="og:image" content="https://blog.davep.org/attachments/2024/04/17/pispy-cover.png">
+  <meta property="og:image" content="https://blog.davep.org/attachments/2023/12/19/tinboard.png">
 
-  <title>blog.davep.org &ndash; PISpy v0.6.0</title>
+  <title>blog.davep.org &ndash; Tinboard v0.12.0</title>
 
 
 </head>
@@ -193,43 +193,50 @@ rel="me"           href="https://fosstodon.org/@davep"
 <article class="single">
   <header>
       
-    <h1 id="pispy-0-6-0">PISpy v0.6.0</h1>
+    <h1 id="tinboard-0-12-0">Tinboard v0.12.0</h1>
     <p>
-      Posted on 2024-04-17 11:30 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+      Posted on 2024-04-18 16:23 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
 
-        &#8226; 1 min read
+        &#8226; 2 min read
     </p>
   </header>
 
 
   <div>
-    <p>Back in the very early days of the <a href="https://blog.davep.org/2024/03/28/goodbye-textualize.html">Textual
-adventure</a>,
-within the first month or so of working on the framework, we <a href="https://textual.textualize.io/blog/2022/11/26/on-dog-food-the-original-metaverse-and-not-being-bored/">had a period
-of
-dogfooding</a>.
-One of the projects I wrote during that time was a little tool <a href="https://textual.textualize.io/blog/2022/12/08/be-the-keymaster/#pispy">I called
-PISpy</a>.</p>
-<p>The initial version was pretty much a quick hack; during that dogfooding
-period I did my best to try and develop a new project every couple of days.
-Since then I've let PISpy descend into <a href="https://en.wikipedia.org/wiki/Software_rot">bit
-rot</a>.</p>
-<p>In the last week or so I've turned my attention back to it and made an
-effort to <a href="https://www.youtube.com/watch?v=CepsN8TDq1E">tidy up the code</a>,
-<a href="https://www.youtube.com/watch?v=t2EUXA8RkN0">tidy it some more</a>, <a href="https://www.youtube.com/watch?v=2u5CfrgZWcc">and some
-more</a>, and <a href="https://www.youtube.com/watch?v=CDCvWCZx1AM">even some
-more</a>.</p>
-<p>This morning I put the finishing touches to these changes and released
-<a href="https://github.com/davep/pispy/releases/tag/v0.6.0">v0.6.0</a>.</p>
-<p><a href="https://www.youtube.com/shorts/67xtMdstbx4"><img alt="PISpy in action" src="/attachments/2024/04/17/pispy-in-action.gif#centre"></a></p>
-<p>PISpy can be installed with <code>pip</code> or (ideallty) <code>pipx</code> <a href="https://pypi.org/project/pispy-client/">from
-PyPI</a>. It can also be installed with
-Homebrew by tapping <code>davep/homebrew</code> and then installing <code>pispy</code>:</p>
+    <p><a href="https://github.com/davep/tinboard">Tinboard</a> has turned into a tool I use
+pretty much every day; it's probably my most-used Textual/Python-developed
+application at this point. This is causing me to think more and more about
+how I can add things to it that are related to the core purpose, but are
+also outside of the main "interface with Pinboard" thing.</p>
+<p>A thing with keeping bookmarks for a long time is that some of them go
+stale, go away. Some will just plain 404, others the whole site will
+disappear. If I find myself going back to a bookmark and seeing this is the
+case, I'll hit the <a href="https://web.archive.org/">Wayback Machine</a> and see if
+there's an archive there.</p>
+<p>So I got to thinking: what if I add the ability to perform this check into
+Tinboard itself? <a href="https://www.youtube.com/watch?v=XDgiM6pUP2Y">So I did just that</a>.</p>
+<p>Now, in the application, if you press <kbd>w</kbd> with a bookmark
+highlighted, it will check with the Wayback Machine to see if the bookmark
+is in the archive. If it isn't you see this:</p>
+<p><img alt="No archive result" src="/attachments/2024/04/18/no-archive.png#centre"></p>
+<p>On the other hand, if it <em>is</em> in the archive, you'll see something like
+this:</p>
+<p><img alt="Is in the archive result" src="/attachments/2024/04/18/has-archive.png#centre"></p>
+<p>I sense this is going to be the first step in a couple of features related
+to this. I'm thinking that I may go on to add a <em>"swap the URL for this
+bookmark with the Wayback Machine archive URL"</em> feature, which will be handy
+for those bookmarks that have one away, and it would also be useful to look
+at the options for a <em>"please archive a copy of this bookmark"</em> feature.</p>
+<p>But, for now, v0.12.0 is available and has this handy (for me anyway) first
+step.</p>
+<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
+PyPi</a>. It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>tinboard</code>:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>pispy
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>tinboard
 </code></pre></div>
 
-<p>The <a href="https://github.com/davep/pispy">source is available on GitHub</a>.</p>
+<p>The <a href="https://github.com/davep/tinboard">source is available on GitHub</a>.</p>
   </div>
   <div class="tag-cloud">
     <p>
@@ -242,11 +249,8 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://blog.davep.org/2024/04/17/macos-desktop-widget-switching.html" title="macOS desktop widget switching">
+    <a class="btn float-left" href="https://blog.davep.org/2024/04/17/pispy-0-6-0.html" title="PISpy v0.6.0">
       <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://blog.davep.org/2024/04/18/tinboard-0-12-0.html" title="Tinboard v0.12.0">
-      Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
