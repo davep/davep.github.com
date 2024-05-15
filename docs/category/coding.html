@@ -183,6 +183,38 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2024/05/14/tinboard-0-14-0.html#tinboard-0-14-0">Tinboard v0.14.0</a></h2>
+    <p>
+      Posted on 2024-05-14 08:02 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/youtube.html">YouTube</a>
+        &#8226; 1 min read
+    </p>
+  </header>
+  <div>
+      <div><p>I've just release <a href="https://github.com/davep/tinboard">Tinboard</a> v0.14.0.
+This release adds a <a href="https://github.com/davep/tinboard/issues/49">feature that a user
+requested</a>, wheer you can set
+the default values for the privacy and read-later status of a new bookmark:</p>
+<p><img alt="The application settings dialog" src="/attachments/2024/05/15/app-settings.png#centre"></p>
+<p>So, any time you create a new bookmark, the edit dialog will use those
+values by default. It's a feature that makes perfect sense but I didn't
+think to add it early on because... well, I set the defaults to my
+preference.</p>
+<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
+PyPi</a>. It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>tinboard</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>tinboard
+</code></pre></div>
+
+<p>The <a href="https://github.com/davep/tinboard">source is available on GitHub</a>.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2024/04/18/tinboard-0-12-0.html#tinboard-0-12-0">Tinboard v0.12.0</a></h2>
     <p>
       Posted on 2024-04-18 16:46 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -921,90 +953,6 @@ developer gets to know about it; don't assume they'll be reading some random
 comment section, social media site or Discord server!</p>
 <p>That and don't make 500+ HTTP requests at once; that might not end well for
 some.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/01/01/oshit.html#oshit">Orange Site Hit</a></h2>
-    <p>
-      Posted on 2024-01-01 10:17 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
-        &#8226; 3 min read
-    </p>
-  </header>
-  <div>
-      <div><p>I know I'm not alone in having a relationship with <a href="https://news.ycombinator.com/">the orange
-site</a> that is... weird. I generally dislike
-the culture there, it's almost impossible to read any of the comments
-without being frustrated about the industry I work in or am adjacent to and
-some of the people who inhabit it; but as a link aggregator of stuff I might
-find interesting... I honestly can't think of anywhere better. So, yes, I've
-been a fairly avid reader of HackerNews for many years, and have even had an
-account there for over 4 years.</p>
-<p>Given this, for a wee while now, I've been meaning to knock up a
-terminal-based client for it using
-<a href="https://textual.textualize.io/">Textual</a>.</p>
-<p>So after work on <a href="/2023/12/19/tinboard.html">Tinboard</a> settled down I got
-the urge to start a new pet project (not abandoning Tinboard, I'm still
-going to be tweaking and extending it of course) and finally knocking up
-that client seemed like the one.</p>
-<p><em>Orange Site Hit</em> is the result.</p>
-<p><img alt="OShit" src="/attachments/2024/01/01/oshit-index.png"></p>
-<p>It's worth making clear from the very start: this is a read-only reader.
-There is no logging in, there is no voting, there is no posting of things.
-This is a client built with <a href="https://github.com/HackerNews/API">their own
-API</a> and it doesn't provide such a thing;
-at least not now and despite me seeing past promises that this will change,
-there's no API for doing that sort of thing.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
-<p>The idea of this application is you can run it up in the terminal, check the
-top, best and latest from the categories provided by the API, perhaps dive
-off into your web browser if needed, and then got on with other things.</p>
-<p>It's there for when you're in the terminal you just <em>need</em> your hit of the
-orange site.</p>
-<p>The main screen of the app revolves around the index of items, most of which
-are going to be stories. You can see an example of that above. For people
-who prefer things to be slightly less cramped, I've also added a "relaxed
-layout" mode too:</p>
-<p><img alt="The index in relaxed mode" src="/attachments/2024/01/01/oshit-index-relaxed.png"></p>
-<p>From the index you can head off into your web-browser by hitting
-<kbd>Enter</kbd> on any item; if the item is a story that links to somewhere
-that link will be opened; if it's something more like <em>AskHN</em>, or a job,
-it'll open the related page on HackerNews itself.</p>
-<p>Pressing <kbd>u</kbd> with an item selected will let you view the details
-for the user who posted the item:</p>
-<p><img alt="Viewing the details of a user" src="/attachments/2024/01/01/oshit-user-dialog.png"></p>
-<p>If you're the sort of person who wants to torture themselves by reading the
-comments (oh come on we all do it!), there's a comment reader/navigator too.
-With an item selected press <kbd>c</kbd> and the comment dialog will open:</p>
-<p><img alt="Viewing the real meat of HackerNews" src="/attachments/2024/01/01/oshit-comments.png"></p>
-<p>I <em>think</em> the navigation within that dialog is fine; although I can see some
-scope for improvement. At the moment it uses a widget-per-comment (actually,
-it's at least 4 widgets per comment), which is fine and Textual handles that
-without an issue, even on items with lots of comments, but longer-term I can
-see me having some fun using <a href="https://textual.textualize.io/guide/widgets/#line-api">the line
-API</a> to build a
-super-efficient comment presentation and navigation widget.</p>
-<p>That's it for now; it feels like a good v0.1.0 spot to be in. There are a
-bunch of things I still want to do with it (better cleaning up of the text,
-perhaps with some markup support so links get handled, etc; plus lots of
-ways of searching for stuff), but I felt it was in a place where I could
-start using it.</p>
-<p>Anyway, if this sounds like your sort of thing, it can be installed with
-<code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/oshit/">from PyPi</a>. The
-<a href="https://github.com/davep/oshit">source is available over on GitHub</a>.</p>
-<div class="footnote">
-<hr>
-<ol>
-<li id="fn:1">
-<p>Yes, there are lots of clients that do all sorts of HTML-scraping of
-the actual website to make this possible; this ain't that. This ain't
-going to be that.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div></div>
   </div>
 </article>
 
