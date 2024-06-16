@@ -2,7 +2,7 @@
 layout: post
 title: On to something new (redux) (redux)
 category: Life
-tags: work, YouTube, streaming, gaming
+tags: work, YouTube, streaming, gaming, PS5
 date: 2024-06-16 13:08:00 +0100
 ---
 
