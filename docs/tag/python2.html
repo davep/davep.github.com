@@ -183,6 +183,106 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2024/01/15/textual-dominfo.html#textual-dominfo">textual-dominfo</a></h2>
+    <p>
+      Posted on 2024-01-15 21:20 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/pypi.html">PyPi</a>,              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/coding.html">coding</a>,              <a href="https://blog.davep.org/tag/textual.html">Textual</a>
+        &#8226; 3 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Last week I was wrestling with some Textual code, trying to get something to
+lay out on the screen "just so". On the whole this isn't too tricky at all,
+and for those times where it might feel tricky <a href="https://textual.textualize.io/how-to/design-a-layout/">there's some advice
+available on how to go about
+it</a>. But in this case
+I was trying to do a couple of "on the edge" things and one thing I really
+needed to know was what particular part of the display was being "caused" by
+what container or widget<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
+<p>Now, at the moment anyway, Textual doesn't have a full-blown devtools with
+all the bells and whistles; not like in your average web browser. It does
+have <a href="https://textual.textualize.io/guide/devtools/">a devtools</a>, but not
+with all the fancy DOM-diving stuff the above would have needed.</p>
+<p>What I needed was the equivalent of <code>print</code>-debugging but with a
+point-and-ask interface. Now, I actually <em>do</em> often do <code>print</code>-debugging
+with Textual apps only I use
+<a href="https://textual.textualize.io/api/app/#textual.app.App.notify"><code>notify</code></a>;
+this time though <code>notify</code> wasn't going to cut it.</p>
+<p>I needed something that would let me point at a widget and say <em>"show me
+stuff about this"</em>. Something that happens when the mouse hovers over a
+widget. Something like... <a href="https://textual.textualize.io/guide/widgets/#tooltips">a
+tooltip</a>!</p>
+<p>So that was easy:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">on_mount</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">widget</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">)]:</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">tooltip</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">node</span><span class="si">!r}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">widget</span><span class="o">.</span><span class="n">ancestors_with_self</span>
+        <span class="p">)</span>
+</code></pre></div>
+
+<p>Suddenly I could hover my mouse over a bit of space on the screen and get a
+"traceback" of sorts for what "caused" it.</p>
+<p>I posted this little hack to <code>#show-and-tell</code> on the <a href="https://discord.gg/Enf6Z3qhVr">Discord
+server</a> and someone mentioned it would be
+handy if it also showed the CSS for the widget too. That was simple enough
+because every widget has a <code>styles.css</code> property that is the CSS for the
+widget, as a string.</p>
+<p>After that I didn't think much more about it; until today.</p>
+<p>Looking back, one thing I realised is that adding the CSS information
+<code>on_mount</code> wasn't quite good enough, as it would only show me the state of
+CSS when the mount happened, not at the moment I inspect the widget. I
+needed the tooltip to be dynamic.</p>
+<p>Thing is... Textual tooltips can't be functions (which would be the obvious
+approach to make it dynamic); so there was no way to get this on-the-fly
+behaviour I wanted.</p>
+<p>Except there was! The type of
+<a href="https://textual.textualize.io/api/widget/#textual.widget.Widget.tooltip"><code>tooltip</code></a>
+is <code>RenderableType</code>. So that means I could assign it an object that is a
+Rich renderable; that in turn means I could write a <code>__rich__</code> method for a
+class that wraps a widget and then reports back what it can see every time
+it's called.</p>
+<p>In other words, via one step of indirection, I could get the <em>"call a
+function each time"</em> approach I was after!</p>
+<p>It works a treat too.</p>
+<p>All of which is a long-winded way of saying I now have a <code>print</code>-debug-level
+DOM inspector tool for when I'm building applications with Textual:</p>
+<p><img alt="textual-dominfo in action" src="/attachments/2024/01/15/textual-dominfo.png#centre"></p>
+<p>If this sounds handy to you, you can grab the code too. Install it into your
+development environment with <code>pip</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>textual-dominfo
+</code></pre></div>
+
+<p>and then attach it to your app or screen or some top-level widget you're
+interested in via <code>on_mount</code>; for example:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">on_mount</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">textual_dominfo</span> <span class="kn">import</span> <span class="n">DOMInfo</span>
+    <span class="n">DOMInfo</span><span class="o">.</span><span class="n">attach_to</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</code></pre></div>
+
+<p>and then hover away with that mouse cursor and inspect all the things!
+Whatever you do though, <em>don't</em> make it part of your runtime, and don't keep
+it installed; just make it a development dependency.</p>
+<p>The source can be found <a href="https://github.com/davep/textual-dominfo">over on
+GitHub</a> and the package is, as
+mentioned above, <a href="https://github.com/davep/textual-dominfo">over on PyPi</a>.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>ObPedant: Containers are widgets, but it's often helpful to make a
+distinction between widgets that exist just to control the layout of the
+widgets inside them, and widgets that exist to actually do or show
+stuff.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2024/01/11/textual-countdown.html#textual-countdown">textual-countdown</a></h2>
     <p>
       Posted on 2024-01-11 22:52 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
@@ -745,46 +845,6 @@ analogy, I guess at least they felt I was intelligent?&#160;<a class="footnote-b
 </li>
 </ol>
 </div></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2023/10/10/astare-0-8-0.html#astare-0-8-0">astare v0.8.0 released</a></h2>
-    <p>
-      Posted on 2023-10-10 21:42 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/pypi.html">PyPi</a>,              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/coding.html">coding</a>,              <a href="https://blog.davep.org/tag/textual.html">Textual</a>
-        &#8226; 1 min read
-    </p>
-  </header>
-  <div>
-      <div><p><a href="https://github.com/davep/textual-astview"><code>textual-astare</code></a> is another
-Textual-based Python project that I've developed in the last year and I
-don't believe I've mentioned on this blog. Simply put, it's a took for
-viewing the abstract syntax tree of Python code, in the terminal.</p>
-<p><img alt="astare in action" src="/attachments/2023/10/10/astare.png#centre"></p>
-<p>I've just made a small update to it this evening after someone asked <a href="https://github.com/davep/textual-astview/discussions/12">for a
-sensible change I've been meaning to do for a
-while</a>. When I
-first read the request I <em>was</em> going to look at it next week, when I have
-some time off work, but you know how it is when you sit at your desk and
-have a "quick look".</p>
-<p>So anyway, yeah, <a href="https://pypi.org/project/textual-astview/">v0.8.0</a> is out
-there and can be installed, with the main changes being:</p>
-<ul>
-<li>Updated <a href="https://github.com/davep/textual-fspicker"><code>textual-fspicker</code></a></li>
-<li>Updated <a href="https://github.com/Textualize/textual/releases/tag/v0.39.0"><code>textual</code></a></li>
-<li>Made it so you can open a directory to browser from the command line.</li>
-<li>Made opening the current working directory the default.</li>
-<li>Tweaked the way dark/light mode get toggled so that it's now
-  command-palette-friendly.</li>
-</ul>
-<p>I think the code does need a wee bit of tidying -- this was one of my
-earliest apps built with Textual and my approach to writing Textual apps has
-changed a fair bit this year, and Textual itself has grown and improved in
-that time -- but it's still working well for now.</p></div>
   </div>
 </article>
 

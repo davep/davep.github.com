@@ -1,5 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2024-05-14T08:02:00+01:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Tinboard v0.14.0</title><link href="https://blog.davep.org/2024/05/14/tinboard-0-14-0.html" rel="alternate"></link><published>2024-05-14T08:02:00+01:00</published><updated>2024-05-14T08:02:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-05-14:/2024/05/14/tinboard-0-14-0.html</id><content type="html">&lt;p&gt;I've just release &lt;a href="https://github.com/davep/tinboard"&gt;Tinboard&lt;/a&gt; v0.14.0.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2024-08-18T10:57:00+01:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Paindrop v1.0.0</title><link href="https://blog.davep.org/2024/08/18/paindrop.html" rel="alternate"></link><published>2024-08-18T10:57:00+01:00</published><updated>2024-08-18T10:57:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-08-18:/2024/08/18/paindrop.html</id><content type="html">&lt;p&gt;I was quite late discovering Pinboard; by the looks of things I created my
+account and paid my first subscription for it in early 2019. Since then I've
+been a pretty avid user and found it really useful. I've even written a
+couple of clients for it (&lt;a href="https://github.com/davep/pinboard.el"&gt;one for
+Emacs&lt;/a&gt; and &lt;a href="https://github.com/davep/tinboard"&gt;one for the
+terminal&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;During that time it's had its fair share of hiccups and outages, but on the
+whole I've found it a stable and useful service.&lt;/p&gt;
+&lt;p&gt;The service does have its detractors, and concerns over its long-term
+stability and how well it's maintained &lt;a href="https://news.ycombinator.com/item?id=34062802"&gt;are fairly
+common&lt;/a&gt;. I half paid
+attention to these, and had started to think about where I might go if there
+was an issue.&lt;/p&gt;
+&lt;p&gt;While maintaining and syncing bookmarks isn't exactly a difficult or
+unsolved problem, and while it's also true that it could be fun to roll my
+own solution, there are a couple of things I need that would make building
+my own approach a bit of a chore.&lt;/p&gt;
+&lt;p&gt;Things important to me are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;An extension for any random browser I might find myself using&lt;/li&gt;
+&lt;li&gt;A good mobile client for at least iOS and iPadOS&lt;/li&gt;
+&lt;li&gt;A good API so I can write my own tools if I need to&lt;/li&gt;
+&lt;li&gt;A clean and focused backend website&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I kept these things in mind and kept an eye out but I'd never really felt
+the need to actively start looking around.&lt;/p&gt;
+&lt;p&gt;Then I &lt;a href="https://sfba.social/@peterme/112915495895055170"&gt;stumbled on this&lt;/a&gt;
+after posting about &lt;a href="https://fosstodon.org/@davep/112925762265869565"&gt;another Pinboard
+outage&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;That... yeah, that was the final push I needed to start to think seriously
+about where to move and how.&lt;/p&gt;
+&lt;p&gt;A couple of people suggested &lt;a href="https://raindrop.io"&gt;Raindrop&lt;/a&gt;, and from what
+I could tell it was coming up as a pretty popular service that some Pinboard
+users were migrating to. I had a look and it wasn't &lt;em&gt;quite&lt;/em&gt; what I was
+after; but close.&lt;/p&gt;
+&lt;p&gt;You see, there's two things I really like about Pinboard that Raindop didn't
+seem to cover:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Simple support for "this shit is unread". I see things, I share to
+  whatever Pinboard app I have on my phone or tablet, etc, and then I review
+  some time later (normally in
+  &lt;a href="https://github.com/davep/tinboard"&gt;Tinboard&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Support for Private and Public pins. I've liked &lt;a href="https://pinboard.in/u:davep"&gt;having a feed of
+  bookmarks I can let people see&lt;/a&gt; and Raindrop
+  doesn't have this.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I looked around at some blogs that talked about Pinboard vs Raindrop and
+didn't see any that really dived into this particular aspect of migrating; I
+also asked a couple of folk who'd made the move about this and they didn't
+really have any insight (mainly because they didn't care about those
+particular uses).&lt;/p&gt;
+&lt;p&gt;One thing I did notice though was that Raindrop &lt;em&gt;does&lt;/em&gt; support making
+individual collections public. So, if I was willing to sacrifice any other
+uses for collections (a bookmark in Raindrop can only be in one collection),
+I could simply have a &lt;em&gt;Public&lt;/em&gt; and a &lt;em&gt;Private&lt;/em&gt; collection and import pins
+into the appropriate one. Also, unread pins could be left out of the
+collections and I could use that to signify unread status.&lt;/p&gt;
+&lt;p&gt;This seemed fine as I'm heavy on the tags anyway.&lt;/p&gt;
+&lt;p&gt;Now... Raindrop has a pretty comprehensive import facility built in. I gave
+it a try with Pinboard's backup file and it worked really well. That is...
+really well except it just threw away the public/private/unread aspect of
+the pins. There was only one thing for it then: I had to write my own
+importer!&lt;/p&gt;
+&lt;p&gt;Which brings me to &lt;a href="https://github.com/davep/paindrop"&gt;&lt;code&gt;Paindrop&lt;/code&gt;&lt;/a&gt;. It's a
+quick hack but it does the job, and it does the import just how I wanted.
+The result of the first test was pretty much spot on (in this image I'm
+comparing what Raindrop says vs what Tinboard says I have in Pinboard):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Comparing Raindrop and Tinboard contents" src="/attachments/2024/08/18/raindrop-imports.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;Usage is pretty straightforward. You create &lt;code&gt;Public&lt;/code&gt; and &lt;code&gt;Private&lt;/code&gt;
+collections in Raindrop, you create an app in Raindrop and get the access
+token, you grab your Pinboard access token and then:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;paindrop&lt;span class="w"&gt; &lt;/span&gt;example:xxxxxxxxxxxxxxxxxxxx&lt;span class="w"&gt; &lt;/span&gt;xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;where the first parameter is the Pinboard access token and the second the
+Raindrop access token.&lt;/p&gt;
+&lt;p&gt;If all goes well, after a few moments, the importer should finish and you
+should find that all of your pins have migrated to Raindrop, all public pins
+are in the &lt;code&gt;Public&lt;/code&gt; collection and all private pins are in the &lt;code&gt;Private&lt;/code&gt;
+collection. Any pins that were marked as unread will be &lt;em&gt;Unsorted&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Note that if you used different names for your public and private
+collections you can pass those names to &lt;code&gt;paindrop&lt;/code&gt; with the &lt;code&gt;--public&lt;/code&gt; and
+&lt;code&gt;--private&lt;/code&gt; switches.&lt;/p&gt;
+&lt;p&gt;If you're looking to move your bookmarking history out of Pinboard and want
+to keep the same sort of structure I had I hope Paindrop will be useful to
+you too.&lt;/p&gt;
+&lt;p&gt;Paindrop can be installed with &lt;code&gt;pip&lt;/code&gt; or (ideally) &lt;code&gt;pipx&lt;/code&gt; &lt;a href="https://pypi.org/project/paindrop/"&gt;from
+PyPi&lt;/a&gt;. It can also be installed with
+&lt;code&gt;Homebrew&lt;/code&gt; by tapping &lt;code&gt;davep/homebrew&lt;/code&gt; and then installing &lt;code&gt;paindrop&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;tap&lt;span class="w"&gt; &lt;/span&gt;davep/homebrew
+$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;paindrop
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;a href="https://github.com/davep/paindrop"&gt;source is available on GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;PS: As for the name... originally it was &lt;code&gt;pin2rain&lt;/code&gt; but then &lt;a href="https://fosstodon.org/@darrenburns/112978377299333401"&gt;Darren Burns
+pointed out the obvious and it had to
+happen&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="pinboard"></category><category term="raindrop"></category></entry><entry><title>Tinboard v0.14.0</title><link href="https://blog.davep.org/2024/05/14/tinboard-0-14-0.html" rel="alternate"></link><published>2024-05-14T08:02:00+01:00</published><updated>2024-05-14T08:02:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-05-14:/2024/05/14/tinboard-0-14-0.html</id><content type="html">&lt;p&gt;I've just release &lt;a href="https://github.com/davep/tinboard"&gt;Tinboard&lt;/a&gt; v0.14.0.
 This release adds a &lt;a href="https://github.com/davep/tinboard/issues/49"&gt;feature that a user
 requested&lt;/a&gt;, wheer you can set
 the default values for the privacy and read-later status of a new bookmark:&lt;/p&gt;
@@ -1037,29 +1133,4 @@ and turn to around page 84, there I am!&lt;/p&gt;
 &lt;p&gt;At this point I'm almost tempted to try and get an emulator up and running
 and get the code going again. How much fun would it be to add a video to &lt;a href="https://www.youtube.com/@DavePearson"&gt;my
 YouTube channel&lt;/a&gt;, of me playing one of
-the very first games I wrote?&lt;/p&gt;</content><category term="Coding"></category><category term="html"></category><category term="web"></category></entry><entry><title>Website: Norton Guide information moved</title><link href="https://blog.davep.org/2023/08/13/website-norton-guide-information-moved.html" rel="alternate"></link><published>2023-08-13T10:02:00+01:00</published><updated>2023-08-13T10:02:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-08-13:/2023/08/13/website-norton-guide-information-moved.html</id><content type="html">&lt;p&gt;This morning I've spent a wee bit of time tinkering with the configuration
-of &lt;a href="/2023/08/11/the-reboot-begins.html"&gt;the planned complete remake of my personal
-website&lt;/a&gt;. As part of this I made an
-effort to "port" over a section of the site. The choice for the first
-section to move was easy enough: &lt;a href="https://www.davep.org/norton-guides/"&gt;Norton
-Guides&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Of all the parts of my old site, this is probably the most useful in terms
-of &lt;em&gt;"contains information that isn't generally available out there on the
-web elsewhere and some folk might find it useful"&lt;/em&gt;. I mean, at some point in
-the past, someone edited the Wikipedia page for Norton Guides and linked to
-mine as a source.&lt;/p&gt;
-&lt;p&gt;So getting that one back up and running as soon as possible made sense.&lt;/p&gt;
-&lt;p&gt;I've not added &lt;em&gt;every&lt;/em&gt; bit of Norton Guide code to the main page, instead
-just pulling over and tidying up what was there before. On the other hand,
-just hacking on Markdown makes it all so much easier so I may expand on it a
-bit.&lt;/p&gt;
-&lt;p&gt;The really important part was moving over &lt;a href="https://www.davep.org/norton-guides/file-format/"&gt;the file format
-details&lt;/a&gt;. This, I feel, is
-the information that people will be looking for, if anyone is ever looking.&lt;/p&gt;
-&lt;p&gt;So, proper start made; there's content beyond the landing page. There's
-still a lot to weed out and move over, and I think there's a lot of tweaking
-and the like with the configuration to do too. But the ball is rolling now.
-Ever time I get a spare hour and the desire to sit at my desk I can pick a
-section, look it over, decide if it deserves to come over, and act on that.&lt;/p&gt;
-&lt;p&gt;Heck, at this rate I might even end up with an actively-maintained website
-again!&lt;/p&gt;</content><category term="Coding"></category><category term="html"></category><category term="web"></category></entry></feed>
+the very first games I wrote?&lt;/p&gt;</content><category term="Coding"></category><category term="html"></category><category term="web"></category></entry></feed>

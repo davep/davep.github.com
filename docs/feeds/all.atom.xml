@@ -1,5 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2024-06-16T13:08:00+01:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>On to something new (redux) (redux)</title><link href="https://blog.davep.org/2024/06/16/on-to-something-new-redux-redux.html" rel="alternate"></link><published>2024-06-16T13:08:00+01:00</published><updated>2024-06-16T13:08:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-06-16:/2024/06/16/on-to-something-new-redux-redux.html</id><content type="html">&lt;p&gt;It's been a wee while since I wrote anything here (been about a month) so I
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2024-08-18T10:57:00+01:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Paindrop v1.0.0</title><link href="https://blog.davep.org/2024/08/18/paindrop.html" rel="alternate"></link><published>2024-08-18T10:57:00+01:00</published><updated>2024-08-18T10:57:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-08-18:/2024/08/18/paindrop.html</id><content type="html">&lt;p&gt;I was quite late discovering Pinboard; by the looks of things I created my
+account and paid my first subscription for it in early 2019. Since then I've
+been a pretty avid user and found it really useful. I've even written a
+couple of clients for it (&lt;a href="https://github.com/davep/pinboard.el"&gt;one for
+Emacs&lt;/a&gt; and &lt;a href="https://github.com/davep/tinboard"&gt;one for the
+terminal&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;During that time it's had its fair share of hiccups and outages, but on the
+whole I've found it a stable and useful service.&lt;/p&gt;
+&lt;p&gt;The service does have its detractors, and concerns over its long-term
+stability and how well it's maintained &lt;a href="https://news.ycombinator.com/item?id=34062802"&gt;are fairly
+common&lt;/a&gt;. I half paid
+attention to these, and had started to think about where I might go if there
+was an issue.&lt;/p&gt;
+&lt;p&gt;While maintaining and syncing bookmarks isn't exactly a difficult or
+unsolved problem, and while it's also true that it could be fun to roll my
+own solution, there are a couple of things I need that would make building
+my own approach a bit of a chore.&lt;/p&gt;
+&lt;p&gt;Things important to me are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;An extension for any random browser I might find myself using&lt;/li&gt;
+&lt;li&gt;A good mobile client for at least iOS and iPadOS&lt;/li&gt;
+&lt;li&gt;A good API so I can write my own tools if I need to&lt;/li&gt;
+&lt;li&gt;A clean and focused backend website&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I kept these things in mind and kept an eye out but I'd never really felt
+the need to actively start looking around.&lt;/p&gt;
+&lt;p&gt;Then I &lt;a href="https://sfba.social/@peterme/112915495895055170"&gt;stumbled on this&lt;/a&gt;
+after posting about &lt;a href="https://fosstodon.org/@davep/112925762265869565"&gt;another Pinboard
+outage&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;That... yeah, that was the final push I needed to start to think seriously
+about where to move and how.&lt;/p&gt;
+&lt;p&gt;A couple of people suggested &lt;a href="https://raindrop.io"&gt;Raindrop&lt;/a&gt;, and from what
+I could tell it was coming up as a pretty popular service that some Pinboard
+users were migrating to. I had a look and it wasn't &lt;em&gt;quite&lt;/em&gt; what I was
+after; but close.&lt;/p&gt;
+&lt;p&gt;You see, there's two things I really like about Pinboard that Raindop didn't
+seem to cover:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Simple support for "this shit is unread". I see things, I share to
+  whatever Pinboard app I have on my phone or tablet, etc, and then I review
+  some time later (normally in
+  &lt;a href="https://github.com/davep/tinboard"&gt;Tinboard&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Support for Private and Public pins. I've liked &lt;a href="https://pinboard.in/u:davep"&gt;having a feed of
+  bookmarks I can let people see&lt;/a&gt; and Raindrop
+  doesn't have this.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I looked around at some blogs that talked about Pinboard vs Raindrop and
+didn't see any that really dived into this particular aspect of migrating; I
+also asked a couple of folk who'd made the move about this and they didn't
+really have any insight (mainly because they didn't care about those
+particular uses).&lt;/p&gt;
+&lt;p&gt;One thing I did notice though was that Raindrop &lt;em&gt;does&lt;/em&gt; support making
+individual collections public. So, if I was willing to sacrifice any other
+uses for collections (a bookmark in Raindrop can only be in one collection),
+I could simply have a &lt;em&gt;Public&lt;/em&gt; and a &lt;em&gt;Private&lt;/em&gt; collection and import pins
+into the appropriate one. Also, unread pins could be left out of the
+collections and I could use that to signify unread status.&lt;/p&gt;
+&lt;p&gt;This seemed fine as I'm heavy on the tags anyway.&lt;/p&gt;
+&lt;p&gt;Now... Raindrop has a pretty comprehensive import facility built in. I gave
+it a try with Pinboard's backup file and it worked really well. That is...
+really well except it just threw away the public/private/unread aspect of
+the pins. There was only one thing for it then: I had to write my own
+importer!&lt;/p&gt;
+&lt;p&gt;Which brings me to &lt;a href="https://github.com/davep/paindrop"&gt;&lt;code&gt;Paindrop&lt;/code&gt;&lt;/a&gt;. It's a
+quick hack but it does the job, and it does the import just how I wanted.
+The result of the first test was pretty much spot on (in this image I'm
+comparing what Raindrop says vs what Tinboard says I have in Pinboard):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Comparing Raindrop and Tinboard contents" src="/attachments/2024/08/18/raindrop-imports.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;Usage is pretty straightforward. You create &lt;code&gt;Public&lt;/code&gt; and &lt;code&gt;Private&lt;/code&gt;
+collections in Raindrop, you create an app in Raindrop and get the access
+token, you grab your Pinboard access token and then:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;paindrop&lt;span class="w"&gt; &lt;/span&gt;example:xxxxxxxxxxxxxxxxxxxx&lt;span class="w"&gt; &lt;/span&gt;xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;where the first parameter is the Pinboard access token and the second the
+Raindrop access token.&lt;/p&gt;
+&lt;p&gt;If all goes well, after a few moments, the importer should finish and you
+should find that all of your pins have migrated to Raindrop, all public pins
+are in the &lt;code&gt;Public&lt;/code&gt; collection and all private pins are in the &lt;code&gt;Private&lt;/code&gt;
+collection. Any pins that were marked as unread will be &lt;em&gt;Unsorted&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Note that if you used different names for your public and private
+collections you can pass those names to &lt;code&gt;paindrop&lt;/code&gt; with the &lt;code&gt;--public&lt;/code&gt; and
+&lt;code&gt;--private&lt;/code&gt; switches.&lt;/p&gt;
+&lt;p&gt;If you're looking to move your bookmarking history out of Pinboard and want
+to keep the same sort of structure I had I hope Paindrop will be useful to
+you too.&lt;/p&gt;
+&lt;p&gt;Paindrop can be installed with &lt;code&gt;pip&lt;/code&gt; or (ideally) &lt;code&gt;pipx&lt;/code&gt; &lt;a href="https://pypi.org/project/paindrop/"&gt;from
+PyPi&lt;/a&gt;. It can also be installed with
+&lt;code&gt;Homebrew&lt;/code&gt; by tapping &lt;code&gt;davep/homebrew&lt;/code&gt; and then installing &lt;code&gt;paindrop&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;tap&lt;span class="w"&gt; &lt;/span&gt;davep/homebrew
+$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;paindrop
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;a href="https://github.com/davep/paindrop"&gt;source is available on GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;PS: As for the name... originally it was &lt;code&gt;pin2rain&lt;/code&gt; but then &lt;a href="https://fosstodon.org/@darrenburns/112978377299333401"&gt;Darren Burns
+pointed out the obvious and it had to
+happen&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="pinboard"></category><category term="raindrop"></category></entry><entry><title>On to something new (redux) (redux)</title><link href="https://blog.davep.org/2024/06/16/on-to-something-new-redux-redux.html" rel="alternate"></link><published>2024-06-16T13:08:00+01:00</published><updated>2024-06-16T13:08:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-06-16:/2024/06/16/on-to-something-new-redux-redux.html</id><content type="html">&lt;p&gt;It's been a wee while since I wrote anything here (been about a month) so I
 thought I'd make mention of what's going on.&lt;/p&gt;
 &lt;p&gt;The main news is that I'm employed again!&lt;/p&gt;
 &lt;p&gt;Once &lt;a href="/2024/03/28/goodbye-textualize.html"&gt;the news about the Textual layoffs
@@ -1028,27 +1124,6 @@ sort order of the tags menu in the left-hand column (bound to
 &lt;kbd&gt;F4&lt;/kbd&gt;). Right now it simply toggles between alphabetical order, or
 bookmark count order (most to least). At some point I might make it more of
 a cycle than a toggle, but this serves my purposes for now.&lt;/p&gt;
-&lt;p&gt;Tinboard can be installed with &lt;code&gt;pip&lt;/code&gt; or (ideally) &lt;code&gt;pipx&lt;/code&gt; &lt;a href="https://pypi.org/project/tinboard/"&gt;from
-PyPi&lt;/a&gt;. The &lt;a href="https://github.com/davep/tinboard"&gt;source is available on
-GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry><entry><title>Tinboard v0.2.0</title><link href="https://blog.davep.org/2023/12/21/tinboard-0-2-0.html" rel="alternate"></link><published>2023-12-21T09:29:00+00:00</published><updated>2023-12-21T09:29:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-12-21:/2023/12/21/tinboard-0-2-0.html</id><content type="html">&lt;p&gt;Following on from &lt;a href="/2023/12/19/tinboard.html"&gt;the initial full release a couple of days
-ago&lt;/a&gt;, I've just &lt;a href="https://github.com/davep/tinboard/releases/tag/v0.2.0"&gt;released v0.2.0 of
-Tinboard&lt;/a&gt;. There's
-just one small change in this, but I think it's a really useful one.&lt;/p&gt;
-&lt;p&gt;In the top-left corner of the screen there's a menu of main filters, letting
-you switch between seeing all bookmarks, or a combination of read, unread,
-public, private, etc... In using the application I quickly realised that it
-would be handy to have bookmark counts in that menu.&lt;/p&gt;
-&lt;p&gt;So I added that:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Counts in the filters menu" src="/attachments/2023/12/21/filters-menu.png#centre"&gt;&lt;/p&gt;
-&lt;p&gt;These counts are a little different from those in the tags list, in that
-they always show the number of matching bookmarks amongst &lt;em&gt;all recorded
-bookmarks&lt;/em&gt;, not just those currently on display (and so subject to any sort
-of filter that's in play).&lt;/p&gt;
-&lt;p&gt;I &lt;em&gt;think&lt;/em&gt; this is the right approach here. I know for sure that that's what
-I want from this, and I am writing this for me after all...&lt;/p&gt;
-&lt;p&gt;What's handy about this is that it makes it easier for me to see how many
-bookmarks haven't been tagged, and also how many I haven't looked back over
-and marked as read. This is already helping me get to untagged-zero.&lt;/p&gt;
 &lt;p&gt;Tinboard can be installed with &lt;code&gt;pip&lt;/code&gt; or (ideally) &lt;code&gt;pipx&lt;/code&gt; &lt;a href="https://pypi.org/project/tinboard/"&gt;from
 PyPi&lt;/a&gt;. The &lt;a href="https://github.com/davep/tinboard"&gt;source is available on
 GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry></feed>

@@ -183,6 +183,118 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2024/08/18/paindrop.html#paindrop">Paindrop v1.0.0</a></h2>
+    <p>
+      Posted on 2024-08-18 10:57 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/pinboard.html">pinboard</a>,              <a href="https://blog.davep.org/tag/raindrop.html">raindrop</a>
+        &#8226; 4 min read
+    </p>
+  </header>
+  <div>
+      <div><p>I was quite late discovering Pinboard; by the looks of things I created my
+account and paid my first subscription for it in early 2019. Since then I've
+been a pretty avid user and found it really useful. I've even written a
+couple of clients for it (<a href="https://github.com/davep/pinboard.el">one for
+Emacs</a> and <a href="https://github.com/davep/tinboard">one for the
+terminal</a>).</p>
+<p>During that time it's had its fair share of hiccups and outages, but on the
+whole I've found it a stable and useful service.</p>
+<p>The service does have its detractors, and concerns over its long-term
+stability and how well it's maintained <a href="https://news.ycombinator.com/item?id=34062802">are fairly
+common</a>. I half paid
+attention to these, and had started to think about where I might go if there
+was an issue.</p>
+<p>While maintaining and syncing bookmarks isn't exactly a difficult or
+unsolved problem, and while it's also true that it could be fun to roll my
+own solution, there are a couple of things I need that would make building
+my own approach a bit of a chore.</p>
+<p>Things important to me are:</p>
+<ul>
+<li>An extension for any random browser I might find myself using</li>
+<li>A good mobile client for at least iOS and iPadOS</li>
+<li>A good API so I can write my own tools if I need to</li>
+<li>A clean and focused backend website</li>
+</ul>
+<p>I kept these things in mind and kept an eye out but I'd never really felt
+the need to actively start looking around.</p>
+<p>Then I <a href="https://sfba.social/@peterme/112915495895055170">stumbled on this</a>
+after posting about <a href="https://fosstodon.org/@davep/112925762265869565">another Pinboard
+outage</a>.</p>
+<p>That... yeah, that was the final push I needed to start to think seriously
+about where to move and how.</p>
+<p>A couple of people suggested <a href="https://raindrop.io">Raindrop</a>, and from what
+I could tell it was coming up as a pretty popular service that some Pinboard
+users were migrating to. I had a look and it wasn't <em>quite</em> what I was
+after; but close.</p>
+<p>You see, there's two things I really like about Pinboard that Raindop didn't
+seem to cover:</p>
+<ul>
+<li>Simple support for "this shit is unread". I see things, I share to
+  whatever Pinboard app I have on my phone or tablet, etc, and then I review
+  some time later (normally in
+  <a href="https://github.com/davep/tinboard">Tinboard</a>).</li>
+<li>Support for Private and Public pins. I've liked <a href="https://pinboard.in/u:davep">having a feed of
+  bookmarks I can let people see</a> and Raindrop
+  doesn't have this.</li>
+</ul>
+<p>I looked around at some blogs that talked about Pinboard vs Raindrop and
+didn't see any that really dived into this particular aspect of migrating; I
+also asked a couple of folk who'd made the move about this and they didn't
+really have any insight (mainly because they didn't care about those
+particular uses).</p>
+<p>One thing I did notice though was that Raindrop <em>does</em> support making
+individual collections public. So, if I was willing to sacrifice any other
+uses for collections (a bookmark in Raindrop can only be in one collection),
+I could simply have a <em>Public</em> and a <em>Private</em> collection and import pins
+into the appropriate one. Also, unread pins could be left out of the
+collections and I could use that to signify unread status.</p>
+<p>This seemed fine as I'm heavy on the tags anyway.</p>
+<p>Now... Raindrop has a pretty comprehensive import facility built in. I gave
+it a try with Pinboard's backup file and it worked really well. That is...
+really well except it just threw away the public/private/unread aspect of
+the pins. There was only one thing for it then: I had to write my own
+importer!</p>
+<p>Which brings me to <a href="https://github.com/davep/paindrop"><code>Paindrop</code></a>. It's a
+quick hack but it does the job, and it does the import just how I wanted.
+The result of the first test was pretty much spot on (in this image I'm
+comparing what Raindrop says vs what Tinboard says I have in Pinboard):</p>
+<p><img alt="Comparing Raindrop and Tinboard contents" src="/attachments/2024/08/18/raindrop-imports.png#centre"></p>
+<p>Usage is pretty straightforward. You create <code>Public</code> and <code>Private</code>
+collections in Raindrop, you create an app in Raindrop and get the access
+token, you grab your Pinboard access token and then:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>paindrop<span class="w"> </span>example:xxxxxxxxxxxxxxxxxxxx<span class="w"> </span>xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+</code></pre></div>
+
+<p>where the first parameter is the Pinboard access token and the second the
+Raindrop access token.</p>
+<p>If all goes well, after a few moments, the importer should finish and you
+should find that all of your pins have migrated to Raindrop, all public pins
+are in the <code>Public</code> collection and all private pins are in the <code>Private</code>
+collection. Any pins that were marked as unread will be <em>Unsorted</em>.</p>
+<p>Note that if you used different names for your public and private
+collections you can pass those names to <code>paindrop</code> with the <code>--public</code> and
+<code>--private</code> switches.</p>
+<p>If you're looking to move your bookmarking history out of Pinboard and want
+to keep the same sort of structure I had I hope Paindrop will be useful to
+you too.</p>
+<p>Paindrop can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/paindrop/">from
+PyPi</a>. It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>paindrop</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>paindrop
+</code></pre></div>
+
+<p>The <a href="https://github.com/davep/paindrop">source is available on GitHub</a>.</p>
+<p>PS: As for the name... originally it was <code>pin2rain</code> but then <a href="https://fosstodon.org/@darrenburns/112978377299333401">Darren Burns
+pointed out the obvious and it had to
+happen</a>.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2024/05/14/tinboard-0-14-0.html#tinboard-0-14-0">Tinboard v0.14.0</a></h2>
     <p>
       Posted on 2024-05-14 08:02 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -881,78 +993,6 @@ TODO list in the README and I will slowly work through it. Along with
 <a href="https://github.com/davep/tinboard">tinboard</a> these are two applications
 that have absolutely turned into "daily drivers", so they're going to get a
 lot of tweaking over the next few weeks, probably even months.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/01/07/oshit-0-2-0.html#oshit-0-2-0">Orange Site Hit v0.2.0</a></h2>
-    <p>
-      Posted on 2024-01-07 09:50 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
-        &#8226; 3 min read
-    </p>
-  </header>
-  <div>
-      <div><p>This is actually the second release of OSHit since <a href="/2024/01/01/oshit.html">I first announced it a
-week back</a>, and I'll get to that other release in a
-moment.</p>
-<p>I've just published v0.2.0, which isn't a very substantial release, but
-which bumps the required version of Textual to
-<a href="https://github.com/Textualize/textual/releases/tag/v0.47.1">v0.47.1</a> and
-has some fun with <a href="https://github.com/Textualize/textual/releases/tag/v0.47.0">the new nested CSS
-feature</a>.</p>
-<p>Underlying the point of this release was me taking a <em>"real world"</em>
-application of mine and nesting as much of the CSS within it as possible, in
-part to get a feel for how and when it's useful, but also to give it a
-proper test in a <em>"proper"</em> application. In doing so <a href="https://github.com/Textualize/textual/issues/3969">I think I've found one
-bug</a>.</p>
-<p>Dogfooding is always a good idea.</p>
-<p>The main visible change in this release is I've played around with the look
-of the comments dialog a bit:</p>
-<p><img alt="OSHit you have comments" src="/attachments/2024/01/07/oshit-comments.png"></p>
-<p>I'm still narrowing this down, but I think I prefer this look to what I
-started out with.</p>
-<p>Another change I made was also to the comments dialog. Before, if you
-performed the <em>"expand comments"</em> action on a comment card that already had
-its comments expanded, it would move focus to the first child comment; this
-was a deliberate choice that felt right at the time. Having used the app for
-a few days now I've realised that making it an open/close toggle is far more
-useful. So that's what I've done.</p>
-<p>Now... as for <a href="https://github.com/davep/oshit/releases/tag/v0.1.1">the previous
-release</a> I mentioned
-above. That was a fun one.</p>
-<p>Back when I released v0.1.0 some joker decided that it would be fun to
-<a href="https://news.ycombinator.com/item?id=38831083">submit the blog post about it to the Orange
-Site</a>. The comments there
-went as you'd expected:</p>
-<ul>
-<li>Some riffed off the opening paragraph, ignoring the tool itself.</li>
-<li>Some riffed off the opening paragraph in self-reflective way.</li>
-<li>Some riffed off the opening paragraph in a <em>"I never see the problem"</em>
-  way.</li>
-<li>One or two did the usual <em>"why even bother building that when
-  <code>$TOOL_OF_CHOICE</code> exists?"</em> dance to show their terminal purity.</li>
-<li>One or two posted genuinely useful links to other similar projects.</li>
-<li>The biggest tree of comments was kind of a fight.</li>
-</ul>
-<p>One comment caught my eye though; someone reported having a problem running
-it. My initial thought on reading it was <em>"my dude, seriously, you're going
-to report the problem in some random comment on HN rather than raise an
-issue with the author?!?"</em>.</p>
-<p>For once <a href="https://github.com/davep/oshit/issues/2">I was wrong to be so cynical</a>.</p>
-<p>So, yeah, that was the reminder I needed that I'd been intentionally
-reckless while writing the original code, and hadn't <a href="https://github.com/davep/oshit/pull/4">gone back to the API
-code I'd written and made it behave</a>
-before doing the initial release.</p>
-<p>All of which is to say: if you run into a problem with some FOSS project, be
-like <a href="https://github.com/mihaitodor">@mihaitodor</a>. Issue that thing so the
-developer gets to know about it; don't assume they'll be reading some random
-comment section, social media site or Discord server!</p>
-<p>That and don't make 500+ HTTP requests at once; that might not end well for
-some.</p></div>
   </div>
 </article>
 
