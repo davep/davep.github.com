@@ -60,7 +60,7 @@ MAIN_MENU        = True
 LINKS_IN_NEW_TAB = "all"
 LINKS            = (
     ("davep@", "http://davep.at/"),
-    ("Pinboard", "https://pinboard.in/u:davep"),
+    ("Bookmarks", "https://raindrop.io/davep/public-46742255/sort=-created&perpage=30&page=0"),
     ("Photoblog", "https://seenbydavep.blogspot.com/"),
     ("Emacs Packages", "https://elisp.dev/"),
     ("Python Packages", "https://pypi.org/user/davepearson/"),

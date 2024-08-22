@@ -105,7 +105,7 @@
             <a target="_blank" href="http://davep.at/" >davep@</a>
           </li>
           <li>
-            <a target="_blank" href="https://pinboard.in/u:davep" >Pinboard</a>
+            <a target="_blank" href="https://raindrop.io/davep/public-46742255/sort=-created&perpage=30&page=0" >Bookmarks</a>
           </li>
           <li>
             <a target="_blank" href="https://seenbydavep.blogspot.com/" >Photoblog</a>
@@ -338,13 +338,13 @@ architecture's byte order. The effect of this is that, from reading the very
 first value in the file, you need to decide if every other numeric value you
 read needs to be byte-swapped in some way. The early logic being (in no
 particular language) something like:</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="nv">signature</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="nv">x1A412743</span><span class="w"> </span><span class="k">then</span>
-<span class="w">  </span><span class="nv">must_swap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">False</span>
-<span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">byte_swap</span><span class="ss">(</span><span class="w"> </span><span class="nv">signature</span><span class="w"> </span><span class="ss">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="nv">x1A412743</span><span class="w"> </span><span class="k">then</span>
-<span class="w">  </span><span class="nv">must_swap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">True</span>
-<span class="k">else</span>
-<span class="w">  </span><span class="nv">raise</span><span class="w"> </span><span class="s2">&quot;This isn&#39;t a valid 2bit file&quot;</span>
-<span class="k">end</span>
+<div class="highlight"><pre><span></span><code>if signature == 0x1A412743 then
+  must_swap = False
+else if byte_swap( signature ) == 0x1A412743 then
+  must_swap = True
+else
+  raise &quot;This isn&#39;t a valid 2bit file&quot;
+end
 </code></pre></div>
 
 <p>Simply put, to read the rest of the file you will need a function that
