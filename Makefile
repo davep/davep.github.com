@@ -28,6 +28,23 @@ setup:				# Set up the environment.
 	$(themes) -i Flex
 	git clone --recursive git@github.com:getpelican/pelican-plugins.git
 
+.PHONY: resetup
+resetup:			# Recreate the virtual environment from scratch
+	rm -rf $(shell pipenv --venv)
+	pipenv sync --dev
+
+.PHONY: depsoutdated
+depsoutdated:			# Show a list of outdated dependencies
+	pipenv update --outdated
+
+.PHONY: depsupdate
+depsupdate:			# Update all dependencies
+	pipenv update --dev
+
+.PHONY: depsshow
+depsshow:			# Show the dependency graph
+	pipenv graph
+
 .PHONY: repl
 repl:				# Start a Python REPL
 	$(python)
