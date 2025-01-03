@@ -183,6 +183,102 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/01/03/braindrop.html#braindrop">Braindrop</a></h2>
+    <p>
+      Posted on 2025-01-03 16:24 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
+        &#8226; 3 min read
+    </p>
+  </header>
+  <div>
+      <div><p><img alt="Braindrop" src="/attachments/2025/01/03/braindrop-social-banner.png"></p>
+<p>A touch over a year ago I did the initial work on an application called
+<a href="https://github.com/davep/tinboard">Tinboard</a>, a terminal-based client for
+the Pinboard bookmarking service. I had a lot of fun building it and it was
+an application that I used on a near-daily basis. However, around August
+last year <a href="/2024/08/18/paindrop.html">I realised it was time for me to move on from Pinboard and try
+something new</a>; based on various recommendations
+I settled on <a href="https://raindrop.io/">Raindrop</a>.</p>
+<p>As mentioned <a href="(/2024/08/18/paindrop.html)">in the other blog post</a>, Raindrop
+offered more or less everything I had with Pinboard and so the move was
+fairly straightforward. The one thing that was missing though was an
+application similar to Tinboard.</p>
+<p>So, late on last year, with my winter break approaching, I decided to start
+from scratch and build a <em>"Tinboard for Raindrop"</em>, which I'm calling
+<a href="https://github.com/davep/braindrop">Braindrop</a>.</p>
+<p>This was going to be a bit of an adventure too. Since <a href="/2024/03/28/goodbye-textualize.html">being laid off from
+Textualize earlier in 2024</a> I'd not
+been following its development quite as closely as I used to, and had also
+run into some issues and bugs with it since that time; moreover, as well as
+various bugs appearing, some breaking changes had also been made. As such
+this was going to be a process where I'd wrap my head around what's happened
+with the framework over the prior six months or so.</p>
+<p>Given all this, over the past couple of weeks I've been spending a few hours
+a day doing some for-pleasure coding and v0.1.0 of Braindrop is the result.</p>
+<p><img alt="Main display" src="/attachments/2025/01/03/braindrop-main.png"></p>
+<p>As much as possible I've tried to keep the look and feel similar to that of
+Tinboard, while also doing my best to avoid some of the <em>"ah, I wish I
+hadn't done it this way"</em> design decisions I'd made. As of the time of
+writing I'm very pleased with the result.</p>
+<p><img alt="The edit dialog" src="/attachments/2025/01/03/braindrop-edit.png"></p>
+<p>One thing I did want to do is ensure that the application was as
+keyboard-friendly as possible, while also still allowing use of the mouse.
+Textual can sometimes get that wrong and I ran into an example of this while
+trying to ensure that there's good in-application help. Somewhat recently
+Textual added a built-in help system which, sadly, can't easily be used by
+and navigated by someone using the keyboard. So instead I've recreated the
+help system I built into Tinboard, while adopting the documentation standard
+that Textual had settled on (which, coincidentally, was kind of similar to
+what I did in Tinboard to start with).</p>
+<p><img alt="The help dialog" src="/attachments/2025/01/03/braindrop-help.png"></p>
+<p>As with Tinboard, I've also made sure to make full use of the command
+palette, with every action that makes sense having a keyboard hotkey as well
+as a command in the palette. I also took things a little further and made
+sure that the hotkeys are shown in the command palette for easier discovery.</p>
+<p><img alt="The command palette" src="/attachments/2025/01/03/braindrop-command-palette.png"></p>
+<p>I've also made sure that Textual's new theme system is available for easy
+use; so out does dark/light mode toggling and in comes a collection of
+different themes. Here's a wee selection as an example:</p>
+<p><img alt="Example theme 1" src="/attachments/2025/01/03/braindrop-theme-1.png">
+<img alt="Example theme 2" src="/attachments/2025/01/03/braindrop-theme-2.png">
+<img alt="Example theme 3" src="/attachments/2025/01/03/braindrop-theme-3.png">
+<img alt="Example theme 4" src="/attachments/2025/01/03/braindrop-theme-4.png"></p>
+<p>That's a small selection of the themes, with more to explore.</p>
+<p>There's a few more things I want to do before I consider the application
+v1.0-ready, but it's already in use by me and working well. As I decide what
+else I want to add to it <a href="https://github.com/davep/braindrop/issues?q=is%3Aissue+is%3Aopen+label%3ATODO">I'm building up a list of TODO
+items</a>.</p>
+<p>Given that my day job these days is quite varied, isn't quite so
+coding-intensive, and isn't always related to all things Python, it's
+actually been fun to sit down and hack up a pure Python application from
+scratch again. It's also helped me discover a couple or so fresh bugs in
+Textual (which <a href="https://github.com/Textualize/textual/issues/created_by/davep">I've
+reported</a>, of
+course) and given me the opportunity to <a href="https://github.com/Textualize/textual/pulls/davep">PR some trivial fixes as I've
+noticed typos and stuff as I
+go</a>.</p>
+<p>Anyway; that's v0.1.0 out in the wild. I'm pleased with how it's turned out
+and there's more to come. It's licensed GPL-3.0 and available <a href="https://github.com/davep/braindrop">via
+GitHub</a> and also <a href="https://pypi.org/project/braindrop/">via
+PyPi</a>. If you have an environment that
+has <code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>tinboard
+</code></pre></div>
+
+<p>It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>braindrop</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>braindrop
+</code></pre></div>
+
+<p>I hope this is useful to someone else. :-)</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2024/05/14/tinboard-0-14-0.html#tinboard-0-14-0">Tinboard v0.14.0</a></h2>
     <p>
       Posted on 2024-05-14 08:02 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -696,106 +792,6 @@ TODO list in the README and I will slowly work through it. Along with
 <a href="https://github.com/davep/tinboard">tinboard</a> these are two applications
 that have absolutely turned into "daily drivers", so they're going to get a
 lot of tweaking over the next few weeks, probably even months.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/01/15/textual-dominfo.html#textual-dominfo">textual-dominfo</a></h2>
-    <p>
-      Posted on 2024-01-15 21:20 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/pypi.html">PyPi</a>,              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/coding.html">coding</a>,              <a href="https://blog.davep.org/tag/textual.html">Textual</a>
-        &#8226; 3 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Last week I was wrestling with some Textual code, trying to get something to
-lay out on the screen "just so". On the whole this isn't too tricky at all,
-and for those times where it might feel tricky <a href="https://textual.textualize.io/how-to/design-a-layout/">there's some advice
-available on how to go about
-it</a>. But in this case
-I was trying to do a couple of "on the edge" things and one thing I really
-needed to know was what particular part of the display was being "caused" by
-what container or widget<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
-<p>Now, at the moment anyway, Textual doesn't have a full-blown devtools with
-all the bells and whistles; not like in your average web browser. It does
-have <a href="https://textual.textualize.io/guide/devtools/">a devtools</a>, but not
-with all the fancy DOM-diving stuff the above would have needed.</p>
-<p>What I needed was the equivalent of <code>print</code>-debugging but with a
-point-and-ask interface. Now, I actually <em>do</em> often do <code>print</code>-debugging
-with Textual apps only I use
-<a href="https://textual.textualize.io/api/app/#textual.app.App.notify"><code>notify</code></a>;
-this time though <code>notify</code> wasn't going to cut it.</p>
-<p>I needed something that would let me point at a widget and say <em>"show me
-stuff about this"</em>. Something that happens when the mouse hovers over a
-widget. Something like... <a href="https://textual.textualize.io/guide/widgets/#tooltips">a
-tooltip</a>!</p>
-<p>So that was easy:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">on_mount</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">widget</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">)]:</span>
-        <span class="n">widget</span><span class="o">.</span><span class="n">tooltip</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">node</span><span class="si">!r}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">widget</span><span class="o">.</span><span class="n">ancestors_with_self</span>
-        <span class="p">)</span>
-</code></pre></div>
-
-<p>Suddenly I could hover my mouse over a bit of space on the screen and get a
-"traceback" of sorts for what "caused" it.</p>
-<p>I posted this little hack to <code>#show-and-tell</code> on the <a href="https://discord.gg/Enf6Z3qhVr">Discord
-server</a> and someone mentioned it would be
-handy if it also showed the CSS for the widget too. That was simple enough
-because every widget has a <code>styles.css</code> property that is the CSS for the
-widget, as a string.</p>
-<p>After that I didn't think much more about it; until today.</p>
-<p>Looking back, one thing I realised is that adding the CSS information
-<code>on_mount</code> wasn't quite good enough, as it would only show me the state of
-CSS when the mount happened, not at the moment I inspect the widget. I
-needed the tooltip to be dynamic.</p>
-<p>Thing is... Textual tooltips can't be functions (which would be the obvious
-approach to make it dynamic); so there was no way to get this on-the-fly
-behaviour I wanted.</p>
-<p>Except there was! The type of
-<a href="https://textual.textualize.io/api/widget/#textual.widget.Widget.tooltip"><code>tooltip</code></a>
-is <code>RenderableType</code>. So that means I could assign it an object that is a
-Rich renderable; that in turn means I could write a <code>__rich__</code> method for a
-class that wraps a widget and then reports back what it can see every time
-it's called.</p>
-<p>In other words, via one step of indirection, I could get the <em>"call a
-function each time"</em> approach I was after!</p>
-<p>It works a treat too.</p>
-<p>All of which is a long-winded way of saying I now have a <code>print</code>-debug-level
-DOM inspector tool for when I'm building applications with Textual:</p>
-<p><img alt="textual-dominfo in action" src="/attachments/2024/01/15/textual-dominfo.png#centre"></p>
-<p>If this sounds handy to you, you can grab the code too. Install it into your
-development environment with <code>pip</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>textual-dominfo
-</code></pre></div>
-
-<p>and then attach it to your app or screen or some top-level widget you're
-interested in via <code>on_mount</code>; for example:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_mount</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="kn">from</span><span class="w"> </span><span class="nn">textual_dominfo</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">DOMInfo</span>
-<span class="w">    </span><span class="n">DOMInfo</span><span class="o">.</span><span class="n">attach_to</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-</code></pre></div>
-
-<p>and then hover away with that mouse cursor and inspect all the things!
-Whatever you do though, <em>don't</em> make it part of your runtime, and don't keep
-it installed; just make it a development dependency.</p>
-<p>The source can be found <a href="https://github.com/davep/textual-dominfo">over on
-GitHub</a> and the package is, as
-mentioned above, <a href="https://github.com/davep/textual-dominfo">over on PyPi</a>.</p>
-<div class="footnote">
-<hr>
-<ol>
-<li id="fn:1">
-<p>ObPedant: Containers are widgets, but it's often helpful to make a
-distinction between widgets that exist just to control the layout of the
-widgets inside them, and widgets that exist to actually do or show
-stuff.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div></div>
   </div>
 </article>
 
