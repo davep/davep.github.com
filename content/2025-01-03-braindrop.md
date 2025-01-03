@@ -98,7 +98,7 @@ PyPi](https://pypi.org/project/braindrop/). If you have an environment that
 has `pipx` installed you should be able to get up and going with:
 
 ```sh
-$ pipx install tinboard
+$ pipx install braindrop
 ```
 It can also be installed with
 `Homebrew` by tapping `davep/homebrew` and then installing `braindrop`:
