@@ -66,7 +66,7 @@ sure that the hotkeys are shown in the command palette for easier discovery.
 ![The command palette](/attachments/2025/01/03/braindrop-command-palette.png)
 
 I've also made sure that Textual's new theme system is available for easy
-use; so out does dark/light mode toggling and in comes a collection of
+use; so out goes dark/light mode toggling and in comes a collection of
 different themes. Here's a wee selection as an example:
 
 ![Example theme 1](/attachments/2025/01/03/braindrop-theme-1.png)
