@@ -183,6 +183,97 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/01/25/peplum.html#peplum">Peplum</a></h2>
+    <p>
+      Posted on 2025-01-25 14:21 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
+        &#8226; 3 min read
+    </p>
+  </header>
+  <div>
+      <div><p><img alt="Peplum" src="/attachments/2025/01/25/peplum-social-banner.png"></p>
+<p>I seem to be back in the swing of writing handy (for me) little
+terminal-based applications again. Having not long since <a href="/2025/01/03/braindrop.html">released
+Braindrop</a> (which I'm still working on and
+tinkering with; it'll get more features in the near future, for sure), I had
+an idea for another tool I'd like to have: something for looking through,
+searching, and filtering <a href="https://peps.python.org">Python PEPs</a>.</p>
+<p>As with anyone who is interested in what's happening with Python itself, I
+subscribe to the RSS feed of the latest Python PEPs, but I also wanted
+something that would let me look back at older ones in a way that worked
+<em>"just so"</em> (<em>"just so" being "what feels right for me"</em>, of course). Having
+finished the main work on Braindrop I realised that the general layout of
+its UI would work here, as would the filtering and searching approach I
+used.</p>
+<p>From this idea <a href="https://github.com/davep/peplum">Peplum</a> was born!</p>
+<p><img alt="Peplum in action" src="/attachments/2025/01/25/peplum.png"></p>
+<p>In this first release I've simply concentrated on all things to do with
+grabbing the list of PEPs and presenting them in a useful way; adding
+various forms of filtering them; adding the ability to search the metadata;
+that sort of thing. I aim to keep developing this out over the next few
+weeks and months, adding things like the ability to make notes, to locally
+view the text of a PEP, perhaps even to mark PEPs as unread and read, etc.</p>
+<p>As I mentioned earlier, much of the design was driven by what I did with
+Braindrop, so once again I've tried my very best to make it
+keyboard-friendly and as much as possible keyboard-first. This sometimes
+means having to work against how Textual works, but generally that isn't too
+tricky to do. I'm once again making heavy use of the command palette and
+also ensuring that all commands that have corresponding keyboard bindings
+are documented in the help screen.</p>
+<p><img alt="Peplum Help" src="/attachments/2025/01/25/peplum-help.png"></p>
+<p>There's enough common code between Peplum and Braindrop, when it comes to
+this aspect of building a Textual application, that I'm minded to spin it
+out into a little library of its own. I'm going to sit on this code for a
+wee while and see how it develops, but I can see me taking this approach
+with future applications and doing this will stop the need to copy and
+paste.</p>
+<p>It might also be useful to others building with Textual.</p>
+<p>Also as with Braindrop, themes are a thing, and the theme setting is sticky
+so you can set it the once and stick with that you like. Here's some
+examples:</p>
+<p><img alt="Nord" src="/attachments/2025/01/25/peplum-nord.png">
+<img alt="Catppuccin Latte" src="/attachments/2025/01/25/peplum-catppuccin-latte.png">
+<img alt="Tokyo Night" src="/attachments/2025/01/25/peplum-tokyo-night.png"></p>
+<p>That's a small selection of the themes, with more to explore.</p>
+<p>While working on this project I managed to find a couple more bugs in
+Textual, including <a href="https://github.com/Textualize/textual/issues/5488">a fun way to get <code>transparent</code> backgrounds to get out of
+sync</a> and also a way to
+get <a href="https://github.com/Textualize/textual/issues/5489">an easy crash out of <code>OptionList</code> if it's set to <code>width:
+auto</code></a>.</p>
+<p>What was even more fun was I sort of <a href="https://fosstodon.org/@davep/113843011699020404">discovered a bug in the Python PEP
+API</a>. Thanks to
+<a href="https://fosstodon.org/@hugovk@mastodon.social">Hugo</a> noticing my <em>"huh,
+weird"</em> post on Fosstodon, there's <a href="https://github.com/python/peps/issues/4211">now an issue for
+it</a> as well as <a href="https://github.com/python/peps/pull/4226">a PR in the
+works</a>. In retrospect I should
+have raised an issue myself; instead I fell into that <em>"they obviously know
+what they're doing so it must be like this for a reason"</em> trap.</p>
+<p>Lesson relearned: it's always better to ask and get an answer, than to
+assume a thing is how it is for a reason you don't know; which I guess is a
+version of <a href="https://en.wikipedia.org/wiki/Linus%27s_law">Linus' law</a> really.</p>
+<p>So that's v0.1.0 out in the wild. I'm pleased with how it's turned out and
+there's more to come. It's licensed GPL-3.0 and available <a href="https://github.com/davep/peplum">via
+GitHub</a> and also <a href="https://pypi.org/project/peplum/">via
+PyPi</a>. If you have an environment that
+has <code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>peplum
+</code></pre></div>
+
+<p>It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>peplum</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>peplum
+</code></pre></div>
+
+<p>I'm going to be making good use of this and working on it more; I hope it's
+useful to someone else. :-)</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/01/03/braindrop.html#braindrop">Braindrop</a></h2>
     <p>
       Posted on 2025-01-03 16:24 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -852,255 +943,6 @@ can see <em>every</em> possible command right away.</p>
 <p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
 PyPi</a>. The <a href="https://github.com/davep/tinboard">source is available on
 GitHub</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/02/04/how-not-to-ask-for-help.html#how-not-to-ask-for-help">How not to ask for help</a></h2>
-    <p>
-      Posted on 2024-02-04 11:27 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/free-software.html">free-software</a>,              <a href="https://blog.davep.org/tag/foss.html">foss</a>,              <a href="https://blog.davep.org/tag/help.html">help</a>
-        &#8226; 9 min read
-    </p>
-  </header>
-  <div>
-      <div><p>My association with Textual works on two levels: on the one hand, sure, it's
-<a href="https://www.textualize.io/about-us/">currently my day job</a>; on the other
-hand it's a FOSS project that I'm keen to support so <em>"free time me"</em> tries
-to work with it and support others working with it too. For this reason
-you'll often see me being terminally<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> online in the Textual Discord,
-trying to answer questions as they come up, every waking free moment.</p>
-<p>Almost without exception the people who ask for help are appreciative and
-ask in the spirit of wanting help and wanting to work together with whoever
-is helping them to get an answer. That... that's actually quite a cool thing
-to be part of. I like the sense of community that comes from someone going
-<em>"bah I'm trying to do this thing and it isn't working PLEASE HELP!"</em>.</p>
-<p>And then... well, let's just say that sometimes the odd question will crop
-up that seems to be asked from a less collaborative position.</p>
-<p>Without wanting to appear to dunk on an individual (I don't wish to), I want
-to break down an example that happened yesterday. For some background, I'd
-been AFK all day, <a href="https://fosstodon.org/@davep/111867694675165507">having a wonderful time in town with a
-friend</a>, shopping,
-<a href="https://fosstodon.org/@davep/111867942313370807">lunch</a>, a movie, that sort
-of thing. A nicely-chilled day where I didn't even look at the Discord
-notifications that had popped up on my watch and phone.</p>
-<p>However, later on that evening, finally home and flopped on the sofa, I saw
-a question pop up that, while lacking <a href="https://label.dev/articles/minimal-reproducible-example/">any useful
-detail</a> and
-possibly suffering a wee bit from being <a href="https://label.dev/articles/xy-problem/">an XY
-problem</a>, the immediate answer was
-clear:</p>
-<blockquote>
-<p><tt>BadIdentifier: 'test.udp_json_client-input' is an invalid id; identifiers must
-contain only letters, numbers, underscores, or hyphens, and must not begin with
-a number.</tt></p>
-<p>????????????????? a dot isn't allowed?</p>
-</blockquote>
-<p>Like I say: it lacks context and detail, and the number of question marks
-doesn't really clarify much, but the core question that seems to be at play
-here is <em>"is it true that a full stop can't be used as part of the ID of a
-widget?"</em>.</p>
-<p>The answer is: no, it can't. There's a reason for that too, and if someone
-were to take a step back for a moment and think about how IDs play a part in
-queries and how they'd be used in a stylesheet, the reason for that might
-pop out. So, to help the person asking the question walk in the direction of
-the answer, I reply:</p>
-<blockquote>
-<p>When you come to query that how would the parser know it’s not ID “test”
-combined with a class, if dot was allowed?</p>
-</blockquote>
-<p>Before we go on, to illustrate my point, consider this ID: <code>foo.bar</code>. When
-you come to query that back, or use it in a stylesheet, how would <code>#foo.bar</code>
-look? Is it a widget with the ID <code>foo.bar</code>; or is it a widget with the id
-<code>foo</code> and the class <code>bar</code>?</p>
-<p>As far as Textual's CSS is concerned, it would be the latter.</p>
-<p>But at this point it didn't seem necessary to get into all that detail; I
-like to try and assume knowledge on the part of the person asking the
-question, sans any other evidence, so for the moment I'll assume a <em>"oh,
-right, yeah, that's a damn good point"</em> kind of reply. Or if not, perhaps a
-<em>"I don't quite follow, could you explain?"</em> reply, in which case I'm happy
-to go into all the detail.</p>
-<p>The reply was neither:</p>
-<blockquote>
-<p>why are element ID and classes co-mingled?</p>
-<p>this was previously allowed so your question doesn't really make sense to
-me</p>
-</blockquote>
-<p>Now I'm confused. Asking why element IDs and classes <em>are</em> co-mingled seems
-odd; but I'm used to chatting with people who don't have English as a first
-language so I'm going to assume it's just a wording choice; but the latter
-part is very odd: this has <em>never</em> been allowed. Or, more to the point...
-without any proper context I can't really appreciate what claim is being
-made here.</p>
-<p>You see... <a href="https://github.com/Textualize/textual/issues/3954">I did notice a bug in Textual recently, when it came to widget
-IDs</a>. Long story short:
-when you set your ID for the widget in your code, no actual validation of
-the ID was being done. This was an oversight <a href="https://github.com/Textualize/textual/pull/4032">that was fixed in the latest
-release</a>.</p>
-<p>But knowing that that's the case would be guesswork on my part; I'm also
-fresh at my desk after a day out; I'm probably not quite in the
-coding/Textual zone yet, so rather than try and guess half of the
-conversation, it's easier to just ask the person who is asking. So I ask
-them to restate the question, and give some more background.</p>
-<p>The reply is:</p>
-<blockquote>
-<p>the objective is to put a string like test.udp_json_client-input as the
-label of a tab, which previously just used the ID property. from skimming
-release notes, is it better to explicitly set the label, and then assign
-something compliant for the ID separately?</p>
-</blockquote>
-<p>Wait... what? I thought we were talking about valid widget IDs, now we're
-talking about tabs and labels? Do we mean <code>TabbeContent</code> and the labels of a
-<code>TabPane</code>? This is a bit different. So I'm sat there trying to figure out
-this person's thought process so I can offer the help they're after and this
-follows:</p>
-<blockquote>
-<p>okay @davep, you have a real bug. --content-tab- prefix is not ephemeral.
-if I create a tab and grab .id, that prefix comes with it, so if you save
-it for later and try to set .active, assigning .active doesn't agree that
-there is a tab --content-tab-thing</p>
-<p>so I need to de-mangle the name manually before assigning .active I guess?</p>
-</blockquote>
-<p>Wut? Like... wut? Okay, we do seem to be talking about <code>TabbedContent</code>, I
-recognise the values being mentioned here; we did some work <a href="https://github.com/Textualize/textual/pull/3815">late on last
-year</a> that added some
-namespacing to parts of the <code>TabbedContent</code> widget in an effort to <a href="https://github.com/Textualize/textual/issues/3695">reduce
-some foot-gun
-situations</a>.</p>
-<p>But... there's no <code>.</code> being used in the IDs as part of that; why are we now
-proclaiming a bug in an unrelated PR? That's quite the leap with zero
-evidence. Like... sure, I'm <em>all</em> for being alerted to bugs and fixing them,
-but this doesn't seem like that.</p>
-<p>And then there's the <em>"so I need to..."</em> conclusion that also seems to have
-no connection to the original question.</p>
-<p>Anyone who has ever done support will recognise this situation, I'm sure.
-Someone has seen a problem, they've dug around a little and reached a
-conclusion about what the cause is, and turns up looking for help with the
-<em>conclusion</em> they've reached (very much a variant of <a href="https://label.dev/articles/xy-problem/">a XY
-problem</a>).</p>
-<p>That almost never gets us where we want to go, so I do the obvious thing; I
-try and reboot the question; I try and get us back to the start and try and
-get some clarity; I try and encourage asking the question with zero
-assumptions:</p>
-<blockquote>
-<p>I'm afraid I'm still not really understanding your question, as it now no
-longer seems to relate to what you very first asked. Perhaps you could
-start again, ideally with an
-<a href="https://label.dev/articles/minimal-reproducible-example/">MRE</a> of what
-you're looking at and trying to do, for clarity?</p>
-</blockquote>
-<p>I figure, whatever the problem is, it can be illustrated with like a dozen
-lines of code. Also, when asking people to do this, it often actually helps
-them rubber-duck their own problem. There's been plenty of times on Discord
-where someone's "found a bug" in Textual, they're asked to make an MRE of
-it, and they come back and go <em>"oh, shoot, right, I did that and realised
-the bug was in my code"</em>. It's cool when they happens; everyone learns
-something.</p>
-<p>So... no MRE comes back, but this is the reply:</p>
-<blockquote>
-<p>I'm trying to fix multiple breakages in my application from some recent
-changes. Right now I can't wrap my head around what to assign a
-tabbed_content.active for it to work how it did before (where if you have
-a tab with ID sample, you can assign tabbed_content.active = "sample", but
-you can't do that anymore)</p>
-</blockquote>
-<p>While not an MRE, I <em>can</em> work with this. It seems clear that they have a
-<code>TabbedContent</code> where they have a <code>TabPane</code> with the ID <code>"sample"</code> and they
-are struggling to make it the <code>active</code> tab by setting <code>active</code> to
-<code>"sample"</code>. That seems hugely unlikely, this is what <code>TabbedContent</code> is all
-about, I think we'd have noticed (I'm petty sure we've got unit tests that
-cover this), but I'm game. I can test this. And the MRE I write will
-illustrate there isn't a problem.</p>
-<p>So I reply:</p>
-<blockquote>
-<p>Again, I can only suggest that you make an MRE of the issue you're seeing.
-For example, here's me making a set of tabs, the last of which has the ID
-"four", and I set the active to "four":</p>
-</blockquote>
-<p>and provide the code:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">textual.app</span> <span class="kn">import</span> <span class="n">App</span><span class="p">,</span> <span class="n">ComposeResult</span>
-<span class="kn">from</span> <span class="nn">textual.widgets</span> <span class="kn">import</span> <span class="n">TabbedContent</span><span class="p">,</span> <span class="n">TabPane</span><span class="p">,</span> <span class="n">Label</span>
-
-<span class="k">class</span> <span class="nc">TabbedContentApp</span><span class="p">(</span><span class="n">App</span><span class="p">[</span><span class="kc">None</span><span class="p">]):</span>
-
-    <span class="k">def</span> <span class="nf">compose</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComposeResult</span><span class="p">:</span>
-        <span class="k">with</span> <span class="n">TabbedContent</span><span class="p">():</span>
-            <span class="k">with</span> <span class="n">TabPane</span><span class="p">(</span><span class="s2">&quot;One&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;one&quot;</span><span class="p">):</span>
-                <span class="k">yield</span> <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;One&quot;</span><span class="p">)</span>
-            <span class="k">with</span> <span class="n">TabPane</span><span class="p">(</span><span class="s2">&quot;Two&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;two&quot;</span><span class="p">):</span>
-                <span class="k">yield</span> <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Two&quot;</span><span class="p">)</span>
-            <span class="k">with</span> <span class="n">TabPane</span><span class="p">(</span><span class="s2">&quot;Three&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;three&quot;</span><span class="p">):</span>
-                <span class="k">yield</span> <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Three&quot;</span><span class="p">)</span>
-            <span class="k">with</span> <span class="n">TabPane</span><span class="p">(</span><span class="s2">&quot;Four&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;four&quot;</span><span class="p">):</span>
-                <span class="k">yield</span> <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Four&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">on_mount</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">query_one</span><span class="p">(</span><span class="n">TabbedContent</span><span class="p">)</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="s2">&quot;four&quot;</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">TabbedContentApp</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</code></pre></div>
-
-<p>Based on what they've most-recently said is the problem, I'm confident
-they'll see that this MRE is their situation in a nutshell, and we can work
-out from there and figure out what the problem is they're seeing and where
-this <code>.</code> in their IDs is coming from (because I'm <em>very</em> confident it isn't
-coming from the work that was done on <code>TabbedContent</code>).</p>
-<p>This is good. We're getting close to heading down a good path; I can feel
-it!</p>
-<p>I was wrong.</p>
-<blockquote>
-<p>https://github.com/Textualize/textual/blob/main/src/textual/widgets/_tabbed_content.py#L513</p>
-<p>there's no way you can deny you just added a metric ton of shenanigans
-with the tab ID stuff. I can't get it to work at all anymore (assigning
-.active), but yes I will either come up with an MRE or find the bug and
-let you know</p>
-</blockquote>
-<p>So, rather than back up a wee bit, work with the MRE I wrote for them so we
-can take a walk through the problem, they instead decide to tell me that the
-PR I did last year (which <em>still</em> isn't implicated in any of this outwith of
-them seemingly assuming it's the cause of all the issues, presented with
-zero evidence that it is) was simply <em>"a metric ton of shenanigans"</em>.</p>
-<p>No!</p>
-<p>Stop!</p>
-<p>This is <em>not</em> how you ask for help.</p>
-<p>This isn't how you ask for help from a product or service you pay for. This
-<em>really</em> isn't how you ask for help from a Free Software project, where the
-people who are offering you help are doing so in their free time because
-they want people to be able to build cool things with it.</p>
-<p>It really isn't hard at all to show just a wee bit of respect for people's
-time and willingness to try and help you.</p>
-<p>Now... I get it. I can imagine a scenario where someone has just updated
-Textual and their application suddenly starts throwing all sorts of weird
-and new errors. That happens. That happened to me <a href="https://github.com/Textualize/textual/issues/4101">on Thursday evening just
-gone</a>. But that's no
-reason for approaching getting help like this.</p>
-<p>The way to approach it is this: pin the problem dependency, perhaps publish
-a new version of your application so there's no accidental update of the
-dependency, then head to any of the help resources for the dependency has
-and <em>work with people who want to help you to find the cause of the
-problem</em>. Trust me, it'll go a lot faster if you work with them, take on
-board suggestions (no matter how odd they might first appear), and really
-don't call their code <em>"a metric ton of shenanigans"</em>.</p>
-<p>The conclusion to all of this? The person asking the question eventually
-found they were setting some widget's ID to an invalid ID; one with a <code>.</code> in
-it. So as I suspected and wanted to walk them to: they had invalid IDs all
-along and they only found out about this because ID validation was fixed.</p>
-<p>Perhaps one day they'll retract the claim that my actually-unrelated code
-that wasn't "just" released <a href="https://github.com/Textualize/textual/releases/tag/v0.46.0">but was from last
-year</a> is <em>"a
-metric ton of shenanigans"</em>. <code>¯\_(ツ)_/¯</code></p>
-<div class="footnote">
-<hr>
-<ol>
-<li id="fn:1">
-<p>Geddit? GEDDIT?&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div></div>
   </div>
 </article>
 

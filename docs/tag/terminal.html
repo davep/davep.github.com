@@ -183,6 +183,97 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/01/25/peplum.html#peplum">Peplum</a></h2>
+    <p>
+      Posted on 2025-01-25 14:21 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
+        &#8226; 3 min read
+    </p>
+  </header>
+  <div>
+      <div><p><img alt="Peplum" src="/attachments/2025/01/25/peplum-social-banner.png"></p>
+<p>I seem to be back in the swing of writing handy (for me) little
+terminal-based applications again. Having not long since <a href="/2025/01/03/braindrop.html">released
+Braindrop</a> (which I'm still working on and
+tinkering with; it'll get more features in the near future, for sure), I had
+an idea for another tool I'd like to have: something for looking through,
+searching, and filtering <a href="https://peps.python.org">Python PEPs</a>.</p>
+<p>As with anyone who is interested in what's happening with Python itself, I
+subscribe to the RSS feed of the latest Python PEPs, but I also wanted
+something that would let me look back at older ones in a way that worked
+<em>"just so"</em> (<em>"just so" being "what feels right for me"</em>, of course). Having
+finished the main work on Braindrop I realised that the general layout of
+its UI would work here, as would the filtering and searching approach I
+used.</p>
+<p>From this idea <a href="https://github.com/davep/peplum">Peplum</a> was born!</p>
+<p><img alt="Peplum in action" src="/attachments/2025/01/25/peplum.png"></p>
+<p>In this first release I've simply concentrated on all things to do with
+grabbing the list of PEPs and presenting them in a useful way; adding
+various forms of filtering them; adding the ability to search the metadata;
+that sort of thing. I aim to keep developing this out over the next few
+weeks and months, adding things like the ability to make notes, to locally
+view the text of a PEP, perhaps even to mark PEPs as unread and read, etc.</p>
+<p>As I mentioned earlier, much of the design was driven by what I did with
+Braindrop, so once again I've tried my very best to make it
+keyboard-friendly and as much as possible keyboard-first. This sometimes
+means having to work against how Textual works, but generally that isn't too
+tricky to do. I'm once again making heavy use of the command palette and
+also ensuring that all commands that have corresponding keyboard bindings
+are documented in the help screen.</p>
+<p><img alt="Peplum Help" src="/attachments/2025/01/25/peplum-help.png"></p>
+<p>There's enough common code between Peplum and Braindrop, when it comes to
+this aspect of building a Textual application, that I'm minded to spin it
+out into a little library of its own. I'm going to sit on this code for a
+wee while and see how it develops, but I can see me taking this approach
+with future applications and doing this will stop the need to copy and
+paste.</p>
+<p>It might also be useful to others building with Textual.</p>
+<p>Also as with Braindrop, themes are a thing, and the theme setting is sticky
+so you can set it the once and stick with that you like. Here's some
+examples:</p>
+<p><img alt="Nord" src="/attachments/2025/01/25/peplum-nord.png">
+<img alt="Catppuccin Latte" src="/attachments/2025/01/25/peplum-catppuccin-latte.png">
+<img alt="Tokyo Night" src="/attachments/2025/01/25/peplum-tokyo-night.png"></p>
+<p>That's a small selection of the themes, with more to explore.</p>
+<p>While working on this project I managed to find a couple more bugs in
+Textual, including <a href="https://github.com/Textualize/textual/issues/5488">a fun way to get <code>transparent</code> backgrounds to get out of
+sync</a> and also a way to
+get <a href="https://github.com/Textualize/textual/issues/5489">an easy crash out of <code>OptionList</code> if it's set to <code>width:
+auto</code></a>.</p>
+<p>What was even more fun was I sort of <a href="https://fosstodon.org/@davep/113843011699020404">discovered a bug in the Python PEP
+API</a>. Thanks to
+<a href="https://fosstodon.org/@hugovk@mastodon.social">Hugo</a> noticing my <em>"huh,
+weird"</em> post on Fosstodon, there's <a href="https://github.com/python/peps/issues/4211">now an issue for
+it</a> as well as <a href="https://github.com/python/peps/pull/4226">a PR in the
+works</a>. In retrospect I should
+have raised an issue myself; instead I fell into that <em>"they obviously know
+what they're doing so it must be like this for a reason"</em> trap.</p>
+<p>Lesson relearned: it's always better to ask and get an answer, than to
+assume a thing is how it is for a reason you don't know; which I guess is a
+version of <a href="https://en.wikipedia.org/wiki/Linus%27s_law">Linus' law</a> really.</p>
+<p>So that's v0.1.0 out in the wild. I'm pleased with how it's turned out and
+there's more to come. It's licensed GPL-3.0 and available <a href="https://github.com/davep/peplum">via
+GitHub</a> and also <a href="https://pypi.org/project/peplum/">via
+PyPi</a>. If you have an environment that
+has <code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>peplum
+</code></pre></div>
+
+<p>It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>peplum</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>peplum
+</code></pre></div>
+
+<p>I'm going to be making good use of this and working on it more; I hope it's
+useful to someone else. :-)</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/01/03/braindrop.html#braindrop">Braindrop</a></h2>
     <p>
       Posted on 2025-01-03 16:24 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -728,78 +819,6 @@ TODO list in the README and I will slowly work through it. Along with
 <a href="https://github.com/davep/tinboard">tinboard</a> these are two applications
 that have absolutely turned into "daily drivers", so they're going to get a
 lot of tweaking over the next few weeks, probably even months.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/01/07/oshit-0-2-0.html#oshit-0-2-0">Orange Site Hit v0.2.0</a></h2>
-    <p>
-      Posted on 2024-01-07 09:50 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
-        &#8226; 3 min read
-    </p>
-  </header>
-  <div>
-      <div><p>This is actually the second release of OSHit since <a href="/2024/01/01/oshit.html">I first announced it a
-week back</a>, and I'll get to that other release in a
-moment.</p>
-<p>I've just published v0.2.0, which isn't a very substantial release, but
-which bumps the required version of Textual to
-<a href="https://github.com/Textualize/textual/releases/tag/v0.47.1">v0.47.1</a> and
-has some fun with <a href="https://github.com/Textualize/textual/releases/tag/v0.47.0">the new nested CSS
-feature</a>.</p>
-<p>Underlying the point of this release was me taking a <em>"real world"</em>
-application of mine and nesting as much of the CSS within it as possible, in
-part to get a feel for how and when it's useful, but also to give it a
-proper test in a <em>"proper"</em> application. In doing so <a href="https://github.com/Textualize/textual/issues/3969">I think I've found one
-bug</a>.</p>
-<p>Dogfooding is always a good idea.</p>
-<p>The main visible change in this release is I've played around with the look
-of the comments dialog a bit:</p>
-<p><img alt="OSHit you have comments" src="/attachments/2024/01/07/oshit-comments.png"></p>
-<p>I'm still narrowing this down, but I think I prefer this look to what I
-started out with.</p>
-<p>Another change I made was also to the comments dialog. Before, if you
-performed the <em>"expand comments"</em> action on a comment card that already had
-its comments expanded, it would move focus to the first child comment; this
-was a deliberate choice that felt right at the time. Having used the app for
-a few days now I've realised that making it an open/close toggle is far more
-useful. So that's what I've done.</p>
-<p>Now... as for <a href="https://github.com/davep/oshit/releases/tag/v0.1.1">the previous
-release</a> I mentioned
-above. That was a fun one.</p>
-<p>Back when I released v0.1.0 some joker decided that it would be fun to
-<a href="https://news.ycombinator.com/item?id=38831083">submit the blog post about it to the Orange
-Site</a>. The comments there
-went as you'd expected:</p>
-<ul>
-<li>Some riffed off the opening paragraph, ignoring the tool itself.</li>
-<li>Some riffed off the opening paragraph in self-reflective way.</li>
-<li>Some riffed off the opening paragraph in a <em>"I never see the problem"</em>
-  way.</li>
-<li>One or two did the usual <em>"why even bother building that when
-  <code>$TOOL_OF_CHOICE</code> exists?"</em> dance to show their terminal purity.</li>
-<li>One or two posted genuinely useful links to other similar projects.</li>
-<li>The biggest tree of comments was kind of a fight.</li>
-</ul>
-<p>One comment caught my eye though; someone reported having a problem running
-it. My initial thought on reading it was <em>"my dude, seriously, you're going
-to report the problem in some random comment on HN rather than raise an
-issue with the author?!?"</em>.</p>
-<p>For once <a href="https://github.com/davep/oshit/issues/2">I was wrong to be so cynical</a>.</p>
-<p>So, yeah, that was the reminder I needed that I'd been intentionally
-reckless while writing the original code, and hadn't <a href="https://github.com/davep/oshit/pull/4">gone back to the API
-code I'd written and made it behave</a>
-before doing the initial release.</p>
-<p>All of which is to say: if you run into a problem with some FOSS project, be
-like <a href="https://github.com/mihaitodor">@mihaitodor</a>. Issue that thing so the
-developer gets to know about it; don't assume they'll be reading some random
-comment section, social media site or Discord server!</p>
-<p>That and don't make 500+ HTTP requests at once; that might not end well for
-some.</p></div>
   </div>
 </article>
 

@@ -183,6 +183,66 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2020/06/27/swift-til-6.html#swift-til-6">Swift TIL 6</a></h2>
+    <p>
+      Posted on 2020-06-27 21:23 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/swift.html">Swift</a>,              <a href="https://blog.davep.org/tag/apple.html">Apple</a>
+        &#8226; 1 min read
+    </p>
+  </header>
+  <div>
+      <div><p>I'm going to file this one under "it seems really unnecessary, but it's also
+kinda cool". While reading up about
+<a href="https://docs.swift.org/swift-book/LanguageGuide/Protocols.html">protocols</a>
+the book I'm reading introduced the <code>ExpressibleBy*Literal</code> protocols, where
+the <code>*</code> is one of a number of obvious literals. For example:
+<code>ExpressibleByStringLiteral</code>. As you might imagine, it lets you create a
+class that can be initialised with a literal value, as opposed to needing to
+appear to call the constructor for a class.</p>
+<p>So, for a silly example:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Hello</span> <span class="p">:</span> <span class="n">ExpressibleByStringLiteral</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">what</span> <span class="p">:</span> <span class="nb">String</span>
+
+    <span class="kr">required</span> <span class="kd">init</span><span class="p">(</span> <span class="n">stringLiteral</span> <span class="n">what</span> <span class="p">:</span> <span class="nb">String</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">what</span> <span class="p">=</span> <span class="n">what</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">say</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span> <span class="s">&quot;Hello, </span><span class="si">\(</span><span class="kc">self</span><span class="p">.</span><span class="n">what</span><span class="si">)</span><span class="s">!&quot;</span> <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>You could, of course, write this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">v1</span> <span class="p">=</span> <span class="n">Hello</span><span class="p">(</span> <span class="s">&quot;world&quot;</span> <span class="p">)</span>
+<span class="n">v1</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
+</code></pre></div>
+
+<p>but because of <code>ExpressibleByStringLiteral</code> you can also write:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">v2</span> <span class="p">:</span> <span class="n">Hello</span> <span class="p">=</span> <span class="s">&quot;universe&quot;</span>
+<span class="n">v2</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Now, sure, in this case it saves you nothing, but this does also mean that
+parameters of functions whose type uses one of the <code>`ExpressibleBy*Literal</code>
+protocols can be passed a literal, rather than a "long-hand" instantiated
+object. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">Greet</span><span class="p">(</span> <span class="kc">_</span> <span class="n">h</span> <span class="p">:</span> <span class="n">Hello</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">h</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="n">Greet</span><span class="p">(</span> <span class="s">&quot;davep&quot;</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>I can see that being quite handy.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2020/06/26/switch-til-5.html#switch-til-5">Swift TIL 5</a></h2>
     <p>
       Posted on 2020-06-26 15:44 +0100 in <a href="https://blog.davep.org/category/til.html">TIL</a>
@@ -724,62 +784,6 @@ for searching, viewing, editing and deleting notes.</p>
 <p>But, for now, if you've not had a look at dnote, I'd highly recommend having
 a play and seeing if it makes sense for you. And, if it does, and you're an
 Emacs user, perhaps dnote.el will be useful too?</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2020/01/11/where-i-live-and-work.html#where-i-live-and-work">Where I live and work</a></h2>
-    <p>
-      Posted on 2020-01-11 14:17 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/emacs.html">Emacs</a>,              <a href="https://blog.davep.org/tag/shell.html">shell</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>It's no surprise that I spend a lot of time in Emacs. Especially when I'm
-developing software, either for work or for personal fun, most of my time is
-time spent in Emacs. While I do obviously flit over to Chrome, and mostly do
-my CLI stuff in <a href="https://iterm2.com/">iTerm2</a> (I really like
-<a href="https://www.gnu.org/software/emacs/manual/html_mono/eshell.html">eshell</a>
-but it just can't replace a good terminal for me), I spend a lot of time
-looking at Emacs.</p>
-<p>Here's what my Emacs looks like:</p>
-<p><img alt="Screenshot 2020-01-11 at 13.49.04.png" src="/attachments/2020/01/11/Screenshot 2020-01-11 at 13.49.04.png"></p>
-<p>Key elements for me are as follows:</p>
-<h1>Light background</h1>
-<p>Something I've never really got on with when it comes to code editing is
-dark themes and dark backgrounds. I find it too much of an eye strain.
-Oddly, I tend to prefer dark themes everywhere else, but not when it comes
-to working in Emacs. The theme I use is <a href="https://github.com/davep/.emacs.d/blob/b9a3df42f0708eabc31a6176d69a67bbdf31a087/init.d/init-style.el#L12-L13">the built-in adwaita
-theme</a>.</p>
-<h1>Less boring mode line</h1>
-<p>I make use of <a href="https://github.com/milkypostman/powerline">powerline</a> to
-<a href="https://github.com/davep/.emacs.d/blob/b9a3df42f0708eabc31a6176d69a67bbdf31a087/init.d/packages/init-packages-melpa.el#L386-L399">make the mode line a bit less
-boring-looking</a>.
-While the colour scheme is such that it's kept in line with the light look,
-the style is nice in that it sort of matches the style of prompt I use in my
-shell.</p>
-<p><img alt="Screenshot 2020-01-11 at 14.05.39.png" src="/attachments/2020/01/11/Screenshot 2020-01-11 at 14.05.39.png"></p>
-<h1>Full screen</h1>
-<p>I always run Emacs as a full-screen application, then splitting it into
-different tiled windows using its own internal window handling. This is
-something I've done from way back when I got started with my first GNU/Linux
-desktop machine, and still like to do on macOS.</p>
-<p>I also <a href="https://github.com/davep/longmacs.el">run Emacs as a server</a> and
-then use <a href="https://github.com/davep/e">a little wrapper around <code>emacsclient</code></a>
-to open files (both locally and remotely) from the command line in that
-Emacs session.</p>
-<h1>Comfortable eshell when I need it</h1>
-<p>Although I say above that I generally don't use <code>eshell</code>, preferring to use
-a full-featured terminal application, in combination with
-<a href="https://fishshell.com/">fish</a>, I do sometimes dip into eshell for quick
-things. So of course I have that configured to feel comfortable too.</p>
-<p><img alt="Screenshot 2020-01-11 at 14.10.07.png" src="/attachments/2020/01/11/Screenshot 2020-01-11 at 14.10.07.png"></p>
-<p>I do this easily <a href="https://github.com/davep/.emacs.d/blob/b9a3df42f0708eabc31a6176d69a67bbdf31a087/init.d/packages/init-packages-melpa.el#L181-L192">thanks to
-<code>eshell-git-prompt</code></a>.</p></div>
   </div>
 </article>
 
