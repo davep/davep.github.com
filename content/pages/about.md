@@ -19,14 +19,12 @@ ZX81 and I've been in love with software development ever since. My
 "primary" language has drifted over the years, but as it has I've made an
 effort to get to know and work with plenty of others.
 
-These days I do a lot of Python work; [until
-recently](/2024/03/28/goodbye-textualize.html) I was working as part of the
-[Textualize team](https://www.textualize.io/) and since the March 2024
-layoffs I've continued to support [the
-project](https://github.com/Textualize/textual).
+Most weekends you'll find me playing [VR](/tag/vr.html) games, and
+[recording and publishing the
+results](https://www.youtube.com/@DavePearson/videos).
 
-Evenings and weekends I spend a fair bit of time playing, recording and on
-occasion streaming [VR](/tag/vr.html) games.
+Many evenings you'll find me [streaming flat-screen gameplay from my
+PS5](https://www.youtube.com/@DavePearson/streams).
 
 When I'm not [in VR](https://www.youtube.com/user/daveporg) I'm likely out
 running, or tinkering with [personal code
