@@ -1,5 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2025-02-14T09:22:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Hike</title><link href="https://blog.davep.org/2025/02/14/hike.html" rel="alternate"></link><published>2025-02-14T09:22:00+00:00</published><updated>2025-02-14T09:22:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-02-14:/2025/02/14/hike.html</id><content type="html">&lt;p&gt;&lt;img alt="Hike" src="/attachments/2025/02/14/hike-social-banner.png"&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2025-02-28T11:45:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Documenting textual-fspicker (plus a TIL)</title><link href="https://blog.davep.org/2025/02/28/documenting-fspicker.html" rel="alternate"></link><published>2025-02-28T11:45:00+00:00</published><updated>2025-02-28T11:45:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-02-28:/2025/02/28/documenting-fspicker.html</id><content type="html">&lt;p&gt;I've just made a wee update to
+&lt;a href="https://github.com/davep/textual-fspicker"&gt;&lt;code&gt;textual-fspicker&lt;/code&gt;&lt;/a&gt;, my dialog
+library for &lt;a href="https://textual.textualize.io"&gt;Textual&lt;/a&gt; which adds &lt;code&gt;FileOpen&lt;/code&gt;,
+&lt;code&gt;FileSave&lt;/code&gt; and &lt;code&gt;SelectDirectory&lt;/code&gt; dialogs. There's no substantial change to
+the workings of the library itself, but I have added something it's been
+lacking for a long time: documentation!&lt;/p&gt;
+&lt;p&gt;Well... that's not quite true, it's always had documentation. I'm an avid
+writer of Python docstrings and I make a point of always writing them for
+every class, function, method or global value as I write the code. As such
+the low-level "API" documentation has always been sat there ready to be
+published somehow, eventually.&lt;/p&gt;
+&lt;p&gt;Meanwhile the description for how to use the library was mostly a pointer to
+some example code inside the README. Not ideal, and something I really
+wanted to improve at some point.&lt;/p&gt;
+&lt;p&gt;Given I'm still on a bit of a coding spree in my spare time, I finally
+decided to get round to using the amazing
+&lt;a href="https://mkdocstrings.github.io"&gt;mkdocstrings&lt;/a&gt;, in conjunction with
+&lt;a href="https://www.mkdocs.org"&gt;mkdocs&lt;/a&gt;, to &lt;a href="https://blog.davep.org/textual-fspicker/"&gt;get some better documentation up an
+running&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The approach I decided to take with the documentation was to &lt;a href="https://blog.davep.org/textual-fspicker/using/"&gt;have a page
+that gave some general information on how to use the
+library&lt;/a&gt; and then also
+&lt;a href="https://blog.davep.org/textual-fspicker/library-contents/base_dialog/"&gt;generate low-level documentation for the all the useful content of the
+library from the
+docstrings&lt;/a&gt;.
+While latter isn't really useful to anyone wanting to use the library in
+their own applications, it could be useful to anyone wanting to understand
+how it hangs together at a lower-level, perhaps because they want to
+contribute to or extend the library in some way.&lt;/p&gt;
+&lt;p&gt;While writing some of the general guide took a bit of work, of course, the
+work to get the documentation up and running and generating was simple
+enough. The effort comes down to 3 rules in the
+&lt;a href="https://github.com/davep/textual-fspicker/blob/ad6818c96816f2f1ad7a39909d276271af3f760d/Makefile"&gt;&lt;code&gt;Makefile&lt;/code&gt;&lt;/a&gt;
+for the project:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;##############################################################################&lt;/span&gt;
+&lt;span class="c"&gt;# Documentation.&lt;/span&gt;
+&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;
+&lt;span class="nf"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt;                    &lt;/span&gt;&lt;span class="c"&gt;# Generate the system documentation&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;mkdocs&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;build
+
+&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;rtfm&lt;/span&gt;
+&lt;span class="nf"&gt;rtfm&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt;                    &lt;/span&gt;&lt;span class="c"&gt;# Locally read the library documentation&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;mkdocs&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;serve
+
+&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;publishdocs&lt;/span&gt;
+&lt;span class="nf"&gt;publishdocs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;        &lt;span class="c"&gt;# Set up the docs for publishing&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;run&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;ghp-import&lt;span class="w"&gt; &lt;/span&gt;--push&lt;span class="w"&gt; &lt;/span&gt;site
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code&gt;rtfm&lt;/code&gt; target is useful for locally-serving the documentation so I can
+live preview as I write things and update the code. The &lt;code&gt;publishdocs&lt;/code&gt; target
+is used to create and push a &lt;code&gt;gh-pages&lt;/code&gt; branch for the repository, resulting
+in the documentation being hosted by GitHub.&lt;/p&gt;
+&lt;h2&gt;A wee problem&lt;/h2&gt;
+&lt;p&gt;This is, however, where I ran into a wee problem. I noticed that the
+locally-hosted version of the documentation looked great, but the version
+hosted on GitHub Pages was... not so great. I was seeing a load of text
+alignment issues, and also whole bits of text just not appearing at all.&lt;/p&gt;
+&lt;p&gt;Here's an example of what I was seeing locally:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Good layout" src="/attachments/2025/02/28/good.png"&gt;&lt;/p&gt;
+&lt;p&gt;and here's what I was seeing being served up from GitHub Pages:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Bad layout" src="/attachments/2025/02/28/bad.png"&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, in the "bad" version the &lt;code&gt;func&lt;/code&gt; label is missing from the
+header, and the &lt;code&gt;Parameters&lt;/code&gt; and &lt;code&gt;Returns&lt;/code&gt; tables look quite messy.&lt;/p&gt;
+&lt;p&gt;I spent a little bit of time digging and, looking in Safari's console, I
+then noticed that I was getting a 404 on a file called &lt;code&gt;_mkdocstrings.css&lt;/code&gt;
+in the &lt;code&gt;assets&lt;/code&gt; folder. Problem found!&lt;/p&gt;
+&lt;p&gt;Only... was it though? If I looked in the &lt;code&gt;gh-pages&lt;/code&gt; local branch the file
+was there (and with fine permissions). If I looked in the remote branch, it
+was there too. Thinking it could be some odd browser problem I even tried to
+grab the file back from the command line and it came back 404 as well.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Testing from the command line" src="/attachments/2025/02/28/http-grab.png"&gt;&lt;/p&gt;
+&lt;p&gt;At this point it was getting kind of late so I decided I must have screwed
+up somehow but I should leave it for the evening and head to bed. Before
+doing so though &lt;a href="https://github.com/mkdocstrings/mkdocstrings/discussions/742"&gt;I decided to drop a question into the mkdocstrings
+discussions to see if anyone could see where I'd messed
+up&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As it turns out, it looked like I hadn't messed up and the reply from the
+&lt;a href="https://github.com/pawamoy"&gt;always super-helpful Timothée&lt;/a&gt; was, in effect,
+&lt;em&gt;"yeah, that should work fine"&lt;/em&gt;. At least I wasn't the only one confused.&lt;/p&gt;
+&lt;p&gt;Fast forward to this morning and, with breakfast and coffee inside me, I
+decided to try and methodically get to the bottom of it. I &lt;a href="https://github.com/mkdocstrings/mkdocstrings/discussions/742#discussioncomment-12348912"&gt;wrote up the
+current state of
+understanding&lt;/a&gt;
+and looked at what might be the common cause. The thing that stood out to me
+was that this was a file that started with an underscore, so I did a quick
+search for &lt;em&gt;"github pages underscore"&lt;/em&gt; and right away landed on &lt;a href="https://www.ianwootten.co.uk/2022/11/08/how-to-use-underscores-with-github-pages/"&gt;this
+result&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Bingo!&lt;/p&gt;
+&lt;p&gt;That had to be it!&lt;/p&gt;
+&lt;p&gt;A little bit of testing later and sure enough, the documentation hosted on
+GitHub Pages looked exactly like the locally-hosted version.&lt;/p&gt;
+&lt;p&gt;So, TIL: by default sites hosted by GitHub Pages will pretend that any asset
+that starts with an underscore doesn't exist, unless you have a &lt;code&gt;.nojekyll&lt;/code&gt;
+in the root of the repository, on the &lt;code&gt;gh-pages&lt;/code&gt; branch (or whatever branch
+you decide to serve from).&lt;/p&gt;
+&lt;p&gt;To make this all work I added &lt;code&gt;.nojekyll&lt;/code&gt; to
+&lt;a href="https://github.com/davep/textual-fspicker/tree/ad6818c96816f2f1ad7a39909d276271af3f760d/docs/source"&gt;&lt;code&gt;docs/source&lt;/code&gt;&lt;/a&gt;
+and added this to &lt;code&gt;mkdocs.yml&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;exclude_docs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p p-Indicator"&gt;|&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="no"&gt;!.nojekyll&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;All done!&lt;/p&gt;
+&lt;p&gt;And now I've worked out a simple workflow for using &lt;code&gt;mkdocs&lt;/code&gt;/&lt;code&gt;mkdocstrings&lt;/code&gt;
+for my own Python projects, in conjunction with GitHub Pages, I guess I'll
+start to sprinkle it over other projects too.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="textual"></category><category term="documentation"></category><category term="GitHub"></category><category term="mkdocs"></category><category term="mkdocstrings"></category><category term="gh-pages"></category></entry><entry><title>Hike</title><link href="https://blog.davep.org/2025/02/14/hike.html" rel="alternate"></link><published>2025-02-14T09:22:00+00:00</published><updated>2025-02-14T09:22:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-02-14:/2025/02/14/hike.html</id><content type="html">&lt;p&gt;&lt;img alt="Hike" src="/attachments/2025/02/14/hike-social-banner.png"&gt;&lt;/p&gt;
 &lt;p&gt;The run of writing new terminal-based tools that I want still keeps going.
 First there was &lt;a href="/2025/01/03/braindrop.html"&gt;Braindrop&lt;/a&gt;, then there was
 &lt;a href="/2025/01/25/peplum.html"&gt;Peplum&lt;/a&gt;, and now, released today, there's
@@ -1219,24 +1325,4 @@ widgets inside them, and widgets that exist to actually do or show
 stuff.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</content><category term="Python"></category><category term="PyPi"></category><category term="Python"></category><category term="coding"></category><category term="Textual"></category></entry><entry><title>textual-countdown</title><link href="https://blog.davep.org/2024/01/11/textual-countdown.html" rel="alternate"></link><published>2024-01-11T22:52:00+01:00</published><updated>2024-01-11T22:52:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-01-11:/2024/01/11/textual-countdown.html</id><content type="html">&lt;p&gt;The idea for this one popped into my head while on the bus back from Textual
-Towers this evening. So after dinner and some nonsense on TV I had to visit
-my desk and do a quick hack.&lt;/p&gt;
-&lt;p&gt;This is &lt;a href="https://github.com/davep/textual-countdown"&gt;&lt;code&gt;textual-countdown&lt;/code&gt;&lt;/a&gt;, a
-subtle but I think useful countdown widget for Textual applications.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Textual Countdown in action" src="/attachments/2024/01/11/textual-countdown.gif"&gt;&lt;/p&gt;
-&lt;p&gt;The idea is that you compose it somewhere into your screen, and when you
-start the countdown the bar highlights and then starts to shrink down to
-"nothing" in the middle of its display. When the countdown ends a message is
-posted so you can then perform the task that was being waited for in an
-event handler.&lt;/p&gt;
-&lt;p&gt;Not really a novel thing, I've seen this kind of thing before on the web;
-I'm sure we all have. I just thought it would be a fun idea for Textual
-applications too.&lt;/p&gt;
-&lt;p&gt;I envisage using this where, perhaps, an application needs to wait for an
-API-visiting cooldown period, or perhaps as a subtle countdown for a
-question in a quiz; something like that.&lt;/p&gt;
-&lt;p&gt;Anyway, if this sounds like it's something useful for your Textual
-applications, &lt;a href="https://pypi.org/project/textual-countdown/"&gt;it's now available from
-PyPi&lt;/a&gt; and, of course, the
-source is over &lt;a href="https://github.com/davep/textual-countdown"&gt;on GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="Python"></category><category term="PyPi"></category><category term="Python"></category><category term="coding"></category><category term="Textual"></category></entry></feed>
+&lt;/div&gt;</content><category term="Python"></category><category term="PyPi"></category><category term="Python"></category><category term="coding"></category><category term="Textual"></category></entry></feed>

@@ -183,6 +183,128 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/02/28/documenting-fspicker.html#documenting-fspicker">Documenting textual-fspicker (plus a TIL)</a></h2>
+    <p>
+      Posted on 2025-02-28 11:45 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/documentation.html">documentation</a>,              <a href="https://blog.davep.org/tag/github.html">GitHub</a>,              <a href="https://blog.davep.org/tag/mkdocs.html">mkdocs</a>,              <a href="https://blog.davep.org/tag/mkdocstrings.html">mkdocstrings</a>,              <a href="https://blog.davep.org/tag/gh-pages.html">gh-pages</a>
+        &#8226; 4 min read
+    </p>
+  </header>
+  <div>
+      <div><p>I've just made a wee update to
+<a href="https://github.com/davep/textual-fspicker"><code>textual-fspicker</code></a>, my dialog
+library for <a href="https://textual.textualize.io">Textual</a> which adds <code>FileOpen</code>,
+<code>FileSave</code> and <code>SelectDirectory</code> dialogs. There's no substantial change to
+the workings of the library itself, but I have added something it's been
+lacking for a long time: documentation!</p>
+<p>Well... that's not quite true, it's always had documentation. I'm an avid
+writer of Python docstrings and I make a point of always writing them for
+every class, function, method or global value as I write the code. As such
+the low-level "API" documentation has always been sat there ready to be
+published somehow, eventually.</p>
+<p>Meanwhile the description for how to use the library was mostly a pointer to
+some example code inside the README. Not ideal, and something I really
+wanted to improve at some point.</p>
+<p>Given I'm still on a bit of a coding spree in my spare time, I finally
+decided to get round to using the amazing
+<a href="https://mkdocstrings.github.io">mkdocstrings</a>, in conjunction with
+<a href="https://www.mkdocs.org">mkdocs</a>, to <a href="https://blog.davep.org/textual-fspicker/">get some better documentation up an
+running</a>.</p>
+<p>The approach I decided to take with the documentation was to <a href="https://blog.davep.org/textual-fspicker/using/">have a page
+that gave some general information on how to use the
+library</a> and then also
+<a href="https://blog.davep.org/textual-fspicker/library-contents/base_dialog/">generate low-level documentation for the all the useful content of the
+library from the
+docstrings</a>.
+While latter isn't really useful to anyone wanting to use the library in
+their own applications, it could be useful to anyone wanting to understand
+how it hangs together at a lower-level, perhaps because they want to
+contribute to or extend the library in some way.</p>
+<p>While writing some of the general guide took a bit of work, of course, the
+work to get the documentation up and running and generating was simple
+enough. The effort comes down to 3 rules in the
+<a href="https://github.com/davep/textual-fspicker/blob/ad6818c96816f2f1ad7a39909d276271af3f760d/Makefile"><code>Makefile</code></a>
+for the project:</p>
+<div class="highlight"><pre><span></span><code><span class="c">##############################################################################</span>
+<span class="c"># Documentation.</span>
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">docs</span>
+<span class="nf">docs</span><span class="o">:</span><span class="w">                    </span><span class="c"># Generate the system documentation</span>
+<span class="w">    </span><span class="k">$(</span>mkdocs<span class="k">)</span><span class="w"> </span>build
+
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">rtfm</span>
+<span class="nf">rtfm</span><span class="o">:</span><span class="w">                    </span><span class="c"># Locally read the library documentation</span>
+<span class="w">    </span><span class="k">$(</span>mkdocs<span class="k">)</span><span class="w"> </span>serve
+
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">publishdocs</span>
+<span class="nf">publishdocs</span><span class="o">:</span><span class="w"> </span><span class="n">docs</span>        <span class="c"># Set up the docs for publishing</span>
+<span class="w">    </span><span class="k">$(</span>run<span class="k">)</span><span class="w"> </span>ghp-import<span class="w"> </span>--push<span class="w"> </span>site
+</code></pre></div>
+
+<p>The <code>rtfm</code> target is useful for locally-serving the documentation so I can
+live preview as I write things and update the code. The <code>publishdocs</code> target
+is used to create and push a <code>gh-pages</code> branch for the repository, resulting
+in the documentation being hosted by GitHub.</p>
+<h2>A wee problem</h2>
+<p>This is, however, where I ran into a wee problem. I noticed that the
+locally-hosted version of the documentation looked great, but the version
+hosted on GitHub Pages was... not so great. I was seeing a load of text
+alignment issues, and also whole bits of text just not appearing at all.</p>
+<p>Here's an example of what I was seeing locally:</p>
+<p><img alt="Good layout" src="/attachments/2025/02/28/good.png"></p>
+<p>and here's what I was seeing being served up from GitHub Pages:</p>
+<p><img alt="Bad layout" src="/attachments/2025/02/28/bad.png"></p>
+<p>As you can see, in the "bad" version the <code>func</code> label is missing from the
+header, and the <code>Parameters</code> and <code>Returns</code> tables look quite messy.</p>
+<p>I spent a little bit of time digging and, looking in Safari's console, I
+then noticed that I was getting a 404 on a file called <code>_mkdocstrings.css</code>
+in the <code>assets</code> folder. Problem found!</p>
+<p>Only... was it though? If I looked in the <code>gh-pages</code> local branch the file
+was there (and with fine permissions). If I looked in the remote branch, it
+was there too. Thinking it could be some odd browser problem I even tried to
+grab the file back from the command line and it came back 404 as well.</p>
+<p><img alt="Testing from the command line" src="/attachments/2025/02/28/http-grab.png"></p>
+<p>At this point it was getting kind of late so I decided I must have screwed
+up somehow but I should leave it for the evening and head to bed. Before
+doing so though <a href="https://github.com/mkdocstrings/mkdocstrings/discussions/742">I decided to drop a question into the mkdocstrings
+discussions to see if anyone could see where I'd messed
+up</a>.</p>
+<p>As it turns out, it looked like I hadn't messed up and the reply from the
+<a href="https://github.com/pawamoy">always super-helpful Timothée</a> was, in effect,
+<em>"yeah, that should work fine"</em>. At least I wasn't the only one confused.</p>
+<p>Fast forward to this morning and, with breakfast and coffee inside me, I
+decided to try and methodically get to the bottom of it. I <a href="https://github.com/mkdocstrings/mkdocstrings/discussions/742#discussioncomment-12348912">wrote up the
+current state of
+understanding</a>
+and looked at what might be the common cause. The thing that stood out to me
+was that this was a file that started with an underscore, so I did a quick
+search for <em>"github pages underscore"</em> and right away landed on <a href="https://www.ianwootten.co.uk/2022/11/08/how-to-use-underscores-with-github-pages/">this
+result</a>.</p>
+<p>Bingo!</p>
+<p>That had to be it!</p>
+<p>A little bit of testing later and sure enough, the documentation hosted on
+GitHub Pages looked exactly like the locally-hosted version.</p>
+<p>So, TIL: by default sites hosted by GitHub Pages will pretend that any asset
+that starts with an underscore doesn't exist, unless you have a <code>.nojekyll</code>
+in the root of the repository, on the <code>gh-pages</code> branch (or whatever branch
+you decide to serve from).</p>
+<p>To make this all work I added <code>.nojekyll</code> to
+<a href="https://github.com/davep/textual-fspicker/tree/ad6818c96816f2f1ad7a39909d276271af3f760d/docs/source"><code>docs/source</code></a>
+and added this to <code>mkdocs.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">exclude_docs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">  </span><span class="no">!.nojekyll</span>
+</code></pre></div>
+
+<p>All done!</p>
+<p>And now I've worked out a simple workflow for using <code>mkdocs</code>/<code>mkdocstrings</code>
+for my own Python projects, in conjunction with GitHub Pages, I guess I'll
+start to sprinkle it over other projects too.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/02/14/hike.html#hike">Hike</a></h2>
     <p>
       Posted on 2025-02-14 09:22 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -811,143 +933,6 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
 </code></pre></div>
 
 <p>The <a href="https://github.com/davep/tinboard">source is available on GitHub</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/03/10/homebrew-all-the-python-things.html#homebrew-all-the-python-things">Homebrew all the Python things</a></h2>
-    <p>
-      Posted on 2024-03-10 14:12 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/homebrew.html">Homebrew</a>,              <a href="https://blog.davep.org/tag/makefile.html">Makefile</a>
-        &#8226; 4 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Over the past year and a half I've written a <em>lot</em> of Python code, and a lot
-of that Python code has been Textual applications; most of those Textual
-applications have been very quick demonstration or test applications built
-to help support someone asking for help; some of them have been less-trivial
-applications written in my own time and for my own use and amusement. Of
-them I'd say there are two near-daily-drivers, and a couple that I either
-have more plans for, or like to maintain just for the hell of it.</p>
-<p>Those latter applications are all ones that <a href="https://pypi.org/user/davepearson/">I've deployed to
-PyPI</a>, and because of that are all ones
-that I've recommenced be installed using
-<a href="https://pipx.pypa.io/stable/"><code>pipx</code></a>. During that time though I've had
-half an inclination to make them <a href="https://brew.sh/">installable via
-Homebrew</a>. While probably not installable from the core
-Homebrew repository<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, at least installable from a "tap"<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> that's under
-my own GitHub account or something.</p>
-<p>To this end I've had <a href="https://til.simonwillison.net/homebrew/packaging-python-cli-for-homebrew">a blog post about packaging Python apps for
-Homebrew</a>
-saved in Pinboard for a while now, and every time I look at it I think
-<em>"this is a lot of faff, maybe later"</em>. Today was that "later".</p>
-<p>As it turned out, it was <em>way</em> easier than I first realised. The evolution
-of today pretty much went like this:</p>
-<h2>Deciding to use a single repository as the "tap"</h2>
-<p>The blog post above seemed to suggest that for every application repository
-you want a tap for, you probably want a parallel <code>homebrew-</code>-prefixed
-repository. This in turn would suggest that every time someone wants to
-install one of your tools, they'd need to add a new tap<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>. As I looked at
-it this seemed like way too much faff, so in the end I decided <a href="https://github.com/davep/homebrew-homebrew">to create a
-single repository that I'd keep all my formula files
-in</a>. The naming of
-<code>homebrew-homebrew</code> meant that the tap name would simply be
-<code>davep/homebrew</code>.</p>
-<p>Simple and clean, I think: things for homebrew, things that can be installed
-via homebrew, that come from davep. To add the tap it's simply:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-</code></pre></div>
-
-<h2>Ensuring that all my applications and libraries publish source</h2>
-<p>Although it seems that it might be (possibly, maybe, perhaps, who can tell?)
-deprecated, it looked like
-<a href="https://github.com/tdsmith/homebrew-pypi-poet"><code>homebrew-pypi-poet</code></a> was a
-tool I'd need to do all the heavy work on making the formula file. A quick
-test threw up a problem where it was complaining that my test package (one
-of my own applications) didn't have an <code>sdist</code>. Sure enough, through nothing
-more than never having bothered to make it happen, the source of my
-libraries and applications wasn't been uploaded to PyPI when I published.</p>
-<p>So I went through some of my repositories and fixed that, making patch
-releases as I went.</p>
-<h2>Making a <code>Makefile</code> to let me be lazy</h2>
-<p>The next thing to do was to figure out the most lazy way of building the
-formula files. From what I could see the main steps to making all of this
-work were:</p>
-<ul>
-<li>Make a venv and activate it</li>
-<li>Install <code>homebrew-pypi-poet</code></li>
-<li>Install the package you want to package for Homebrew</li>
-<li>Run <code>poet</code> to make the formula</li>
-</ul>
-<p>Seemed simple enough. For all sorts of lazy reasons I still tend to use
-<code>pipenv</code> to get things done quickly, and that seemed to work fine here too.
-I'm also a fan of <code>PIPENV_VENV_IN_PROJECT=true</code> which makes things clean and
-tidy, so I figured a rule in a <code>Makefile</code> like this:</p>
-<div class="highlight"><pre><span></span><code><span class="nf">clean</span><span class="o">:</span>
-<span class="w">        </span>rm<span class="w"> </span>-rf<span class="w"> </span>.venv
-<span class="w">        </span>rm<span class="w"> </span>-f<span class="w"> </span>Pipfile<span class="w"> </span>Pipfile.lock
-<span class="w">        </span>pipenv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.12
-<span class="w">        </span>pipenv<span class="w"> </span>install<span class="w"> </span>--dev<span class="w"> </span>homebrew-pypi-poet
-</code></pre></div>
-
-<p>would be fine to make a clean venv ready to build the formula, and then I'd
-have a rule for the package itself that depended on the above, like this:</p>
-<div class="highlight"><pre><span></span><code><span class="nf">oshit</span><span class="o">:</span><span class="w"> </span><span class="n">clean</span>
-<span class="w">        </span>pipenv<span class="w"> </span>install<span class="w"> </span>oshit
-<span class="w">        </span>pipenv<span class="w"> </span>run<span class="w"> </span>poet<span class="w"> </span>-f<span class="w"> </span>oshit<span class="w"> </span>&gt;<span class="w"> </span>Formula/oshit.rb
-</code></pre></div>
-
-<h2>Fixing the package description</h2>
-<p>The above was great, and worked really well. But there was one issue that I
-could see: the resulting formula file always had this <code>desc</code> inside it:</p>
-<div class="highlight"><pre><span></span><code><span class="n">desc</span><span class="w"> </span><span class="s2">&quot;Shiny new formula&quot;</span>
-</code></pre></div>
-
-<p>From what I could see there was no way to tell <code>poet</code> what I wanted the
-description to be, and neither did I want to have to remember to edit that
-line each time I regenerated the formula file. So <code>sed</code> to the rescue then I
-guess, with this sort of thing:</p>
-<div class="highlight"><pre><span></span><code>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;s/Shiny new formula/The actual text I want/&#39;</span><span class="w"> </span>Formula/coolapp.rb
-</code></pre></div>
-
-<h2>The result</h2>
-<p>The result of all of this is that I now have <a href="https://github.com/davep/homebrew-homebrew">a repository that I or anyone
-else can use as a tap</a> to be
-able to install my stuff using the <code>brew</code> command. So now if you want a
-little Hacker News reader for the terminal but you don't want to be messing
-with installing <code>pipx</code> and the like, but you do use <code>brew</code> on your machine,
-it's just this:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>oshit
-</code></pre></div>
-
-<p>Fingers crossed it all "just works" when I next upgrade one of those
-packages. I will, of course, have to remember to go into
-<code>davep/homebrew-homebrew</code> and <code>make the-app</code> for the relevant application,
-and then commit and push the changes, but that's really not too difficult to
-remember and do.</p>
-<p>Hopefully it'll then all just work.</p>
-<div class="footnote">
-<hr>
-<ol>
-<li id="fn:1">
-<p>I do actually <a href="https://formulae.brew.sh/formula/eg">have one package in
-Homebrew</a>, but it wasn't me who put
-it there.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>I really like Homebrew as a tool for getting stuff installed, by oh my
-gods the naming of things in its ecosystem is terrible and confusing!&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-<li id="fn:3">
-<p>No, really, I mean it, this naming convention is kinda cringe right?&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div></div>
   </div>
 </article>
 

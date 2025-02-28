@@ -47,17 +47,31 @@
 
  
 
-    <meta name="author" content="Dave Pearson" />
-    <meta name="description" content="" />
-  <meta property="og:site_name" content="blog.davep.org"/>
-  <meta property="og:type" content="blog"/>
-  <meta property="og:title" content="blog.davep.org"/>
-  <meta property="og:description" content=""/>
-  <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://blog.davep.org"/>
-  <meta property="og:image" content="/static/davep.jpeg">
+<meta name="author" content="Dave Pearson" />
+<meta name="description" content="I&#39;ve just made a wee update to textual-fspicker, my dialog library for Textual which adds FileOpen, FileSave and SelectDirectory dialogs. There&#39;s no substantial change to the workings of the library itself, but I have added something it&#39;s been lacking for a long time: documentation! Well... that&#39;s not quite true, it&#39;s always had documentation. I&#39;m an avid writer of Python docstrings and I make a point of always writing them for every class, function, method or global value as I write the code. As such the low-level &#34;API&#34; documentation has always been sat there ready to be published somehow, eventually. Meanwhile the description for how to use the library was mostly a pointer to some example code inside the README. Not ideal, and something I really wanted to improve at some point. Given I&#39;m still on a bit of a coding spree in my spare time, I finally decided to get round to using the amazing mkdocstrings, in conjunction with mkdocs, to get some better documentation up an running. The approach I decided to take with the documentation was to have a page that gave some general information on how to use the library and then also generate low-level documentation for the all the useful content of the library from the docstrings. While latter isn&#39;t really useful to anyone wanting to use the library in their own applications, it could be useful to anyone wanting to understand how it hangs together at a lower-level, perhaps because they want to contribute to or extend the library in some way. While writing some of the general guide took a bit of work, of course, the work to get the documentation up and running and generating was simple enough. The effort comes down to 3 rules in the Makefile for the project: ############################################################################## # Documentation. .PHONY: docs docs: # Generate the system documentation $(mkdocs) build .PHONY: rtfm rtfm: # Locally read the library documentation $(mkdocs) serve .PHONY: publishdocs publishdocs: docs # Set up the docs for publishing $(run) ghp-import --push site The rtfm target is useful for locally-serving the documentation so I can live preview as I write things and update the code. The publishdocs target is used to create and push a gh-pages branch for the repository, resulting in the documentation being hosted by GitHub. A wee problem This is, however, where I ran into a wee problem. I noticed that the locally-hosted version of the documentation looked great, but the version hosted on GitHub Pages was... not so great. I was seeing a load of text alignment issues, and also whole bits of text just not appearing at all. Here&#39;s an example of what I was seeing locally: and here&#39;s what I was seeing being served up from GitHub Pages: As you can see, in the &#34;bad&#34; version the func label is missing from the header, and the Parameters and Returns tables look quite messy. I spent a little bit of time digging and, looking in Safari&#39;s console, I then noticed that I was getting a 404 on a file called _mkdocstrings.css in the assets folder. Problem found! Only... was it though? If I looked in the gh-pages local branch the file was there (and with fine permissions). If I looked in the remote branch, it was there too. Thinking it could be some odd browser problem I even tried to grab the file back from the command line and it came back 404 as well. At this point it was getting kind of late so I decided I must have screwed up somehow but I should leave it for the evening and head to bed. Before doing so though I decided to drop a question into the mkdocstrings discussions to see if anyone could see where I&#39;d messed up. As it turns out, it looked like I hadn&#39;t messed up and the reply from the always super-helpful Timothée was, in effect, &#34;yeah, that should work fine&#34;. At least I wasn&#39;t the only one confused. Fast forward to this morning and, with breakfast and coffee inside me, I decided to try and methodically get to the bottom of it. I wrote up the current state of understanding and looked at what might be the common cause. The thing that stood out to me was that this was a file that started with an underscore, so I did a quick search for &#34;github pages underscore&#34; and right away landed on this result. Bingo! That had to be it! A little bit of testing later and sure enough, the documentation hosted on GitHub Pages looked exactly like the locally-hosted version. So, TIL: by default sites hosted by GitHub Pages will pretend that any asset that starts with an underscore doesn&#39;t exist, unless you have a .nojekyll in the root of the repository, on the gh-pages branch (or whatever branch you decide to serve from). To make this all work I added .nojekyll to docs/source and added this to mkdocs.yml: exclude_docs: | !.nojekyll All done! And now I&#39;ve worked out a simple workflow for using mkdocs/mkdocstrings for my own Python projects, in conjunction with GitHub Pages, I guess I&#39;ll start to sprinkle it over other projects too." />
+<meta name="keywords" content="Python, textual, documentation, GitHub, mkdocs, mkdocstrings, gh-pages">
 
-  <title>blog.davep.org &ndash; Tag documentation</title>
+
+  <meta property="og:site_name" content="blog.davep.org"/>
+  <meta property="og:title" content="Documenting textual-fspicker (plus a TIL)"/>
+  <meta property="og:description" content="I&#39;ve just made a wee update to textual-fspicker, my dialog library for Textual which adds FileOpen, FileSave and SelectDirectory dialogs. There&#39;s no substantial change to the workings of the library itself, but I have added something it&#39;s been lacking for a long time: documentation! Well... that&#39;s not quite true, it&#39;s always had documentation. I&#39;m an avid writer of Python docstrings and I make a point of always writing them for every class, function, method or global value as I write the code. As such the low-level &#34;API&#34; documentation has always been sat there ready to be published somehow, eventually. Meanwhile the description for how to use the library was mostly a pointer to some example code inside the README. Not ideal, and something I really wanted to improve at some point. Given I&#39;m still on a bit of a coding spree in my spare time, I finally decided to get round to using the amazing mkdocstrings, in conjunction with mkdocs, to get some better documentation up an running. The approach I decided to take with the documentation was to have a page that gave some general information on how to use the library and then also generate low-level documentation for the all the useful content of the library from the docstrings. While latter isn&#39;t really useful to anyone wanting to use the library in their own applications, it could be useful to anyone wanting to understand how it hangs together at a lower-level, perhaps because they want to contribute to or extend the library in some way. While writing some of the general guide took a bit of work, of course, the work to get the documentation up and running and generating was simple enough. The effort comes down to 3 rules in the Makefile for the project: ############################################################################## # Documentation. .PHONY: docs docs: # Generate the system documentation $(mkdocs) build .PHONY: rtfm rtfm: # Locally read the library documentation $(mkdocs) serve .PHONY: publishdocs publishdocs: docs # Set up the docs for publishing $(run) ghp-import --push site The rtfm target is useful for locally-serving the documentation so I can live preview as I write things and update the code. The publishdocs target is used to create and push a gh-pages branch for the repository, resulting in the documentation being hosted by GitHub. A wee problem This is, however, where I ran into a wee problem. I noticed that the locally-hosted version of the documentation looked great, but the version hosted on GitHub Pages was... not so great. I was seeing a load of text alignment issues, and also whole bits of text just not appearing at all. Here&#39;s an example of what I was seeing locally: and here&#39;s what I was seeing being served up from GitHub Pages: As you can see, in the &#34;bad&#34; version the func label is missing from the header, and the Parameters and Returns tables look quite messy. I spent a little bit of time digging and, looking in Safari&#39;s console, I then noticed that I was getting a 404 on a file called _mkdocstrings.css in the assets folder. Problem found! Only... was it though? If I looked in the gh-pages local branch the file was there (and with fine permissions). If I looked in the remote branch, it was there too. Thinking it could be some odd browser problem I even tried to grab the file back from the command line and it came back 404 as well. At this point it was getting kind of late so I decided I must have screwed up somehow but I should leave it for the evening and head to bed. Before doing so though I decided to drop a question into the mkdocstrings discussions to see if anyone could see where I&#39;d messed up. As it turns out, it looked like I hadn&#39;t messed up and the reply from the always super-helpful Timothée was, in effect, &#34;yeah, that should work fine&#34;. At least I wasn&#39;t the only one confused. Fast forward to this morning and, with breakfast and coffee inside me, I decided to try and methodically get to the bottom of it. I wrote up the current state of understanding and looked at what might be the common cause. The thing that stood out to me was that this was a file that started with an underscore, so I did a quick search for &#34;github pages underscore&#34; and right away landed on this result. Bingo! That had to be it! A little bit of testing later and sure enough, the documentation hosted on GitHub Pages looked exactly like the locally-hosted version. So, TIL: by default sites hosted by GitHub Pages will pretend that any asset that starts with an underscore doesn&#39;t exist, unless you have a .nojekyll in the root of the repository, on the gh-pages branch (or whatever branch you decide to serve from). To make this all work I added .nojekyll to docs/source and added this to mkdocs.yml: exclude_docs: | !.nojekyll All done! And now I&#39;ve worked out a simple workflow for using mkdocs/mkdocstrings for my own Python projects, in conjunction with GitHub Pages, I guess I&#39;ll start to sprinkle it over other projects too."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://blog.davep.org/2025/02/28/documenting-fspicker.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-02-28 11:45:00+00:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://blog.davep.org/author/dave-pearson.html">
+  <meta property="article:section" content="Coding"/>
+  <meta property="article:tag" content="Python"/>
+  <meta property="article:tag" content="textual"/>
+  <meta property="article:tag" content="documentation"/>
+  <meta property="article:tag" content="GitHub"/>
+  <meta property="article:tag" content="mkdocs"/>
+  <meta property="article:tag" content="mkdocstrings"/>
+  <meta property="article:tag" content="gh-pages"/>
+  <meta property="og:image" content="https://blog.davep.org/">
+
+  <title>blog.davep.org &ndash; Documenting textual-fspicker (plus a TIL)</title>
 
 
 </head>
@@ -179,21 +193,20 @@ rel="me"           href="https://fosstodon.org/@davep"
   <a href="https://blog.davep.org/feed.xml">RSS</a>
 </nav>
 
-
-
-<article>
+<article class="single">
   <header>
-    <h2><a href="https://blog.davep.org/2025/02/28/documenting-fspicker.html#documenting-fspicker">Documenting textual-fspicker (plus a TIL)</a></h2>
+      
+    <h1 id="documenting-fspicker">Documenting textual-fspicker (plus a TIL)</h1>
     <p>
       Posted on 2025-02-28 11:45 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
 
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/documentation.html">documentation</a>,              <a href="https://blog.davep.org/tag/github.html">GitHub</a>,              <a href="https://blog.davep.org/tag/mkdocs.html">mkdocs</a>,              <a href="https://blog.davep.org/tag/mkdocstrings.html">mkdocstrings</a>,              <a href="https://blog.davep.org/tag/gh-pages.html">gh-pages</a>
         &#8226; 4 min read
     </p>
   </header>
+
+
   <div>
-      <div><p>I've just made a wee update to
+    <p>I've just made a wee update to
 <a href="https://github.com/davep/textual-fspicker"><code>textual-fspicker</code></a>, my dialog
 library for <a href="https://textual.textualize.io">Textual</a> which adds <code>FileOpen</code>,
 <code>FileSave</code> and <code>SelectDirectory</code> dialogs. There's no substantial change to
@@ -299,186 +312,31 @@ and added this to <code>mkdocs.yml</code>:</p>
 <p>All done!</p>
 <p>And now I've worked out a simple workflow for using <code>mkdocs</code>/<code>mkdocstrings</code>
 for my own Python projects, in conjunction with GitHub Pages, I guess I'll
-start to sprinkle it over other projects too.</p></div>
+start to sprinkle it over other projects too.</p>
   </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2019/12/08/git2gantt.html#git2gantt">git2gantt -- Simple tool to visualise coding runs</a></h2>
+  <div class="tag-cloud">
     <p>
-      Posted on 2019-12-08 13:44 +0000 in <a href="https://blog.davep.org/category/python.html">Python</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/documentation.html">documentation</a>
-        &#8226; 3 min read
+      <a href="https://blog.davep.org/tag/python.html">Python</a>
+      <a href="https://blog.davep.org/tag/textual.html">textual</a>
+      <a href="https://blog.davep.org/tag/documentation.html">documentation</a>
+      <a href="https://blog.davep.org/tag/github.html">GitHub</a>
+      <a href="https://blog.davep.org/tag/mkdocs.html">mkdocs</a>
+      <a href="https://blog.davep.org/tag/mkdocstrings.html">mkdocstrings</a>
+      <a href="https://blog.davep.org/tag/gh-pages.html">gh-pages</a>
     </p>
-  </header>
-  <div>
-      <div><p>At the start of this year, as part of a much bigger process to review the
-work that had taken place over the previous 12 months, I was asked (at work)
-to provide some information about how much time I'd spent on various
-projects. Now, for me, there's really only one project, but there's lots of
-different tools and libraries that I've written to support the main work I
-do. All of these are split into different repositories in the
-company-internal instance of <a href="https://about.gitlab.com/">GitLab</a>. This meant
-that getting a rough idea of what I was working on and when would be easy
-enough -- it's all there in the commit history.</p>
-<p>Given that this information would make up a couple of slides at most during
-a far bigger presentation, I wanted something that would be snappy and easy
-for non-developers to follow and understand. I spent a bit of time pondering
-some options and decided that (ab)using a <a href="https://en.wikipedia.org/wiki/Gantt_chart">gantt
-chart</a> layout would make sense.</p>
-<p>That choice was made all the more easier given that <a href="https://docs.gitlab.com/ee/user/markdown.html#mermaid">GitLab
-supports</a> the use of
-<a href="https://mermaid-js.github.io/mermaid/#/">mermaid charts</a> within its
-Markdown. This meant I could quickly write some code that took the git log
-of each repository, turned it into mermaid code, and then render it (by
-hand, this was all about getting things done quickly) via GitLab.</p>
-<p>This sounded like it could be a fun personal project. The result was some
-Python code called <a href="https://github.com/davep/git2gantt">git2gantt</a>.</p>
-<p>As mentioned above, the output isn't anything too clever, it's just code
-that can be used to create a plot via mermaid. For example, running
-git2gannt over itself:</p>
-<div class="highlight"><pre><span></span><code>gantt
-  title git2gantt output
-  dateFormat YYYY-MM-DD
-
-  section git2gantt
-  Development: devgit2gantt20190208, 2019-02-08, 2019-02-13
-  Development: devgit2gantt20190214, 2019-02-14, 2019-02-15
-  Development: devgit2gantt20190303, 2019-03-03, 2019-03-04
-  Development: devgit2gantt20191203, 2019-12-03, 2019-12-04
-</code></pre></div>
-
-<p>Usage is pretty straightforward: <img alt="Screenshot 2019-12-08 at
-13.18.12.png" src="/attachments/2019/12/08/Screenshot 2019-12-08 at 13.18.12.png">
-As you can see, it can be run over multiple repos at once, and there's also
-an option to have it consider every branch within each repository. Another
-handy option is the ability to limit the output to just one author --
-perhaps you just want to document what you've done on a repo, not the
-contributions of other people.</p>
-<p>Also especially handy, if you don't want to bore people with too much
-detail, is the "fuzz" option. This lets you tell <code>git2gannt</code> how relaxed you
-want it to be when it tries to decide how long a run of work on a repo
-lasted. So, perhaps, you're working on and off on a library that supports
-some other system you're documenting, but you might only be making changes
-every other day or so. With the correct fuzz value you can make it clear you
-were working <em>on</em> the library for a couple of weeks, despite there only
-being a commit every other day.</p>
-<p>An example of running the output over a handful of projects would look
-something like this:</p>
-<p><img alt="Screenshot 2019-12-08 at 13.34.41.png" src="/attachments/2019/12/08/Screenshot 2019-12-08 at 13.34.41.png"></p>
-<p>This is one of those tools I knocked up quickly to get a job done, and
-haven't quite got round to finishing off fully. One thing I'd really like to
-do is add mermaid support directly within it, so that it actually has the
-option to emit plots, not just mermaid code (or, perhaps, drop the mermaid
-approach and use something else entirely).</p>
-<p>Meanwhile though, if you're looking for something quick and dirty that will
-help you visualise what you've been working on and when for a good period of
-time... perhaps this will help.</p></div>
   </div>
-  <hr />
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://blog.davep.org/2025/02/14/hike.html" title="Hike">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+
+
 </article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2019/10/26/pydscheck.html#pydscheck">pydscheck -- A quick hack that keeps slowly growing</a></h2>
-    <p>
-      Posted on 2019-10-26 13:19 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/documentation.html">documentation</a>
-        &#8226; 3 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Something I always try to do when I'm coding is be consistent. I feel this
-is important. While people's coding standards may differ, I think different
-approaches are easier to handle if someone has been consistent with their
-style across all of their code.</p>
-<p>This also stands for documentation too.</p>
-<p>In my current position, I do a <em>lot</em> of Python coding, and one of the things
-I like about Python (there are things I don't like too, but that's not for
-now) is that it has doc-strings (just like my <a href="https://en.wikipedia.org/wiki/Common_Lisp">favourite
-language</a>). I use them
-extensively, ensuring every function and method has some form of
-documentation, and generally I use
-<a href="http://www.sphinx-doc.org/en/master/">Sphinx</a> to generate documentation
-from those doc-strings.</p>
-<p>Early on I was bothered by the fact that, just by the simple act of making
-typos, I wasn't keeping the form of the doc-strings consistent. And in this
-case it was a <em>really</em> simple thing that was bugging me. Normally, if I'm
-writing a single-line doc-string, I'll write like this:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">one_liner</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Here is a one-line doc-string.&quot;&quot;&quot;</span>
-</code></pre></div>
-
-<p>So far, so good. But, if the doc-string is a multi-liner, I prefer the
-ending quotes to be on a line of their own, like this:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">multi_liner</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Here is the first line.</span>
-<span class="sd">    Here is another line.</span>
-<span class="sd">    Here is the final line.</span>
-<span class="sd">    &quot;&quot;&quot;</span><span class="s2">&quot;</span>
-</code></pre></div>
-
-<p>But, sometimes, by accident, I'd leave a doc-string like this:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">multi_liner</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Here is the first line.</span>
-<span class="sd">    Here is another line.</span>
-<span class="sd">    Here is the final line.&quot;&quot;&quot;</span><span class="s2">&quot;</span>
-</code></pre></div>
-
-<p>While it's really not a big deal, it would bug me and every time I found one
-like this I'd "fix" it.</p>
-<p>Eventually, it bugged me enough that I decided I was going to write a little
-tool to find all such instances in my code and report them. My first
-approach was to think "I could just do this with some regexp magic", <a href="http://regex.info/blog/2006-09-15/247">which
-was really a bad idea</a>. Then I
-though, I know, I should use this as an excuse to to play with <a href="https://docs.python.org/3/library/ast.html">Python's ast
-library</a>.</p>
-<p>That worked really well! I had <a href="https://github.com/davep/pydscheck/blob/dc5052002690b1f898ccd68f815cdedbe9172b74/pydscheck">the first version of the
-code</a>
-up and running in no time. It was simple but did the job. It ran through
-Python code I threw at it and alerted me to both missing doc-strings, and
-doc-strings with the ending I didn't like.</p>
-<p>That served me for a while, until one day I realised that it wasn't quite
-doing the job correctly; it was only really looking at top-level functions
-and top-level methods in classes. Sometimes, not often, but sometimes, I'll
-define functions within functions, and I feel they deserve documentation
-too. So then I modified the code to ensure it walked every part of the AST.</p>
-<p>Since then, when I've run into new things and had new ideas, <code>pydscheck</code> has
-grown and grown. I've added checks that all mentioned parameters have a
-type; I've added checks that any function/method that returns something
-actually documents the return value; I've added checks that any
-documentation of a returned value includes its type; I've added checks that
-any function or method that yields a value documents that fact; I've added
-checks that ensure that every parameter is documented in some way.</p>
-<p>Each time I've done this it's helped uncover issues in my code's
-documentation that could be cleaner, and it's also given me a pet project to
-slowly better understand Python's AST.</p>
-<p>It could be that there are better tools out there, I'd have thought that a
-good doc-string linting tool would be something someone had already written.
-But this time around I was happy to
-<a href="https://en.wikipedia.org/wiki/Not_invented_here">NIH</a> it because I needed a
-fun learning exercise that would also have some benefits for my day-to-day
-work.</p>
-<p>I'll caveat this with the fact that it's very particular to how I work and
-how I like my documentation to look, but if it sounds useful, here it is:
-<a href="https://github.com/davep/pydscheck">https://github.com/davep/pydscheck</a>.</p>
-<p>There's still lots I could do with it. First off I should really properly
-package it up so it can be installed as a command line tool via pip. Other
-things that would be handy would be to allow some form of customisation of
-how it works. I'm sure there's other fun things I can do with it too.</p>
-<p>That's part of the fun of having a pet project: you can tinker when you like
-and also get benefits from it as you use it.</p></div>
-  </div>
-</article>
-
-  <div class="pagination">
-  </div>
-
-
 
 <footer>
 <p>&copy; 2015-2024 Dave Pearson</p>

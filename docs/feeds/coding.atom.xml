@@ -1,5 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2025-02-14T09:22:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Hike</title><link href="https://blog.davep.org/2025/02/14/hike.html" rel="alternate"></link><published>2025-02-14T09:22:00+00:00</published><updated>2025-02-14T09:22:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-02-14:/2025/02/14/hike.html</id><content type="html">&lt;p&gt;&lt;img alt="Hike" src="/attachments/2025/02/14/hike-social-banner.png"&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2025-02-28T11:45:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Documenting textual-fspicker (plus a TIL)</title><link href="https://blog.davep.org/2025/02/28/documenting-fspicker.html" rel="alternate"></link><published>2025-02-28T11:45:00+00:00</published><updated>2025-02-28T11:45:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-02-28:/2025/02/28/documenting-fspicker.html</id><content type="html">&lt;p&gt;I've just made a wee update to
+&lt;a href="https://github.com/davep/textual-fspicker"&gt;&lt;code&gt;textual-fspicker&lt;/code&gt;&lt;/a&gt;, my dialog
+library for &lt;a href="https://textual.textualize.io"&gt;Textual&lt;/a&gt; which adds &lt;code&gt;FileOpen&lt;/code&gt;,
+&lt;code&gt;FileSave&lt;/code&gt; and &lt;code&gt;SelectDirectory&lt;/code&gt; dialogs. There's no substantial change to
+the workings of the library itself, but I have added something it's been
+lacking for a long time: documentation!&lt;/p&gt;
+&lt;p&gt;Well... that's not quite true, it's always had documentation. I'm an avid
+writer of Python docstrings and I make a point of always writing them for
+every class, function, method or global value as I write the code. As such
+the low-level "API" documentation has always been sat there ready to be
+published somehow, eventually.&lt;/p&gt;
+&lt;p&gt;Meanwhile the description for how to use the library was mostly a pointer to
+some example code inside the README. Not ideal, and something I really
+wanted to improve at some point.&lt;/p&gt;
+&lt;p&gt;Given I'm still on a bit of a coding spree in my spare time, I finally
+decided to get round to using the amazing
+&lt;a href="https://mkdocstrings.github.io"&gt;mkdocstrings&lt;/a&gt;, in conjunction with
+&lt;a href="https://www.mkdocs.org"&gt;mkdocs&lt;/a&gt;, to &lt;a href="https://blog.davep.org/textual-fspicker/"&gt;get some better documentation up an
+running&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The approach I decided to take with the documentation was to &lt;a href="https://blog.davep.org/textual-fspicker/using/"&gt;have a page
+that gave some general information on how to use the
+library&lt;/a&gt; and then also
+&lt;a href="https://blog.davep.org/textual-fspicker/library-contents/base_dialog/"&gt;generate low-level documentation for the all the useful content of the
+library from the
+docstrings&lt;/a&gt;.
+While latter isn't really useful to anyone wanting to use the library in
+their own applications, it could be useful to anyone wanting to understand
+how it hangs together at a lower-level, perhaps because they want to
+contribute to or extend the library in some way.&lt;/p&gt;
+&lt;p&gt;While writing some of the general guide took a bit of work, of course, the
+work to get the documentation up and running and generating was simple
+enough. The effort comes down to 3 rules in the
+&lt;a href="https://github.com/davep/textual-fspicker/blob/ad6818c96816f2f1ad7a39909d276271af3f760d/Makefile"&gt;&lt;code&gt;Makefile&lt;/code&gt;&lt;/a&gt;
+for the project:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;##############################################################################&lt;/span&gt;
+&lt;span class="c"&gt;# Documentation.&lt;/span&gt;
+&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;
+&lt;span class="nf"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt;                    &lt;/span&gt;&lt;span class="c"&gt;# Generate the system documentation&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;mkdocs&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;build
+
+&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;rtfm&lt;/span&gt;
+&lt;span class="nf"&gt;rtfm&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt;                    &lt;/span&gt;&lt;span class="c"&gt;# Locally read the library documentation&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;mkdocs&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;serve
+
+&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;publishdocs&lt;/span&gt;
+&lt;span class="nf"&gt;publishdocs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;        &lt;span class="c"&gt;# Set up the docs for publishing&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;run&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;ghp-import&lt;span class="w"&gt; &lt;/span&gt;--push&lt;span class="w"&gt; &lt;/span&gt;site
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code&gt;rtfm&lt;/code&gt; target is useful for locally-serving the documentation so I can
+live preview as I write things and update the code. The &lt;code&gt;publishdocs&lt;/code&gt; target
+is used to create and push a &lt;code&gt;gh-pages&lt;/code&gt; branch for the repository, resulting
+in the documentation being hosted by GitHub.&lt;/p&gt;
+&lt;h2&gt;A wee problem&lt;/h2&gt;
+&lt;p&gt;This is, however, where I ran into a wee problem. I noticed that the
+locally-hosted version of the documentation looked great, but the version
+hosted on GitHub Pages was... not so great. I was seeing a load of text
+alignment issues, and also whole bits of text just not appearing at all.&lt;/p&gt;
+&lt;p&gt;Here's an example of what I was seeing locally:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Good layout" src="/attachments/2025/02/28/good.png"&gt;&lt;/p&gt;
+&lt;p&gt;and here's what I was seeing being served up from GitHub Pages:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Bad layout" src="/attachments/2025/02/28/bad.png"&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, in the "bad" version the &lt;code&gt;func&lt;/code&gt; label is missing from the
+header, and the &lt;code&gt;Parameters&lt;/code&gt; and &lt;code&gt;Returns&lt;/code&gt; tables look quite messy.&lt;/p&gt;
+&lt;p&gt;I spent a little bit of time digging and, looking in Safari's console, I
+then noticed that I was getting a 404 on a file called &lt;code&gt;_mkdocstrings.css&lt;/code&gt;
+in the &lt;code&gt;assets&lt;/code&gt; folder. Problem found!&lt;/p&gt;
+&lt;p&gt;Only... was it though? If I looked in the &lt;code&gt;gh-pages&lt;/code&gt; local branch the file
+was there (and with fine permissions). If I looked in the remote branch, it
+was there too. Thinking it could be some odd browser problem I even tried to
+grab the file back from the command line and it came back 404 as well.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Testing from the command line" src="/attachments/2025/02/28/http-grab.png"&gt;&lt;/p&gt;
+&lt;p&gt;At this point it was getting kind of late so I decided I must have screwed
+up somehow but I should leave it for the evening and head to bed. Before
+doing so though &lt;a href="https://github.com/mkdocstrings/mkdocstrings/discussions/742"&gt;I decided to drop a question into the mkdocstrings
+discussions to see if anyone could see where I'd messed
+up&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As it turns out, it looked like I hadn't messed up and the reply from the
+&lt;a href="https://github.com/pawamoy"&gt;always super-helpful Timothée&lt;/a&gt; was, in effect,
+&lt;em&gt;"yeah, that should work fine"&lt;/em&gt;. At least I wasn't the only one confused.&lt;/p&gt;
+&lt;p&gt;Fast forward to this morning and, with breakfast and coffee inside me, I
+decided to try and methodically get to the bottom of it. I &lt;a href="https://github.com/mkdocstrings/mkdocstrings/discussions/742#discussioncomment-12348912"&gt;wrote up the
+current state of
+understanding&lt;/a&gt;
+and looked at what might be the common cause. The thing that stood out to me
+was that this was a file that started with an underscore, so I did a quick
+search for &lt;em&gt;"github pages underscore"&lt;/em&gt; and right away landed on &lt;a href="https://www.ianwootten.co.uk/2022/11/08/how-to-use-underscores-with-github-pages/"&gt;this
+result&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Bingo!&lt;/p&gt;
+&lt;p&gt;That had to be it!&lt;/p&gt;
+&lt;p&gt;A little bit of testing later and sure enough, the documentation hosted on
+GitHub Pages looked exactly like the locally-hosted version.&lt;/p&gt;
+&lt;p&gt;So, TIL: by default sites hosted by GitHub Pages will pretend that any asset
+that starts with an underscore doesn't exist, unless you have a &lt;code&gt;.nojekyll&lt;/code&gt;
+in the root of the repository, on the &lt;code&gt;gh-pages&lt;/code&gt; branch (or whatever branch
+you decide to serve from).&lt;/p&gt;
+&lt;p&gt;To make this all work I added &lt;code&gt;.nojekyll&lt;/code&gt; to
+&lt;a href="https://github.com/davep/textual-fspicker/tree/ad6818c96816f2f1ad7a39909d276271af3f760d/docs/source"&gt;&lt;code&gt;docs/source&lt;/code&gt;&lt;/a&gt;
+and added this to &lt;code&gt;mkdocs.yml&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;exclude_docs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p p-Indicator"&gt;|&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="no"&gt;!.nojekyll&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;All done!&lt;/p&gt;
+&lt;p&gt;And now I've worked out a simple workflow for using &lt;code&gt;mkdocs&lt;/code&gt;/&lt;code&gt;mkdocstrings&lt;/code&gt;
+for my own Python projects, in conjunction with GitHub Pages, I guess I'll
+start to sprinkle it over other projects too.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="textual"></category><category term="documentation"></category><category term="GitHub"></category><category term="mkdocs"></category><category term="mkdocstrings"></category><category term="gh-pages"></category></entry><entry><title>Hike</title><link href="https://blog.davep.org/2025/02/14/hike.html" rel="alternate"></link><published>2025-02-14T09:22:00+00:00</published><updated>2025-02-14T09:22:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-02-14:/2025/02/14/hike.html</id><content type="html">&lt;p&gt;&lt;img alt="Hike" src="/attachments/2025/02/14/hike-social-banner.png"&gt;&lt;/p&gt;
 &lt;p&gt;The run of writing new terminal-based tools that I want still keeps going.
 First there was &lt;a href="/2025/01/03/braindrop.html"&gt;Braindrop&lt;/a&gt;, then there was
 &lt;a href="/2025/01/25/peplum.html"&gt;Peplum&lt;/a&gt;, and now, released today, there's
@@ -1136,65 +1242,4 @@ bookmarks haven't been tagged, and also how many I haven't looked back over
 and marked as read. This is already helping me get to untagged-zero.&lt;/p&gt;
 &lt;p&gt;Tinboard can be installed with &lt;code&gt;pip&lt;/code&gt; or (ideally) &lt;code&gt;pipx&lt;/code&gt; &lt;a href="https://pypi.org/project/tinboard/"&gt;from
 PyPi&lt;/a&gt;. The &lt;a href="https://github.com/davep/tinboard"&gt;source is available on
-GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry><entry><title>Tinboard</title><link href="https://blog.davep.org/2023/12/19/tinboard.html" rel="alternate"></link><published>2023-12-19T09:47:00+00:00</published><updated>2023-12-19T09:47:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-12-19:/2023/12/19/tinboard.html</id><content type="html">&lt;p&gt;Over the past few weeks I've been working on a new pet project, in part done
-as a &lt;a href="https://textual.textualize.io/"&gt;Textual&lt;/a&gt; "dogfooding" project, but
-also because this is a tool I've been wanting for a while now: a
-terminal-based client for the &lt;a href="https://pinboard.in/"&gt;Pinboard bookmarking
-service&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The dogfooding side of the development has been helping, uncovering a couple
-of fun bugs in Textual; plus the act of building this has let me try out a
-few of the newer features we've recently added to the framework.&lt;/p&gt;
-&lt;p&gt;What's &lt;em&gt;really&lt;/em&gt; important though is this is a tool I actually &lt;strong&gt;wanted&lt;/strong&gt;,
-and I'm using pretty often. I've written a &lt;em&gt;lot&lt;/em&gt; of Textual-based
-applications over the past year, most small examples, &lt;a href="https://github.com/Textualize/frogmouth"&gt;some quite a bit
-bigger&lt;/a&gt;, but none of them really
-form part of my daily workflow. This changes with Tinboard.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Tinboard in action" src="/attachments/2023/12/19/tinboard.png#centre"&gt;&lt;/p&gt;
-&lt;p&gt;Tinboard is designed as a fully-featured client, allowing for the creation
-of new Bookmarks, complete with tag suggestion support:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Adding a new bookmark" src="/attachments/2023/12/19/new-bookmark.png#centre"&gt;&lt;/p&gt;
-&lt;p&gt;Not only are tag suggestions pulled from Pinboard, but entry of tags can
-auto-complete, taking completions from both the suggested tags and also tags
-used amongst your own bookmarks:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Auto-complete of tags" src="/attachments/2023/12/19/tag-suggest.gif#centre"&gt;&lt;/p&gt;
-&lt;p&gt;That feature was really easy to add thanks to &lt;a href="https://textual.textualize.io/api/suggester/"&gt;the &lt;code&gt;Suggester&lt;/code&gt;
-API&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Thanks to the
-&lt;a href="https://textual.textualize.io/blog/2023/09/21/textual-0380-adds-a-syntax-aware-textarea/"&gt;recently-added&lt;/a&gt;
-&lt;code&gt;TextArea&lt;/code&gt; widget the add/edit dialog allows for proper full editing of the
-extended text description of the bookmark too:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Editing a bookmark" src="/attachments/2023/12/19/edit.png#centre"&gt;&lt;/p&gt;
-&lt;p&gt;One caveat here is a lack of word-wrapping; but this will be arriving in an
-update to Textual early in the new year.&lt;/p&gt;
-&lt;p&gt;As well as all the usual add/edit/delete facilities, Tinboard is also
-designed to make it pretty easy to find bookmarks too. There are filtering
-options for seeing all read/unread, public/private and tagged/untagged
-bookmarks; this makes bookmark management really easy for me because I can
-filter for all the untagged and private bookmarks, which are likely the ones
-that need editing and expanding on, and tidy up my bookmark library.&lt;/p&gt;
-&lt;p&gt;There is also, of course, full text search too.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Text search entry" src="/attachments/2023/12/19/search-entry.png#centre"&gt;&lt;/p&gt;
-&lt;p&gt;When a filter or search is in operation, the related tags and the like react
-too:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="A search result being shown" src="/attachments/2023/12/19/search-result.png#centre"&gt;&lt;/p&gt;
-&lt;p&gt;Another thing I've made a point of doing in Tinboard is leaning pretty hard
-on the &lt;a href="https://textual.textualize.io/guide/command_palette/"&gt;Command
-Palette&lt;/a&gt;. No
-functionality is &lt;em&gt;only&lt;/em&gt; available by it (I've done my best to make sure that
-keyboard is the primary input device here, with keyboard shortcuts for as
-much as possible). Initially I approached this as a "for the sake of
-completeness" feature, but already I'm finding that it's a pretty quick
-method of pulling up a tag filter.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The command palette in action" src="/attachments/2023/12/19/command-palette.png#centre"&gt;&lt;/p&gt;
-&lt;p&gt;To help make all the features as discoverable possible, I've also ensured
-there's a pretty comprehensive help screen:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Help" src="/attachments/2023/12/19/help.png#centre"&gt;&lt;/p&gt;
-&lt;p&gt;Anyway; that's v0.1.0 out in the wild. I'm pleased with how it's turned out
-and there's a few more things I'd like to add. It's licensed GPL-3.0 and
-available &lt;a href="https://github.com/davep/tinboard"&gt;via GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/tinboard/"&gt;via
-PyPi&lt;/a&gt;. If you have an environment that
-has &lt;code&gt;pipx&lt;/code&gt; installed you should be able to get up and going with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;tinboard
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;I hope this is useful to someone else. :-)&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry></feed>
+GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry></feed>

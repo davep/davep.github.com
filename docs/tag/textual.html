@@ -183,6 +183,128 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/02/28/documenting-fspicker.html#documenting-fspicker">Documenting textual-fspicker (plus a TIL)</a></h2>
+    <p>
+      Posted on 2025-02-28 11:45 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/documentation.html">documentation</a>,              <a href="https://blog.davep.org/tag/github.html">GitHub</a>,              <a href="https://blog.davep.org/tag/mkdocs.html">mkdocs</a>,              <a href="https://blog.davep.org/tag/mkdocstrings.html">mkdocstrings</a>,              <a href="https://blog.davep.org/tag/gh-pages.html">gh-pages</a>
+        &#8226; 4 min read
+    </p>
+  </header>
+  <div>
+      <div><p>I've just made a wee update to
+<a href="https://github.com/davep/textual-fspicker"><code>textual-fspicker</code></a>, my dialog
+library for <a href="https://textual.textualize.io">Textual</a> which adds <code>FileOpen</code>,
+<code>FileSave</code> and <code>SelectDirectory</code> dialogs. There's no substantial change to
+the workings of the library itself, but I have added something it's been
+lacking for a long time: documentation!</p>
+<p>Well... that's not quite true, it's always had documentation. I'm an avid
+writer of Python docstrings and I make a point of always writing them for
+every class, function, method or global value as I write the code. As such
+the low-level "API" documentation has always been sat there ready to be
+published somehow, eventually.</p>
+<p>Meanwhile the description for how to use the library was mostly a pointer to
+some example code inside the README. Not ideal, and something I really
+wanted to improve at some point.</p>
+<p>Given I'm still on a bit of a coding spree in my spare time, I finally
+decided to get round to using the amazing
+<a href="https://mkdocstrings.github.io">mkdocstrings</a>, in conjunction with
+<a href="https://www.mkdocs.org">mkdocs</a>, to <a href="https://blog.davep.org/textual-fspicker/">get some better documentation up an
+running</a>.</p>
+<p>The approach I decided to take with the documentation was to <a href="https://blog.davep.org/textual-fspicker/using/">have a page
+that gave some general information on how to use the
+library</a> and then also
+<a href="https://blog.davep.org/textual-fspicker/library-contents/base_dialog/">generate low-level documentation for the all the useful content of the
+library from the
+docstrings</a>.
+While latter isn't really useful to anyone wanting to use the library in
+their own applications, it could be useful to anyone wanting to understand
+how it hangs together at a lower-level, perhaps because they want to
+contribute to or extend the library in some way.</p>
+<p>While writing some of the general guide took a bit of work, of course, the
+work to get the documentation up and running and generating was simple
+enough. The effort comes down to 3 rules in the
+<a href="https://github.com/davep/textual-fspicker/blob/ad6818c96816f2f1ad7a39909d276271af3f760d/Makefile"><code>Makefile</code></a>
+for the project:</p>
+<div class="highlight"><pre><span></span><code><span class="c">##############################################################################</span>
+<span class="c"># Documentation.</span>
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">docs</span>
+<span class="nf">docs</span><span class="o">:</span><span class="w">                    </span><span class="c"># Generate the system documentation</span>
+<span class="w">    </span><span class="k">$(</span>mkdocs<span class="k">)</span><span class="w"> </span>build
+
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">rtfm</span>
+<span class="nf">rtfm</span><span class="o">:</span><span class="w">                    </span><span class="c"># Locally read the library documentation</span>
+<span class="w">    </span><span class="k">$(</span>mkdocs<span class="k">)</span><span class="w"> </span>serve
+
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">publishdocs</span>
+<span class="nf">publishdocs</span><span class="o">:</span><span class="w"> </span><span class="n">docs</span>        <span class="c"># Set up the docs for publishing</span>
+<span class="w">    </span><span class="k">$(</span>run<span class="k">)</span><span class="w"> </span>ghp-import<span class="w"> </span>--push<span class="w"> </span>site
+</code></pre></div>
+
+<p>The <code>rtfm</code> target is useful for locally-serving the documentation so I can
+live preview as I write things and update the code. The <code>publishdocs</code> target
+is used to create and push a <code>gh-pages</code> branch for the repository, resulting
+in the documentation being hosted by GitHub.</p>
+<h2>A wee problem</h2>
+<p>This is, however, where I ran into a wee problem. I noticed that the
+locally-hosted version of the documentation looked great, but the version
+hosted on GitHub Pages was... not so great. I was seeing a load of text
+alignment issues, and also whole bits of text just not appearing at all.</p>
+<p>Here's an example of what I was seeing locally:</p>
+<p><img alt="Good layout" src="/attachments/2025/02/28/good.png"></p>
+<p>and here's what I was seeing being served up from GitHub Pages:</p>
+<p><img alt="Bad layout" src="/attachments/2025/02/28/bad.png"></p>
+<p>As you can see, in the "bad" version the <code>func</code> label is missing from the
+header, and the <code>Parameters</code> and <code>Returns</code> tables look quite messy.</p>
+<p>I spent a little bit of time digging and, looking in Safari's console, I
+then noticed that I was getting a 404 on a file called <code>_mkdocstrings.css</code>
+in the <code>assets</code> folder. Problem found!</p>
+<p>Only... was it though? If I looked in the <code>gh-pages</code> local branch the file
+was there (and with fine permissions). If I looked in the remote branch, it
+was there too. Thinking it could be some odd browser problem I even tried to
+grab the file back from the command line and it came back 404 as well.</p>
+<p><img alt="Testing from the command line" src="/attachments/2025/02/28/http-grab.png"></p>
+<p>At this point it was getting kind of late so I decided I must have screwed
+up somehow but I should leave it for the evening and head to bed. Before
+doing so though <a href="https://github.com/mkdocstrings/mkdocstrings/discussions/742">I decided to drop a question into the mkdocstrings
+discussions to see if anyone could see where I'd messed
+up</a>.</p>
+<p>As it turns out, it looked like I hadn't messed up and the reply from the
+<a href="https://github.com/pawamoy">always super-helpful Timothée</a> was, in effect,
+<em>"yeah, that should work fine"</em>. At least I wasn't the only one confused.</p>
+<p>Fast forward to this morning and, with breakfast and coffee inside me, I
+decided to try and methodically get to the bottom of it. I <a href="https://github.com/mkdocstrings/mkdocstrings/discussions/742#discussioncomment-12348912">wrote up the
+current state of
+understanding</a>
+and looked at what might be the common cause. The thing that stood out to me
+was that this was a file that started with an underscore, so I did a quick
+search for <em>"github pages underscore"</em> and right away landed on <a href="https://www.ianwootten.co.uk/2022/11/08/how-to-use-underscores-with-github-pages/">this
+result</a>.</p>
+<p>Bingo!</p>
+<p>That had to be it!</p>
+<p>A little bit of testing later and sure enough, the documentation hosted on
+GitHub Pages looked exactly like the locally-hosted version.</p>
+<p>So, TIL: by default sites hosted by GitHub Pages will pretend that any asset
+that starts with an underscore doesn't exist, unless you have a <code>.nojekyll</code>
+in the root of the repository, on the <code>gh-pages</code> branch (or whatever branch
+you decide to serve from).</p>
+<p>To make this all work I added <code>.nojekyll</code> to
+<a href="https://github.com/davep/textual-fspicker/tree/ad6818c96816f2f1ad7a39909d276271af3f760d/docs/source"><code>docs/source</code></a>
+and added this to <code>mkdocs.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">exclude_docs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">  </span><span class="no">!.nojekyll</span>
+</code></pre></div>
+
+<p>All done!</p>
+<p>And now I've worked out a simple workflow for using <code>mkdocs</code>/<code>mkdocstrings</code>
+for my own Python projects, in conjunction with GitHub Pages, I guess I'll
+start to sprinkle it over other projects too.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/02/14/hike.html#hike">Hike</a></h2>
     <p>
       Posted on 2025-02-14 09:22 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -797,62 +919,6 @@ gods the naming of things in its ecosystem is terrible and confusing!&#160;<a cl
 </li>
 </ol>
 </div></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/03/07/tinboard-0-10-0.html#tinboard-0-10-0">Tinboard v0.10.0</a></h2>
-    <p>
-      Posted on 2024-03-07 08:45 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>I just realised that it's been a while since I <a href="/2023/12/25/tinboard-0-4-0.html">last posted an
-update</a> about <code>tinboard</code>. This is probably
-my most-used Textual-based application, and one I'm constantly tinkering
-with, and just this morning I published v0.10.0.</p>
-<p>Often the changes are small tweaks or fixes to how it works, sometimes
-they're simply updates to the version of Textual used, making use of some
-new feature or other; I've yet to add another "major" feature so far. They
-will come, but so far the ideas I have for the application haven't actually
-felt that necessary. Although I say so myself it does what I need it to do
-and it does it really well.</p>
-<p>So, as a quick catch-up of what's changed since v0.4.0 (which was the last
-version I posted about):</p>
-<ul>
-<li>v0.5.0 was released 2024-01-04; this included all the tags of a bookmark
-when doing full-text searching.</li>
-<li>v0.6.0 was released 2024-01-10; it fixed a small bug where the tag
-suggestion facility got confused by trailing spaces in the input field.</li>
-<li>v0.7.0 was released 2024-02-02; this updated the minimum Textual version to
-v0.48.2 and removed all the custom changes to the Textual <code>TextArea</code> widget,
-making use of the updates to <code>TextArea</code> that version of Textual made
-available.</li>
-<li>v0.8.0 was released 2024-02-18; this fixed a crash on startup caused by a
-newer release of Textual (the fault was in <code>tinboard</code>; the update to Textual
-helped reveal the problem).</li>
-<li>v0.9.0 was released 2024-02-29; it simply added support for using
-<kbd>Esc</kbd> at the top level of the application to quit (I like to camp
-on <kbd>Esc</kbd> to GTFO).</li>
-</ul>
-<p>Then, just now, I released v0.10.0. This release makes full use of <a href="https://github.com/Textualize/textual/pull/4154">some
-work I recently did to enhance Textual's <code>CommandPalette</code>
-widget</a>, which added a
-"discover" system. The change in <code>tinboard</code> is that all of the <a href="https://github.com/davep/tinboard/tree/main/tinboard/commands">command
-palette
-providers</a>
-now have <code>discover</code> methods too. The result of this change is that when you
-open the command palette in <code>tinboard</code> (<kbd>ctrl</kbd>+<kbd>p</kbd>) you
-can see <em>every</em> possible command right away.</p>
-<p><img alt="The command palette in discovery mode" src="/attachments/2024/03/07/command-palette.png#centre"></p>
-<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
-PyPi</a>. The <a href="https://github.com/davep/tinboard">source is available on
-GitHub</a>.</p></div>
   </div>
 </article>
 

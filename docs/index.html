@@ -183,6 +183,128 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/02/28/documenting-fspicker.html#documenting-fspicker">Documenting textual-fspicker (plus a TIL)</a></h2>
+    <p>
+      Posted on 2025-02-28 11:45 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/documentation.html">documentation</a>,              <a href="https://blog.davep.org/tag/github.html">GitHub</a>,              <a href="https://blog.davep.org/tag/mkdocs.html">mkdocs</a>,              <a href="https://blog.davep.org/tag/mkdocstrings.html">mkdocstrings</a>,              <a href="https://blog.davep.org/tag/gh-pages.html">gh-pages</a>
+        &#8226; 4 min read
+    </p>
+  </header>
+  <div>
+      <div><p>I've just made a wee update to
+<a href="https://github.com/davep/textual-fspicker"><code>textual-fspicker</code></a>, my dialog
+library for <a href="https://textual.textualize.io">Textual</a> which adds <code>FileOpen</code>,
+<code>FileSave</code> and <code>SelectDirectory</code> dialogs. There's no substantial change to
+the workings of the library itself, but I have added something it's been
+lacking for a long time: documentation!</p>
+<p>Well... that's not quite true, it's always had documentation. I'm an avid
+writer of Python docstrings and I make a point of always writing them for
+every class, function, method or global value as I write the code. As such
+the low-level "API" documentation has always been sat there ready to be
+published somehow, eventually.</p>
+<p>Meanwhile the description for how to use the library was mostly a pointer to
+some example code inside the README. Not ideal, and something I really
+wanted to improve at some point.</p>
+<p>Given I'm still on a bit of a coding spree in my spare time, I finally
+decided to get round to using the amazing
+<a href="https://mkdocstrings.github.io">mkdocstrings</a>, in conjunction with
+<a href="https://www.mkdocs.org">mkdocs</a>, to <a href="https://blog.davep.org/textual-fspicker/">get some better documentation up an
+running</a>.</p>
+<p>The approach I decided to take with the documentation was to <a href="https://blog.davep.org/textual-fspicker/using/">have a page
+that gave some general information on how to use the
+library</a> and then also
+<a href="https://blog.davep.org/textual-fspicker/library-contents/base_dialog/">generate low-level documentation for the all the useful content of the
+library from the
+docstrings</a>.
+While latter isn't really useful to anyone wanting to use the library in
+their own applications, it could be useful to anyone wanting to understand
+how it hangs together at a lower-level, perhaps because they want to
+contribute to or extend the library in some way.</p>
+<p>While writing some of the general guide took a bit of work, of course, the
+work to get the documentation up and running and generating was simple
+enough. The effort comes down to 3 rules in the
+<a href="https://github.com/davep/textual-fspicker/blob/ad6818c96816f2f1ad7a39909d276271af3f760d/Makefile"><code>Makefile</code></a>
+for the project:</p>
+<div class="highlight"><pre><span></span><code><span class="c">##############################################################################</span>
+<span class="c"># Documentation.</span>
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">docs</span>
+<span class="nf">docs</span><span class="o">:</span><span class="w">                    </span><span class="c"># Generate the system documentation</span>
+<span class="w">    </span><span class="k">$(</span>mkdocs<span class="k">)</span><span class="w"> </span>build
+
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">rtfm</span>
+<span class="nf">rtfm</span><span class="o">:</span><span class="w">                    </span><span class="c"># Locally read the library documentation</span>
+<span class="w">    </span><span class="k">$(</span>mkdocs<span class="k">)</span><span class="w"> </span>serve
+
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">publishdocs</span>
+<span class="nf">publishdocs</span><span class="o">:</span><span class="w"> </span><span class="n">docs</span>        <span class="c"># Set up the docs for publishing</span>
+<span class="w">    </span><span class="k">$(</span>run<span class="k">)</span><span class="w"> </span>ghp-import<span class="w"> </span>--push<span class="w"> </span>site
+</code></pre></div>
+
+<p>The <code>rtfm</code> target is useful for locally-serving the documentation so I can
+live preview as I write things and update the code. The <code>publishdocs</code> target
+is used to create and push a <code>gh-pages</code> branch for the repository, resulting
+in the documentation being hosted by GitHub.</p>
+<h2>A wee problem</h2>
+<p>This is, however, where I ran into a wee problem. I noticed that the
+locally-hosted version of the documentation looked great, but the version
+hosted on GitHub Pages was... not so great. I was seeing a load of text
+alignment issues, and also whole bits of text just not appearing at all.</p>
+<p>Here's an example of what I was seeing locally:</p>
+<p><img alt="Good layout" src="/attachments/2025/02/28/good.png"></p>
+<p>and here's what I was seeing being served up from GitHub Pages:</p>
+<p><img alt="Bad layout" src="/attachments/2025/02/28/bad.png"></p>
+<p>As you can see, in the "bad" version the <code>func</code> label is missing from the
+header, and the <code>Parameters</code> and <code>Returns</code> tables look quite messy.</p>
+<p>I spent a little bit of time digging and, looking in Safari's console, I
+then noticed that I was getting a 404 on a file called <code>_mkdocstrings.css</code>
+in the <code>assets</code> folder. Problem found!</p>
+<p>Only... was it though? If I looked in the <code>gh-pages</code> local branch the file
+was there (and with fine permissions). If I looked in the remote branch, it
+was there too. Thinking it could be some odd browser problem I even tried to
+grab the file back from the command line and it came back 404 as well.</p>
+<p><img alt="Testing from the command line" src="/attachments/2025/02/28/http-grab.png"></p>
+<p>At this point it was getting kind of late so I decided I must have screwed
+up somehow but I should leave it for the evening and head to bed. Before
+doing so though <a href="https://github.com/mkdocstrings/mkdocstrings/discussions/742">I decided to drop a question into the mkdocstrings
+discussions to see if anyone could see where I'd messed
+up</a>.</p>
+<p>As it turns out, it looked like I hadn't messed up and the reply from the
+<a href="https://github.com/pawamoy">always super-helpful Timothée</a> was, in effect,
+<em>"yeah, that should work fine"</em>. At least I wasn't the only one confused.</p>
+<p>Fast forward to this morning and, with breakfast and coffee inside me, I
+decided to try and methodically get to the bottom of it. I <a href="https://github.com/mkdocstrings/mkdocstrings/discussions/742#discussioncomment-12348912">wrote up the
+current state of
+understanding</a>
+and looked at what might be the common cause. The thing that stood out to me
+was that this was a file that started with an underscore, so I did a quick
+search for <em>"github pages underscore"</em> and right away landed on <a href="https://www.ianwootten.co.uk/2022/11/08/how-to-use-underscores-with-github-pages/">this
+result</a>.</p>
+<p>Bingo!</p>
+<p>That had to be it!</p>
+<p>A little bit of testing later and sure enough, the documentation hosted on
+GitHub Pages looked exactly like the locally-hosted version.</p>
+<p>So, TIL: by default sites hosted by GitHub Pages will pretend that any asset
+that starts with an underscore doesn't exist, unless you have a <code>.nojekyll</code>
+in the root of the repository, on the <code>gh-pages</code> branch (or whatever branch
+you decide to serve from).</p>
+<p>To make this all work I added <code>.nojekyll</code> to
+<a href="https://github.com/davep/textual-fspicker/tree/ad6818c96816f2f1ad7a39909d276271af3f760d/docs/source"><code>docs/source</code></a>
+and added this to <code>mkdocs.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">exclude_docs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">  </span><span class="no">!.nojekyll</span>
+</code></pre></div>
+
+<p>All done!</p>
+<p>And now I've worked out a simple workflow for using <code>mkdocs</code>/<code>mkdocstrings</code>
+for my own Python projects, in conjunction with GitHub Pages, I guess I'll
+start to sprinkle it over other projects too.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/02/14/hike.html#hike">Hike</a></h2>
     <p>
       Posted on 2025-02-14 09:22 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -844,56 +966,6 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
 </code></pre></div>
 
 <p>The <a href="https://github.com/davep/pispy">source is available on GitHub</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/04/17/macos-desktop-widget-switching.html#macos-desktop-widget-switching">macOS desktop widget switching</a></h2>
-    <p>
-      Posted on 2024-04-17 09:26 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/macos.html">macOS</a>,              <a href="https://blog.davep.org/tag/fish.html">fish</a>,              <a href="https://blog.davep.org/tag/shell.html">shell</a>,              <a href="https://blog.davep.org/tag/streaming.html">streaming</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>When <a href="https://support.apple.com/en-gb/108996">desktop widgets</a> first turned
-up in macOS I was pretty quick to embrace them. On my personal Mac Mini I
-use a pair of screens, the right one mostly given over to Emacs, and there
-was generally room to space there. These days that screen generally looks
-something like this:</p>
-<p><img alt="The usual layout of my right screen" src="/attachments/2024/04/17/right-screen.png#centre"></p>
-<p>Recently I've got into <a href="https://www.youtube.com/@davep-codes/streams">streaming while I do some
-coding</a> and it's the
-right-hand screen that I work on and capture using OBS. When I was setting
-this up I realised that the widgets being there could be a problem; not
-because they could distract or anything, more that they could, at times,
-contain sensitive information (there's my reminder list and my calendar
-there after all).</p>
-<p>What I needed was a quick method of hiding all the widgets, and showing them
-again later, without it being a lot of faff.</p>
-<p>With a little bit of digging around on the net I finally came up with a pair
-of <code>fish</code> abbreviations that do just the job!</p>
-<div class="highlight"><pre><span></span><code>abbr -g widoff &quot;defaults write com.apple.WindowManager StandardHideWidgets -int 1&quot;
-abbr -g widon &quot;defaults write com.apple.WindowManager StandardHideWidgets -int 0&quot;
-</code></pre></div>
-
-<p>Now, when I'm going to stream, part of my "getting stuff ready to go live"
-checklist is to run <code>widoff</code> in the terminal; once I'm finished I can then
-just run <code>widon</code> again to have them come back.</p>
-<p>Fast, clean, handy.</p>
-<p>I've also got a pair for when I'm using <a href="https://support.apple.com/en-gb/guide/mac-help/mchl534ba392/mac">Stage
-Manager</a>:</p>
-<div class="highlight"><pre><span></span><code>abbr -g smwidoff &quot;defaults write com.apple.WindowManager StageManagerHideWidgets -int 1&quot;
-abbr -g smwidon &quot;defaults write com.apple.WindowManager StageManagerHideWidgets -int 0&quot;
-</code></pre></div>
-
-<p>Although, really, I can't remember the last time I used Stage Manager. I
-dabbled with it for a wee while, found it vaguely handy in a couple of
-situations, but it doesn't seem to have stuck as part of my workflow or work
-environment.</p></div>
   </div>
 </article>
 
