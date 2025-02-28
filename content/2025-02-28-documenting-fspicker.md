@@ -4,7 +4,7 @@ title: Documenting textual-fspicker (plus a TIL)
 category: Coding
 tags: Python, textual, documentation, GitHub, mkdocs, mkdocstrings, gh-pages
 date: 2025-02-28 11:45:00 +0000
-cover:
+cover: attachments/2025/02/28/good.png
 ---
 
 I've just made a wee update to
