@@ -70,6 +70,8 @@ in the documentation being hosted by GitHub.
 
 ## A wee problem
 
+> *NOTE: [I've since found out there's an easier way of fixing the issue](/2025/02/28/mkdocs-gh-pages-redux.html).*
+
 This is, however, where I ran into a wee problem. I noticed that the
 locally-hosted version of the documentation looked great, but the version
 hosted on GitHub Pages was... not so great. I was seeing a load of text

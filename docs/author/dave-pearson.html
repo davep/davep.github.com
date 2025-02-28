@@ -183,6 +183,48 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/02/28/mkdocs-gh-pages-redux.html#mkdocs-gh-pages-redux">MkDocs/mkdocstrings 404 CSS TIL update</a></h2>
+    <p>
+      Posted on 2025-02-28 22:23 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/documentation.html">documentation</a>,              <a href="https://blog.davep.org/tag/github.html">GitHub</a>,              <a href="https://blog.davep.org/tag/mkdocs.html">mkdocs</a>,              <a href="https://blog.davep.org/tag/mkdocstrings.html">mkdocstrings</a>,              <a href="https://blog.davep.org/tag/gh-pages.html">gh-pages</a>
+        &#8226; 1 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Following on from <a href="/2025/02/28/documenting-fspicker.html">my post this
+morning</a>, regarding the problem I was
+having with <code>_mkdocstrings.css</code> being 404 any time I deployed by
+documentation, build with <code>mkdocs</code>/<code>mkdocstrings</code>, to GitHub Pages...</p>
+<p>It's come to light that I was doing this on hard mode, pretty much.</p>
+<p>While trying to figure out the best way of deploying the docs, I'd stumbled
+on <code>ghp-import</code> and had been using that. On the other hand, MkDocs has it's
+own command for doing the same thing: <a href="https://www.mkdocs.org/user-guide/deploying-your-docs/"><code>mkdocs
+gh-deploy</code></a>.</p>
+<p>Timothée <a href="https://github.com/mkdocstrings/mkdocstrings/discussions/742#discussioncomment-12351028">pointed out to
+me</a>
+that he never runs into this problem, but he used this command. As it turns
+out, if you use <code>mkdocs gh-deploy</code> it creates the <code>.nojekyll</code> file by
+default.</p>
+<p>And how does it do this? It uses the <code>ghp-import</code> code <a href="https://github.com/mkdocs/mkdocs/blob/4c7404485f988f409ccaf42fefe705222ff5965a/mkdocs/commands/gh_deploy.py#L138">and uses a switch it
+has to achieve exactly
+this</a>.
+In fact... the command line version even has a switch for it!</p>
+<div class="highlight"><pre><span></span><code>-n, --no-jekyll      Include a .nojekyll file in the branch.
+</code></pre></div>
+
+<p>This is off by default, when you run the command itself, but I wish I'd
+noticed this when I was first experimenting. O_o</p>
+<p>Anyway, thanks to Timothée's pointers, I've now managed to <a href="https://github.com/davep/textual-fspicker/pull/39/files">simplify how I
+build and publish the docs from
+<code>textual-fspicker</code></a>,
+and I'll apply this to other projects too.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/02/28/documenting-fspicker.html#documenting-fspicker">Documenting textual-fspicker (plus a TIL)</a></h2>
     <p>
       Posted on 2025-02-28 11:45 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -247,6 +289,9 @@ live preview as I write things and update the code. The <code>publishdocs</code>
 is used to create and push a <code>gh-pages</code> branch for the repository, resulting
 in the documentation being hosted by GitHub.</p>
 <h2>A wee problem</h2>
+<blockquote>
+<p><em>NOTE: <a href="/2025/02/28/mkdocs-gh-pages-redux.html">I've since found out there's an easier way of fixing the issue</a>.</em></p>
+</blockquote>
 <p>This is, however, where I ran into a wee problem. I noticed that the
 locally-hosted version of the documentation looked great, but the version
 hosted on GitHub Pages was... not so great. I was seeing a load of text
@@ -924,48 +969,6 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
 </code></pre></div>
 
 <p>The <a href="https://github.com/davep/tinboard">source is available on GitHub</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/04/17/pispy-0-6-0.html#pispy-0-6-0">PISpy v0.6.0</a></h2>
-    <p>
-      Posted on 2024-04-17 11:30 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/youtube.html">YouTube</a>
-        &#8226; 1 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Back in the very early days of the <a href="https://blog.davep.org/2024/03/28/goodbye-textualize.html">Textual
-adventure</a>,
-within the first month or so of working on the framework, we <a href="https://textual.textualize.io/blog/2022/11/26/on-dog-food-the-original-metaverse-and-not-being-bored/">had a period
-of
-dogfooding</a>.
-One of the projects I wrote during that time was a little tool <a href="https://textual.textualize.io/blog/2022/12/08/be-the-keymaster/#pispy">I called
-PISpy</a>.</p>
-<p>The initial version was pretty much a quick hack; during that dogfooding
-period I did my best to try and develop a new project every couple of days.
-Since then I've let PISpy descend into <a href="https://en.wikipedia.org/wiki/Software_rot">bit
-rot</a>.</p>
-<p>In the last week or so I've turned my attention back to it and made an
-effort to <a href="https://www.youtube.com/watch?v=CepsN8TDq1E">tidy up the code</a>,
-<a href="https://www.youtube.com/watch?v=t2EUXA8RkN0">tidy it some more</a>, <a href="https://www.youtube.com/watch?v=2u5CfrgZWcc">and some
-more</a>, and <a href="https://www.youtube.com/watch?v=CDCvWCZx1AM">even some
-more</a>.</p>
-<p>This morning I put the finishing touches to these changes and released
-<a href="https://github.com/davep/pispy/releases/tag/v0.6.0">v0.6.0</a>.</p>
-<p><a href="https://www.youtube.com/shorts/67xtMdstbx4"><img alt="PISpy in action" src="/attachments/2024/04/17/pispy-in-action.gif#centre"></a></p>
-<p>PISpy can be installed with <code>pip</code> or (ideallty) <code>pipx</code> <a href="https://pypi.org/project/pispy-client/">from
-PyPI</a>. It can also be installed with
-Homebrew by tapping <code>davep/homebrew</code> and then installing <code>pispy</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>pispy
-</code></pre></div>
-
-<p>The <a href="https://github.com/davep/pispy">source is available on GitHub</a>.</p></div>
   </div>
 </article>
 

@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2025-02-28T11:45:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Documenting textual-fspicker (plus a TIL)</title><link href="https://blog.davep.org/2025/02/28/documenting-fspicker.html" rel="alternate"></link><published>2025-02-28T11:45:00+00:00</published><updated>2025-02-28T11:45:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-02-28:/2025/02/28/documenting-fspicker.html</id><content type="html">&lt;p&gt;I've just made a wee update to
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2025-02-28T22:23:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>MkDocs/mkdocstrings 404 CSS TIL update</title><link href="https://blog.davep.org/2025/02/28/mkdocs-gh-pages-redux.html" rel="alternate"></link><published>2025-02-28T22:23:00+00:00</published><updated>2025-02-28T22:23:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-02-28:/2025/02/28/mkdocs-gh-pages-redux.html</id><content type="html">&lt;p&gt;Following on from &lt;a href="/2025/02/28/documenting-fspicker.html"&gt;my post this
+morning&lt;/a&gt;, regarding the problem I was
+having with &lt;code&gt;_mkdocstrings.css&lt;/code&gt; being 404 any time I deployed by
+documentation, build with &lt;code&gt;mkdocs&lt;/code&gt;/&lt;code&gt;mkdocstrings&lt;/code&gt;, to GitHub Pages...&lt;/p&gt;
+&lt;p&gt;It's come to light that I was doing this on hard mode, pretty much.&lt;/p&gt;
+&lt;p&gt;While trying to figure out the best way of deploying the docs, I'd stumbled
+on &lt;code&gt;ghp-import&lt;/code&gt; and had been using that. On the other hand, MkDocs has it's
+own command for doing the same thing: &lt;a href="https://www.mkdocs.org/user-guide/deploying-your-docs/"&gt;&lt;code&gt;mkdocs
+gh-deploy&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Timothée &lt;a href="https://github.com/mkdocstrings/mkdocstrings/discussions/742#discussioncomment-12351028"&gt;pointed out to
+me&lt;/a&gt;
+that he never runs into this problem, but he used this command. As it turns
+out, if you use &lt;code&gt;mkdocs gh-deploy&lt;/code&gt; it creates the &lt;code&gt;.nojekyll&lt;/code&gt; file by
+default.&lt;/p&gt;
+&lt;p&gt;And how does it do this? It uses the &lt;code&gt;ghp-import&lt;/code&gt; code &lt;a href="https://github.com/mkdocs/mkdocs/blob/4c7404485f988f409ccaf42fefe705222ff5965a/mkdocs/commands/gh_deploy.py#L138"&gt;and uses a switch it
+has to achieve exactly
+this&lt;/a&gt;.
+In fact... the command line version even has a switch for it!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;-n, --no-jekyll      Include a .nojekyll file in the branch.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This is off by default, when you run the command itself, but I wish I'd
+noticed this when I was first experimenting. O_o&lt;/p&gt;
+&lt;p&gt;Anyway, thanks to Timothée's pointers, I've now managed to &lt;a href="https://github.com/davep/textual-fspicker/pull/39/files"&gt;simplify how I
+build and publish the docs from
+&lt;code&gt;textual-fspicker&lt;/code&gt;&lt;/a&gt;,
+and I'll apply this to other projects too.&lt;/p&gt;</content><category term="Coding"></category><category term="documentation"></category><category term="GitHub"></category><category term="mkdocs"></category><category term="mkdocstrings"></category><category term="gh-pages"></category></entry><entry><title>Documenting textual-fspicker (plus a TIL)</title><link href="https://blog.davep.org/2025/02/28/documenting-fspicker.html" rel="alternate"></link><published>2025-02-28T11:45:00+00:00</published><updated>2025-02-28T11:45:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-02-28:/2025/02/28/documenting-fspicker.html</id><content type="html">&lt;p&gt;I've just made a wee update to
 &lt;a href="https://github.com/davep/textual-fspicker"&gt;&lt;code&gt;textual-fspicker&lt;/code&gt;&lt;/a&gt;, my dialog
 library for &lt;a href="https://textual.textualize.io"&gt;Textual&lt;/a&gt; which adds &lt;code&gt;FileOpen&lt;/code&gt;,
 &lt;code&gt;FileSave&lt;/code&gt; and &lt;code&gt;SelectDirectory&lt;/code&gt; dialogs. There's no substantial change to
@@ -53,6 +79,9 @@ live preview as I write things and update the code. The &lt;code&gt;publishdocs&
 is used to create and push a &lt;code&gt;gh-pages&lt;/code&gt; branch for the repository, resulting
 in the documentation being hosted by GitHub.&lt;/p&gt;
 &lt;h2&gt;A wee problem&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;NOTE: &lt;a href="/2025/02/28/mkdocs-gh-pages-redux.html"&gt;I've since found out there's an easier way of fixing the issue&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;This is, however, where I ran into a wee problem. I noticed that the
 locally-hosted version of the documentation looked great, but the version
 hosted on GitHub Pages was... not so great. I was seeing a load of text
@@ -1219,27 +1248,6 @@ sort order of the tags menu in the left-hand column (bound to
 &lt;kbd&gt;F4&lt;/kbd&gt;). Right now it simply toggles between alphabetical order, or
 bookmark count order (most to least). At some point I might make it more of
 a cycle than a toggle, but this serves my purposes for now.&lt;/p&gt;
-&lt;p&gt;Tinboard can be installed with &lt;code&gt;pip&lt;/code&gt; or (ideally) &lt;code&gt;pipx&lt;/code&gt; &lt;a href="https://pypi.org/project/tinboard/"&gt;from
-PyPi&lt;/a&gt;. The &lt;a href="https://github.com/davep/tinboard"&gt;source is available on
-GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry><entry><title>Tinboard v0.2.0</title><link href="https://blog.davep.org/2023/12/21/tinboard-0-2-0.html" rel="alternate"></link><published>2023-12-21T09:29:00+00:00</published><updated>2023-12-21T09:29:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-12-21:/2023/12/21/tinboard-0-2-0.html</id><content type="html">&lt;p&gt;Following on from &lt;a href="/2023/12/19/tinboard.html"&gt;the initial full release a couple of days
-ago&lt;/a&gt;, I've just &lt;a href="https://github.com/davep/tinboard/releases/tag/v0.2.0"&gt;released v0.2.0 of
-Tinboard&lt;/a&gt;. There's
-just one small change in this, but I think it's a really useful one.&lt;/p&gt;
-&lt;p&gt;In the top-left corner of the screen there's a menu of main filters, letting
-you switch between seeing all bookmarks, or a combination of read, unread,
-public, private, etc... In using the application I quickly realised that it
-would be handy to have bookmark counts in that menu.&lt;/p&gt;
-&lt;p&gt;So I added that:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Counts in the filters menu" src="/attachments/2023/12/21/filters-menu.png#centre"&gt;&lt;/p&gt;
-&lt;p&gt;These counts are a little different from those in the tags list, in that
-they always show the number of matching bookmarks amongst &lt;em&gt;all recorded
-bookmarks&lt;/em&gt;, not just those currently on display (and so subject to any sort
-of filter that's in play).&lt;/p&gt;
-&lt;p&gt;I &lt;em&gt;think&lt;/em&gt; this is the right approach here. I know for sure that that's what
-I want from this, and I am writing this for me after all...&lt;/p&gt;
-&lt;p&gt;What's handy about this is that it makes it easier for me to see how many
-bookmarks haven't been tagged, and also how many I haven't looked back over
-and marked as read. This is already helping me get to untagged-zero.&lt;/p&gt;
 &lt;p&gt;Tinboard can be installed with &lt;code&gt;pip&lt;/code&gt; or (ideally) &lt;code&gt;pipx&lt;/code&gt; &lt;a href="https://pypi.org/project/tinboard/"&gt;from
 PyPi&lt;/a&gt;. The &lt;a href="https://github.com/davep/tinboard"&gt;source is available on
 GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry></feed>

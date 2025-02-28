@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2025-02-28T11:45:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Documenting textual-fspicker (plus a TIL)</title><link href="https://blog.davep.org/2025/02/28/documenting-fspicker.html" rel="alternate"></link><published>2025-02-28T11:45:00+00:00</published><updated>2025-02-28T11:45:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-02-28:/2025/02/28/documenting-fspicker.html</id><content type="html">&lt;p&gt;I've just made a wee update to
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2025-02-28T22:23:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>MkDocs/mkdocstrings 404 CSS TIL update</title><link href="https://blog.davep.org/2025/02/28/mkdocs-gh-pages-redux.html" rel="alternate"></link><published>2025-02-28T22:23:00+00:00</published><updated>2025-02-28T22:23:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-02-28:/2025/02/28/mkdocs-gh-pages-redux.html</id><content type="html">&lt;p&gt;Following on from &lt;a href="/2025/02/28/documenting-fspicker.html"&gt;my post this
+morning&lt;/a&gt;, regarding the problem I was
+having with &lt;code&gt;_mkdocstrings.css&lt;/code&gt; being 404 any time I deployed by
+documentation, build with &lt;code&gt;mkdocs&lt;/code&gt;/&lt;code&gt;mkdocstrings&lt;/code&gt;, to GitHub Pages...&lt;/p&gt;
+&lt;p&gt;It's come to light that I was doing this on hard mode, pretty much.&lt;/p&gt;
+&lt;p&gt;While trying to figure out the best way of deploying the docs, I'd stumbled
+on &lt;code&gt;ghp-import&lt;/code&gt; and had been using that. On the other hand, MkDocs has it's
+own command for doing the same thing: &lt;a href="https://www.mkdocs.org/user-guide/deploying-your-docs/"&gt;&lt;code&gt;mkdocs
+gh-deploy&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Timothée &lt;a href="https://github.com/mkdocstrings/mkdocstrings/discussions/742#discussioncomment-12351028"&gt;pointed out to
+me&lt;/a&gt;
+that he never runs into this problem, but he used this command. As it turns
+out, if you use &lt;code&gt;mkdocs gh-deploy&lt;/code&gt; it creates the &lt;code&gt;.nojekyll&lt;/code&gt; file by
+default.&lt;/p&gt;
+&lt;p&gt;And how does it do this? It uses the &lt;code&gt;ghp-import&lt;/code&gt; code &lt;a href="https://github.com/mkdocs/mkdocs/blob/4c7404485f988f409ccaf42fefe705222ff5965a/mkdocs/commands/gh_deploy.py#L138"&gt;and uses a switch it
+has to achieve exactly
+this&lt;/a&gt;.
+In fact... the command line version even has a switch for it!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;-n, --no-jekyll      Include a .nojekyll file in the branch.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This is off by default, when you run the command itself, but I wish I'd
+noticed this when I was first experimenting. O_o&lt;/p&gt;
+&lt;p&gt;Anyway, thanks to Timothée's pointers, I've now managed to &lt;a href="https://github.com/davep/textual-fspicker/pull/39/files"&gt;simplify how I
+build and publish the docs from
+&lt;code&gt;textual-fspicker&lt;/code&gt;&lt;/a&gt;,
+and I'll apply this to other projects too.&lt;/p&gt;</content><category term="Coding"></category><category term="documentation"></category><category term="GitHub"></category><category term="mkdocs"></category><category term="mkdocstrings"></category><category term="gh-pages"></category></entry><entry><title>Documenting textual-fspicker (plus a TIL)</title><link href="https://blog.davep.org/2025/02/28/documenting-fspicker.html" rel="alternate"></link><published>2025-02-28T11:45:00+00:00</published><updated>2025-02-28T11:45:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-02-28:/2025/02/28/documenting-fspicker.html</id><content type="html">&lt;p&gt;I've just made a wee update to
 &lt;a href="https://github.com/davep/textual-fspicker"&gt;&lt;code&gt;textual-fspicker&lt;/code&gt;&lt;/a&gt;, my dialog
 library for &lt;a href="https://textual.textualize.io"&gt;Textual&lt;/a&gt; which adds &lt;code&gt;FileOpen&lt;/code&gt;,
 &lt;code&gt;FileSave&lt;/code&gt; and &lt;code&gt;SelectDirectory&lt;/code&gt; dialogs. There's no substantial change to
@@ -53,6 +79,9 @@ live preview as I write things and update the code. The &lt;code&gt;publishdocs&
 is used to create and push a &lt;code&gt;gh-pages&lt;/code&gt; branch for the repository, resulting
 in the documentation being hosted by GitHub.&lt;/p&gt;
 &lt;h2&gt;A wee problem&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;NOTE: &lt;a href="/2025/02/28/mkdocs-gh-pages-redux.html"&gt;I've since found out there's an easier way of fixing the issue&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;This is, however, where I ran into a wee problem. I noticed that the
 locally-hosted version of the documentation looked great, but the version
 hosted on GitHub Pages was... not so great. I was seeing a load of text
@@ -1241,88 +1270,4 @@ made some small changes, so I thought I'd make mention of what I've done.&lt;/p&
 TODO list in the README and I will slowly work through it. Along with
 &lt;a href="https://github.com/davep/tinboard"&gt;tinboard&lt;/a&gt; these are two applications
 that have absolutely turned into "daily drivers", so they're going to get a
-lot of tweaking over the next few weeks, probably even months.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry><entry><title>textual-dominfo</title><link href="https://blog.davep.org/2024/01/15/textual-dominfo.html" rel="alternate"></link><published>2024-01-15T21:20:00+01:00</published><updated>2024-01-15T21:20:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-01-15:/2024/01/15/textual-dominfo.html</id><content type="html">&lt;p&gt;Last week I was wrestling with some Textual code, trying to get something to
-lay out on the screen "just so". On the whole this isn't too tricky at all,
-and for those times where it might feel tricky &lt;a href="https://textual.textualize.io/how-to/design-a-layout/"&gt;there's some advice
-available on how to go about
-it&lt;/a&gt;. But in this case
-I was trying to do a couple of "on the edge" things and one thing I really
-needed to know was what particular part of the display was being "caused" by
-what container or widget&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;Now, at the moment anyway, Textual doesn't have a full-blown devtools with
-all the bells and whistles; not like in your average web browser. It does
-have &lt;a href="https://textual.textualize.io/guide/devtools/"&gt;a devtools&lt;/a&gt;, but not
-with all the fancy DOM-diving stuff the above would have needed.&lt;/p&gt;
-&lt;p&gt;What I needed was the equivalent of &lt;code&gt;print&lt;/code&gt;-debugging but with a
-point-and-ask interface. Now, I actually &lt;em&gt;do&lt;/em&gt; often do &lt;code&gt;print&lt;/code&gt;-debugging
-with Textual apps only I use
-&lt;a href="https://textual.textualize.io/api/app/#textual.app.App.notify"&gt;&lt;code&gt;notify&lt;/code&gt;&lt;/a&gt;;
-this time though &lt;code&gt;notify&lt;/code&gt; wasn't going to cut it.&lt;/p&gt;
-&lt;p&gt;I needed something that would let me point at a widget and say &lt;em&gt;"show me
-stuff about this"&lt;/em&gt;. Something that happens when the mouse hovers over a
-widget. Something like... &lt;a href="https://textual.textualize.io/guide/widgets/#tooltips"&gt;a
-tooltip&lt;/a&gt;!&lt;/p&gt;
-&lt;p&gt;So that was easy:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;on_mount&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;widget&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)]:&lt;/span&gt;
-        &lt;span class="n"&gt;widget&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tooltip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-            &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;node&lt;/span&gt;&lt;span class="si"&gt;!r}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;widget&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ancestors_with_self&lt;/span&gt;
-        &lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Suddenly I could hover my mouse over a bit of space on the screen and get a
-"traceback" of sorts for what "caused" it.&lt;/p&gt;
-&lt;p&gt;I posted this little hack to &lt;code&gt;#show-and-tell&lt;/code&gt; on the &lt;a href="https://discord.gg/Enf6Z3qhVr"&gt;Discord
-server&lt;/a&gt; and someone mentioned it would be
-handy if it also showed the CSS for the widget too. That was simple enough
-because every widget has a &lt;code&gt;styles.css&lt;/code&gt; property that is the CSS for the
-widget, as a string.&lt;/p&gt;
-&lt;p&gt;After that I didn't think much more about it; until today.&lt;/p&gt;
-&lt;p&gt;Looking back, one thing I realised is that adding the CSS information
-&lt;code&gt;on_mount&lt;/code&gt; wasn't quite good enough, as it would only show me the state of
-CSS when the mount happened, not at the moment I inspect the widget. I
-needed the tooltip to be dynamic.&lt;/p&gt;
-&lt;p&gt;Thing is... Textual tooltips can't be functions (which would be the obvious
-approach to make it dynamic); so there was no way to get this on-the-fly
-behaviour I wanted.&lt;/p&gt;
-&lt;p&gt;Except there was! The type of
-&lt;a href="https://textual.textualize.io/api/widget/#textual.widget.Widget.tooltip"&gt;&lt;code&gt;tooltip&lt;/code&gt;&lt;/a&gt;
-is &lt;code&gt;RenderableType&lt;/code&gt;. So that means I could assign it an object that is a
-Rich renderable; that in turn means I could write a &lt;code&gt;__rich__&lt;/code&gt; method for a
-class that wraps a widget and then reports back what it can see every time
-it's called.&lt;/p&gt;
-&lt;p&gt;In other words, via one step of indirection, I could get the &lt;em&gt;"call a
-function each time"&lt;/em&gt; approach I was after!&lt;/p&gt;
-&lt;p&gt;It works a treat too.&lt;/p&gt;
-&lt;p&gt;All of which is a long-winded way of saying I now have a &lt;code&gt;print&lt;/code&gt;-debug-level
-DOM inspector tool for when I'm building applications with Textual:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="textual-dominfo in action" src="/attachments/2024/01/15/textual-dominfo.png#centre"&gt;&lt;/p&gt;
-&lt;p&gt;If this sounds handy to you, you can grab the code too. Install it into your
-development environment with &lt;code&gt;pip&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;textual-dominfo
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;and then attach it to your app or screen or some top-level widget you're
-interested in via &lt;code&gt;on_mount&lt;/code&gt;; for example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;on_mount&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;textual_dominfo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;DOMInfo&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;DOMInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;attach_to&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;and then hover away with that mouse cursor and inspect all the things!
-Whatever you do though, &lt;em&gt;don't&lt;/em&gt; make it part of your runtime, and don't keep
-it installed; just make it a development dependency.&lt;/p&gt;
-&lt;p&gt;The source can be found &lt;a href="https://github.com/davep/textual-dominfo"&gt;over on
-GitHub&lt;/a&gt; and the package is, as
-mentioned above, &lt;a href="https://github.com/davep/textual-dominfo"&gt;over on PyPi&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li id="fn:1"&gt;
-&lt;p&gt;ObPedant: Containers are widgets, but it's often helpful to make a
-distinction between widgets that exist just to control the layout of the
-widgets inside them, and widgets that exist to actually do or show
-stuff.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content><category term="Python"></category><category term="PyPi"></category><category term="Python"></category><category term="coding"></category><category term="Textual"></category></entry></feed>
+lot of tweaking over the next few weeks, probably even months.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry></feed>
