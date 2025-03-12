@@ -183,6 +183,137 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/03/12/aging.html#aging">AgiNG</a></h2>
+    <p>
+      Posted on 2025-03-12 08:00 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/norton-guide.html">Norton Guide</a>
+        &#8226; 4 min read
+    </p>
+  </header>
+  <div>
+      <div><p><img alt="AgiNG" src="/attachments/2025/03/12/aging-social-banner.png"></p>
+<p>It seems I really do still have this need to create new terminal-based
+projects at the moment. There's been
+<a href="/2025/01/03/braindrop.html">Braindrop</a>, then
+<a href="/2025/01/25/peplum.html">Peplum</a>, then after that came
+<a href="/2025/02/14/hike.html">Hike</a>. While I'm still tweaking and adding to them,
+and also using them to refine <a href="https://github.com/davep/textual-enhanced">a wee library I'm building up that forms the
+core of my latest apps</a>, I felt I
+still had this one app that I <em>needed</em> to finally build.</p>
+<p>Since the 1990s I've had this mild obsession with <a href="https://www.davep.org/norton-guides/">building tools for
+maintaining access to Norton Guide
+files</a>. I've written readers for
+<a href="https://github.com/davep/eg">GNU/Linux (which also works on macOS too)</a>,
+<a href="https://github.com/davep/eg-OS2">OS/2</a>,
+<a href="https://github.com/davep/weg">Windows</a>, <a href="https://github.com/davep/eg.el">GNU
+Emacs</a>, and also or the web (in multiple
+incarnations). Those builds have covered a few languages, including C, C++,
+Pascal, JavaScript and Emacs Lisp.</p>
+<p>I'd never written a Python library or application for it though.</p>
+<p>So when I first saw Textual mentioned in passing on Twitter a few years
+back, way back in the 0.1 days, I thought that could be the thing that would
+push me over the edge. In anticipation of that, back in 2021, I initially
+developed <a href="https://blog.davep.org/ngdb.py/"><code>ngdb.py</code></a>. This is a library
+that provides the core Norton Guide reading code for Python applications and
+could form the basis for other tools.</p>
+<p>As a test for this I then wrote <a href="https://github.com/davep/ng2web"><code>ng2web</code></a>
+(which works, but I think still needs a bit of tidying up -- something I'm
+aiming to do in the next few weeks).</p>
+<p>Meanwhile, the journey with Textual itself <a href="/2022/10/05/on-to-something-new-redux.html">kicked
+off</a>, happened, and <a href="/2024/03/28/goodbye-textualize.html">came to an
+end</a>; and yet somehow I'd never got
+round to building the thing I'd initially looked at Textual for: a
+terminal-based Norton Guide reader that looked nice and modern (by terminal
+standards). When I initially joined Textualize the owner had actually said
+they wanted me to build this as test of the framework, to essentially start
+out by employing me to create some Free Software that would help dogfood the
+library, but that seemed to get forgotten.</p>
+<p>Fast forward to the start of this month and I finally felt it was time to
+tackle this. The result is <a href="https://github.com/davep/aging">AgiNG</a><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
+<p><img alt="AgiNG in action" src="/attachments/2025/03/12/aging-textual-dark.png"></p>
+<p>As of v0.1.0 it has most of the features you'd expect from a usable Norton
+Guide reader, including:</p>
+<ul>
+<li>An ability to add guide files to an in-application directory.</li>
+<li>The ability open and navigate a guide.</li>
+<li>Full see-also support, etc.</li>
+<li>Full translation of characters as were under MS-DOS into the terminal.</li>
+<li>The ability to copy entry text or source to the clipboard.</li>
+<li>The ability to copy save entry text or source to a file.</li>
+<li>Access to a guide's credits.</li>
+</ul>
+<p><img alt="AgiNG showing a long entry" src="/attachments/2025/03/12/aging-long-entry.png"></p>
+<p>I still need to write some proper documentation for the application, but
+meanwhile all commands and key shortcuts can be discovered either via the
+help screen:</p>
+<p><img alt="AgiNG help" src="/attachments/2025/03/12/aging-help-screen.png"></p>
+<p>or by pulling up the command palette:</p>
+<p><img alt="AgiNG command palette" src="/attachments/2025/03/12/aging-command-palette.png"></p>
+<p>Hopefully the workings of the application will be fairly obvious to anyone
+who is familiar with Norton Guide files; if anything isn't making sense <a href="https://github.com/davep/aging/discussions/categories/q-a">I'm
+more than happy to answer
+questions</a> or
+<a href="https://github.com/davep/aging/discussions/categories/ideas">take suggestions for
+improvements</a>.</p>
+<p>One wee feature I want to call out, that I felt was important to add, was a
+"classic view" facility. The thing with Norton Guide files is they were
+mostly created in the very late 1980s and early-to-mid 1990s. People would
+often get creative with the colouring within them, but in many cases the
+colouring assumed the default Norton Guide application. Its colours were
+white text on a blue background. So sometimes other colouring was done
+assuming that background.</p>
+<p>You can see an example of this here, with an entry in a guide being viewed
+using the default <code>textual-dark</code> theme:</p>
+<p><img alt="Entry in textual-dark" src="/attachments/2025/03/12/textual-dark.png"></p>
+<p>Notice the colouring in the syntax section. This is more obvious if the
+application is switched to one of the light themes:</p>
+<p><img alt="Entry in solarized-light" src="/attachments/2025/03/12/solarized-light.png"></p>
+<p>With a nod to this issue in mind, I added the "classic view" for entries
+(which is a sticky setting -- turn it on and it stays on until you turn it
+off):</p>
+<p><img alt="Classic view in action" src="/attachments/2025/03/12/classic-view.png"></p>
+<p>A little hard on the eyes, I think, but also filled with nostalgia!</p>
+<p>Talking of themes, all the usual application themes are available, here's a
+wee selection:</p>
+<p><img alt="Nord" src="/attachments/2025/03/12/aging-nord.png">
+<img alt="Textual Light" src="/attachments/2025/03/12/aging-textual-light.png">
+<img alt="Gruvbox" src="/attachments/2025/03/12/aging-gruvbox.png">
+<img alt="Solarize Light" src="/attachments/2025/03/12/aging-solarized-light.png">
+<img alt="Monokai" src="/attachments/2025/03/12/aging-monokai.png"></p>
+<p>AgiNG is licensed GPL-3.0 and available <a href="https://github.com/davep/aging">via
+GitHub</a> and also <a href="https://pypi.org/project/aging/">via
+PyPi</a>. If you have an environment that has
+<code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>aging
+</code></pre></div>
+
+<p>It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>aging</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>aging
+</code></pre></div>
+
+<p>Expect to see more updates in the near future; as with other recent projects
+this is very much something I'm going to be dabbling with and improving as
+time goes on.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>If you're wondering about the name, it's nothing more than a word that
+happens to have <code>NG</code> in it, and also a mild pun about this being an
+ageing hypertext help system; with the spelling acknowledging Peter
+Norton's nationality.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/02/14/hike.html#hike">Hike</a></h2>
     <p>
       Posted on 2025-02-14 09:22 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -789,59 +920,6 @@ can see <em>every</em> possible command right away.</p>
 <p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
 PyPi</a>. The <a href="https://github.com/davep/tinboard">source is available on
 GitHub</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/01/29/quizzical.html#quizzical">Quizzical</a></h2>
-    <p>
-      Posted on 2024-01-29 21:30 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>I feel like I'm on a bit of a roll when it comes to building applications
-for the terminal at the moment; while I'm still tinkering and improving
-<a href="https://github.com/davep/tinboard">tinboard</a> and
-<a href="https://github.com/davep/oshit">OSHit</a>, I had the urge to tackle another
-idea that's been on my TODO list for a while.</p>
-<p>This is something <a href="https://github.com/davep/quiz.el">I did for Emacs</a> back
-in 2017 and I felt it was a <em>perfect</em> candidate for a Textual-based project.
-It's a terminal-based trivia quiz game, using <a href="https://opentdb.com/">the Open Trivia
-Database</a> as the source of questions.</p>
-<p><img alt="Quizzical" src="/attachments/2024/01/29/quizzical.png#centre"></p>
-<p>I've just published an early version <a href="https://pypi.org/project/quizzical/">to
-PyPI</a>; it still needs some polish and I
-have a few other ideas for it, but as it stands I feel it's a fun little
-game to mess around with.</p>
-<p>The idea is pretty straightforward: you can run it up and create lots of
-different quizzes, there are various parameters you can use to create lots
-of different kinds of challenges:</p>
-<p><img alt="Building a new quiz" src="/attachments/2024/01/29/new-quiz.png#centre"></p>
-<p>Once you're created a quiz, you can run it and answer away:</p>
-<p><img alt="An example question" src="/attachments/2024/01/29/question.png"></p>
-<p>Right now the idea is that you answer by pressing either <kbd>1</kbd>,
-<kbd>2</kbd>, <kbd>3</kbd> or <kbd>4</kbd> (or just <kbd>1</kbd> or
-<kbd>2</kbd> for true/false questions); when I get a moment I'll also enable
-mouse support for selecting an answer too (honestly I feel
-keyboard-answering feels far more natural).</p>
-<p>Once the quiz is done you can review your answers and see which were right
-and which were wrong:</p>
-<p><img alt="Viewing results" src="/attachments/2024/01/29/results.png#centre"></p>
-<p>As I say: there's a bunch of other things I want to add to this (keeping
-track of scores, adding session token support to reduce the chances of
-repeat questions, etc), but this felt like a good spot to make a v0.1.0
-available if anyone else wanted to have a play.</p>
-<p>Anyway, if this sounds like your sort of thing, it can be installed with
-<code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/quizzical/">from PyPi</a>.
-The <a href="https://github.com/davep/quizzical">source is available over on
-GitHub</a>.</p>
-<p>PS: Now you can see why I made
-<a href="/2024/01/11/textual-countdown.html"><code>textual-countdown</code></a>.</p></div>
   </div>
 </article>
 

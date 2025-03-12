@@ -183,6 +183,66 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2019/10/20/fg-fish.html#fg-fish">gh.fish -- Quickly visit a repo's forge</a></h2>
+    <p>
+      Posted on 2019-10-20 13:15 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/fish.html">fish</a>,              <a href="https://blog.davep.org/tag/git.html">git</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>These days <a href="https://fishshell.com/">fish</a> is my shell of choice. I started
+out with <a href="https://www.gnu.org/software/bash/">bash</a> back in the 1990s, went
+through a bit of a
+<a href="https://www.zsh.org/">zsh</a>/<a href="https://ohmyz.sh/">oh-my-zsh</a> phase, but
+earlier this year finally settled on fish.</p>
+<p>At some point I might write a post about my fish config, and why fish works
+well for me. But that's an idea for another time.</p>
+<p>In this post I thought I'd share a little snippet of code that can come in
+handy now and again.</p>
+<p>Sometimes I find myself inside a git repo, in the shell, and I want to get
+to the "<a href="https://en.wikipedia.org/wiki/Forge_%28software%29">forge</a>" for
+that repo. This is most often either on <a href="https://github.com/">GitHub</a>, or in
+a <a href="https://about.gitlab.com/install/">company-local installation of GitLab</a>.
+To get there quickly I wrote
+<a href="https://gist.github.com/davep/3bac3b30e45a3560c265150e609219db"><code>gh.fish</code></a>:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">##############################################################################</span>
+<span class="cp"># Attempt go visit the origin hub for the current repo.</span>
+
+<span class="n">function</span><span class="w"> </span><span class="n">gh</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="s">&quot;Visit the repo in its origin hub&quot;</span>
+
+<span class="w">    </span><span class="cp"># Check that there is some sort of origin.</span>
+<span class="w">    </span><span class="n">set</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="p">(</span><span class="n">git</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">--</span><span class="n">get</span><span class="w"> </span><span class="n">remote</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">url</span><span class="p">)</span>
+
+<span class="w">    </span><span class="cp"># If we didn&#39;t get anything...</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;$origin&quot;</span>
+<span class="w">        </span><span class="cp"># ...complain and exit.</span>
+<span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="s">&quot;This doesn&#39;t appear to be a git repo with an origin&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">end</span>
+
+<span class="w">    </span><span class="cp"># Open in the browser.</span>
+<span class="w">    </span><span class="n">open</span><span class="w"> </span><span class="s">&quot;https://&quot;</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w"> </span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="w"> </span><span class="err">&#39;\</span><span class="p">.</span><span class="n">git$</span><span class="err">&#39;</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">split</span><span class="w"> </span><span class="s">&quot;@&quot;</span><span class="w"> </span><span class="n">$origin</span><span class="p">)[</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">]))</span>
+
+<span class="n">end</span>
+
+<span class="cp">### gh.fish ends here</span>
+</code></pre></div>
+
+<p>The idea is pretty simple: I see if the repo has an origin of some
+description and, if it has, I <a href="https://fishshell.com/docs/current/commands.html#string">slice and dice
+it</a> into something
+that looks like the URL you'd expect to find for a GitHub or GitLab repo.
+Finally I use
+<a href="https://fishshell.com/docs/current/commands.html#open"><code>open</code></a> to open the
+URL in the environment's browser of choice.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2017/03/10/jsng.html#jsng">jsNG</a></h2>
     <p>
       Posted on 2017-03-10 10:14 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>

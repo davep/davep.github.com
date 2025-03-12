@@ -183,6 +183,43 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/12/21/tinboard-0-2-0.html#tinboard-0-2-0">Tinboard v0.2.0</a></h2>
+    <p>
+      Posted on 2023-12-21 09:29 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
+        &#8226; 1 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Following on from <a href="/2023/12/19/tinboard.html">the initial full release a couple of days
+ago</a>, I've just <a href="https://github.com/davep/tinboard/releases/tag/v0.2.0">released v0.2.0 of
+Tinboard</a>. There's
+just one small change in this, but I think it's a really useful one.</p>
+<p>In the top-left corner of the screen there's a menu of main filters, letting
+you switch between seeing all bookmarks, or a combination of read, unread,
+public, private, etc... In using the application I quickly realised that it
+would be handy to have bookmark counts in that menu.</p>
+<p>So I added that:</p>
+<p><img alt="Counts in the filters menu" src="/attachments/2023/12/21/filters-menu.png#centre"></p>
+<p>These counts are a little different from those in the tags list, in that
+they always show the number of matching bookmarks amongst <em>all recorded
+bookmarks</em>, not just those currently on display (and so subject to any sort
+of filter that's in play).</p>
+<p>I <em>think</em> this is the right approach here. I know for sure that that's what
+I want from this, and I am writing this for me after all...</p>
+<p>What's handy about this is that it makes it easier for me to see how many
+bookmarks haven't been tagged, and also how many I haven't looked back over
+and marked as read. This is already helping me get to untagged-zero.</p>
+<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
+PyPi</a>. The <a href="https://github.com/davep/tinboard">source is available on
+GitHub</a>.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/12/19/tinboard.html#tinboard">Tinboard</a></h2>
     <p>
       Posted on 2023-12-19 09:47 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -734,92 +771,6 @@ update</a> after
 it was <a href="https://github.com/davep/textual-canvas/discussions/1">requested that I add a <code>clear</code> method to the <code>Canvas</code>
 widget</a>; a request
 that makes perfect sense.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2023/07/03/making-my-github-banner.html#making-my-github-banner">A new GitHub profile README</a></h2>
-    <p>
-      Posted on 2023-07-03 08:15 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/github.html">GitHub</a>,              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/textual.html">Textual</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p><img alt="My new GitHub banner" src="https://raw.githubusercontent.com/davep/davep/main/davep.svg"></p>
-<p>Ever since GitHub introduced the <a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme">profile
-README</a><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>
-I've had a massively low-effort one in place. I made the repo, quickly wrote
-the file, and then sort of forgot about it. Well, I didn't so much forget as
-just keep looking at it and thinking "I should do something better with that
-one day".</p>
-<p>Thing is, while there are lots of fancy approaches out there, and lots of
-neat generator tools and the like... they just weren't for me.</p>
-<p>Then yesterday, over my second morning coffee, after <a href="/2023/07/02/catching-up.html">getting my blog
-environment up and going again</a>, I had an
-idea. It could be cool to use <a href="https://textual.textualize.io/api/app/#textual.app.App.save_screenshot">Textual's screenshot
-facility</a>
-to make something terminal-themed! I mean, while it's not <em>all</em> I am these
-days, so much of what I'm doing right now is aimed at the terminal.</p>
-<p>So... what to do? Then I thought it could be cool to knock up some sort of
-login screen type thing; with a banner. One visit to an online large
-terminal text generator site later, I had some banner text. All that was
-left was to write <a href="https://github.com/davep/davep/blob/main/make_banner.py">a simple Textual application to create the
-"screen"</a>.</p>
-<p>The main layout is simple enough:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">compose</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComposeResult</span><span class="p">:</span>
-    <span class="k">yield</span> <span class="n">Label</span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="s2">&quot;banner&quot;</span><span class="p">)</span>
-    <span class="k">yield</span> <span class="n">Label</span><span class="p">(</span><span class="n">PRATTLE</span><span class="p">)</span>
-    <span class="k">yield</span> <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;github.com/davep login: [reverse] [/]&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<p>where <code>NAME</code> contains the banner and <code>PRATTLE</code> contains the "login message".
-With some <a href="https://textual.textualize.io/guide/CSS/">Textual CSS</a> sprinkled
-over it to give the exact layout and colour I wanted, all that was left was
-to make the snapshot. This was easy enough too.</p>
-<p>While the whole thing isn't fully documented just yet, Textual does have <a href="https://textual.textualize.io/api/app/#textual.app.App.run_test">a
-great tool for automatically running an application and interacting with
-it</a>; that
-meant I could easily write a function to load up my app and save the
-screenshot:</p>
-<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">make_banner</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">async</span> <span class="k">with</span> <span class="n">GitHubBannerApp</span><span class="p">()</span><span class="o">.</span><span class="n">run_test</span><span class="p">()</span> <span class="k">as</span> <span class="n">pilot</span><span class="p">:</span>
-        <span class="n">pilot</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">save_screenshot</span><span class="p">(</span><span class="s2">&quot;davep.svg&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<p>Of course, that needs running async, but that's simple enough:</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">make_banner</span><span class="p">())</span>
-</code></pre></div>
-
-<p>Throw in a <code>Makefile</code> so I don't forget what I'm supposed to run:</p>
-<div class="highlight"><pre><span></span><code><span class="nl">.PHONY:</span><span class="w"> </span><span class="nf">all</span>
-<span class="nl">all:</span>
-<span class="w">    </span><span class="nf">pipenv</span><span class="w"> </span><span class="no">run</span><span class="w"> </span><span class="no">python</span><span class="w"> </span><span class="no">make_banner.py</span>
-</code></pre></div>
-
-<p>and that's it! Job done!</p>
-<p>From here onward I guess I could have some real fun with this. It would be
-simple enough I guess to modify the code so that it changes what's displayed
-over time; perhaps show a "last login" value that relates to recently
-activity or something; any number of things; and then run it in a cron job
-and update the repository.</p>
-<p>For now though... I'll stick with keeping things nice and simple.</p>
-<div class="footnote">
-<hr>
-<ol>
-<li id="fn:1">
-<p>It was actually kind of annoying when they introduced it because the
-repo it uses is named after your user name. I already had a <code>davep</code>
-repo: it was a private repo where I was slowly working on a (now
-abandoned, I'll start it again some day I'm sure) ground-up rewrite of
-my <code>davep.org</code> website.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div></div>
   </div>
 </article>
 

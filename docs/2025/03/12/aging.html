@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="all" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://blog.davep.org/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://blog.davep.org/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://blog.davep.org/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="https://blog.davep.org/static/davep.css">
+
+  <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
+
+  <link href="https://blog.davep.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog.davep.org Atom">
+
+  <link href="https://blog.davep.org/feed.xml" type="application/rss+xml" rel="alternate" title="blog.davep.org RSS">
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Dave Pearson" />
+<meta name="description" content="It seems I really do still have this need to create new terminal-based projects at the moment. There&#39;s been Braindrop, then Peplum, then after that came Hike. While I&#39;m still tweaking and adding to them, and also using them to refine a wee library I&#39;m building up that forms the core of my latest apps, I felt I still had this one app that I needed to finally build. Since the 1990s I&#39;ve had this mild obsession with building tools for maintaining access to Norton Guide files. I&#39;ve written readers for GNU/Linux (which also works on macOS too), OS/2, Windows, GNU Emacs, and also or the web (in multiple incarnations). Those builds have covered a few languages, including C, C++, Pascal, JavaScript and Emacs Lisp. I&#39;d never written a Python library or application for it though. So when I first saw Textual mentioned in passing on Twitter a few years back, way back in the 0.1 days, I thought that could be the thing that would push me over the edge. In anticipation of that, back in 2021, I initially developed ngdb.py. This is a library that provides the core Norton Guide reading code for Python applications and could form the basis for other tools. As a test for this I then wrote ng2web (which works, but I think still needs a bit of tidying up -- something I&#39;m aiming to do in the next few weeks). Meanwhile, the journey with Textual itself kicked off, happened, and came to an end; and yet somehow I&#39;d never got round to building the thing I&#39;d initially looked at Textual for: a terminal-based Norton Guide reader that looked nice and modern (by terminal standards). When I initially joined Textualize the owner had actually said they wanted me to build this as test of the framework, to essentially start out by employing me to create some Free Software that would help dogfood the library, but that seemed to get forgotten. Fast forward to the start of this month and I finally felt it was time to tackle this. The result is AgiNG1. As of v0.1.0 it has most of the features you&#39;d expect from a usable Norton Guide reader, including: An ability to add guide files to an in-application directory. The ability open and navigate a guide. Full see-also support, etc. Full translation of characters as were under MS-DOS into the terminal. The ability to copy entry text or source to the clipboard. The ability to copy save entry text or source to a file. Access to a guide&#39;s credits. I still need to write some proper documentation for the application, but meanwhile all commands and key shortcuts can be discovered either via the help screen: or by pulling up the command palette: Hopefully the workings of the application will be fairly obvious to anyone who is familiar with Norton Guide files; if anything isn&#39;t making sense I&#39;m more than happy to answer questions or take suggestions for improvements. One wee feature I want to call out, that I felt was important to add, was a &#34;classic view&#34; facility. The thing with Norton Guide files is they were mostly created in the very late 1980s and early-to-mid 1990s. People would often get creative with the colouring within them, but in many cases the colouring assumed the default Norton Guide application. Its colours were white text on a blue background. So sometimes other colouring was done assuming that background. You can see an example of this here, with an entry in a guide being viewed using the default textual-dark theme: Notice the colouring in the syntax section. This is more obvious if the application is switched to one of the light themes: With a nod to this issue in mind, I added the &#34;classic view&#34; for entries (which is a sticky setting -- turn it on and it stays on until you turn it off): A little hard on the eyes, I think, but also filled with nostalgia! Talking of themes, all the usual application themes are available, here&#39;s a wee selection: AgiNG is licensed GPL-3.0 and available via GitHub and also via PyPi. If you have an environment that has pipx installed you should be able to get up and going with: $ pipx install aging It can also be installed with Homebrew by tapping davep/homebrew and then installing aging: $ brew tap davep/homebrew $ brew install aging Expect to see more updates in the near future; as with other recent projects this is very much something I&#39;m going to be dabbling with and improving as time goes on. If you&#39;re wondering about the name, it&#39;s nothing more than a word that happens to have NG in it, and also a mild pun about this being an ageing hypertext help system; with the spelling acknowledging Peter Norton&#39;s nationality. ↩" />
+<meta name="keywords" content="Python, terminal, textual, Norton Guide">
+
+
+  <meta property="og:site_name" content="blog.davep.org"/>
+  <meta property="og:title" content="AgiNG"/>
+  <meta property="og:description" content="It seems I really do still have this need to create new terminal-based projects at the moment. There&#39;s been Braindrop, then Peplum, then after that came Hike. While I&#39;m still tweaking and adding to them, and also using them to refine a wee library I&#39;m building up that forms the core of my latest apps, I felt I still had this one app that I needed to finally build. Since the 1990s I&#39;ve had this mild obsession with building tools for maintaining access to Norton Guide files. I&#39;ve written readers for GNU/Linux (which also works on macOS too), OS/2, Windows, GNU Emacs, and also or the web (in multiple incarnations). Those builds have covered a few languages, including C, C++, Pascal, JavaScript and Emacs Lisp. I&#39;d never written a Python library or application for it though. So when I first saw Textual mentioned in passing on Twitter a few years back, way back in the 0.1 days, I thought that could be the thing that would push me over the edge. In anticipation of that, back in 2021, I initially developed ngdb.py. This is a library that provides the core Norton Guide reading code for Python applications and could form the basis for other tools. As a test for this I then wrote ng2web (which works, but I think still needs a bit of tidying up -- something I&#39;m aiming to do in the next few weeks). Meanwhile, the journey with Textual itself kicked off, happened, and came to an end; and yet somehow I&#39;d never got round to building the thing I&#39;d initially looked at Textual for: a terminal-based Norton Guide reader that looked nice and modern (by terminal standards). When I initially joined Textualize the owner had actually said they wanted me to build this as test of the framework, to essentially start out by employing me to create some Free Software that would help dogfood the library, but that seemed to get forgotten. Fast forward to the start of this month and I finally felt it was time to tackle this. The result is AgiNG1. As of v0.1.0 it has most of the features you&#39;d expect from a usable Norton Guide reader, including: An ability to add guide files to an in-application directory. The ability open and navigate a guide. Full see-also support, etc. Full translation of characters as were under MS-DOS into the terminal. The ability to copy entry text or source to the clipboard. The ability to copy save entry text or source to a file. Access to a guide&#39;s credits. I still need to write some proper documentation for the application, but meanwhile all commands and key shortcuts can be discovered either via the help screen: or by pulling up the command palette: Hopefully the workings of the application will be fairly obvious to anyone who is familiar with Norton Guide files; if anything isn&#39;t making sense I&#39;m more than happy to answer questions or take suggestions for improvements. One wee feature I want to call out, that I felt was important to add, was a &#34;classic view&#34; facility. The thing with Norton Guide files is they were mostly created in the very late 1980s and early-to-mid 1990s. People would often get creative with the colouring within them, but in many cases the colouring assumed the default Norton Guide application. Its colours were white text on a blue background. So sometimes other colouring was done assuming that background. You can see an example of this here, with an entry in a guide being viewed using the default textual-dark theme: Notice the colouring in the syntax section. This is more obvious if the application is switched to one of the light themes: With a nod to this issue in mind, I added the &#34;classic view&#34; for entries (which is a sticky setting -- turn it on and it stays on until you turn it off): A little hard on the eyes, I think, but also filled with nostalgia! Talking of themes, all the usual application themes are available, here&#39;s a wee selection: AgiNG is licensed GPL-3.0 and available via GitHub and also via PyPi. If you have an environment that has pipx installed you should be able to get up and going with: $ pipx install aging It can also be installed with Homebrew by tapping davep/homebrew and then installing aging: $ brew tap davep/homebrew $ brew install aging Expect to see more updates in the near future; as with other recent projects this is very much something I&#39;m going to be dabbling with and improving as time goes on. If you&#39;re wondering about the name, it&#39;s nothing more than a word that happens to have NG in it, and also a mild pun about this being an ageing hypertext help system; with the spelling acknowledging Peter Norton&#39;s nationality. ↩"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://blog.davep.org/2025/03/12/aging.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-03-12 08:00:00+00:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://blog.davep.org/author/dave-pearson.html">
+  <meta property="article:section" content="Coding"/>
+  <meta property="article:tag" content="Python"/>
+  <meta property="article:tag" content="terminal"/>
+  <meta property="article:tag" content="textual"/>
+  <meta property="article:tag" content="Norton Guide"/>
+  <meta property="og:image" content="https://blog.davep.org/attachments/2025/03/12/aging-social-banner.png">
+
+  <title>blog.davep.org &ndash; AgiNG</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://blog.davep.org/">
+      <img src="/static/davep.jpeg" alt="davep" title="davep">
+    </a>
+
+    <h1>
+      <a href="https://blog.davep.org/">davep</a>
+    </h1>
+
+    <p>Code, Emacs, VR, Stuff...</p>
+
+
+    <nav>
+      <ul class="list">
+
+
+            <li>
+              <a target="_blank"
+                 href="https://blog.davep.org/pages/about.html#about">
+                About
+              </a>
+            </li>
+            <li>
+              <a target="_blank"
+                 href="https://blog.davep.org/pages/dot-files.html#dot-files">
+                Dot Files
+              </a>
+            </li>
+
+          <li>
+            <a target="_blank" href="http://davep.at/" >davep@</a>
+          </li>
+          <li>
+            <a target="_blank" href="https://raindrop.io/davep/public-46742255/sort=-created&perpage=30&page=0" >Bookmarks</a>
+          </li>
+          <li>
+            <a target="_blank" href="https://seenbydavep.blogspot.com/" >Photoblog</a>
+          </li>
+          <li>
+            <a target="_blank" href="https://elisp.dev/" >Emacs Packages</a>
+          </li>
+          <li>
+            <a target="_blank" href="https://pypi.org/user/davepearson/" >Python Packages</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-github"
+           href="https://github.com/davep"
+           target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-mastodon"
+rel="me"           href="https://fosstodon.org/@davep"
+           target="_blank">
+          <i class="fa-brands fa-mastodon"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-flickr"
+           href="https://www.flickr.com/photos/davepearson/"
+           target="_blank">
+          <i class="fa-brands fa-flickr"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-lastfm"
+           href="https://www.last.fm/user/davepdotorg"
+           target="_blank">
+          <i class="fa-brands fa-lastfm"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-npm"
+           href="https://www.npmjs.com/~davep.org"
+           target="_blank">
+          <i class="fa-brands fa-npm"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-youtube"
+           href="https://www.youtube.com/user/daveporg"
+           target="_blank">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-steam"
+           href="https://steamcommunity.com/id/davepdotorg"
+           target="_blank">
+          <i class="fa-brands fa-steam"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://blog.davep.org/">Home</a>
+
+  <a href="/archives.html">Archives</a>
+  <a href="/categories.html">Categories</a>
+  <a href="/tags.html">Tags</a>
+
+  <a href="https://blog.davep.org/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://blog.davep.org/feed.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="aging">AgiNG</h1>
+    <p>
+      Posted on 2025-03-12 08:00 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+        &#8226; 4 min read
+    </p>
+  </header>
+
+
+  <div>
+    <p><img alt="AgiNG" src="/attachments/2025/03/12/aging-social-banner.png"></p>
+<p>It seems I really do still have this need to create new terminal-based
+projects at the moment. There's been
+<a href="/2025/01/03/braindrop.html">Braindrop</a>, then
+<a href="/2025/01/25/peplum.html">Peplum</a>, then after that came
+<a href="/2025/02/14/hike.html">Hike</a>. While I'm still tweaking and adding to them,
+and also using them to refine <a href="https://github.com/davep/textual-enhanced">a wee library I'm building up that forms the
+core of my latest apps</a>, I felt I
+still had this one app that I <em>needed</em> to finally build.</p>
+<p>Since the 1990s I've had this mild obsession with <a href="https://www.davep.org/norton-guides/">building tools for
+maintaining access to Norton Guide
+files</a>. I've written readers for
+<a href="https://github.com/davep/eg">GNU/Linux (which also works on macOS too)</a>,
+<a href="https://github.com/davep/eg-OS2">OS/2</a>,
+<a href="https://github.com/davep/weg">Windows</a>, <a href="https://github.com/davep/eg.el">GNU
+Emacs</a>, and also or the web (in multiple
+incarnations). Those builds have covered a few languages, including C, C++,
+Pascal, JavaScript and Emacs Lisp.</p>
+<p>I'd never written a Python library or application for it though.</p>
+<p>So when I first saw Textual mentioned in passing on Twitter a few years
+back, way back in the 0.1 days, I thought that could be the thing that would
+push me over the edge. In anticipation of that, back in 2021, I initially
+developed <a href="https://blog.davep.org/ngdb.py/"><code>ngdb.py</code></a>. This is a library
+that provides the core Norton Guide reading code for Python applications and
+could form the basis for other tools.</p>
+<p>As a test for this I then wrote <a href="https://github.com/davep/ng2web"><code>ng2web</code></a>
+(which works, but I think still needs a bit of tidying up -- something I'm
+aiming to do in the next few weeks).</p>
+<p>Meanwhile, the journey with Textual itself <a href="/2022/10/05/on-to-something-new-redux.html">kicked
+off</a>, happened, and <a href="/2024/03/28/goodbye-textualize.html">came to an
+end</a>; and yet somehow I'd never got
+round to building the thing I'd initially looked at Textual for: a
+terminal-based Norton Guide reader that looked nice and modern (by terminal
+standards). When I initially joined Textualize the owner had actually said
+they wanted me to build this as test of the framework, to essentially start
+out by employing me to create some Free Software that would help dogfood the
+library, but that seemed to get forgotten.</p>
+<p>Fast forward to the start of this month and I finally felt it was time to
+tackle this. The result is <a href="https://github.com/davep/aging">AgiNG</a><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
+<p><img alt="AgiNG in action" src="/attachments/2025/03/12/aging-textual-dark.png"></p>
+<p>As of v0.1.0 it has most of the features you'd expect from a usable Norton
+Guide reader, including:</p>
+<ul>
+<li>An ability to add guide files to an in-application directory.</li>
+<li>The ability open and navigate a guide.</li>
+<li>Full see-also support, etc.</li>
+<li>Full translation of characters as were under MS-DOS into the terminal.</li>
+<li>The ability to copy entry text or source to the clipboard.</li>
+<li>The ability to copy save entry text or source to a file.</li>
+<li>Access to a guide's credits.</li>
+</ul>
+<p><img alt="AgiNG showing a long entry" src="/attachments/2025/03/12/aging-long-entry.png"></p>
+<p>I still need to write some proper documentation for the application, but
+meanwhile all commands and key shortcuts can be discovered either via the
+help screen:</p>
+<p><img alt="AgiNG help" src="/attachments/2025/03/12/aging-help-screen.png"></p>
+<p>or by pulling up the command palette:</p>
+<p><img alt="AgiNG command palette" src="/attachments/2025/03/12/aging-command-palette.png"></p>
+<p>Hopefully the workings of the application will be fairly obvious to anyone
+who is familiar with Norton Guide files; if anything isn't making sense <a href="https://github.com/davep/aging/discussions/categories/q-a">I'm
+more than happy to answer
+questions</a> or
+<a href="https://github.com/davep/aging/discussions/categories/ideas">take suggestions for
+improvements</a>.</p>
+<p>One wee feature I want to call out, that I felt was important to add, was a
+"classic view" facility. The thing with Norton Guide files is they were
+mostly created in the very late 1980s and early-to-mid 1990s. People would
+often get creative with the colouring within them, but in many cases the
+colouring assumed the default Norton Guide application. Its colours were
+white text on a blue background. So sometimes other colouring was done
+assuming that background.</p>
+<p>You can see an example of this here, with an entry in a guide being viewed
+using the default <code>textual-dark</code> theme:</p>
+<p><img alt="Entry in textual-dark" src="/attachments/2025/03/12/textual-dark.png"></p>
+<p>Notice the colouring in the syntax section. This is more obvious if the
+application is switched to one of the light themes:</p>
+<p><img alt="Entry in solarized-light" src="/attachments/2025/03/12/solarized-light.png"></p>
+<p>With a nod to this issue in mind, I added the "classic view" for entries
+(which is a sticky setting -- turn it on and it stays on until you turn it
+off):</p>
+<p><img alt="Classic view in action" src="/attachments/2025/03/12/classic-view.png"></p>
+<p>A little hard on the eyes, I think, but also filled with nostalgia!</p>
+<p>Talking of themes, all the usual application themes are available, here's a
+wee selection:</p>
+<p><img alt="Nord" src="/attachments/2025/03/12/aging-nord.png">
+<img alt="Textual Light" src="/attachments/2025/03/12/aging-textual-light.png">
+<img alt="Gruvbox" src="/attachments/2025/03/12/aging-gruvbox.png">
+<img alt="Solarize Light" src="/attachments/2025/03/12/aging-solarized-light.png">
+<img alt="Monokai" src="/attachments/2025/03/12/aging-monokai.png"></p>
+<p>AgiNG is licensed GPL-3.0 and available <a href="https://github.com/davep/aging">via
+GitHub</a> and also <a href="https://pypi.org/project/aging/">via
+PyPi</a>. If you have an environment that has
+<code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>aging
+</code></pre></div>
+
+<p>It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>aging</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>aging
+</code></pre></div>
+
+<p>Expect to see more updates in the near future; as with other recent projects
+this is very much something I'm going to be dabbling with and improving as
+time goes on.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>If you're wondering about the name, it's nothing more than a word that
+happens to have <code>NG</code> in it, and also a mild pun about this being an
+ageing hypertext help system; with the spelling acknowledging Peter
+Norton's nationality.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://blog.davep.org/tag/python.html">Python</a>
+      <a href="https://blog.davep.org/tag/terminal.html">terminal</a>
+      <a href="https://blog.davep.org/tag/textual.html">textual</a>
+      <a href="https://blog.davep.org/tag/norton-guide.html">Norton Guide</a>
+    </p>
+  </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://blog.davep.org/2025/02/28/mkdocs-gh-pages-redux.html" title="MkDocs/mkdocstrings 404 CSS TIL update">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; 2015-2024 Dave Pearson</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://blog.davep.org/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " blog.davep.org ",
+  "url" : "https://blog.davep.org",
+  "image": "/static/davep.jpeg",
+  "description": ""
+}
+</script>
+</body>
+</html>

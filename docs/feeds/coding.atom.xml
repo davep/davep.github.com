@@ -1,5 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2025-02-28T22:23:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>MkDocs/mkdocstrings 404 CSS TIL update</title><link href="https://blog.davep.org/2025/02/28/mkdocs-gh-pages-redux.html" rel="alternate"></link><published>2025-02-28T22:23:00+00:00</published><updated>2025-02-28T22:23:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-02-28:/2025/02/28/mkdocs-gh-pages-redux.html</id><content type="html">&lt;p&gt;Following on from &lt;a href="/2025/02/28/documenting-fspicker.html"&gt;my post this
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2025-03-12T08:00:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>AgiNG</title><link href="https://blog.davep.org/2025/03/12/aging.html" rel="alternate"></link><published>2025-03-12T08:00:00+00:00</published><updated>2025-03-12T08:00:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-03-12:/2025/03/12/aging.html</id><content type="html">&lt;p&gt;&lt;img alt="AgiNG" src="/attachments/2025/03/12/aging-social-banner.png"&gt;&lt;/p&gt;
+&lt;p&gt;It seems I really do still have this need to create new terminal-based
+projects at the moment. There's been
+&lt;a href="/2025/01/03/braindrop.html"&gt;Braindrop&lt;/a&gt;, then
+&lt;a href="/2025/01/25/peplum.html"&gt;Peplum&lt;/a&gt;, then after that came
+&lt;a href="/2025/02/14/hike.html"&gt;Hike&lt;/a&gt;. While I'm still tweaking and adding to them,
+and also using them to refine &lt;a href="https://github.com/davep/textual-enhanced"&gt;a wee library I'm building up that forms the
+core of my latest apps&lt;/a&gt;, I felt I
+still had this one app that I &lt;em&gt;needed&lt;/em&gt; to finally build.&lt;/p&gt;
+&lt;p&gt;Since the 1990s I've had this mild obsession with &lt;a href="https://www.davep.org/norton-guides/"&gt;building tools for
+maintaining access to Norton Guide
+files&lt;/a&gt;. I've written readers for
+&lt;a href="https://github.com/davep/eg"&gt;GNU/Linux (which also works on macOS too)&lt;/a&gt;,
+&lt;a href="https://github.com/davep/eg-OS2"&gt;OS/2&lt;/a&gt;,
+&lt;a href="https://github.com/davep/weg"&gt;Windows&lt;/a&gt;, &lt;a href="https://github.com/davep/eg.el"&gt;GNU
+Emacs&lt;/a&gt;, and also or the web (in multiple
+incarnations). Those builds have covered a few languages, including C, C++,
+Pascal, JavaScript and Emacs Lisp.&lt;/p&gt;
+&lt;p&gt;I'd never written a Python library or application for it though.&lt;/p&gt;
+&lt;p&gt;So when I first saw Textual mentioned in passing on Twitter a few years
+back, way back in the 0.1 days, I thought that could be the thing that would
+push me over the edge. In anticipation of that, back in 2021, I initially
+developed &lt;a href="https://blog.davep.org/ngdb.py/"&gt;&lt;code&gt;ngdb.py&lt;/code&gt;&lt;/a&gt;. This is a library
+that provides the core Norton Guide reading code for Python applications and
+could form the basis for other tools.&lt;/p&gt;
+&lt;p&gt;As a test for this I then wrote &lt;a href="https://github.com/davep/ng2web"&gt;&lt;code&gt;ng2web&lt;/code&gt;&lt;/a&gt;
+(which works, but I think still needs a bit of tidying up -- something I'm
+aiming to do in the next few weeks).&lt;/p&gt;
+&lt;p&gt;Meanwhile, the journey with Textual itself &lt;a href="/2022/10/05/on-to-something-new-redux.html"&gt;kicked
+off&lt;/a&gt;, happened, and &lt;a href="/2024/03/28/goodbye-textualize.html"&gt;came to an
+end&lt;/a&gt;; and yet somehow I'd never got
+round to building the thing I'd initially looked at Textual for: a
+terminal-based Norton Guide reader that looked nice and modern (by terminal
+standards). When I initially joined Textualize the owner had actually said
+they wanted me to build this as test of the framework, to essentially start
+out by employing me to create some Free Software that would help dogfood the
+library, but that seemed to get forgotten.&lt;/p&gt;
+&lt;p&gt;Fast forward to the start of this month and I finally felt it was time to
+tackle this. The result is &lt;a href="https://github.com/davep/aging"&gt;AgiNG&lt;/a&gt;&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="AgiNG in action" src="/attachments/2025/03/12/aging-textual-dark.png"&gt;&lt;/p&gt;
+&lt;p&gt;As of v0.1.0 it has most of the features you'd expect from a usable Norton
+Guide reader, including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;An ability to add guide files to an in-application directory.&lt;/li&gt;
+&lt;li&gt;The ability open and navigate a guide.&lt;/li&gt;
+&lt;li&gt;Full see-also support, etc.&lt;/li&gt;
+&lt;li&gt;Full translation of characters as were under MS-DOS into the terminal.&lt;/li&gt;
+&lt;li&gt;The ability to copy entry text or source to the clipboard.&lt;/li&gt;
+&lt;li&gt;The ability to copy save entry text or source to a file.&lt;/li&gt;
+&lt;li&gt;Access to a guide's credits.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="AgiNG showing a long entry" src="/attachments/2025/03/12/aging-long-entry.png"&gt;&lt;/p&gt;
+&lt;p&gt;I still need to write some proper documentation for the application, but
+meanwhile all commands and key shortcuts can be discovered either via the
+help screen:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="AgiNG help" src="/attachments/2025/03/12/aging-help-screen.png"&gt;&lt;/p&gt;
+&lt;p&gt;or by pulling up the command palette:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="AgiNG command palette" src="/attachments/2025/03/12/aging-command-palette.png"&gt;&lt;/p&gt;
+&lt;p&gt;Hopefully the workings of the application will be fairly obvious to anyone
+who is familiar with Norton Guide files; if anything isn't making sense &lt;a href="https://github.com/davep/aging/discussions/categories/q-a"&gt;I'm
+more than happy to answer
+questions&lt;/a&gt; or
+&lt;a href="https://github.com/davep/aging/discussions/categories/ideas"&gt;take suggestions for
+improvements&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;One wee feature I want to call out, that I felt was important to add, was a
+"classic view" facility. The thing with Norton Guide files is they were
+mostly created in the very late 1980s and early-to-mid 1990s. People would
+often get creative with the colouring within them, but in many cases the
+colouring assumed the default Norton Guide application. Its colours were
+white text on a blue background. So sometimes other colouring was done
+assuming that background.&lt;/p&gt;
+&lt;p&gt;You can see an example of this here, with an entry in a guide being viewed
+using the default &lt;code&gt;textual-dark&lt;/code&gt; theme:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Entry in textual-dark" src="/attachments/2025/03/12/textual-dark.png"&gt;&lt;/p&gt;
+&lt;p&gt;Notice the colouring in the syntax section. This is more obvious if the
+application is switched to one of the light themes:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Entry in solarized-light" src="/attachments/2025/03/12/solarized-light.png"&gt;&lt;/p&gt;
+&lt;p&gt;With a nod to this issue in mind, I added the "classic view" for entries
+(which is a sticky setting -- turn it on and it stays on until you turn it
+off):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Classic view in action" src="/attachments/2025/03/12/classic-view.png"&gt;&lt;/p&gt;
+&lt;p&gt;A little hard on the eyes, I think, but also filled with nostalgia!&lt;/p&gt;
+&lt;p&gt;Talking of themes, all the usual application themes are available, here's a
+wee selection:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Nord" src="/attachments/2025/03/12/aging-nord.png"&gt;
+&lt;img alt="Textual Light" src="/attachments/2025/03/12/aging-textual-light.png"&gt;
+&lt;img alt="Gruvbox" src="/attachments/2025/03/12/aging-gruvbox.png"&gt;
+&lt;img alt="Solarize Light" src="/attachments/2025/03/12/aging-solarized-light.png"&gt;
+&lt;img alt="Monokai" src="/attachments/2025/03/12/aging-monokai.png"&gt;&lt;/p&gt;
+&lt;p&gt;AgiNG is licensed GPL-3.0 and available &lt;a href="https://github.com/davep/aging"&gt;via
+GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/aging/"&gt;via
+PyPi&lt;/a&gt;. If you have an environment that has
+&lt;code&gt;pipx&lt;/code&gt; installed you should be able to get up and going with:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;aging
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It can also be installed with
+&lt;code&gt;Homebrew&lt;/code&gt; by tapping &lt;code&gt;davep/homebrew&lt;/code&gt; and then installing &lt;code&gt;aging&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;tap&lt;span class="w"&gt; &lt;/span&gt;davep/homebrew
+$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;aging
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Expect to see more updates in the near future; as with other recent projects
+this is very much something I'm going to be dabbling with and improving as
+time goes on.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;If you're wondering about the name, it's nothing more than a word that
+happens to have &lt;code&gt;NG&lt;/code&gt; in it, and also a mild pun about this being an
+ageing hypertext help system; with the spelling acknowledging Peter
+Norton's nationality.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category><category term="Norton Guide"></category></entry><entry><title>MkDocs/mkdocstrings 404 CSS TIL update</title><link href="https://blog.davep.org/2025/02/28/mkdocs-gh-pages-redux.html" rel="alternate"></link><published>2025-02-28T22:23:00+00:00</published><updated>2025-02-28T22:23:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-02-28:/2025/02/28/mkdocs-gh-pages-redux.html</id><content type="html">&lt;p&gt;Following on from &lt;a href="/2025/02/28/documenting-fspicker.html"&gt;my post this
 morning&lt;/a&gt;, regarding the problem I was
 having with &lt;code&gt;_mkdocstrings.css&lt;/code&gt; being 404 any time I deployed by
 documentation, build with &lt;code&gt;mkdocs&lt;/code&gt;/&lt;code&gt;mkdocstrings&lt;/code&gt;, to GitHub Pages...&lt;/p&gt;
@@ -1218,36 +1333,6 @@ perhaps also how to format it or something. Like, often, if I'm copying a
 bookmark's URL, it's because I want to paste it into some Markdown document,
 or some location that will handle Markdown markup.&lt;/p&gt;
 &lt;p&gt;Perhaps that'll turn up in v0.5.0 in a couple of days? ;-)&lt;/p&gt;
-&lt;p&gt;Tinboard can be installed with &lt;code&gt;pip&lt;/code&gt; or (ideally) &lt;code&gt;pipx&lt;/code&gt; &lt;a href="https://pypi.org/project/tinboard/"&gt;from
-PyPi&lt;/a&gt;. The &lt;a href="https://github.com/davep/tinboard"&gt;source is available on
-GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry><entry><title>Tinboard v0.3.0</title><link href="https://blog.davep.org/2023/12/23/tinboard-0-3-0.html" rel="alternate"></link><published>2023-12-23T08:49:00+00:00</published><updated>2023-12-23T08:49:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2023-12-23:/2023/12/23/tinboard-0-3-0.html</id><content type="html">&lt;p&gt;It looks like I'm in a wee period of small incremental changes and release
-of &lt;a href="/2023/12/19/tinboard.html"&gt;Tinboard&lt;/a&gt;. This morning I've release v0.3.0,
-which has a couple of small but useful changes.&lt;/p&gt;
-&lt;p&gt;The first is more of a cosmetic thing. The &lt;a href="https://textual.textualize.io/widgets/footer/"&gt;&lt;code&gt;Footer&lt;/code&gt; widget in
-Textual&lt;/a&gt; is handy for showing
-the current keyboard bindings in a given context, but it can get massively
-cluttered very quickly (we do have plans to revisit this); in Tinboard this
-clutter creep was turning into a thing.&lt;/p&gt;
-&lt;p&gt;So I've removed almost every binding from being displayed in the &lt;code&gt;Footer&lt;/code&gt;,
-and have placed an emphasis on the user pressing &lt;kbd&gt;F1&lt;/kbd&gt; to get
-context-sensitive help, and have also left the most useful bindings in the
-footer with very minimal descriptions.&lt;/p&gt;
-&lt;p&gt;Given that this is a keyboard-first application, and I've tried to make the
-bindings easy to remember, I think it's going to make more sense to do it
-like this, and will make for a tidier UI too.&lt;/p&gt;
-&lt;p&gt;There is one disadvantage here of course: by removing the display of
-bindings from the footer, the mouse-heavy user becomes disadvantaged; if a
-particular binding doesn't have a UI feature that favours the mouse to cover
-it too there's no way to initiate that action with the mouse. I'm going to
-think on this a little. Again, Tinboard is designed for &lt;em&gt;me&lt;/em&gt; first and
-foremost, and my preference is to be keyboard-first when using the
-application; but finding a good compromise would be advantageous when it
-comes to advising people asking about Textual application design.&lt;/p&gt;
-&lt;p&gt;The second change is a simple but useful one. I've added a toggle of the
-sort order of the tags menu in the left-hand column (bound to
-&lt;kbd&gt;F4&lt;/kbd&gt;). Right now it simply toggles between alphabetical order, or
-bookmark count order (most to least). At some point I might make it more of
-a cycle than a toggle, but this serves my purposes for now.&lt;/p&gt;
 &lt;p&gt;Tinboard can be installed with &lt;code&gt;pip&lt;/code&gt; or (ideally) &lt;code&gt;pipx&lt;/code&gt; &lt;a href="https://pypi.org/project/tinboard/"&gt;from
 PyPi&lt;/a&gt;. The &lt;a href="https://github.com/davep/tinboard"&gt;source is available on
 GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry></feed>
