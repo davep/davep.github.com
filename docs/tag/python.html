@@ -183,6 +183,65 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/03/22/aging-0-3-0.html#aging-0-3-0">AgiNG v0.3.0</a></h2>
+    <p>
+      Posted on 2025-03-22 09:30 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/norton-guide.html">Norton Guide</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>I've <a href="https://github.com/davep/aging/releases/tag/v0.3.0">just released AgiNG
+v0.3.0</a>. The main focus
+of this release was to get some searching added to the application. Similar
+to what I added to <a href="https://github.com/davep/weg">WEG</a> back in the day, I
+wanted three types of searching:</p>
+<ul>
+<li>Current entry search.</li>
+<li>Current guide-wide search.</li>
+<li>All registered guides-wide search.</li>
+</ul>
+<p>The current entry search is done with a simple modal input, and for now the
+searching is always case-insensitive (I was going to add a switch for this
+but it sort of felt unnecessary and I liked how clean the input is).</p>
+<p><img alt="Entry search" src="/attachments/2025/03/22/entry-search.png"></p>
+<p>The search is started by pressing <kbd>/</kbd>, and if a hit is found
+<kbd>n</kbd> will take you through all subsequent matches.</p>
+<p>As always, if you're not sure of the keys, you'll find them in the help
+screen or via the command palette:</p>
+<p><img alt="Looking up search in the command palette" src="/attachments/2025/03/22/entry-search-palette.png"></p>
+<p>Guide-wide and all-guide searching is done in the same dialog. To search
+guide-wide you enter what you want to find and untick <em>"All Guides"</em>.</p>
+<p><img alt="Setting up a guide search" src="/attachments/2025/03/22/guide-wide-setup.png"></p>
+<p>With that, the search will stick to the current guide.</p>
+<p><img alt="Guide-wide search running" src="/attachments/2025/03/22/guide-wide-running.png"></p>
+<p>As will be obvious, searching all guides that have been registered with
+AgiNG is as simple as ticking <em>"All Guides"</em>. Then when you search it'll
+take a walk through every entry of every guide you've added to the guide
+directory in the application.</p>
+<p><img alt="Gide-wide searching" src="/attachments/2025/03/22/guide-wide-search.gif#centre"></p>
+<p>Global searching is accessed with <kbd>Ctrl</kbd>+<kbd>/<kbd> or via the
+command palette.</p>
+<p><img alt="Finding global search" src="/attachments/2025/03/22/global-palette.png"></p>
+<p>With this added, I think that's most of the major functionality I wanted for
+AgiNG. I imagine there's a few more tweaks I'll think of (for example: I
+think adding regex search to the global search screen could be handy), but I
+don't think there's any more big features it needs.</p>
+<p>AgiNG can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/aging/">from
+PyPi</a>. It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>aging</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>aging
+</code></pre></div>
+
+<p>The <a href="https://github.com/davep/aging">source is available on GitHub</a>.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/03/12/aging.html#aging">AgiNG</a></h2>
     <p>
       Posted on 2025-03-12 08:00 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -978,48 +1037,6 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
 </code></pre></div>
 
 <p>The <a href="https://github.com/davep/tinboard">source is available on GitHub</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/04/17/pispy-0-6-0.html#pispy-0-6-0">PISpy v0.6.0</a></h2>
-    <p>
-      Posted on 2024-04-17 11:30 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/youtube.html">YouTube</a>
-        &#8226; 1 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Back in the very early days of the <a href="https://blog.davep.org/2024/03/28/goodbye-textualize.html">Textual
-adventure</a>,
-within the first month or so of working on the framework, we <a href="https://textual.textualize.io/blog/2022/11/26/on-dog-food-the-original-metaverse-and-not-being-bored/">had a period
-of
-dogfooding</a>.
-One of the projects I wrote during that time was a little tool <a href="https://textual.textualize.io/blog/2022/12/08/be-the-keymaster/#pispy">I called
-PISpy</a>.</p>
-<p>The initial version was pretty much a quick hack; during that dogfooding
-period I did my best to try and develop a new project every couple of days.
-Since then I've let PISpy descend into <a href="https://en.wikipedia.org/wiki/Software_rot">bit
-rot</a>.</p>
-<p>In the last week or so I've turned my attention back to it and made an
-effort to <a href="https://www.youtube.com/watch?v=CepsN8TDq1E">tidy up the code</a>,
-<a href="https://www.youtube.com/watch?v=t2EUXA8RkN0">tidy it some more</a>, <a href="https://www.youtube.com/watch?v=2u5CfrgZWcc">and some
-more</a>, and <a href="https://www.youtube.com/watch?v=CDCvWCZx1AM">even some
-more</a>.</p>
-<p>This morning I put the finishing touches to these changes and released
-<a href="https://github.com/davep/pispy/releases/tag/v0.6.0">v0.6.0</a>.</p>
-<p><a href="https://www.youtube.com/shorts/67xtMdstbx4"><img alt="PISpy in action" src="/attachments/2024/04/17/pispy-in-action.gif#centre"></a></p>
-<p>PISpy can be installed with <code>pip</code> or (ideallty) <code>pipx</code> <a href="https://pypi.org/project/pispy-client/">from
-PyPI</a>. It can also be installed with
-Homebrew by tapping <code>davep/homebrew</code> and then installing <code>pispy</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>pispy
-</code></pre></div>
-
-<p>The <a href="https://github.com/davep/pispy">source is available on GitHub</a>.</p></div>
   </div>
 </article>
 

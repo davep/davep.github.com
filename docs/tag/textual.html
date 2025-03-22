@@ -183,6 +183,65 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/03/22/aging-0-3-0.html#aging-0-3-0">AgiNG v0.3.0</a></h2>
+    <p>
+      Posted on 2025-03-22 09:30 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/norton-guide.html">Norton Guide</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>I've <a href="https://github.com/davep/aging/releases/tag/v0.3.0">just released AgiNG
+v0.3.0</a>. The main focus
+of this release was to get some searching added to the application. Similar
+to what I added to <a href="https://github.com/davep/weg">WEG</a> back in the day, I
+wanted three types of searching:</p>
+<ul>
+<li>Current entry search.</li>
+<li>Current guide-wide search.</li>
+<li>All registered guides-wide search.</li>
+</ul>
+<p>The current entry search is done with a simple modal input, and for now the
+searching is always case-insensitive (I was going to add a switch for this
+but it sort of felt unnecessary and I liked how clean the input is).</p>
+<p><img alt="Entry search" src="/attachments/2025/03/22/entry-search.png"></p>
+<p>The search is started by pressing <kbd>/</kbd>, and if a hit is found
+<kbd>n</kbd> will take you through all subsequent matches.</p>
+<p>As always, if you're not sure of the keys, you'll find them in the help
+screen or via the command palette:</p>
+<p><img alt="Looking up search in the command palette" src="/attachments/2025/03/22/entry-search-palette.png"></p>
+<p>Guide-wide and all-guide searching is done in the same dialog. To search
+guide-wide you enter what you want to find and untick <em>"All Guides"</em>.</p>
+<p><img alt="Setting up a guide search" src="/attachments/2025/03/22/guide-wide-setup.png"></p>
+<p>With that, the search will stick to the current guide.</p>
+<p><img alt="Guide-wide search running" src="/attachments/2025/03/22/guide-wide-running.png"></p>
+<p>As will be obvious, searching all guides that have been registered with
+AgiNG is as simple as ticking <em>"All Guides"</em>. Then when you search it'll
+take a walk through every entry of every guide you've added to the guide
+directory in the application.</p>
+<p><img alt="Gide-wide searching" src="/attachments/2025/03/22/guide-wide-search.gif#centre"></p>
+<p>Global searching is accessed with <kbd>Ctrl</kbd>+<kbd>/<kbd> or via the
+command palette.</p>
+<p><img alt="Finding global search" src="/attachments/2025/03/22/global-palette.png"></p>
+<p>With this added, I think that's most of the major functionality I wanted for
+AgiNG. I imagine there's a few more tweaks I'll think of (for example: I
+think adding regex search to the global search screen could be handy), but I
+don't think there's any more big features it needs.</p>
+<p>AgiNG can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/aging/">from
+PyPi</a>. It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>aging</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>aging
+</code></pre></div>
+
+<p>The <a href="https://github.com/davep/aging">source is available on GitHub</a>.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/03/12/aging.html#aging">AgiNG</a></h2>
     <p>
       Posted on 2025-03-12 08:00 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -852,70 +911,6 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
 </code></pre></div>
 
 <p>The <a href="https://github.com/davep/tinboard">source is available on GitHub</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/03/28/goodbye-textualize.html#goodbye-textualize">Goodbye Textualize</a></h2>
-    <p>
-      Posted on 2024-03-28 06:30 +0000 in <a href="https://blog.davep.org/category/life.html">Life</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/free-software.html">free-software</a>,              <a href="https://blog.davep.org/tag/work.html">work</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>While I have been <a href="/2017/12/12/on_to_something_new.html">on the receiving end of redundancy once
-before</a>, that was after 21 years of
-service at a company that, while it was in part about software development,
-I would never have called it a "tech" company.</p>
-<p>So, as of today, I can finally say that the "<a href="https://techcrunch.com/2024/03/27/tech-layoffs-2023-list/">tech
-layoffs</a>" came
-for me and I'm one of 67% of employees being let go from a tech startup.</p>
-<p>Achievement unlocked, I guess?</p>
-<p><img alt="!Achievement unlocked" src="/attachments/2024/03/28/achievement-unlocked.png#centre"></p>
-<p>To be clear: I'm not annoyed about this, I'm not even shocked about this; I
-planned for this from the off and realised and recognised the gamble I was
-taking <a href="https://twitter.com/willmcgugan/status/1574118265063972864">back in 2022</a>.</p>
-<p><a href="https://twitter.com/willmcgugan/status/1574118265063972864"><img alt="Announcing being hired" src="/attachments/2024/03/28/textual-startup-tweet.png#centre"></a></p>
-<p>I am disappointed about this. Not in a "I'm disappointed in you" kind of
-way, but disappointed for all involved and what it says about how FOSS
-projects are funded and maintained.</p>
-<p>It's been an interesting journey, and it's been a privilege to do something
-I've been wanting to do since the 1990s, when I first read the GNU Manifesto
-and subsequently watched the free software and open source movements develop
-and grow: work on FOSS for a living. In doing this I've developed my
-thoughts about the feasibility of such an endeavour, I've refined how I feel
-about working in very small teams, I've learnt a lot of useful lessons I'm
-going to draw on in the future (keeping a journal of my experience has been
-a great move; I have a lot of notes and thoughts written down that I'll be
-reviewing and distilling for myself over the coming weeks).</p>
-<p>Most of all: it's been an absolute blast working on something that people
-are actually using to build <a href="https://github.com/davep/transcendent-textual">cool
-things</a>, and to <a href="https://textual.textualize.io/help/">provide help
-and guidance to those people when they've needed
-it</a>.</p>
-<p>So... what happens now? Well, of course, right now, I'm looking for a new
-position. If you're reading this and you are looking for someone who's kinda
-handy with Python <a href="https://github.com/davep">and a bunch of other languages</a>
-and who loves learning new stuff, or if you know someone who is looking for
-such a person, <a href="mailto:davep@davep.co.uk">do drop me a line</a>!</p>
-<p>As for what happens with Textual, and my involvement with it...</p>
-<p>Well, what happens <em>with</em> Textual is
-<a href="https://github.com/willmcgugan">Will</a>'s call, of course. As for my
-involvement with it: I care about FOSS and I care about Textual; I also care
-about the folk who have been kind enough to use their time to explore it,
-test it, build with it, commit to it and make neat stuff with it. My
-intention, as long as free time allows, is to carry on being involved, both
-on GitHub and in <a href="https://discord.gg/Enf6Z3qhVr">the Discord server</a>.</p>
-<p>It's my sincere hope that, as a community of FOSS-friendly developers, we
-see Textual over the 1.0 line and beyond.</p>
-<p>But all that starts next week. It's a bank holiday weekend and I think I
-might have deserved a run, a bit of <a href="https://www.youtube.com/@DavePearson">mucking about in
-VR</a>, a beer, and just a wee bit of
-down time.</p></div>
   </div>
 </article>
 
