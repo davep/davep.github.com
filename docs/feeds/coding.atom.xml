@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2025-03-22T09:30:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>AgiNG v0.3.0</title><link href="https://blog.davep.org/2025/03/22/aging-0-3-0.html" rel="alternate"></link><published>2025-03-22T09:30:00+00:00</published><updated>2025-03-22T09:30:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-03-22:/2025/03/22/aging-0-3-0.html</id><content type="html">&lt;p&gt;I've &lt;a href="https://github.com/davep/aging/releases/tag/v0.3.0"&gt;just released AgiNG
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2025-03-24T14:17:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>ng2web v1.0.0</title><link href="https://blog.davep.org/2025/03/24/ng2web.html" rel="alternate"></link><published>2025-03-24T14:17:00+00:00</published><updated>2025-03-24T14:17:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-03-24:/2025/03/24/ng2web.html</id><content type="html">&lt;p&gt;It pretty much all started with this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; &lt;span class="k"&gt;*&lt;/span&gt; Revision 1.1  1996/02/15 18:57:13  davep
+ &lt;span class="k"&gt;*&lt;/span&gt; Initial revision
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;That's from the rcs log &lt;a href="https://github.com/davep/w3ng/blob/master/w3ng.c"&gt;for the source for
+&lt;code&gt;w3ng&lt;/code&gt;&lt;/a&gt;, a tool I write so
+I could read Norton Guide files in my web browser, served by Apache running
+on my GNU/Linux server in my office. The tool itself was written as a
+&lt;a href="https://en.wikipedia.org/wiki/Common_Gateway_Interface"&gt;CGI&lt;/a&gt; tool (remember
+then?).&lt;/p&gt;
+&lt;p&gt;I believe I posted about this to &lt;code&gt;comp.lang.clipper&lt;/code&gt; and pretty quickly some
+folk asked if it might be possible to do a version of that would write the
+whole guide as a collection of HTML files for static hosting, rather than
+serving them from cgi-bin utility. That seemed like a sensible idea and so:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; &lt;span class="k"&gt;*&lt;/span&gt; Revision 1.1  1996/03/16 09:49:00  davep
+ &lt;span class="k"&gt;*&lt;/span&gt; Initial revision
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/davep/ng2html/blob/master/ng2html.c"&gt;&lt;code&gt;ng2html&lt;/code&gt;&lt;/a&gt; was born.&lt;/p&gt;
+&lt;p&gt;Fast forward around a quarter of a decade and I decided it would be fun to
+write a library for Python that reads Norton Guide files, and a tool called
+&lt;code&gt;ng2web&lt;/code&gt; was the first test I wrote of it, designed as a more flexible
+replacement for &lt;code&gt;ng2html&lt;/code&gt;. I've tweaked and tinkered with the tool since I
+first created it but never actually "finished" it.&lt;/p&gt;
+&lt;p&gt;That's changed today. I've just released v1.0.0 of &lt;code&gt;ng2web&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A page generated with ng2web" src="/attachments/2025/03/24/ng2web.png"&gt;&lt;/p&gt;
+&lt;p&gt;If turning one or more Norton Guides into static websites seems like the
+sort of thing you want to be doing, &lt;a href="https://blog.davep.org/ng2web/"&gt;take a look at the
+documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;ng2web is licensed GPL-3.0 and available &lt;a href="https://github.com/davep/ng2web"&gt;via
+GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/ng2web/"&gt;via
+PyPi&lt;/a&gt;. If you have an environment that has
+&lt;code&gt;pipx&lt;/code&gt; installed you should be able to get up and going with:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;ng2web
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It can also be installed with
+&lt;code&gt;Homebrew&lt;/code&gt; by tapping &lt;code&gt;davep/homebrew&lt;/code&gt; and then installing &lt;code&gt;ng2web&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;tap&lt;span class="w"&gt; &lt;/span&gt;davep/homebrew
+$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;ng2web
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Coding"></category><category term="Python"></category><category term="Norton Guide"></category></entry><entry><title>AgiNG v0.3.0</title><link href="https://blog.davep.org/2025/03/22/aging-0-3-0.html" rel="alternate"></link><published>2025-03-22T09:30:00+00:00</published><updated>2025-03-22T09:30:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-03-22:/2025/03/22/aging-0-3-0.html</id><content type="html">&lt;p&gt;I've &lt;a href="https://github.com/davep/aging/releases/tag/v0.3.0"&gt;just released AgiNG
 v0.3.0&lt;/a&gt;. The main focus
 of this release was to get some searching added to the application. Similar
 to what I added to &lt;a href="https://github.com/davep/weg"&gt;WEG&lt;/a&gt; back in the day, I
@@ -1290,72 +1331,4 @@ like &lt;a href="https://github.com/mihaitodor"&gt;@mihaitodor&lt;/a&gt;. Issue 
 developer gets to know about it; don't assume they'll be reading some random
 comment section, social media site or Discord server!&lt;/p&gt;
 &lt;p&gt;That and don't make 500+ HTTP requests at once; that might not end well for
-some.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry><entry><title>Orange Site Hit</title><link href="https://blog.davep.org/2024/01/01/oshit.html" rel="alternate"></link><published>2024-01-01T10:17:00+00:00</published><updated>2024-01-01T10:17:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-01-01:/2024/01/01/oshit.html</id><content type="html">&lt;p&gt;I know I'm not alone in having a relationship with &lt;a href="https://news.ycombinator.com/"&gt;the orange
-site&lt;/a&gt; that is... weird. I generally dislike
-the culture there, it's almost impossible to read any of the comments
-without being frustrated about the industry I work in or am adjacent to and
-some of the people who inhabit it; but as a link aggregator of stuff I might
-find interesting... I honestly can't think of anywhere better. So, yes, I've
-been a fairly avid reader of HackerNews for many years, and have even had an
-account there for over 4 years.&lt;/p&gt;
-&lt;p&gt;Given this, for a wee while now, I've been meaning to knock up a
-terminal-based client for it using
-&lt;a href="https://textual.textualize.io/"&gt;Textual&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;So after work on &lt;a href="/2023/12/19/tinboard.html"&gt;Tinboard&lt;/a&gt; settled down I got
-the urge to start a new pet project (not abandoning Tinboard, I'm still
-going to be tweaking and extending it of course) and finally knocking up
-that client seemed like the one.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Orange Site Hit&lt;/em&gt; is the result.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="OShit" src="/attachments/2024/01/01/oshit-index.png"&gt;&lt;/p&gt;
-&lt;p&gt;It's worth making clear from the very start: this is a read-only reader.
-There is no logging in, there is no voting, there is no posting of things.
-This is a client built with &lt;a href="https://github.com/HackerNews/API"&gt;their own
-API&lt;/a&gt; and it doesn't provide such a thing;
-at least not now and despite me seeing past promises that this will change,
-there's no API for doing that sort of thing.&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-&lt;p&gt;The idea of this application is you can run it up in the terminal, check the
-top, best and latest from the categories provided by the API, perhaps dive
-off into your web browser if needed, and then got on with other things.&lt;/p&gt;
-&lt;p&gt;It's there for when you're in the terminal you just &lt;em&gt;need&lt;/em&gt; your hit of the
-orange site.&lt;/p&gt;
-&lt;p&gt;The main screen of the app revolves around the index of items, most of which
-are going to be stories. You can see an example of that above. For people
-who prefer things to be slightly less cramped, I've also added a "relaxed
-layout" mode too:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The index in relaxed mode" src="/attachments/2024/01/01/oshit-index-relaxed.png"&gt;&lt;/p&gt;
-&lt;p&gt;From the index you can head off into your web-browser by hitting
-&lt;kbd&gt;Enter&lt;/kbd&gt; on any item; if the item is a story that links to somewhere
-that link will be opened; if it's something more like &lt;em&gt;AskHN&lt;/em&gt;, or a job,
-it'll open the related page on HackerNews itself.&lt;/p&gt;
-&lt;p&gt;Pressing &lt;kbd&gt;u&lt;/kbd&gt; with an item selected will let you view the details
-for the user who posted the item:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Viewing the details of a user" src="/attachments/2024/01/01/oshit-user-dialog.png"&gt;&lt;/p&gt;
-&lt;p&gt;If you're the sort of person who wants to torture themselves by reading the
-comments (oh come on we all do it!), there's a comment reader/navigator too.
-With an item selected press &lt;kbd&gt;c&lt;/kbd&gt; and the comment dialog will open:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Viewing the real meat of HackerNews" src="/attachments/2024/01/01/oshit-comments.png"&gt;&lt;/p&gt;
-&lt;p&gt;I &lt;em&gt;think&lt;/em&gt; the navigation within that dialog is fine; although I can see some
-scope for improvement. At the moment it uses a widget-per-comment (actually,
-it's at least 4 widgets per comment), which is fine and Textual handles that
-without an issue, even on items with lots of comments, but longer-term I can
-see me having some fun using &lt;a href="https://textual.textualize.io/guide/widgets/#line-api"&gt;the line
-API&lt;/a&gt; to build a
-super-efficient comment presentation and navigation widget.&lt;/p&gt;
-&lt;p&gt;That's it for now; it feels like a good v0.1.0 spot to be in. There are a
-bunch of things I still want to do with it (better cleaning up of the text,
-perhaps with some markup support so links get handled, etc; plus lots of
-ways of searching for stuff), but I felt it was in a place where I could
-start using it.&lt;/p&gt;
-&lt;p&gt;Anyway, if this sounds like your sort of thing, it can be installed with
-&lt;code&gt;pip&lt;/code&gt; or (ideally) &lt;code&gt;pipx&lt;/code&gt; &lt;a href="https://pypi.org/project/oshit/"&gt;from PyPi&lt;/a&gt;. The
-&lt;a href="https://github.com/davep/oshit"&gt;source is available over on GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li id="fn:1"&gt;
-&lt;p&gt;Yes, there are lots of clients that do all sorts of HTML-scraping of
-the actual website to make this possible; this ain't that. This ain't
-going to be that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry></feed>
+some.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry></feed>
