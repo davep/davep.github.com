@@ -183,6 +183,78 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/04/20/complexitty.html#complexitty">Complexitty</a></h2>
+    <p>
+      Posted on 2025-04-20 09:30 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/mandelbrot.html">mandelbrot</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p><a href="https://complexitty.davep.dev/"><img alt="Complexitty" src="/attachments/2025/04/20/complexitty-social-banner.png"></a></p>
+<p>Much like <a href="https://www.davep.org/norton-guides/">Norton Guide readers</a> or
+the <a href="https://github.com/davep?tab=repositories&amp;q=5x5&amp;type=&amp;language=&amp;sort=">5x5
+puzzle</a>,
+code that has fun with the Mandelbrot set is another one of my goto
+exercises. I've written versions in many languages, and messed with plot in
+some different environments, as varied as <a href="https://www.youtube.com/watch?v=18ytRZrHL34">in VR on the
+web</a> to <a href="https://www.redbubble.com/i/t-shirt/Self-Documenting-Mandelbrot-by-davepearson/1341910.0S66D">wearable
+items</a>.</p>
+<p>Back in the early days of <a href="https://blog.davep.org/2024/03/28/goodbye-textualize.html">my involvement with
+Textualize</a> I
+<a href="https://github.com/davep/trMandelbrot">wrote a deliberately worst-approach
+version</a> using that framework. The
+whole thing was about taking a really silly approach while also
+stress-testing Textual itself. It did the job.</p>
+<p>Later on I did <a href="https://github.com/davep/textual-mandelbrot">a second version that targets
+Textual</a>. This time it did a
+better job and was the catalyst for building
+<a href="https://textual-canvas.davep.dev/"><code>textual-canvas</code></a>. This version was
+intended more to be a widget that happened to come with an example
+application, and while it was far more better than the on-purpose-terrible
+version mentioned above, I still wasn't 100% happy with the way it worked.</p>
+<p>Recently I did some maintenance work on <code>textual-canvas</code>, cleaning up the
+repository and bringing it in line with how I like to maintain my Python
+projects these days, and this prompted me to look back at
+<code>textual-mandelbrot</code> and rework it too. Quickly I realised it wasn't really
+sensible to rewrite it in a way that it would be backward compatible (not
+that I think anyone has ever used the widget) and instead I decided to kick
+off a fresh stand-alone application.</p>
+<p><a href="https://complexitty.davep.dev/">Complexitty</a> is the result.</p>
+<p><img alt="Complexitty on startup" src="/attachments/2025/04/20/complexitty.png"></p>
+<p>Right now the application has all the same features as the <code>mandelexp</code>
+application that came with <code>textual-mandelbrot</code>, plus a couple more. Also
+it's built on top of <a href="https://github.com/davep/textual-enhanced">the common core
+library</a> I've been putting
+together for all my own terminal-based Python applications. As time goes on
+<a href="https://github.com/davep/complexitty/issues?q=is%3Aissue%20label%3ATODO%20label%3AEnhancement">I'll add more
+features</a>.</p>
+<p><img alt="Zoomed in with Complexitty" src="/attachments/2025/04/20/complexitty-red.png"></p>
+<p>As with most of my recent TUI-based projects, the application is built with
+comprehensive help for commands and key bindings.</p>
+<p><img alt="The help screen" src="/attachments/2025/04/20/complexitty-help.png"></p>
+<p>and there's also a command palette that also helps you discover (and run)
+commands and their keyboard bindings.</p>
+<p><img alt="The command palette" src="/attachments/2025/04/20/complexitty-commands.png"></p>
+<p>Complexitty is licensed GPL-3.0 and available <a href="https://github.com/davep/complexitty">via
+GitHub</a> and also <a href="https://pypi.org/project/complexitty/">via
+PyPI</a>. If you have an environment that has
+<code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>complexitty
+</code></pre></div>
+
+<p>It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>complexitty</code>:</p>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+brew<span class="w"> </span>install<span class="w"> </span>complexitty
+</code></pre></div></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/03/22/aging-0-3-0.html#aging-0-3-0">AgiNG v0.3.0</a></h2>
     <p>
       Posted on 2025-03-22 09:30 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -864,53 +936,6 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
 </code></pre></div>
 
 <p>The <a href="https://github.com/davep/pispy">source is available on GitHub</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/04/09/tinboard-0-11-0.html#tinboard-0-11-0">Tinboard v0.11.0</a></h2>
-    <p>
-      Posted on 2024-04-09 15:43 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/youtube.html">YouTube</a>
-        &#8226; 1 min read
-    </p>
-  </header>
-  <div>
-      <div><p>While <a href="/2024/03/28/goodbye-textualize.html">my time working on Textual might have come to an
-end</a>, my time working <em>with</em> Textual
-hasn't. Three days back <a href="https://www.youtube.com/watch?v=U66oHFLWmG4">I experimented with Textual's newly-added "inline
-mode"</a>:</p>
-<div style="text-align: center;">
-    <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/U66oHFLWmG4?si=kCQba6vMoxpKMtBG"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-    </iframe>
-</div>
-
-<p>In doing so I extended the application so that it's possible to run
-<code>tinboard add</code> and quickly enter a new bookmark and then carry on in the
-terminal, without needing to "go fullscreen". I'll admit it's of limited
-use, but it seemed like a good shakedown of the feature and in working on it
-I was able to discover a couple of bugs
-(<a href="https://github.com/Textualize/textual/issues/4385">#4385</a>,
-<a href="https://github.com/Textualize/textual/issues/4403">#4403</a>).</p>
-<p>The effect of this is this:</p>
-<p><img alt="Tinboard inline addition in action" src="/attachments/2024/04/09/tinboard-inline-add.gif#centre"></p>
-<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
-PyPi</a>. It can also be installed with
-<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>tinboard</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>tinboard
-</code></pre></div>
-
-<p>The <a href="https://github.com/davep/tinboard">source is available on GitHub</a>.</p></div>
   </div>
 </article>
 

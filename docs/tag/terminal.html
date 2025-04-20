@@ -183,6 +183,78 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/04/20/complexitty.html#complexitty">Complexitty</a></h2>
+    <p>
+      Posted on 2025-04-20 09:30 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/mandelbrot.html">mandelbrot</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p><a href="https://complexitty.davep.dev/"><img alt="Complexitty" src="/attachments/2025/04/20/complexitty-social-banner.png"></a></p>
+<p>Much like <a href="https://www.davep.org/norton-guides/">Norton Guide readers</a> or
+the <a href="https://github.com/davep?tab=repositories&amp;q=5x5&amp;type=&amp;language=&amp;sort=">5x5
+puzzle</a>,
+code that has fun with the Mandelbrot set is another one of my goto
+exercises. I've written versions in many languages, and messed with plot in
+some different environments, as varied as <a href="https://www.youtube.com/watch?v=18ytRZrHL34">in VR on the
+web</a> to <a href="https://www.redbubble.com/i/t-shirt/Self-Documenting-Mandelbrot-by-davepearson/1341910.0S66D">wearable
+items</a>.</p>
+<p>Back in the early days of <a href="https://blog.davep.org/2024/03/28/goodbye-textualize.html">my involvement with
+Textualize</a> I
+<a href="https://github.com/davep/trMandelbrot">wrote a deliberately worst-approach
+version</a> using that framework. The
+whole thing was about taking a really silly approach while also
+stress-testing Textual itself. It did the job.</p>
+<p>Later on I did <a href="https://github.com/davep/textual-mandelbrot">a second version that targets
+Textual</a>. This time it did a
+better job and was the catalyst for building
+<a href="https://textual-canvas.davep.dev/"><code>textual-canvas</code></a>. This version was
+intended more to be a widget that happened to come with an example
+application, and while it was far more better than the on-purpose-terrible
+version mentioned above, I still wasn't 100% happy with the way it worked.</p>
+<p>Recently I did some maintenance work on <code>textual-canvas</code>, cleaning up the
+repository and bringing it in line with how I like to maintain my Python
+projects these days, and this prompted me to look back at
+<code>textual-mandelbrot</code> and rework it too. Quickly I realised it wasn't really
+sensible to rewrite it in a way that it would be backward compatible (not
+that I think anyone has ever used the widget) and instead I decided to kick
+off a fresh stand-alone application.</p>
+<p><a href="https://complexitty.davep.dev/">Complexitty</a> is the result.</p>
+<p><img alt="Complexitty on startup" src="/attachments/2025/04/20/complexitty.png"></p>
+<p>Right now the application has all the same features as the <code>mandelexp</code>
+application that came with <code>textual-mandelbrot</code>, plus a couple more. Also
+it's built on top of <a href="https://github.com/davep/textual-enhanced">the common core
+library</a> I've been putting
+together for all my own terminal-based Python applications. As time goes on
+<a href="https://github.com/davep/complexitty/issues?q=is%3Aissue%20label%3ATODO%20label%3AEnhancement">I'll add more
+features</a>.</p>
+<p><img alt="Zoomed in with Complexitty" src="/attachments/2025/04/20/complexitty-red.png"></p>
+<p>As with most of my recent TUI-based projects, the application is built with
+comprehensive help for commands and key bindings.</p>
+<p><img alt="The help screen" src="/attachments/2025/04/20/complexitty-help.png"></p>
+<p>and there's also a command palette that also helps you discover (and run)
+commands and their keyboard bindings.</p>
+<p><img alt="The command palette" src="/attachments/2025/04/20/complexitty-commands.png"></p>
+<p>Complexitty is licensed GPL-3.0 and available <a href="https://github.com/davep/complexitty">via
+GitHub</a> and also <a href="https://pypi.org/project/complexitty/">via
+PyPI</a>. If you have an environment that has
+<code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>complexitty
+</code></pre></div>
+
+<p>It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>complexitty</code>:</p>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+brew<span class="w"> </span>install<span class="w"> </span>complexitty
+</code></pre></div></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/03/22/aging-0-3-0.html#aging-0-3-0">AgiNG v0.3.0</a></h2>
     <p>
       Posted on 2025-03-22 09:30 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -786,143 +858,6 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
 </code></pre></div>
 
 <p>The <a href="https://github.com/davep/tinboard">source is available on GitHub</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/03/10/homebrew-all-the-python-things.html#homebrew-all-the-python-things">Homebrew all the Python things</a></h2>
-    <p>
-      Posted on 2024-03-10 14:12 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/homebrew.html">Homebrew</a>,              <a href="https://blog.davep.org/tag/makefile.html">Makefile</a>
-        &#8226; 4 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Over the past year and a half I've written a <em>lot</em> of Python code, and a lot
-of that Python code has been Textual applications; most of those Textual
-applications have been very quick demonstration or test applications built
-to help support someone asking for help; some of them have been less-trivial
-applications written in my own time and for my own use and amusement. Of
-them I'd say there are two near-daily-drivers, and a couple that I either
-have more plans for, or like to maintain just for the hell of it.</p>
-<p>Those latter applications are all ones that <a href="https://pypi.org/user/davepearson/">I've deployed to
-PyPI</a>, and because of that are all ones
-that I've recommenced be installed using
-<a href="https://pipx.pypa.io/stable/"><code>pipx</code></a>. During that time though I've had
-half an inclination to make them <a href="https://brew.sh/">installable via
-Homebrew</a>. While probably not installable from the core
-Homebrew repository<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, at least installable from a "tap"<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> that's under
-my own GitHub account or something.</p>
-<p>To this end I've had <a href="https://til.simonwillison.net/homebrew/packaging-python-cli-for-homebrew">a blog post about packaging Python apps for
-Homebrew</a>
-saved in Pinboard for a while now, and every time I look at it I think
-<em>"this is a lot of faff, maybe later"</em>. Today was that "later".</p>
-<p>As it turned out, it was <em>way</em> easier than I first realised. The evolution
-of today pretty much went like this:</p>
-<h2>Deciding to use a single repository as the "tap"</h2>
-<p>The blog post above seemed to suggest that for every application repository
-you want a tap for, you probably want a parallel <code>homebrew-</code>-prefixed
-repository. This in turn would suggest that every time someone wants to
-install one of your tools, they'd need to add a new tap<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>. As I looked at
-it this seemed like way too much faff, so in the end I decided <a href="https://github.com/davep/homebrew-homebrew">to create a
-single repository that I'd keep all my formula files
-in</a>. The naming of
-<code>homebrew-homebrew</code> meant that the tap name would simply be
-<code>davep/homebrew</code>.</p>
-<p>Simple and clean, I think: things for homebrew, things that can be installed
-via homebrew, that come from davep. To add the tap it's simply:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-</code></pre></div>
-
-<h2>Ensuring that all my applications and libraries publish source</h2>
-<p>Although it seems that it might be (possibly, maybe, perhaps, who can tell?)
-deprecated, it looked like
-<a href="https://github.com/tdsmith/homebrew-pypi-poet"><code>homebrew-pypi-poet</code></a> was a
-tool I'd need to do all the heavy work on making the formula file. A quick
-test threw up a problem where it was complaining that my test package (one
-of my own applications) didn't have an <code>sdist</code>. Sure enough, through nothing
-more than never having bothered to make it happen, the source of my
-libraries and applications wasn't been uploaded to PyPI when I published.</p>
-<p>So I went through some of my repositories and fixed that, making patch
-releases as I went.</p>
-<h2>Making a <code>Makefile</code> to let me be lazy</h2>
-<p>The next thing to do was to figure out the most lazy way of building the
-formula files. From what I could see the main steps to making all of this
-work were:</p>
-<ul>
-<li>Make a venv and activate it</li>
-<li>Install <code>homebrew-pypi-poet</code></li>
-<li>Install the package you want to package for Homebrew</li>
-<li>Run <code>poet</code> to make the formula</li>
-</ul>
-<p>Seemed simple enough. For all sorts of lazy reasons I still tend to use
-<code>pipenv</code> to get things done quickly, and that seemed to work fine here too.
-I'm also a fan of <code>PIPENV_VENV_IN_PROJECT=true</code> which makes things clean and
-tidy, so I figured a rule in a <code>Makefile</code> like this:</p>
-<div class="highlight"><pre><span></span><code><span class="nf">clean</span><span class="o">:</span>
-<span class="w">        </span>rm<span class="w"> </span>-rf<span class="w"> </span>.venv
-<span class="w">        </span>rm<span class="w"> </span>-f<span class="w"> </span>Pipfile<span class="w"> </span>Pipfile.lock
-<span class="w">        </span>pipenv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.12
-<span class="w">        </span>pipenv<span class="w"> </span>install<span class="w"> </span>--dev<span class="w"> </span>homebrew-pypi-poet
-</code></pre></div>
-
-<p>would be fine to make a clean venv ready to build the formula, and then I'd
-have a rule for the package itself that depended on the above, like this:</p>
-<div class="highlight"><pre><span></span><code><span class="nf">oshit</span><span class="o">:</span><span class="w"> </span><span class="n">clean</span>
-<span class="w">        </span>pipenv<span class="w"> </span>install<span class="w"> </span>oshit
-<span class="w">        </span>pipenv<span class="w"> </span>run<span class="w"> </span>poet<span class="w"> </span>-f<span class="w"> </span>oshit<span class="w"> </span>&gt;<span class="w"> </span>Formula/oshit.rb
-</code></pre></div>
-
-<h2>Fixing the package description</h2>
-<p>The above was great, and worked really well. But there was one issue that I
-could see: the resulting formula file always had this <code>desc</code> inside it:</p>
-<div class="highlight"><pre><span></span><code><span class="n">desc</span><span class="w"> </span><span class="s2">&quot;Shiny new formula&quot;</span>
-</code></pre></div>
-
-<p>From what I could see there was no way to tell <code>poet</code> what I wanted the
-description to be, and neither did I want to have to remember to edit that
-line each time I regenerated the formula file. So <code>sed</code> to the rescue then I
-guess, with this sort of thing:</p>
-<div class="highlight"><pre><span></span><code>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;s/Shiny new formula/The actual text I want/&#39;</span><span class="w"> </span>Formula/coolapp.rb
-</code></pre></div>
-
-<h2>The result</h2>
-<p>The result of all of this is that I now have <a href="https://github.com/davep/homebrew-homebrew">a repository that I or anyone
-else can use as a tap</a> to be
-able to install my stuff using the <code>brew</code> command. So now if you want a
-little Hacker News reader for the terminal but you don't want to be messing
-with installing <code>pipx</code> and the like, but you do use <code>brew</code> on your machine,
-it's just this:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>oshit
-</code></pre></div>
-
-<p>Fingers crossed it all "just works" when I next upgrade one of those
-packages. I will, of course, have to remember to go into
-<code>davep/homebrew-homebrew</code> and <code>make the-app</code> for the relevant application,
-and then commit and push the changes, but that's really not too difficult to
-remember and do.</p>
-<p>Hopefully it'll then all just work.</p>
-<div class="footnote">
-<hr>
-<ol>
-<li id="fn:1">
-<p>I do actually <a href="https://formulae.brew.sh/formula/eg">have one package in
-Homebrew</a>, but it wasn't me who put
-it there.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>I really like Homebrew as a tool for getting stuff installed, by oh my
-gods the naming of things in its ecosystem is terrible and confusing!&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-<li id="fn:3">
-<p>No, really, I mean it, this naming convention is kinda cringe right?&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div></div>
   </div>
 </article>
 

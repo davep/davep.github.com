@@ -183,6 +183,78 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/04/20/complexitty.html#complexitty">Complexitty</a></h2>
+    <p>
+      Posted on 2025-04-20 09:30 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/mandelbrot.html">mandelbrot</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p><a href="https://complexitty.davep.dev/"><img alt="Complexitty" src="/attachments/2025/04/20/complexitty-social-banner.png"></a></p>
+<p>Much like <a href="https://www.davep.org/norton-guides/">Norton Guide readers</a> or
+the <a href="https://github.com/davep?tab=repositories&amp;q=5x5&amp;type=&amp;language=&amp;sort=">5x5
+puzzle</a>,
+code that has fun with the Mandelbrot set is another one of my goto
+exercises. I've written versions in many languages, and messed with plot in
+some different environments, as varied as <a href="https://www.youtube.com/watch?v=18ytRZrHL34">in VR on the
+web</a> to <a href="https://www.redbubble.com/i/t-shirt/Self-Documenting-Mandelbrot-by-davepearson/1341910.0S66D">wearable
+items</a>.</p>
+<p>Back in the early days of <a href="https://blog.davep.org/2024/03/28/goodbye-textualize.html">my involvement with
+Textualize</a> I
+<a href="https://github.com/davep/trMandelbrot">wrote a deliberately worst-approach
+version</a> using that framework. The
+whole thing was about taking a really silly approach while also
+stress-testing Textual itself. It did the job.</p>
+<p>Later on I did <a href="https://github.com/davep/textual-mandelbrot">a second version that targets
+Textual</a>. This time it did a
+better job and was the catalyst for building
+<a href="https://textual-canvas.davep.dev/"><code>textual-canvas</code></a>. This version was
+intended more to be a widget that happened to come with an example
+application, and while it was far more better than the on-purpose-terrible
+version mentioned above, I still wasn't 100% happy with the way it worked.</p>
+<p>Recently I did some maintenance work on <code>textual-canvas</code>, cleaning up the
+repository and bringing it in line with how I like to maintain my Python
+projects these days, and this prompted me to look back at
+<code>textual-mandelbrot</code> and rework it too. Quickly I realised it wasn't really
+sensible to rewrite it in a way that it would be backward compatible (not
+that I think anyone has ever used the widget) and instead I decided to kick
+off a fresh stand-alone application.</p>
+<p><a href="https://complexitty.davep.dev/">Complexitty</a> is the result.</p>
+<p><img alt="Complexitty on startup" src="/attachments/2025/04/20/complexitty.png"></p>
+<p>Right now the application has all the same features as the <code>mandelexp</code>
+application that came with <code>textual-mandelbrot</code>, plus a couple more. Also
+it's built on top of <a href="https://github.com/davep/textual-enhanced">the common core
+library</a> I've been putting
+together for all my own terminal-based Python applications. As time goes on
+<a href="https://github.com/davep/complexitty/issues?q=is%3Aissue%20label%3ATODO%20label%3AEnhancement">I'll add more
+features</a>.</p>
+<p><img alt="Zoomed in with Complexitty" src="/attachments/2025/04/20/complexitty-red.png"></p>
+<p>As with most of my recent TUI-based projects, the application is built with
+comprehensive help for commands and key bindings.</p>
+<p><img alt="The help screen" src="/attachments/2025/04/20/complexitty-help.png"></p>
+<p>and there's also a command palette that also helps you discover (and run)
+commands and their keyboard bindings.</p>
+<p><img alt="The command palette" src="/attachments/2025/04/20/complexitty-commands.png"></p>
+<p>Complexitty is licensed GPL-3.0 and available <a href="https://github.com/davep/complexitty">via
+GitHub</a> and also <a href="https://pypi.org/project/complexitty/">via
+PyPI</a>. If you have an environment that has
+<code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>complexitty
+</code></pre></div>
+
+<p>It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>complexitty</code>:</p>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+brew<span class="w"> </span>install<span class="w"> </span>complexitty
+</code></pre></div></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/03/24/ng2web.html#ng2web">ng2web v1.0.0</a></h2>
     <p>
       Posted on 2025-03-24 14:17 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -1015,38 +1087,6 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
 <p>PS: As for the name... originally it was <code>pin2rain</code> but then <a href="https://fosstodon.org/@darrenburns/112978377299333401">Darren Burns
 pointed out the obvious and it had to
 happen</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/05/14/tinboard-0-14-0.html#tinboard-0-14-0">Tinboard v0.14.0</a></h2>
-    <p>
-      Posted on 2024-05-14 08:02 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/youtube.html">YouTube</a>
-        &#8226; 1 min read
-    </p>
-  </header>
-  <div>
-      <div><p>I've just released <a href="https://github.com/davep/tinboard">Tinboard</a> v0.14.0.
-This release adds a <a href="https://github.com/davep/tinboard/issues/49">feature that a user
-requested</a>, where you can set
-the default values for the privacy and read-later status of a new bookmark:</p>
-<p><img alt="The application settings dialog" src="/attachments/2024/05/15/app-settings.png#centre"></p>
-<p>So, any time you create a new bookmark, the edit dialog will use those
-values by default. It's a feature that makes perfect sense but I didn't
-think to add it early on because... well, I set the defaults to my
-preference.</p>
-<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
-PyPi</a>. It can also be installed with
-<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>tinboard</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>tinboard
-</code></pre></div>
-
-<p>The <a href="https://github.com/davep/tinboard">source is available on GitHub</a>.</p></div>
   </div>
 </article>
 

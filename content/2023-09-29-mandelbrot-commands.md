@@ -2,7 +2,7 @@
 layout: post
 title: Mandelbrot Commands
 category: Python
-tags: PyPi, Python, coding, Textual
+tags: PyPi, Python, coding, Textual, mandelbrot
 date: 2023-09-29 12:42:00 +0100
 cover: attachments/2023/09/29/mandelbrot-commands.png
 ---
