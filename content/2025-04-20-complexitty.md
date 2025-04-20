@@ -13,7 +13,7 @@ Much like [Norton Guide readers](https://www.davep.org/norton-guides/) or
 the [5x5
 puzzle](https://github.com/davep?tab=repositories&q=5x5&type=&language=&sort=),
 code that has fun with the Mandelbrot set is another one of my goto
-exercises. I've written versions in many languages, and messed with plot in
+exercises. I've written versions in many languages, and messed with plots in
 some different environments, as varied as [in VR on the
 web](https://www.youtube.com/watch?v=18ytRZrHL34) to [wearable
 items](https://www.redbubble.com/i/t-shirt/Self-Documenting-Mandelbrot-by-davepearson/1341910.0S66D).
@@ -60,7 +60,7 @@ comprehensive help for commands and key bindings.
 
 ![The help screen](/attachments/2025/04/20/complexitty-help.png)
 
-and there's also a command palette that also helps you discover (and run)
+and there's also a command palette that helps you discover (and run)
 commands and their keyboard bindings.
 
 ![The command palette](/attachments/2025/04/20/complexitty-commands.png)
