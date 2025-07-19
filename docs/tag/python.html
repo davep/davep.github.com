@@ -183,6 +183,76 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/07/19/dhv.html#dhv">DHV</a></h2>
+    <p>
+      Posted on 2025-07-19 15:00 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/disassembly.html">disassembly</a>,              <a href="https://blog.davep.org/tag/ast.html">ast</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p><a href="https://dhv.davep.dev/"><img alt="DHV" src="/attachments/2025/07/19/dhv-social-banner.png"></a></p>
+<p>Back in the very early days of my involvement with
+<a href="https://www.textualize.io/">Textualize</a>, while looking for fun things to
+build to test out the framework and find problems with it, I created
+<a href="https://github.com/davep/textual-astview"><code>textual-astview</code></a>. The idea was
+pretty simple: exercise Textual's
+<a href="https://textual.textualize.io/widgets/tree/"><code>Tree</code></a> widget by using it to
+display the output of Python's <a href="https://docs.python.org/3/library/ast.html">abstract syntax tree
+module</a>.</p>
+<p>While the code still works, Textual has moved on a lot, as has my approach
+to building applications with Textual, and so I've been wanting to do a
+ground-up rewrite of it. At the same time I was also thinking that it might
+be interesting to build a tool that provides other ways of understanding how
+your Python source gets turned into runnable code; with this in mind I've
+ended up building a terminal-based application called DHV.</p>
+<p><a href="https://dhv.davep.dev/"><img alt="DHV in action" src="/attachments/2025/07/19/dhv.gif"></a></p>
+<p>The idea is pretty straightforward: you type in, paste in, or load up,
+Python code, and you get a real-time display of what the <a href="https://docs.python.org/3/library/dis.html">resulting
+bytecode</a> and abstract syntax
+tree would be.</p>
+<p>If you've ever wondered what a particular bit of code looks like under the
+hood, or wondered if one particular approach to a problem is "more
+efficient"<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> than another, or just wondered to yourself if <code>1+1</code> ends up
+being a complex operation or simply gets turned into <code>2</code>, this tool might be
+useful to experiment and see.</p>
+<p>As of now DHV only works with Python 3.13. The main reason for this is that
+the Python <code>dis</code> module is a bit of a moving target and has had some
+noticeable interface changes over the past few versions. When I find some
+time I might work on making DHV a little more backward-compatible. But for
+now keep this in mind: when you're looking at the results for some code
+you're looking at what Python 3.13 (or later) would do, earlier Python's may
+differ.</p>
+<p>DHV is licensed GPL-3.0 and available <a href="https://github.com/davep/dhv">via
+GitHub</a> and also <a href="https://pypi.org/project/dhv/">via
+PyPI</a>. If you have an environment that has
+<code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>dhv
+</code></pre></div>
+
+<p>If you're a fan of
+<a href="https://docs.astral.sh/uv/getting-started/installation/"><code>uv</code></a> and friends
+you can install it like this:</p>
+<div class="highlight"><pre><span></span><code>uv tool install --python 3.13 dhv
+</code></pre></div>
+
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>I'm sure many of us have worked with that person who claims <em>"this is
+more efficient"</em> without providing any evidence; this might just be the
+tool to let you check that assertion.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/04/20/complexitty.html#complexitty">Complexitty</a></h2>
     <p>
       Posted on 2025-04-20 09:30 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -975,118 +1045,6 @@ I did (I do think that over 50,000 individual files for an Obsidian Vault is
 a bit silly, if I'm honest).</p>
 <p>Meanwhile... I might need to look at other applications and think about how
 I can turn the data into useful Markdown collections!</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/08/18/paindrop.html#paindrop">Paindrop v1.0.0</a></h2>
-    <p>
-      Posted on 2024-08-18 10:57 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/pinboard.html">pinboard</a>,              <a href="https://blog.davep.org/tag/raindrop.html">raindrop</a>
-        &#8226; 4 min read
-    </p>
-  </header>
-  <div>
-      <div><p>I was quite late discovering Pinboard; by the looks of things I created my
-account and paid my first subscription for it in early 2019. Since then I've
-been a pretty avid user and found it really useful. I've even written a
-couple of clients for it (<a href="https://github.com/davep/pinboard.el">one for
-Emacs</a> and <a href="https://github.com/davep/tinboard">one for the
-terminal</a>).</p>
-<p>During that time it's had its fair share of hiccups and outages, but on the
-whole I've found it a stable and useful service.</p>
-<p>The service does have its detractors, and concerns over its long-term
-stability and how well it's maintained <a href="https://news.ycombinator.com/item?id=34062802">are fairly
-common</a>. I half paid
-attention to these, and had started to think about where I might go if there
-was an issue.</p>
-<p>While maintaining and syncing bookmarks isn't exactly a difficult or
-unsolved problem, and while it's also true that it could be fun to roll my
-own solution, there are a couple of things I need that would make building
-my own approach a bit of a chore.</p>
-<p>Things important to me are:</p>
-<ul>
-<li>An extension for any random browser I might find myself using</li>
-<li>A good mobile client for at least iOS and iPadOS</li>
-<li>A good API so I can write my own tools if I need to</li>
-<li>A clean and focused backend website</li>
-</ul>
-<p>I kept these things in mind and kept an eye out but I'd never really felt
-the need to actively start looking around.</p>
-<p>Then I <a href="https://sfba.social/@peterme/112915495895055170">stumbled on this</a>
-after posting about <a href="https://fosstodon.org/@davep/112925762265869565">another Pinboard
-outage</a>.</p>
-<p>That... yeah, that was the final push I needed to start to think seriously
-about where to move and how.</p>
-<p>A couple of people suggested <a href="https://raindrop.io">Raindrop</a>, and from what
-I could tell it was coming up as a pretty popular service that some Pinboard
-users were migrating to. I had a look and it wasn't <em>quite</em> what I was
-after; but close.</p>
-<p>You see, there's two things I really like about Pinboard that Raindop didn't
-seem to cover:</p>
-<ul>
-<li>Simple support for "this shit is unread". I see things, I share to
-  whatever Pinboard app I have on my phone or tablet, etc, and then I review
-  some time later (normally in
-  <a href="https://github.com/davep/tinboard">Tinboard</a>).</li>
-<li>Support for Private and Public pins. I've liked <a href="https://pinboard.in/u:davep">having a feed of
-  bookmarks I can let people see</a> and Raindrop
-  doesn't have this.</li>
-</ul>
-<p>I looked around at some blogs that talked about Pinboard vs Raindrop and
-didn't see any that really dived into this particular aspect of migrating; I
-also asked a couple of folk who'd made the move about this and they didn't
-really have any insight (mainly because they didn't care about those
-particular uses).</p>
-<p>One thing I did notice though was that Raindrop <em>does</em> support making
-individual collections public. So, if I was willing to sacrifice any other
-uses for collections (a bookmark in Raindrop can only be in one collection),
-I could simply have a <em>Public</em> and a <em>Private</em> collection and import pins
-into the appropriate one. Also, unread pins could be left out of the
-collections and I could use that to signify unread status.</p>
-<p>This seemed fine as I'm heavy on the tags anyway.</p>
-<p>Now... Raindrop has a pretty comprehensive import facility built in. I gave
-it a try with Pinboard's backup file and it worked really well. That is...
-really well except it just threw away the public/private/unread aspect of
-the pins. There was only one thing for it then: I had to write my own
-importer!</p>
-<p>Which brings me to <a href="https://github.com/davep/paindrop"><code>Paindrop</code></a>. It's a
-quick hack but it does the job, and it does the import just how I wanted.
-The result of the first test was pretty much spot on (in this image I'm
-comparing what Raindrop says vs what Tinboard says I have in Pinboard):</p>
-<p><img alt="Comparing Raindrop and Tinboard contents" src="/attachments/2024/08/18/raindrop-imports.png#centre"></p>
-<p>Usage is pretty straightforward. You create <code>Public</code> and <code>Private</code>
-collections in Raindrop, you create an app in Raindrop and get the access
-token, you grab your Pinboard access token and then:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>paindrop<span class="w"> </span>example:xxxxxxxxxxxxxxxxxxxx<span class="w"> </span>xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-</code></pre></div>
-
-<p>where the first parameter is the Pinboard access token and the second the
-Raindrop access token.</p>
-<p>If all goes well, after a few moments, the importer should finish and you
-should find that all of your pins have migrated to Raindrop, all public pins
-are in the <code>Public</code> collection and all private pins are in the <code>Private</code>
-collection. Any pins that were marked as unread will be <em>Unsorted</em>.</p>
-<p>Note that if you used different names for your public and private
-collections you can pass those names to <code>paindrop</code> with the <code>--public</code> and
-<code>--private</code> switches.</p>
-<p>If you're looking to move your bookmarking history out of Pinboard and want
-to keep the same sort of structure I had I hope Paindrop will be useful to
-you too.</p>
-<p>Paindrop can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/paindrop/">from
-PyPi</a>. It can also be installed with
-<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>paindrop</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>paindrop
-</code></pre></div>
-
-<p>The <a href="https://github.com/davep/paindrop">source is available on GitHub</a>.</p>
-<p>PS: As for the name... originally it was <code>pin2rain</code> but then <a href="https://fosstodon.org/@darrenburns/112978377299333401">Darren Burns
-pointed out the obvious and it had to
-happen</a>.</p></div>
   </div>
 </article>
 

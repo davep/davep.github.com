@@ -183,6 +183,76 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/07/19/dhv.html#dhv">DHV</a></h2>
+    <p>
+      Posted on 2025-07-19 15:00 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/disassembly.html">disassembly</a>,              <a href="https://blog.davep.org/tag/ast.html">ast</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p><a href="https://dhv.davep.dev/"><img alt="DHV" src="/attachments/2025/07/19/dhv-social-banner.png"></a></p>
+<p>Back in the very early days of my involvement with
+<a href="https://www.textualize.io/">Textualize</a>, while looking for fun things to
+build to test out the framework and find problems with it, I created
+<a href="https://github.com/davep/textual-astview"><code>textual-astview</code></a>. The idea was
+pretty simple: exercise Textual's
+<a href="https://textual.textualize.io/widgets/tree/"><code>Tree</code></a> widget by using it to
+display the output of Python's <a href="https://docs.python.org/3/library/ast.html">abstract syntax tree
+module</a>.</p>
+<p>While the code still works, Textual has moved on a lot, as has my approach
+to building applications with Textual, and so I've been wanting to do a
+ground-up rewrite of it. At the same time I was also thinking that it might
+be interesting to build a tool that provides other ways of understanding how
+your Python source gets turned into runnable code; with this in mind I've
+ended up building a terminal-based application called DHV.</p>
+<p><a href="https://dhv.davep.dev/"><img alt="DHV in action" src="/attachments/2025/07/19/dhv.gif"></a></p>
+<p>The idea is pretty straightforward: you type in, paste in, or load up,
+Python code, and you get a real-time display of what the <a href="https://docs.python.org/3/library/dis.html">resulting
+bytecode</a> and abstract syntax
+tree would be.</p>
+<p>If you've ever wondered what a particular bit of code looks like under the
+hood, or wondered if one particular approach to a problem is "more
+efficient"<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> than another, or just wondered to yourself if <code>1+1</code> ends up
+being a complex operation or simply gets turned into <code>2</code>, this tool might be
+useful to experiment and see.</p>
+<p>As of now DHV only works with Python 3.13. The main reason for this is that
+the Python <code>dis</code> module is a bit of a moving target and has had some
+noticeable interface changes over the past few versions. When I find some
+time I might work on making DHV a little more backward-compatible. But for
+now keep this in mind: when you're looking at the results for some code
+you're looking at what Python 3.13 (or later) would do, earlier Python's may
+differ.</p>
+<p>DHV is licensed GPL-3.0 and available <a href="https://github.com/davep/dhv">via
+GitHub</a> and also <a href="https://pypi.org/project/dhv/">via
+PyPI</a>. If you have an environment that has
+<code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>dhv
+</code></pre></div>
+
+<p>If you're a fan of
+<a href="https://docs.astral.sh/uv/getting-started/installation/"><code>uv</code></a> and friends
+you can install it like this:</p>
+<div class="highlight"><pre><span></span><code>uv tool install --python 3.13 dhv
+</code></pre></div>
+
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>I'm sure many of us have worked with that person who claims <em>"this is
+more efficient"</em> without providing any evidence; this might just be the
+tool to let you check that assertion.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/04/20/complexitty.html#complexitty">Complexitty</a></h2>
     <p>
       Posted on 2025-04-20 09:30 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -894,48 +964,6 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
 </code></pre></div>
 
 <p>The <a href="https://github.com/davep/tinboard">source is available on GitHub</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/04/17/pispy-0-6-0.html#pispy-0-6-0">PISpy v0.6.0</a></h2>
-    <p>
-      Posted on 2024-04-17 11:30 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/youtube.html">YouTube</a>
-        &#8226; 1 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Back in the very early days of the <a href="https://blog.davep.org/2024/03/28/goodbye-textualize.html">Textual
-adventure</a>,
-within the first month or so of working on the framework, we <a href="https://textual.textualize.io/blog/2022/11/26/on-dog-food-the-original-metaverse-and-not-being-bored/">had a period
-of
-dogfooding</a>.
-One of the projects I wrote during that time was a little tool <a href="https://textual.textualize.io/blog/2022/12/08/be-the-keymaster/#pispy">I called
-PISpy</a>.</p>
-<p>The initial version was pretty much a quick hack; during that dogfooding
-period I did my best to try and develop a new project every couple of days.
-Since then I've let PISpy descend into <a href="https://en.wikipedia.org/wiki/Software_rot">bit
-rot</a>.</p>
-<p>In the last week or so I've turned my attention back to it and made an
-effort to <a href="https://www.youtube.com/watch?v=CepsN8TDq1E">tidy up the code</a>,
-<a href="https://www.youtube.com/watch?v=t2EUXA8RkN0">tidy it some more</a>, <a href="https://www.youtube.com/watch?v=2u5CfrgZWcc">and some
-more</a>, and <a href="https://www.youtube.com/watch?v=CDCvWCZx1AM">even some
-more</a>.</p>
-<p>This morning I put the finishing touches to these changes and released
-<a href="https://github.com/davep/pispy/releases/tag/v0.6.0">v0.6.0</a>.</p>
-<p><a href="https://www.youtube.com/shorts/67xtMdstbx4"><img alt="PISpy in action" src="/attachments/2024/04/17/pispy-in-action.gif#centre"></a></p>
-<p>PISpy can be installed with <code>pip</code> or (ideallty) <code>pipx</code> <a href="https://pypi.org/project/pispy-client/">from
-PyPI</a>. It can also be installed with
-Homebrew by tapping <code>davep/homebrew</code> and then installing <code>pispy</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>pispy
-</code></pre></div>
-
-<p>The <a href="https://github.com/davep/pispy">source is available on GitHub</a>.</p></div>
   </div>
 </article>
 

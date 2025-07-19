@@ -1,5 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>blog.davep.org</title><link>https://blog.davep.org/</link><description>Code, Emacs, VR, Stuff...</description><lastBuildDate>Sun, 20 Apr 2025 09:30:00 +0100</lastBuildDate><item><title>Complexitty</title><link>https://blog.davep.org/2025/04/20/complexitty.html</link><description>&lt;p&gt;&lt;a href="https://complexitty.davep.dev/"&gt;&lt;img alt="Complexitty" src="/attachments/2025/04/20/complexitty-social-banner.png"&gt;&lt;/a&gt;&lt;/p&gt;
+<rss version="2.0"><channel><title>blog.davep.org</title><link>https://blog.davep.org/</link><description>Code, Emacs, VR, Stuff...</description><lastBuildDate>Sat, 19 Jul 2025 15:00:00 +0100</lastBuildDate><item><title>DHV</title><link>https://blog.davep.org/2025/07/19/dhv.html</link><description>&lt;p&gt;&lt;a href="https://dhv.davep.dev/"&gt;&lt;img alt="DHV" src="/attachments/2025/07/19/dhv-social-banner.png"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Back in the very early days of my involvement with
+&lt;a href="https://www.textualize.io/"&gt;Textualize&lt;/a&gt;, while looking for fun things to
+build to test out the framework and find problems with it, I created
+&lt;a href="https://github.com/davep/textual-astview"&gt;&lt;code&gt;textual-astview&lt;/code&gt;&lt;/a&gt;. The idea was
+pretty simple: exercise Textual's
+&lt;a href="https://textual.textualize.io/widgets/tree/"&gt;&lt;code&gt;Tree&lt;/code&gt;&lt;/a&gt; widget by using it to
+display the output of Python's &lt;a href="https://docs.python.org/3/library/ast.html"&gt;abstract syntax tree
+module&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While the code still works, Textual has moved on a lot, as has my approach
+to building applications with Textual, and so I've been wanting to do a
+ground-up rewrite of it. At the same time I was also thinking that it might
+be interesting to build a tool that provides other ways of understanding how
+your Python source gets turned into runnable code; with this in mind I've
+ended up building a terminal-based application called DHV.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dhv.davep.dev/"&gt;&lt;img alt="DHV in action" src="/attachments/2025/07/19/dhv.gif"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The idea is pretty straightforward: you type in, paste in, or load up,
+Python code, and you get a real-time display of what the &lt;a href="https://docs.python.org/3/library/dis.html"&gt;resulting
+bytecode&lt;/a&gt; and abstract syntax
+tree would be.&lt;/p&gt;
+&lt;p&gt;If you've ever wondered what a particular bit of code looks like under the
+hood, or wondered if one particular approach to a problem is "more
+efficient"&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt; than another, or just wondered to yourself if &lt;code&gt;1+1&lt;/code&gt; ends up
+being a complex operation or simply gets turned into &lt;code&gt;2&lt;/code&gt;, this tool might be
+useful to experiment and see.&lt;/p&gt;
+&lt;p&gt;As of now DHV only works with Python 3.13. The main reason for this is that
+the Python &lt;code&gt;dis&lt;/code&gt; module is a bit of a moving target and has had some
+noticeable interface changes over the past few versions. When I find some
+time I might work on making DHV a little more backward-compatible. But for
+now keep this in mind: when you're looking at the results for some code
+you're looking at what Python 3.13 (or later) would do, earlier Python's may
+differ.&lt;/p&gt;
+&lt;p&gt;DHV is licensed GPL-3.0 and available &lt;a href="https://github.com/davep/dhv"&gt;via
+GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/dhv/"&gt;via
+PyPI&lt;/a&gt;. If you have an environment that has
+&lt;code&gt;pipx&lt;/code&gt; installed you should be able to get up and going with:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;dhv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If you're a fan of
+&lt;a href="https://docs.astral.sh/uv/getting-started/installation/"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt; and friends
+you can install it like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv tool install --python 3.13 dhv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;I'm sure many of us have worked with that person who claims &lt;em&gt;"this is
+more efficient"&lt;/em&gt; without providing any evidence; this might just be the
+tool to let you check that assertion.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dave Pearson</dc:creator><pubDate>Sat, 19 Jul 2025 15:00:00 +0100</pubDate><guid isPermaLink="false">tag:blog.davep.org,2025-07-19:/2025/07/19/dhv.html</guid><category>Coding</category><category>Python</category><category>terminal</category><category>textual</category><category>disassembly</category><category>ast</category></item><item><title>Complexitty</title><link>https://blog.davep.org/2025/04/20/complexitty.html</link><description>&lt;p&gt;&lt;a href="https://complexitty.davep.dev/"&gt;&lt;img alt="Complexitty" src="/attachments/2025/04/20/complexitty-social-banner.png"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Much like &lt;a href="https://www.davep.org/norton-guides/"&gt;Norton Guide readers&lt;/a&gt; or
 the &lt;a href="https://github.com/davep?tab=repositories&amp;amp;q=5x5&amp;amp;type=&amp;amp;language=&amp;amp;sort="&gt;5x5
 puzzle&lt;/a&gt;,
@@ -1147,44 +1201,4 @@ gods the naming of things in its ecosystem is terrible and confusing!&amp;#160;&
 &lt;p&gt;No, really, I mean it, this naming convention is kinda cringe right?&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dave Pearson</dc:creator><pubDate>Sun, 10 Mar 2024 14:12:00 +0000</pubDate><guid isPermaLink="false">tag:blog.davep.org,2024-03-10:/2024/03/10/homebrew-all-the-python-things.html</guid><category>Coding</category><category>Python</category><category>terminal</category><category>textual</category><category>Homebrew</category><category>Makefile</category></item><item><title>Tinboard v0.10.0</title><link>https://blog.davep.org/2024/03/07/tinboard-0-10-0.html</link><description>&lt;p&gt;I just realised that it's been a while since I &lt;a href="/2023/12/25/tinboard-0-4-0.html"&gt;last posted an
-update&lt;/a&gt; about &lt;code&gt;tinboard&lt;/code&gt;. This is probably
-my most-used Textual-based application, and one I'm constantly tinkering
-with, and just this morning I published v0.10.0.&lt;/p&gt;
-&lt;p&gt;Often the changes are small tweaks or fixes to how it works, sometimes
-they're simply updates to the version of Textual used, making use of some
-new feature or other; I've yet to add another "major" feature so far. They
-will come, but so far the ideas I have for the application haven't actually
-felt that necessary. Although I say so myself it does what I need it to do
-and it does it really well.&lt;/p&gt;
-&lt;p&gt;So, as a quick catch-up of what's changed since v0.4.0 (which was the last
-version I posted about):&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;v0.5.0 was released 2024-01-04; this included all the tags of a bookmark
-when doing full-text searching.&lt;/li&gt;
-&lt;li&gt;v0.6.0 was released 2024-01-10; it fixed a small bug where the tag
-suggestion facility got confused by trailing spaces in the input field.&lt;/li&gt;
-&lt;li&gt;v0.7.0 was released 2024-02-02; this updated the minimum Textual version to
-v0.48.2 and removed all the custom changes to the Textual &lt;code&gt;TextArea&lt;/code&gt; widget,
-making use of the updates to &lt;code&gt;TextArea&lt;/code&gt; that version of Textual made
-available.&lt;/li&gt;
-&lt;li&gt;v0.8.0 was released 2024-02-18; this fixed a crash on startup caused by a
-newer release of Textual (the fault was in &lt;code&gt;tinboard&lt;/code&gt;; the update to Textual
-helped reveal the problem).&lt;/li&gt;
-&lt;li&gt;v0.9.0 was released 2024-02-29; it simply added support for using
-&lt;kbd&gt;Esc&lt;/kbd&gt; at the top level of the application to quit (I like to camp
-on &lt;kbd&gt;Esc&lt;/kbd&gt; to GTFO).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Then, just now, I released v0.10.0. This release makes full use of &lt;a href="https://github.com/Textualize/textual/pull/4154"&gt;some
-work I recently did to enhance Textual's &lt;code&gt;CommandPalette&lt;/code&gt;
-widget&lt;/a&gt;, which added a
-"discover" system. The change in &lt;code&gt;tinboard&lt;/code&gt; is that all of the &lt;a href="https://github.com/davep/tinboard/tree/main/tinboard/commands"&gt;command
-palette
-providers&lt;/a&gt;
-now have &lt;code&gt;discover&lt;/code&gt; methods too. The result of this change is that when you
-open the command palette in &lt;code&gt;tinboard&lt;/code&gt; (&lt;kbd&gt;ctrl&lt;/kbd&gt;+&lt;kbd&gt;p&lt;/kbd&gt;) you
-can see &lt;em&gt;every&lt;/em&gt; possible command right away.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The command palette in discovery mode" src="/attachments/2024/03/07/command-palette.png#centre"&gt;&lt;/p&gt;
-&lt;p&gt;Tinboard can be installed with &lt;code&gt;pip&lt;/code&gt; or (ideally) &lt;code&gt;pipx&lt;/code&gt; &lt;a href="https://pypi.org/project/tinboard/"&gt;from
-PyPi&lt;/a&gt;. The &lt;a href="https://github.com/davep/tinboard"&gt;source is available on
-GitHub&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dave Pearson</dc:creator><pubDate>Thu, 07 Mar 2024 08:45:00 +0000</pubDate><guid isPermaLink="false">tag:blog.davep.org,2024-03-07:/2024/03/07/tinboard-0-10-0.html</guid><category>Coding</category><category>Python</category><category>terminal</category><category>textual</category></item></channel></rss>
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dave Pearson</dc:creator><pubDate>Sun, 10 Mar 2024 14:12:00 +0000</pubDate><guid isPermaLink="false">tag:blog.davep.org,2024-03-10:/2024/03/10/homebrew-all-the-python-things.html</guid><category>Coding</category><category>Python</category><category>terminal</category><category>textual</category><category>Homebrew</category><category>Makefile</category></item></channel></rss>

@@ -183,6 +183,76 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/07/19/dhv.html#dhv">DHV</a></h2>
+    <p>
+      Posted on 2025-07-19 15:00 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/disassembly.html">disassembly</a>,              <a href="https://blog.davep.org/tag/ast.html">ast</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p><a href="https://dhv.davep.dev/"><img alt="DHV" src="/attachments/2025/07/19/dhv-social-banner.png"></a></p>
+<p>Back in the very early days of my involvement with
+<a href="https://www.textualize.io/">Textualize</a>, while looking for fun things to
+build to test out the framework and find problems with it, I created
+<a href="https://github.com/davep/textual-astview"><code>textual-astview</code></a>. The idea was
+pretty simple: exercise Textual's
+<a href="https://textual.textualize.io/widgets/tree/"><code>Tree</code></a> widget by using it to
+display the output of Python's <a href="https://docs.python.org/3/library/ast.html">abstract syntax tree
+module</a>.</p>
+<p>While the code still works, Textual has moved on a lot, as has my approach
+to building applications with Textual, and so I've been wanting to do a
+ground-up rewrite of it. At the same time I was also thinking that it might
+be interesting to build a tool that provides other ways of understanding how
+your Python source gets turned into runnable code; with this in mind I've
+ended up building a terminal-based application called DHV.</p>
+<p><a href="https://dhv.davep.dev/"><img alt="DHV in action" src="/attachments/2025/07/19/dhv.gif"></a></p>
+<p>The idea is pretty straightforward: you type in, paste in, or load up,
+Python code, and you get a real-time display of what the <a href="https://docs.python.org/3/library/dis.html">resulting
+bytecode</a> and abstract syntax
+tree would be.</p>
+<p>If you've ever wondered what a particular bit of code looks like under the
+hood, or wondered if one particular approach to a problem is "more
+efficient"<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> than another, or just wondered to yourself if <code>1+1</code> ends up
+being a complex operation or simply gets turned into <code>2</code>, this tool might be
+useful to experiment and see.</p>
+<p>As of now DHV only works with Python 3.13. The main reason for this is that
+the Python <code>dis</code> module is a bit of a moving target and has had some
+noticeable interface changes over the past few versions. When I find some
+time I might work on making DHV a little more backward-compatible. But for
+now keep this in mind: when you're looking at the results for some code
+you're looking at what Python 3.13 (or later) would do, earlier Python's may
+differ.</p>
+<p>DHV is licensed GPL-3.0 and available <a href="https://github.com/davep/dhv">via
+GitHub</a> and also <a href="https://pypi.org/project/dhv/">via
+PyPI</a>. If you have an environment that has
+<code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>dhv
+</code></pre></div>
+
+<p>If you're a fan of
+<a href="https://docs.astral.sh/uv/getting-started/installation/"><code>uv</code></a> and friends
+you can install it like this:</p>
+<div class="highlight"><pre><span></span><code>uv tool install --python 3.13 dhv
+</code></pre></div>
+
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>I'm sure many of us have worked with that person who claims <em>"this is
+more efficient"</em> without providing any evidence; this might just be the
+tool to let you check that assertion.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/04/20/complexitty.html#complexitty">Complexitty</a></h2>
     <p>
       Posted on 2025-04-20 09:30 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -914,109 +984,6 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
 </code></pre></div>
 
 <p>I hope this is useful to someone else. :-)</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/11/04/markdown-all-the-things.html#markdown-all-the-things">Markdown all the things</a></h2>
-    <p>
-      Posted on 2024-11-04 21:00 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/twitter.html">Twitter</a>,              <a href="https://blog.davep.org/tag/journey.html">Journey</a>,              <a href="https://blog.davep.org/tag/evernote.html">Evernote</a>
-        &#8226; 4 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Recently I've been on a bit of a <em>"turn stuff into Markdown files and slap
-them in an Obsidian Vault"</em> trip. This kicked off a couple of months back
-when I made a decision unrelated to coding.</p>
-<p>On and off, since my teenage years, I've kept journals. Since those teenage
-years it's been more off than on, but a couple of times in my adult life
-it's been really helpful to actually write one. The last time this happened
-was early 2019. It was pretty vital I did that at the time and it was a
-really sensible and helpful decision, and an approach to the situation I was
-in that I'd recommend to anyone (and have done on occasion to anyone going
-through the same thing).</p>
-<p>The actual motivation for starting that particular journal is long behind
-me, but I'd got into the habit of writing it and so, until a couple or so
-months back, I kept jotting something down every day. But I came to the
-realisation that I didn't <em>need</em> to and that it had become something of a
-chore.</p>
-<p>I'd been using an application called <a href="https://journey.cloud">Journey</a>. It's
-a great app, does the job well, but was also suffering from the creep of
-"AI" (I've had a few apps ion my arsenal that don't need it, acquire a
-useless "AI" feature). This privacy-problematic change of direction,
-combined with the realisation that I didn't <em>need</em> to write about my day,
-every day, any more, made me decide it was time to stop and cancel the
-subscription.</p>
-<p>Thankfully Journey has a pretty comprehensive export option so I used it and
-didn't think too much more about it for a while.</p>
-<p>Meanwhile I also had a subscription to <a href="https://evernote.com">Evernote</a> that
-I didn't really use any more. Within it I had held a handful of years of
-journal entries from a decade or so ago, along with other <em>"remember this
-for some point in the future"</em> stuff. For the longest time I was on some
-really cheap tier that didn't exist any more, one that was low enough that I
-didn't really notice the cost go out each month so I kept putting off
-exporting things and closing it all down until <em>"next month"</em>.</p>
-<p>Then I got an email from them to say they were forcing me onto some new tier
-that was more expensive. So that was the final straw there. I made an export
-of what I had in Evernote and closed that account down too.</p>
-<p>A wee while went past and then I got to thinking that it might be
-interesting to try and combine both these sources into one archived journal.
-I had stuff from around 2010 to 2015, and I also had stuff from 2019 until
-2024; the former in the Evernote archive and the latter in the Journey
-archive. Surely I could write a couple of tools to turn that data into one
-consolidated Obsidian Vault?</p>
-<p>Over the course of a couple of weekends
-<a href="https://github.com/davep/journey2md"><code>journey2md</code></a> and
-<a href="https://github.com/davep/evernote2md"><code>evernote2md</code></a> were born. While both
-of those tools work differently, they're both designed to populate the same
-Obsidian Vault. Once I was happy with this I did the mass conversion and I
-was happy with the result.</p>
-<p>Now I have years of journal entries, all converted to Markdown files and
-made available for reading via an application that lets me rummage through
-history using dates and tags and all sorts of other searching.</p>
-<p>So I was happy with that and didn't give it much more though.</p>
-<p>Then last week I got to thinking...</p>
-<p>Twitter has turned into the worst place possible and I can't for the life of
-me think why any right-thinking person who has an ounce of humanity or has
-anything approaching a humanistic outlook on life would remain an active
-user. Honestly I stuck it out longer than was sensible, but in June 2023 I
-finally quit for good.</p>
-<p>Back when the <a href="https://en.wikipedia.org/wiki/Acquisition_of_Twitter_by_Elon_Musk">new owner was
-confirmed</a>
-I, like a lot of people, extracted my archive. It's since been sat in
-storage doing nothing, yet there's a lot of data in there that could be
-interesting to work with, or just to go back and look through. So last
-week's thought was <em>"why don't I also turn this into an Obsidian Vault?"</em>.</p>
-<p>So I did...</p>
-<p><img alt="The graph of my Twitter Obsidian Vault" src="/attachments/2024/11/04/bird2glass.png"></p>
-<p>The tool I built to do this is
-<a href="https://github.com/davep/bird2glass"><code>bird2glass</code></a>. As you'll see in <a href="https://github.com/davep/bird2glass/blob/main/README.md">the
-README</a> it makes a
-few assumptions about the state of Twitter archive dumps and also what a
-user wants from this. Personally I'm pleased with the result.</p>
-<p>The main aim of the tool is to break the tweets down into a hierarchy of
-year, month and day...</p>
-<p><img alt="Viewing a tweet" src="/attachments/2024/11/04/tweet-view.png"></p>
-<p>...and also to connect them with any account that was being replied to or
-mentioned in some way...</p>
-<p><img alt="Viewing a user" src="/attachments/2024/11/04/user-view.png"></p>
-<p>This user view is handy when viewing backlinks, as it gives you a list of
-all the tweets that mention that user (and, of course, if you're into
-Obsidian's graph it will make for some interesting connections within
-there).</p>
-<p>I sense there's more I can do with this, and I imagine I will continue to
-tinker with it. Meanwhile though, if that sounds like something you'd
-benefit from do feel free to grab it and play with it and hack on it. Keep
-in mind the notes and assumptions that are in the README, and <em>really</em> be
-prepared for a lot of files to be created if you did a lot of tweeting like
-I did (I do think that over 50,000 individual files for an Obsidian Vault is
-a bit silly, if I'm honest).</p>
-<p>Meanwhile... I might need to look at other applications and think about how
-I can turn the data into useful Markdown collections!</p></div>
   </div>
 </article>
 

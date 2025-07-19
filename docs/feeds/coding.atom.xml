@@ -1,5 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2025-04-20T09:30:00+01:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Complexitty</title><link href="https://blog.davep.org/2025/04/20/complexitty.html" rel="alternate"></link><published>2025-04-20T09:30:00+01:00</published><updated>2025-04-20T09:30:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-04-20:/2025/04/20/complexitty.html</id><content type="html">&lt;p&gt;&lt;a href="https://complexitty.davep.dev/"&gt;&lt;img alt="Complexitty" src="/attachments/2025/04/20/complexitty-social-banner.png"&gt;&lt;/a&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2025-07-19T15:00:00+01:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>DHV</title><link href="https://blog.davep.org/2025/07/19/dhv.html" rel="alternate"></link><published>2025-07-19T15:00:00+01:00</published><updated>2025-07-19T15:00:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-07-19:/2025/07/19/dhv.html</id><content type="html">&lt;p&gt;&lt;a href="https://dhv.davep.dev/"&gt;&lt;img alt="DHV" src="/attachments/2025/07/19/dhv-social-banner.png"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Back in the very early days of my involvement with
+&lt;a href="https://www.textualize.io/"&gt;Textualize&lt;/a&gt;, while looking for fun things to
+build to test out the framework and find problems with it, I created
+&lt;a href="https://github.com/davep/textual-astview"&gt;&lt;code&gt;textual-astview&lt;/code&gt;&lt;/a&gt;. The idea was
+pretty simple: exercise Textual's
+&lt;a href="https://textual.textualize.io/widgets/tree/"&gt;&lt;code&gt;Tree&lt;/code&gt;&lt;/a&gt; widget by using it to
+display the output of Python's &lt;a href="https://docs.python.org/3/library/ast.html"&gt;abstract syntax tree
+module&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While the code still works, Textual has moved on a lot, as has my approach
+to building applications with Textual, and so I've been wanting to do a
+ground-up rewrite of it. At the same time I was also thinking that it might
+be interesting to build a tool that provides other ways of understanding how
+your Python source gets turned into runnable code; with this in mind I've
+ended up building a terminal-based application called DHV.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dhv.davep.dev/"&gt;&lt;img alt="DHV in action" src="/attachments/2025/07/19/dhv.gif"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The idea is pretty straightforward: you type in, paste in, or load up,
+Python code, and you get a real-time display of what the &lt;a href="https://docs.python.org/3/library/dis.html"&gt;resulting
+bytecode&lt;/a&gt; and abstract syntax
+tree would be.&lt;/p&gt;
+&lt;p&gt;If you've ever wondered what a particular bit of code looks like under the
+hood, or wondered if one particular approach to a problem is "more
+efficient"&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt; than another, or just wondered to yourself if &lt;code&gt;1+1&lt;/code&gt; ends up
+being a complex operation or simply gets turned into &lt;code&gt;2&lt;/code&gt;, this tool might be
+useful to experiment and see.&lt;/p&gt;
+&lt;p&gt;As of now DHV only works with Python 3.13. The main reason for this is that
+the Python &lt;code&gt;dis&lt;/code&gt; module is a bit of a moving target and has had some
+noticeable interface changes over the past few versions. When I find some
+time I might work on making DHV a little more backward-compatible. But for
+now keep this in mind: when you're looking at the results for some code
+you're looking at what Python 3.13 (or later) would do, earlier Python's may
+differ.&lt;/p&gt;
+&lt;p&gt;DHV is licensed GPL-3.0 and available &lt;a href="https://github.com/davep/dhv"&gt;via
+GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/dhv/"&gt;via
+PyPI&lt;/a&gt;. If you have an environment that has
+&lt;code&gt;pipx&lt;/code&gt; installed you should be able to get up and going with:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;dhv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If you're a fan of
+&lt;a href="https://docs.astral.sh/uv/getting-started/installation/"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt; and friends
+you can install it like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv tool install --python 3.13 dhv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;I'm sure many of us have worked with that person who claims &lt;em&gt;"this is
+more efficient"&lt;/em&gt; without providing any evidence; this might just be the
+tool to let you check that assertion.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category><category term="disassembly"></category><category term="ast"></category></entry><entry><title>Complexitty</title><link href="https://blog.davep.org/2025/04/20/complexitty.html" rel="alternate"></link><published>2025-04-20T09:30:00+01:00</published><updated>2025-04-20T09:30:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2025-04-20:/2025/04/20/complexitty.html</id><content type="html">&lt;p&gt;&lt;a href="https://complexitty.davep.dev/"&gt;&lt;img alt="Complexitty" src="/attachments/2025/04/20/complexitty-social-banner.png"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Much like &lt;a href="https://www.davep.org/norton-guides/"&gt;Norton Guide readers&lt;/a&gt; or
 the &lt;a href="https://github.com/davep?tab=repositories&amp;amp;q=5x5&amp;amp;type=&amp;amp;language=&amp;amp;sort="&gt;5x5
 puzzle&lt;/a&gt;,
@@ -1311,26 +1365,4 @@ available if anyone else wanted to have a play.&lt;/p&gt;
 The &lt;a href="https://github.com/davep/quizzical"&gt;source is available over on
 GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;PS: Now you can see why I made
-&lt;a href="/2024/01/11/textual-countdown.html"&gt;&lt;code&gt;textual-countdown&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry><entry><title>Orange Site Hit v0.5.0</title><link href="https://blog.davep.org/2024/01/17/oshit-0-5-0.html" rel="alternate"></link><published>2024-01-17T21:36:00+00:00</published><updated>2024-01-17T21:36:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-01-17:/2024/01/17/oshit-0-5-0.html</id><content type="html">&lt;p&gt;Just a wee catch-up post about OSHit, &lt;a href="https://github.com/davep/oshit"&gt;my terminal-based HackerNews
-browser&lt;/a&gt;. Over the past couple of weeks I've
-made some small changes, so I thought I'd make mention of what I've done.&lt;/p&gt;
-&lt;p&gt;As of v0.5.0, which I released earlier today, I've:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Added a quick way of following links while viewing a comment. While a
-  comment is highlighted you can press &lt;kbd&gt;l&lt;/kbd&gt; to follow a link; if
-  there's more than one link in the comment a menu will be shown and you can
-  select which one to follow.&lt;/li&gt;
-&lt;li&gt;Added support for viewing polls. Polls seem to be few and far between on
-  HackerNews, so when I published the first version of OSHit I didn't have
-  one to hand to test any code against. Eventually one turned up and broke
-  OSHit (on purpose; I wanted to see when that happened) so I could then add
-  the code to load polls and show them. Right now it just shows scores; I
-  might do actual charts at some point.&lt;/li&gt;
-&lt;li&gt;Added optional item numbers in the lists; turned on/off with
-  &lt;kbd&gt;F4&lt;/kbd&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;So far all small things, but handy little improvements. There's still a nice
-TODO list in the README and I will slowly work through it. Along with
-&lt;a href="https://github.com/davep/tinboard"&gt;tinboard&lt;/a&gt; these are two applications
-that have absolutely turned into "daily drivers", so they're going to get a
-lot of tweaking over the next few weeks, probably even months.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry></feed>
+&lt;a href="/2024/01/11/textual-countdown.html"&gt;&lt;code&gt;textual-countdown&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry></feed>
