@@ -12,7 +12,7 @@ long had a bit of a thing for [writing tools for reading the content of
 Norton Guide files](https://www.davep.org/norton-guides/). I first used
 Norton Guides back in the early 1990s thanks to the release of Clipper 5,
 and later on in that decade I wrote my first couple of tools to turn guides
-into HTML (and also write a Windows-based reader, then rewrote it, wrote one
+into HTML (and also wrote a Windows-based reader, then rewrote it, wrote one
 for OS/2, wrote one for GNU/Linux, and so on).
 
 One tool ([`ng2html`](https://github.com/davep/ng2html)) got used by a few
@@ -54,7 +54,7 @@ So with this, I'm putting out a call for help: if you remember the days of
 Norton Guide help files, if you have Norton Guide help files I don't have,
 and especially if you are the copyright-holder of any of these files and you
 can extend me the permission to open them up, or if you know the right
-people and can get me in touch with them, DROP ME A LINE!
+people and can get me in touch with them, [DROP ME A LINE](mailto:davep@davep.org)!
 
 I'd also love to have others join me in this... quest. So if you want to
 contribute to the repository and help build it up I'd also love to hear from
