@@ -31,6 +31,12 @@ if it hasn't disappeared altogether.
 
 This makes me kind of sad.
 
+> **Edit to add:** digging a little, one of the sites was called
+`www.clipx.net` and it looks to have long-since gone offline. It is [on
+archive.org though](https://web.archive.org/web/20050213123739/http://www.clipx.net/ng/).
+The other was `x-hacker.org` which, digging a wee bit more, seems to have
+been a copy of what was on clipx.net.
+
 So I had an idea: having [recently polished up my replacement for
 ng2html](/2025/03/24/ng2web.html), why not use that to build my own site
 that publishes the guides I have? So I set about it.
