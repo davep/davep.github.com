@@ -183,6 +183,97 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/01/25/peplum.html#peplum">Peplum</a></h2>
+    <p>
+      Posted on 2025-01-25 14:21 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
+        &#8226; 3 min read
+    </p>
+  </header>
+  <div>
+      <div><p><img alt="Peplum" src="/attachments/2025/01/25/peplum-social-banner.png"></p>
+<p>I seem to be back in the swing of writing handy (for me) little
+terminal-based applications again. Having not long since <a href="/2025/01/03/braindrop.html">released
+Braindrop</a> (which I'm still working on and
+tinkering with; it'll get more features in the near future, for sure), I had
+an idea for another tool I'd like to have: something for looking through,
+searching, and filtering <a href="https://peps.python.org">Python PEPs</a>.</p>
+<p>As with anyone who is interested in what's happening with Python itself, I
+subscribe to the RSS feed of the latest Python PEPs, but I also wanted
+something that would let me look back at older ones in a way that worked
+<em>"just so"</em> (<em>"just so" being "what feels right for me"</em>, of course). Having
+finished the main work on Braindrop I realised that the general layout of
+its UI would work here, as would the filtering and searching approach I
+used.</p>
+<p>From this idea <a href="https://github.com/davep/peplum">Peplum</a> was born!</p>
+<p><img alt="Peplum in action" src="/attachments/2025/01/25/peplum.png"></p>
+<p>In this first release I've simply concentrated on all things to do with
+grabbing the list of PEPs and presenting them in a useful way; adding
+various forms of filtering them; adding the ability to search the metadata;
+that sort of thing. I aim to keep developing this out over the next few
+weeks and months, adding things like the ability to make notes, to locally
+view the text of a PEP, perhaps even to mark PEPs as unread and read, etc.</p>
+<p>As I mentioned earlier, much of the design was driven by what I did with
+Braindrop, so once again I've tried my very best to make it
+keyboard-friendly and as much as possible keyboard-first. This sometimes
+means having to work against how Textual works, but generally that isn't too
+tricky to do. I'm once again making heavy use of the command palette and
+also ensuring that all commands that have corresponding keyboard bindings
+are documented in the help screen.</p>
+<p><img alt="Peplum Help" src="/attachments/2025/01/25/peplum-help.png"></p>
+<p>There's enough common code between Peplum and Braindrop, when it comes to
+this aspect of building a Textual application, that I'm minded to spin it
+out into a little library of its own. I'm going to sit on this code for a
+wee while and see how it develops, but I can see me taking this approach
+with future applications and doing this will stop the need to copy and
+paste.</p>
+<p>It might also be useful to others building with Textual.</p>
+<p>Also as with Braindrop, themes are a thing, and the theme setting is sticky
+so you can set it the once and stick with that you like. Here's some
+examples:</p>
+<p><img alt="Nord" src="/attachments/2025/01/25/peplum-nord.png">
+<img alt="Catppuccin Latte" src="/attachments/2025/01/25/peplum-catppuccin-latte.png">
+<img alt="Tokyo Night" src="/attachments/2025/01/25/peplum-tokyo-night.png"></p>
+<p>That's a small selection of the themes, with more to explore.</p>
+<p>While working on this project I managed to find a couple more bugs in
+Textual, including <a href="https://github.com/Textualize/textual/issues/5488">a fun way to get <code>transparent</code> backgrounds to get out of
+sync</a> and also a way to
+get <a href="https://github.com/Textualize/textual/issues/5489">an easy crash out of <code>OptionList</code> if it's set to <code>width:
+auto</code></a>.</p>
+<p>What was even more fun was I sort of <a href="https://fosstodon.org/@davep/113843011699020404">discovered a bug in the Python PEP
+API</a>. Thanks to
+<a href="https://fosstodon.org/@hugovk@mastodon.social">Hugo</a> noticing my <em>"huh,
+weird"</em> post on Fosstodon, there's <a href="https://github.com/python/peps/issues/4211">now an issue for
+it</a> as well as <a href="https://github.com/python/peps/pull/4226">a PR in the
+works</a>. In retrospect I should
+have raised an issue myself; instead I fell into that <em>"they obviously know
+what they're doing so it must be like this for a reason"</em> trap.</p>
+<p>Lesson relearned: it's always better to ask and get an answer, than to
+assume a thing is how it is for a reason you don't know; which I guess is a
+version of <a href="https://en.wikipedia.org/wiki/Linus%27s_law">Linus' law</a> really.</p>
+<p>So that's v0.1.0 out in the wild. I'm pleased with how it's turned out and
+there's more to come. It's licensed GPL-3.0 and available <a href="https://github.com/davep/peplum">via
+GitHub</a> and also <a href="https://pypi.org/project/peplum/">via
+PyPi</a>. If you have an environment that
+has <code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>peplum
+</code></pre></div>
+
+<p>It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>peplum</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>peplum
+</code></pre></div>
+
+<p>I'm going to be making good use of this and working on it more; I hope it's
+useful to someone else. :-)</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/01/03/braindrop.html#braindrop">Braindrop</a></h2>
     <p>
       Posted on 2025-01-03 16:24 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -789,70 +880,6 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
 </code></pre></div>
 
 <p>The <a href="https://github.com/davep/tinboard">source is available on GitHub</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/03/28/goodbye-textualize.html#goodbye-textualize">Goodbye Textualize</a></h2>
-    <p>
-      Posted on 2024-03-28 06:30 +0000 in <a href="https://blog.davep.org/category/life.html">Life</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/free-software.html">free-software</a>,              <a href="https://blog.davep.org/tag/work.html">work</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>While I have been <a href="/2017/12/12/on_to_something_new.html">on the receiving end of redundancy once
-before</a>, that was after 21 years of
-service at a company that, while it was in part about software development,
-I would never have called it a "tech" company.</p>
-<p>So, as of today, I can finally say that the "<a href="https://techcrunch.com/2024/03/27/tech-layoffs-2023-list/">tech
-layoffs</a>" came
-for me and I'm one of 67% of employees being let go from a tech startup.</p>
-<p>Achievement unlocked, I guess?</p>
-<p><img alt="!Achievement unlocked" src="/attachments/2024/03/28/achievement-unlocked.png#centre"></p>
-<p>To be clear: I'm not annoyed about this, I'm not even shocked about this; I
-planned for this from the off and realised and recognised the gamble I was
-taking <a href="https://twitter.com/willmcgugan/status/1574118265063972864">back in 2022</a>.</p>
-<p><a href="https://twitter.com/willmcgugan/status/1574118265063972864"><img alt="Announcing being hired" src="/attachments/2024/03/28/textual-startup-tweet.png#centre"></a></p>
-<p>I am disappointed about this. Not in a "I'm disappointed in you" kind of
-way, but disappointed for all involved and what it says about how FOSS
-projects are funded and maintained.</p>
-<p>It's been an interesting journey, and it's been a privilege to do something
-I've been wanting to do since the 1990s, when I first read the GNU Manifesto
-and subsequently watched the free software and open source movements develop
-and grow: work on FOSS for a living. In doing this I've developed my
-thoughts about the feasibility of such an endeavour, I've refined how I feel
-about working in very small teams, I've learnt a lot of useful lessons I'm
-going to draw on in the future (keeping a journal of my experience has been
-a great move; I have a lot of notes and thoughts written down that I'll be
-reviewing and distilling for myself over the coming weeks).</p>
-<p>Most of all: it's been an absolute blast working on something that people
-are actually using to build <a href="https://github.com/davep/transcendent-textual">cool
-things</a>, and to <a href="https://textual.textualize.io/help/">provide help
-and guidance to those people when they've needed
-it</a>.</p>
-<p>So... what happens now? Well, of course, right now, I'm looking for a new
-position. If you're reading this and you are looking for someone who's kinda
-handy with Python <a href="https://github.com/davep">and a bunch of other languages</a>
-and who loves learning new stuff, or if you know someone who is looking for
-such a person, <a href="mailto:davep@davep.co.uk">do drop me a line</a>!</p>
-<p>As for what happens with Textual, and my involvement with it...</p>
-<p>Well, what happens <em>with</em> Textual is
-<a href="https://github.com/willmcgugan">Will</a>'s call, of course. As for my
-involvement with it: I care about FOSS and I care about Textual; I also care
-about the folk who have been kind enough to use their time to explore it,
-test it, build with it, commit to it and make neat stuff with it. My
-intention, as long as free time allows, is to carry on being involved, both
-on GitHub and in <a href="https://discord.gg/Enf6Z3qhVr">the Discord server</a>.</p>
-<p>It's my sincere hope that, as a community of FOSS-friendly developers, we
-see Textual over the 1.0 line and beyond.</p>
-<p>But all that starts next week. It's a bank holiday weekend and I think I
-might have deserved a run, a bit of <a href="https://www.youtube.com/@DavePearson">mucking about in
-VR</a>, a beer, and just a wee bit of
-down time.</p></div>
   </div>
 </article>
 

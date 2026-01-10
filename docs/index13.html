@@ -183,6 +183,101 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2019/10/26/pydscheck.html#pydscheck">pydscheck -- A quick hack that keeps slowly growing</a></h2>
+    <p>
+      Posted on 2019-10-26 13:19 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/documentation.html">documentation</a>
+        &#8226; 3 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Something I always try to do when I'm coding is be consistent. I feel this
+is important. While people's coding standards may differ, I think different
+approaches are easier to handle if someone has been consistent with their
+style across all of their code.</p>
+<p>This also stands for documentation too.</p>
+<p>In my current position, I do a <em>lot</em> of Python coding, and one of the things
+I like about Python (there are things I don't like too, but that's not for
+now) is that it has doc-strings (just like my <a href="https://en.wikipedia.org/wiki/Common_Lisp">favourite
+language</a>). I use them
+extensively, ensuring every function and method has some form of
+documentation, and generally I use
+<a href="http://www.sphinx-doc.org/en/master/">Sphinx</a> to generate documentation
+from those doc-strings.</p>
+<p>Early on I was bothered by the fact that, just by the simple act of making
+typos, I wasn't keeping the form of the doc-strings consistent. And in this
+case it was a <em>really</em> simple thing that was bugging me. Normally, if I'm
+writing a single-line doc-string, I'll write like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">one_liner</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Here is a one-line doc-string.&quot;&quot;&quot;</span>
+</code></pre></div>
+
+<p>So far, so good. But, if the doc-string is a multi-liner, I prefer the
+ending quotes to be on a line of their own, like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">multi_liner</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Here is the first line.</span>
+<span class="sd">    Here is another line.</span>
+<span class="sd">    Here is the final line.</span>
+<span class="sd">    &quot;&quot;&quot;</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+<p>But, sometimes, by accident, I'd leave a doc-string like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">multi_liner</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Here is the first line.</span>
+<span class="sd">    Here is another line.</span>
+<span class="sd">    Here is the final line.&quot;&quot;&quot;</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+<p>While it's really not a big deal, it would bug me and every time I found one
+like this I'd "fix" it.</p>
+<p>Eventually, it bugged me enough that I decided I was going to write a little
+tool to find all such instances in my code and report them. My first
+approach was to think "I could just do this with some regexp magic", <a href="http://regex.info/blog/2006-09-15/247">which
+was really a bad idea</a>. Then I
+though, I know, I should use this as an excuse to to play with <a href="https://docs.python.org/3/library/ast.html">Python's ast
+library</a>.</p>
+<p>That worked really well! I had <a href="https://github.com/davep/pydscheck/blob/dc5052002690b1f898ccd68f815cdedbe9172b74/pydscheck">the first version of the
+code</a>
+up and running in no time. It was simple but did the job. It ran through
+Python code I threw at it and alerted me to both missing doc-strings, and
+doc-strings with the ending I didn't like.</p>
+<p>That served me for a while, until one day I realised that it wasn't quite
+doing the job correctly; it was only really looking at top-level functions
+and top-level methods in classes. Sometimes, not often, but sometimes, I'll
+define functions within functions, and I feel they deserve documentation
+too. So then I modified the code to ensure it walked every part of the AST.</p>
+<p>Since then, when I've run into new things and had new ideas, <code>pydscheck</code> has
+grown and grown. I've added checks that all mentioned parameters have a
+type; I've added checks that any function/method that returns something
+actually documents the return value; I've added checks that any
+documentation of a returned value includes its type; I've added checks that
+any function or method that yields a value documents that fact; I've added
+checks that ensure that every parameter is documented in some way.</p>
+<p>Each time I've done this it's helped uncover issues in my code's
+documentation that could be cleaner, and it's also given me a pet project to
+slowly better understand Python's AST.</p>
+<p>It could be that there are better tools out there, I'd have thought that a
+good doc-string linting tool would be something someone had already written.
+But this time around I was happy to
+<a href="https://en.wikipedia.org/wiki/Not_invented_here">NIH</a> it because I needed a
+fun learning exercise that would also have some benefits for my day-to-day
+work.</p>
+<p>I'll caveat this with the fact that it's very particular to how I work and
+how I like my documentation to look, but if it sounds useful, here it is:
+<a href="https://github.com/davep/pydscheck">https://github.com/davep/pydscheck</a>.</p>
+<p>There's still lots I could do with it. First off I should really properly
+package it up so it can be installed as a command line tool via pip. Other
+things that would be handy would be to allow some form of customisation of
+how it works. I'm sure there's other fun things I can do with it too.</p>
+<p>That's part of the fun of having a pet project: you can tinker when you like
+and also get benefits from it as you use it.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2019/10/23/why-i-really-like-fish-abbreviations.html#why-i-really-like-fish-abbreviations">Why I really like fish abbreviations</a></h2>
     <p>
       Posted on 2019-10-23 00:18 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
@@ -837,83 +932,6 @@ find that everything was installed and ready to use.</p>
 it was before and, I think, even easier to maintain. Right now I think I'm
 very close to the ideal emacs config that I wanted to create when I did the
 complete rewrite a year ago.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2017/03/13/i_want_to_like_gboard.html#i_want_to_like_gboard">I want to like Gboard</a></h2>
-    <p>
-      Posted on 2017-03-13 08:29 +0000 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/google.html">Google</a>,              <a href="https://blog.davep.org/tag/android.html">Android</a>
-        &#8226; 3 min read
-    </p>
-  </header>
-  <div>
-      <div><p>I want to like Gboard. On paper it looks really rather good. It's a keyboard
-from Google, it ties in with your account, it syncs things, it has clever
-searching for emoji and gifs and the like... what's not to like?</p>
-<p>Problem is, I've been a user of SwiftKey since around 2011 (I think it was).
-I'm very used to how SwiftKey works and it also contains a lot of handy
-things. I like that it has smart completion, that it learns how I type a bit
-skewed and that it takes this into account, that I can turn off the fancy
-swipe typing and instead make use of handy gestures like swipe-left to
-delete a word. I like some of the themes a lot.</p>
-<p>Into the mix comes my iPad, which I use on occasion. The standard Apple
-keyboard is horrible and, sadly, I find SwiftKey on iOS just as frustrating.
-It seems to lack enough key features there (especially the word deletion
-gesture, as far as I can tell) that it's also a bit annoying. My dream of a
-consistent typing experience across all devices just wasn't happening --
-until I found Gboard on iOS.</p>
-<p>That felt almost right. And from what I could tell it worked almost exactly
-the same on iOS and Android. So it felt like a good time to try and force
-myself to use Gboard on my Google Pixel and Nexus 7.</p>
-<p>Sadly, though, I'm just not getting on with it. It's okay. It's not bad.
-It's just... not good. I'm finding that it lacks enough useful things that
-it's a frustrating experience. Little things like: when I enter Google
-Search, there's no word completion in the keyboard (SwiftKey has that); the
-word deletion gesture (swipe left from the backspace key) seems very
-hit-and-miss; the most obvious completion for a word sometimes appears in
-the middle slot but, other times, in the left slot. And so on.</p>
-<p>Nothing huge. Nothing that's a show-stopper. But a handful of a little
-things that make me miss the comfortable home that is SwiftKey.</p>
-<p>Don't get me wrong, it does have some very handy and cleaver features too.
-The searching for emoji -- including showing them up as word completions --
-is rather clever. The gif-search thing is all kinds of fun too (mostly used
-to annoy the hell out
-of <a href="https://twitter.com/VolcanicArts">my son on twitter</a>).</p>
-<p>None of those quite make up for the bits I miss from SwiftKey though.</p>
-<p>All that said, I've being making a point of pushing on with Gboard, thinking
-that most of my issues might just be because I'm too used to my "old home".
-Mostly this was working well, until I noticed something this morning. While
-reading the description for Gboard I noticed this handy thing in the "Pro
-Tips" section:</p>
-<blockquote>
-<p>Sync your learned words across devices to improve suggestions (enable in
-Gboard Settings→ Dictionary → Sync learned words).</p>
-</blockquote>
-<p>Useful! I'd assumed that this was the case anyway -- it's Google after all
--- but it's good to know I can ensure it's turned on. So I went to turn it
-on. This is what I found:</p>
-<p><img alt="Gboard WTF" src="/attachments/2017/03/13/Screenshot_20170313-072359.png"></p>
-<p>What the hell Google? Sure, I do have a Gsuite account on my phone -- as in
-various apps have access to a Gsuite account (Gmail, Drive, etc...) -- but
-it's not the primary account on my phone and it's not the account I'd really
-want to be doing the dictionary sync with anyway. If I've got dictionary
-sync I want it tied to the keyboard no matter the app I'm in, and no matter
-the account I'm using in that app. I want the keyboard to be tied to a
-specific account when it comes to sync (just like SwiftKey does it).</p>
-<p>This, I think, is a show-stopper for me.</p>
-<p>I can overlook the other niggles, I can learn to cope with it not being
-quite so perfect in some situations; but the blanket inability to do
-something as simple as cloud-sync the predictions and learn from how I type
--- things that are, these days, central to what Google's about -- it's
-frankly stupid.</p>
-<p>I guess I'm going to have to keep Gboard as a backup keyboard for those
-times when I need to find the perfect gif.</p>
-<p><img alt="Google WTF" src="http://i.imgur.com/0mw1I8e.gif"></p></div>
   </div>
 </article>
 

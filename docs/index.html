@@ -183,6 +183,70 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2026/01/10/obs2nlm.html#obs2nlm">obs2nlm - Feed NotebookLM an Obsidian Vault</a></h2>
+    <p>
+      Posted on 2026-01-10 11:18 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/journal.html">journal</a>,              <a href="https://blog.davep.org/tag/obsidian.html">Obsidian</a>,              <a href="https://blog.davep.org/tag/ai.html">AI</a>,              <a href="https://blog.davep.org/tag/llm.html">LLM</a>,              <a href="https://blog.davep.org/tag/python.html">Python</a>
+        &#8226; 3 min read
+    </p>
+  </header>
+  <div>
+      <div><p>I'm sure I've mentioned a couple of times before that I've become quite the
+fan of <a href="https://obsidian.md">Obsidian</a>. For the past few years, at any given
+point, I've had a couple of vaults on the go. Generally I find such vaults a
+really useful place to record things I'd otherwise forget, and of course as
+a place to go back and look things up.</p>
+<p>But... even then, it's easy enough to forget what you might have recorded
+and know that you can even go back and look things up. Also I tend to find
+that I can't quite figure out a good way of getting a good overview of what
+I've recorded, over time.</p>
+<p>Meanwhile: I've been playing around with Google's
+<a href="https://notebooklm.google.com">NotebookLM</a> as a tool to help research and
+understand various topics. After doing this with my recent winter break
+coding project (more on that in the future) I realised I really should get
+serious about taking this approach with my Obsidian Vaults.</p>
+<p>I'm sure this is far from novel, I'm sure lots of people have done similar
+things already; in fact I'd quickly dabbled with the idea <a href="https://github.com/davep/vault2source">a few months
+ago</a>, had a bit of a laugh at some of
+the things the "studio" made of a vault, and promptly forgot about it.</p>
+<p>This time though I got to thinking that I should try and take it a little
+more seriously.</p>
+<p>And so <a href="https://obs2nlm.davep.dev">obs2nlm</a> was born.</p>
+<p>The idea is simple enough: enumerate all the Markdown files in the vault,
+wrap them in boundary markers, add some instructions to the start of the
+file to help NotebookLM "comprehend" the content better, throw in a table of
+contents to give clues to the structure of the vault, and see what happens
+when you use the resulting file as a source.</p>
+<p>So far it's actually turning out to be really helpful. I've been using it to
+get summaries regarding my work over the past 18 months or so and it's
+helped me to consolidate my thoughts on all sorts of issues and subjects.</p>
+<p>It's not perfect, however. I've had it "hallucinate" some stuff when making
+things in the studio (most notably in the slide deck facility); for me
+though I find this an acceptable use of an LLM. I <em>know</em> the subject it's
+talking to me about and I know when it's making stuff up. This, in turn,
+makes for a useful lesson in how and when to not trust the output of a tool
+like this.</p>
+<p>Having tested it out with a currently-active vault, I'm now interested to
+find out what it'll make of some of the archived vaults I have. Back in 2024
+<a href="/2024/11/04/markdown-all-the-things.html">I wrote a couple or so tools for making vaults from other
+things</a> and so I have a vault of a
+journal I kept in <a href="https://journey.cloud">Journey</a> for a number of years, a
+vault of a journal I'd kept before then in <a href="https://evernote.com">Evernote</a>,
+and I also have a vault of all the tweets I wrote before I abandoned
+Twitter. I also have a vault that was dedicated to recording the daily
+events and thoughts of my time working at
+<a href="https://www.textualize.io/">Textualize</a>. It's going to be fun seeing what
+NotebookLM makes of each of those; especially the last one.</p>
+<p>Anyway, if Obsidian is your thing, and if you are dabbling with or fancy
+dabbling with NotebookLM, perhaps
+<a href="https://github.com/davep/obs2nlm">obs2nlm</a> will be handy for you.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/12/12/norton-guide-collection.html#norton-guide-collection">A Norton Guide collection</a></h2>
     <p>
       Posted on 2025-12-12 17:00 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -871,97 +935,6 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
 
 <p>Expect to see more updates in the near future; this is very much an ongoing
 tinker project.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2025/01/25/peplum.html#peplum">Peplum</a></h2>
-    <p>
-      Posted on 2025-01-25 14:21 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
-        &#8226; 3 min read
-    </p>
-  </header>
-  <div>
-      <div><p><img alt="Peplum" src="/attachments/2025/01/25/peplum-social-banner.png"></p>
-<p>I seem to be back in the swing of writing handy (for me) little
-terminal-based applications again. Having not long since <a href="/2025/01/03/braindrop.html">released
-Braindrop</a> (which I'm still working on and
-tinkering with; it'll get more features in the near future, for sure), I had
-an idea for another tool I'd like to have: something for looking through,
-searching, and filtering <a href="https://peps.python.org">Python PEPs</a>.</p>
-<p>As with anyone who is interested in what's happening with Python itself, I
-subscribe to the RSS feed of the latest Python PEPs, but I also wanted
-something that would let me look back at older ones in a way that worked
-<em>"just so"</em> (<em>"just so" being "what feels right for me"</em>, of course). Having
-finished the main work on Braindrop I realised that the general layout of
-its UI would work here, as would the filtering and searching approach I
-used.</p>
-<p>From this idea <a href="https://github.com/davep/peplum">Peplum</a> was born!</p>
-<p><img alt="Peplum in action" src="/attachments/2025/01/25/peplum.png"></p>
-<p>In this first release I've simply concentrated on all things to do with
-grabbing the list of PEPs and presenting them in a useful way; adding
-various forms of filtering them; adding the ability to search the metadata;
-that sort of thing. I aim to keep developing this out over the next few
-weeks and months, adding things like the ability to make notes, to locally
-view the text of a PEP, perhaps even to mark PEPs as unread and read, etc.</p>
-<p>As I mentioned earlier, much of the design was driven by what I did with
-Braindrop, so once again I've tried my very best to make it
-keyboard-friendly and as much as possible keyboard-first. This sometimes
-means having to work against how Textual works, but generally that isn't too
-tricky to do. I'm once again making heavy use of the command palette and
-also ensuring that all commands that have corresponding keyboard bindings
-are documented in the help screen.</p>
-<p><img alt="Peplum Help" src="/attachments/2025/01/25/peplum-help.png"></p>
-<p>There's enough common code between Peplum and Braindrop, when it comes to
-this aspect of building a Textual application, that I'm minded to spin it
-out into a little library of its own. I'm going to sit on this code for a
-wee while and see how it develops, but I can see me taking this approach
-with future applications and doing this will stop the need to copy and
-paste.</p>
-<p>It might also be useful to others building with Textual.</p>
-<p>Also as with Braindrop, themes are a thing, and the theme setting is sticky
-so you can set it the once and stick with that you like. Here's some
-examples:</p>
-<p><img alt="Nord" src="/attachments/2025/01/25/peplum-nord.png">
-<img alt="Catppuccin Latte" src="/attachments/2025/01/25/peplum-catppuccin-latte.png">
-<img alt="Tokyo Night" src="/attachments/2025/01/25/peplum-tokyo-night.png"></p>
-<p>That's a small selection of the themes, with more to explore.</p>
-<p>While working on this project I managed to find a couple more bugs in
-Textual, including <a href="https://github.com/Textualize/textual/issues/5488">a fun way to get <code>transparent</code> backgrounds to get out of
-sync</a> and also a way to
-get <a href="https://github.com/Textualize/textual/issues/5489">an easy crash out of <code>OptionList</code> if it's set to <code>width:
-auto</code></a>.</p>
-<p>What was even more fun was I sort of <a href="https://fosstodon.org/@davep/113843011699020404">discovered a bug in the Python PEP
-API</a>. Thanks to
-<a href="https://fosstodon.org/@hugovk@mastodon.social">Hugo</a> noticing my <em>"huh,
-weird"</em> post on Fosstodon, there's <a href="https://github.com/python/peps/issues/4211">now an issue for
-it</a> as well as <a href="https://github.com/python/peps/pull/4226">a PR in the
-works</a>. In retrospect I should
-have raised an issue myself; instead I fell into that <em>"they obviously know
-what they're doing so it must be like this for a reason"</em> trap.</p>
-<p>Lesson relearned: it's always better to ask and get an answer, than to
-assume a thing is how it is for a reason you don't know; which I guess is a
-version of <a href="https://en.wikipedia.org/wiki/Linus%27s_law">Linus' law</a> really.</p>
-<p>So that's v0.1.0 out in the wild. I'm pleased with how it's turned out and
-there's more to come. It's licensed GPL-3.0 and available <a href="https://github.com/davep/peplum">via
-GitHub</a> and also <a href="https://pypi.org/project/peplum/">via
-PyPi</a>. If you have an environment that
-has <code>pipx</code> installed you should be able to get up and going with:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>peplum
-</code></pre></div>
-
-<p>It can also be installed with
-<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>peplum</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>peplum
-</code></pre></div>
-
-<p>I'm going to be making good use of this and working on it more; I hope it's
-useful to someone else. :-)</p></div>
   </div>
 </article>
 
