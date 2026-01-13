@@ -183,6 +183,53 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2024/04/09/tinboard-0-11-0.html#tinboard-0-11-0">Tinboard v0.11.0</a></h2>
+    <p>
+      Posted on 2024-04-09 15:43 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/youtube.html">YouTube</a>
+        &#8226; 1 min read
+    </p>
+  </header>
+  <div>
+      <div><p>While <a href="/2024/03/28/goodbye-textualize.html">my time working on Textual might have come to an
+end</a>, my time working <em>with</em> Textual
+hasn't. Three days back <a href="https://www.youtube.com/watch?v=U66oHFLWmG4">I experimented with Textual's newly-added "inline
+mode"</a>:</p>
+<div style="text-align: center;">
+    <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/U66oHFLWmG4?si=kCQba6vMoxpKMtBG"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+    </iframe>
+</div>
+
+<p>In doing so I extended the application so that it's possible to run
+<code>tinboard add</code> and quickly enter a new bookmark and then carry on in the
+terminal, without needing to "go fullscreen". I'll admit it's of limited
+use, but it seemed like a good shakedown of the feature and in working on it
+I was able to discover a couple of bugs
+(<a href="https://github.com/Textualize/textual/issues/4385">#4385</a>,
+<a href="https://github.com/Textualize/textual/issues/4403">#4403</a>).</p>
+<p>The effect of this is this:</p>
+<p><img alt="Tinboard inline addition in action" src="/attachments/2024/04/09/tinboard-inline-add.gif#centre"></p>
+<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
+PyPi</a>. It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>tinboard</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>tinboard
+</code></pre></div>
+
+<p>The <a href="https://github.com/davep/tinboard">source is available on GitHub</a>.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2024/03/28/goodbye-textualize.html#goodbye-textualize">Goodbye Textualize</a></h2>
     <p>
       Posted on 2024-03-28 06:30 +0000 in <a href="https://blog.davep.org/category/life.html">Life</a>
@@ -975,78 +1022,6 @@ question in a quiz; something like that.</p>
 applications, <a href="https://pypi.org/project/textual-countdown/">it's now available from
 PyPi</a> and, of course, the
 source is over <a href="https://github.com/davep/textual-countdown">on GitHub</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/01/07/oshit-0-2-0.html#oshit-0-2-0">Orange Site Hit v0.2.0</a></h2>
-    <p>
-      Posted on 2024-01-07 09:50 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
-        &#8226; 3 min read
-    </p>
-  </header>
-  <div>
-      <div><p>This is actually the second release of OSHit since <a href="/2024/01/01/oshit.html">I first announced it a
-week back</a>, and I'll get to that other release in a
-moment.</p>
-<p>I've just published v0.2.0, which isn't a very substantial release, but
-which bumps the required version of Textual to
-<a href="https://github.com/Textualize/textual/releases/tag/v0.47.1">v0.47.1</a> and
-has some fun with <a href="https://github.com/Textualize/textual/releases/tag/v0.47.0">the new nested CSS
-feature</a>.</p>
-<p>Underlying the point of this release was me taking a <em>"real world"</em>
-application of mine and nesting as much of the CSS within it as possible, in
-part to get a feel for how and when it's useful, but also to give it a
-proper test in a <em>"proper"</em> application. In doing so <a href="https://github.com/Textualize/textual/issues/3969">I think I've found one
-bug</a>.</p>
-<p>Dogfooding is always a good idea.</p>
-<p>The main visible change in this release is I've played around with the look
-of the comments dialog a bit:</p>
-<p><img alt="OSHit you have comments" src="/attachments/2024/01/07/oshit-comments.png"></p>
-<p>I'm still narrowing this down, but I think I prefer this look to what I
-started out with.</p>
-<p>Another change I made was also to the comments dialog. Before, if you
-performed the <em>"expand comments"</em> action on a comment card that already had
-its comments expanded, it would move focus to the first child comment; this
-was a deliberate choice that felt right at the time. Having used the app for
-a few days now I've realised that making it an open/close toggle is far more
-useful. So that's what I've done.</p>
-<p>Now... as for <a href="https://github.com/davep/oshit/releases/tag/v0.1.1">the previous
-release</a> I mentioned
-above. That was a fun one.</p>
-<p>Back when I released v0.1.0 some joker decided that it would be fun to
-<a href="https://news.ycombinator.com/item?id=38831083">submit the blog post about it to the Orange
-Site</a>. The comments there
-went as you'd expected:</p>
-<ul>
-<li>Some riffed off the opening paragraph, ignoring the tool itself.</li>
-<li>Some riffed off the opening paragraph in self-reflective way.</li>
-<li>Some riffed off the opening paragraph in a <em>"I never see the problem"</em>
-  way.</li>
-<li>One or two did the usual <em>"why even bother building that when
-  <code>$TOOL_OF_CHOICE</code> exists?"</em> dance to show their terminal purity.</li>
-<li>One or two posted genuinely useful links to other similar projects.</li>
-<li>The biggest tree of comments was kind of a fight.</li>
-</ul>
-<p>One comment caught my eye though; someone reported having a problem running
-it. My initial thought on reading it was <em>"my dude, seriously, you're going
-to report the problem in some random comment on HN rather than raise an
-issue with the author?!?"</em>.</p>
-<p>For once <a href="https://github.com/davep/oshit/issues/2">I was wrong to be so cynical</a>.</p>
-<p>So, yeah, that was the reminder I needed that I'd been intentionally
-reckless while writing the original code, and hadn't <a href="https://github.com/davep/oshit/pull/4">gone back to the API
-code I'd written and made it behave</a>
-before doing the initial release.</p>
-<p>All of which is to say: if you run into a problem with some FOSS project, be
-like <a href="https://github.com/mihaitodor">@mihaitodor</a>. Issue that thing so the
-developer gets to know about it; don't assume they'll be reading some random
-comment section, social media site or Discord server!</p>
-<p>That and don't make 500+ HTTP requests at once; that might not end well for
-some.</p></div>
   </div>
 </article>
 

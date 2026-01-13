@@ -183,6 +183,70 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2026/01/12/ng2nlm.html#ng2nlm">ng2nlm - Feed NotebookLM a Norton Guide</a></h2>
+    <p>
+      Posted on 2026-01-12 09:00 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/norton-guide.html">Norton Guide</a>,              <a href="https://blog.davep.org/tag/ai.html">AI</a>,              <a href="https://blog.davep.org/tag/llm.html">LLM</a>,              <a href="https://blog.davep.org/tag/python.html">Python</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>After having knocked up <a href="/2026/01/10/obs2nlm.html">obs2nlm the other day</a> I
+realised there was another source of sources available to me that might be
+fun to throw into NotebookLM: <a href="/2025/12/12/norton-guide-collection.html">one or more of the Norton Guide files in my
+collection</a>!</p>
+<p>And so, after a wee bit of hacking on a wet Sunday afternoon,
+<a href="https://ng2nlm.davep.dev"><code>ng2nlm</code></a> was born.</p>
+<p>In terms of what it does, it's pretty much the same as <code>obs2nlm</code>, only it
+uses <a href="https://ngdb.davep.dev"><code>ngdb</code></a> to read the contents of a Norton Guide
+and turn it into a single Markdown file which can then be used as a source
+in NotebookLM.</p>
+<p>So far it seems to be working a treat.</p>
+<p><img alt="Learning abut low-level DOS programming" src="/attachments/2026/01/13/low-level-dos.png#centre"></p>
+<p>Here I grabbed the guide to assembly language Norton Guide, and the DOS
+interrupts Norton Guide, turned them into sources, created a notebook and
+let it do its thing.</p>
+<p>I can't vouch for how valid the answer to my question is -- it's a <em>long</em>
+time since I wrote any 8086 assembler code and it's a moment since I last
+had to dig into DOS interrupts and the like -- but I like the result.</p>
+<p>Probably the biggest issue I see at the moment is with the code examples: it
+seems to have a habit of adding some sort of citation marker that links to
+nowhere when it's emitting code. I <em>think</em> this is down to the instructions
+I've given it in the source I output, at least that's what it's suggesting
+when I ask it:</p>
+<blockquote>
+<p><strong>Me:</strong> What are all the numbers in square brackets for?</p>
+<p><strong>NotebookLM:</strong> The numbers in square brackets are passage indices used to
+cite which specific part of the sources supports each statement
+[Instruction]. Within the source files themselves, these markers identify
+distinct entries or sections within the Norton Guide databases.</p>
+</blockquote>
+<p>Given I am trying to encourage it to cite its sources, I think this is where
+the confusion comes from. In "normal" paragraphs it does do a good job of
+citing its source <em>and linking to it</em>:</p>
+<p><img alt="NotebookLM citing a source" src="/attachments/2026/01/13/cite-source.png#centre"></p>
+<p>so presumably, when it "thinks" it's outputting code it doesn't do the
+markup to actually do the linking, and so things end up looking a little
+confused.</p>
+<p>If I ask that citations aren't included in the code, this does seem to have
+the desired effect:</p>
+<p><img alt="No citations in the code" src="/attachments/2026/01/13/no-citation-in-code.png#centre"></p>
+<p>So, given this, perhaps I can use the
+<a href="https://ng2nlm.davep.dev/#-a-additional-instructions"><code>--additional-instructions</code></a>
+switch for the particular source to encourage it to not add citation links
+to code? Or of course I could tweak <code>ng2nlm</code> itself to include that
+instruction to start with. While it's a little specific to one use case,
+Norton Guide files do tend to be coding-related so it could make sense.</p>
+<p>Anyway, in the very unlikely event that you have a need to turn one or more
+Norton Guide files into sources to throw at NotebookLM or similar tools:
+<a href="https://github.com/davep/ng2nlm"><code>ng2nlm</code></a> exists.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2026/01/10/obs2nlm.html#obs2nlm">obs2nlm - Feed NotebookLM an Obsidian Vault</a></h2>
     <p>
       Posted on 2026-01-10 11:18 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -874,67 +938,6 @@ and added this to <code>mkdocs.yml</code>:</p>
 <p>And now I've worked out a simple workflow for using <code>mkdocs</code>/<code>mkdocstrings</code>
 for my own Python projects, in conjunction with GitHub Pages, I guess I'll
 start to sprinkle it over other projects too.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2025/02/14/hike.html#hike">Hike</a></h2>
-    <p>
-      Posted on 2025-02-14 09:22 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
-        &#8226; 1 min read
-    </p>
-  </header>
-  <div>
-      <div><p><img alt="Hike" src="/attachments/2025/02/14/hike-social-banner.png"></p>
-<p>The run of writing new terminal-based tools that I want still keeps going.
-First there was <a href="/2025/01/03/braindrop.html">Braindrop</a>, then there was
-<a href="/2025/01/25/peplum.html">Peplum</a>, and now, released today, there's
-<a href="https://github.com/davep/hike">Hike</a>.</p>
-<p>Hike is yet another terminal-based Markdown browser. While it's far from the
-first, and unlikely to be the last, it's mine and it looks and works exactly
-how I need. Perhaps it'll be your sort of thing too?</p>
-<p><img alt="Hike viewing its README" src="/attachments/2025/02/14/hike-in-action.png"></p>
-<p>This initial release has a bunch of handy features, including things like:</p>
-<ul>
-<li>A command line where file names, URLs and commands can be entered.</li>
-<li>A persistent history for the command line.</li>
-<li>A local file browser.</li>
-<li>A simple bookmarking system.</li>
-<li>A browsing history.</li>
-<li>Commands for quickly loading and viewing files held on GitHub, GitLab,
-  Codeberg and Bitbucket.</li>
-</ul>
-<p>As there's a lot to discover in the application, I've tried to make the help
-screen as comprehensive as possible:</p>
-<p><img alt="Hike help" src="/attachments/2025/02/14/hike-help.png"></p>
-<p>and there's also the command palette to help with discovering commands and
-the keys that are associated with them:</p>
-<p><img alt="The command palette in action" src="/attachments/2025/02/14/hike-command-palette.png"></p>
-<p>Once again, themes are supported so no matter your taste you should find
-something that's easy on your eyes:</p>
-<p><img alt="Dark" src="/attachments/2025/02/14/hike-textual-dark.png">
-<img alt="Light" src="/attachments/2025/02/14/hike-textual-light.png">
-<img alt="Tokyo Night" src="/attachments/2025/02/14/hike-tokyo-night.png">
-<img alt="Solarized Light" src="/attachments/2025/02/14/hike-solarized-light.png"></p>
-<p>Hike is licensed GPL-3.0 and available <a href="https://github.com/davep/hike">via
-GitHub</a> and also <a href="https://pypi.org/project/hike/">via
-PyPi</a>. If you have an environment that has
-<code>pipx</code> installed you should be able to get up and going with:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>hike
-</code></pre></div>
-
-<p>It can also be installed with
-<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>hike</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>hike
-</code></pre></div>
-
-<p>Expect to see more updates in the near future; this is very much an ongoing
-tinker project.</p></div>
   </div>
 </article>
 

@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2026-01-10T11:18:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>obs2nlm - Feed NotebookLM an Obsidian Vault</title><link href="https://blog.davep.org/2026/01/10/obs2nlm.html" rel="alternate"></link><published>2026-01-10T11:18:00+00:00</published><updated>2026-01-10T11:18:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2026-01-10:/2026/01/10/obs2nlm.html</id><content type="html">&lt;p&gt;I'm sure I've mentioned a couple of times before that I've become quite the
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2026-01-12T09:00:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>ng2nlm - Feed NotebookLM a Norton Guide</title><link href="https://blog.davep.org/2026/01/12/ng2nlm.html" rel="alternate"></link><published>2026-01-12T09:00:00+00:00</published><updated>2026-01-12T09:00:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2026-01-12:/2026/01/12/ng2nlm.html</id><content type="html">&lt;p&gt;After having knocked up &lt;a href="/2026/01/10/obs2nlm.html"&gt;obs2nlm the other day&lt;/a&gt; I
+realised there was another source of sources available to me that might be
+fun to throw into NotebookLM: &lt;a href="/2025/12/12/norton-guide-collection.html"&gt;one or more of the Norton Guide files in my
+collection&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;And so, after a wee bit of hacking on a wet Sunday afternoon,
+&lt;a href="https://ng2nlm.davep.dev"&gt;&lt;code&gt;ng2nlm&lt;/code&gt;&lt;/a&gt; was born.&lt;/p&gt;
+&lt;p&gt;In terms of what it does, it's pretty much the same as &lt;code&gt;obs2nlm&lt;/code&gt;, only it
+uses &lt;a href="https://ngdb.davep.dev"&gt;&lt;code&gt;ngdb&lt;/code&gt;&lt;/a&gt; to read the contents of a Norton Guide
+and turn it into a single Markdown file which can then be used as a source
+in NotebookLM.&lt;/p&gt;
+&lt;p&gt;So far it seems to be working a treat.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Learning abut low-level DOS programming" src="/attachments/2026/01/13/low-level-dos.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;Here I grabbed the guide to assembly language Norton Guide, and the DOS
+interrupts Norton Guide, turned them into sources, created a notebook and
+let it do its thing.&lt;/p&gt;
+&lt;p&gt;I can't vouch for how valid the answer to my question is -- it's a &lt;em&gt;long&lt;/em&gt;
+time since I wrote any 8086 assembler code and it's a moment since I last
+had to dig into DOS interrupts and the like -- but I like the result.&lt;/p&gt;
+&lt;p&gt;Probably the biggest issue I see at the moment is with the code examples: it
+seems to have a habit of adding some sort of citation marker that links to
+nowhere when it's emitting code. I &lt;em&gt;think&lt;/em&gt; this is down to the instructions
+I've given it in the source I output, at least that's what it's suggesting
+when I ask it:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Me:&lt;/strong&gt; What are all the numbers in square brackets for?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NotebookLM:&lt;/strong&gt; The numbers in square brackets are passage indices used to
+cite which specific part of the sources supports each statement
+[Instruction]. Within the source files themselves, these markers identify
+distinct entries or sections within the Norton Guide databases.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Given I am trying to encourage it to cite its sources, I think this is where
+the confusion comes from. In "normal" paragraphs it does do a good job of
+citing its source &lt;em&gt;and linking to it&lt;/em&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="NotebookLM citing a source" src="/attachments/2026/01/13/cite-source.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;so presumably, when it "thinks" it's outputting code it doesn't do the
+markup to actually do the linking, and so things end up looking a little
+confused.&lt;/p&gt;
+&lt;p&gt;If I ask that citations aren't included in the code, this does seem to have
+the desired effect:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="No citations in the code" src="/attachments/2026/01/13/no-citation-in-code.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;So, given this, perhaps I can use the
+&lt;a href="https://ng2nlm.davep.dev/#-a-additional-instructions"&gt;&lt;code&gt;--additional-instructions&lt;/code&gt;&lt;/a&gt;
+switch for the particular source to encourage it to not add citation links
+to code? Or of course I could tweak &lt;code&gt;ng2nlm&lt;/code&gt; itself to include that
+instruction to start with. While it's a little specific to one use case,
+Norton Guide files do tend to be coding-related so it could make sense.&lt;/p&gt;
+&lt;p&gt;Anyway, in the very unlikely event that you have a need to turn one or more
+Norton Guide files into sources to throw at NotebookLM or similar tools:
+&lt;a href="https://github.com/davep/ng2nlm"&gt;&lt;code&gt;ng2nlm&lt;/code&gt;&lt;/a&gt; exists.&lt;/p&gt;</content><category term="Coding"></category><category term="Norton Guide"></category><category term="AI"></category><category term="LLM"></category><category term="Python"></category></entry><entry><title>obs2nlm - Feed NotebookLM an Obsidian Vault</title><link href="https://blog.davep.org/2026/01/10/obs2nlm.html" rel="alternate"></link><published>2026-01-10T11:18:00+00:00</published><updated>2026-01-10T11:18:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2026-01-10:/2026/01/10/obs2nlm.html</id><content type="html">&lt;p&gt;I'm sure I've mentioned a couple of times before that I've become quite the
 fan of &lt;a href="https://obsidian.md"&gt;Obsidian&lt;/a&gt;. For the past few years, at any given
 point, I've had a couple of vaults on the go. Generally I find such vaults a
 really useful place to record things I'd otherwise forget, and of course as
@@ -1107,35 +1155,4 @@ abbr -g smwidon &amp;quot;defaults write com.apple.WindowManager StageManagerHid
 &lt;p&gt;Although, really, I can't remember the last time I used Stage Manager. I
 dabbled with it for a wee while, found it vaguely handy in a couple of
 situations, but it doesn't seem to have stuck as part of my workflow or work
-environment.&lt;/p&gt;</content><category term="Tech"></category><category term="macOS"></category><category term="fish"></category><category term="shell"></category><category term="streaming"></category></entry><entry><title>Tinboard v0.11.0</title><link href="https://blog.davep.org/2024/04/09/tinboard-0-11-0.html" rel="alternate"></link><published>2024-04-09T15:43:00+01:00</published><updated>2024-04-09T15:43:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-04-09:/2024/04/09/tinboard-0-11-0.html</id><content type="html">&lt;p&gt;While &lt;a href="/2024/03/28/goodbye-textualize.html"&gt;my time working on Textual might have come to an
-end&lt;/a&gt;, my time working &lt;em&gt;with&lt;/em&gt; Textual
-hasn't. Three days back &lt;a href="https://www.youtube.com/watch?v=U66oHFLWmG4"&gt;I experimented with Textual's newly-added "inline
-mode"&lt;/a&gt;:&lt;/p&gt;
-&lt;div style="text-align: center;"&gt;
-    &lt;iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/U66oHFLWmG4?si=kCQba6vMoxpKMtBG"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen&gt;
-    &lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;In doing so I extended the application so that it's possible to run
-&lt;code&gt;tinboard add&lt;/code&gt; and quickly enter a new bookmark and then carry on in the
-terminal, without needing to "go fullscreen". I'll admit it's of limited
-use, but it seemed like a good shakedown of the feature and in working on it
-I was able to discover a couple of bugs
-(&lt;a href="https://github.com/Textualize/textual/issues/4385"&gt;#4385&lt;/a&gt;,
-&lt;a href="https://github.com/Textualize/textual/issues/4403"&gt;#4403&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;The effect of this is this:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Tinboard inline addition in action" src="/attachments/2024/04/09/tinboard-inline-add.gif#centre"&gt;&lt;/p&gt;
-&lt;p&gt;Tinboard can be installed with &lt;code&gt;pip&lt;/code&gt; or (ideally) &lt;code&gt;pipx&lt;/code&gt; &lt;a href="https://pypi.org/project/tinboard/"&gt;from
-PyPi&lt;/a&gt;. It can also be installed with
-&lt;code&gt;Homebrew&lt;/code&gt; by tapping &lt;code&gt;davep/homebrew&lt;/code&gt; and then installing &lt;code&gt;tinboard&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;tap&lt;span class="w"&gt; &lt;/span&gt;davep/homebrew
-$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;tinboard
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;a href="https://github.com/davep/tinboard"&gt;source is available on GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category><category term="YouTube"></category></entry></feed>
+environment.&lt;/p&gt;</content><category term="Tech"></category><category term="macOS"></category><category term="fish"></category><category term="shell"></category><category term="streaming"></category></entry></feed>

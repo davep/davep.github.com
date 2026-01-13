@@ -183,6 +183,31 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2019/11/02/emacsconf-2019.html#emacsconf-2019">EmacsConf 2019</a></h2>
+    <p>
+      Posted on 2019-11-02 11:33 +0000 in <a href="https://blog.davep.org/category/emacs.html">Emacs</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/emacs.html">Emacs</a>
+        &#8226; 1 min read
+    </p>
+  </header>
+  <div>
+      <div><p>For anyone who doesn't know, today is the day for <a href="https://emacsconf.org/2019/">EmacsConf
+2019</a>. As you might gather from the name, it's
+a conference all about Emacs, the joys of Emacs, Emacs Lisp and other
+Emacs-related things.</p>
+<p>Better still, it's an online conference (although there do appear to be a
+couple of related physical gatherings around the world).</p>
+<p>I've got snacks and drinks in and no plans for my Saturday, and I hope to
+follow the whole thing from start to finish.</p>
+<p>If Emacs is your thing, or knowing more about Emacs is your thing, be sure
+to check it out!</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2019/10/26/pydscheck.html#pydscheck">pydscheck -- A quick hack that keeps slowly growing</a></h2>
     <p>
       Posted on 2019-10-26 13:19 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
@@ -811,127 +836,6 @@ package" approach.</p>
 "religious issue" for people to have endless disagreements over. I guess,
 over the next couple or so weeks, I'll find out if switching back was a good
 idea.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2017/04/01/another_revamp_of_my_emacs_config.html#another_revamp_of_my_emacs_config">Another revamp of my emacs config</a></h2>
-    <p>
-      Posted on 2017-04-01 10:02 +0100 in <a href="https://blog.davep.org/category/emacs.html">Emacs</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/emacs.html">Emacs</a>,              <a href="https://blog.davep.org/tag/lisp.html">Lisp</a>,              <a href="https://blog.davep.org/tag/emacs-lisp.html">Emacs Lisp</a>,              <a href="https://blog.davep.org/tag/coding.html">coding</a>
-        &#8226; 4 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Just under a year ago I decided to
-<a href="/2016/05/26/starting_fresh_with_gnu_emacs.html">totally rewrite my GNU emacs config</a>.
-As I wrote at the time, it'd been following me around all sorts of machines
-since the early 1990s, starting life on an OS/2 Warp machine and travelling
-via MS-DOS, GNU/Linux, Windows and, these days, macOS.</p>
-<p>The changes I made last year have served me really well, but there were two
-related issues with it that bothered me a little: the fact that I was
-maintaining a local library of elisp code in the repository and, worse
-still, I was storing the packages I'd installed from elpa and melpa in the
-repository as well.</p>
-<p>While this did mean it was pretty easy for me to start up a new installation
-of emacs on a machine -- all I had to do was clone the repo and run up emacs
--- I wasn't happy with the duplication involved. I didn't like holding code
-in my <code>.emacs.d</code> repo that was already held in package archives.</p>
-<p>The solution I saw was in two parts:</p>
-<ol>
-<li>Get some of my code, that might be useful to others, into melpa.</li>
-<li>Somehow sort my own package archive for my personal code.</li>
-</ol>
-<p></p>
-
-<p>Over the past week or so I've worked on this approach. It initially started
-with me tackling item 1 above: I tidied up and
-submitted
-<a href="https://github.com/davep/obfusurl.el"><code>obfusurl.el</code></a>,
-<a href="https://github.com/davep/protocols.el"><code>protocols.el</code></a>,
-<a href="https://github.com/davep/services.el"><code>services.el</code></a>,
-<a href="https://github.com/davep/thinks.el"><code>thinks.el</code></a> and
-<a href="https://github.com/davep/uptimes.el"><code>uptimes.el</code></a>. This was a really
-helpful process in that it allowed me to brush up on my elisp and emacs
-knowledge. It's a good 15+ years since I last wrote any significant elisp
-code and things have moved on a little in that time.</p>
-<p>Having done that I'd managed to move a handful of my own packages out of my
-local library of code, and so out of my <code>.emacs.d</code> repo, but it left me with
-the problem of what to do with the rest of it.</p>
-<p>That's when I discovered <code>package-x</code> and:</p>
-<div class="highlight"><pre><span></span><code><span class="p">,</span><span class="o">----</span><span class="p">[</span><span class="w"> </span><span class="n">C</span><span class="o">-</span><span class="n">h</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">package</span><span class="o">-</span><span class="n">upload</span><span class="o">-</span><span class="n">buffer</span><span class="w"> </span><span class="n">RET</span><span class="w"> </span><span class="p">]</span>
-<span class="o">|</span><span class="w"> </span><span class="n">package</span><span class="o">-</span><span class="n">upload</span><span class="o">-</span><span class="n">buffer</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">interactive</span><span class="w"> </span><span class="n">compiled</span><span class="w"> </span><span class="n">Lisp</span><span class="w"> </span><span class="n">function</span><span class="w"> </span><span class="ow">in</span>
-<span class="o">|</span><span class="w"> </span><span class="err">‘</span><span class="n">package</span><span class="o">-</span><span class="n">x</span><span class="o">.</span><span class="n">el</span><span class="err">’</span><span class="o">.</span>
-<span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">package</span><span class="o">-</span><span class="n">upload</span><span class="o">-</span><span class="n">buffer</span><span class="p">)</span>
-<span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="n">Upload</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">single</span><span class="o">-</span><span class="n">file</span><span class="w"> </span><span class="n">Emacs</span><span class="w"> </span><span class="n">Lisp</span><span class="w"> </span><span class="n">package</span><span class="o">.</span>
-<span class="o">|</span><span class="w"> </span><span class="n">If</span><span class="w"> </span><span class="err">‘</span><span class="n">package</span><span class="o">-</span><span class="n">archive</span><span class="o">-</span><span class="n">upload</span><span class="o">-</span><span class="n">base</span><span class="err">’</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">specify</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">valid</span><span class="w"> </span><span class="n">upload</span>
-<span class="o">|</span><span class="w"> </span><span class="n">destination</span><span class="p">,</span><span class="w"> </span><span class="n">prompt</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">one</span><span class="o">.</span>
-<span class="err">`</span><span class="o">----</span>
-</code></pre></div>
-
-<p>(plus <code>package-upload-file</code> too, of course). This meant I could, in effect,
-start my own personal package archive and look at tackling issue 2 above.</p>
-<p>This did give me one small problem though: how and where would I host the
-archive? I did consider hosting it on a DigitalOcean droplet, but that felt
-a little like overkill for something so simple. And then I
-realised: <a href="https://pages.github.com/">GitHub Pages</a>! All I needed to do was
-keep the package archive in its own repo (which I would have done anyway)
-and then make the whole repo the source for a GitHub Pages site. A quick
-test later and... it worked!</p>
-<p>So, by this point, I'd farmed some of my code off to melpa, and now had the
-rest of it in "delpa" (which I'd called my personal archive). I could now
-use the emacs package management system to install third party packages and
-also my own.</p>
-<p>But I was still left with one issue: I was still holding the installed
-packages inside my <code>.emacs.d</code> repo by way of ensuring that all machines were
-in sync in terms of what was installed. Now I needed to work out how to
-solve that.</p>
-<p>Around this time, as luck would have
-it, <a href="https://github.com/tarsius">@tarsius</a>
-had
-<a href="https://github.com/davep/boxquote.el/pull/1#issuecomment-288462491">suggested I look at</a> a
-package called <a href="https://github.com/jwiegley/use-package"><code>use-package</code></a>
-by <a href="https://github.com/jwiegley">@jwiegley</a>. This was the bit I was missing.</p>
-<p>With <code>use-package</code> I would be able to declare which packages I needed, how
-they'd be installed and, most important of all, it could be set to handle
-the fact that the package wasn't even installed. If a package is requested
-and there is no local install <code>use-package</code> is smart enough to get the emacs
-package system to install it.</p>
-<p>So, given that, all I need to do was <a href="https://github.com/davep/.emacs.d/blob/1fa67c2895f345098057654f6acb3b57a77f1194/startup/davep-packages.el">create a startup file that would
-declare the packages I use</a> and
-I'd have a setup that should, once I'd cloned <code>.emacs.d</code>, self-install.</p>
-<p>Except... yeah, one more issue. <code>use-package</code> isn't part of GNU emacs yet so
-I'd need a method of getting it to auto-install so it could then handle
-everything else. As it was that was as easy as adding this to the start of
-my <a href="https://github.com/davep/.emacs.d/blob/master/init.el"><code>init.el</code></a>.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="c1">;; Make sure the package system is up and running early on.</span>
-<span class="p">(</span><span class="nb">require</span><span class="w"> </span><span class="ss">&#39;package</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">add-to-list</span><span class="w"> </span><span class="ss">&#39;package-archives</span><span class="w"> </span><span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;melpa&quot;</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s">&quot;http://melpa.org/packages/&quot;</span><span class="p">))</span>
-<span class="p">(</span><span class="nv">add-to-list</span><span class="w"> </span><span class="ss">&#39;package-archives</span><span class="w"> </span><span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;delpa&quot;</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s">&quot;http://blog.davep.org/delpa/&quot;</span><span class="p">))</span>
-<span class="p">(</span><span class="nv">package-initialize</span><span class="p">)</span>
-
-<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="c1">;; Bootstrap `use-package&#39;</span>
-<span class="p">(</span><span class="nb">unless</span><span class="w"> </span><span class="p">(</span><span class="nv">package-installed-p</span><span class="w"> </span><span class="ss">&#39;use-package</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nv">package-refresh-contents</span><span class="p">)</span>
-<span class="w">  </span><span class="p">(</span><span class="nv">package-install</span><span class="w"> </span><span class="ss">&#39;use-package</span><span class="p">))</span>
-</code></pre></div>
-
-<p>With that in place I was able to nuke all my config on a machine, clone a
-fresh copy of <code>.emacs.d</code> (having now ceased tracking and storing the
-installed packages in that repo), run up emacs, wait a few moments and then
-find that everything was installed and ready to use.</p>
-<p>Perfect!</p>
-<p>My <a href="https://github.com/davep/.emacs.d"><code>.emacs.d</code></a> is now a lot smaller than
-it was before and, I think, even easier to maintain. Right now I think I'm
-very close to the ideal emacs config that I wanted to create when I did the
-complete rewrite a year ago.</p></div>
   </div>
 </article>
 

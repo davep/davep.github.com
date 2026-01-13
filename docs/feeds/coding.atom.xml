@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2026-01-10T11:18:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>obs2nlm - Feed NotebookLM an Obsidian Vault</title><link href="https://blog.davep.org/2026/01/10/obs2nlm.html" rel="alternate"></link><published>2026-01-10T11:18:00+00:00</published><updated>2026-01-10T11:18:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2026-01-10:/2026/01/10/obs2nlm.html</id><content type="html">&lt;p&gt;I'm sure I've mentioned a couple of times before that I've become quite the
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"></link><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"></link><id>https://blog.davep.org/</id><updated>2026-01-12T09:00:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>ng2nlm - Feed NotebookLM a Norton Guide</title><link href="https://blog.davep.org/2026/01/12/ng2nlm.html" rel="alternate"></link><published>2026-01-12T09:00:00+00:00</published><updated>2026-01-12T09:00:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2026-01-12:/2026/01/12/ng2nlm.html</id><content type="html">&lt;p&gt;After having knocked up &lt;a href="/2026/01/10/obs2nlm.html"&gt;obs2nlm the other day&lt;/a&gt; I
+realised there was another source of sources available to me that might be
+fun to throw into NotebookLM: &lt;a href="/2025/12/12/norton-guide-collection.html"&gt;one or more of the Norton Guide files in my
+collection&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;And so, after a wee bit of hacking on a wet Sunday afternoon,
+&lt;a href="https://ng2nlm.davep.dev"&gt;&lt;code&gt;ng2nlm&lt;/code&gt;&lt;/a&gt; was born.&lt;/p&gt;
+&lt;p&gt;In terms of what it does, it's pretty much the same as &lt;code&gt;obs2nlm&lt;/code&gt;, only it
+uses &lt;a href="https://ngdb.davep.dev"&gt;&lt;code&gt;ngdb&lt;/code&gt;&lt;/a&gt; to read the contents of a Norton Guide
+and turn it into a single Markdown file which can then be used as a source
+in NotebookLM.&lt;/p&gt;
+&lt;p&gt;So far it seems to be working a treat.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Learning abut low-level DOS programming" src="/attachments/2026/01/13/low-level-dos.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;Here I grabbed the guide to assembly language Norton Guide, and the DOS
+interrupts Norton Guide, turned them into sources, created a notebook and
+let it do its thing.&lt;/p&gt;
+&lt;p&gt;I can't vouch for how valid the answer to my question is -- it's a &lt;em&gt;long&lt;/em&gt;
+time since I wrote any 8086 assembler code and it's a moment since I last
+had to dig into DOS interrupts and the like -- but I like the result.&lt;/p&gt;
+&lt;p&gt;Probably the biggest issue I see at the moment is with the code examples: it
+seems to have a habit of adding some sort of citation marker that links to
+nowhere when it's emitting code. I &lt;em&gt;think&lt;/em&gt; this is down to the instructions
+I've given it in the source I output, at least that's what it's suggesting
+when I ask it:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Me:&lt;/strong&gt; What are all the numbers in square brackets for?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NotebookLM:&lt;/strong&gt; The numbers in square brackets are passage indices used to
+cite which specific part of the sources supports each statement
+[Instruction]. Within the source files themselves, these markers identify
+distinct entries or sections within the Norton Guide databases.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Given I am trying to encourage it to cite its sources, I think this is where
+the confusion comes from. In "normal" paragraphs it does do a good job of
+citing its source &lt;em&gt;and linking to it&lt;/em&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="NotebookLM citing a source" src="/attachments/2026/01/13/cite-source.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;so presumably, when it "thinks" it's outputting code it doesn't do the
+markup to actually do the linking, and so things end up looking a little
+confused.&lt;/p&gt;
+&lt;p&gt;If I ask that citations aren't included in the code, this does seem to have
+the desired effect:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="No citations in the code" src="/attachments/2026/01/13/no-citation-in-code.png#centre"&gt;&lt;/p&gt;
+&lt;p&gt;So, given this, perhaps I can use the
+&lt;a href="https://ng2nlm.davep.dev/#-a-additional-instructions"&gt;&lt;code&gt;--additional-instructions&lt;/code&gt;&lt;/a&gt;
+switch for the particular source to encourage it to not add citation links
+to code? Or of course I could tweak &lt;code&gt;ng2nlm&lt;/code&gt; itself to include that
+instruction to start with. While it's a little specific to one use case,
+Norton Guide files do tend to be coding-related so it could make sense.&lt;/p&gt;
+&lt;p&gt;Anyway, in the very unlikely event that you have a need to turn one or more
+Norton Guide files into sources to throw at NotebookLM or similar tools:
+&lt;a href="https://github.com/davep/ng2nlm"&gt;&lt;code&gt;ng2nlm&lt;/code&gt;&lt;/a&gt; exists.&lt;/p&gt;</content><category term="Coding"></category><category term="Norton Guide"></category><category term="AI"></category><category term="LLM"></category><category term="Python"></category></entry><entry><title>obs2nlm - Feed NotebookLM an Obsidian Vault</title><link href="https://blog.davep.org/2026/01/10/obs2nlm.html" rel="alternate"></link><published>2026-01-10T11:18:00+00:00</published><updated>2026-01-10T11:18:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2026-01-10:/2026/01/10/obs2nlm.html</id><content type="html">&lt;p&gt;I'm sure I've mentioned a couple of times before that I've become quite the
 fan of &lt;a href="https://obsidian.md"&gt;Obsidian&lt;/a&gt;. For the past few years, at any given
 point, I've had a couple of vaults on the go. Generally I find such vaults a
 really useful place to record things I'd otherwise forget, and of course as
@@ -1161,44 +1209,4 @@ gods the naming of things in its ecosystem is terrible and confusing!&amp;#160;&
 &lt;p&gt;No, really, I mean it, this naming convention is kinda cringe right?&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category><category term="Homebrew"></category><category term="Makefile"></category></entry><entry><title>Tinboard v0.10.0</title><link href="https://blog.davep.org/2024/03/07/tinboard-0-10-0.html" rel="alternate"></link><published>2024-03-07T08:45:00+00:00</published><updated>2024-03-07T08:45:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-03-07:/2024/03/07/tinboard-0-10-0.html</id><content type="html">&lt;p&gt;I just realised that it's been a while since I &lt;a href="/2023/12/25/tinboard-0-4-0.html"&gt;last posted an
-update&lt;/a&gt; about &lt;code&gt;tinboard&lt;/code&gt;. This is probably
-my most-used Textual-based application, and one I'm constantly tinkering
-with, and just this morning I published v0.10.0.&lt;/p&gt;
-&lt;p&gt;Often the changes are small tweaks or fixes to how it works, sometimes
-they're simply updates to the version of Textual used, making use of some
-new feature or other; I've yet to add another "major" feature so far. They
-will come, but so far the ideas I have for the application haven't actually
-felt that necessary. Although I say so myself it does what I need it to do
-and it does it really well.&lt;/p&gt;
-&lt;p&gt;So, as a quick catch-up of what's changed since v0.4.0 (which was the last
-version I posted about):&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;v0.5.0 was released 2024-01-04; this included all the tags of a bookmark
-when doing full-text searching.&lt;/li&gt;
-&lt;li&gt;v0.6.0 was released 2024-01-10; it fixed a small bug where the tag
-suggestion facility got confused by trailing spaces in the input field.&lt;/li&gt;
-&lt;li&gt;v0.7.0 was released 2024-02-02; this updated the minimum Textual version to
-v0.48.2 and removed all the custom changes to the Textual &lt;code&gt;TextArea&lt;/code&gt; widget,
-making use of the updates to &lt;code&gt;TextArea&lt;/code&gt; that version of Textual made
-available.&lt;/li&gt;
-&lt;li&gt;v0.8.0 was released 2024-02-18; this fixed a crash on startup caused by a
-newer release of Textual (the fault was in &lt;code&gt;tinboard&lt;/code&gt;; the update to Textual
-helped reveal the problem).&lt;/li&gt;
-&lt;li&gt;v0.9.0 was released 2024-02-29; it simply added support for using
-&lt;kbd&gt;Esc&lt;/kbd&gt; at the top level of the application to quit (I like to camp
-on &lt;kbd&gt;Esc&lt;/kbd&gt; to GTFO).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Then, just now, I released v0.10.0. This release makes full use of &lt;a href="https://github.com/Textualize/textual/pull/4154"&gt;some
-work I recently did to enhance Textual's &lt;code&gt;CommandPalette&lt;/code&gt;
-widget&lt;/a&gt;, which added a
-"discover" system. The change in &lt;code&gt;tinboard&lt;/code&gt; is that all of the &lt;a href="https://github.com/davep/tinboard/tree/main/tinboard/commands"&gt;command
-palette
-providers&lt;/a&gt;
-now have &lt;code&gt;discover&lt;/code&gt; methods too. The result of this change is that when you
-open the command palette in &lt;code&gt;tinboard&lt;/code&gt; (&lt;kbd&gt;ctrl&lt;/kbd&gt;+&lt;kbd&gt;p&lt;/kbd&gt;) you
-can see &lt;em&gt;every&lt;/em&gt; possible command right away.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The command palette in discovery mode" src="/attachments/2024/03/07/command-palette.png#centre"&gt;&lt;/p&gt;
-&lt;p&gt;Tinboard can be installed with &lt;code&gt;pip&lt;/code&gt; or (ideally) &lt;code&gt;pipx&lt;/code&gt; &lt;a href="https://pypi.org/project/tinboard/"&gt;from
-PyPi&lt;/a&gt;. The &lt;a href="https://github.com/davep/tinboard"&gt;source is available on
-GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category></entry></feed>
+&lt;/div&gt;</content><category term="Coding"></category><category term="Python"></category><category term="terminal"></category><category term="textual"></category><category term="Homebrew"></category><category term="Makefile"></category></entry></feed>
