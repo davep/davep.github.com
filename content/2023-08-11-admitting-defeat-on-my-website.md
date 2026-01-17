@@ -31,7 +31,7 @@ and then in the last 5 or 6 years I've pretty much neglected it.
 
 The neglect shows.
 
-Meanwhile... php has changed. Quiet a lot. It's one of those languages I
+Meanwhile... php has changed. Quite a lot. It's one of those languages I
 used back in the day and pay no attention to. Then earlier this week I
 noticed that there must have been an update on the host and huge parts of my
 site broke, lots of content missing, pretty much useless and dead in the
