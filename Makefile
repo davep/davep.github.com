@@ -1,6 +1,7 @@
 ###############################################################################
 # Common make values.
-run     := pipenv run
+run     := uv run
+sync    := uv sync
 python  := $(run) python
 pelican := $(run) pelican
 themes  := $(run) pelican-themes
@@ -23,31 +24,28 @@ themes:			# List the installed themes.
 # Utility.
 .PHONY: setup
 setup:				# Set up the environment.
-	pipenv sync
+	$(sync)
 	git clone https://github.com/alexandrevicenzi/Flex
 	$(themes) -i Flex
 	git clone --recursive git@github.com:getpelican/pelican-plugins.git
 
+.PHONY: update
+update:				# Update all dependencies
+	$(sync) --upgrade
+
 .PHONY: resetup
-resetup:			# Recreate the virtual environment from scratch
-	rm -rf $(shell pipenv --venv)
-	pipenv sync --dev
-
-.PHONY: depsoutdated
-depsoutdated:			# Show a list of outdated dependencies
-	pipenv update --outdated
-
-.PHONY: depsupdate
-depsupdate:			# Update all dependencies
-	pipenv update --dev
-
-.PHONY: depsshow
-depsshow:			# Show the dependency graph
-	pipenv graph
+resetup: realclean		# Recreate the virtual environment from scratch
+	make setup
 
 .PHONY: repl
 repl:				# Start a Python REPL
 	$(python)
+
+.PHONY: realclean
+realclean: 		# Clean the venv and build directories
+	rm -rf .venv
+	rm -rf Flex
+	rm -rf pelican-plugins
 
 .PHONY: help
 help:				# Display this help
