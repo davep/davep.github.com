@@ -46,7 +46,7 @@ So after all these years I'm finally admitting defeat.
 Right now, on the home page, I've just got a placeholder saying that bitrot
 finally ate my website and that I'm going to start again from scratch.
 That's my plan: given that [I had a good experience moving this blog over to
-Pelican](https://blog.davep.org/2023/07/05/the-switch-has-been-made.html) I
+Pelican](/2023/07/05/the-switch-has-been-made.html) I
 think I'm going to build a new `www.davep.org` with Pelican. Where possible
 I'll try and drag some of the old content over, but I'm also going to use
 this opportunity to have a proper digital spring clean.
