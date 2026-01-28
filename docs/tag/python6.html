@@ -183,6 +183,123 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2019/11/04/my-pylint-shame.html#my-pylint-shame">My Pylint shame</a></h2>
+    <p>
+      Posted on 2019-11-04 20:39 +0000 in <a href="https://blog.davep.org/category/python.html">Python</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/fish.html">fish</a>
+        &#8226; 3 min read
+    </p>
+  </header>
+  <div>
+      <div><p>I first got into Python in the mid-to-late 1990s. It's so far back that I
+think the copy of <a href="https://www.python.org/doc/essays/foreword/">Programming
+Python</a> that I have (sadly in
+storage at the moment) might be a first edition. I probably fell out of the
+habit of using Python some time in the early 2000s (that was when I met
+Ruby). It was only 22 months ago that I started using Python a <em>lot</em> thanks
+to <a href="/2017/12/12/on_to_something_new.html">a change of
+employer</a>.</p>
+<p>As you might imagine, much had changed in the 15+ years since I'd last
+written a line of Python in anger. So, early on, I made a point of making
+<a href="https://www.pylint.org/">Pylint</a> part of my development process. All my
+projects have a <code>make lint</code> make target. All of my projects lint the code
+when I push to <code>master</code> in the company GitLab instance. These days I even
+use <a href="https://www.flycheck.org/en/latest/">flycheck</a> to keep me honest as I
+write my code; mostly gone are the days where I don't know of problems until
+I do a <code>make lint</code>.</p>
+<p>Leaning on Pylint in the early days of my new position made for a great
+Python refresher for me. Now, I still lean on it to make sure I don't make
+daft mistakes.</p>
+<p>But...</p>
+<p>Pylint and I don't always agree. And that's fine. For example, I really
+can't stand Pylint's approach to whitespace, and that is a hill I'll happily
+die on. Ditto the obsession with lines being no more than 80 characters wide
+(120 should be fine thanks). As such any project's <code>.pylintrc</code> has, as a
+bare minimum, this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[FORMAT]</span>
+<span class="na">max-line-length</span><span class="o">=</span><span class="s">120</span>
+
+<span class="k">[MESSAGES CONTROL]</span>
+<span class="na">disable</span><span class="o">=</span><span class="s">bad-whitespace</span>
+</code></pre></div>
+
+<p>Beyond that though, aside from one or two extras that pertain to particular
+projects, I'm happy with what Pylint complains about.</p>
+<p>There are exceptions though. There are times, simply due to the nature of
+the code involved, that Pylint's insistence on code purity isn't going to
+work. That's where I use its inline <a href="https://pylint.readthedocs.io/en/latest/user_guide/message-control.html#block-disables">block disabling
+feature</a>.
+It's handy and helps keep things clean (I won't deploy code that doesn't
+pass 10/10), but there is always this nagging doubt: if I've disabled a
+warning in the code, am I ever going to come back and revisit it?</p>
+<p>To help me think about coming back to such disables now and again, I thought
+it might be interesting to write a tool that'll show which warnings I
+disable most. It resulted in <a href="https://github.com/davep/fish/blob/dd2721e0565928b4145698a42c9c74e4534c578a/conf.d/abbr.d/python.fish#L5">this fish
+abbr</a>:</p>
+<div class="highlight"><pre><span></span><code>abbr<span class="w"> </span>-g<span class="w"> </span>pylintshame<span class="w"> </span><span class="s2">&quot;rg --no-messages \&quot;pylint:disable=\&quot; | awk &#39;BEGIN{FS=\&quot;disable=\&quot;;}{print \$2}&#39; | tr \&quot;,\&quot; \&quot;\n\&quot; | sort | uniq -c | sort -hr&quot;</span>
+</code></pre></div>
+
+<p>The idea here being that it produces a "Pylint hall of shame", something
+like this:</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="mi">12</span><span class="w"> </span><span class="n">wildcard</span><span class="o">-</span><span class="n">import</span>
+<span class="w">  </span><span class="mi">12</span><span class="w"> </span><span class="n">unused</span><span class="o">-</span><span class="n">wildcard</span><span class="o">-</span><span class="n">import</span>
+<span class="w">   </span><span class="mi">8</span><span class="w"> </span><span class="n">no</span><span class="o">-</span><span class="n">member</span>
+<span class="w">   </span><span class="mi">6</span><span class="w"> </span><span class="n">invalid</span><span class="o">-</span><span class="n">name</span>
+<span class="w">   </span><span class="mi">5</span><span class="w"> </span><span class="n">no</span><span class="o">-</span><span class="bp">self</span><span class="o">-</span><span class="n">use</span>
+<span class="w">   </span><span class="mi">4</span><span class="w"> </span><span class="n">import</span><span class="o">-</span><span class="n">outside</span><span class="o">-</span><span class="n">toplevel</span>
+<span class="w">   </span><span class="mi">4</span><span class="w"> </span><span class="n">bare</span><span class="o">-</span><span class="n">except</span>
+<span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="n">unused</span><span class="o">-</span><span class="n">argument</span>
+<span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="n">too</span><span class="o">-</span><span class="n">many</span><span class="o">-</span><span class="n">public</span><span class="o">-</span><span class="n">methods</span>
+<span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="n">too</span><span class="o">-</span><span class="n">many</span><span class="o">-</span><span class="n">instance</span><span class="o">-</span><span class="n">attributes</span>
+<span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="ow">not</span><span class="o">-</span><span class="n">callable</span>
+<span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="n">broad</span><span class="o">-</span><span class="n">except</span>
+<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">wrong</span><span class="o">-</span><span class="n">import</span><span class="o">-</span><span class="n">position</span>
+<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">wrong</span><span class="o">-</span><span class="n">import</span><span class="o">-</span><span class="n">order</span>
+<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">unused</span><span class="o">-</span><span class="n">variable</span>
+<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">unexpected</span><span class="o">-</span><span class="n">keyword</span><span class="o">-</span><span class="n">arg</span>
+<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">too</span><span class="o">-</span><span class="n">many</span><span class="o">-</span><span class="n">locals</span>
+<span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="n">arguments</span><span class="o">-</span><span class="n">differ</span>
+</code></pre></div>
+
+<p>To break the pipeline down:</p>
+<div class="highlight"><pre><span></span><code>rg --no-messages &quot;pylint:disable=&quot;
+</code></pre></div>
+
+<p>First off, I use <a href="https://github.com/BurntSushi/ripgrep"><code>ripgrep</code></a> (if you
+don't, you might want to have a good look at it -- I find it amazingly
+handy) to find everywhere in the code in and below the current directory
+(the <code>--no-messages</code> switch just stops any file I/O errors that might result
+from permission issues -- they're not interesting here) that contains a line
+that has a Pylint block disable (if you tend to format yours differently,
+you'll need to tweak the regular expression, of course).</p>
+<p>I then pipe it through <code>awk</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">awk</span> <span class="s">&#39;BEGIN{FS=&quot;disable=&quot;;}{print $2}&#39;</span>
+</code></pre></div>
+
+<p>so I can lazily <a href="https://docs.freebsd.org/info/gawk/gawk.info.Field_Separators.html">extract everything after the
+<code>disable=</code></a>.</p>
+<p>Next up, because it's a possible list of things that can be disabled, I use
+<code>tr</code>:</p>
+<div class="highlight"><pre><span></span><code>tr &quot;,&quot; &quot;\n&quot;
+</code></pre></div>
+
+<p>to turn any comma-separated list into multiple lines.</p>
+<p>Having got to this point, I <code>sort</code> the list, <code>uniq</code> the result, while
+prepending a count (<code>-c</code>), and then <code>sort</code> the result again, in reverse and
+sorting the numbers based on how a human would read the result (<code>-hr</code>).</p>
+<div class="highlight"><pre><span></span><code>sort | uniq -c | sort -hr
+</code></pre></div>
+
+<p>It's short, sweet and hacky, but does the job quite nicely. From now on, any
+time I get curious about which disables I'm leaning on too much, I can use
+this to take stock.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2019/10/26/pydscheck.html#pydscheck">pydscheck -- A quick hack that keeps slowly growing</a></h2>
     <p>
       Posted on 2019-10-26 13:19 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>

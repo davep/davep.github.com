@@ -183,6 +183,49 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2026/01/27/til-uvx-sh.html#til-uvx-sh">TIL - uvx.sh</a></h2>
+    <p>
+      Posted on 2026-01-27 16:03 +0000 in <a href="https://blog.davep.org/category/til.html">TIL</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/pypi.html">PyPI</a>,              <a href="https://blog.davep.org/tag/coding.html">coding</a>
+        &#8226; 1 min read
+    </p>
+  </header>
+  <div>
+      <div><p>In the past few months, like a lot of folk in the Python world, I've been
+won over by <a href="https://docs.astral.sh/uv/"><code>uv</code></a>. When it comes to managing my
+own projects my journey over the past few years as been
+<a href="https://pipenv.pypa.io/en/latest/"><code>pipenv</code></a>, then
+<a href="https://rye.astral.sh"><code>rye</code></a>, and then when rye was killed off I finally
+swapped to <code>uv</code> (later than I should have, I realised in hindsight). At each
+step I've found each tool cleaner, easier to work with and more
+feature-rich.</p>
+<p>There's no doubt in my mind that <code>uv</code> has done the most work to make
+installing Python-based tools (or at least PyPI-based tools) <a href="https://docs.astral.sh/uv/guides/tools/">as
+friction-free an experience as
+possible</a>.</p>
+<p>Now I've discovered <a href="https://uvx.sh">uvh.sh</a>. The thing with <code>uv</code> is the
+person installing your application first needs to get and install <code>uv</code>; this
+site removes that friction. Now if someone wants to install
+<a href="https://obs2nlm.davep.dev">obs2nlm</a> (for example) they should be able to
+just do:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-LsSf<span class="w"> </span>uvx.sh/obs2nlm/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</code></pre></div>
+
+<p>and away they go (assuming they have <a href="https://curl.se">curl</a> installed,
+which is generally going to be far more likely than having <code>uv</code> installed).</p>
+<p>Of course, there are <a href="https://www.djm.org.uk/posts/protect-yourself-from-non-obvious-dangers-curl-url-pipe-sh/">the usual caveats and
+concerns</a>
+about the <em>"just pipe this stuff via <code>sh</code> trust me bro"</em> approach, but if
+you are comfortable with suggesting this kind of install method it looks
+worth adding this to an application's installation documentation.</p>
+<p>I think I'm going to start mentioning it as an option.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2024/01/15/textual-dominfo.html#textual-dominfo">textual-dominfo</a></h2>
     <p>
       Posted on 2024-01-15 21:20 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
@@ -747,151 +790,6 @@ PyPi</a>, which means it can be installed with
 <code>pip</code> or the ever-handy <code>pipx</code>:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>oidia
 </code></pre></div></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2022/12/01/new-things-on-pypi.html#new-things-on-pypi">New Things On PyPi</a></h2>
-    <p>
-      Posted on 2022-12-01 22:13 +0000 in <a href="https://blog.davep.org/category/python.html">Python</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/coding.html">coding</a>,              <a href="https://blog.davep.org/tag/textual.html">Textual</a>,              <a href="https://blog.davep.org/tag/pypi.html">PyPi</a>
-        &#8226; 4 min read
-    </p>
-  </header>
-  <div>
-      <div><h1>An update</h1>
-<p>So, it's fast approaching 2 months now <a href="/2022/10/05/on-to-something-new-redux.html">since I started the new
-thing</a> and it's been a busy
-time. I've had to adjust to a quite a few new things, not least of which has
-been a longer and more involved commute. I'm actually mostly enjoying it
-too. While having to contend with busses isn't the <em>best</em> thing to be doing
-with my day, I do have a very fond spot for Edinburgh and it's nice to be in
-there most days of the week.</p>
-<p>Part of the fallout from the new job has been that, in the last couple of
-weeks, I've thrown some more stuff up on PyPi. This comes about as part of a
-bit of a dog-fooding campaign we're on at the moment (you can read some
-background to this <a href="https://textual.textualize.io/blog/2022/11/26/on-dog-food-the-original-metaverse-and-not-being-bored/">over on the company
-blog</a>).
-While they have been, and will continue to be, mentioned on the Textualize
-blog, I thought I'd give a brief mention of them here on my own blog too
-given they are, essentially, personal projects.</p>
-<h1>gridinfo</h1>
-<p>This is one I'd like to tweak some more and improve on if possible. It is,
-in essence, a Python-coded terminal tool that does more or less the same as
-<a href="https://github.com/davep/slstats.el"><code>slstats.el</code></a>. It started out as <a href="https://twitter.com/davepdotorg/status/1590476280457490434">a
-rather silly quick
-hack</a>, designed
-to do something different with
-<a href="https://github.com/darrenburns/rich-pixels"><code>rich-pixels</code></a>.</p>
-<p>Here's the finished version (as of the time of writing) being put through
-its paces:</p>
-<div style="text-align: center;">
-<iframe width="560" height="315"
-src="https://www.youtube.com/embed/dzpGgVPD2aM" title="YouTube video player"
-frameborder="0" allow="accelerometer; autoplay; clipboard-write;
-encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
-<p>Download <a href="https://pypi.org/project/gridinfo/">from here</a>, or install and
-play with it with a quick <code>pipx install gridinfo</code>.</p>
-<h1>unbored</h1>
-<p>The next experiment with Textual was to write a terminal-based client for
-the <a href="https://www.boredapi.com/">Bored-API</a>. My initial plan for this was to
-just have a button or two that the user could mash on and they'd get an
-activity suggestion dropped into the middle of the terminal; but really that
-seemed a bit boring. Then I realised that it'd be a bit more silly and a bit
-more fun if I did it as a sort of TODO app. Bored? Run it up and use one of
-the activities you'd generated before. Don't like any of them? Ignore them
-and generate some more! Feeling bad that you've got such a backlog of
-reasons to not be bored? Delete a bunch!</p>
-<p>And so on.</p>
-<p>Here's a short video of it in action:</p>
-<div style="text-align: center;">
-<iframe width="560" height="315"
-src="https://www.youtube.com/embed/Zl3dIzYfIWI" title="YouTube video player"
-frameborder="0" allow="accelerometer; autoplay; clipboard-write;
-encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
-<p>Download <a href="https://pypi.org/project/unbored/">from here</a>, or install and play
-with it with a quick <code>pipx install unbored</code>.</p>
-<h1>textual-qrcode</h1>
-<p>This one... this one I'm going to blame on the brain fog that followed flu
-<em>and</em> Covid jabs that happened the day before (and which are still kicking
-my arse 4 days later). Monday morning, at my desk, and I'm wondering what to
-next write to experiment with Textual, and I realised it would be
-interesting to write something that would show off that it's easy to make a
-third party widget library.</p>
-<p>And... yeah, I don't know why, but I remembered
-<a href="https://github.com/davep/qrencode.el"><code>qrencode.el</code></a> and so
-<code>textual-qrcode</code> was born!</p>
-<p><img alt="The most useless Textal widget yet" src="/attachments/2022/12/01/textual-qrcode.png"></p>
-<p>I think the most amusing part about this is that I did it in full knowledge
-that it would be useless; the idea being it would be a daft way of showing
-off how you could build a widget library as an add-on for Textual. But...
-more than one person actually ended up saying "yeah hold up there this could
-actually be handy!"</p>
-<p>If you're one of those people... <a href="https://pypi.org/project/textual-qrcode/">you'll find it
-here</a>.</p>
-<h1>FivePyFive</h1>
-<p>While I was on a roll putting stuff up on PyPi, I also decided to tweak up
-my Textual-based 5x5 and throw that up too. This was <a href="https://twitter.com/davepdotorg/status/1554207518615814148">my first app built
-with Textual</a>,
-initially written before I'd even spoken to Will about the position here. At
-one point I even did <a href="https://github.com/davep/textual/blob/c4f60548922609133763c0e49f7b23aea5d44c2b/sandbox/davep/five_by_five.hy">a version in
-Lisp</a>.</p>
-<p>It's since gone on to become <a href="https://github.com/Textualize/textual/tree/d2ba22b86f48f4ce5b0f55767efdcf1a5478b180/examples">one of the example apps in Textual
-itself</a>
-but I felt it deserved being made available to the world via an easy(ish)
-install. So, if you fancy trying to crack the puzzle in your terminal, just
-do a quick:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>fivepyfive
-</code></pre></div>
-
-<p>and click away.</p>
-<div style="text-align: center;">
-<iframe width="343" height="610"
-src="https://www.youtube.com/embed/Rf34Z5r7Q60" title="FivePyFive -- A
-little annoying puzzle for the terminal" frameborder="0"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
-picture-in-picture" allowfullscreen></iframe>
-</div>
-
-<p>You can find it <a href="https://pypi.org/project/fivepyfive/">over here</a>.</p>
-<h1>PISpy</h1>
-<p>Finally... for this week anyway, is a tool I've called PISpy. It's designed
-as a simple terminal client for looking up package information on PyPi. As
-of right now it's pretty straightforward, but I'd like to add more to it
-over time. Here's an example of it in action:</p>
-<div style="text-align: center;">
-<iframe width="560" height="315"
-src="https://www.youtube.com/embed/yMGD6bXqIEo" title="YouTube video player"
-frameborder="0" allow="accelerometer; autoplay; clipboard-write;
-encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
-<p>One small wrinkle with publishing it to PyPi was the fact that, once I'd
-chosen the name, I checked that it hadn't been used on PyPi (it hadn't) but
-when it came to publishing the package it got rejected because the name was
-too similar to another package! I don't know which, it wouldn't say, but
-that was a problem. So in the end the published name ended up having to be
-slightly different from the actual tool's name.</p>
-<p>See <a href="https://pypi.org/project/pispy-client/">over here</a> for the package, and
-you can install it with a:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>pispy-client
-</code></pre></div>
-
-<p>and then just run <code>pispy</code> in the terminal.</p>
-<h1>Conclusion</h1>
-<p>It's been a fun couple of weeks coming up with stuff to help exercise
-Textual, and there's more to come. Personally I've found the process really
-helpful in that it's help me learn more about the framework and also figure
-out my own approach to working with it. Each thing I've built so far has
-been a small step in evolution on from what I did in the previous thing. I
-doubt I've arrived at a plateau of understanding just yet.</p></div>
   </div>
 </article>
 

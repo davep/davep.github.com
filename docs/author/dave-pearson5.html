@@ -183,6 +183,58 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/10/31/evolve-words.html#evolve-words">Evolve Words</a></h2>
+    <p>
+      Posted on 2023-10-31 21:39 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/evolution.html">evolution</a>,              <a href="https://blog.davep.org/tag/biology.html">biology</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>This follows on from my <a href="/2023/10/26/visual-selection.html">previous post</a>.
+If you've not read that, it's worth having a dive in first for the
+background.</p>
+<p>The Ruby code I mention, that was written back in 2008, was actually a pair
+of scripts. The first one, called <code>selection</code>, did what <code>visual-selection</code>
+does, only <code>visual-selection</code> does it with a nice TUI interface: it takes a
+random collection of letters and symbols and evolves them into a target
+phrase.</p>
+<p>As covered before: I don't remember all of the details of the conversation
+that was going on at the time, but I do seem to remember something along the
+lines of <em>"yes, but you start out and end up with something the same
+length"</em> and <em>"nothing more complex is made"</em> (let's gloss over the whole
+"complex" thing for now... well okay let's just gloss over it, end of story;
+this is just a fun coding exercise).</p>
+<p>What I do remember is that the seed of an idea was planted. Fine: how about
+I start off with one small word, and using a list of English words as the
+"fitness landscape" that the mutations had to survive in, mutate a
+population over and over and see what happens. Would I "randomly" create
+known words, with fewer letters, with the same letters, with more letters?</p>
+<p>So this version of the code randomly did three forms of mutation: it would
+randomly flip a letter, or randomly delete a letter, or randomly insert a
+random letter. It would do this over and over and eliminate words that
+aren't in the original list (the simple form of selecting for survival
+within the landscape).</p>
+<p>Like I said last time: never going to convince anyone of anything, but fun
+to write some code.</p>
+<p>This version became <code>selection2</code>.</p>
+<p>So, having turned <code>selection</code> into a TUI application with Textual, I <em>had</em>
+to do the same with this code...</p>
+<p><img alt="Evolve Words" src="/attachments/2023/10/31/evolve-words.png#centre"></p>
+<p>As before, because it's fun to do so, this leans heavily on the <a href="https://textual.textualize.io/guide/workers/">worker
+API</a> and
+<a href="https://textual.textualize.io/blog/2023/10/04/announcing-textual-plotext/"><code>textual-plotext</code></a>.</p>
+<p>If you want to check out the app itself there's <a href="https://github.com/davep/evolve-words">a GitHub
+repo</a> and it can also be
+installed <a href="https://pypi.org/project/evolve-words/">from PyPi</a> using
+<code>pipx</code>.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/10/26/visual-selection.html#visual-selection">Visual Selection</a></h2>
     <p>
       Posted on 2023-10-26 18:50 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -396,10 +448,11 @@ versatile enough should I ever want to plug it into something.</p>
 <p>As mentioned earlier: most of my guitar stuff is still in storage, from when
 I moved to Scotland, but I <em>did</em> find my old tin of plectrums and the tuner.</p>
 <p><img alt="Standard guitar kit" src="/attachments/2023/10/20/IMG_3330.jpeg#centre"></p>
-<p><center>
-    <em>(Yes, the tin was once mine and was once full; the early 90s were a
-    different time)</em>
-</center></p>
+<center>
+    *(Yes, the tin was once mine and was once full; the early 90s were a
+    different time)*
+</center>
+
 <p>I even found one of my old stands, that I've had since around 1991! So now
 it's set up in my living room, next to the PCVR rig, ready to go at a
 moment's notice.</p>
@@ -708,51 +761,6 @@ if done in a way that's reminiscent of how commands could be defined in
 remember <a href="https://github.com/davep/org-davep-cldict/">really liking</a> how you
 could create self-documenting and self-completing commands in that).</p>
 <p>All in good time...</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2023/09/23/apple-design.html#apple-design">Apple Design</a></h2>
-    <p>
-      Posted on 2023-09-23 08:10 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/apple.html">Apple</a>,              <a href="https://blog.davep.org/tag/ios.html">iOS</a>,              <a href="https://blog.davep.org/tag/iphone.html">iPhone</a>,              <a href="https://blog.davep.org/tag/design.html">design</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p>As someone who started out in the Android ecosystem when it came to smart
-phones -- starting out with a <a href="https://en.wikipedia.org/wiki/HTC_Magic">HTC
-Magic</a> and going through a few
-different phones before settling on Pixels (until I finally jumped ship to
-iOS in 2020) -- I have to admit that there's always been something nice
-about the design of iPhones. iOS, less so... My first exposure to iOS was
-<a href="/2015/06/23/and-now-for-some-ios.html">back in 2015 when I got an iPod</a>,
-and I wasn't terribly impressed. It looked okay, but it felt so far behind
-Android in terms of functionality.</p>
-<p>Much has changed and improved since then. These days, 3 years into being
-totally consumed by the Apple ecosystem (one day I should write a post about
-how comprehensively I've moved over), I'm won over and I like how iOS works
-now.</p>
-<p>Except this...</p>
-<p><img alt="Bad design" src="/attachments/2023/09/23/top-bad.jpeg#centre"></p>
-<p>That thing where, when you're in one app, it will show the most useless link
-"back" to another app, and in doing so bump the time up and out of the way a
-little. Like, seriously, compare it to when the app link thing isn't there:</p>
-<p><img alt="Good design" src="/attachments/2023/09/23/top-good.jpeg#centre"></p>
-<p>Once you see it, you can't unsee it.</p>
-<p><img alt="Toggle of the two images" src="/attachments/2023/09/23/bad-good-toggle.gif#centre"></p>
-<p>After all this time you'd think they would have found a less janky way of
-doing this; perhaps even simply removed it (I can't remember the last time I
-needed or wanted the ability to go "back" an app like this, especially not
-with the bottom-of-screen swipe gesture being a thing). If nothing else
-you'd think that, by now, they'd have found a way of doing it that doesn't
-look so terrible.</p>
-<p>The <em>"eh, let's just shove it here"</em> approach that seems to be on display
-here almost reminds me of <a href="/2015/10/07/imac-time-wiggle.html">the "time wiggle" that used to mildly annoy me
-back on my iMac</a>.</p></div>
   </div>
 </article>
 
