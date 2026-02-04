@@ -183,6 +183,48 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2024/04/17/pispy-0-6-0.html#pispy-0-6-0">PISpy v0.6.0</a></h2>
+    <p>
+      Posted on 2024-04-17 11:30 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/youtube.html">YouTube</a>
+        &#8226; 1 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Back in the very early days of the <a href="https://blog.davep.org/2024/03/28/goodbye-textualize.html">Textual
+adventure</a>,
+within the first month or so of working on the framework, we <a href="https://textual.textualize.io/blog/2022/11/26/on-dog-food-the-original-metaverse-and-not-being-bored/">had a period
+of
+dogfooding</a>.
+One of the projects I wrote during that time was a little tool <a href="https://textual.textualize.io/blog/2022/12/08/be-the-keymaster/#pispy">I called
+PISpy</a>.</p>
+<p>The initial version was pretty much a quick hack; during that dogfooding
+period I did my best to try and develop a new project every couple of days.
+Since then I've let PISpy descend into <a href="https://en.wikipedia.org/wiki/Software_rot">bit
+rot</a>.</p>
+<p>In the last week or so I've turned my attention back to it and made an
+effort to <a href="https://www.youtube.com/watch?v=CepsN8TDq1E">tidy up the code</a>,
+<a href="https://www.youtube.com/watch?v=t2EUXA8RkN0">tidy it some more</a>, <a href="https://www.youtube.com/watch?v=2u5CfrgZWcc">and some
+more</a>, and <a href="https://www.youtube.com/watch?v=CDCvWCZx1AM">even some
+more</a>.</p>
+<p>This morning I put the finishing touches to these changes and released
+<a href="https://github.com/davep/pispy/releases/tag/v0.6.0">v0.6.0</a>.</p>
+<p><a href="https://www.youtube.com/shorts/67xtMdstbx4"><img alt="PISpy in action" src="/attachments/2024/04/17/pispy-in-action.gif#centre"></a></p>
+<p>PISpy can be installed with <code>pip</code> or (ideallty) <code>pipx</code> <a href="https://pypi.org/project/pispy-client/">from
+PyPI</a>. It can also be installed with
+Homebrew by tapping <code>davep/homebrew</code> and then installing <code>pispy</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>pispy
+</code></pre></div>
+
+<p>The <a href="https://github.com/davep/pispy">source is available on GitHub</a>.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2024/04/17/macos-desktop-widget-switching.html#macos-desktop-widget-switching">macOS desktop widget switching</a></h2>
     <p>
       Posted on 2024-04-17 09:26 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
@@ -936,106 +978,6 @@ TODO list in the README and I will slowly work through it. Along with
 <a href="https://github.com/davep/tinboard">tinboard</a> these are two applications
 that have absolutely turned into "daily drivers", so they're going to get a
 lot of tweaking over the next few weeks, probably even months.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/01/15/textual-dominfo.html#textual-dominfo">textual-dominfo</a></h2>
-    <p>
-      Posted on 2024-01-15 21:20 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/pypi.html">PyPi</a>,              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/coding.html">coding</a>,              <a href="https://blog.davep.org/tag/textual.html">Textual</a>
-        &#8226; 3 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Last week I was wrestling with some Textual code, trying to get something to
-lay out on the screen "just so". On the whole this isn't too tricky at all,
-and for those times where it might feel tricky <a href="https://textual.textualize.io/how-to/design-a-layout/">there's some advice
-available on how to go about
-it</a>. But in this case
-I was trying to do a couple of "on the edge" things and one thing I really
-needed to know was what particular part of the display was being "caused" by
-what container or widget<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
-<p>Now, at the moment anyway, Textual doesn't have a full-blown devtools with
-all the bells and whistles; not like in your average web browser. It does
-have <a href="https://textual.textualize.io/guide/devtools/">a devtools</a>, but not
-with all the fancy DOM-diving stuff the above would have needed.</p>
-<p>What I needed was the equivalent of <code>print</code>-debugging but with a
-point-and-ask interface. Now, I actually <em>do</em> often do <code>print</code>-debugging
-with Textual apps only I use
-<a href="https://textual.textualize.io/api/app/#textual.app.App.notify"><code>notify</code></a>;
-this time though <code>notify</code> wasn't going to cut it.</p>
-<p>I needed something that would let me point at a widget and say <em>"show me
-stuff about this"</em>. Something that happens when the mouse hovers over a
-widget. Something like... <a href="https://textual.textualize.io/guide/widgets/#tooltips">a
-tooltip</a>!</p>
-<p>So that was easy:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">on_mount</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">widget</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">)]:</span>
-        <span class="n">widget</span><span class="o">.</span><span class="n">tooltip</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">node</span><span class="si">!r}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">widget</span><span class="o">.</span><span class="n">ancestors_with_self</span>
-        <span class="p">)</span>
-</code></pre></div>
-
-<p>Suddenly I could hover my mouse over a bit of space on the screen and get a
-"traceback" of sorts for what "caused" it.</p>
-<p>I posted this little hack to <code>#show-and-tell</code> on the <a href="https://discord.gg/Enf6Z3qhVr">Discord
-server</a> and someone mentioned it would be
-handy if it also showed the CSS for the widget too. That was simple enough
-because every widget has a <code>styles.css</code> property that is the CSS for the
-widget, as a string.</p>
-<p>After that I didn't think much more about it; until today.</p>
-<p>Looking back, one thing I realised is that adding the CSS information
-<code>on_mount</code> wasn't quite good enough, as it would only show me the state of
-CSS when the mount happened, not at the moment I inspect the widget. I
-needed the tooltip to be dynamic.</p>
-<p>Thing is... Textual tooltips can't be functions (which would be the obvious
-approach to make it dynamic); so there was no way to get this on-the-fly
-behaviour I wanted.</p>
-<p>Except there was! The type of
-<a href="https://textual.textualize.io/api/widget/#textual.widget.Widget.tooltip"><code>tooltip</code></a>
-is <code>RenderableType</code>. So that means I could assign it an object that is a
-Rich renderable; that in turn means I could write a <code>__rich__</code> method for a
-class that wraps a widget and then reports back what it can see every time
-it's called.</p>
-<p>In other words, via one step of indirection, I could get the <em>"call a
-function each time"</em> approach I was after!</p>
-<p>It works a treat too.</p>
-<p>All of which is a long-winded way of saying I now have a <code>print</code>-debug-level
-DOM inspector tool for when I'm building applications with Textual:</p>
-<p><img alt="textual-dominfo in action" src="/attachments/2024/01/15/textual-dominfo.png#centre"></p>
-<p>If this sounds handy to you, you can grab the code too. Install it into your
-development environment with <code>pip</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>textual-dominfo
-</code></pre></div>
-
-<p>and then attach it to your app or screen or some top-level widget you're
-interested in via <code>on_mount</code>; for example:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_mount</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="kn">from</span><span class="w"> </span><span class="nn">textual_dominfo</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">DOMInfo</span>
-<span class="w">    </span><span class="n">DOMInfo</span><span class="o">.</span><span class="n">attach_to</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-</code></pre></div>
-
-<p>and then hover away with that mouse cursor and inspect all the things!
-Whatever you do though, <em>don't</em> make it part of your runtime, and don't keep
-it installed; just make it a development dependency.</p>
-<p>The source can be found <a href="https://github.com/davep/textual-dominfo">over on
-GitHub</a> and the package is, as
-mentioned above, <a href="https://github.com/davep/textual-dominfo">over on PyPi</a>.</p>
-<div class="footnote">
-<hr>
-<ol>
-<li id="fn:1">
-<p>ObPedant: Containers are widgets, but it's often helpful to make a
-distinction between widgets that exist just to control the layout of the
-widgets inside them, and widgets that exist to actually do or show
-stuff.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div></div>
   </div>
 </article>
 

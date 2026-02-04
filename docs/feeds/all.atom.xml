@@ -1,5 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"/><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/><id>https://blog.davep.org/</id><updated>2026-01-27T16:03:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>TIL - uvx.sh</title><link href="https://blog.davep.org/2026/01/27/til-uvx-sh.html" rel="alternate"/><published>2026-01-27T16:03:00+00:00</published><updated>2026-01-27T16:03:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2026-01-27:/2026/01/27/til-uvx-sh.html</id><content type="html">&lt;p&gt;In the past few months, like a lot of folk in the Python world, I've been
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org</title><link href="https://blog.davep.org/" rel="alternate"/><link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/><id>https://blog.davep.org/</id><updated>2026-02-04T13:50:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Solidarity, Empathy, and Patience -- thinking about code reviews</title><link href="https://blog.davep.org/2026/02/04/solidarity-empathy-patience.html" rel="alternate"/><published>2026-02-04T13:50:00+00:00</published><updated>2026-02-04T13:50:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2026-02-04:/2026/02/04/solidarity-empathy-patience.html</id><content type="html">&lt;h2&gt;So I saw this video...&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="A chiral crystal" src="/attachments/2026/02/04/chiral.jpeg#centre"&gt;&lt;/p&gt;
+&lt;p&gt;Death Stranding, along with its sequel, is my absolute favourite video game
+ever, and probably one of my favourite pieces of fiction ever too; I've
+watched and read a lot about the game (not to mention I've &lt;a href="https://www.youtube.com/playlist?list=PLUY2FpMDyORDJd_VYhF74e6Mapf8oHp8i"&gt;played both
+releases a ton
+too&lt;/a&gt;).
+A good few months back I was watching &lt;a href="https://youtu.be/_GhSXMMJp0E?si=dGxAJlgLi5BBKCkM"&gt;a video about the making of the first
+game&lt;/a&gt; and during the
+video, &lt;a href="https://youtu.be/_GhSXMMJp0E?si=z6FKH_FNfFMEozAe&amp;amp;t=1635"&gt;around the 27:20
+mark&lt;/a&gt;, the narrator
+says the phrase:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;the game's core values of solidarity, empathy, and patience&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This stood out to me. There was something about that phrase and what it
+meant given my experiences in Death Stranding and Death Stranding 2; it
+spoke to me enough that I jotted it down and kept coming back to it and
+thinking about it. It was a phrase I couldn't get out of my head.&lt;/p&gt;
+&lt;p&gt;Around the same time I was also doing a lot of thinking about, and
+note-writing about, code reviews. Although I've been working in software
+development&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt; for a few decades now (I started in July 1989), I was quite
+late to the whole process of code review -- at least in the way we talk
+about it today. This mostly comes down to the fact that for a lot of my time
+I either worked in very small companies or I was the only developer around.&lt;/p&gt;
+&lt;p&gt;Given this, thinking about my own approach to reviews is something I've only
+really been doing for the past few years. I've made personal notes about it,
+read posts and articles about it, I've had conversations about it; my
+thoughts and feelings about it have drifted a little but seem to have
+settled.&lt;/p&gt;
+&lt;p&gt;The idea of that phrase from the Death Stranding video crept into this
+thought process, as I felt it nicely summed up what a good code review would
+look and feel like. Weirdly I also realised that, perhaps, the things I like
+and value about Death Stranding are also the things I like, value, and want
+to embody when it comes to code reviews.&lt;/p&gt;
+&lt;p&gt;One of the big selling points for me, with Death Stranding, is the
+asynchronous multiplayer aspect of it; the reason Kojima calls it a "Strand
+type game". I have my game, I have my goal, but other people can indirectly
+affect it, either doing work in their game that leaks into mine in a
+beneficial way, or by leaking into mine in a way that I have to clean up.
+There's something really satisfying about this asynchronous collaboration.
+That feels similar to the collective effort of working in a single
+repository, each person working on their own branch or PR, sometimes in
+tandem, sometimes in series, sometimes to the benefit of each other and
+sometimes in ways that block each other.&lt;/p&gt;
+&lt;p&gt;But that's not the point here. There's a similarity if I think about it, but
+I don't want to get too carried away on that line of thought. It's the
+phrase from the video I care about; it's the approach of involving
+solidarity, empathy and patience I want to think about more.&lt;/p&gt;
+&lt;h2&gt;Solidarity&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="In the mountains" src="/attachments/2026/02/04/mountains.jpeg"&gt;&lt;/p&gt;
+&lt;p&gt;This, for me, is all about where you position yourself when you approach
+reviewing code. I sense things only work well if you view the codebase as
+something with common ownership. I've worked on and with a codebase where
+the original author invited others in to collaborate, but where they
+constantly acted as a gatekeeper, and often as a gatekeeper who was
+resistant to their own contributions being reviewed, and it was an
+exhausting experience.&lt;/p&gt;
+&lt;p&gt;I believe the key here is to work against a "your code" vs "my standard"
+approach, instead concentrating on an "our repository" view. That's not to
+say that there shouldn't be standards and that they shouldn't be maintained
+-- there should be and they should be -- but more to say that they should be
+agreed upon, mutually understood to be worthwhile, and that any callout of a
+standard not being applied is seen as a good and helpful thing.&lt;/p&gt;
+&lt;p&gt;The driving force here should be the shared intent, and how the different
+degrees of knowledge and experience can come together to express that
+intent. If a reviewer can see issues with a submission, with a proposed
+change or addition to the codebase, the ideal approach is to highlight them
+in such a way as to make it feel like &lt;em&gt;we&lt;/em&gt; discovered them, not that &lt;em&gt;I&lt;/em&gt;
+discovered them and &lt;em&gt;you&lt;/em&gt; should sort it out. Depending on the degree of
+proposed change, this might actually be expressed by (if you're using
+GitHub, for example) using the "Suggested Change" feature to directly feed
+back into the PR, or perhaps for something a little more complex, or the
+offer to pair up to work on the solution.&lt;/p&gt;
+&lt;h2&gt;Empathy&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Sam and Fragile" src="/attachments/2026/02/04/Sam-and-Fragile.jpeg"&gt;&lt;/p&gt;
+&lt;p&gt;As someone who has written a lot of code, and so written a lot of bugs and
+made a lot of bad design choices, I feel empathy is the easiest of the three
+words to get behind and understand, but possibly the hardest one to actually
+put into practice.&lt;/p&gt;
+&lt;p&gt;When you look at a PR, it's easy to see code, to see those design choices,
+and to approach the reading as if you were the one who had written it,
+assessing it through that lens. In my own experience, this is where I find
+myself writing and re-writing my comments during a review. As much as
+possible I try and ask the author &lt;em&gt;why&lt;/em&gt; they've taken a particular approach.
+It could be, perhaps, that I've simply missed a different perspective they
+have. If that's the case I'll learn something about the code (and about
+them); if that isn't the case I've invited them to have a second read of
+their contribution. It seems to me that this benefits everyone.&lt;/p&gt;
+&lt;p&gt;I feel that where I land with this is the idea of striving to act less like
+a critic and more like a collaborator, and in doing so aiming to add to an
+atmosphere of psychological safety. Nobody should feel like there's a
+penalty to getting something "wrong" in a contribution; they should ideally
+feel like they've learnt a new "gotcha" to be mindful of in the future (both
+as an author and a reviewer). Done right the whole team, and the work,
+benefits.&lt;/p&gt;
+&lt;h2&gt;Patience&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Arriving at the plate gate" src="/attachments/2026/02/04/Plate-Gate.jpeg"&gt;&lt;/p&gt;
+&lt;p&gt;The patience aspect of this view of reviews, for me, covers a few things.
+There's the patience that should be applied when reading over the code;
+there's the patience that should be applied when walking someone through
+feedback and suggestions; and there's the patience needed by the whole team
+to not treat code reviews as a speed bump on the road to getting work over
+the line. While patience applies to other facets of a review too, I think
+these are the most important parts.&lt;/p&gt;
+&lt;p&gt;In a work environment I think it's the last point -- that of the team's
+collective patience -- that is the most difficult to embody and protect.
+Often we'll find ourselves in a wider environment that employs a myopic view
+of progress and &lt;em&gt;getting things done&lt;/em&gt;, where the burn-down chart for the
+sprint is all that matters. In that sort of environment a code review can
+often be seen, by some, as a frustrating hurdle to moving that little card
+across that board. Cards over quality. Cards over sustainability.&lt;/p&gt;
+&lt;p&gt;It's my belief that this is one of those times where the phrase "slow down
+to speed up" really does apply. For me, review time is where the team gets
+to grow, to own the project, to own the code, to really apply the
+development and engineering principles they want to embody. Time spent on a
+review now will, in my experience, collectively save a lot more time later
+on, as the team becomes more cohesive and increasingly employs a shared
+intuition for what's right for the project.&lt;/p&gt;
+&lt;h2&gt;This is not (entirely) a post about code reviews&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Near the wind farm" src="/attachments/2026/02/04/Wind-Farm.jpeg"&gt;&lt;/p&gt;
+&lt;p&gt;The thing with code reviews, or any other team activities, is they don't
+exist in a vacuum. They take on the taste and smell of the culture in which
+they operate. It's my experience that it doesn't matter how much solidarity,
+empathy or patience you display during your day-to-day, if it's counter to
+the culture in which you work it's always going to be exhausting, it's
+always going to feel like a slog.&lt;/p&gt;
+&lt;p&gt;If leadership in technology, in software engineering, were to show more of
+these three basic qualities, they'd start to appear like they realise that
+they're working with actual humans, not producers of code; and I think we
+need more of that now than at any time in the history of coding.&lt;/p&gt;
+&lt;p&gt;Since I first saw that video, and heard that phrase, and had it run around
+my head, I've come to feel that it's not just a good mantra for code
+reviews; I think it's a simple blueprint for what good tech leadership
+should look like. If there was more "Strand-type" leadership in my chosen
+industry I feel it would be more open, more accessible, would offer more
+psychological safety and ultimately would result in teams, and projects,
+that thrive.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Or software engineering, if you prefer, but that's a whole other blog
+post I'll never get round to writing one day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="Coding"/><category term="work"/><category term="review"/><category term="leadership"/><category term="Death Stranding"/></entry><entry><title>TIL - uvx.sh</title><link href="https://blog.davep.org/2026/01/27/til-uvx-sh.html" rel="alternate"/><published>2026-01-27T16:03:00+00:00</published><updated>2026-01-27T16:03:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2026-01-27:/2026/01/27/til-uvx-sh.html</id><content type="html">&lt;p&gt;In the past few months, like a lot of folk in the Python world, I've been
 won over by &lt;a href="https://docs.astral.sh/uv/"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt;. When it comes to managing my
 own projects my journey over the past few years as been
 &lt;a href="https://pipenv.pypa.io/en/latest/"&gt;&lt;code&gt;pipenv&lt;/code&gt;&lt;/a&gt;, then
@@ -1122,30 +1268,4 @@ PyPi&lt;/a&gt;. It can also be installed with
 $&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;tinboard
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;The &lt;a href="https://github.com/davep/tinboard"&gt;source is available on GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"/><category term="Python"/><category term="terminal"/><category term="textual"/><category term="YouTube"/></entry><entry><title>PISpy v0.6.0</title><link href="https://blog.davep.org/2024/04/17/pispy-0-6-0.html" rel="alternate"/><published>2024-04-17T11:30:00+01:00</published><updated>2024-04-17T11:30:00+01:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-04-17:/2024/04/17/pispy-0-6-0.html</id><content type="html">&lt;p&gt;Back in the very early days of the &lt;a href="https://blog.davep.org/2024/03/28/goodbye-textualize.html"&gt;Textual
-adventure&lt;/a&gt;,
-within the first month or so of working on the framework, we &lt;a href="https://textual.textualize.io/blog/2022/11/26/on-dog-food-the-original-metaverse-and-not-being-bored/"&gt;had a period
-of
-dogfooding&lt;/a&gt;.
-One of the projects I wrote during that time was a little tool &lt;a href="https://textual.textualize.io/blog/2022/12/08/be-the-keymaster/#pispy"&gt;I called
-PISpy&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The initial version was pretty much a quick hack; during that dogfooding
-period I did my best to try and develop a new project every couple of days.
-Since then I've let PISpy descend into &lt;a href="https://en.wikipedia.org/wiki/Software_rot"&gt;bit
-rot&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In the last week or so I've turned my attention back to it and made an
-effort to &lt;a href="https://www.youtube.com/watch?v=CepsN8TDq1E"&gt;tidy up the code&lt;/a&gt;,
-&lt;a href="https://www.youtube.com/watch?v=t2EUXA8RkN0"&gt;tidy it some more&lt;/a&gt;, &lt;a href="https://www.youtube.com/watch?v=2u5CfrgZWcc"&gt;and some
-more&lt;/a&gt;, and &lt;a href="https://www.youtube.com/watch?v=CDCvWCZx1AM"&gt;even some
-more&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This morning I put the finishing touches to these changes and released
-&lt;a href="https://github.com/davep/pispy/releases/tag/v0.6.0"&gt;v0.6.0&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/shorts/67xtMdstbx4"&gt;&lt;img alt="PISpy in action" src="/attachments/2024/04/17/pispy-in-action.gif#centre"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;PISpy can be installed with &lt;code&gt;pip&lt;/code&gt; or (ideallty) &lt;code&gt;pipx&lt;/code&gt; &lt;a href="https://pypi.org/project/pispy-client/"&gt;from
-PyPI&lt;/a&gt;. It can also be installed with
-Homebrew by tapping &lt;code&gt;davep/homebrew&lt;/code&gt; and then installing &lt;code&gt;pispy&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;tap&lt;span class="w"&gt; &lt;/span&gt;davep/homebrew
-$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;pispy
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;a href="https://github.com/davep/pispy"&gt;source is available on GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"/><category term="Python"/><category term="terminal"/><category term="textual"/><category term="YouTube"/></entry></feed>
+&lt;p&gt;The &lt;a href="https://github.com/davep/tinboard"&gt;source is available on GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"/><category term="Python"/><category term="terminal"/><category term="textual"/><category term="YouTube"/></entry></feed>

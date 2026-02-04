@@ -183,6 +183,56 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2023/09/29/mandelbrot-commands.html#mandelbrot-commands">Mandelbrot Commands</a></h2>
+    <p>
+      Posted on 2023-09-29 12:42 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/pypi.html">PyPi</a>,              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/coding.html">coding</a>,              <a href="https://blog.davep.org/tag/textual.html">Textual</a>,              <a href="https://blog.davep.org/tag/mandelbrot.html">mandelbrot</a>
+        &#8226; 2 min read
+    </p>
+  </header>
+  <div>
+      <div><p>I don't think I've mentioned it before on this blog, but some time back I
+decided it would be fun to use <a href="https://textual.textualize.io/">Textual</a> to
+write a Mandelbrot explorer (simple Mandelbrot explorers have been another
+one of my favourite <a href="/2019/11/10/going-on-a-journey.html">known problem to try an unknown
+thing</a> problems). Doing it in the
+terminal seemed like a fun little hack. I started off with creating
+<a href="https://github.com/davep/textual-canvas"><code>textual-canvas</code></a> and then built
+<a href="https://github.com/davep/textual-mandelbrot"><code>textual-mandelbrot</code></a> on top
+of that.</p>
+<p>Not too long back <a href="https://textual.textualize.io/blog/2023/09/15/textual-0370-adds-a-command-palette/">I added a "command palette" to
+Textual</a>
+(I'd prefer to call it a minibuffer, but I get that that's not fashionable
+these days), but so far I've not used it in any of my own projects; earlier
+today I thought it could be fun to add it to <code>textual-mandelbrot</code>.</p>
+<p><img alt="Mandelbrot commands in action" src="/attachments/2023/09/29/mandelbrot-commands.png#centre"></p>
+<p>Most of the commands I've added are trivial and really better covered by
+(and are covered by) keystrokes, but it was a good test and a way to show
+off how to create a command provider.</p>
+<p>Having started this I can see some more useful things to add: for example it
+might be interesting to add a facility where you can bookmark a specific
+location, zoom level, iteration value, etc, and revisit later. The command
+palette would feel like a great way to pull back those bookmarks.</p>
+<p>What I really liked though was how <em>easy</em> this was to do. <a href="https://github.com/davep/textual-mandelbrot/blob/main/textual_mandelbrot/commands.py">The code to make
+the commands
+available</a>
+is pretty trivial and, I believe, easy to follow. Although I do say so
+myself I think I managed to design a very accessible API for this.</p>
+<p>There's more I'd like to add to that (the Textual command palette itself, I
+mean), of course; this was just the start. Support for commands that accept
+and prompt for arguments would be a neat and obvious enhancement (especially
+if done in a way that's reminiscent of how commands could be defined in
+<a href="https://en.wikipedia.org/wiki/Common_Lisp_Interface_Manager">CLIM</a> -- I
+remember <a href="https://github.com/davep/org-davep-cldict/">really liking</a> how you
+could create self-documenting and self-completing commands in that).</p>
+<p>All in good time...</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2023/09/23/apple-design.html#apple-design">Apple Design</a></h2>
     <p>
       Posted on 2023-09-23 08:10 +0100 in <a href="https://blog.davep.org/category/tech.html">Tech</a>
@@ -730,54 +780,6 @@ and turn to around page 84, there I am!</p>
 and get the code going again. How much fun would it be to add a video to <a href="https://www.youtube.com/@DavePearson">my
 YouTube channel</a>, of me playing one of
 the very first games I wrote?</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2023/08/13/unbored-0-6-0.html#unbored-0-6-0">Unbored v0.6.0</a></h2>
-    <p>
-      Posted on 2023-08-13 21:21 +0100 in <a href="https://blog.davep.org/category/python.html">Python</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/pypi.html">PyPi</a>,              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/coding.html">coding</a>,              <a href="https://blog.davep.org/tag/textual.html">Textual</a>
-        &#8226; 2 min read
-    </p>
-  </header>
-  <div>
-      <div><p><a href="/2022/12/01/new-things-on-pypi.html">Late on last year</a> I wrote about a
-bunch of new things that I'd added to PyPi, things mostly kicked off by an
-early <a href="https://textual.textualize.io/blog/2022/11/26/on-dog-food-the-original-metaverse-and-not-being-bored/">dog-fooding session we had at textual
-HQ</a>.
-Since then I've been slowly doing my best to keep the applications up to
-date with Textual.</p>
-<p><img alt="Unbored" src="/attachments/2023/08/13/unbored.png#centre"></p>
-<p>As much as possible we try and not make breaking changes with the framework,
-but at the same time it is still 0.x software and there's still new ways of
-doing things being designed so there's going to be the odd break in approach
-now and again.</p>
-<p><a href="https://github.com/davep/unbored">Unbored</a>, my kind of silly
-self-populating TODO list application, has been sitting atop Textual 0.20.x
-for a while now and earlier today I checked how it was getting in with
-0.32.0 and... actually surprisingly okay. Not perfect, there were a couple
-of things that had suffered from bitrot, but it wasn't crashing.</p>
-<p>The main thing I needed to change was the ability to focus a couple of
-containers (they didn't used to receive focus by default, now they do so I
-had to tell them not to again), and that was about it.</p>
-<p>While I was in there I also updated the application so that I dropped the
-<a href="https://www.youtube.com/watch?v=N2ZsXGQQpFw">nifty little slide-in error dialog I'd
-made</a>, and instead embraced
-<a href="https://textual.textualize.io/blog/2023/07/17/textual-0300-adds-desktop-style-notifications/">the new Textual notification
-system</a>.</p>
-<p>While the application itself is a bit silly, and likely of no <em>real</em> use to
-anyone, I feel it's a pretty good barometer application, helping me check
-what the experience is like when it comes to maintaining a Textual
-application and the needs to keep on top of changes to Textual.</p>
-<p>It goes without saying, I hope, that really you should pin the Textual
-dependency for your applications, and upgrade in a controlled and tested
-way; for this though it's less crucial and is a good test of the state of
-the ecosystem, and on the remote chance that anyone is using it, it'll be
-helpful to me if it <em>does</em> break and they yell.</p></div>
   </div>
 </article>
 

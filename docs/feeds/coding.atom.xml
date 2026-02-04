@@ -1,5 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"/><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/><id>https://blog.davep.org/</id><updated>2026-01-13T09:00:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>ng2nlm - Feed NotebookLM a Norton Guide</title><link href="https://blog.davep.org/2026/01/13/ng2nlm.html" rel="alternate"/><published>2026-01-13T09:00:00+00:00</published><updated>2026-01-13T09:00:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2026-01-13:/2026/01/13/ng2nlm.html</id><content type="html">&lt;p&gt;After having knocked up &lt;a href="/2026/01/10/obs2nlm.html"&gt;obs2nlm the other day&lt;/a&gt; I
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.davep.org - Coding</title><link href="https://blog.davep.org/" rel="alternate"/><link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/><id>https://blog.davep.org/</id><updated>2026-02-04T13:50:00+00:00</updated><subtitle>Code, Emacs, VR, Stuff...</subtitle><entry><title>Solidarity, Empathy, and Patience -- thinking about code reviews</title><link href="https://blog.davep.org/2026/02/04/solidarity-empathy-patience.html" rel="alternate"/><published>2026-02-04T13:50:00+00:00</published><updated>2026-02-04T13:50:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2026-02-04:/2026/02/04/solidarity-empathy-patience.html</id><content type="html">&lt;h2&gt;So I saw this video...&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="A chiral crystal" src="/attachments/2026/02/04/chiral.jpeg#centre"&gt;&lt;/p&gt;
+&lt;p&gt;Death Stranding, along with its sequel, is my absolute favourite video game
+ever, and probably one of my favourite pieces of fiction ever too; I've
+watched and read a lot about the game (not to mention I've &lt;a href="https://www.youtube.com/playlist?list=PLUY2FpMDyORDJd_VYhF74e6Mapf8oHp8i"&gt;played both
+releases a ton
+too&lt;/a&gt;).
+A good few months back I was watching &lt;a href="https://youtu.be/_GhSXMMJp0E?si=dGxAJlgLi5BBKCkM"&gt;a video about the making of the first
+game&lt;/a&gt; and during the
+video, &lt;a href="https://youtu.be/_GhSXMMJp0E?si=z6FKH_FNfFMEozAe&amp;amp;t=1635"&gt;around the 27:20
+mark&lt;/a&gt;, the narrator
+says the phrase:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;the game's core values of solidarity, empathy, and patience&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This stood out to me. There was something about that phrase and what it
+meant given my experiences in Death Stranding and Death Stranding 2; it
+spoke to me enough that I jotted it down and kept coming back to it and
+thinking about it. It was a phrase I couldn't get out of my head.&lt;/p&gt;
+&lt;p&gt;Around the same time I was also doing a lot of thinking about, and
+note-writing about, code reviews. Although I've been working in software
+development&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt; for a few decades now (I started in July 1989), I was quite
+late to the whole process of code review -- at least in the way we talk
+about it today. This mostly comes down to the fact that for a lot of my time
+I either worked in very small companies or I was the only developer around.&lt;/p&gt;
+&lt;p&gt;Given this, thinking about my own approach to reviews is something I've only
+really been doing for the past few years. I've made personal notes about it,
+read posts and articles about it, I've had conversations about it; my
+thoughts and feelings about it have drifted a little but seem to have
+settled.&lt;/p&gt;
+&lt;p&gt;The idea of that phrase from the Death Stranding video crept into this
+thought process, as I felt it nicely summed up what a good code review would
+look and feel like. Weirdly I also realised that, perhaps, the things I like
+and value about Death Stranding are also the things I like, value, and want
+to embody when it comes to code reviews.&lt;/p&gt;
+&lt;p&gt;One of the big selling points for me, with Death Stranding, is the
+asynchronous multiplayer aspect of it; the reason Kojima calls it a "Strand
+type game". I have my game, I have my goal, but other people can indirectly
+affect it, either doing work in their game that leaks into mine in a
+beneficial way, or by leaking into mine in a way that I have to clean up.
+There's something really satisfying about this asynchronous collaboration.
+That feels similar to the collective effort of working in a single
+repository, each person working on their own branch or PR, sometimes in
+tandem, sometimes in series, sometimes to the benefit of each other and
+sometimes in ways that block each other.&lt;/p&gt;
+&lt;p&gt;But that's not the point here. There's a similarity if I think about it, but
+I don't want to get too carried away on that line of thought. It's the
+phrase from the video I care about; it's the approach of involving
+solidarity, empathy and patience I want to think about more.&lt;/p&gt;
+&lt;h2&gt;Solidarity&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="In the mountains" src="/attachments/2026/02/04/mountains.jpeg"&gt;&lt;/p&gt;
+&lt;p&gt;This, for me, is all about where you position yourself when you approach
+reviewing code. I sense things only work well if you view the codebase as
+something with common ownership. I've worked on and with a codebase where
+the original author invited others in to collaborate, but where they
+constantly acted as a gatekeeper, and often as a gatekeeper who was
+resistant to their own contributions being reviewed, and it was an
+exhausting experience.&lt;/p&gt;
+&lt;p&gt;I believe the key here is to work against a "your code" vs "my standard"
+approach, instead concentrating on an "our repository" view. That's not to
+say that there shouldn't be standards and that they shouldn't be maintained
+-- there should be and they should be -- but more to say that they should be
+agreed upon, mutually understood to be worthwhile, and that any callout of a
+standard not being applied is seen as a good and helpful thing.&lt;/p&gt;
+&lt;p&gt;The driving force here should be the shared intent, and how the different
+degrees of knowledge and experience can come together to express that
+intent. If a reviewer can see issues with a submission, with a proposed
+change or addition to the codebase, the ideal approach is to highlight them
+in such a way as to make it feel like &lt;em&gt;we&lt;/em&gt; discovered them, not that &lt;em&gt;I&lt;/em&gt;
+discovered them and &lt;em&gt;you&lt;/em&gt; should sort it out. Depending on the degree of
+proposed change, this might actually be expressed by (if you're using
+GitHub, for example) using the "Suggested Change" feature to directly feed
+back into the PR, or perhaps for something a little more complex, or the
+offer to pair up to work on the solution.&lt;/p&gt;
+&lt;h2&gt;Empathy&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Sam and Fragile" src="/attachments/2026/02/04/Sam-and-Fragile.jpeg"&gt;&lt;/p&gt;
+&lt;p&gt;As someone who has written a lot of code, and so written a lot of bugs and
+made a lot of bad design choices, I feel empathy is the easiest of the three
+words to get behind and understand, but possibly the hardest one to actually
+put into practice.&lt;/p&gt;
+&lt;p&gt;When you look at a PR, it's easy to see code, to see those design choices,
+and to approach the reading as if you were the one who had written it,
+assessing it through that lens. In my own experience, this is where I find
+myself writing and re-writing my comments during a review. As much as
+possible I try and ask the author &lt;em&gt;why&lt;/em&gt; they've taken a particular approach.
+It could be, perhaps, that I've simply missed a different perspective they
+have. If that's the case I'll learn something about the code (and about
+them); if that isn't the case I've invited them to have a second read of
+their contribution. It seems to me that this benefits everyone.&lt;/p&gt;
+&lt;p&gt;I feel that where I land with this is the idea of striving to act less like
+a critic and more like a collaborator, and in doing so aiming to add to an
+atmosphere of psychological safety. Nobody should feel like there's a
+penalty to getting something "wrong" in a contribution; they should ideally
+feel like they've learnt a new "gotcha" to be mindful of in the future (both
+as an author and a reviewer). Done right the whole team, and the work,
+benefits.&lt;/p&gt;
+&lt;h2&gt;Patience&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Arriving at the plate gate" src="/attachments/2026/02/04/Plate-Gate.jpeg"&gt;&lt;/p&gt;
+&lt;p&gt;The patience aspect of this view of reviews, for me, covers a few things.
+There's the patience that should be applied when reading over the code;
+there's the patience that should be applied when walking someone through
+feedback and suggestions; and there's the patience needed by the whole team
+to not treat code reviews as a speed bump on the road to getting work over
+the line. While patience applies to other facets of a review too, I think
+these are the most important parts.&lt;/p&gt;
+&lt;p&gt;In a work environment I think it's the last point -- that of the team's
+collective patience -- that is the most difficult to embody and protect.
+Often we'll find ourselves in a wider environment that employs a myopic view
+of progress and &lt;em&gt;getting things done&lt;/em&gt;, where the burn-down chart for the
+sprint is all that matters. In that sort of environment a code review can
+often be seen, by some, as a frustrating hurdle to moving that little card
+across that board. Cards over quality. Cards over sustainability.&lt;/p&gt;
+&lt;p&gt;It's my belief that this is one of those times where the phrase "slow down
+to speed up" really does apply. For me, review time is where the team gets
+to grow, to own the project, to own the code, to really apply the
+development and engineering principles they want to embody. Time spent on a
+review now will, in my experience, collectively save a lot more time later
+on, as the team becomes more cohesive and increasingly employs a shared
+intuition for what's right for the project.&lt;/p&gt;
+&lt;h2&gt;This is not (entirely) a post about code reviews&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Near the wind farm" src="/attachments/2026/02/04/Wind-Farm.jpeg"&gt;&lt;/p&gt;
+&lt;p&gt;The thing with code reviews, or any other team activities, is they don't
+exist in a vacuum. They take on the taste and smell of the culture in which
+they operate. It's my experience that it doesn't matter how much solidarity,
+empathy or patience you display during your day-to-day, if it's counter to
+the culture in which you work it's always going to be exhausting, it's
+always going to feel like a slog.&lt;/p&gt;
+&lt;p&gt;If leadership in technology, in software engineering, were to show more of
+these three basic qualities, they'd start to appear like they realise that
+they're working with actual humans, not producers of code; and I think we
+need more of that now than at any time in the history of coding.&lt;/p&gt;
+&lt;p&gt;Since I first saw that video, and heard that phrase, and had it run around
+my head, I've come to feel that it's not just a good mantra for code
+reviews; I think it's a simple blueprint for what good tech leadership
+should look like. If there was more "Strand-type" leadership in my chosen
+industry I feel it would be more open, more accessible, would offer more
+psychological safety and ultimately would result in teams, and projects,
+that thrive.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Or software engineering, if you prefer, but that's a whole other blog
+post I'll never get round to writing one day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="Coding"/><category term="work"/><category term="review"/><category term="leadership"/><category term="Death Stranding"/></entry><entry><title>ng2nlm - Feed NotebookLM a Norton Guide</title><link href="https://blog.davep.org/2026/01/13/ng2nlm.html" rel="alternate"/><published>2026-01-13T09:00:00+00:00</published><updated>2026-01-13T09:00:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2026-01-13:/2026/01/13/ng2nlm.html</id><content type="html">&lt;p&gt;After having knocked up &lt;a href="/2026/01/10/obs2nlm.html"&gt;obs2nlm the other day&lt;/a&gt; I
 realised there was another source of sources available to me that might be
 fun to throw into NotebookLM: &lt;a href="/2025/12/12/norton-guide-collection.html"&gt;one or more of the Norton Guide files in my
 collection&lt;/a&gt;!&lt;/p&gt;
@@ -1088,125 +1234,4 @@ PyPi&lt;/a&gt;. It can also be installed with
 $&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;tinboard
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;The &lt;a href="https://github.com/davep/tinboard"&gt;source is available on GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"/><category term="Python"/><category term="terminal"/><category term="textual"/><category term="YouTube"/></entry><entry><title>Homebrew all the Python things</title><link href="https://blog.davep.org/2024/03/10/homebrew-all-the-python-things.html" rel="alternate"/><published>2024-03-10T14:12:00+00:00</published><updated>2024-03-10T14:12:00+00:00</updated><author><name>Dave Pearson</name></author><id>tag:blog.davep.org,2024-03-10:/2024/03/10/homebrew-all-the-python-things.html</id><content type="html">&lt;p&gt;Over the past year and a half I've written a &lt;em&gt;lot&lt;/em&gt; of Python code, and a lot
-of that Python code has been Textual applications; most of those Textual
-applications have been very quick demonstration or test applications built
-to help support someone asking for help; some of them have been less-trivial
-applications written in my own time and for my own use and amusement. Of
-them I'd say there are two near-daily-drivers, and a couple that I either
-have more plans for, or like to maintain just for the hell of it.&lt;/p&gt;
-&lt;p&gt;Those latter applications are all ones that &lt;a href="https://pypi.org/user/davepearson/"&gt;I've deployed to
-PyPI&lt;/a&gt;, and because of that are all ones
-that I've recommenced be installed using
-&lt;a href="https://pipx.pypa.io/stable/"&gt;&lt;code&gt;pipx&lt;/code&gt;&lt;/a&gt;. During that time though I've had
-half an inclination to make them &lt;a href="https://brew.sh/"&gt;installable via
-Homebrew&lt;/a&gt;. While probably not installable from the core
-Homebrew repository&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;, at least installable from a "tap"&lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2"&gt;2&lt;/a&gt;&lt;/sup&gt; that's under
-my own GitHub account or something.&lt;/p&gt;
-&lt;p&gt;To this end I've had &lt;a href="https://til.simonwillison.net/homebrew/packaging-python-cli-for-homebrew"&gt;a blog post about packaging Python apps for
-Homebrew&lt;/a&gt;
-saved in Pinboard for a while now, and every time I look at it I think
-&lt;em&gt;"this is a lot of faff, maybe later"&lt;/em&gt;. Today was that "later".&lt;/p&gt;
-&lt;p&gt;As it turned out, it was &lt;em&gt;way&lt;/em&gt; easier than I first realised. The evolution
-of today pretty much went like this:&lt;/p&gt;
-&lt;h2&gt;Deciding to use a single repository as the "tap"&lt;/h2&gt;
-&lt;p&gt;The blog post above seemed to suggest that for every application repository
-you want a tap for, you probably want a parallel &lt;code&gt;homebrew-&lt;/code&gt;-prefixed
-repository. This in turn would suggest that every time someone wants to
-install one of your tools, they'd need to add a new tap&lt;sup id="fnref:3"&gt;&lt;a class="footnote-ref" href="#fn:3"&gt;3&lt;/a&gt;&lt;/sup&gt;. As I looked at
-it this seemed like way too much faff, so in the end I decided &lt;a href="https://github.com/davep/homebrew-homebrew"&gt;to create a
-single repository that I'd keep all my formula files
-in&lt;/a&gt;. The naming of
-&lt;code&gt;homebrew-homebrew&lt;/code&gt; meant that the tap name would simply be
-&lt;code&gt;davep/homebrew&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Simple and clean, I think: things for homebrew, things that can be installed
-via homebrew, that come from davep. To add the tap it's simply:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;tap&lt;span class="w"&gt; &lt;/span&gt;davep/homebrew
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2&gt;Ensuring that all my applications and libraries publish source&lt;/h2&gt;
-&lt;p&gt;Although it seems that it might be (possibly, maybe, perhaps, who can tell?)
-deprecated, it looked like
-&lt;a href="https://github.com/tdsmith/homebrew-pypi-poet"&gt;&lt;code&gt;homebrew-pypi-poet&lt;/code&gt;&lt;/a&gt; was a
-tool I'd need to do all the heavy work on making the formula file. A quick
-test threw up a problem where it was complaining that my test package (one
-of my own applications) didn't have an &lt;code&gt;sdist&lt;/code&gt;. Sure enough, through nothing
-more than never having bothered to make it happen, the source of my
-libraries and applications wasn't been uploaded to PyPI when I published.&lt;/p&gt;
-&lt;p&gt;So I went through some of my repositories and fixed that, making patch
-releases as I went.&lt;/p&gt;
-&lt;h2&gt;Making a &lt;code&gt;Makefile&lt;/code&gt; to let me be lazy&lt;/h2&gt;
-&lt;p&gt;The next thing to do was to figure out the most lazy way of building the
-formula files. From what I could see the main steps to making all of this
-work were:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Make a venv and activate it&lt;/li&gt;
-&lt;li&gt;Install &lt;code&gt;homebrew-pypi-poet&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Install the package you want to package for Homebrew&lt;/li&gt;
-&lt;li&gt;Run &lt;code&gt;poet&lt;/code&gt; to make the formula&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Seemed simple enough. For all sorts of lazy reasons I still tend to use
-&lt;code&gt;pipenv&lt;/code&gt; to get things done quickly, and that seemed to work fine here too.
-I'm also a fan of &lt;code&gt;PIPENV_VENV_IN_PROJECT=true&lt;/code&gt; which makes things clean and
-tidy, so I figured a rule in a &lt;code&gt;Makefile&lt;/code&gt; like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;clean&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;rm&lt;span class="w"&gt; &lt;/span&gt;-rf&lt;span class="w"&gt; &lt;/span&gt;.venv
-&lt;span class="w"&gt;        &lt;/span&gt;rm&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;Pipfile&lt;span class="w"&gt; &lt;/span&gt;Pipfile.lock
-&lt;span class="w"&gt;        &lt;/span&gt;pipenv&lt;span class="w"&gt; &lt;/span&gt;--python&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.12
-&lt;span class="w"&gt;        &lt;/span&gt;pipenv&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--dev&lt;span class="w"&gt; &lt;/span&gt;homebrew-pypi-poet
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;would be fine to make a clean venv ready to build the formula, and then I'd
-have a rule for the package itself that depended on the above, like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;oshit&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;clean&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;pipenv&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;oshit
-&lt;span class="w"&gt;        &lt;/span&gt;pipenv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;poet&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;oshit&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;Formula/oshit.rb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2&gt;Fixing the package description&lt;/h2&gt;
-&lt;p&gt;The above was great, and worked really well. But there was one issue that I
-could see: the resulting formula file always had this &lt;code&gt;desc&lt;/code&gt; inside it:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;desc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Shiny new formula&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;From what I could see there was no way to tell &lt;code&gt;poet&lt;/code&gt; what I wanted the
-description to be, and neither did I want to have to remember to edit that
-line each time I regenerated the formula file. So &lt;code&gt;sed&lt;/code&gt; to the rescue then I
-guess, with this sort of thing:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sed&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s/Shiny new formula/The actual text I want/&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Formula/coolapp.rb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2&gt;The result&lt;/h2&gt;
-&lt;p&gt;The result of all of this is that I now have &lt;a href="https://github.com/davep/homebrew-homebrew"&gt;a repository that I or anyone
-else can use as a tap&lt;/a&gt; to be
-able to install my stuff using the &lt;code&gt;brew&lt;/code&gt; command. So now if you want a
-little Hacker News reader for the terminal but you don't want to be messing
-with installing &lt;code&gt;pipx&lt;/code&gt; and the like, but you do use &lt;code&gt;brew&lt;/code&gt; on your machine,
-it's just this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;tap&lt;span class="w"&gt; &lt;/span&gt;davep/homebrew
-$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;oshit
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Fingers crossed it all "just works" when I next upgrade one of those
-packages. I will, of course, have to remember to go into
-&lt;code&gt;davep/homebrew-homebrew&lt;/code&gt; and &lt;code&gt;make the-app&lt;/code&gt; for the relevant application,
-and then commit and push the changes, but that's really not too difficult to
-remember and do.&lt;/p&gt;
-&lt;p&gt;Hopefully it'll then all just work.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li id="fn:1"&gt;
-&lt;p&gt;I do actually &lt;a href="https://formulae.brew.sh/formula/eg"&gt;have one package in
-Homebrew&lt;/a&gt;, but it wasn't me who put
-it there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:2"&gt;
-&lt;p&gt;I really like Homebrew as a tool for getting stuff installed, by oh my
-gods the naming of things in its ecosystem is terrible and confusing!&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:3"&gt;
-&lt;p&gt;No, really, I mean it, this naming convention is kinda cringe right?&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content><category term="Coding"/><category term="Python"/><category term="terminal"/><category term="textual"/><category term="Homebrew"/><category term="Makefile"/></entry></feed>
+&lt;p&gt;The &lt;a href="https://github.com/davep/tinboard"&gt;source is available on GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="Coding"/><category term="Python"/><category term="terminal"/><category term="textual"/><category term="YouTube"/></entry></feed>
