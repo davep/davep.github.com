@@ -183,6 +183,48 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2025/02/28/mkdocs-gh-pages-redux.html#mkdocs-gh-pages-redux">MkDocs/mkdocstrings 404 CSS TIL update</a></h2>
+    <p>
+      Posted on 2025-02-28 22:23 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/documentation.html">documentation</a>,              <a href="https://blog.davep.org/tag/github.html">GitHub</a>,              <a href="https://blog.davep.org/tag/mkdocs.html">mkdocs</a>,              <a href="https://blog.davep.org/tag/mkdocstrings.html">mkdocstrings</a>,              <a href="https://blog.davep.org/tag/gh-pages.html">gh-pages</a>
+        &#8226; 1 min read
+    </p>
+  </header>
+  <div>
+      <div><p>Following on from <a href="/2025/02/28/documenting-fspicker.html">my post this
+morning</a>, regarding the problem I was
+having with <code>_mkdocstrings.css</code> being 404 any time I deployed by
+documentation, build with <code>mkdocs</code>/<code>mkdocstrings</code>, to GitHub Pages...</p>
+<p>It's come to light that I was doing this on hard mode, pretty much.</p>
+<p>While trying to figure out the best way of deploying the docs, I'd stumbled
+on <code>ghp-import</code> and had been using that. On the other hand, MkDocs has it's
+own command for doing the same thing: <a href="https://www.mkdocs.org/user-guide/deploying-your-docs/"><code>mkdocs
+gh-deploy</code></a>.</p>
+<p>Timothée <a href="https://github.com/mkdocstrings/mkdocstrings/discussions/742#discussioncomment-12351028">pointed out to
+me</a>
+that he never runs into this problem, but he used this command. As it turns
+out, if you use <code>mkdocs gh-deploy</code> it creates the <code>.nojekyll</code> file by
+default.</p>
+<p>And how does it do this? It uses the <code>ghp-import</code> code <a href="https://github.com/mkdocs/mkdocs/blob/4c7404485f988f409ccaf42fefe705222ff5965a/mkdocs/commands/gh_deploy.py#L138">and uses a switch it
+has to achieve exactly
+this</a>.
+In fact... the command line version even has a switch for it!</p>
+<div class="highlight"><pre><span></span><code>-n, --no-jekyll      Include a .nojekyll file in the branch.
+</code></pre></div>
+
+<p>This is off by default, when you run the command itself, but I wish I'd
+noticed this when I was first experimenting. O_o</p>
+<p>Anyway, thanks to Timothée's pointers, I've now managed to <a href="https://github.com/davep/textual-fspicker/pull/39/files">simplify how I
+build and publish the docs from
+<code>textual-fspicker</code></a>,
+and I'll apply this to other projects too.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2025/02/28/documenting-fspicker.html#documenting-fspicker">Documenting textual-fspicker (plus a TIL)</a></h2>
     <p>
       Posted on 2025-02-28 11:45 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -889,53 +931,6 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
 </code></pre></div>
 
 <p>The <a href="https://github.com/davep/pispy">source is available on GitHub</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2024/04/09/tinboard-0-11-0.html#tinboard-0-11-0">Tinboard v0.11.0</a></h2>
-    <p>
-      Posted on 2024-04-09 15:43 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/youtube.html">YouTube</a>
-        &#8226; 1 min read
-    </p>
-  </header>
-  <div>
-      <div><p>While <a href="/2024/03/28/goodbye-textualize.html">my time working on Textual might have come to an
-end</a>, my time working <em>with</em> Textual
-hasn't. Three days back <a href="https://www.youtube.com/watch?v=U66oHFLWmG4">I experimented with Textual's newly-added "inline
-mode"</a>:</p>
-<div style="text-align: center;">
-    <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/U66oHFLWmG4?si=kCQba6vMoxpKMtBG"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-    </iframe>
-</div>
-
-<p>In doing so I extended the application so that it's possible to run
-<code>tinboard add</code> and quickly enter a new bookmark and then carry on in the
-terminal, without needing to "go fullscreen". I'll admit it's of limited
-use, but it seemed like a good shakedown of the feature and in working on it
-I was able to discover a couple of bugs
-(<a href="https://github.com/Textualize/textual/issues/4385">#4385</a>,
-<a href="https://github.com/Textualize/textual/issues/4403">#4403</a>).</p>
-<p>The effect of this is this:</p>
-<p><img alt="Tinboard inline addition in action" src="/attachments/2024/04/09/tinboard-inline-add.gif#centre"></p>
-<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
-PyPi</a>. It can also be installed with
-<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>tinboard</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>tinboard
-</code></pre></div>
-
-<p>The <a href="https://github.com/davep/tinboard">source is available on GitHub</a>.</p></div>
   </div>
 </article>
 

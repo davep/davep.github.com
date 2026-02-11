@@ -183,6 +183,53 @@ rel="me"           href="https://fosstodon.org/@davep"
 
 <article>
   <header>
+    <h2><a href="https://blog.davep.org/2024/04/09/tinboard-0-11-0.html#tinboard-0-11-0">Tinboard v0.11.0</a></h2>
+    <p>
+      Posted on 2024-04-09 15:43 +0100 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
+
+          &#8226; Tagged with
+              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>,              <a href="https://blog.davep.org/tag/youtube.html">YouTube</a>
+        &#8226; 1 min read
+    </p>
+  </header>
+  <div>
+      <div><p>While <a href="/2024/03/28/goodbye-textualize.html">my time working on Textual might have come to an
+end</a>, my time working <em>with</em> Textual
+hasn't. Three days back <a href="https://www.youtube.com/watch?v=U66oHFLWmG4">I experimented with Textual's newly-added "inline
+mode"</a>:</p>
+<div style="text-align: center;">
+    <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/U66oHFLWmG4?si=kCQba6vMoxpKMtBG"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+    </iframe>
+</div>
+
+<p>In doing so I extended the application so that it's possible to run
+<code>tinboard add</code> and quickly enter a new bookmark and then carry on in the
+terminal, without needing to "go fullscreen". I'll admit it's of limited
+use, but it seemed like a good shakedown of the feature and in working on it
+I was able to discover a couple of bugs
+(<a href="https://github.com/Textualize/textual/issues/4385">#4385</a>,
+<a href="https://github.com/Textualize/textual/issues/4403">#4403</a>).</p>
+<p>The effect of this is this:</p>
+<p><img alt="Tinboard inline addition in action" src="/attachments/2024/04/09/tinboard-inline-add.gif#centre"></p>
+<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
+PyPi</a>. It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>tinboard</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>tinboard
+</code></pre></div>
+
+<p>The <a href="https://github.com/davep/tinboard">source is available on GitHub</a>.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://blog.davep.org/2024/03/10/homebrew-all-the-python-things.html#homebrew-all-the-python-things">Homebrew all the Python things</a></h2>
     <p>
       Posted on 2024-03-10 14:12 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
@@ -946,43 +993,6 @@ sort order of the tags menu in the left-hand column (bound to
 <kbd>F4</kbd>). Right now it simply toggles between alphabetical order, or
 bookmark count order (most to least). At some point I might make it more of
 a cycle than a toggle, but this serves my purposes for now.</p>
-<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
-PyPi</a>. The <a href="https://github.com/davep/tinboard">source is available on
-GitHub</a>.</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://blog.davep.org/2023/12/21/tinboard-0-2-0.html#tinboard-0-2-0">Tinboard v0.2.0</a></h2>
-    <p>
-      Posted on 2023-12-21 09:29 +0000 in <a href="https://blog.davep.org/category/coding.html">Coding</a>
-
-          &#8226; Tagged with
-              <a href="https://blog.davep.org/tag/python.html">Python</a>,              <a href="https://blog.davep.org/tag/terminal.html">terminal</a>,              <a href="https://blog.davep.org/tag/textual.html">textual</a>
-        &#8226; 1 min read
-    </p>
-  </header>
-  <div>
-      <div><p>Following on from <a href="/2023/12/19/tinboard.html">the initial full release a couple of days
-ago</a>, I've just <a href="https://github.com/davep/tinboard/releases/tag/v0.2.0">released v0.2.0 of
-Tinboard</a>. There's
-just one small change in this, but I think it's a really useful one.</p>
-<p>In the top-left corner of the screen there's a menu of main filters, letting
-you switch between seeing all bookmarks, or a combination of read, unread,
-public, private, etc... In using the application I quickly realised that it
-would be handy to have bookmark counts in that menu.</p>
-<p>So I added that:</p>
-<p><img alt="Counts in the filters menu" src="/attachments/2023/12/21/filters-menu.png#centre"></p>
-<p>These counts are a little different from those in the tags list, in that
-they always show the number of matching bookmarks amongst <em>all recorded
-bookmarks</em>, not just those currently on display (and so subject to any sort
-of filter that's in play).</p>
-<p>I <em>think</em> this is the right approach here. I know for sure that that's what
-I want from this, and I am writing this for me after all...</p>
-<p>What's handy about this is that it makes it easier for me to see how many
-bookmarks haven't been tagged, and also how many I haven't looked back over
-and marked as read. This is already helping me get to untagged-zero.</p>
 <p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/">from
 PyPi</a>. The <a href="https://github.com/davep/tinboard">source is available on
 GitHub</a>.</p></div>
