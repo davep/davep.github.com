@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Mythos: Ragnarok (plus Oppenheimer)
+title: "Mythos: Ragnarok (plus Oppenheimer)"
 category: Life
 tags: Fringe, wrestling, movie
 date: 2023-08-27 10:55:00 +0100

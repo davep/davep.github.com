@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Website: Miscellaneous Stuff moved
+title: "Website: Miscellaneous Stuff moved"
 category: Coding
 tags: html, web
 date: 2023-08-14 22:04:00 +0100
