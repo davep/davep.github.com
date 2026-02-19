@@ -17,7 +17,7 @@ last year [I realised it was time for me to move on from Pinboard and try
 something new](/2024/08/18/paindrop.html); based on various recommendations
 I settled on [Raindrop](https://raindrop.io/).
 
-As mentioned [in the other blog post]((/2024/08/18/paindrop.html)), Raindrop
+As mentioned [in the other blog post](/2024/08/18/paindrop.html), Raindrop
 offered more or less everything I had with Pinboard and so the move was
 fairly straightforward. The one thing that was missing though was an
 application similar to Tinboard.
