@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="blogmore v0.4.0">
+    <title>Reading 2bit files (for fun) - the index - davep</title>
+    
+    <link rel="icon" href="/icons/favicon.ico">
+    
+    
+    <!-- Favicon alternatives -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png">
+    <!-- Android/Chrome -->
+    <link rel="manifest" href="/icons/site.webmanifest">
+    <!-- Windows/Edge -->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-config" content="/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/static/style.css">
+    
+    
+    <link rel="alternate" type="application/rss+xml" title="davep - RSS Feed" href="https://blog.davep.org/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="davep - Atom Feed" href="https://blog.davep.org/feeds/all.atom.xml">
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+<meta name="author" content="Dave Pearson">
+
+
+<meta name="description" content="As mentioned in the first post, once you&#39;ve read in the header data for a 2bit file, the next step is to read the index. This is an index into all the different sequences held in the file. Reading the index itself is fairly straightforward.">
+
+
+<meta name="keywords" content="Bioinformatics">
+
+
+
+<meta property="og:title" content="Reading 2bit files (for fun) - the index">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.davep.org/2020/09/05/reading-2bit-files-for-fun-the-index.html">
+
+<meta property="og:description" content="As mentioned in the first post, once you&#39;ve read in the header data for a 2bit file, the next step is to read the index. This is an index into all the different sequences held in the file. Reading the index itself is fairly straightforward.">
+
+<meta property="og:site_name" content="davep">
+
+
+
+
+
+<meta property="article:published_time" content="2020-09-05T10:59:00+01:00">
+
+
+<meta property="article:modified_time" content="2020-09-05T10:59:00+01:00">
+
+
+<meta property="article:author" content="Dave Pearson">
+
+
+<meta property="article:section" content="Coding">
+
+
+
+<meta property="article:tag" content="Bioinformatics">
+
+
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Reading 2bit files (for fun) - the index">
+
+<meta name="twitter:description" content="As mentioned in the first post, once you&#39;ve read in the header data for a 2bit file, the next step is to read the index. This is an index into all the different sequences held in the file. Reading the index itself is fairly straightforward.">
+
+
+
+
+
+    <script src="/static/theme.js"></script>
+    
+</head>
+<body>
+    <div class="site-container">
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-header">
+                    
+                    <div class="sidebar-logo">
+                        <a href="/">
+                            <img src="/davep.jpeg" alt="davep">
+                        </a>
+                    </div>
+                    
+
+                    <div class="sidebar-title">
+                        <h1><a href="/">davep</a></h1>
+                        
+                        <p class="sidebar-subtitle">Code, Emacs, VR, Stuff...</p>
+                        
+                    </div>
+                </div>
+
+                
+                <div class="sidebar-pages">
+                    <ul class="sidebar-links">
+                        
+                        <li><a href="/about.html">About</a></li>
+                        
+                        <li><a href="/dotfiles.html">Dot Files</a></li>
+                        
+                    </ul>
+                </div>
+                
+
+                
+                <section class="sidebar-section">
+                    <h2>Links</h2>
+                    <ul class="sidebar-links">
+                        
+                        <li><a href="http://davep.at/" target="_blank" rel="noopener noreferrer">davep@</a></li>
+                        
+                        <li><a href="https://raindrop.io/davep/public-46742255/sort=-created&amp;perpage=30&amp;page=0" target="_blank" rel="noopener noreferrer">Bookmarks</a></li>
+                        
+                        <li><a href="https://seenbydavep.blogspot.com/" target="_blank" rel="noopener noreferrer">Photoblog</a></li>
+                        
+                        <li><a href="https://elisp.dev/" target="_blank" rel="noopener noreferrer">Emacs Packages</a></li>
+                        
+                        <li><a href="https://pypi.org/user/davepearson/" target="_blank" rel="noopener noreferrer">Python Packages</a></li>
+                        
+                    </ul>
+                </section>
+                
+
+                
+                <section class="sidebar-section">
+                    <h2>Social</h2>
+                    <div class="sidebar-socials">
+                        
+                        <a href="https://github.com/davep" title="github" aria-label="github" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        
+                        <a href="https://fosstodon.org/@davep" title="mastodon" aria-label="mastodon" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-mastodon"></i>
+                        </a>
+                        
+                        <a href="https://www.flickr.com/photos/davepearson/" title="flickr" aria-label="flickr" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-flickr"></i>
+                        </a>
+                        
+                        <a href="https://www.last.fm/user/davepdotorg" title="lastfm" aria-label="lastfm" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-lastfm"></i>
+                        </a>
+                        
+                        <a href="https://www.npmjs.com/~davep.org" title="npm" aria-label="npm" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-npm"></i>
+                        </a>
+                        
+                        <a href="https://www.youtube.com/user/daveporg" title="youtube" aria-label="youtube" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        
+                        <a href="https://steamcommunity.com/id/davepdotorg" title="steam" aria-label="steam" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-steam"></i>
+                        </a>
+                        
+                    </div>
+                </section>
+                
+            </div>
+        </aside>
+
+        <div class="main-wrapper">
+            <header>
+                <nav>
+                    <ul>
+                        <li><a href="/categories.html">Categories</a></li>
+                        <li><a href="/tags.html">Tags</a></li>
+                        <li><a href="/archive.html">Archive</a></li>
+                        
+                        <li><a href="/feed.xml" title="Subscribe via RSS feed">RSS</a></li>
+                        <li><a href="/feeds/all.atom.xml" title="Subscribe via Atom feed">Atom</a></li>
+                        
+                        <li>
+                            <button class="theme-toggle" type="button" aria-label="Toggle theme">
+                                <span class="icon light-icon">☀️</span>
+                                <span class="icon dark-icon">🌙</span>
+                                <span class="theme-label">Theme</span>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                
+<article class="post">
+    
+    <nav class="post-navigation post-navigation-top">
+        
+        <a href="/2020/08/30/reading-2bit-files-for-fun.html" class="post-nav-link post-nav-prev" title="Reading 2bit files (for fun)">
+            <span class="post-nav-label">← Previous Post</span>
+        </a>
+        
+        
+        <a href="/2020/09/26/reading-2bit-files-for-fun-the-sequence.html" class="post-nav-link post-nav-next" title="Reading 2bit files (for fun) - the sequence">
+            <span class="post-nav-label">Next Post →</span>
+        </a>
+        
+    </nav>
+    
+    
+    <header class="post-header">
+        <h1>Reading 2bit files (for fun) - the index</h1>
+        
+        <time datetime="2020-09-05T10:59:00+01:00">September 05, 2020 10:59:00 UTC+01:00</time>
+        
+        <div class="reading-time">3 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+    </header>
+    
+    <div class="post-content">
+        <p>As mentioned in <a href="/2020/08/30/reading-2bit-files-for-fun.html">the first
+post</a>, once you've read in the
+header data for a 2bit file, the next step is to read the index. This is an
+index into all the different sequences held in the file. Reading the index
+itself is fairly straightforward.</p>
+<p>The index comes right after the header -- so it starts on the 17th byte of
+the file. Each entry in the index contains three items of information:</p>
+<table>
+<thead>
+<tr>
+<th>Content</th>
+<th>Type</th>
+<th>Size</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name length</td>
+<td>Integer</td>
+<td>1 byte</td>
+<td>How many bytes long the name is</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>String</td>
+<td>Varies</td>
+<td>Length given by previous field</td>
+</tr>
+<tr>
+<td>Offset</td>
+<td>Integer</td>
+<td>4 bytes</td>
+<td>Location in the file of the sequence</td>
+</tr>
+</tbody>
+</table>
+<p>So, in some sort of pseudo-code, you'd read in the index as follows:</p>
+<div class="highlight"><pre><span></span><code>index = dict()
+for seq = 1 to seq_count // seq_count comes from the header
+  name_len = (int) read_bytes( 1 )
+  name     = (string) read_bytes( name_len )
+  offset   = (int) read_bytes( 4 )
+  index[ name ] = offset
+end
+</code></pre></div>
+
+<p>Note, as mentioned in the <a href="/2020/08/30/reading-2bit-files-for-fun.html">first
+post</a>, the <code>index</code> will need to
+be byte-swapped if the file is in an endian form other than the machine
+you're running your code on. How you'd go about this will, of course, vary
+from language to language, but the main idea is always going to be the same.</p>
+<p>There's a fairly striking downside to this approach though: reading data can
+often be an expensive (in terms of time) operation -- this is especially
+true if the data is coming in from a remote machine, perhaps even one that's
+being accessed over the Internet. As such, it's best if you can make as few
+"trips" to the file as possible.</p>
+<p>With this in mind, the best thing to do is to read the whole index into
+memory in one go and then process it from there -- the idea being that
+that's just one trip to the data source. The problem here, however, is that
+there's nothing in the header or the index that tells you how large the
+index actually is. What you can do though is work on the worst case scenario
+(assuming memory will allow). The worst case is fairly easy to handle: it's
+going to be 1 byte for the name length, plus 255 bytes for the name (the
+longest possible name), plus 4 bytes for the offset; multiply all that by
+the number of sequences in the index and you have the worst-case buffer
+size.</p>
+<p>When reading this data in you might also want to ensure you're not going to
+run off the end of the file (perhaps the names are all quite small and so
+are the sequences).</p>
+<p>Recently I've been working on <a href="https://github.com/davep/2bit.el" rel="noopener noreferrer" target="_blank">a package for Emacs that can read data from
+2bit files</a>, so here's the core code for
+reading in the index:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">defun</span><span class="w"> </span><span class="nv">2bit--read-index</span><span class="w"> </span><span class="p">(</span><span class="nv">source</span><span class="p">)</span>
+<span class="w">  </span><span class="s">&quot;Read the sequence index from SOURCE.</span>
+
+<span class="s">As a side effect </span><span class="ss">`2bit-data-pos&#39;</span><span class="s"> of SOURCE will move.&quot;</span>
+<span class="w">  </span><span class="p">(</span><span class="nb">cl-loop</span>
+<span class="w">   </span><span class="c1">;; The index will be a hash of sequence names, with the values being the</span>
+<span class="w">   </span><span class="c1">;; offsets within the file.</span>
+<span class="w">   </span><span class="nv">with</span><span class="w"> </span><span class="nv">index</span><span class="w"> </span><span class="nf">=</span><span class="w"> </span><span class="p">(</span><span class="nf">make-hash-table</span><span class="w"> </span><span class="nb">:test</span><span class="w"> </span><span class="nf">#&#39;equal</span><span class="p">)</span>
+<span class="w">   </span><span class="c1">;; We could read each name/value pair one by one, but because we&#39;re doing</span>
+<span class="w">   </span><span class="c1">;; this within Emacs, which means making a temp buffer for every read,</span>
+<span class="w">   </span><span class="c1">;; that could get pretty expensive pretty fast. So instead we&#39;ll read the</span>
+<span class="w">   </span><span class="c1">;; index data in in one go. However, there is no easy-to-calculate size</span>
+<span class="w">   </span><span class="c1">;; for the index. The best we can do is calculate the worst case size. So</span>
+<span class="w">   </span><span class="c1">;; let&#39;s do that. The worst case size is the maximum size of the name of</span>
+<span class="w">   </span><span class="c1">;; a sequence (255), plus the size of the byte that tells us the name</span>
+<span class="w">   </span><span class="c1">;; (1), plus the size of the word that is the offset in the file (4).</span>
+<span class="w">   </span><span class="nv">with</span><span class="w"> </span><span class="nv">buffer</span><span class="w"> </span><span class="nf">=</span><span class="w"> </span><span class="p">(</span><span class="nv">2bit--read</span><span class="w"> </span><span class="nv">source</span><span class="w"> </span><span class="p">(</span><span class="nf">*</span><span class="w"> </span><span class="p">(</span><span class="nv">2bit-data-sequence-count</span><span class="w"> </span><span class="nv">source</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nf">+</span><span class="w"> </span><span class="mi">255</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">4</span><span class="p">)))</span>
+<span class="w">   </span><span class="c1">;; For every sequence in the file...</span>
+<span class="w">   </span><span class="nv">for</span><span class="w"> </span><span class="nv">n</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="p">(</span><span class="nv">2bit-data-sequence-count</span><span class="w"> </span><span class="nv">source</span><span class="p">)</span>
+<span class="w">   </span><span class="c1">;; Calculate the position within the buffer for this loop around. Note</span>
+<span class="w">   </span><span class="c1">;; that the skip is the last position plus 1 for the size byte plus the</span>
+<span class="w">   </span><span class="c1">;; size plus the length of the offset word.</span>
+<span class="w">   </span><span class="nv">for</span><span class="w"> </span><span class="nv">pos</span><span class="w"> </span><span class="nf">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nv">then</span><span class="w"> </span><span class="p">(</span><span class="nf">+</span><span class="w"> </span><span class="nv">pos</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
+<span class="w">   </span><span class="c1">;; Get the length of the name of the sequence.</span>
+<span class="w">   </span><span class="nv">for</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="nf">=</span><span class="w"> </span><span class="p">(</span><span class="nf">aref</span><span class="w"> </span><span class="nv">buffer</span><span class="w"> </span><span class="nv">pos</span><span class="p">)</span>
+<span class="w">   </span><span class="c1">;; Pull out the name itself.</span>
+<span class="w">   </span><span class="nv">for</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="nf">=</span><span class="w"> </span><span class="p">(</span><span class="nf">substring</span><span class="w"> </span><span class="nv">buffer</span><span class="w"> </span><span class="p">(</span><span class="nf">1+</span><span class="w"> </span><span class="nv">pos</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nf">+</span><span class="w"> </span><span class="nv">pos</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">size</span><span class="p">))</span>
+<span class="w">   </span><span class="c1">;; Pull out the offset.</span>
+<span class="w">   </span><span class="nv">for</span><span class="w"> </span><span class="nv">offset</span><span class="w"> </span><span class="nf">=</span><span class="w"> </span><span class="p">(</span><span class="nv">2bit--word-from-bytes</span><span class="w"> </span><span class="nv">source</span><span class="w"> </span><span class="p">(</span><span class="nf">substring</span><span class="w"> </span><span class="nv">buffer</span><span class="w"> </span><span class="p">(</span><span class="nf">+</span><span class="w"> </span><span class="nv">pos</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">size</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nf">+</span><span class="w"> </span><span class="nv">pos</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="mi">4</span><span class="p">)))</span>
+<span class="w">   </span><span class="c1">;; Collect the offset into the hash.</span>
+<span class="w">   </span><span class="nb">do</span><span class="w"> </span><span class="p">(</span><span class="nb">setf</span><span class="w"> </span><span class="p">(</span><span class="nf">gethash</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="nv">index</span><span class="p">)</span><span class="w"> </span><span class="nv">offset</span><span class="p">)</span>
+<span class="w">   </span><span class="c1">;; Once we&#39;re all done.... return the index.</span>
+<span class="w">   </span><span class="nv">finally</span><span class="w"> </span><span class="nb">return</span><span class="w"> </span><span class="nv">index</span><span class="p">))</span>
+</code></pre></div>
+
+<p>This code does what I mention above: it grabs enough data into a buffer in
+one go that I'll have the whole index in memory to pull apart, and then I
+work with the in-memory copy. The index is added to a hashing dictionary.
+Note that, in this case, I don't actually do the test for running off the
+end of the file because at the heart of the file reading code is
+<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Reading-from-Files.html" rel="noopener noreferrer" target="_blank"><code>insert-file-contents-literally</code></a>
+and it doesn't error if you request too much.</p>
+<p>With that done you'll have a list of all the sequences in the file. The next
+part, which will come in <a href="/2020/09/26/reading-2bit-files-for-fun-the-sequence.html">the next
+post</a>,
+is the properly tricky part: the decoding of the sequence data itself.</p>
+    </div>
+    
+    
+    <div class="tags">
+        
+        <a href="/tag/bioinformatics.html" class="tag">Bioinformatics</a>
+        
+    </div>
+    
+    
+    
+    <nav class="post-navigation post-navigation-bottom">
+        
+        <a href="/2020/08/30/reading-2bit-files-for-fun.html" class="post-nav-link post-nav-prev" title="Reading 2bit files (for fun)">
+            <span class="post-nav-label">← Previous Post</span>
+        </a>
+        
+        
+        <a href="/2020/09/26/reading-2bit-files-for-fun-the-sequence.html" class="post-nav-link post-nav-next" title="Reading 2bit files (for fun) - the sequence">
+            <span class="post-nav-label">Next Post →</span>
+        </a>
+        
+    </nav>
+    
+</article>
+
+            </main>
+
+            <footer>
+                <p>Generated with <a href="https://github.com/davep/blogmore" target="_blank" rel="noopener noreferrer">Blogmore</a></p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

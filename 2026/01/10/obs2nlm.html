@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="blogmore v0.4.0">
+    <title>obs2nlm - Feed NotebookLM an Obsidian Vault - davep</title>
+    
+    <link rel="icon" href="/icons/favicon.ico">
+    
+    
+    <!-- Favicon alternatives -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png">
+    <!-- Android/Chrome -->
+    <link rel="manifest" href="/icons/site.webmanifest">
+    <!-- Windows/Edge -->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-config" content="/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/static/style.css">
+    
+    
+    <link rel="alternate" type="application/rss+xml" title="davep - RSS Feed" href="https://blog.davep.org/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="davep - Atom Feed" href="https://blog.davep.org/feeds/all.atom.xml">
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+<meta name="author" content="Dave Pearson">
+
+
+<meta name="description" content="I&#39;m sure I&#39;ve mentioned a couple of times before that I&#39;ve become quite the fan of Obsidian. For the past few years, at any given point, I&#39;ve had a couple of vaults on the go. Generally I find such vaults a really useful place to record things I&#39;d otherwise forget, and of course as a place to go back and look things up.">
+
+
+<meta name="keywords" content="journal, Obsidian, AI, LLM, Python">
+
+
+
+<meta property="og:title" content="obs2nlm - Feed NotebookLM an Obsidian Vault">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.davep.org/2026/01/10/obs2nlm.html">
+
+<meta property="og:description" content="I&#39;m sure I&#39;ve mentioned a couple of times before that I&#39;ve become quite the fan of Obsidian. For the past few years, at any given point, I&#39;ve had a couple of vaults on the go. Generally I find such vaults a really useful place to record things I&#39;d otherwise forget, and of course as a place to go back and look things up.">
+
+<meta property="og:site_name" content="davep">
+
+
+
+
+
+<meta property="article:published_time" content="2026-01-10T11:18:00+00:00">
+
+
+<meta property="article:modified_time" content="2026-01-10T11:18:00+00:00">
+
+
+<meta property="article:author" content="Dave Pearson">
+
+
+<meta property="article:section" content="Coding">
+
+
+
+<meta property="article:tag" content="journal">
+
+<meta property="article:tag" content="Obsidian">
+
+<meta property="article:tag" content="AI">
+
+<meta property="article:tag" content="LLM">
+
+<meta property="article:tag" content="Python">
+
+
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="obs2nlm - Feed NotebookLM an Obsidian Vault">
+
+<meta name="twitter:description" content="I&#39;m sure I&#39;ve mentioned a couple of times before that I&#39;ve become quite the fan of Obsidian. For the past few years, at any given point, I&#39;ve had a couple of vaults on the go. Generally I find such vaults a really useful place to record things I&#39;d otherwise forget, and of course as a place to go back and look things up.">
+
+
+
+
+
+    <script src="/static/theme.js"></script>
+    
+</head>
+<body>
+    <div class="site-container">
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-header">
+                    
+                    <div class="sidebar-logo">
+                        <a href="/">
+                            <img src="/davep.jpeg" alt="davep">
+                        </a>
+                    </div>
+                    
+
+                    <div class="sidebar-title">
+                        <h1><a href="/">davep</a></h1>
+                        
+                        <p class="sidebar-subtitle">Code, Emacs, VR, Stuff...</p>
+                        
+                    </div>
+                </div>
+
+                
+                <div class="sidebar-pages">
+                    <ul class="sidebar-links">
+                        
+                        <li><a href="/about.html">About</a></li>
+                        
+                        <li><a href="/dotfiles.html">Dot Files</a></li>
+                        
+                    </ul>
+                </div>
+                
+
+                
+                <section class="sidebar-section">
+                    <h2>Links</h2>
+                    <ul class="sidebar-links">
+                        
+                        <li><a href="http://davep.at/" target="_blank" rel="noopener noreferrer">davep@</a></li>
+                        
+                        <li><a href="https://raindrop.io/davep/public-46742255/sort=-created&amp;perpage=30&amp;page=0" target="_blank" rel="noopener noreferrer">Bookmarks</a></li>
+                        
+                        <li><a href="https://seenbydavep.blogspot.com/" target="_blank" rel="noopener noreferrer">Photoblog</a></li>
+                        
+                        <li><a href="https://elisp.dev/" target="_blank" rel="noopener noreferrer">Emacs Packages</a></li>
+                        
+                        <li><a href="https://pypi.org/user/davepearson/" target="_blank" rel="noopener noreferrer">Python Packages</a></li>
+                        
+                    </ul>
+                </section>
+                
+
+                
+                <section class="sidebar-section">
+                    <h2>Social</h2>
+                    <div class="sidebar-socials">
+                        
+                        <a href="https://github.com/davep" title="github" aria-label="github" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        
+                        <a href="https://fosstodon.org/@davep" title="mastodon" aria-label="mastodon" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-mastodon"></i>
+                        </a>
+                        
+                        <a href="https://www.flickr.com/photos/davepearson/" title="flickr" aria-label="flickr" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-flickr"></i>
+                        </a>
+                        
+                        <a href="https://www.last.fm/user/davepdotorg" title="lastfm" aria-label="lastfm" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-lastfm"></i>
+                        </a>
+                        
+                        <a href="https://www.npmjs.com/~davep.org" title="npm" aria-label="npm" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-npm"></i>
+                        </a>
+                        
+                        <a href="https://www.youtube.com/user/daveporg" title="youtube" aria-label="youtube" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        
+                        <a href="https://steamcommunity.com/id/davepdotorg" title="steam" aria-label="steam" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-steam"></i>
+                        </a>
+                        
+                    </div>
+                </section>
+                
+            </div>
+        </aside>
+
+        <div class="main-wrapper">
+            <header>
+                <nav>
+                    <ul>
+                        <li><a href="/categories.html">Categories</a></li>
+                        <li><a href="/tags.html">Tags</a></li>
+                        <li><a href="/archive.html">Archive</a></li>
+                        
+                        <li><a href="/feed.xml" title="Subscribe via RSS feed">RSS</a></li>
+                        <li><a href="/feeds/all.atom.xml" title="Subscribe via Atom feed">Atom</a></li>
+                        
+                        <li>
+                            <button class="theme-toggle" type="button" aria-label="Toggle theme">
+                                <span class="icon light-icon">☀️</span>
+                                <span class="icon dark-icon">🌙</span>
+                                <span class="theme-label">Theme</span>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                
+<article class="post">
+    
+    <nav class="post-navigation post-navigation-top">
+        
+        <a href="/2025/12/12/norton-guide-collection.html" class="post-nav-link post-nav-prev" title="A Norton Guide collection">
+            <span class="post-nav-label">← Previous Post</span>
+        </a>
+        
+        
+        <a href="/2026/01/13/ng2nlm.html" class="post-nav-link post-nav-next" title="ng2nlm - Feed NotebookLM a Norton Guide">
+            <span class="post-nav-label">Next Post →</span>
+        </a>
+        
+    </nav>
+    
+    
+    <header class="post-header">
+        <h1>obs2nlm - Feed NotebookLM an Obsidian Vault</h1>
+        
+        <time datetime="2026-01-10T11:18:00+00:00">January 10, 2026 11:18:00 UTC</time>
+        
+        <div class="reading-time">3 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+    </header>
+    
+    <div class="post-content">
+        <p>I'm sure I've mentioned a couple of times before that I've become quite the
+fan of <a href="https://obsidian.md" rel="noopener noreferrer" target="_blank">Obsidian</a>. For the past few years, at any given
+point, I've had a couple of vaults on the go. Generally I find such vaults a
+really useful place to record things I'd otherwise forget, and of course as
+a place to go back and look things up.</p>
+<p>But... even then, it's easy enough to forget what you might have recorded
+and know that you can even go back and look things up. Also I tend to find
+that I can't quite figure out a good way of getting a good overview of what
+I've recorded, over time.</p>
+<p>Meanwhile: I've been playing around with Google's
+<a href="https://notebooklm.google.com" rel="noopener noreferrer" target="_blank">NotebookLM</a> as a tool to help research and
+understand various topics. After doing this with my recent winter break
+coding project (more on that in the future) I realised I really should get
+serious about taking this approach with my Obsidian Vaults.</p>
+<p>I'm sure this is far from novel, I'm sure lots of people have done similar
+things already; in fact I'd quickly dabbled with the idea <a href="https://github.com/davep/vault2source" rel="noopener noreferrer" target="_blank">a few months
+ago</a>, had a bit of a laugh at some of
+the things the "studio" made of a vault, and promptly forgot about it.</p>
+<p>This time though I got to thinking that I should try and take it a little
+more seriously.</p>
+<p>And so <a href="https://obs2nlm.davep.dev" rel="noopener noreferrer" target="_blank">obs2nlm</a> was born.</p>
+<p>The idea is simple enough: enumerate all the Markdown files in the vault,
+wrap them in boundary markers, add some instructions to the start of the
+file to help NotebookLM "comprehend" the content better, throw in a table of
+contents to give clues to the structure of the vault, and see what happens
+when you use the resulting file as a source.</p>
+<p>So far it's actually turning out to be really helpful. I've been using it to
+get summaries regarding my work over the past 18 months or so and it's
+helped me to consolidate my thoughts on all sorts of issues and subjects.</p>
+<p>It's not perfect, however. I've had it "hallucinate" some stuff when making
+things in the studio (most notably in the slide deck facility); for me
+though I find this an acceptable use of an LLM. I <em>know</em> the subject it's
+talking to me about and I know when it's making stuff up. This, in turn,
+makes for a useful lesson in how and when to not trust the output of a tool
+like this.</p>
+<p>Having tested it out with a currently-active vault, I'm now interested to
+find out what it'll make of some of the archived vaults I have. Back in 2024
+<a href="/2024/11/04/markdown-all-the-things.html">I wrote a couple or so tools for making vaults from other
+things</a> and so I have a vault of a
+journal I kept in <a href="https://journey.cloud" rel="noopener noreferrer" target="_blank">Journey</a> for a number of years, a
+vault of a journal I'd kept before then in <a href="https://evernote.com" rel="noopener noreferrer" target="_blank">Evernote</a>,
+and I also have a vault of all the tweets I wrote before I abandoned
+Twitter. I also have a vault that was dedicated to recording the daily
+events and thoughts of my time working at
+<a href="https://www.textualize.io/" rel="noopener noreferrer" target="_blank">Textualize</a>. It's going to be fun seeing what
+NotebookLM makes of each of those; especially the last one.</p>
+<p>Anyway, if Obsidian is your thing, and if you are dabbling with or fancy
+dabbling with NotebookLM, perhaps
+<a href="https://github.com/davep/obs2nlm" rel="noopener noreferrer" target="_blank">obs2nlm</a> will be handy for you.</p>
+    </div>
+    
+    
+    <div class="tags">
+        
+        <a href="/tag/journal.html" class="tag">journal</a>
+        
+        <a href="/tag/obsidian.html" class="tag">Obsidian</a>
+        
+        <a href="/tag/ai.html" class="tag">AI</a>
+        
+        <a href="/tag/llm.html" class="tag">LLM</a>
+        
+        <a href="/tag/python.html" class="tag">Python</a>
+        
+    </div>
+    
+    
+    
+    <nav class="post-navigation post-navigation-bottom">
+        
+        <a href="/2025/12/12/norton-guide-collection.html" class="post-nav-link post-nav-prev" title="A Norton Guide collection">
+            <span class="post-nav-label">← Previous Post</span>
+        </a>
+        
+        
+        <a href="/2026/01/13/ng2nlm.html" class="post-nav-link post-nav-next" title="ng2nlm - Feed NotebookLM a Norton Guide">
+            <span class="post-nav-label">Next Post →</span>
+        </a>
+        
+    </nav>
+    
+</article>
+
+            </main>
+
+            <footer>
+                <p>Generated with <a href="https://github.com/davep/blogmore" target="_blank" rel="noopener noreferrer">Blogmore</a></p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

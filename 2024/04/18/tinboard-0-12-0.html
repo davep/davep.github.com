@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="blogmore v0.4.0">
+    <title>Tinboard v0.12.0 - davep</title>
+    
+    <link rel="icon" href="/icons/favicon.ico">
+    
+    
+    <!-- Favicon alternatives -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png">
+    <!-- Android/Chrome -->
+    <link rel="manifest" href="/icons/site.webmanifest">
+    <!-- Windows/Edge -->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-config" content="/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/static/style.css">
+    
+    
+    <link rel="alternate" type="application/rss+xml" title="davep - RSS Feed" href="https://blog.davep.org/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="davep - Atom Feed" href="https://blog.davep.org/feeds/all.atom.xml">
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+<meta name="author" content="Dave Pearson">
+
+
+<meta name="description" content="Tinboard has turned into a tool I use pretty much every day; it&#39;s probably my most-used Textual/Python-developed application at this point. This is causing me to think more and more about how I can add things to it that are related to the core purpose, but are also outside of the main &#34;interface with Pinboard&#34; thing.">
+
+
+<meta name="keywords" content="Python, terminal, textual, YouTube">
+
+
+
+<meta property="og:title" content="Tinboard v0.12.0">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.davep.org/2024/04/18/tinboard-0-12-0.html">
+
+<meta property="og:description" content="Tinboard has turned into a tool I use pretty much every day; it&#39;s probably my most-used Textual/Python-developed application at this point. This is causing me to think more and more about how I can add things to it that are related to the core purpose, but are also outside of the main &#34;interface with Pinboard&#34; thing.">
+
+<meta property="og:site_name" content="davep">
+
+
+
+<meta property="og:image" content="https://blog.davep.org/attachments/2023/12/19/tinboard.png">
+
+
+
+
+
+
+<meta property="article:published_time" content="2024-04-18T16:46:00+01:00">
+
+
+<meta property="article:modified_time" content="2024-04-18T16:46:00+01:00">
+
+
+<meta property="article:author" content="Dave Pearson">
+
+
+<meta property="article:section" content="Coding">
+
+
+
+<meta property="article:tag" content="Python">
+
+<meta property="article:tag" content="terminal">
+
+<meta property="article:tag" content="textual">
+
+<meta property="article:tag" content="YouTube">
+
+
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tinboard v0.12.0">
+
+<meta name="twitter:description" content="Tinboard has turned into a tool I use pretty much every day; it&#39;s probably my most-used Textual/Python-developed application at this point. This is causing me to think more and more about how I can add things to it that are related to the core purpose, but are also outside of the main &#34;interface with Pinboard&#34; thing.">
+
+
+
+
+<meta name="twitter:image" content="https://blog.davep.org/attachments/2023/12/19/tinboard.png">
+
+
+
+
+
+    <script src="/static/theme.js"></script>
+    
+</head>
+<body>
+    <div class="site-container">
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-header">
+                    
+                    <div class="sidebar-logo">
+                        <a href="/">
+                            <img src="/davep.jpeg" alt="davep">
+                        </a>
+                    </div>
+                    
+
+                    <div class="sidebar-title">
+                        <h1><a href="/">davep</a></h1>
+                        
+                        <p class="sidebar-subtitle">Code, Emacs, VR, Stuff...</p>
+                        
+                    </div>
+                </div>
+
+                
+                <div class="sidebar-pages">
+                    <ul class="sidebar-links">
+                        
+                        <li><a href="/about.html">About</a></li>
+                        
+                        <li><a href="/dotfiles.html">Dot Files</a></li>
+                        
+                    </ul>
+                </div>
+                
+
+                
+                <section class="sidebar-section">
+                    <h2>Links</h2>
+                    <ul class="sidebar-links">
+                        
+                        <li><a href="http://davep.at/" target="_blank" rel="noopener noreferrer">davep@</a></li>
+                        
+                        <li><a href="https://raindrop.io/davep/public-46742255/sort=-created&amp;perpage=30&amp;page=0" target="_blank" rel="noopener noreferrer">Bookmarks</a></li>
+                        
+                        <li><a href="https://seenbydavep.blogspot.com/" target="_blank" rel="noopener noreferrer">Photoblog</a></li>
+                        
+                        <li><a href="https://elisp.dev/" target="_blank" rel="noopener noreferrer">Emacs Packages</a></li>
+                        
+                        <li><a href="https://pypi.org/user/davepearson/" target="_blank" rel="noopener noreferrer">Python Packages</a></li>
+                        
+                    </ul>
+                </section>
+                
+
+                
+                <section class="sidebar-section">
+                    <h2>Social</h2>
+                    <div class="sidebar-socials">
+                        
+                        <a href="https://github.com/davep" title="github" aria-label="github" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        
+                        <a href="https://fosstodon.org/@davep" title="mastodon" aria-label="mastodon" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-mastodon"></i>
+                        </a>
+                        
+                        <a href="https://www.flickr.com/photos/davepearson/" title="flickr" aria-label="flickr" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-flickr"></i>
+                        </a>
+                        
+                        <a href="https://www.last.fm/user/davepdotorg" title="lastfm" aria-label="lastfm" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-lastfm"></i>
+                        </a>
+                        
+                        <a href="https://www.npmjs.com/~davep.org" title="npm" aria-label="npm" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-npm"></i>
+                        </a>
+                        
+                        <a href="https://www.youtube.com/user/daveporg" title="youtube" aria-label="youtube" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        
+                        <a href="https://steamcommunity.com/id/davepdotorg" title="steam" aria-label="steam" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-steam"></i>
+                        </a>
+                        
+                    </div>
+                </section>
+                
+            </div>
+        </aside>
+
+        <div class="main-wrapper">
+            <header>
+                <nav>
+                    <ul>
+                        <li><a href="/categories.html">Categories</a></li>
+                        <li><a href="/tags.html">Tags</a></li>
+                        <li><a href="/archive.html">Archive</a></li>
+                        
+                        <li><a href="/feed.xml" title="Subscribe via RSS feed">RSS</a></li>
+                        <li><a href="/feeds/all.atom.xml" title="Subscribe via Atom feed">Atom</a></li>
+                        
+                        <li>
+                            <button class="theme-toggle" type="button" aria-label="Toggle theme">
+                                <span class="icon light-icon">☀️</span>
+                                <span class="icon dark-icon">🌙</span>
+                                <span class="theme-label">Theme</span>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                
+<article class="post">
+    
+    <nav class="post-navigation post-navigation-top">
+        
+        <a href="/2024/04/17/pispy-0-6-0.html" class="post-nav-link post-nav-prev" title="PISpy v0.6.0">
+            <span class="post-nav-label">← Previous Post</span>
+        </a>
+        
+        
+        <a href="/2024/05/14/tinboard-0-14-0.html" class="post-nav-link post-nav-next" title="Tinboard v0.14.0">
+            <span class="post-nav-label">Next Post →</span>
+        </a>
+        
+    </nav>
+    
+    
+    <header class="post-header">
+        <h1>Tinboard v0.12.0</h1>
+        
+        <time datetime="2024-04-18T16:46:00+01:00">April 18, 2024 16:46:00 UTC+01:00</time>
+        
+        <div class="reading-time">2 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+    </header>
+    
+    <div class="post-content">
+        <p><a href="https://github.com/davep/tinboard" rel="noopener noreferrer" target="_blank">Tinboard</a> has turned into a tool I use
+pretty much every day; it's probably my most-used Textual/Python-developed
+application at this point. This is causing me to think more and more about
+how I can add things to it that are related to the core purpose, but are
+also outside of the main "interface with Pinboard" thing.</p>
+<p>A thing with keeping bookmarks for a long time is that some of them go
+stale, go away. Some will just plain 404, others the whole site will
+disappear. If I find myself going back to a bookmark and seeing this is the
+case, I'll hit the <a href="https://web.archive.org/" rel="noopener noreferrer" target="_blank">Wayback Machine</a> and see if
+there's an archive there.</p>
+<p>So I got to thinking: what if I add the ability to perform this check into
+Tinboard itself? <a href="https://www.youtube.com/watch?v=XDgiM6pUP2Y" rel="noopener noreferrer" target="_blank">So I did just that</a>.</p>
+<p>Now, in the application, if you press <kbd>w</kbd> with a bookmark
+highlighted, it will check with the Wayback Machine to see if the bookmark
+is in the archive. If it isn't you see this:</p>
+<p><img alt="No archive result" src="/attachments/2024/04/18/no-archive.png#centre" /></p>
+<p>On the other hand, if it <em>is</em> in the archive, you'll see something like
+this:</p>
+<p><img alt="Is in the archive result" src="/attachments/2024/04/18/has-archive.png#centre" /></p>
+<p>I sense this is going to be the first step in a couple of features related
+to this. I'm thinking that I may go on to add a <em>"swap the URL for this
+bookmark with the Wayback Machine archive URL"</em> feature, which will be handy
+for those bookmarks that have one away, and it would also be useful to look
+at the options for a <em>"please archive a copy of this bookmark"</em> feature.</p>
+<p>But, for now, v0.12.0 is available and has this handy (for me anyway) first
+step.</p>
+<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/" rel="noopener noreferrer" target="_blank">from
+PyPi</a>. It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>tinboard</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>tinboard
+</code></pre></div>
+
+<p>The <a href="https://github.com/davep/tinboard" rel="noopener noreferrer" target="_blank">source is available on GitHub</a>.</p>
+    </div>
+    
+    
+    <div class="tags">
+        
+        <a href="/tag/python.html" class="tag">Python</a>
+        
+        <a href="/tag/terminal.html" class="tag">terminal</a>
+        
+        <a href="/tag/textual.html" class="tag">textual</a>
+        
+        <a href="/tag/youtube.html" class="tag">YouTube</a>
+        
+    </div>
+    
+    
+    
+    <nav class="post-navigation post-navigation-bottom">
+        
+        <a href="/2024/04/17/pispy-0-6-0.html" class="post-nav-link post-nav-prev" title="PISpy v0.6.0">
+            <span class="post-nav-label">← Previous Post</span>
+        </a>
+        
+        
+        <a href="/2024/05/14/tinboard-0-14-0.html" class="post-nav-link post-nav-next" title="Tinboard v0.14.0">
+            <span class="post-nav-label">Next Post →</span>
+        </a>
+        
+    </nav>
+    
+</article>
+
+            </main>
+
+            <footer>
+                <p>Generated with <a href="https://github.com/davep/blogmore" target="_blank" rel="noopener noreferrer">Blogmore</a></p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
