@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="blogmore v0.4.0">
+    <meta name="generator" content="blogmore v0.5.0">
     <title>Tag: Python - davep</title>
     
     <link rel="icon" href="/icons/favicon.ico">
@@ -154,6 +154,150 @@
     <h1>Posts tagged with "Python"</h1>
     
     
+    
+    <article class="post-summary">
+        <h2><a href="/2025/02/28/documenting-fspicker.html">Documenting textual-fspicker (plus a TIL)</a></h2>
+        
+        <time datetime="2025-02-28T11:45:00+00:00">February 28, 2025 11:45:00 UTC</time>
+        
+        <div class="reading-time">4 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+        <div class="post-content">
+            <p>I've just made a wee update to
+<a href="https://github.com/davep/textual-fspicker" rel="noopener noreferrer" target="_blank"><code>textual-fspicker</code></a>, my dialog
+library for <a href="https://textual.textualize.io" rel="noopener noreferrer" target="_blank">Textual</a> which adds <code>FileOpen</code>,
+<code>FileSave</code> and <code>SelectDirectory</code> dialogs. There's no substantial change to
+the workings of the library itself, but I have added something it's been
+lacking for a long time: documentation!</p>
+<p>Well... that's not quite true, it's always had documentation. I'm an avid
+writer of Python docstrings and I make a point of always writing them for
+every class, function, method or global value as I write the code. As such
+the low-level "API" documentation has always been sat there ready to be
+published somehow, eventually.</p>
+<p>Meanwhile the description for how to use the library was mostly a pointer to
+some example code inside the README. Not ideal, and something I really
+wanted to improve at some point.</p>
+<p>Given I'm still on a bit of a coding spree in my spare time, I finally
+decided to get round to using the amazing
+<a href="https://mkdocstrings.github.io" rel="noopener noreferrer" target="_blank">mkdocstrings</a>, in conjunction with
+<a href="https://www.mkdocs.org" rel="noopener noreferrer" target="_blank">mkdocs</a>, to <a href="https://blog.davep.org/textual-fspicker/">get some better documentation up an
+running</a>.</p>
+<p>The approach I decided to take with the documentation was to <a href="https://blog.davep.org/textual-fspicker/using/">have a page
+that gave some general information on how to use the
+library</a> and then also
+<a href="https://blog.davep.org/textual-fspicker/library-contents/base_dialog/">generate low-level documentation for the all the useful content of the
+library from the
+docstrings</a>.
+While latter isn't really useful to anyone wanting to use the library in
+their own applications, it could be useful to anyone wanting to understand
+how it hangs together at a lower-level, perhaps because they want to
+contribute to or extend the library in some way.</p>
+<p>While writing some of the general guide took a bit of work, of course, the
+work to get the documentation up and running and generating was simple
+enough. The effort comes down to 3 rules in the
+<a href="https://github.com/davep/textual-fspicker/blob/ad6818c96816f2f1ad7a39909d276271af3f760d/Makefile" rel="noopener noreferrer" target="_blank"><code>Makefile</code></a>
+for the project:</p>
+<div class="highlight"><pre><span></span><code><span class="c">##############################################################################</span>
+<span class="c"># Documentation.</span>
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">docs</span>
+<span class="nf">docs</span><span class="o">:</span><span class="w">                    </span><span class="c"># Generate the system documentation</span>
+<span class="w">    </span><span class="k">$(</span>mkdocs<span class="k">)</span><span class="w"> </span>build
+
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">rtfm</span>
+<span class="nf">rtfm</span><span class="o">:</span><span class="w">                    </span><span class="c"># Locally read the library documentation</span>
+<span class="w">    </span><span class="k">$(</span>mkdocs<span class="k">)</span><span class="w"> </span>serve
+
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">publishdocs</span>
+<span class="nf">publishdocs</span><span class="o">:</span><span class="w"> </span><span class="n">docs</span>        <span class="c"># Set up the docs for publishing</span>
+<span class="w">    </span><span class="k">$(</span>run<span class="k">)</span><span class="w"> </span>ghp-import<span class="w"> </span>--push<span class="w"> </span>site
+</code></pre></div>
+
+<p>The <code>rtfm</code> target is useful for locally-serving the documentation so I can
+live preview as I write things and update the code. The <code>publishdocs</code> target
+is used to create and push a <code>gh-pages</code> branch for the repository, resulting
+in the documentation being hosted by GitHub.</p>
+<h2 id="a-wee-problem">A wee problem</h2>
+<blockquote>
+<p><em>NOTE: <a href="/2025/02/28/mkdocs-gh-pages-redux.html">I've since found out there's an easier way of fixing the issue</a>.</em></p>
+</blockquote>
+<p>This is, however, where I ran into a wee problem. I noticed that the
+locally-hosted version of the documentation looked great, but the version
+hosted on GitHub Pages was... not so great. I was seeing a load of text
+alignment issues, and also whole bits of text just not appearing at all.</p>
+<p>Here's an example of what I was seeing locally:</p>
+<p><img alt="Good layout" src="/attachments/2025/02/28/good.png" /></p>
+<p>and here's what I was seeing being served up from GitHub Pages:</p>
+<p><img alt="Bad layout" src="/attachments/2025/02/28/bad.png" /></p>
+<p>As you can see, in the "bad" version the <code>func</code> label is missing from the
+header, and the <code>Parameters</code> and <code>Returns</code> tables look quite messy.</p>
+<p>I spent a little bit of time digging and, looking in Safari's console, I
+then noticed that I was getting a 404 on a file called <code>_mkdocstrings.css</code>
+in the <code>assets</code> folder. Problem found!</p>
+<p>Only... was it though? If I looked in the <code>gh-pages</code> local branch the file
+was there (and with fine permissions). If I looked in the remote branch, it
+was there too. Thinking it could be some odd browser problem I even tried to
+grab the file back from the command line and it came back 404 as well.</p>
+<p><img alt="Testing from the command line" src="/attachments/2025/02/28/http-grab.png" /></p>
+<p>At this point it was getting kind of late so I decided I must have screwed
+up somehow but I should leave it for the evening and head to bed. Before
+doing so though <a href="https://github.com/mkdocstrings/mkdocstrings/discussions/742" rel="noopener noreferrer" target="_blank">I decided to drop a question into the mkdocstrings
+discussions to see if anyone could see where I'd messed
+up</a>.</p>
+<p>As it turns out, it looked like I hadn't messed up and the reply from the
+<a href="https://github.com/pawamoy" rel="noopener noreferrer" target="_blank">always super-helpful Timothée</a> was, in effect,
+<em>"yeah, that should work fine"</em>. At least I wasn't the only one confused.</p>
+<p>Fast forward to this morning and, with breakfast and coffee inside me, I
+decided to try and methodically get to the bottom of it. I <a href="https://github.com/mkdocstrings/mkdocstrings/discussions/742#discussioncomment-12348912" rel="noopener noreferrer" target="_blank">wrote up the
+current state of
+understanding</a>
+and looked at what might be the common cause. The thing that stood out to me
+was that this was a file that started with an underscore, so I did a quick
+search for <em>"github pages underscore"</em> and right away landed on <a href="https://www.ianwootten.co.uk/2022/11/08/how-to-use-underscores-with-github-pages/" rel="noopener noreferrer" target="_blank">this
+result</a>.</p>
+<p>Bingo!</p>
+<p>That had to be it!</p>
+<p>A little bit of testing later and sure enough, the documentation hosted on
+GitHub Pages looked exactly like the locally-hosted version.</p>
+<p>So, TIL: by default sites hosted by GitHub Pages will pretend that any asset
+that starts with an underscore doesn't exist, unless you have a <code>.nojekyll</code>
+in the root of the repository, on the <code>gh-pages</code> branch (or whatever branch
+you decide to serve from).</p>
+<p>To make this all work I added <code>.nojekyll</code> to
+<a href="https://github.com/davep/textual-fspicker/tree/ad6818c96816f2f1ad7a39909d276271af3f760d/docs/source" rel="noopener noreferrer" target="_blank"><code>docs/source</code></a>
+and added this to <code>mkdocs.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">exclude_docs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">  </span><span class="no">!.nojekyll</span>
+</code></pre></div>
+
+<p>All done!</p>
+<p>And now I've worked out a simple workflow for using <code>mkdocs</code>/<code>mkdocstrings</code>
+for my own Python projects, in conjunction with GitHub Pages, I guess I'll
+start to sprinkle it over other projects too.</p>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/textual.html" class="tag">textual</a>
+            
+            <a href="/tag/documentation.html" class="tag">documentation</a>
+            
+            <a href="/tag/github.html" class="tag">GitHub</a>
+            
+            <a href="/tag/mkdocs.html" class="tag">mkdocs</a>
+            
+            <a href="/tag/mkdocstrings.html" class="tag">mkdocstrings</a>
+            
+            <a href="/tag/gh-pages.html" class="tag">gh-pages</a>
+            
+        </div>
+        
+    </article>
     
     <article class="post-summary">
         <h2><a href="/2025/02/14/hike.html">Hike</a></h2>
@@ -892,83 +1036,6 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
             <a href="/tag/textual.html" class="tag">textual</a>
             
             <a href="/tag/youtube.html" class="tag">YouTube</a>
-            
-        </div>
-        
-    </article>
-    
-    <article class="post-summary">
-        <h2><a href="/2024/03/28/goodbye-textualize.html">Goodbye Textualize</a></h2>
-        
-        <time datetime="2024-03-28T06:30:00+00:00">March 28, 2024 06:30:00 UTC</time>
-        
-        <div class="reading-time">3 min read</div>
-        
-        <div class="category">
-            <a href="/category/life.html" class="category-link">Life</a>
-        </div>
-        
-        <div class="post-content">
-            <p>While I have been <a href="/2017/12/12/on_to_something_new.html">on the receiving end of redundancy once
-before</a>, that was after 21 years of
-service at a company that, while it was in part about software development,
-I would never have called it a "tech" company.</p>
-<p>So, as of today, I can finally say that the "<a href="https://techcrunch.com/2024/03/27/tech-layoffs-2023-list/" rel="noopener noreferrer" target="_blank">tech
-layoffs</a>" came
-for me and I'm one of 67% of employees being let go from a tech startup.</p>
-<p>Achievement unlocked, I guess?</p>
-<p><img alt="!Achievement unlocked" src="/attachments/2024/03/28/achievement-unlocked.png#centre" /></p>
-<p>To be clear: I'm not annoyed about this, I'm not even shocked about this; I
-planned for this from the off and realised and recognised the gamble I was
-taking <a href="https://twitter.com/willmcgugan/status/1574118265063972864" rel="noopener noreferrer" target="_blank">back in 2022</a>.</p>
-<p><a href="https://twitter.com/willmcgugan/status/1574118265063972864" rel="noopener noreferrer" target="_blank"><img alt="Announcing being hired" src="/attachments/2024/03/28/textual-startup-tweet.png#centre" /></a></p>
-<p>I am disappointed about this. Not in a "I'm disappointed in you" kind of
-way, but disappointed for all involved and what it says about how FOSS
-projects are funded and maintained.</p>
-<p>It's been an interesting journey, and it's been a privilege to do something
-I've been wanting to do since the 1990s, when I first read the GNU Manifesto
-and subsequently watched the free software and open source movements develop
-and grow: work on FOSS for a living. In doing this I've developed my
-thoughts about the feasibility of such an endeavour, I've refined how I feel
-about working in very small teams, I've learnt a lot of useful lessons I'm
-going to draw on in the future (keeping a journal of my experience has been
-a great move; I have a lot of notes and thoughts written down that I'll be
-reviewing and distilling for myself over the coming weeks).</p>
-<p>Most of all: it's been an absolute blast working on something that people
-are actually using to build <a href="https://github.com/davep/transcendent-textual" rel="noopener noreferrer" target="_blank">cool
-things</a>, and to <a href="https://textual.textualize.io/help/" rel="noopener noreferrer" target="_blank">provide help
-and guidance to those people when they've needed
-it</a>.</p>
-<p>So... what happens now? Well, of course, right now, I'm looking for a new
-position. If you're reading this and you are looking for someone who's kinda
-handy with Python <a href="https://github.com/davep" rel="noopener noreferrer" target="_blank">and a bunch of other languages</a>
-and who loves learning new stuff, or if you know someone who is looking for
-such a person, <a href="mailto:davep@davep.co.uk" rel="noopener noreferrer" target="_blank">do drop me a line</a>!</p>
-<p>As for what happens with Textual, and my involvement with it...</p>
-<p>Well, what happens <em>with</em> Textual is
-<a href="https://github.com/willmcgugan" rel="noopener noreferrer" target="_blank">Will</a>'s call, of course. As for my
-involvement with it: I care about FOSS and I care about Textual; I also care
-about the folk who have been kind enough to use their time to explore it,
-test it, build with it, commit to it and make neat stuff with it. My
-intention, as long as free time allows, is to carry on being involved, both
-on GitHub and in <a href="https://discord.gg/Enf6Z3qhVr" rel="noopener noreferrer" target="_blank">the Discord server</a>.</p>
-<p>It's my sincere hope that, as a community of FOSS-friendly developers, we
-see Textual over the 1.0 line and beyond.</p>
-<p>But all that starts next week. It's a bank holiday weekend and I think I
-might have deserved a run, a bit of <a href="https://www.youtube.com/@DavePearson" rel="noopener noreferrer" target="_blank">mucking about in
-VR</a>, a beer, and just a wee bit of
-down time.</p>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/python.html" class="tag">Python</a>
-            
-            <a href="/tag/textual.html" class="tag">textual</a>
-            
-            <a href="/tag/free-software.html" class="tag">free-software</a>
-            
-            <a href="/tag/work.html" class="tag">work</a>
             
         </div>
         
