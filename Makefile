@@ -16,7 +16,7 @@ serve:				# Locally serve the site for testing.
 	$(blogmore) serve
 
 .PHONY: publish
-themes:			# Publish the site to GitHub
+publish:			# Publish the site to GitHub
 	$(blogmore) publish
 
 ##############################################################################
