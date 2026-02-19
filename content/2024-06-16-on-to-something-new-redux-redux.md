@@ -31,7 +31,7 @@ find it not massively frustrating!
 
 I'm also back to working from home full time. This isn't that big a deal for
 me as I spent around 22 years doing so [up until
-2018](2017/12/12/on_to_something_new.html), and of course it isn't that big
+2018](/2017/12/12/on_to_something_new.html), and of course it isn't that big
 of a deal to many folk these days anyway thanks to the 2020- period. This
 prompted me to finally clear out the spare room (I've only been in here a
 touch under 5 years so of course there were a lot of "I'll sort those soon"
