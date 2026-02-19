@@ -36,7 +36,7 @@ I did it, it worked. I could browse the iMac's filesystem from my Windows
 machine and all was good (I'd been able to do this the other way around
 for ages and with no problems whatsoever).
 
-![Finally got to allow SMB for me](/attachments/2015/10/21/Screen Shot 2015-10-21 at 15.29.11.png)
+![Finally got to allow SMB for me](/attachments/2015/10/21/Screen Shot 2015-10-21 at 15.29.11.png#centre)
 
 Then I got curious.
 
@@ -46,7 +46,7 @@ went back to using the iCloud password to log in? That's when it got really fun.
 To do this it asks you for the current password and also your iCloud password.
 I entered both and...
 
-![Finally got to allow SMB for me](/attachments/2015/10/21/Screen Shot 2015-10-21 at 15.28.46.png)
+![Finally got to allow SMB for me](/attachments/2015/10/21/Screen Shot 2015-10-21 at 15.28.46.png#centre)
 
 Yup. It refuses, every single time, to accept that the iCloud password I'm
 entering is valid. Trust me, it is. I'm entering the correct password. I can

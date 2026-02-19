@@ -27,7 +27,7 @@ ISP's. Back then my ISP was Demon Internet; these days I'm with BT. A quick
 search lead me to an article or two that BT had a NNTP server, of sorts,
 provided by a third party. So I did a quick check:
 
-![Is the server there?](/attachments/2015/11/13/Screen Shot 2015-11-13 at 15.27.43.png)
+![Is the server there?](/attachments/2015/11/13/Screen Shot 2015-11-13 at 15.27.43.png#centre)
 
 Yay! This looked good.
 
@@ -55,7 +55,7 @@ Given all I was interested in was the good old text groups this looked perfect.
 I quickly registered an account, ran up Unison again and plugged in my details
 and....
 
-![Is the server there?](/attachments/2015/11/13/Screen Shot 2015-11-13 at 15.19.17.png)
+![Is the server there?](/attachments/2015/11/13/Screen Shot 2015-11-13 at 15.19.17.png#centre)
 
 Now that's all sorted I should try again with `slrn`. At which point I'll need
 to drag out and tidy up `post.el` ([the version that was being maintained

@@ -12,7 +12,7 @@ Evernote have discovered the joys of pop-ups for advertising purposes. I'm
 finding it just as annoying as it was back in the days when people thought it
 was the smart way to make you buy things on the web.
 
-![Yay! Pop-up advertising!](/attachments/2015/07/09/Screen Shot 2015-07-09 at 16.15.25.png)
+![Yay! Pop-up advertising!](/attachments/2015/07/09/Screen Shot 2015-07-09 at 16.15.25.png#centre)
 
 Now, to be fair, the pop-up you see above is the one on my iMac and that at
 least has the good taste to only pop up *within* the application itself

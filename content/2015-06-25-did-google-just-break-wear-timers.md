@@ -23,7 +23,7 @@ To be clear, the timer app is still there and, if I select to start a timer
 "OK Google, set a timer for five minutes" it still does the voice recognition
 thing:
 
-![Google still understands the request](/attachments/2015/06/25/Android Wear Screenshot.png)
+![Google still understands the request](/attachments/2015/06/25/Android Wear Screenshot.png#centre)
 
 It's what happens next that's the problem. Before it would have started a
 countdown timer. As well as vibrating the watch when the timer runs down the
@@ -43,7 +43,7 @@ It's not a timer!
 Looking in the Wear app it would appear that the correct application is
 assigned to the correct action:
 
-![Google still understands the request](/attachments/2015/06/25/Screenshot_2015-06-25-22-22-03.png)
+![Google still understands the request](/attachments/2015/06/25/Screenshot_2015-06-25-22-22-03.png#centre)
 
 As such, I'm at a loss on how to fix this. I can't find anything on the watch
 itself that could be done to change this, and I've tried restarting the

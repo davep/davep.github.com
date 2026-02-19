@@ -9,7 +9,7 @@ date: 2015-10-08 10:08:02+0100
 
 I woke up this morning to see [this](https://twitter.com/MarkRobotArm/status/651811143284076544) being retweeted by a few people I follow:
 
-![An effect of sanctions](/attachments/2015/10/08/ToryUK.png)
+![An effect of sanctions](/attachments/2015/10/08/ToryUK.png#centre)
 
 Even if I was to let my usual net-cynic side take over and decide there's a
 good chance it's a made-up story there's no getting away from the fact that
@@ -68,7 +68,7 @@ be able to check and give an adequate reply.
 It took a while but I finally got a reply. This email came through on
 2015-10-06:
 
-![Labour wants another tenner](/attachments/2015/10/08/Screen Shot 2015-10-08 at 10.26.19.png)
+![Labour wants another tenner](/attachments/2015/10/08/Screen Shot 2015-10-08 at 10.26.19.png#centre)
 
 So that seems pretty clear: a non-answer to my question and they're asking
 for another £10 on top of the £3 they already have off me to find out what

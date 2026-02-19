@@ -33,7 +33,7 @@ So I had to go and look.
 
 Having looked I came away with one.
 
-![My new Macbook, on the train](/attachments/2016/04/28/IMG_20160428_200405.jpg)
+![My new Macbook, on the train](/attachments/2016/04/28/IMG_20160428_200405.jpg#centre)
 
 So far I'm very pleased with it. While the one I have is the lower spec
 version (just 128GB of SSD and 4GB of memory) it seems to work well for my

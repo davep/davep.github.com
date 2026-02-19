@@ -20,7 +20,7 @@ committing to memory.
 This morning, while finally in front of a suitable machine, I took a look.
 Sure enough, there's the menu option.
 
-![Code formatting menu option](/attachments/2016/10/31/Screen Shot 2016-10-31 at 11.36.42.png)
+![Code formatting menu option](/attachments/2016/10/31/Screen Shot 2016-10-31 at 11.36.42.png#centre)
 
 Handy! So I created a test note with some code in it so that I could see how
 it formatted it. I was curious to see if it just did simple fixed text or if
@@ -32,7 +32,7 @@ That's when it got odd.
 After I created a note and went to format some code, the menu option
 disappeared!
 
-![Lack of code formatting menu option](/attachments/2016/10/31/Screen Shot 2016-10-31 at 11.37.07.png)
+![Lack of code formatting menu option](/attachments/2016/10/31/Screen Shot 2016-10-31 at 11.37.07.png#centre)
 
 From what I can tell, once it's gone, there's no way to get it back. At
 least, not until you actually close down Evernote and start it up again.

@@ -18,7 +18,7 @@ Wallet application. It's
 (and, of course, ran into all the issues of trying to get some sensible help
 and response from them) and nothing has really improved:
 
-![Still can't log in](/attachments/2016/09/29/Screenshot_20160929-125339.png)
+![Still can't log in](/attachments/2016/09/29/Screenshot_20160929-125339.png#centre)
 
 It's now [around six weeks](/2016/08/10/virgin_east_coast_12.html) since I
 was promised a call from someone who works on the application; a call that

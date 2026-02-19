@@ -28,7 +28,7 @@ I've seen in the past, it does work with Windows, after a fashion. So I went
 to talk to the Apple guy, checked they had one in stock, handed over £40 and
 headed home again.
 
-![Apple Keyboard](/attachments/2015/08/17/Apple-Keyboard.jpg)
+![Apple Keyboard](/attachments/2015/08/17/Apple-Keyboard.jpg#centre)
 
 Having now worked with it for a couple of days I think this might be one of
 the best keyboard purchases I've ever made.

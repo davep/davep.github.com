@@ -20,12 +20,12 @@ iPod appeared to insist that it wasn't plugged into the iMac, even though it
 was. Then I gave it a second go (after unplugging it and plugging it in
 again) and it all seemed to go through just fine, only...
 
-![When is 8.4 not 8.4, iPod?](/attachments/2015/07/01/Photo 01-07-2015 10 21 56.png)
+![When is 8.4 not 8.4, iPod?](/attachments/2015/07/01/Photo 01-07-2015 10 21 56.png#centre)
 
 ...while the iPod was pretty sure it was now running iOS 8.4, iTunes on the iMac
 had other ideas:
 
-![When is 8.4 not 8.4, iTunes?](/attachments/2015/07/01/Screen Shot 2015-07-01 at 10.22.16.png)
+![When is 8.4 not 8.4, iTunes?](/attachments/2015/07/01/Screen Shot 2015-07-01 at 10.22.16.png#centre)
 
 The following morning iTunes kept insisting that it needed to do the update
 so, even though the iPod was obviously up to date, I let it do it anyway. After
@@ -33,7 +33,7 @@ it'd gone through the update process again it still insisted that the iPod
 was running 8.3 rather than 8.4. Until, that is, I unplgged it and plugged it
 back in again.
 
-![When is 8.4 not 8.4, iTunes?](/attachments/2015/07/01/Screen Shot 2015-07-01 at 10.26.20.png)
+![When is 8.4 not 8.4, iTunes?](/attachments/2015/07/01/Screen Shot 2015-07-01 at 10.26.20.png#centre)
 
 So now it all seems fine. I just had to do a variation on "have you tried
 turning it off and on again?"

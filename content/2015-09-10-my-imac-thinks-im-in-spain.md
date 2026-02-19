@@ -15,20 +15,20 @@ faffing around on [my iMac](/2015/06/27/my-first-couple-of-weeks-with-an-imac.ht
 One of the places I landed was in the About dialog, looking at the support
 details:
 
-![Support details of the iMac](/attachments/2015/09/10/Screen Shot 2015-09-10 at 14.29.14.png)
+![Support details of the iMac](/attachments/2015/09/10/Screen Shot 2015-09-10 at 14.29.14.png#centre)
 
 Out if idle curiosity I clicked the "OS X Support" link, which opened my
 browser and took me to Apple's website. Only.... it didn't take me to a part
 of the site that was that useful to me:
 
-![Seems I read Spanish](/attachments/2015/09/10/Screen Shot 2015-09-10 at 14.29.23.png)
+![Seems I read Spanish](/attachments/2015/09/10/Screen Shot 2015-09-10 at 14.29.23.png#centre)
 
 Yes, for reasons best known to Apple or my iMac, I apparently need my help to
 be in Spanish. O_o
 
 I could understand this if I had my system set to Spanish, which I don't:
 
-![Seems I read Spanish](/attachments/2015/09/10/Screen Shot 2015-09-10 at 14.30.55.png)
+![Seems I read Spanish](/attachments/2015/09/10/Screen Shot 2015-09-10 at 14.30.55.png#centre)
 
 About the only "non-standard" thing I have in my setup is the date, which I've
 set to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) style rather than

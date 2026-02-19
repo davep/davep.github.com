@@ -38,11 +38,11 @@ to load it because of the problem.
 This is my first bit of real frustration with them. Here's how the page
 looks inside a desktop browser:
 
-![Status in desktop browser](/attachments/2015/11/18/Screen Shot 2015-11-18 at 10.42.40.png)
+![Status in desktop browser](/attachments/2015/11/18/Screen Shot 2015-11-18 at 10.42.40.png#centre)
 
 Now compare it as seen inside Android Chrome on my Nexus 6:
 
-![Status on my phone](/attachments/2015/11/18/Screenshot_20151118-104156.png)
+![Status on my phone](/attachments/2015/11/18/Screenshot_20151118-104156.png#centre)
 
 Apparently they have decided that I'd never want to be able to check why my
 broadband might be down, from a mobile device. Yes, sure, there's the option
@@ -56,7 +56,7 @@ need.
 Anyway, I gave up and went to bed. In the morning things were no better but,
 after another router reboot, I did manage to get a view of the status:
 
-![Finally got to see broadband status](/attachments/2015/11/18/Screen Shot 2015-11-17 at 10.29.47.png)
+![Finally got to see broadband status](/attachments/2015/11/18/Screen Shot 2015-11-17 at 10.29.47.png#centre)
 
 Finally! Acknowledgement of the problem. Worryingly though it was dated almost
 12 hours after I first noticed the problem. From what I can see that date and
@@ -66,7 +66,7 @@ problem all night. It's not like it was a problem that was hard to notice,
 at least from a customer's point of view. Check this graph from a [down
 detector site](http://downdetector.co.uk/problems/bt-british-telecom):
 
-![It really was down](/attachments/2015/11/18/Screen Shot 2015-11-17 at 10.27.07.png)
+![It really was down](/attachments/2015/11/18/Screen Shot 2015-11-17 at 10.27.07.png#centre)
 
 You'd think that a company as big as BT would have something in place that could
 catch network problems, especially ones that are able to be caught with a simple
@@ -76,7 +76,7 @@ But... nope. Appears not. O_o
 
 Anyway, a couple or so hours later the problem was finally fixed:
 
-![Finally got to see broadband status](/attachments/2015/11/18/Screen Shot 2015-11-17 at 13.01.00.png)
+![Finally got to see broadband status](/attachments/2015/11/18/Screen Shot 2015-11-17 at 13.01.00.png#centre)
 
 (Notice how the date and time is the same as earlier; so 100% not an update time
 but a first-added time) I mentioned this on twitter:
