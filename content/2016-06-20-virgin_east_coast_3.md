@@ -42,22 +42,22 @@ the obvious thing of going to the
 [main website](https://www.virgintrainseastcoast.com/) and saying I wanted
 to sign in.
 
-![Sign in on main site](/attachments/2016/06/20/Screen Shot 2016-06-20 at 10.28.31.png)
+![Sign in on main site](/attachments/2016/06/20/Screen Shot 2016-06-20 at 10.28.31.png#centre)
 
 Once clicked, that took me to the actual login page, which has the link to
 say you've forgotten your password.
 
-![Link to reset password](/attachments/2016/06/20/Screen Shot 2016-06-20 at 10.29.07.png)
+![Link to reset password](/attachments/2016/06/20/Screen Shot 2016-06-20 at 10.29.07.png#centre)
 
 When you click on that link you get taken to.... a login page!
 
-![Another login page](/attachments/2016/06/20/Screen Shot 2016-06-20 at 10.29.28.png)
+![Another login page](/attachments/2016/06/20/Screen Shot 2016-06-20 at 10.29.28.png#centre)
 
 There you then have to say, again, that you've forgotten your password. Only
 once you've done that do you get somewhere where you can say you've actually
 forgotten your password.
 
-![Finally I can reset](/attachments/2016/06/20/Screen Shot 2016-06-20 at 10.29.42.png)
+![Finally I can reset](/attachments/2016/06/20/Screen Shot 2016-06-20 at 10.29.42.png#centre)
 
 Not horrific, of course, but a rather odd route, needing to click pretty
 much the same link twice to say the same thing.

@@ -75,7 +75,6 @@ like it... I like!
 Let's see how long it takes me to actually get around to making the switch.
 ;-)
 
----
 [^1]: When setting this up a couple of days back, I had to pin some packages
     for the blog to older versions because of Ruby version issues; I'm sure
     that Ruby has virtual environment solutions akin to Python, but diving

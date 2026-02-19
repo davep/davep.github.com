@@ -14,6 +14,6 @@ know it.
 
 Tell me again what promo that 10GB was from...
 
-![Unknown Promo](/attachments/2015/09/04/UnknownPromo.png)
+![Unknown Promo](/attachments/2015/09/04/UnknownPromo.png#centre)
 
 [//]: # (2015-09-04-unknown-promo.md ends here)

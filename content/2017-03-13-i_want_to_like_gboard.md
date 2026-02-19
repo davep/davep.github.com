@@ -60,7 +60,7 @@ Useful! I'd assumed that this was the case anyway -- it's Google after all
 -- but it's good to know I can ensure it's turned on. So I went to turn it
 on. This is what I found:
 
-![Gboard WTF](/attachments/2017/03/13/Screenshot_20170313-072359.png)
+![Gboard WTF](/attachments/2017/03/13/Screenshot_20170313-072359.png#centre)
 
 What the hell Google? Sure, I do have a Gsuite account on my phone -- as in
 various apps have access to a Gsuite account (Gmail, Drive, etc...) -- but
@@ -81,6 +81,6 @@ frankly stupid.
 I guess I'm going to have to keep Gboard as a backup keyboard for those
 times when I need to find the perfect gif.
 
-![Google WTF](http://i.imgur.com/0mw1I8e.gif)
+![Google WTF](http://i.imgur.com/0mw1I8e.gif#centre)
 
 [//]: # (2017-03-13-i_want_to_like_gboard.md ends here)

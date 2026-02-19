@@ -35,7 +35,7 @@ to happen and I noticed that I was starting to do the phone-based photoblog
 thing
 again, [albeit only via twitter](https://twitter.com/davepdotorg/media).
 
-![From up the hill](/attachments/2016/11/15/FromUpTheHill.jpg)
+![From up the hill](/attachments/2016/11/15/FromUpTheHill.jpg#centre)
 
 Finally, this week, I've cracked and decided to make it "official". My old
 "Seen by davep" blog is reborn, with new content and the same old purpose.

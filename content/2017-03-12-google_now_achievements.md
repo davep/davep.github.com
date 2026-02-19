@@ -19,7 +19,7 @@ some time it finally loads up.
 The latter happened a little earlier and I noticed something I'd not seen
 before:
 
-![Blank Google Now](/attachments/2017/03/12/Screenshot_20170312-115910.jpg)
+![Blank Google Now](/attachments/2017/03/12/Screenshot_20170312-115910.jpg#centre)
 
 What's with that "Achievements" menu option? You'll notice that the whole of
 the menu is blank -- no profile picture or anything and none of the menu
@@ -27,7 +27,7 @@ options seemed to work.
 
 Eventually, after I'd left it for a while, it ended up working.
 
-![Google Now finally working](/attachments/2017/03/12/Screenshot_20170312-120052.jpg)
+![Google Now finally working](/attachments/2017/03/12/Screenshot_20170312-120052.jpg#centre)
 
 And, once this happened, no "Achievements" option.
 
@@ -39,4 +39,4 @@ So now I need to go looking for what this Achievements thing is all about.
 
 Using Google, obviously.
 
-[//]: # (2017-03-12-google_now_achievements?.md ends here)
+[//]: # (2017-03-12-google_now_achievements.md ends here)

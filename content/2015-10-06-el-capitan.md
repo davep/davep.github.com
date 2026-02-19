@@ -13,12 +13,12 @@ version of the OS waiting for me. While this is doubtless no big deal for
 most Mac owners, this was interesting to me because it's the first time
 I've experienced an OSX upgrade since [I got the iMac](/2015/06/27/my-first-couple-of-weeks-with-an-imac.html).
 
-![El Capitan downloading](/attachments/2015/10/06/Screen Shot 2015-10-01 at 12.01.37.png)
+![El Capitan downloading](/attachments/2015/10/06/Screen Shot 2015-10-01 at 12.01.37.png#centre)
 
 The download took a while and, while the install had a couple of curious
 bumps along the way, nothing seemed to actually go wrong.
 
-![About to get going](/attachments/2015/10/06/Screen Shot 2015-10-01 at 12.27.18.png)
+![About to get going](/attachments/2015/10/06/Screen Shot 2015-10-01 at 12.27.18.png#centre)
 
 The two main things I noticed were that it seemed to take the installer an
 absolute age to close down all running apps before it got to doing the
@@ -27,7 +27,7 @@ way of calculating things. Often it would tell me that there was (for example)
 28 minutes to go, it'd stay like that for 20 minutes, then drop 5 minutes,
 then appear to finish very soon after.
 
-![The final countdown](/attachments/2015/10/06/Screen Shot 2015-10-01 at 12.27.43.png)
+![The final countdown](/attachments/2015/10/06/Screen Shot 2015-10-01 at 12.27.43.png#centre)
 
 Mostly though I just left it alone and let it do its own thing. While the whole
 process took quite a while, it came back just fine (if I'm fair I'm not sure

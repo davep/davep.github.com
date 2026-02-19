@@ -16,7 +16,7 @@ When I first got it it took me a couple or so days to find a face that I was
 happy with and, in the end, I went with [Pujie Black](http://www.pujiewear.com/),
 along with a colour scheme I set up myself (called *RGB*, for obvious reasons).
 
-![Pujie Black with RGB face](/attachments/2015/10/07/Pujie Black.png)
+![Pujie Black with RGB face](/attachments/2015/10/07/Pujie Black.png#centre)
 
 Today though I stumbled on [Krona Sunlight](https://play.google.com/store/apps/details?id=net.marscity.sunlight&hl=en_GB).
 This face really got my interest. Part of the reason is that, while what I'm
@@ -27,7 +27,7 @@ having to reach for my phone, tablet, Chromebook or desktop machine.
 
 This face fits perfectly into that.
 
-![Krona Sunlight face](/attachments/2015/10/07/Krona Sunlight.png)
+![Krona Sunlight face](/attachments/2015/10/07/Krona Sunlight.png#centre)
 
 While it lacks the battery information (edit to add: it doesn't lack battery
 information, it's just an option that is off by default), and second time display, that Pujie

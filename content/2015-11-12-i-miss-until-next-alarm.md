@@ -28,7 +28,7 @@ an utterly brilliant idea.
 So it made sense that if they changed anything about this in Marshmallow they'd
 keep that in and make it even more awesome, right? Right?!?
 
-![Nope](/attachments/2015/11/12/Screenshot_20151112-140600.png)
+![Nope](/attachments/2015/11/12/Screenshot_20151112-140600.png#centre)
 
 Well fuck!
 

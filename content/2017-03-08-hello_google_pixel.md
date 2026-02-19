@@ -23,7 +23,7 @@ an offer cropped up that meant I could renew early *and* get a Pixel
 
 Fast forward to Monday just gone and...
 
-![My new Pixel](/attachments/2017/03/08/IMG_20170308_120458.jpg)
+![My new Pixel](/attachments/2017/03/08/IMG_20170308_120458.jpg#centre)
 
 So far I'm liking it rather a lot. It is odd that it's smaller in my hand
 than the Nexus 6 was (the XL wasn't an available option *and* I was also

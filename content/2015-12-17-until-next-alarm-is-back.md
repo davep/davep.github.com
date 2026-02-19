@@ -18,7 +18,7 @@ option when putting a device in "do not disturb" mode.
 
 Seems they've added that back in 6.0.1:
 
-![Google sees sense](/attachments/2015/12/17/Screenshot_20151217-112015.png)
+![Google sees sense](/attachments/2015/12/17/Screenshot_20151217-112015.png#centre)
 
 It's a small thing, but it makes so much more sense and makes things so much
 easier (even if it's a trivial thing).

@@ -12,7 +12,7 @@ I got the Moto 360 I've not really had a need to say "OK Google" to my phone
 because I could simply say it to my wrist. Today though, because I wanted to
 quickly look something up and my phone was to hand, I spoke to it and got this:
 
-![Voice search fail](/attachments/2015/11/11/Screenshot_20151111-154157.png)
+![Voice search fail](/attachments/2015/11/11/Screenshot_20151111-154157.png#centre)
 
 Brilliant.
 

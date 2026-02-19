@@ -12,7 +12,7 @@ advice I've mostly being following anyway for quite a long time, but it seems
 that ssh in the ChromeOS terminal has been removed. This is what just happened
 when I tried to use it just now:
 
-![ChromeOS ssh no longer working](/attachments/2015/06/19/Screenshot 2015-06-19 at 09.03.58.png)
+![ChromeOS ssh no longer working](/attachments/2015/06/19/Screenshot 2015-06-19 at 09.03.58.png#centre)
 
 To be fair, [Chrome Secure Shell](https://chrome.google.com/webstore/detail/secure-shell/pnhechapfaindjhompbnflcldabbghjo?hl=en)
 is pretty damn good and has served me well for the past couple or so years,
@@ -29,7 +29,7 @@ this. I opened Chrome so I could preview the post as I was writing it and
 I suffered one of Chrome's rather common extension crashes. Look what one of
 those extensions was (and I wasn't even using it at the time):
 
-![Chrome ssh extension crashes for no reason](/attachments/2015/06/19/Screen Shot 2015-06-19 at 09.12.34.png)
+![Chrome ssh extension crashes for no reason](/attachments/2015/06/19/Screen Shot 2015-06-19 at 09.12.34.png#centre)
 
 Not exactly the best advert for the non-optional replacement.
 

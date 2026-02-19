@@ -9,7 +9,7 @@ date: 2015-11-06 13:28:17+0000
 
 This just turned up in email a little earlier:
 
-![Yay! Spam!](/attachments/2015/11/06/Screen Shot 2015-11-06 at 13.16.30.png)
+![Yay! Spam!](/attachments/2015/11/06/Screen Shot 2015-11-06 at 13.16.30.png#centre)
 
 What's of particular interest is the email address this was sent to. It was
 one that I only ever (to my knowledge) used for posts to Usenet. While my

@@ -39,7 +39,7 @@ told me that the address was in use. Which was a worry.
 So I created the account using a different address (my actual "main" address
 this time, as opposed to my Google address) and set about setting it up.
 
-![So I'm on Facebook again](/attachments/2015/08/13/Screen Shot 2015-08-13 at 08.46.26.png)
+![So I'm on Facebook again](/attachments/2015/08/13/Screen Shot 2015-08-13 at 08.46.26.png#centre)
 
 In doing so I tried to tell it that I wanted to associate my old address with this
 new account and, again, it refused, telling me there was an active account for

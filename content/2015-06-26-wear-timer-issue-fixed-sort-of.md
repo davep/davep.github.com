@@ -35,7 +35,7 @@ It worked!
 
 So then I switched back to en-GB on the phone and...
 
-![I appear to have timers working again](/attachments/2015/06/26/Timer Running on Watch.png)
+![I appear to have timers working again](/attachments/2015/06/26/Timer Running on Watch.png#centre)
 
 ...it still worked!
 

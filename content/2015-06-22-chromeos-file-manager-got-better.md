@@ -17,7 +17,7 @@ sftp, or the like.
 That seems to have all changed with the addition of the "Add new services"
 button:
 
-![Now I can add more stuff!](/attachments/2015/06/22/Screenshot 2015-06-22 at 16.48.11.png)
+![Now I can add more stuff!](/attachments/2015/06/22/Screenshot 2015-06-22 at 16.48.11.png#centre)
 
 As is often the way with Chromebooks, unless you're closely following forums
 or Google+ communities (I don't), you tend not to know when this stuff is going
@@ -32,7 +32,7 @@ handler (that I've not had a chance to test yet) and an sftp service
 (which I have tested and seem to work well enough for my needs). There's
 more too:
 
-![Handlers for all](/attachments/2015/06/22/Screenshot 2015-06-22 at 16.48.52.png)
+![Handlers for all](/attachments/2015/06/22/Screenshot 2015-06-22 at 16.48.52.png#centre)
 
 I'm guessing there's an API out there now that people can work with so I guess
 the list of services you can install will grow over time.

@@ -57,7 +57,7 @@ lets you travel without even needing to faff around with printed tickets:
 you can do it 100% with your phone (something TTL now do too, I believe). So
 I downloaded the app, went to log in, and...
 
-![Login denied](/attachments/2016/06/17/Screenshot_20160617-152120.png)
+![Login denied](/attachments/2016/06/17/Screenshot_20160617-152120.png#centre)
 
 I tried a few times, just to be sure that I wasn't being an idiot and
 messing up but... nope, it just wasn't going to let me log in.
