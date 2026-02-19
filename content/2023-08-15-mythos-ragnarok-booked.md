@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Mythos: Ragnarok booked
+title:  "Mythos: Ragnarok booked"
 category: Life
 tags: Fringe, wrestling
 date: 2023-08-15 20:06:00 +0100

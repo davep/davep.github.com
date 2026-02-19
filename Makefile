@@ -1,33 +1,29 @@
 ###############################################################################
 # Common make values.
-run     := uv run
-sync    := uv sync
-python  := $(run) python
-pelican := $(run) pelican
-themes  := $(run) pelican-themes
+run      := uv run
+sync     := uv sync
+python   := $(run) python
+blogmore := $(run) blogmore
 
 ##############################################################################
 # Manage the site.
-.PHONY: generate
-generate:
-	$(pelican) --settings publishconf.py
+.PHONY: build
+build:				# Build the site
+	$(blogmore) build
 
 .PHONY: serve
 serve:				# Locally serve the site for testing.
-	$(pelican) -r -l
+	$(blogmore) serve
 
-.PHONY: themes
-themes:			# List the installed themes.
-	$(themes) -l
+.PHONY: publish
+themes:			# Publish the site to GitHub
+	$(blogmore) publish
 
 ##############################################################################
 # Utility.
 .PHONY: setup
 setup:				# Set up the environment.
 	$(sync)
-	git clone https://github.com/alexandrevicenzi/Flex
-	$(themes) -i Flex
-	git clone --recursive git@github.com:getpelican/pelican-plugins.git
 
 .PHONY: update
 update:				# Update all dependencies
@@ -44,8 +40,6 @@ repl:				# Start a Python REPL
 .PHONY: realclean
 realclean: 		# Clean the venv and build directories
 	rm -rf .venv
-	rm -rf Flex
-	rm -rf pelican-plugins
 
 .PHONY: help
 help:				# Display this help
