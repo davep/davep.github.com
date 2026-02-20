@@ -10,25 +10,27 @@ date: 2026-02-20 12:20:00 +0000
 
 As [I mentioned yesterday](/2026/02/19/a-new-engine.html), I've been a happy
 user of [Pelican](https://getpelican.com) for a couple or so years now, but
-every so often there's a little change or tweak I'd like to make that needs
-diving deeper into the templates and the like and... I go *"eh, I'll look at
-it some time soon"*. Another thought that often goes through my head at
-those times is *"I should build my own static site generator that works
-exactly how I want"* -- because really any hacker with a blog has to do that
-at some point.
+every so often there's a little change or tweak I'd like to make that
+requires diving deeper into the templates and the like and... I go *"eh,
+I'll look at it some time soon"*. Another thought that often goes through my
+head at those times is *"I should build my own static site generator that
+works exactly how I want"* -- because really any hacker with a blog has to
+do that at some point.
 
 Meanwhile... I've had free access to [GitHub
 Copilot](https://github.com/features/copilot) attached to [my GitHub
 account](https://github.com/davep) for some time now, and I've hardly used
-it. At the same time, the past few months especially, I've been watching the
-rise of agents as coding tools, as well as the rise of advocates for them.
-Worse still, I've seen people I didn't expect to be advocates for giving up
-on coding turning to these tools and suddenly writing rationales in favour
-of them.
+it. At the same time -- the past few months especially -- I've been watching
+the rise of agents as coding tools, as well as the rise of advocates for
+them. Worse still, I've seen people I didn't expect to be advocates for
+giving up on coding turning to these tools and suddenly writing rationales
+in favour of them.
 
 So, suddenly, the idea popped into my head: I should write my own static
 site generator that I'll use for my blog, and I should try and use GitHub
 Copilot to write 100% of the code, and documentation, and see how far I get.
+I doing so I might firm up my opinions about where we're all going with
+this.
 
 The requirements were going to be pretty straightforward:
 
@@ -48,8 +50,9 @@ some new ideas.
 
 ## Getting started
 
-To kick things off, I created my repo, and then opened Copilot and typed out
-a prompt to get things going. Here's what I typed:
+To kick things off, I created [my repo](https://github.com/davep/blogmore),
+and then opened Copilot and typed out a prompt to get things going. Here's
+what I typed:
 
 > Build a blog-oriented static site generation engine. It should be built in
 > Python, the structure of the repository should match that of my preferences
@@ -119,7 +122,7 @@ asked](https://github.com/davep/blogmore/pull/1#issuecomment-3904205550):
 
 Just like that, it went off [and wrote a whole server for the
 project](https://github.com/davep/blogmore/pull/1/changes/3449eec9b4df88e66eec0f6bba4369926ff1389e).
-While the server did need a lot of extra work to really work well[^1] the
+While the server did need a lot of extra work to really work well[^1], the
 initial version was good enough to get me going and to iterate on the
 project as a whole.
 
@@ -271,7 +274,7 @@ Now I'm at the end of the process, and using the result of this experiment
 to write this post[^4], I feel better informed about what these tools offer,
 and the pitfalls I need to be mindful of. Sometimes it wasn't a terrible way
 of working. For example, on the first day I started with this, at one point
-on a chilly but sunny Sunday afternoon, I was sat on the sofa MacBook on
+on a chilly but sunny Sunday afternoon, I was sat on the sofa, MacBook on
 lap, guiding an AI to write code, while petting the cat, watching the birds
 in the garden enjoy the content of the feeder, all while chatting with my
 partner.
@@ -302,9 +305,9 @@ response. That's fair.
 
 So now I'm left trying to decide if I want to pay to keep it going. At the
 level I've been using it at for building BlogMore it looks like it costs
-$10/mth. That actually isn't terrible. I spent more than that on other
+$10/mth. That actually isn't terrible. I spend more than that on other
 hobbies and other forms of entertainment. So, if I can work within the
-bounds of that tier, it's probably worth it.
+bounds of that tier, it's affordable and probably worth it.
 
 What I'm not sure about yet is if I want to. It's been educational, I can
 100% see how and where I'd use this for work (and would of course expect an
@@ -316,6 +319,10 @@ Ultimately though I think I'm a little better informed thanks to this
 process, and better aware of some of the wins people claim, and also better
 informed so that I can be rightly incredulous when faced with some of the
 wilder claims.
+
+Also, it'll help put [some of my
+reading](https://raindrop.io/davep/public-46742255/search/sort=-created&perpage=30&page=0&search=%23AI)
+into perspective.
 
 [^1]: Amusingly I [uncovered another
     bug](https://github.com/davep/blogmore/issues/117) while writing this
