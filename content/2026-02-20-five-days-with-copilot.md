@@ -265,6 +265,58 @@ feels like a concern to be mindful of, especially if someone less
 experienced is bringing code to you where they've used an agent as their
 pair buddy.
 
+## The overall impression
+
+Now I'm at the end of the process, and using the result of this experiment
+to write this post[^4], I feel better informed about what these tools offer,
+and the pitfalls I need to be mindful of. Sometimes it wasn't a terrible way
+of working. For example, on the first day I started with this, at one point
+on a chilly but sunny Sunday afternoon, I was sat on the sofa MacBook on
+lap, guiding an AI to write code, while petting the cat, watching the birds
+in the garden enjoy the content of the feeder, all while chatting with my
+partner.
+
+That's not a terrible way to write code.
+
+On the other hand, as I said earlier, I missed the flow state. I *love*
+getting lost in code or a few hours and this is not that. I also found the
+constant loop of prompt, wait, review, test, repeat, really quite
+exhausting.
+
+As best as I can describe it: it feels like the fast food of software
+development. It gets the job done, it gets it done fast, but it's really not
+fulfilling.
+
+At the end of the process I have a really useful tool, 100% "built with AI",
+under my guidance, which lets me *actually* be creative and build things I
+do create by hand. That's not a bad thing, I can see why this is appealing
+to people. On the other hand the process of building that tool was pretty
+boring and, for want of a better word... soulless.
+
+## Conclusion
+
+As I write this I have about 24 hours of access to GitHub Copilot Pro left.
+It seems this experiment used up my preview time and triggered a *"looks
+like you're having fun, now you need to decide if you want to buy it"*
+response. That's fair.
+
+So now I'm left trying to decide if I want to pay to keep it going. At the
+level I've been using it at for building BlogMore it looks like it costs
+$10/mth. That actually isn't terrible. I spent more than that on other
+hobbies and other forms of entertainment. So, if I can work within the
+bounds of that tier, it's probably worth it.
+
+What I'm not sure about yet is if I want to. It's been educational, I can
+100% see how and where I'd use this for work (and would of course expect an
+employer to foot the bill for it or a similar tool), and I can also see how
+and where I might use it to quickly build a personal-use tool to enable
+something more human-creative.
+
+Ultimately though I think I'm a little better informed thanks to this
+process, and better aware of some of the wins people claim, and also better
+informed so that I can be rightly incredulous when faced with some of the
+wilder claims.
+
 [^1]: Amusingly I [uncovered another
     bug](https://github.com/davep/blogmore/issues/117) while writing this
     post.
@@ -274,5 +326,8 @@ pair buddy.
 [^3]: Yes, of course that's an anthropomorphism, you'll find plenty of them
     in this article as it's hard not to write about the subject in any other
     way; it's an easy shortcut to explain some ideas
+[^4]: Actually I'm writign this post as I always do: in Emacs. But BlogMore
+    is in the background serving a local copy of my blog so I can check it
+    in the browser, and rebuilding it every time I save a change.
 
 [//]: # (2026-02-20-five-days-with-copilot.md ends here)
