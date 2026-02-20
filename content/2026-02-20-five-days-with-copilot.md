@@ -3,7 +3,7 @@ layout: post
 title: Five days with Copilot
 category: Coding
 tags: Python, Blogging, AI, LLM, Copilot, GitHub, BlogMore
-date: 2026-02-20 12:20:00 +0000
+date: 2026-02-20 15:46:00 +0000
 ---
 
 ## Another itch to scratch
