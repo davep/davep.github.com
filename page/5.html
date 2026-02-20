@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="blogmore v0.6.0">
+    <meta name="generator" content="blogmore v0.7.0">
     <title>davep</title>
     
     <link rel="icon" href="/icons/favicon.ico">
@@ -156,6 +156,94 @@
     
     
     <article class="post-summary">
+        <h2><a href="/2023/12/19/tinboard.html">Tinboard</a></h2>
+        
+        <time datetime="2023-12-19T09:47:00+00:00">December 19, 2023 09:47:00 UTC</time>
+        
+        <div class="reading-time">3 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+        <div class="post-content">
+            <p>Over the past few weeks I've been working on a new pet project, in part done
+as a <a href="https://textual.textualize.io/" rel="noopener noreferrer" target="_blank">Textual</a> "dogfooding" project, but
+also because this is a tool I've been wanting for a while now: a
+terminal-based client for the <a href="https://pinboard.in/" rel="noopener noreferrer" target="_blank">Pinboard bookmarking
+service</a>.</p>
+<p>The dogfooding side of the development has been helping, uncovering a couple
+of fun bugs in Textual; plus the act of building this has let me try out a
+few of the newer features we've recently added to the framework.</p>
+<p>What's <em>really</em> important though is this is a tool I actually <strong>wanted</strong>,
+and I'm using pretty often. I've written a <em>lot</em> of Textual-based
+applications over the past year, most small examples, <a href="https://github.com/Textualize/frogmouth" rel="noopener noreferrer" target="_blank">some quite a bit
+bigger</a>, but none of them really
+form part of my daily workflow. This changes with Tinboard.</p>
+<p><img alt="Tinboard in action" src="/attachments/2023/12/19/tinboard.png#centre" /></p>
+<p>Tinboard is designed as a fully-featured client, allowing for the creation
+of new Bookmarks, complete with tag suggestion support:</p>
+<p><img alt="Adding a new bookmark" src="/attachments/2023/12/19/new-bookmark.png#centre" /></p>
+<p>Not only are tag suggestions pulled from Pinboard, but entry of tags can
+auto-complete, taking completions from both the suggested tags and also tags
+used amongst your own bookmarks:</p>
+<p><img alt="Auto-complete of tags" src="/attachments/2023/12/19/tag-suggest.gif#centre" /></p>
+<p>That feature was really easy to add thanks to <a href="https://textual.textualize.io/api/suggester/" rel="noopener noreferrer" target="_blank">the <code>Suggester</code>
+API</a>.</p>
+<p>Thanks to the
+<a href="https://textual.textualize.io/blog/2023/09/21/textual-0380-adds-a-syntax-aware-textarea/" rel="noopener noreferrer" target="_blank">recently-added</a>
+<code>TextArea</code> widget the add/edit dialog allows for proper full editing of the
+extended text description of the bookmark too:</p>
+<p><img alt="Editing a bookmark" src="/attachments/2023/12/19/edit.png#centre" /></p>
+<p>One caveat here is a lack of word-wrapping; but this will be arriving in an
+update to Textual early in the new year.</p>
+<p>As well as all the usual add/edit/delete facilities, Tinboard is also
+designed to make it pretty easy to find bookmarks too. There are filtering
+options for seeing all read/unread, public/private and tagged/untagged
+bookmarks; this makes bookmark management really easy for me because I can
+filter for all the untagged and private bookmarks, which are likely the ones
+that need editing and expanding on, and tidy up my bookmark library.</p>
+<p>There is also, of course, full text search too.</p>
+<p><img alt="Text search entry" src="/attachments/2023/12/19/search-entry.png#centre" /></p>
+<p>When a filter or search is in operation, the related tags and the like react
+too:</p>
+<p><img alt="A search result being shown" src="/attachments/2023/12/19/search-result.png#centre" /></p>
+<p>Another thing I've made a point of doing in Tinboard is leaning pretty hard
+on the <a href="https://textual.textualize.io/guide/command_palette/" rel="noopener noreferrer" target="_blank">Command
+Palette</a>. No
+functionality is <em>only</em> available by it (I've done my best to make sure that
+keyboard is the primary input device here, with keyboard shortcuts for as
+much as possible). Initially I approached this as a "for the sake of
+completeness" feature, but already I'm finding that it's a pretty quick
+method of pulling up a tag filter.</p>
+<p><img alt="The command palette in action" src="/attachments/2023/12/19/command-palette.png#centre" /></p>
+<p>To help make all the features as discoverable possible, I've also ensured
+there's a pretty comprehensive help screen:</p>
+<p><img alt="Help" src="/attachments/2023/12/19/help.png#centre" /></p>
+<p>Anyway; that's v0.1.0 out in the wild. I'm pleased with how it's turned out
+and there's a few more things I'd like to add. It's licensed GPL-3.0 and
+available <a href="https://github.com/davep/tinboard" rel="noopener noreferrer" target="_blank">via GitHub</a> and also <a href="https://pypi.org/project/tinboard/" rel="noopener noreferrer" target="_blank">via
+PyPi</a>. If you have an environment that
+has <code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>tinboard
+</code></pre></div>
+
+<p>I hope this is useful to someone else. :-)</p>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/terminal.html" class="tag">terminal</a>
+            
+            <a href="/tag/textual.html" class="tag">textual</a>
+            
+        </div>
+        
+    </article>
+    
+    <article class="post-summary">
         <h2><a href="/2023/12/14/Steam-Deck.html">Steam Deck</a></h2>
         
         <time datetime="2023-12-14T16:47:00+01:00">December 14, 2023 16:47:00 UTC+01:00</time>
@@ -296,7 +384,7 @@ gone from, <a href="/2015/06/27/my-first-couple-of-weeks-with-an-imac.html">arou
 ago</a>, being
 unconvinced about how good the whole Apple world is, to pretty much having
 all the hardware they make available, in some form, that I have an actual
-use for<sup id="fnref:147-1"><a class="footnote-ref" href="#fn:147-1">1</a></sup>.</p>
+use for<sup id="fnref:148-1"><a class="footnote-ref" href="#fn:148-1">1</a></sup>.</p>
 <p>One of the devices I was late to, but won over by, after moving away from
 Android to iPhone, was the Apple Watch. These days I have two: the original
 SE, and also a Series 8. Generally I've marvelled at just how seamless the
@@ -349,13 +437,13 @@ been used to for quite a while.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:147-1">
+<li id="fn:148-1">
 <p>During a conversation about this at work the other week, I think I
 figured out that the only Apple product category in which I don't own an
-example of the hardware is displays<sup id="fnref:147-2"><a class="footnote-ref" href="#fn:147-2">2</a></sup>. :-/&#160;<a class="footnote-backref" href="#fnref:147-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+example of the hardware is displays<sup id="fnref:148-2"><a class="footnote-ref" href="#fn:148-2">2</a></sup>. :-/&#160;<a class="footnote-backref" href="#fnref:148-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li id="fn:147-2">
-<p>When the VisionPro comes out I'll be able to say there's two.&#160;<a class="footnote-backref" href="#fnref:147-2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<li id="fn:148-2">
+<p>When the VisionPro comes out I'll be able to say there's two.&#160;<a class="footnote-backref" href="#fnref:148-2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -884,51 +972,6 @@ social graph. But...</p>
         <div class="tags">
             
             <a href="/tag/linkedin.html" class="tag">LinkedIn</a>
-            
-        </div>
-        
-    </article>
-    
-    <article class="post-summary">
-        <h2><a href="/2023/10/14/going-full-apple-search.html">Going full Apple search</a></h2>
-        
-        <time datetime="2023-10-14T08:39:00+01:00">October 14, 2023 08:39:00 UTC+01:00</time>
-        
-        <div class="reading-time">1 min read</div>
-        
-        <div class="category">
-            <a href="/category/tech.html" class="category-link">Tech</a>
-        </div>
-        
-        <div class="post-content">
-            <p>For as long as I've had a smartphone -- so ever since the <a href="https://en.wikipedia.org/wiki/HTC_Magic" rel="noopener noreferrer" target="_blank">HTC
-Magic</a> was released -- I've used
-whatever search tool Google have had available as my way of searching for
-stuff from my phone. Even when I made the switch to the iPhone, back when
-the iPhone 11 was around, I still installed and used the Google Search app.</p>
-<p>Since jumping ship from Android to iPhone, I've followed the usual track
-that some do of "embracing the ecosystem", and it generally has paid off.
-The more I lean into "the Apple way", the more stuff actually does work
-together and work together well (I won't say "it just works", because that
-can sometimes so <em>very</em> not be true, but really I do find that Apple's
-ecosystem is more coherent and more stable than the one Google provided).
-But searching for stuff... that stuck with the Google search app.</p>
-<p>So, more as an experiment than anything else, starting this morning I've
-removed the Google search app from the home screens of my iPhone and my iPad
-and I'm going to force myself to use Spotlight to do all my searching, and
-see how I get on with it.</p>
-<p><img alt="Searching with Apple" src="/attachments/2023/10/14/apple-search.png#centre" /></p>
-<p>Of course, when it comes to searching for stuff on the web, it's not going
-to make a whole heap of difference; it's sill going to end up searching with
-Google, but I do like the idea of search leaning into what Spotlight knows
-about my stuff too.</p>
-<p>Also, on my phone at least, it has the added benefit of freeing up a slot in
-the dock at the bottom of the home screen.</p>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/apple.html" class="tag">Apple</a>
             
         </div>
         

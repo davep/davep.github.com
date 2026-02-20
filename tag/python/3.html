@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="blogmore v0.6.0">
+    <meta name="generator" content="blogmore v0.7.0">
     <title>Tag: Python - davep</title>
     
     <link rel="icon" href="/icons/favicon.ico">
@@ -156,6 +156,66 @@
     
     
     <article class="post-summary">
+        <h2><a href="/2024/04/09/tinboard-0-11-0.html">Tinboard v0.11.0</a></h2>
+        
+        <time datetime="2024-04-09T15:43:00+01:00">April 09, 2024 15:43:00 UTC+01:00</time>
+        
+        <div class="reading-time">1 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+        <div class="post-content">
+            <p>While <a href="/2024/03/28/goodbye-textualize.html">my time working on Textual might have come to an
+end</a>, my time working <em>with</em> Textual
+hasn't. Three days back <a href="https://www.youtube.com/watch?v=U66oHFLWmG4" rel="noopener noreferrer" target="_blank">I experimented with Textual's newly-added "inline
+mode"</a>:</p>
+<div style="text-align: center;">
+    <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/U66oHFLWmG4?si=kCQba6vMoxpKMtBG"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+    </iframe>
+</div>
+
+<p>In doing so I extended the application so that it's possible to run
+<code>tinboard add</code> and quickly enter a new bookmark and then carry on in the
+terminal, without needing to "go fullscreen". I'll admit it's of limited
+use, but it seemed like a good shakedown of the feature and in working on it
+I was able to discover a couple of bugs
+(<a href="https://github.com/Textualize/textual/issues/4385" rel="noopener noreferrer" target="_blank">#4385</a>,
+<a href="https://github.com/Textualize/textual/issues/4403" rel="noopener noreferrer" target="_blank">#4403</a>).</p>
+<p>The effect of this is this:</p>
+<p><img alt="Tinboard inline addition in action" src="/attachments/2024/04/09/tinboard-inline-add.gif#centre" /></p>
+<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/" rel="noopener noreferrer" target="_blank">from
+PyPi</a>. It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>tinboard</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>tinboard
+</code></pre></div>
+
+<p>The <a href="https://github.com/davep/tinboard" rel="noopener noreferrer" target="_blank">source is available on GitHub</a>.</p>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/terminal.html" class="tag">terminal</a>
+            
+            <a href="/tag/textual.html" class="tag">textual</a>
+            
+            <a href="/tag/youtube.html" class="tag">YouTube</a>
+            
+        </div>
+        
+    </article>
+    
+    <article class="post-summary">
         <h2><a href="/2024/03/28/goodbye-textualize.html">Goodbye Textualize</a></h2>
         
         <time datetime="2024-03-28T06:30:00+00:00">March 28, 2024 06:30:00 UTC</time>
@@ -257,7 +317,7 @@ that I've recommenced be installed using
 <a href="https://pipx.pypa.io/stable/" rel="noopener noreferrer" target="_blank"><code>pipx</code></a>. During that time though I've had
 half an inclination to make them <a href="https://brew.sh/" rel="noopener noreferrer" target="_blank">installable via
 Homebrew</a>. While probably not installable from the core
-Homebrew repository<sup id="fnref:191-1"><a class="footnote-ref" href="#fn:191-1">1</a></sup>, at least installable from a "tap"<sup id="fnref:191-2"><a class="footnote-ref" href="#fn:191-2">2</a></sup> that's under
+Homebrew repository<sup id="fnref:192-1"><a class="footnote-ref" href="#fn:192-1">1</a></sup>, at least installable from a "tap"<sup id="fnref:192-2"><a class="footnote-ref" href="#fn:192-2">2</a></sup> that's under
 my own GitHub account or something.</p>
 <p>To this end I've had <a href="https://til.simonwillison.net/homebrew/packaging-python-cli-for-homebrew" rel="noopener noreferrer" target="_blank">a blog post about packaging Python apps for
 Homebrew</a>
@@ -269,7 +329,7 @@ of today pretty much went like this:</p>
 <p>The blog post above seemed to suggest that for every application repository
 you want a tap for, you probably want a parallel <code>homebrew-</code>-prefixed
 repository. This in turn would suggest that every time someone wants to
-install one of your tools, they'd need to add a new tap<sup id="fnref:191-3"><a class="footnote-ref" href="#fn:191-3">3</a></sup>. As I looked at
+install one of your tools, they'd need to add a new tap<sup id="fnref:192-3"><a class="footnote-ref" href="#fn:192-3">3</a></sup>. As I looked at
 it this seemed like way too much faff, so in the end I decided <a href="https://github.com/davep/homebrew-homebrew" rel="noopener noreferrer" target="_blank">to create a
 single repository that I'd keep all my formula files
 in</a>. The naming of
@@ -352,17 +412,17 @@ remember and do.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:191-1">
+<li id="fn:192-1">
 <p>I do actually <a href="https://formulae.brew.sh/formula/eg" rel="noopener noreferrer" target="_blank">have one package in
 Homebrew</a>, but it wasn't me who put
-it there.&#160;<a class="footnote-backref" href="#fnref:191-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+it there.&#160;<a class="footnote-backref" href="#fnref:192-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li id="fn:191-2">
+<li id="fn:192-2">
 <p>I really like Homebrew as a tool for getting stuff installed, by oh my
-gods the naming of things in its ecosystem is terrible and confusing!&#160;<a class="footnote-backref" href="#fnref:191-2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+gods the naming of things in its ecosystem is terrible and confusing!&#160;<a class="footnote-backref" href="#fnref:192-2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
-<li id="fn:191-3">
-<p>No, really, I mean it, this naming convention is kinda cringe right?&#160;<a class="footnote-backref" href="#fnref:191-3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<li id="fn:192-3">
+<p>No, really, I mean it, this naming convention is kinda cringe right?&#160;<a class="footnote-backref" href="#fnref:192-3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -890,53 +950,6 @@ going to be that.&#160;<a class="footnote-backref" href="#fnref:13-1" title="Jum
 </li>
 </ol>
 </div>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/python.html" class="tag">Python</a>
-            
-            <a href="/tag/terminal.html" class="tag">terminal</a>
-            
-            <a href="/tag/textual.html" class="tag">textual</a>
-            
-        </div>
-        
-    </article>
-    
-    <article class="post-summary">
-        <h2><a href="/2023/12/25/tinboard-0-4-0.html">Tinboard v0.4.0</a></h2>
-        
-        <time datetime="2023-12-25T10:43:00+00:00">December 25, 2023 10:43:00 UTC</time>
-        
-        <div class="reading-time">1 min read</div>
-        
-        <div class="category">
-            <a href="/category/coding.html" class="category-link">Coding</a>
-        </div>
-        
-        <div class="post-content">
-            <p>Although it's not planned this way, so far it looks like I'm on a "every
-other day" release cycle with Tinboard right now! Today's release is a small
-but handy one, I think.</p>
-<p>Thanks to the handy little library
-<a href="https://github.com/asweigart/pyperclip" rel="noopener noreferrer" target="_blank"><code>pyperclip</code></a> I've added:</p>
-<ul>
-<li>The ability to copy a bookmark's URL to the clipboard.</li>
-<li>URL field autofill if you go to add a new bookmark and the clipboard
-  appears to have a valid URL in it.</li>
-</ul>
-<p><img alt="The code for copying to the clipboard" src="/attachments/2023/12/25/copy-to-clipboard.png#centre" /></p>
-<p>At the moment the copy facility is just a straightforward copy of the URL,
-nothing else. At some point I may add an extended copy option, which will
-open a dialog with a bunch of options of what to copy from the bookmark, and
-perhaps also how to format it or something. Like, often, if I'm copying a
-bookmark's URL, it's because I want to paste it into some Markdown document,
-or some location that will handle Markdown markup.</p>
-<p>Perhaps that'll turn up in v0.5.0 in a couple of days? ;-)</p>
-<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/" rel="noopener noreferrer" target="_blank">from
-PyPi</a>. The <a href="https://github.com/davep/tinboard" rel="noopener noreferrer" target="_blank">source is available on
-GitHub</a>.</p>
         </div>
         
         <div class="tags">

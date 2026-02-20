@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="blogmore v0.6.0">
+    <meta name="generator" content="blogmore v0.7.0">
     <title>Tag: Python - davep</title>
     
     <link rel="icon" href="/icons/favicon.ico">
@@ -154,6 +154,106 @@
     <h1>Posts tagged with "Python"</h1>
     
     
+    
+    <article class="post-summary">
+        <h2><a href="/2020/07/10/when-the-man-page-fibs.html">When the man page fibs</a></h2>
+        
+        <time datetime="2020-07-10T20:58:00+01:00">July 10, 2020 20:58:00 UTC+01:00</time>
+        
+        <div class="reading-time">3 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+        <div class="post-content">
+            <p>Earlier this week something in my development environment, relating to
+<a href="https://brew.sh/" rel="noopener noreferrer" target="_blank">Homebrew</a>, Python,
+<a href="https://github.com/pyenv/pyenv" rel="noopener noreferrer" target="_blank">pyenv</a> and
+<a href="https://pipenv.pypa.io/en/latest/" rel="noopener noreferrer" target="_blank">pipenv</a>, got updated and broke a handful
+of repositories. Not in a way that I couldn't recover from, just in a way
+that was annoying, got in the way of my workflow, and needed attention.
+<em>(note to self: how I set up for Python/Django development on a machine
+might be a good post in the future)</em></p>
+<p>Once I was sure what the fix was (pretty much: nuke the virtual environment
+and recreate it with <code>pipenv</code>, being very explicit about the version of
+Python to use) the next step was to figure out how many repositories were
+affected; not all were and there wasn't an obvious pattern to it. What was
+obvious was that the problem came down to <code>python</code> in the <code>.venv</code> directory
+pointing to a binary that didn't exist any more.</p>
+<p><img alt="Screenshot 2020-07-10 at 20.21.15.png" src="/attachments/2020/07/10/Screenshot 2020-07-10 at 20.21.15.png" /></p>
+<p>So... tracking down problematic repositories would be simple enough, just
+look for every instance of <code>.venv/bin/python</code> and be sure it points to
+something rather than nothing; if it points to nothing I need to remake the
+virtual environment.</p>
+<p>I quickly knocked up a script that was based around looking over the results
+of a <code>find</code>, and initially decided to use <code>file</code> to perform the test on
+<code>python</code>. It seemed to make sense, as I wrote the script I checked the <code>man</code>
+page for <code>file(1)</code> on macOS and sure enough, this exists:</p>
+<blockquote>
+<p>-E On filesystem errors (file not found etc), instead of handling the error as regular output as POSIX mandates and keep going, issue an error message and exit.</p>
+</blockquote>
+<p>Given that <code>file</code> dereferences links by default, that should get me an error
+for a broken link, right? Bit hacky I guess, but it was the first thing that
+came to mind for a quick bit of scripting and would do the trick. Only...</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>file<span class="w"> </span>-E<span class="w"> </span>does-not-exist
+file:<span class="w"> </span>invalid<span class="w"> </span>option<span class="w"> </span>--<span class="w"> </span>E
+Usage:<span class="w"> </span>file<span class="w"> </span><span class="o">[</span>bcCdEhikLlNnprsvzZ0<span class="o">]</span><span class="w"> </span><span class="o">[</span>-e<span class="w"> </span>test<span class="o">]</span><span class="w"> </span><span class="o">[</span>-f<span class="w"> </span>namefile<span class="o">]</span><span class="w"> </span><span class="o">[</span>-F<span class="w"> </span>separator<span class="o">]</span><span class="w"> </span><span class="o">[</span>-m<span class="w"> </span>magicfiles<span class="o">]</span><span class="w"> </span><span class="o">[</span>-M<span class="w"> </span>magicfiles<span class="o">]</span><span class="w"> </span>file...
+<span class="w">       </span>file<span class="w"> </span>-C<span class="w"> </span>-m<span class="w"> </span>magicfiles
+Try<span class="w"> </span><span class="sb">`</span>file<span class="w"> </span>--help<span class="err">&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.
+</code></pre></div>
+
+<p><a href="https://www.destroyallsoftware.com/talks/wat" rel="noopener noreferrer" target="_blank">Wat</a>?!? But it's right there! It says so in the manual! <code>-E</code> is documented right in the manual page! And yet it's not in the valid switch list as put out by the command, <em>and</em> it's an <code>invalid option</code>. The hell?</p>
+<p>So I go back and look at the <code>man</code> page again and then I notice it isn't in
+the list of switches in the synopsis.</p>
+<blockquote>
+<p>SYNOPSIS<br />
+    file [-bcdDhiIkLnNprsvz] [--extension] [--mime-encoding] [--mime-type] [-f namefile] [-m magicfiles] [-P name=value] [-M magicfiles] file<br />
+    file -C [-m magicfiles]<br />
+    file [--help]  </p>
+</blockquote>
+<p>I then did the obvious tests. Did I have <code>file</code> aliased in some way? No. Was
+some other thing that works and acts like <code>file</code> in my path? No. Was I
+absolutely 100% using <code>/usr/bin/file</code>? Yes.</p>
+<p>Long story short: it seems the <code>man</code> page for <code>file</code>, on macOS, fibs about
+what switches it supports; it says that <code>-E</code> is a valid option, but it's not
+there.</p>
+<p>What's even odder is the man page says it documents v5.04 of the command,
+but <code>--version</code> reports v5.37. Meanwhile, if I check on a GNU/Linux box I
+have access to, it does support <code>-E</code>, reports it in the switches, documents
+it in the <code>man</code> page (in both the synopsis and in the main body of the page)
+and it is v5.25 (and so is its man page).</p>
+<p>So that was something like 20 minutes lost to a very small problem, for
+which there was no real solution, but was time that had to be spent to get
+to the bottom of it.</p>
+<p>In the end I went with what I probably should have gone with in the first
+place: <code>stat -L</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>venv<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span>.venv<span class="k">)</span>
+<span class="k">do</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>stat<span class="w"> </span>-L<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$venv</span><span class="s2">/bin/python&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="w">    </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$venv</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="k">done</span>
+</code></pre></div>
+
+<p>And now I have that script in my <code>~/bin</code> directory, ready for the next time
+Homebrew and friends conspire to throw my day off for a while.</p>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/homebrew.html" class="tag">homebrew</a>
+            
+            <a href="/tag/macos.html" class="tag">macOS</a>
+            
+            <a href="/tag/unix.html" class="tag">Unix</a>
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+        </div>
+        
+    </article>
     
     <article class="post-summary">
         <h2><a href="/2019/12/08/git2gantt.html">git2gantt -- Simple tool to visualise coding runs</a></h2>

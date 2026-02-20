@@ -8,7 +8,310 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 19 Feb 2026 22:20:58 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 20 Feb 2026 15:48:14 +0000</lastBuildDate>
+    <item>
+      <title>Five days with Copilot</title>
+      <link>https://blog.davep.org/2026/02/20/five-days-with-copilot.html</link>
+      <description>&lt;h2 id="another-itch-to-scratch"&gt;Another itch to scratch&lt;/h2&gt;
+&lt;p&gt;As &lt;a href="https://blog.davep.org/2026/02/19/a-new-engine.html"&gt;I mentioned yesterday&lt;/a&gt;, I've been a happy
+user of &lt;a href="https://getpelican.com" rel="noopener noreferrer" target="_blank"&gt;Pelican&lt;/a&gt; for a couple or so years now, but
+every so often there's a little change or tweak I'd like to make that
+requires diving deeper into the templates and the like and... I go &lt;em&gt;"eh,
+I'll look at it some time soon"&lt;/em&gt;. Another thought that often goes through my
+head at those times is &lt;em&gt;"I should build my own static site generator that
+works exactly how I want"&lt;/em&gt; -- because really any hacker with a blog has to
+do that at some point.&lt;/p&gt;
+&lt;p&gt;Meanwhile... I've had free access to &lt;a href="https://github.com/features/copilot" rel="noopener noreferrer" target="_blank"&gt;GitHub
+Copilot&lt;/a&gt; attached to &lt;a href="https://github.com/davep" rel="noopener noreferrer" target="_blank"&gt;my GitHub
+account&lt;/a&gt; for some time now, and I've hardly used
+it. At the same time -- the past few months especially -- I've been watching
+the rise of agents as coding tools, as well as the rise of advocates for
+them. Worse still, I've seen people I didn't expect to be advocates for
+giving up on coding turning to these tools and suddenly writing rationales
+in favour of them.&lt;/p&gt;
+&lt;p&gt;So, suddenly, the idea popped into my head: I should write my own static
+site generator that I'll use for my blog, and I should try and use GitHub
+Copilot to write 100% of the code, and documentation, and see how far I get.
+I doing so I might firm up my opinions about where we're all going with
+this.&lt;/p&gt;
+&lt;p&gt;The requirements were going to be pretty straightforward:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It should be a static site generator that turns Markdown files into a
+  website.&lt;/li&gt;
+&lt;li&gt;It should be blog-first in its design.&lt;/li&gt;
+&lt;li&gt;It should support non-blog-post pages too.&lt;/li&gt;
+&lt;li&gt;It should be written in Python.&lt;/li&gt;
+&lt;li&gt;It should use Jinja2 for templates.&lt;/li&gt;
+&lt;li&gt;It should have a better archive system than I ever got out of my Pelican
+  setup.&lt;/li&gt;
+&lt;li&gt;It should have categories, tags, and all the usual metadata stuff you'd
+  expect from a site where you're going to share content from.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Of course, the requirements would drift and expand as I went along and I had
+some new ideas.&lt;/p&gt;
+&lt;h2 id="getting-started"&gt;Getting started&lt;/h2&gt;
+&lt;p&gt;To kick things off, I created &lt;a href="https://github.com/davep/blogmore" rel="noopener noreferrer" target="_blank"&gt;my repo&lt;/a&gt;,
+and then opened Copilot and typed out a prompt to get things going. Here's
+what I typed:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Build a blog-oriented static site generation engine. It should be built in
+Python, the structure of the repository should match that of my preferences
+for Python projects these days (see https://github.com/davep/oldnews and
+take clues from the makefile; I like uv and ruff and Mypy, etc).&lt;/p&gt;
+&lt;p&gt;Important features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Everything is written in markdown&lt;/li&gt;
+&lt;li&gt;All metadata for a post should come from frontmatter&lt;/li&gt;
+&lt;li&gt;It should use Jinja2 for the output templates&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As you can see, rather than get very explicit about every single detail, I
+wanted to start out with a vague description of what I was aiming for. I did
+want to encourage it to try and build a Python repository how I normally
+would, so I pointed it at &lt;a href="https://github.com/davep/oldnews" rel="noopener noreferrer" target="_blank"&gt;OldNews&lt;/a&gt; in the
+hope that it might go and comprehend how I go about things; I also
+doubled-down in the importance of using &lt;code&gt;uv&lt;/code&gt; and &lt;code&gt;mypy&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The result of this was... &lt;a href="https://github.com/davep/blogmore/pull/1" rel="noopener noreferrer" target="_blank"&gt;actually
+impressive&lt;/a&gt;. As you'll see in that
+PR, to get to a point where it could be merged, there was some
+back-and-forth with Copilot to add things I hadn't thought of initially, and
+to get it to iron out some problems, but for the most part it delivered what
+I was after. Without question it delivered it faster than I would have.&lt;/p&gt;
+&lt;p&gt;Some early issues where I had to point out problems to Copilot included:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The order of posts on the home page wasn't obvious to me, and absolutely
+  wasn't reverse chronological order.&lt;/li&gt;
+&lt;li&gt;Footnotes were showing up kinda odd.&lt;/li&gt;
+&lt;li&gt;The main index for the blog was showing just posts titles, not the full
+  text of the article as you'd normally expect from a blog.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Nothing terrible, and it did get a lot of the heavy lifting done and done
+well, but it was worth noting that a lot of dev-testing/QA needed to be done
+to be confident about its work, and doing this picked up on little details
+that are important.&lt;/p&gt;
+&lt;h3 id="an-improvement-to-the-markdown"&gt;An improvement to the Markdown&lt;/h3&gt;
+&lt;p&gt;As an aside: during this first PR, I quickly noticed a problem where &lt;a href="https://github.com/davep/blogmore/pull/1#issuecomment-3904192942" rel="noopener noreferrer" target="_blank"&gt;I was
+getting this error when generating the site from the
+Markdown&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Error generating site: mapping values are not allowed in this context
+  in &amp;quot;&amp;lt;unicode string&amp;gt;&amp;quot;, line 3, column 15
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I just assumed it was some bug in the generated code and left Copilot to
+work it out. Instead it came back and educated me on something: &lt;a href="https://github.com/davep/blogmore/pull/1#issuecomment-3904197313" rel="noopener noreferrer" target="_blank"&gt;I actually
+had bad YAML in the frontmatter of some of my
+posts&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;This, by the way, wouldn't be the last time that Copilot found an issue with
+my input Markdown and so, having used it, improved my blog.&lt;/p&gt;
+&lt;h3 id="a-major-feature-from-a-simple-request"&gt;A major feature from a simple request&lt;/h3&gt;
+&lt;p&gt;Another problem I ran into quickly was that previewing the generated site
+wasn't working well at all; all I could do was browse the files in the
+filesystem. So, almost as an offhand comment, in the initial PR, &lt;a href="https://github.com/davep/blogmore/pull/1#issuecomment-3904205550" rel="noopener noreferrer" target="_blank"&gt;I
+asked&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Can we get a serve mode please so I can locally test the site?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Just like that, it went off &lt;a href="https://github.com/davep/blogmore/pull/1/changes/3449eec9b4df88e66eec0f6bba4369926ff1389e" rel="noopener noreferrer" target="_blank"&gt;and wrote a whole server for the
+project&lt;/a&gt;.
+While the server did need a lot of extra work to really work well&lt;sup id="fnref:126-1"&gt;&lt;a class="footnote-ref" href="#fn:126-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, the
+initial version was good enough to get me going and to iterate on the
+project as a whole.&lt;/p&gt;
+&lt;h2 id="the-main-workflow"&gt;The main workflow&lt;/h2&gt;
+&lt;p&gt;Having kicked off the project and having had some success with getting
+Copilot to deliver what I was asking for, I settled into a new but also
+familiar workflow. Whereas normally, when working on a personal project,
+I'll write an issue for myself, at some point pick it up and create a PR,
+review and test the PR myself then merge, now the workflow turned into:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Write an issue but do so in a way that when I assign it to Copilot it has
+  enough information to go off and do the work.&lt;/li&gt;
+&lt;li&gt;Wait for Copilot to get done.&lt;/li&gt;
+&lt;li&gt;Review the PR, making change requests etc.&lt;/li&gt;
+&lt;li&gt;Make any fixes that are easier for me to fix by hand that describe to
+  Copilot.&lt;/li&gt;
+&lt;li&gt;Merge.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In fact, the first step had some sub-steps to it too, I was finding. What I
+was doing, more than ever, was writing issues like I'd write sticky notes:
+with simple descriptions of a bug or a new feature. I'd then come back to
+them later and flesh them out into something that would act as a prompt for
+Copilot. I found myself doing this so often I ended up adding a "Needs
+prompt" label to my &lt;a href="https://github.com/davep/setup-standard-labels" rel="noopener noreferrer" target="_blank"&gt;usual set of issue
+labels&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;All of this made for an efficient workflow, and one where I could often get
+on with something else as Copilot worked on the latest job (I wasn't just
+working on other things on my computer; sometimes I'd be going off and doing
+things around the house while this happened), but... it wasn't fun. It was
+the opposite of what I've always enjoyed when it comes to building software.
+I got to dream up the ideas, I got to do the testing, I got to review the
+quality of the work, but I didn't get to actually lose myself in the flow
+state of coding.&lt;/p&gt;
+&lt;p&gt;One thing I've really come to understand during those 5 days of working on
+BlogMore was I &lt;em&gt;really&lt;/em&gt; missed getting lost in the flow state. Perhaps it's
+the issue to PR to review to merge cycle I used that amplified this, perhaps
+those who converse with an agent in their IDE or in some client application
+keep a sense of that (I might have to try that approach out), but this feels
+like a serious loss to me when it comes to writing code for personal
+enjoyment.&lt;/p&gt;
+&lt;h2 id="the-main-problems"&gt;The main problems&lt;/h2&gt;
+&lt;p&gt;I think it's fair to say that I've been surprised at just how well Copilot
+understood my (sometimes deliberately vague) requests, at how it generally
+managed to take some simple plain English and turn it into actual code that
+actually did what I wanted and, mostly, actually worked.&lt;/p&gt;
+&lt;p&gt;But my experiences over the past few days haven't been without their
+problems.&lt;/p&gt;
+&lt;h3 id="the-confidently-wrong-problem"&gt;The confidently wrong problem&lt;/h3&gt;
+&lt;p&gt;Hopefully we all recognise that, with time and experience, we learn where
+the mistakes are likely to turn up. Once you've written enough code you've
+also written plenty of bugs and been caught out by plenty of edge-cases that
+you get a spidey-sense for trouble as you write code. I feel that this kind
+of approach can be called cautiously confident.&lt;/p&gt;
+&lt;p&gt;Working with Copilot&lt;sup id="fnref:126-2"&gt;&lt;a class="footnote-ref" href="#fn:126-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, however, I often ran into the confidently wrong
+issue. On occasion I found it would proudly&lt;sup id="fnref:126-3"&gt;&lt;a class="footnote-ref" href="#fn:126-3"&gt;3&lt;/a&gt;&lt;/sup&gt; request review for some
+minor bit of work, proclaiming that it had done the thing or solved the
+problem, and I'd test it and nothing had materially changed. On a couple of
+occasions, when I pushed back, I found it actually doubting my review before
+finally digging in harder and eventually solving the issue.&lt;/p&gt;
+&lt;p&gt;I found that this took time and was rather tiring.&lt;/p&gt;
+&lt;p&gt;There were also times where it would do the same but not directly in respect
+to code. One example I can think of is when it was confident that Python
+3.14 was still a pre-release Python as of February 2026 (&lt;a href="https://devguide.python.org/versions/" rel="noopener noreferrer" target="_blank"&gt;it
+isn't&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;This problem alone concerns me; this is the sort of thing where people
+without a good sense for when the agent is probably bullshitting will get
+into serious trouble.&lt;/p&gt;
+&lt;h3 id="the-tries-too-hard-problem"&gt;The tries-too-hard problem&lt;/h3&gt;
+&lt;p&gt;A variation on the above problem works the other way: on at least one
+occasion I found that Copilot tried too hard to fix a problem that wasn't
+really its to fix.&lt;/p&gt;
+&lt;p&gt;In this case &lt;a href="https://github.com/davep/blogmore/pull/110" rel="noopener noreferrer" target="_blank"&gt;I was asking it to tidy up some validation issues in the RSS
+feed data&lt;/a&gt;. One of the main
+problems was root-relative URLs being in the content of the feed; for that
+they needed to be made absolute URLs. Copilot did an excellent job of fixing
+the problem, but one (and from what I could see only one) relative URL
+remained.&lt;/p&gt;
+&lt;p&gt;I &lt;a href="https://github.com/davep/blogmore/pull/110#issuecomment-3928257463" rel="noopener noreferrer" target="_blank"&gt;asked it to take a
+look&lt;/a&gt;
+and it took a real age to work over the issue. To its credit, it dug hard
+and it dug deep and it got to the bottom of the problem. The issue here
+though was it tried too hard because, having found the cause of the problem
+(a typo in my original Markdown, which had always existed) it went right
+ahead and built a workaround for this one specific broken link.&lt;/p&gt;
+&lt;p&gt;Now, while I'm a fan of &lt;a href="https://en.wikipedia.org/wiki/Robustness_principle" rel="noopener noreferrer" target="_blank"&gt;Postel's
+law&lt;/a&gt;, this is taking
+things a bit too far. If this was a real person I'd tasked with the job I
+would have expected and encouraged them to come back to me with their
+finding and say &lt;em&gt;"dude, the problem is in your input data"&lt;/em&gt; and I'd have
+fixed my original Markdown.&lt;/p&gt;
+&lt;p&gt;Here though it just went right ahead and added this one weird edge case as
+something to handle.&lt;/p&gt;
+&lt;p&gt;I think this is something to be concerned about and to keep an eye on too. I
+feel there's a danger in having the agent rabbit-hole a fix for a problem
+that it should simply have reported back to me for further discussion.&lt;/p&gt;
+&lt;h3 id="the-never-pushes-back-problem"&gt;The never-pushes-back problem&lt;/h3&gt;
+&lt;p&gt;Something I did find unsurprising but disconcerting was Copilot's
+unwillingness to push back, or at least defend its choices. Sometimes it
+would make a decision or a change and I'd simply ask it why it had done it
+that way, why it had made that choice. Rather than reply with its reasoning
+it would pretty much go &lt;em&gt;"yeah, my bad, let me do it a way you're probably
+going to find more pleasing"&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;A simple example of this is one time when I saw some code like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nd"&gt;@property&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;some_property&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;SomeValue&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;blogmore.utils&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;some_utility_function&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I'm not a fan of imports in the body of methods &lt;em&gt;unless&lt;/em&gt; there's a
+demonstrable performance reason. I asked Copilot why it had made this choice
+here and its reply was simply to say it had gone ahead and changed the code,
+moving the import to the top of the module.&lt;/p&gt;
+&lt;p&gt;I see plenty of people talk about how working with an agent is like
+pair-programming, but I think it misses out on what's got to be the biggest
+positive of that approach: the debate and exchange of ideas. This again
+feels like a concern to be mindful of, especially if someone less
+experienced is bringing code to you where they've used an agent as their
+pair buddy.&lt;/p&gt;
+&lt;h2 id="the-overall-impression"&gt;The overall impression&lt;/h2&gt;
+&lt;p&gt;Now I'm at the end of the process, and using the result of this experiment
+to write this post&lt;sup id="fnref:126-4"&gt;&lt;a class="footnote-ref" href="#fn:126-4"&gt;4&lt;/a&gt;&lt;/sup&gt;, I feel better informed about what these tools offer,
+and the pitfalls I need to be mindful of. Sometimes it wasn't a terrible way
+of working. For example, on the first day I started with this, at one point
+on a chilly but sunny Sunday afternoon, I was sat on the sofa, MacBook on
+lap, guiding an AI to write code, while petting the cat, watching the birds
+in the garden enjoy the content of the feeder, all while chatting with my
+partner.&lt;/p&gt;
+&lt;p&gt;That's not a terrible way to write code.&lt;/p&gt;
+&lt;p&gt;On the other hand, as I said earlier, I missed the flow state. I &lt;em&gt;love&lt;/em&gt;
+getting lost in code for a few hours and this is not that. I also found the
+constant loop of prompt, wait, review, test, repeat, really quite
+exhausting.&lt;/p&gt;
+&lt;p&gt;As best as I can describe it: it feels like the fast food of software
+development. It gets the job done, it gets it done fast, but it's really not
+fulfilling.&lt;/p&gt;
+&lt;p&gt;At the end of the process I have a really useful tool, 100% "built with AI",
+under my guidance, which lets me &lt;em&gt;actually&lt;/em&gt; be creative and build things I
+do create by hand. That's not a bad thing, I can see why this is appealing
+to people. On the other hand the process of building that tool was pretty
+boring and, for want of a better word... soulless.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;As I write this I have about 24 hours of access to GitHub Copilot Pro left.
+It seems this experiment used up my preview time and triggered a &lt;em&gt;"looks
+like you're having fun, now you need to decide if you want to buy it"&lt;/em&gt;
+response. That's fair.&lt;/p&gt;
+&lt;p&gt;So now I'm left trying to decide if I want to pay to keep it going. At the
+level I've been using it at for building BlogMore it looks like it costs
+$10/mth. That actually isn't terrible. I spend more than that on other
+hobbies and other forms of entertainment. So, if I can work within the
+bounds of that tier, it's affordable and probably worth it.&lt;/p&gt;
+&lt;p&gt;What I'm not sure about yet is if I want to. It's been educational, I can
+100% see how and where I'd use this for work (and would of course expect an
+employer to foot the bill for it or a similar tool), and I can also see how
+and where I might use it to quickly build a personal-use tool to enable
+something more human-creative.&lt;/p&gt;
+&lt;p&gt;Ultimately though I think I'm a little better informed thanks to this
+process, and better aware of some of the wins people claim, and also better
+informed so that I can be rightly incredulous when faced with some of the
+wilder claims.&lt;/p&gt;
+&lt;p&gt;Also, it'll help put &lt;a href="https://raindrop.io/davep/public-46742255/search/sort=-created&amp;amp;perpage=30&amp;amp;page=0&amp;amp;search=%23AI" rel="noopener noreferrer" target="_blank"&gt;some of my
+reading&lt;/a&gt;
+into perspective.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:126-1"&gt;
+&lt;p&gt;Amusingly I &lt;a href="https://github.com/davep/blogmore/issues/117" rel="noopener noreferrer" target="_blank"&gt;uncovered another
+bug&lt;/a&gt; while writing this
+post.&amp;#160;&lt;a class="footnote-backref" href="#fnref:126-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:126-2"&gt;
+&lt;p&gt;I keep saying Copilot, but I think it's probably more correct to say
+"Claude Sonnet 4.5" as that's what seemed to be at play under the hood,
+if I'm understanding things correctly.&amp;#160;&lt;a class="footnote-backref" href="#fnref:126-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:126-3"&gt;
+&lt;p&gt;Yes, of course that's an anthropomorphism, you'll find plenty of them
+in this article as it's hard not to write about the subject in any other
+way; it's an easy shortcut to explain some ideas&amp;#160;&lt;a class="footnote-backref" href="#fnref:126-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:126-4"&gt;
+&lt;p&gt;Actually I'm writing this post as I always do: in Emacs. But BlogMore
+is in the background serving a local copy of my blog so I can check it
+in the browser, and rebuilding it every time I save a change.&amp;#160;&lt;a class="footnote-backref" href="#fnref:126-4" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/02/20/five-days-with-copilot.html</guid>
+      <category>Coding</category>
+      <category>Python</category>
+      <category>Blogging</category>
+      <category>AI</category>
+      <category>LLM</category>
+      <category>Copilot</category>
+      <category>GitHub</category>
+      <category>BlogMore</category>
+      <pubDate>Fri, 20 Feb 2026 15:46:00 +0000</pubDate>
+    </item>
     <item>
       <title>OldNews - A terminal-based client for TheOldReader</title>
       <link>https://blog.davep.org/2026/02/11/oldnews.html</link>
@@ -139,7 +442,7 @@ spoke to me enough that I jotted it down and kept coming back to it and
 thinking about it. It was a phrase I couldn't get out of my head.&lt;/p&gt;
 &lt;p&gt;Around the same time I was also doing a lot of thinking about, and
 note-writing about, code reviews. Although I've been working in software
-development&lt;sup id="fnref:196-1"&gt;&lt;a class="footnote-ref" href="#fn:196-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for a few decades now (I started in July 1989), I was quite
+development&lt;sup id="fnref:197-1"&gt;&lt;a class="footnote-ref" href="#fn:197-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for a few decades now (I started in July 1989), I was quite
 late to the whole process of code review -- at least in the way we talk
 about it today. This mostly comes down to the fact that for a lot of my time
 I either worked in very small companies or I was the only developer around.&lt;/p&gt;
@@ -259,9 +562,9 @@ that thrive.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:196-1"&gt;
+&lt;li id="fn:197-1"&gt;
 &lt;p&gt;Or software engineering, if you prefer, but that's a whole other blog
-post I'll never get round to writing one day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:196-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+post I'll never get round to writing one day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:197-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -746,7 +1049,7 @@ they wanted me to build this as test of the framework, to essentially start
 out by employing me to create some Free Software that would help dogfood the
 library, but that seemed to get forgotten.&lt;/p&gt;
 &lt;p&gt;Fast forward to the start of this month and I finally felt it was time to
-tackle this. The result is &lt;a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank"&gt;AgiNG&lt;/a&gt;&lt;sup id="fnref:182-1"&gt;&lt;a class="footnote-ref" href="#fn:182-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+tackle this. The result is &lt;a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank"&gt;AgiNG&lt;/a&gt;&lt;sup id="fnref:183-1"&gt;&lt;a class="footnote-ref" href="#fn:183-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="AgiNG in action" src="https://blog.davep.org/attachments/2025/03/12/aging-textual-dark.png" /&gt;&lt;/p&gt;
 &lt;p&gt;As of v0.1.0 it has most of the features you'd expect from a usable Norton
 Guide reader, including:&lt;/p&gt;
@@ -816,11 +1119,11 @@ time goes on.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:182-1"&gt;
+&lt;li id="fn:183-1"&gt;
 &lt;p&gt;If you're wondering about the name, it's nothing more than a word that
 happens to have &lt;code&gt;NG&lt;/code&gt; in it, and also a mild pun about this being an
 ageing hypertext help system; with the spelling acknowledging Peter
-Norton's nationality.&amp;#160;&lt;a class="footnote-backref" href="#fnref:182-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+Norton's nationality.&amp;#160;&lt;a class="footnote-backref" href="#fnref:183-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1506,44 +1809,6 @@ $&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;ins
       <category>textual</category>
       <category>YouTube</category>
       <pubDate>Thu, 18 Apr 2024 16:46:00 +0100</pubDate>
-    </item>
-    <item>
-      <title>PISpy v0.6.0</title>
-      <link>https://blog.davep.org/2024/04/17/pispy-0-6-0.html</link>
-      <description>&lt;p&gt;Back in the very early days of the &lt;a href="https://blog.davep.org/2024/03/28/goodbye-textualize.html"&gt;Textual
-adventure&lt;/a&gt;,
-within the first month or so of working on the framework, we &lt;a href="https://textual.textualize.io/blog/2022/11/26/on-dog-food-the-original-metaverse-and-not-being-bored/" rel="noopener noreferrer" target="_blank"&gt;had a period
-of
-dogfooding&lt;/a&gt;.
-One of the projects I wrote during that time was a little tool &lt;a href="https://textual.textualize.io/blog/2022/12/08/be-the-keymaster/#pispy" rel="noopener noreferrer" target="_blank"&gt;I called
-PISpy&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The initial version was pretty much a quick hack; during that dogfooding
-period I did my best to try and develop a new project every couple of days.
-Since then I've let PISpy descend into &lt;a href="https://en.wikipedia.org/wiki/Software_rot" rel="noopener noreferrer" target="_blank"&gt;bit
-rot&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In the last week or so I've turned my attention back to it and made an
-effort to &lt;a href="https://www.youtube.com/watch?v=CepsN8TDq1E" rel="noopener noreferrer" target="_blank"&gt;tidy up the code&lt;/a&gt;,
-&lt;a href="https://www.youtube.com/watch?v=t2EUXA8RkN0" rel="noopener noreferrer" target="_blank"&gt;tidy it some more&lt;/a&gt;, &lt;a href="https://www.youtube.com/watch?v=2u5CfrgZWcc" rel="noopener noreferrer" target="_blank"&gt;and some
-more&lt;/a&gt;, and &lt;a href="https://www.youtube.com/watch?v=CDCvWCZx1AM" rel="noopener noreferrer" target="_blank"&gt;even some
-more&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This morning I put the finishing touches to these changes and released
-&lt;a href="https://github.com/davep/pispy/releases/tag/v0.6.0" rel="noopener noreferrer" target="_blank"&gt;v0.6.0&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/shorts/67xtMdstbx4" rel="noopener noreferrer" target="_blank"&gt;&lt;img alt="PISpy in action" src="https://blog.davep.org/attachments/2024/04/17/pispy-in-action.gif#centre" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;PISpy can be installed with &lt;code&gt;pip&lt;/code&gt; or (ideallty) &lt;code&gt;pipx&lt;/code&gt; &lt;a href="https://pypi.org/project/pispy-client/" rel="noopener noreferrer" target="_blank"&gt;from
-PyPI&lt;/a&gt;. It can also be installed with
-Homebrew by tapping &lt;code&gt;davep/homebrew&lt;/code&gt; and then installing &lt;code&gt;pispy&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;tap&lt;span class="w"&gt; &lt;/span&gt;davep/homebrew
-$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;pispy
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;a href="https://github.com/davep/pispy" rel="noopener noreferrer" target="_blank"&gt;source is available on GitHub&lt;/a&gt;.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2024/04/17/pispy-0-6-0.html</guid>
-      <category>Coding</category>
-      <category>Python</category>
-      <category>terminal</category>
-      <category>textual</category>
-      <category>YouTube</category>
-      <pubDate>Wed, 17 Apr 2024 11:30:00 +0100</pubDate>
     </item>
   </channel>
 </rss>

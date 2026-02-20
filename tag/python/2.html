@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="blogmore v0.6.0">
+    <meta name="generator" content="blogmore v0.7.0">
     <title>Tag: Python - davep</title>
     
     <link rel="icon" href="/icons/favicon.ico">
@@ -154,6 +154,150 @@
     <h1>Posts tagged with "Python"</h1>
     
     
+    
+    <article class="post-summary">
+        <h2><a href="/2025/03/12/aging.html">AgiNG</a></h2>
+        
+        <time datetime="2025-03-12T08:00:00+00:00">March 12, 2025 08:00:00 UTC</time>
+        
+        <div class="reading-time">4 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+        <div class="post-content">
+            <p><img alt="AgiNG" src="/attachments/2025/03/12/aging-social-banner.png" /></p>
+<p>It seems I really do still have this need to create new terminal-based
+projects at the moment. There's been
+<a href="/2025/01/03/braindrop.html">Braindrop</a>, then
+<a href="/2025/01/25/peplum.html">Peplum</a>, then after that came
+<a href="/2025/02/14/hike.html">Hike</a>. While I'm still tweaking and adding to them,
+and also using them to refine <a href="https://github.com/davep/textual-enhanced" rel="noopener noreferrer" target="_blank">a wee library I'm building up that forms the
+core of my latest apps</a>, I felt I
+still had this one app that I <em>needed</em> to finally build.</p>
+<p>Since the 1990s I've had this mild obsession with <a href="https://www.davep.org/norton-guides/" rel="noopener noreferrer" target="_blank">building tools for
+maintaining access to Norton Guide
+files</a>. I've written readers for
+<a href="https://github.com/davep/eg" rel="noopener noreferrer" target="_blank">GNU/Linux (which also works on macOS too)</a>,
+<a href="https://github.com/davep/eg-OS2" rel="noopener noreferrer" target="_blank">OS/2</a>,
+<a href="https://github.com/davep/weg" rel="noopener noreferrer" target="_blank">Windows</a>, <a href="https://github.com/davep/eg.el" rel="noopener noreferrer" target="_blank">GNU
+Emacs</a>, and also or the web (in multiple
+incarnations). Those builds have covered a few languages, including C, C++,
+Pascal, JavaScript and Emacs Lisp.</p>
+<p>I'd never written a Python library or application for it though.</p>
+<p>So when I first saw Textual mentioned in passing on Twitter a few years
+back, way back in the 0.1 days, I thought that could be the thing that would
+push me over the edge. In anticipation of that, back in 2021, I initially
+developed <a href="https://blog.davep.org/ngdb.py/"><code>ngdb.py</code></a>. This is a library
+that provides the core Norton Guide reading code for Python applications and
+could form the basis for other tools.</p>
+<p>As a test for this I then wrote <a href="https://github.com/davep/ng2web" rel="noopener noreferrer" target="_blank"><code>ng2web</code></a>
+(which works, but I think still needs a bit of tidying up -- something I'm
+aiming to do in the next few weeks).</p>
+<p>Meanwhile, the journey with Textual itself <a href="/2022/10/05/on-to-something-new-redux.html">kicked
+off</a>, happened, and <a href="/2024/03/28/goodbye-textualize.html">came to an
+end</a>; and yet somehow I'd never got
+round to building the thing I'd initially looked at Textual for: a
+terminal-based Norton Guide reader that looked nice and modern (by terminal
+standards). When I initially joined Textualize the owner had actually said
+they wanted me to build this as test of the framework, to essentially start
+out by employing me to create some Free Software that would help dogfood the
+library, but that seemed to get forgotten.</p>
+<p>Fast forward to the start of this month and I finally felt it was time to
+tackle this. The result is <a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank">AgiNG</a><sup id="fnref:183-1"><a class="footnote-ref" href="#fn:183-1">1</a></sup>.</p>
+<p><img alt="AgiNG in action" src="/attachments/2025/03/12/aging-textual-dark.png" /></p>
+<p>As of v0.1.0 it has most of the features you'd expect from a usable Norton
+Guide reader, including:</p>
+<ul>
+<li>An ability to add guide files to an in-application directory.</li>
+<li>The ability open and navigate a guide.</li>
+<li>Full see-also support, etc.</li>
+<li>Full translation of characters as were under MS-DOS into the terminal.</li>
+<li>The ability to copy entry text or source to the clipboard.</li>
+<li>The ability to copy save entry text or source to a file.</li>
+<li>Access to a guide's credits.</li>
+</ul>
+<p><img alt="AgiNG showing a long entry" src="/attachments/2025/03/12/aging-long-entry.png" /></p>
+<p>I still need to write some proper documentation for the application, but
+meanwhile all commands and key shortcuts can be discovered either via the
+help screen:</p>
+<p><img alt="AgiNG help" src="/attachments/2025/03/12/aging-help-screen.png" /></p>
+<p>or by pulling up the command palette:</p>
+<p><img alt="AgiNG command palette" src="/attachments/2025/03/12/aging-command-palette.png" /></p>
+<p>Hopefully the workings of the application will be fairly obvious to anyone
+who is familiar with Norton Guide files; if anything isn't making sense <a href="https://github.com/davep/aging/discussions/categories/q-a" rel="noopener noreferrer" target="_blank">I'm
+more than happy to answer
+questions</a> or
+<a href="https://github.com/davep/aging/discussions/categories/ideas" rel="noopener noreferrer" target="_blank">take suggestions for
+improvements</a>.</p>
+<p>One wee feature I want to call out, that I felt was important to add, was a
+"classic view" facility. The thing with Norton Guide files is they were
+mostly created in the very late 1980s and early-to-mid 1990s. People would
+often get creative with the colouring within them, but in many cases the
+colouring assumed the default Norton Guide application. Its colours were
+white text on a blue background. So sometimes other colouring was done
+assuming that background.</p>
+<p>You can see an example of this here, with an entry in a guide being viewed
+using the default <code>textual-dark</code> theme:</p>
+<p><img alt="Entry in textual-dark" src="/attachments/2025/03/12/textual-dark.png" /></p>
+<p>Notice the colouring in the syntax section. This is more obvious if the
+application is switched to one of the light themes:</p>
+<p><img alt="Entry in solarized-light" src="/attachments/2025/03/12/solarized-light.png" /></p>
+<p>With a nod to this issue in mind, I added the "classic view" for entries
+(which is a sticky setting -- turn it on and it stays on until you turn it
+off):</p>
+<p><img alt="Classic view in action" src="/attachments/2025/03/12/classic-view.png" /></p>
+<p>A little hard on the eyes, I think, but also filled with nostalgia!</p>
+<p>Talking of themes, all the usual application themes are available, here's a
+wee selection:</p>
+<p><img alt="Nord" src="/attachments/2025/03/12/aging-nord.png" />
+<img alt="Textual Light" src="/attachments/2025/03/12/aging-textual-light.png" />
+<img alt="Gruvbox" src="/attachments/2025/03/12/aging-gruvbox.png" />
+<img alt="Solarize Light" src="/attachments/2025/03/12/aging-solarized-light.png" />
+<img alt="Monokai" src="/attachments/2025/03/12/aging-monokai.png" /></p>
+<p>AgiNG is licensed GPL-3.0 and available <a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank">via
+GitHub</a> and also <a href="https://pypi.org/project/aging/" rel="noopener noreferrer" target="_blank">via
+PyPi</a>. If you have an environment that has
+<code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>aging
+</code></pre></div>
+
+<p>It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>aging</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>aging
+</code></pre></div>
+
+<p>Expect to see more updates in the near future; as with other recent projects
+this is very much something I'm going to be dabbling with and improving as
+time goes on.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:183-1">
+<p>If you're wondering about the name, it's nothing more than a word that
+happens to have <code>NG</code> in it, and also a mild pun about this being an
+ageing hypertext help system; with the spelling acknowledging Peter
+Norton's nationality.&#160;<a class="footnote-backref" href="#fnref:183-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/terminal.html" class="tag">terminal</a>
+            
+            <a href="/tag/textual.html" class="tag">textual</a>
+            
+            <a href="/tag/norton-guide.html" class="tag">Norton Guide</a>
+            
+        </div>
+        
+    </article>
     
     <article class="post-summary">
         <h2><a href="/2025/02/28/documenting-fspicker.html">Documenting textual-fspicker (plus a TIL)</a></h2>
@@ -965,66 +1109,6 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
 </code></pre></div>
 
 <p>The <a href="https://github.com/davep/pispy" rel="noopener noreferrer" target="_blank">source is available on GitHub</a>.</p>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/python.html" class="tag">Python</a>
-            
-            <a href="/tag/terminal.html" class="tag">terminal</a>
-            
-            <a href="/tag/textual.html" class="tag">textual</a>
-            
-            <a href="/tag/youtube.html" class="tag">YouTube</a>
-            
-        </div>
-        
-    </article>
-    
-    <article class="post-summary">
-        <h2><a href="/2024/04/09/tinboard-0-11-0.html">Tinboard v0.11.0</a></h2>
-        
-        <time datetime="2024-04-09T15:43:00+01:00">April 09, 2024 15:43:00 UTC+01:00</time>
-        
-        <div class="reading-time">1 min read</div>
-        
-        <div class="category">
-            <a href="/category/coding.html" class="category-link">Coding</a>
-        </div>
-        
-        <div class="post-content">
-            <p>While <a href="/2024/03/28/goodbye-textualize.html">my time working on Textual might have come to an
-end</a>, my time working <em>with</em> Textual
-hasn't. Three days back <a href="https://www.youtube.com/watch?v=U66oHFLWmG4" rel="noopener noreferrer" target="_blank">I experimented with Textual's newly-added "inline
-mode"</a>:</p>
-<div style="text-align: center;">
-    <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/U66oHFLWmG4?si=kCQba6vMoxpKMtBG"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-    </iframe>
-</div>
-
-<p>In doing so I extended the application so that it's possible to run
-<code>tinboard add</code> and quickly enter a new bookmark and then carry on in the
-terminal, without needing to "go fullscreen". I'll admit it's of limited
-use, but it seemed like a good shakedown of the feature and in working on it
-I was able to discover a couple of bugs
-(<a href="https://github.com/Textualize/textual/issues/4385" rel="noopener noreferrer" target="_blank">#4385</a>,
-<a href="https://github.com/Textualize/textual/issues/4403" rel="noopener noreferrer" target="_blank">#4403</a>).</p>
-<p>The effect of this is this:</p>
-<p><img alt="Tinboard inline addition in action" src="/attachments/2024/04/09/tinboard-inline-add.gif#centre" /></p>
-<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/" rel="noopener noreferrer" target="_blank">from
-PyPi</a>. It can also be installed with
-<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>tinboard</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>tinboard
-</code></pre></div>
-
-<p>The <a href="https://github.com/davep/tinboard" rel="noopener noreferrer" target="_blank">source is available on GitHub</a>.</p>
         </div>
         
         <div class="tags">

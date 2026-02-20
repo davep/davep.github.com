@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="blogmore v0.6.0">
+    <meta name="generator" content="blogmore v0.7.0">
     <title>Posts from 2026 - davep</title>
     
     <link rel="icon" href="/icons/favicon.ico">
@@ -156,6 +156,329 @@
     
     
     
+    
+    <article class="post-summary">
+        <h2><a href="/2026/02/20/five-days-with-copilot.html">Five days with Copilot</a></h2>
+        
+        <time datetime="2026-02-20T15:46:00+00:00">February 20, 2026 15:46:00 UTC</time>
+        
+        <div class="reading-time">14 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+        <div class="post-content">
+            <h2 id="another-itch-to-scratch">Another itch to scratch</h2>
+<p>As <a href="/2026/02/19/a-new-engine.html">I mentioned yesterday</a>, I've been a happy
+user of <a href="https://getpelican.com" rel="noopener noreferrer" target="_blank">Pelican</a> for a couple or so years now, but
+every so often there's a little change or tweak I'd like to make that
+requires diving deeper into the templates and the like and... I go <em>"eh,
+I'll look at it some time soon"</em>. Another thought that often goes through my
+head at those times is <em>"I should build my own static site generator that
+works exactly how I want"</em> -- because really any hacker with a blog has to
+do that at some point.</p>
+<p>Meanwhile... I've had free access to <a href="https://github.com/features/copilot" rel="noopener noreferrer" target="_blank">GitHub
+Copilot</a> attached to <a href="https://github.com/davep" rel="noopener noreferrer" target="_blank">my GitHub
+account</a> for some time now, and I've hardly used
+it. At the same time -- the past few months especially -- I've been watching
+the rise of agents as coding tools, as well as the rise of advocates for
+them. Worse still, I've seen people I didn't expect to be advocates for
+giving up on coding turning to these tools and suddenly writing rationales
+in favour of them.</p>
+<p>So, suddenly, the idea popped into my head: I should write my own static
+site generator that I'll use for my blog, and I should try and use GitHub
+Copilot to write 100% of the code, and documentation, and see how far I get.
+I doing so I might firm up my opinions about where we're all going with
+this.</p>
+<p>The requirements were going to be pretty straightforward:</p>
+<ul>
+<li>It should be a static site generator that turns Markdown files into a
+  website.</li>
+<li>It should be blog-first in its design.</li>
+<li>It should support non-blog-post pages too.</li>
+<li>It should be written in Python.</li>
+<li>It should use Jinja2 for templates.</li>
+<li>It should have a better archive system than I ever got out of my Pelican
+  setup.</li>
+<li>It should have categories, tags, and all the usual metadata stuff you'd
+  expect from a site where you're going to share content from.</li>
+</ul>
+<p>Of course, the requirements would drift and expand as I went along and I had
+some new ideas.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>To kick things off, I created <a href="https://github.com/davep/blogmore" rel="noopener noreferrer" target="_blank">my repo</a>,
+and then opened Copilot and typed out a prompt to get things going. Here's
+what I typed:</p>
+<blockquote>
+<p>Build a blog-oriented static site generation engine. It should be built in
+Python, the structure of the repository should match that of my preferences
+for Python projects these days (see https://github.com/davep/oldnews and
+take clues from the makefile; I like uv and ruff and Mypy, etc).</p>
+<p>Important features:</p>
+<ul>
+<li>Everything is written in markdown</li>
+<li>All metadata for a post should come from frontmatter</li>
+<li>It should use Jinja2 for the output templates</li>
+</ul>
+</blockquote>
+<p>As you can see, rather than get very explicit about every single detail, I
+wanted to start out with a vague description of what I was aiming for. I did
+want to encourage it to try and build a Python repository how I normally
+would, so I pointed it at <a href="https://github.com/davep/oldnews" rel="noopener noreferrer" target="_blank">OldNews</a> in the
+hope that it might go and comprehend how I go about things; I also
+doubled-down in the importance of using <code>uv</code> and <code>mypy</code>.</p>
+<p>The result of this was... <a href="https://github.com/davep/blogmore/pull/1" rel="noopener noreferrer" target="_blank">actually
+impressive</a>. As you'll see in that
+PR, to get to a point where it could be merged, there was some
+back-and-forth with Copilot to add things I hadn't thought of initially, and
+to get it to iron out some problems, but for the most part it delivered what
+I was after. Without question it delivered it faster than I would have.</p>
+<p>Some early issues where I had to point out problems to Copilot included:</p>
+<ul>
+<li>The order of posts on the home page wasn't obvious to me, and absolutely
+  wasn't reverse chronological order.</li>
+<li>Footnotes were showing up kinda odd.</li>
+<li>The main index for the blog was showing just posts titles, not the full
+  text of the article as you'd normally expect from a blog.</li>
+</ul>
+<p>Nothing terrible, and it did get a lot of the heavy lifting done and done
+well, but it was worth noting that a lot of dev-testing/QA needed to be done
+to be confident about its work, and doing this picked up on little details
+that are important.</p>
+<h3 id="an-improvement-to-the-markdown">An improvement to the Markdown</h3>
+<p>As an aside: during this first PR, I quickly noticed a problem where <a href="https://github.com/davep/blogmore/pull/1#issuecomment-3904192942" rel="noopener noreferrer" target="_blank">I was
+getting this error when generating the site from the
+Markdown</a>:</p>
+<div class="highlight"><pre><span></span><code>Error generating site: mapping values are not allowed in this context
+  in &quot;&lt;unicode string&gt;&quot;, line 3, column 15
+</code></pre></div>
+
+<p>I just assumed it was some bug in the generated code and left Copilot to
+work it out. Instead it came back and educated me on something: <a href="https://github.com/davep/blogmore/pull/1#issuecomment-3904197313" rel="noopener noreferrer" target="_blank">I actually
+had bad YAML in the frontmatter of some of my
+posts</a>!</p>
+<p>This, by the way, wouldn't be the last time that Copilot found an issue with
+my input Markdown and so, having used it, improved my blog.</p>
+<h3 id="a-major-feature-from-a-simple-request">A major feature from a simple request</h3>
+<p>Another problem I ran into quickly was that previewing the generated site
+wasn't working well at all; all I could do was browse the files in the
+filesystem. So, almost as an offhand comment, in the initial PR, <a href="https://github.com/davep/blogmore/pull/1#issuecomment-3904205550" rel="noopener noreferrer" target="_blank">I
+asked</a>:</p>
+<blockquote>
+<p>Can we get a serve mode please so I can locally test the site?</p>
+</blockquote>
+<p>Just like that, it went off <a href="https://github.com/davep/blogmore/pull/1/changes/3449eec9b4df88e66eec0f6bba4369926ff1389e" rel="noopener noreferrer" target="_blank">and wrote a whole server for the
+project</a>.
+While the server did need a lot of extra work to really work well<sup id="fnref:126-1"><a class="footnote-ref" href="#fn:126-1">1</a></sup>, the
+initial version was good enough to get me going and to iterate on the
+project as a whole.</p>
+<h2 id="the-main-workflow">The main workflow</h2>
+<p>Having kicked off the project and having had some success with getting
+Copilot to deliver what I was asking for, I settled into a new but also
+familiar workflow. Whereas normally, when working on a personal project,
+I'll write an issue for myself, at some point pick it up and create a PR,
+review and test the PR myself then merge, now the workflow turned into:</p>
+<ul>
+<li>Write an issue but do so in a way that when I assign it to Copilot it has
+  enough information to go off and do the work.</li>
+<li>Wait for Copilot to get done.</li>
+<li>Review the PR, making change requests etc.</li>
+<li>Make any fixes that are easier for me to fix by hand that describe to
+  Copilot.</li>
+<li>Merge.</li>
+</ul>
+<p>In fact, the first step had some sub-steps to it too, I was finding. What I
+was doing, more than ever, was writing issues like I'd write sticky notes:
+with simple descriptions of a bug or a new feature. I'd then come back to
+them later and flesh them out into something that would act as a prompt for
+Copilot. I found myself doing this so often I ended up adding a "Needs
+prompt" label to my <a href="https://github.com/davep/setup-standard-labels" rel="noopener noreferrer" target="_blank">usual set of issue
+labels</a>.</p>
+<p>All of this made for an efficient workflow, and one where I could often get
+on with something else as Copilot worked on the latest job (I wasn't just
+working on other things on my computer; sometimes I'd be going off and doing
+things around the house while this happened), but... it wasn't fun. It was
+the opposite of what I've always enjoyed when it comes to building software.
+I got to dream up the ideas, I got to do the testing, I got to review the
+quality of the work, but I didn't get to actually lose myself in the flow
+state of coding.</p>
+<p>One thing I've really come to understand during those 5 days of working on
+BlogMore was I <em>really</em> missed getting lost in the flow state. Perhaps it's
+the issue to PR to review to merge cycle I used that amplified this, perhaps
+those who converse with an agent in their IDE or in some client application
+keep a sense of that (I might have to try that approach out), but this feels
+like a serious loss to me when it comes to writing code for personal
+enjoyment.</p>
+<h2 id="the-main-problems">The main problems</h2>
+<p>I think it's fair to say that I've been surprised at just how well Copilot
+understood my (sometimes deliberately vague) requests, at how it generally
+managed to take some simple plain English and turn it into actual code that
+actually did what I wanted and, mostly, actually worked.</p>
+<p>But my experiences over the past few days haven't been without their
+problems.</p>
+<h3 id="the-confidently-wrong-problem">The confidently wrong problem</h3>
+<p>Hopefully we all recognise that, with time and experience, we learn where
+the mistakes are likely to turn up. Once you've written enough code you've
+also written plenty of bugs and been caught out by plenty of edge-cases that
+you get a spidey-sense for trouble as you write code. I feel that this kind
+of approach can be called cautiously confident.</p>
+<p>Working with Copilot<sup id="fnref:126-2"><a class="footnote-ref" href="#fn:126-2">2</a></sup>, however, I often ran into the confidently wrong
+issue. On occasion I found it would proudly<sup id="fnref:126-3"><a class="footnote-ref" href="#fn:126-3">3</a></sup> request review for some
+minor bit of work, proclaiming that it had done the thing or solved the
+problem, and I'd test it and nothing had materially changed. On a couple of
+occasions, when I pushed back, I found it actually doubting my review before
+finally digging in harder and eventually solving the issue.</p>
+<p>I found that this took time and was rather tiring.</p>
+<p>There were also times where it would do the same but not directly in respect
+to code. One example I can think of is when it was confident that Python
+3.14 was still a pre-release Python as of February 2026 (<a href="https://devguide.python.org/versions/" rel="noopener noreferrer" target="_blank">it
+isn't</a>).</p>
+<p>This problem alone concerns me; this is the sort of thing where people
+without a good sense for when the agent is probably bullshitting will get
+into serious trouble.</p>
+<h3 id="the-tries-too-hard-problem">The tries-too-hard problem</h3>
+<p>A variation on the above problem works the other way: on at least one
+occasion I found that Copilot tried too hard to fix a problem that wasn't
+really its to fix.</p>
+<p>In this case <a href="https://github.com/davep/blogmore/pull/110" rel="noopener noreferrer" target="_blank">I was asking it to tidy up some validation issues in the RSS
+feed data</a>. One of the main
+problems was root-relative URLs being in the content of the feed; for that
+they needed to be made absolute URLs. Copilot did an excellent job of fixing
+the problem, but one (and from what I could see only one) relative URL
+remained.</p>
+<p>I <a href="https://github.com/davep/blogmore/pull/110#issuecomment-3928257463" rel="noopener noreferrer" target="_blank">asked it to take a
+look</a>
+and it took a real age to work over the issue. To its credit, it dug hard
+and it dug deep and it got to the bottom of the problem. The issue here
+though was it tried too hard because, having found the cause of the problem
+(a typo in my original Markdown, which had always existed) it went right
+ahead and built a workaround for this one specific broken link.</p>
+<p>Now, while I'm a fan of <a href="https://en.wikipedia.org/wiki/Robustness_principle" rel="noopener noreferrer" target="_blank">Postel's
+law</a>, this is taking
+things a bit too far. If this was a real person I'd tasked with the job I
+would have expected and encouraged them to come back to me with their
+finding and say <em>"dude, the problem is in your input data"</em> and I'd have
+fixed my original Markdown.</p>
+<p>Here though it just went right ahead and added this one weird edge case as
+something to handle.</p>
+<p>I think this is something to be concerned about and to keep an eye on too. I
+feel there's a danger in having the agent rabbit-hole a fix for a problem
+that it should simply have reported back to me for further discussion.</p>
+<h3 id="the-never-pushes-back-problem">The never-pushes-back problem</h3>
+<p>Something I did find unsurprising but disconcerting was Copilot's
+unwillingness to push back, or at least defend its choices. Sometimes it
+would make a decision or a change and I'd simply ask it why it had done it
+that way, why it had made that choice. Rather than reply with its reasoning
+it would pretty much go <em>"yeah, my bad, let me do it a way you're probably
+going to find more pleasing"</em>.</p>
+<p>A simple example of this is one time when I saw some code like this:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@property</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">some_property</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SomeValue</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">blogmore.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">some_utility_function</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<p>I'm not a fan of imports in the body of methods <em>unless</em> there's a
+demonstrable performance reason. I asked Copilot why it had made this choice
+here and its reply was simply to say it had gone ahead and changed the code,
+moving the import to the top of the module.</p>
+<p>I see plenty of people talk about how working with an agent is like
+pair-programming, but I think it misses out on what's got to be the biggest
+positive of that approach: the debate and exchange of ideas. This again
+feels like a concern to be mindful of, especially if someone less
+experienced is bringing code to you where they've used an agent as their
+pair buddy.</p>
+<h2 id="the-overall-impression">The overall impression</h2>
+<p>Now I'm at the end of the process, and using the result of this experiment
+to write this post<sup id="fnref:126-4"><a class="footnote-ref" href="#fn:126-4">4</a></sup>, I feel better informed about what these tools offer,
+and the pitfalls I need to be mindful of. Sometimes it wasn't a terrible way
+of working. For example, on the first day I started with this, at one point
+on a chilly but sunny Sunday afternoon, I was sat on the sofa, MacBook on
+lap, guiding an AI to write code, while petting the cat, watching the birds
+in the garden enjoy the content of the feeder, all while chatting with my
+partner.</p>
+<p>That's not a terrible way to write code.</p>
+<p>On the other hand, as I said earlier, I missed the flow state. I <em>love</em>
+getting lost in code for a few hours and this is not that. I also found the
+constant loop of prompt, wait, review, test, repeat, really quite
+exhausting.</p>
+<p>As best as I can describe it: it feels like the fast food of software
+development. It gets the job done, it gets it done fast, but it's really not
+fulfilling.</p>
+<p>At the end of the process I have a really useful tool, 100% "built with AI",
+under my guidance, which lets me <em>actually</em> be creative and build things I
+do create by hand. That's not a bad thing, I can see why this is appealing
+to people. On the other hand the process of building that tool was pretty
+boring and, for want of a better word... soulless.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>As I write this I have about 24 hours of access to GitHub Copilot Pro left.
+It seems this experiment used up my preview time and triggered a <em>"looks
+like you're having fun, now you need to decide if you want to buy it"</em>
+response. That's fair.</p>
+<p>So now I'm left trying to decide if I want to pay to keep it going. At the
+level I've been using it at for building BlogMore it looks like it costs
+$10/mth. That actually isn't terrible. I spend more than that on other
+hobbies and other forms of entertainment. So, if I can work within the
+bounds of that tier, it's affordable and probably worth it.</p>
+<p>What I'm not sure about yet is if I want to. It's been educational, I can
+100% see how and where I'd use this for work (and would of course expect an
+employer to foot the bill for it or a similar tool), and I can also see how
+and where I might use it to quickly build a personal-use tool to enable
+something more human-creative.</p>
+<p>Ultimately though I think I'm a little better informed thanks to this
+process, and better aware of some of the wins people claim, and also better
+informed so that I can be rightly incredulous when faced with some of the
+wilder claims.</p>
+<p>Also, it'll help put <a href="https://raindrop.io/davep/public-46742255/search/sort=-created&amp;perpage=30&amp;page=0&amp;search=%23AI" rel="noopener noreferrer" target="_blank">some of my
+reading</a>
+into perspective.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:126-1">
+<p>Amusingly I <a href="https://github.com/davep/blogmore/issues/117" rel="noopener noreferrer" target="_blank">uncovered another
+bug</a> while writing this
+post.&#160;<a class="footnote-backref" href="#fnref:126-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:126-2">
+<p>I keep saying Copilot, but I think it's probably more correct to say
+"Claude Sonnet 4.5" as that's what seemed to be at play under the hood,
+if I'm understanding things correctly.&#160;<a class="footnote-backref" href="#fnref:126-2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:126-3">
+<p>Yes, of course that's an anthropomorphism, you'll find plenty of them
+in this article as it's hard not to write about the subject in any other
+way; it's an easy shortcut to explain some ideas&#160;<a class="footnote-backref" href="#fnref:126-3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:126-4">
+<p>Actually I'm writing this post as I always do: in Emacs. But BlogMore
+is in the background serving a local copy of my blog so I can check it
+in the browser, and rebuilding it every time I save a change.&#160;<a class="footnote-backref" href="#fnref:126-4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/blogging.html" class="tag">Blogging</a>
+            
+            <a href="/tag/ai.html" class="tag">AI</a>
+            
+            <a href="/tag/llm.html" class="tag">LLM</a>
+            
+            <a href="/tag/copilot.html" class="tag">Copilot</a>
+            
+            <a href="/tag/github.html" class="tag">GitHub</a>
+            
+            <a href="/tag/blogmore.html" class="tag">BlogMore</a>
+            
+        </div>
+        
+    </article>
     
     <article class="post-summary">
         <h2><a href="/2026/02/19/a-new-engine.html">A new engine</a></h2>
@@ -383,7 +706,7 @@ spoke to me enough that I jotted it down and kept coming back to it and
 thinking about it. It was a phrase I couldn't get out of my head.</p>
 <p>Around the same time I was also doing a lot of thinking about, and
 note-writing about, code reviews. Although I've been working in software
-development<sup id="fnref:196-1"><a class="footnote-ref" href="#fn:196-1">1</a></sup> for a few decades now (I started in July 1989), I was quite
+development<sup id="fnref:197-1"><a class="footnote-ref" href="#fn:197-1">1</a></sup> for a few decades now (I started in July 1989), I was quite
 late to the whole process of code review -- at least in the way we talk
 about it today. This mostly comes down to the fact that for a lot of my time
 I either worked in very small companies or I was the only developer around.</p>
@@ -503,9 +826,9 @@ that thrive.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:196-1">
+<li id="fn:197-1">
 <p>Or software engineering, if you prefer, but that's a whole other blog
-post I'll never get round to writing one day.&#160;<a class="footnote-backref" href="#fnref:196-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+post I'll never get round to writing one day.&#160;<a class="footnote-backref" href="#fnref:197-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="blogmore v0.6.0">
+    <meta name="generator" content="blogmore v0.7.0">
     <title>Category: Coding - davep</title>
     
     <link rel="icon" href="/icons/favicon.ico">
@@ -154,6 +154,98 @@
     <h1>Posts in category "Coding"</h1>
     
     
+    
+    <article class="post-summary">
+        <h2><a href="/2023/07/03/making-my-github-banner.html">A new GitHub profile README</a></h2>
+        
+        <time datetime="2023-07-03T08:15:00+01:00">July 03, 2023 08:15:00 UTC+01:00</time>
+        
+        <div class="reading-time">2 min read</div>
+        <div class="post-content">
+            <p><img alt="My new GitHub banner" src="https://raw.githubusercontent.com/davep/davep/main/davep.svg" /></p>
+<p>Ever since GitHub introduced the <a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme" rel="noopener noreferrer" target="_blank">profile
+README</a><sup id="fnref:151-1"><a class="footnote-ref" href="#fn:151-1">1</a></sup>
+I've had a massively low-effort one in place. I made the repo, quickly wrote
+the file, and then sort of forgot about it. Well, I didn't so much forget as
+just keep looking at it and thinking "I should do something better with that
+one day".</p>
+<p>Thing is, while there are lots of fancy approaches out there, and lots of
+neat generator tools and the like... they just weren't for me.</p>
+<p>Then yesterday, over my second morning coffee, after <a href="/2023/07/02/catching-up.html">getting my blog
+environment up and going again</a>, I had an
+idea. It could be cool to use <a href="https://textual.textualize.io/api/app/#textual.app.App.save_screenshot" rel="noopener noreferrer" target="_blank">Textual's screenshot
+facility</a>
+to make something terminal-themed! I mean, while it's not <em>all</em> I am these
+days, so much of what I'm doing right now is aimed at the terminal.</p>
+<p>So... what to do? Then I thought it could be cool to knock up some sort of
+login screen type thing; with a banner. One visit to an online large
+terminal text generator site later, I had some banner text. All that was
+left was to write <a href="https://github.com/davep/davep/blob/main/make_banner.py" rel="noopener noreferrer" target="_blank">a simple Textual application to create the
+"screen"</a>.</p>
+<p>The main layout is simple enough:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compose</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComposeResult</span><span class="p">:</span>
+    <span class="k">yield</span> <span class="n">Label</span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="s2">&quot;banner&quot;</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">Label</span><span class="p">(</span><span class="n">PRATTLE</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;github.com/davep login: [reverse] [/]&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>where <code>NAME</code> contains the banner and <code>PRATTLE</code> contains the "login message".
+With some <a href="https://textual.textualize.io/guide/CSS/" rel="noopener noreferrer" target="_blank">Textual CSS</a> sprinkled
+over it to give the exact layout and colour I wanted, all that was left was
+to make the snapshot. This was easy enough too.</p>
+<p>While the whole thing isn't fully documented just yet, Textual does have <a href="https://textual.textualize.io/api/app/#textual.app.App.run_test" rel="noopener noreferrer" target="_blank">a
+great tool for automatically running an application and interacting with
+it</a>; that
+meant I could easily write a function to load up my app and save the
+screenshot:</p>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">make_banner</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">GitHubBannerApp</span><span class="p">()</span><span class="o">.</span><span class="n">run_test</span><span class="p">()</span> <span class="k">as</span> <span class="n">pilot</span><span class="p">:</span>
+        <span class="n">pilot</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">save_screenshot</span><span class="p">(</span><span class="s2">&quot;davep.svg&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Of course, that needs running async, but that's simple enough:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">make_banner</span><span class="p">())</span>
+</code></pre></div>
+
+<p>Throw in a <code>Makefile</code> so I don't forget what I'm supposed to run:</p>
+<div class="highlight"><pre><span></span><code>.PHONY: all
+all:
+    pipenv run python make_banner.py
+</code></pre></div>
+
+<p>and that's it! Job done!</p>
+<p>From here onward I guess I could have some real fun with this. It would be
+simple enough I guess to modify the code so that it changes what's displayed
+over time; perhaps show a "last login" value that relates to recently
+activity or something; any number of things; and then run it in a cron job
+and update the repository.</p>
+<p>For now though... I'll stick with keeping things nice and simple.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:151-1">
+<p>It was actually kind of annoying when they introduced it because the
+repo it uses is named after your user name. I already had a <code>davep</code>
+repo: it was a private repo where I was slowly working on a (now
+abandoned, I'll start it again some day I'm sure) ground-up rewrite of
+my <code>davep.org</code> website.&#160;<a class="footnote-backref" href="#fnref:151-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/github.html" class="tag">GitHub</a>
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/textual.html" class="tag">Textual</a>
+            
+        </div>
+        
+    </article>
     
     <article class="post-summary">
         <h2><a href="/2022/10/06/build-in-public-even-in-private.html">Build in public, even in private</a></h2>
@@ -1246,70 +1338,6 @@ problem that someone else has and welcomes help with.</p>
             <a href="/tag/coding.html" class="tag">Coding</a>
             
             <a href="/tag/learning.html" class="tag">learning</a>
-            
-        </div>
-        
-    </article>
-    
-    <article class="post-summary">
-        <h2><a href="/2019/10/20/fg-fish.html">gh.fish -- Quickly visit a repo&#39;s forge</a></h2>
-        
-        <time datetime="2019-10-20T13:15:00+01:00">October 20, 2019 13:15:00 UTC+01:00</time>
-        
-        <div class="reading-time">1 min read</div>
-        <div class="post-content">
-            <p>These days <a href="https://fishshell.com/" rel="noopener noreferrer" target="_blank">fish</a> is my shell of choice. I started
-out with <a href="https://www.gnu.org/software/bash/" rel="noopener noreferrer" target="_blank">bash</a> back in the 1990s, went
-through a bit of a
-<a href="https://www.zsh.org/" rel="noopener noreferrer" target="_blank">zsh</a>/<a href="https://ohmyz.sh/" rel="noopener noreferrer" target="_blank">oh-my-zsh</a> phase, but
-earlier this year finally settled on fish.</p>
-<p>At some point I might write a post about my fish config, and why fish works
-well for me. But that's an idea for another time.</p>
-<p>In this post I thought I'd share a little snippet of code that can come in
-handy now and again.</p>
-<p>Sometimes I find myself inside a git repo, in the shell, and I want to get
-to the "<a href="https://en.wikipedia.org/wiki/Forge_%28software%29" rel="noopener noreferrer" target="_blank">forge</a>" for
-that repo. This is most often either on <a href="https://github.com/" rel="noopener noreferrer" target="_blank">GitHub</a>, or in
-a <a href="https://about.gitlab.com/install/" rel="noopener noreferrer" target="_blank">company-local installation of GitLab</a>.
-To get there quickly I wrote
-<a href="https://gist.github.com/davep/3bac3b30e45a3560c265150e609219db" rel="noopener noreferrer" target="_blank"><code>gh.fish</code></a>:</p>
-<div class="highlight"><pre><span></span><code>##############################################################################
-# Attempt go visit the origin hub for the current repo.
-
-function gh -d &quot;Visit the repo in its origin hub&quot;
-
-    # Check that there is some sort of origin.
-    set origin (git config --get remote.origin.url)
-
-    # If we didn&#39;t get anything...
-    if not test &quot;$origin&quot;
-        # ...complain and exit.
-        echo &quot;This doesn&#39;t appear to be a git repo with an origin&quot;
-        return 1
-    end
-
-    # Open in the browser.
-    open &quot;https://&quot;(string replace &quot;:&quot; &quot;/&quot; (string replace -r &#39;\.git$&#39; &quot;&quot; (string split &quot;@&quot; $origin)[ 2 ]))
-
-end
-
-### gh.fish ends here
-</code></pre></div>
-
-<p>The idea is pretty simple: I see if the repo has an origin of some
-description and, if it has, I <a href="https://fishshell.com/docs/current/commands.html#string" rel="noopener noreferrer" target="_blank">slice and dice
-it</a> into something
-that looks like the URL you'd expect to find for a GitHub or GitLab repo.
-Finally I use
-<a href="https://fishshell.com/docs/current/commands.html#open" rel="noopener noreferrer" target="_blank"><code>open</code></a> to open the
-URL in the environment's browser of choice.</p>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/fish.html" class="tag">fish</a>
-            
-            <a href="/tag/git.html" class="tag">git</a>
             
         </div>
         

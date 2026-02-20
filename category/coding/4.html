@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="blogmore v0.6.0">
+    <meta name="generator" content="blogmore v0.7.0">
     <title>Category: Coding - davep</title>
     
     <link rel="icon" href="/icons/favicon.ico">
@@ -154,6 +154,58 @@
     <h1>Posts in category "Coding"</h1>
     
     
+    
+    <article class="post-summary">
+        <h2><a href="/2023/12/23/tinboard-0-3-0.html">Tinboard v0.3.0</a></h2>
+        
+        <time datetime="2023-12-23T08:49:00+00:00">December 23, 2023 08:49:00 UTC</time>
+        
+        <div class="reading-time">2 min read</div>
+        <div class="post-content">
+            <p>It looks like I'm in a wee period of small incremental changes and release
+of <a href="/2023/12/19/tinboard.html">Tinboard</a>. This morning I've release v0.3.0,
+which has a couple of small but useful changes.</p>
+<p>The first is more of a cosmetic thing. The <a href="https://textual.textualize.io/widgets/footer/" rel="noopener noreferrer" target="_blank"><code>Footer</code> widget in
+Textual</a> is handy for showing
+the current keyboard bindings in a given context, but it can get massively
+cluttered very quickly (we do have plans to revisit this); in Tinboard this
+clutter creep was turning into a thing.</p>
+<p>So I've removed almost every binding from being displayed in the <code>Footer</code>,
+and have placed an emphasis on the user pressing <kbd>F1</kbd> to get
+context-sensitive help, and have also left the most useful bindings in the
+footer with very minimal descriptions.</p>
+<p>Given that this is a keyboard-first application, and I've tried to make the
+bindings easy to remember, I think it's going to make more sense to do it
+like this, and will make for a tidier UI too.</p>
+<p>There is one disadvantage here of course: by removing the display of
+bindings from the footer, the mouse-heavy user becomes disadvantaged; if a
+particular binding doesn't have a UI feature that favours the mouse to cover
+it too there's no way to initiate that action with the mouse. I'm going to
+think on this a little. Again, Tinboard is designed for <em>me</em> first and
+foremost, and my preference is to be keyboard-first when using the
+application; but finding a good compromise would be advantageous when it
+comes to advising people asking about Textual application design.</p>
+<p>The second change is a simple but useful one. I've added a toggle of the
+sort order of the tags menu in the left-hand column (bound to
+<kbd>F4</kbd>). Right now it simply toggles between alphabetical order, or
+bookmark count order (most to least). At some point I might make it more of
+a cycle than a toggle, but this serves my purposes for now.</p>
+<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/" rel="noopener noreferrer" target="_blank">from
+PyPi</a>. The <a href="https://github.com/davep/tinboard" rel="noopener noreferrer" target="_blank">source is available on
+GitHub</a>.</p>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/terminal.html" class="tag">terminal</a>
+            
+            <a href="/tag/textual.html" class="tag">textual</a>
+            
+        </div>
+        
+    </article>
     
     <article class="post-summary">
         <h2><a href="/2023/12/21/tinboard-0-2-0.html">Tinboard v0.2.0</a></h2>
@@ -748,98 +800,6 @@ stuff I know I won't need and don't want.</p>
             <a href="/tag/html.html" class="tag">html</a>
             
             <a href="/tag/web.html" class="tag">web</a>
-            
-        </div>
-        
-    </article>
-    
-    <article class="post-summary">
-        <h2><a href="/2023/07/03/making-my-github-banner.html">A new GitHub profile README</a></h2>
-        
-        <time datetime="2023-07-03T08:15:00+01:00">July 03, 2023 08:15:00 UTC+01:00</time>
-        
-        <div class="reading-time">2 min read</div>
-        <div class="post-content">
-            <p><img alt="My new GitHub banner" src="https://raw.githubusercontent.com/davep/davep/main/davep.svg" /></p>
-<p>Ever since GitHub introduced the <a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme" rel="noopener noreferrer" target="_blank">profile
-README</a><sup id="fnref:150-1"><a class="footnote-ref" href="#fn:150-1">1</a></sup>
-I've had a massively low-effort one in place. I made the repo, quickly wrote
-the file, and then sort of forgot about it. Well, I didn't so much forget as
-just keep looking at it and thinking "I should do something better with that
-one day".</p>
-<p>Thing is, while there are lots of fancy approaches out there, and lots of
-neat generator tools and the like... they just weren't for me.</p>
-<p>Then yesterday, over my second morning coffee, after <a href="/2023/07/02/catching-up.html">getting my blog
-environment up and going again</a>, I had an
-idea. It could be cool to use <a href="https://textual.textualize.io/api/app/#textual.app.App.save_screenshot" rel="noopener noreferrer" target="_blank">Textual's screenshot
-facility</a>
-to make something terminal-themed! I mean, while it's not <em>all</em> I am these
-days, so much of what I'm doing right now is aimed at the terminal.</p>
-<p>So... what to do? Then I thought it could be cool to knock up some sort of
-login screen type thing; with a banner. One visit to an online large
-terminal text generator site later, I had some banner text. All that was
-left was to write <a href="https://github.com/davep/davep/blob/main/make_banner.py" rel="noopener noreferrer" target="_blank">a simple Textual application to create the
-"screen"</a>.</p>
-<p>The main layout is simple enough:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compose</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComposeResult</span><span class="p">:</span>
-    <span class="k">yield</span> <span class="n">Label</span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="s2">&quot;banner&quot;</span><span class="p">)</span>
-    <span class="k">yield</span> <span class="n">Label</span><span class="p">(</span><span class="n">PRATTLE</span><span class="p">)</span>
-    <span class="k">yield</span> <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;github.com/davep login: [reverse] [/]&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<p>where <code>NAME</code> contains the banner and <code>PRATTLE</code> contains the "login message".
-With some <a href="https://textual.textualize.io/guide/CSS/" rel="noopener noreferrer" target="_blank">Textual CSS</a> sprinkled
-over it to give the exact layout and colour I wanted, all that was left was
-to make the snapshot. This was easy enough too.</p>
-<p>While the whole thing isn't fully documented just yet, Textual does have <a href="https://textual.textualize.io/api/app/#textual.app.App.run_test" rel="noopener noreferrer" target="_blank">a
-great tool for automatically running an application and interacting with
-it</a>; that
-meant I could easily write a function to load up my app and save the
-screenshot:</p>
-<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">make_banner</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">async</span> <span class="k">with</span> <span class="n">GitHubBannerApp</span><span class="p">()</span><span class="o">.</span><span class="n">run_test</span><span class="p">()</span> <span class="k">as</span> <span class="n">pilot</span><span class="p">:</span>
-        <span class="n">pilot</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">save_screenshot</span><span class="p">(</span><span class="s2">&quot;davep.svg&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<p>Of course, that needs running async, but that's simple enough:</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">make_banner</span><span class="p">())</span>
-</code></pre></div>
-
-<p>Throw in a <code>Makefile</code> so I don't forget what I'm supposed to run:</p>
-<div class="highlight"><pre><span></span><code>.PHONY: all
-all:
-    pipenv run python make_banner.py
-</code></pre></div>
-
-<p>and that's it! Job done!</p>
-<p>From here onward I guess I could have some real fun with this. It would be
-simple enough I guess to modify the code so that it changes what's displayed
-over time; perhaps show a "last login" value that relates to recently
-activity or something; any number of things; and then run it in a cron job
-and update the repository.</p>
-<p>For now though... I'll stick with keeping things nice and simple.</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:150-1">
-<p>It was actually kind of annoying when they introduced it because the
-repo it uses is named after your user name. I already had a <code>davep</code>
-repo: it was a private repo where I was slowly working on a (now
-abandoned, I'll start it again some day I'm sure) ground-up rewrite of
-my <code>davep.org</code> website.&#160;<a class="footnote-backref" href="#fnref:150-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/github.html" class="tag">GitHub</a>
-            
-            <a href="/tag/python.html" class="tag">Python</a>
-            
-            <a href="/tag/textual.html" class="tag">Textual</a>
             
         </div>
         

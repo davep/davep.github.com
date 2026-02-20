@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="blogmore v0.6.0">
+    <meta name="generator" content="blogmore v0.7.0">
     <title>davep</title>
     
     <link rel="icon" href="/icons/favicon.ico">
@@ -156,6 +156,74 @@
     
     
     <article class="post-summary">
+        <h2><a href="/2025/03/24/ng2web.html">ng2web v1.0.0</a></h2>
+        
+        <time datetime="2025-03-24T14:17:00+00:00">March 24, 2025 14:17:00 UTC</time>
+        
+        <div class="reading-time">1 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+        <div class="post-content">
+            <p>It pretty much all started with this:</p>
+<div class="highlight"><pre><span></span><code> * Revision 1.1  1996/02/15 18:57:13  davep
+ * Initial revision
+</code></pre></div>
+
+<p>That's from the rcs log <a href="https://github.com/davep/w3ng/blob/master/w3ng.c" rel="noopener noreferrer" target="_blank">for the source for
+<code>w3ng</code></a>, a tool I wrote so
+I could read Norton Guide files in my web browser, served by Apache, running
+on my GNU/Linux server in my office. The tool itself was written as a
+<a href="https://en.wikipedia.org/wiki/Common_Gateway_Interface" rel="noopener noreferrer" target="_blank">CGI</a> tool (remember
+them?).</p>
+<p>I believe I posted about this to <code>comp.lang.clipper</code> and pretty quickly some
+folk asked if it might be possible to do a version that would write the
+whole guide as a collection of HTML files for static hosting, rather than
+serving them from a cgi-bin utility. That seemed like a sensible idea and
+so:</p>
+<div class="highlight"><pre><span></span><code> * Revision 1.1  1996/03/16 09:49:00  davep
+ * Initial revision
+</code></pre></div>
+
+<p><a href="https://github.com/davep/ng2html/blob/master/ng2html.c" rel="noopener noreferrer" target="_blank"><code>ng2html</code></a> was born.</p>
+<p>Fast forward around a quarter of a century and I decided it would be fun to
+write <a href="https://blog.davep.org/ngdb.py/">a library for Python that reads Norton Guide
+files</a>, and a tool called <code>ng2web</code> was the
+first test I wrote of it, designed as a more flexible replacement for
+<code>ng2html</code>. I've tweaked and tinkered with the tool since I first created it,
+but never actually "finished" it.</p>
+<p>That's changed today. I've just released v1.0.0 of <code>ng2web</code>.</p>
+<p><img alt="A page generated with ng2web" src="/attachments/2025/03/24/ng2web.png" /></p>
+<p>If turning one or more Norton Guide files into static websites seems like
+the sort of thing you want to be doing, <a href="https://blog.davep.org/ng2web/">take a look at the
+documentation</a>.</p>
+<p><code>ng2web</code> is licensed GPL-3.0 and available <a href="https://github.com/davep/ng2web" rel="noopener noreferrer" target="_blank">via
+GitHub</a> and also <a href="https://pypi.org/project/ng2web/" rel="noopener noreferrer" target="_blank">via
+PyPi</a>. If you have an environment that has
+<code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>ng2web
+</code></pre></div>
+
+<p>It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>ng2web</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>ng2web
+</code></pre></div>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/norton-guide.html" class="tag">Norton Guide</a>
+            
+        </div>
+        
+    </article>
+    
+    <article class="post-summary">
         <h2><a href="/2025/03/22/aging-0-3-0.html">AgiNG v0.3.0</a></h2>
         
         <time datetime="2025-03-22T09:30:00+00:00">March 22, 2025 09:30:00 UTC</time>
@@ -277,7 +345,7 @@ they wanted me to build this as test of the framework, to essentially start
 out by employing me to create some Free Software that would help dogfood the
 library, but that seemed to get forgotten.</p>
 <p>Fast forward to the start of this month and I finally felt it was time to
-tackle this. The result is <a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank">AgiNG</a><sup id="fnref:182-1"><a class="footnote-ref" href="#fn:182-1">1</a></sup>.</p>
+tackle this. The result is <a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank">AgiNG</a><sup id="fnref:183-1"><a class="footnote-ref" href="#fn:183-1">1</a></sup>.</p>
 <p><img alt="AgiNG in action" src="/attachments/2025/03/12/aging-textual-dark.png" /></p>
 <p>As of v0.1.0 it has most of the features you'd expect from a usable Norton
 Guide reader, including:</p>
@@ -347,11 +415,11 @@ time goes on.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:182-1">
+<li id="fn:183-1">
 <p>If you're wondering about the name, it's nothing more than a word that
 happens to have <code>NG</code> in it, and also a mild pun about this being an
 ageing hypertext help system; with the spelling acknowledging Peter
-Norton's nationality.&#160;<a class="footnote-backref" href="#fnref:182-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+Norton's nationality.&#160;<a class="footnote-backref" href="#fnref:183-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -1087,101 +1155,6 @@ happen</a>.</p>
             <a href="/tag/pinboard.html" class="tag">pinboard</a>
             
             <a href="/tag/raindrop.html" class="tag">raindrop</a>
-            
-        </div>
-        
-    </article>
-    
-    <article class="post-summary">
-        <h2><a href="/2024/06/16/on-to-something-new-redux-redux.html">On to something new (redux) (redux)</a></h2>
-        
-        <time datetime="2024-06-16T13:08:00+01:00">June 16, 2024 13:08:00 UTC+01:00</time>
-        
-        <div class="reading-time">4 min read</div>
-        
-        <div class="category">
-            <a href="/category/life.html" class="category-link">Life</a>
-        </div>
-        
-        <div class="post-content">
-            <p>It's been a wee while since I wrote anything here (been about a month) so I
-thought I'd make mention of what's going on.</p>
-<p>The main news is that I'm employed again!</p>
-<p>Once <a href="/2024/03/28/goodbye-textualize.html">the news about the Textual layoffs
-hit</a> I, of course, started the job
-hunting process. This lasted for a wee while (and I have a couple of stories
-about that -- perhaps I'll write them up one day). I officially became
-"unemployed" on April the 1st (yeah, I know), and by the 23rd I had an offer
-for a new position, which I accepted.</p>
-<p>As of the time of writing I've been in that position for a touch over 3
-weeks and it's going really well. Right at this moment I'm doing zero Python
-work (that will change, I strongly suspect) and, actually, for the first
-time ever, I'm writing some TypeScript (it's tempting me to dive into that
-some more).</p>
-<p>The team I'm working in are great and I'm also really impressed so far by
-the practices they have in place relating to getting stuff done. It's
-actually a refreshing change to work in a bigger organisation and actually
-find it not massively frustrating!</p>
-<p>I'm also back to working from home full time. This isn't that big a deal for
-me as I spent around 22 years doing so <a href="/2017/12/12/on_to_something_new.html">up until
-2018</a>, and of course it isn't that big
-of a deal to many folk these days anyway thanks to the 2020- period. This
-prompted me to finally clear out the spare room (I've only been in here a
-touch under 5 years so of course there were a lot of "I'll sort those soon"
-boxes and stuff in there), buy a second desk, and make a work-coding area
-that is away from totally separate from my for-fun-coding area.</p>
-<p>This has turned out to be a <em>really</em> good decision. I love my main hacking
-space in the living room, and have done a lot of work there, but that was
-always on the odd days here and there when I'd work at home. Now that
-working at home is a full-time role it felt important to make the
-distinction.</p>
-<p>Weirdly though, all of this means that I'm spending less time working on
-personal stuff. When I was working at Textualize, most days, I'd be spending
-the best part of 3 hours in the day getting to and from the office. I
-thought that perhaps getting that time back would translate into having more
-time to tinker with my own stuff. Actually what I'm finding I'm doing is I'm
-spending the time on more general self-care and domestic things. This is a
-good thing.</p>
-<p>Doubtless once things really settle down and I form my new routine I'll dive
-back into FOSS coding more again, and perhaps <a href="https://www.youtube.com/@davep-codes" rel="noopener noreferrer" target="_blank">get back to streaming while I
-code</a>.</p>
-<p>Meanwhile though you <em>can</em> find me steaming many late evenings, <a href="https://www.youtube.com/@DavePearson/streams" rel="noopener noreferrer" target="_blank">mucking
-about on my PS5</a>. Right at
-this moment I'm finally playing all the way through <a href="https://www.youtube.com/playlist?list=PLUY2FpMDyORBz0_ubHoJKT9xe3pvCTbRh" rel="noopener noreferrer" target="_blank">Just Cause
-4</a>
-(a game I bought back in 2019 and never finished). In fact last night I
-finished the main story.</p>
-<p>Expect a lot more PS5-based streaming nonsense over the next few months.</p>
-<p>One other change I have made is to my VR video publishing schedule. For the
-longest time I had the time and was playing so much that I published a video
-every day. This wasn't a schedule I set myself, this was more a case of I
-was playing so much that to publish less frequently would mean there would
-be a huge backlog. These days I'm back to working 5 days a week (previously
-I was working 4 days) so I have to cram a little more into my weekends, and
-also I want to try and do other things during weekends too. So recently <a href="https://www.youtube.com/watch?v=eHko0fDZm7I" rel="noopener noreferrer" target="_blank">I
-changed to an every-other-day
-schedule</a>.</p>
-<p>And, really, that's about it. For now expect to see a bit less Python-based
-content on here, and also quite a bit less Textual-based stuff too.
-Currently my focus is elsewhere and it also seems that Textual is a bit of a
-moving target recently, throwing in some fun new bugs and breaking changes
-which are tricky to keep on top of. That said, you <em>will</em> still find me in
-the repo, lending a hand when I can, and of course in the Textual Discord
-too; just don't expect to see me quite so omnipresent there, especially
-during the work day.</p>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/work.html" class="tag">work</a>
-            
-            <a href="/tag/youtube.html" class="tag">YouTube</a>
-            
-            <a href="/tag/streaming.html" class="tag">streaming</a>
-            
-            <a href="/tag/gaming.html" class="tag">gaming</a>
-            
-            <a href="/tag/ps5.html" class="tag">PS5</a>
             
         </div>
         
