@@ -62,7 +62,7 @@ a prompt to get things going. Here's what I typed:
 > - All metadata for a post should come from frontmatter
 > - It should use Jinja2 for the output templates
 
-As you can see, I rather than get very explicit about every single detail, I
+As you can see, rather than get very explicit about every single detail, I
 wanted to start out with a vague description of what I was aiming for. I did
 want to encourage it to try and build a Python repository how I normally
 would, so I pointed it at [OldNews](https://github.com/davep/oldnews) in the
@@ -143,7 +143,7 @@ In fact, the first step had some sub-steps to it too, I was finding. What I
 was doing, more than ever, was writing issues like I'd write sticky notes:
 with simple descriptions of a bug or a new feature. I'd then come back to
 them later and flesh them out into something that would act as a prompt for
-Copilot I found myself doing this so often I ended up adding a "Needs
+Copilot. I found myself doing this so often I ended up adding a "Needs
 prompt" label to my [usual set of issue
 labels](https://github.com/davep/setup-standard-labels).
 
@@ -193,7 +193,7 @@ I found that this took time and was rather tiring.
 
 There were also times where it would do the same but not directly in respect
 to code. One example I can think of is when it was confident that Python
-3.14 was till a pre-release Python as of February 2026 ([it
+3.14 was still a pre-release Python as of February 2026 ([it
 isn't](https://devguide.python.org/versions/)).
 
 This problem alone concerns me; this is the sort of thing where people
@@ -279,7 +279,7 @@ partner.
 That's not a terrible way to write code.
 
 On the other hand, as I said earlier, I missed the flow state. I *love*
-getting lost in code or a few hours and this is not that. I also found the
+getting lost in code for a few hours and this is not that. I also found the
 constant loop of prompt, wait, review, test, repeat, really quite
 exhausting.
 
@@ -320,13 +320,13 @@ wilder claims.
 [^1]: Amusingly I [uncovered another
     bug](https://github.com/davep/blogmore/issues/117) while writing this
     post.
-[^2]: I keep saying Copilot, but I think it's probbaly more correct to say
+[^2]: I keep saying Copilot, but I think it's probably more correct to say
     "Claude Sonnet 4.5" as that's what seemed to be at play under the hood,
     if I'm understanding things correctly.
 [^3]: Yes, of course that's an anthropomorphism, you'll find plenty of them
     in this article as it's hard not to write about the subject in any other
     way; it's an easy shortcut to explain some ideas
-[^4]: Actually I'm writign this post as I always do: in Emacs. But BlogMore
+[^4]: Actually I'm writing this post as I always do: in Emacs. But BlogMore
     is in the background serving a local copy of my blog so I can check it
     in the browser, and rebuilding it every time I save a change.
 
