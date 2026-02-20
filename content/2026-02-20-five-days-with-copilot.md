@@ -166,16 +166,113 @@ enjoyment.
 
 ## The main problems
 
-TODO: Main problems I found.
+I think it's fair to say that I've been surprised at just how well Copilot
+understood my (sometimes deliberately vague) requests, at how it generally
+managed to take some simple plain English and turn it into actual code that
+actually did what I wanted and, mostly, actually worked.
 
-### The far-too-subordinate issue
+But my experiences over the past few days haven't been without their
+problems.
 
-### The yes-man issue
+### The confidently wrong problem
 
-### The tries-too-hard issue
+Hopefully we all recognise that, with time and experience, we learn where
+the mistakes are likely to turn up. Once you've written enough code you've
+also written plenty of bugs and been caught out by plenty of edge-cases that
+you get a spidey-sense for trouble as you write code. I feel that this kind
+of approach can be called cautiously confident.
+
+Working with Copilot[^2], however, I often ran into the confidently wrong
+issue. On occasion I found it would proudly[^3] request review for some
+minor bit of work, proclaiming that it had done the thing or solved the
+problem, and I'd test it and nothing had materially changed. On a couple of
+occasions, when I pushed back, I found it actually doubting my review before
+finally digging in harder and eventually solving the issue.
+
+I found that this took time and was rather tiring.
+
+There were also times where it would do the same but not directly in respect
+to code. One example I can think of is when it was confident that Python
+3.14 was till a pre-release Python as of February 2026 ([it
+isn't](https://devguide.python.org/versions/)).
+
+This problem alone concerns me; this is the sort of thing where people
+without a good sense for when the agent is probably bullshitting will get
+into serious trouble.
+
+### The tries-too-hard problem
+
+A variation on the above problem works the other way: on at least one
+occasion I found that Copilot tried too hard to fix a problem that wasn't
+really its to fix.
+
+In this case [I was asking it to tidy up some validation issues in the RSS
+feed data](https://github.com/davep/blogmore/pull/110). One of the main
+problems was root-relative URLs being in the content of the feed; for that
+they needed to be made absolute URLs. Copilot did an excellent job of fixing
+the problem, but one (and from what I could see only one) relative URL
+remained.
+
+I [asked it to take a
+look](https://github.com/davep/blogmore/pull/110#issuecomment-3928257463)
+and it took a real age to work over the issue. To its credit, it dug hard
+and it dug deep and it got to the bottom of the problem. The issue here
+though was it tried too hard because, having found the cause of the problem
+(a typo in my original Markdown, which had always existed) it went right
+ahead and built a workaround for this one specific broken link.
+
+Now, while I'm a fan of [Postel's
+law](https://en.wikipedia.org/wiki/Robustness_principle), this is taking
+things a bit too far. If this was a real person I'd tasked with the job I
+would have expected and encouraged them to come back to me with their
+finding and say *"dude, the problem is in your input data"* and I'd have
+fixed my original Markdown.
+
+Here though it just went right ahead and added this one weird edge case as
+something to handle.
+
+I think this is something to be concerned about and to keep an eye on too. I
+feel there's a danger in having the agent rabbit-hole a fix for a problem
+that it should simply have reported back to me for further discussion.
+
+### The never-pushes-back problem
+
+Something I did find unsurprising but disconcerting was Copilot's
+unwillingness to push back, or at least defend its choices. Sometimes it
+would make a decision or a change and I'd simply ask it why it had done it
+that way, why it had made that choice. Rather than reply with its reasoning
+it would pretty much go *"yeah, my bad, let me do it a way you're probably
+going to find more pleasing"*.
+
+A simple example of this is one time when I saw some code like this:
+
+```python
+@property
+def some_property(self) -> SomeValue:
+    from blogmore.utils import some_utility_function
+    ...
+```
+
+I'm not a fan of imports in the body of methods *unless* there's a
+demonstrable performance reason. I asked Copilot why it had made this choice
+here and its reply was simply to say it had gone ahead and changed the code,
+moving the import to the top of the module.
+
+I see plenty of people talk about how working with an agent is like
+pair-programming, but I think it misses out on what's got to be the biggest
+positive of that approach: the debate and exchange of ideas. This again
+feels like a concern to be mindful of, especially if someone less
+experienced is bringing code to you where they've used an agent as their
+pair buddy.
 
 [^1]: Amusingly I [uncovered another
     bug](https://github.com/davep/blogmore/issues/117) while writing this
     post.
+[^2]: I keep saying Copilot, but I think it's probbaly more correct to say
+    "Claude Sonnet 4.5" as that's what seemed to be at play under the hood,
+    if I'm understanding things correctly.
+[^3]: Yes, of course that's an anthropomorphism, you'll find plenty of them
+    in this article as it's hard not to write about the subject in any other
+    way; it's an easy shortcut to explain some ideas
 
 [//]: # (2026-02-20-five-days-with-copilot.md ends here)
