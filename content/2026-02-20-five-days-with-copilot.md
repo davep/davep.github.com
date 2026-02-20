@@ -123,6 +123,57 @@ While the server did need a lot of extra work to really work well[^1] the
 initial version was good enough to get me going and to iterate on the
 project as a whole.
 
+## The main workflow
+
+Having kicked off the project and having had some success with getting
+Copilot to deliver what I was asking for, I settled into a new but also
+familiar workflow. Whereas normally, when working on a personal project,
+I'll write an issue for myself, at some point pick it up and create a PR,
+review and test the PR myself then merge, now the workflow turned into:
+
+- Write an issue but do so in a way that when I assign it to Copilot it has
+  enough information to go off and do the work.
+- Wait for Copilot to get done.
+- Review the PR, making change requests etc.
+- Make any fixes that are easier for me to fix by hand that describe to
+  Copilot.
+- Merge.
+
+In fact, the first step had some sub-steps to it too, I was finding. What I
+was doing, more than ever, was writing issues like I'd write sticky notes:
+with simple descriptions of a bug or a new feature. I'd then come back to
+them later and flesh them out into something that would act as a prompt for
+Copilot I found myself doing this so often I ended up adding a "Needs
+prompt" label to my [usual set of issue
+labels](https://github.com/davep/setup-standard-labels).
+
+All of this made for an efficient workflow, and one where I could often get
+on with something else as Copilot worked on the latest job (I wasn't just
+working on other things on my computer; sometimes I'd be going off and doing
+things around the house while this happened), but... it wasn't fun. It was
+the opposite of what I've always enjoyed when it comes to building software.
+I got to dream up the ideas, I got to do the testing, I got to review the
+quality of the work, but I didn't get to actually lose myself in the flow
+state of coding.
+
+One thing I've really come to understand during those 5 days of working on
+BlogMore was I *really* missed getting lost in the flow state. Perhaps it's
+the issue to PR to review to merge cycle I used that amplified this, perhaps
+those who converse with an agent in their IDE or in some client application
+keep a sense of that (I might have to try that approach out), but this feels
+like a serious loss to me when it comes to writing code for personal
+enjoyment.
+
+## The main problems
+
+TODO: Main problems I found.
+
+### The far-too-subordinate issue
+
+### The yes-man issue
+
+### The tries-too-hard issue
+
 [^1]: Amusingly I [uncovered another
     bug](https://github.com/davep/blogmore/issues/117) while writing this
     post.
