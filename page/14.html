@@ -159,6 +159,75 @@
     
     
     <article class="post-summary">
+        <h2><a href="/2019/10/20/fg-fish.html">gh.fish -- Quickly visit a repo&#39;s forge</a></h2>
+        
+        <time datetime="2019-10-20T13:15:00+01:00"><a href="/2019/">2019</a>-<a href="/2019/10/">10</a>-<a href="/2019/10/20/">20</a> 13:15:00 UTC+01:00</time>
+        
+        <div class="reading-time">1 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+        <div class="post-content">
+            <p>These days <a href="https://fishshell.com/" rel="noopener noreferrer" target="_blank">fish</a> is my shell of choice. I started
+out with <a href="https://www.gnu.org/software/bash/" rel="noopener noreferrer" target="_blank">bash</a> back in the 1990s, went
+through a bit of a
+<a href="https://www.zsh.org/" rel="noopener noreferrer" target="_blank">zsh</a>/<a href="https://ohmyz.sh/" rel="noopener noreferrer" target="_blank">oh-my-zsh</a> phase, but
+earlier this year finally settled on fish.</p>
+<p>At some point I might write a post about my fish config, and why fish works
+well for me. But that's an idea for another time.</p>
+<p>In this post I thought I'd share a little snippet of code that can come in
+handy now and again.</p>
+<p>Sometimes I find myself inside a git repo, in the shell, and I want to get
+to the "<a href="https://en.wikipedia.org/wiki/Forge_%28software%29" rel="noopener noreferrer" target="_blank">forge</a>" for
+that repo. This is most often either on <a href="https://github.com/" rel="noopener noreferrer" target="_blank">GitHub</a>, or in
+a <a href="https://about.gitlab.com/install/" rel="noopener noreferrer" target="_blank">company-local installation of GitLab</a>.
+To get there quickly I wrote
+<a href="https://gist.github.com/davep/3bac3b30e45a3560c265150e609219db" rel="noopener noreferrer" target="_blank"><code>gh.fish</code></a>:</p>
+<div class="highlight"><pre><span></span><code>##############################################################################
+# Attempt go visit the origin hub for the current repo.
+
+function gh -d &quot;Visit the repo in its origin hub&quot;
+
+    # Check that there is some sort of origin.
+    set origin (git config --get remote.origin.url)
+
+    # If we didn&#39;t get anything...
+    if not test &quot;$origin&quot;
+        # ...complain and exit.
+        echo &quot;This doesn&#39;t appear to be a git repo with an origin&quot;
+        return 1
+    end
+
+    # Open in the browser.
+    open &quot;https://&quot;(string replace &quot;:&quot; &quot;/&quot; (string replace -r &#39;\.git$&#39; &quot;&quot; (string split &quot;@&quot; $origin)[ 2 ]))
+
+end
+
+### gh.fish ends here
+</code></pre></div>
+
+<p>The idea is pretty simple: I see if the repo has an origin of some
+description and, if it has, I <a href="https://fishshell.com/docs/current/commands.html#string" rel="noopener noreferrer" target="_blank">slice and dice
+it</a> into something
+that looks like the URL you'd expect to find for a GitHub or GitLab repo.
+Finally I use
+<a href="https://fishshell.com/docs/current/commands.html#open" rel="noopener noreferrer" target="_blank"><code>open</code></a> to open the
+URL in the environment's browser of choice.</p>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/fish.html" class="tag">fish</a>
+            
+            <a href="/tag/git.html" class="tag">git</a>
+            
+        </div>
+        
+    </article>
+    
+    <article class="post-summary">
         <h2><a href="/2019/10/19/pypath-el.html">pypath.el -- A little Emacs hack to help with Django</a></h2>
         
         <time datetime="2019-10-19T10:35:00+01:00"><a href="/2019/">2019</a>-<a href="/2019/10/">10</a>-<a href="/2019/10/19/">19</a> 10:35:00 UTC+01:00</time>
@@ -886,75 +955,6 @@ similar to <code>EG</code> or <code>WEG</code>.</p>
         
     </article>
     
-    <article class="post-summary">
-        <h2><a href="/2017/03/08/hello_google_pixel.html">Hello Google Pixel</a></h2>
-        
-        <time datetime="2017-03-08T12:22:05+00:00"><a href="/2017/">2017</a>-<a href="/2017/03/">03</a>-<a href="/2017/03/08/">08</a> 12:22:05 UTC</time>
-        
-        <div class="reading-time">3 min read</div>
-        
-        <div class="category">
-            <a href="/category/tech.html" class="category-link">Tech</a>
-        </div>
-        
-        <div class="post-content">
-            <p>For the past two years I've, mostly, being happily using a Google Nexus 6 as
-my phone. In the past six months or so I've started to notice that it hasn't
-been quite as good as it was. The main problem, for me, was that the camera
-was starting to play out. The issues were the ones that I've seen reported
-elsewhere: use of the camera would quickly make the phone laggy, very slow
-response times on pressing the shutter, occasional failure to save an image,
-etc. This was generally frustrating and, even more so, because <a href="/2016/11/15/seen_by_davep_(the_return).html">I'd got back
-into photoblogging</a>.</p>
-<p>Meanwhile... I've been lusting over the Google Pixel ever since it was
-originally shown off. I was some way off my phone contract renewal and the
-price of a new Pixel was something I just couldn't justify. Last week though
-an offer cropped up that meant I could renew early <em>and</em> get a Pixel
-(including a free Daydream headset thrown in).</p>
-<p>Fast forward to Monday just gone and...</p>
-<p><img alt="My new Pixel" src="/attachments/2017/03/08/IMG_20170308_120458.jpg#centre" /></p>
-<p>So far I'm liking it rather a lot. It is odd that it's smaller in my hand
-than the Nexus 6 was (the XL wasn't an available option <em>and</em> I was also
-starting to think it was time to drop down in size a little again) but I'm
-also finding it a little easier to work with; it's also nice that it fits in
-trouser pockets as well as jacket pockets.</p>
-<p>It feels very fast (although every Android phone and tablet I've ever had
-have felt fast to start with) and smooth to use. I especially like the
-default feedback vibration -- it's a lot smoother yet also more reassuring
-than any I've felt before.</p>
-<p>The Google Assistant is proving to be very handy. I'm sort of used to it
-anyway thanks to having owned an Android Wear watch for a couple of years
-but having it on the phone like this seems like a natural next step.</p>
-<p>Another thing I'm getting very used to very quickly, and really liking a
-lot, is fingerprint recognition. I didn't think I needed it but now I'm
-wondering how I ever managed without it. Combined with the notification
-pull-down gesture that the recognition area supports it seems like a perfect
-way to open the get going with a phone.</p>
-<p>There's a couple of niggles with it, of course. The main one for me is the
-lack of wireless charging. That was something I really liked about the Nexus
-6: I could be sat at my desk and have the phone sat on top of a charging
-pad, staying topped up. No such handy setup with the Pixel. The other thing
-is the lack of water resistance. To be fair: it's not something I've ever
-really felt I <em>needed</em> with other phones and I'm not in the habit of
-sticking them under water; but knowing that it doesn't matter too much if it
-gets exposed to rain would be nice.</p>
-<p>Other than that... there's not much else to say right now. It works and
-works well, the move from the N6 to it was pretty smooth and the Pixel has
-fallen perfectly into my normal routine.</p>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/google.html" class="tag">Google</a>
-            
-            <a href="/tag/android.html" class="tag">Android</a>
-            
-            <a href="/tag/phone.html" class="tag">Phone</a>
-            
-        </div>
-        
-    </article>
-    
     
     
     
@@ -965,7 +965,7 @@ fallen perfectly into my normal routine.</p>
             
         
         
-        <span class="pagination-info">Page 14 of 20</span>
+        <span class="pagination-info">Page 14 of 21</span>
         
         
             <a href="/page/15.html" class="pagination-next">Next →</a>

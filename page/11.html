@@ -159,6 +159,90 @@
     
     
     <article class="post-summary">
+        <h2><a href="/2020/07/11/swift-til-11.html">Swift TIL 11</a></h2>
+        
+        <time datetime="2020-07-11T21:34:00+01:00"><a href="/2020/">2020</a>-<a href="/2020/07/">07</a>-<a href="/2020/07/11/">11</a> 21:34:00 UTC+01:00</time>
+        
+        <div class="reading-time">2 min read</div>
+        
+        <div class="category">
+            <a href="/category/til.html" class="category-link">TIL</a>
+        </div>
+        
+        <div class="post-content">
+            <p>This is one of those things, especially this little play to help appreciate
+the feature, that I'm filing under "kinda cool, but I am <em>never</em> doing this
+in production".</p>
+<p>So Swift has operator overriding, and then some. Moreover, operators are, in
+effect, functions, just with some extra syntax support. None of this is new
+to me, I've worked in and with other languages that have this ability,
+expect... I don't ever recall working in a language that, at the time I did,
+supported creating brand new operators (okay, fine, Lisp is a bit of an
+outlier here and there's all sorts of fun conversations to be had there --
+but still, let's stick with more "conventional" syntax here). Support always
+seemed to be about extending the ability of an existing operator.</p>
+<p>Swift though... yeah, you get to pick from a huge character space when it
+comes to creating operators.</p>
+<p>Which got me thinking... How cool would it be to have a prefix operator that
+turns a floating point number into a currency-friendly number (you know, the
+sort of number type that can be used for currency-friendly calculations).</p>
+<p>Swift has the
+<a href="https://developer.apple.com/documentation/foundation/decimal" rel="noopener noreferrer" target="_blank"><code>decimal</code></a>
+type which, at first glance anyway, looks to be a sensible candidate; even
+if it isn't (and, really, how to actually sensibly handle currency is a
+whole series of blog posts in their own right, that I have no wish to write
+myself because such things are a previous working life for me, and other
+people have doubtless done a very comprehensive job elsewhere over the
+years) it will serve as a good stand-in for the little bit of horror I'm
+going to write next.</p>
+<p>So... Let's say we want to use <code>£</code> as a prefix operator to say "see this
+number? make it a <code>decimal</code>", we could do something as simple as this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span><span class="w"> </span><span class="nc">Foundation</span>
+
+<span class="kr">prefix</span><span class="w"> </span><span class="kd">operator</span><span class="w"> </span><span class="err">£</span>
+<span class="kr">prefix</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="err">£</span><span class="p">(</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Decimal</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">Decimal</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">}</span>
+
+<span class="bp">print</span><span class="p">(</span><span class="w"> </span><span class="err">£</span><span class="mf">1.20</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="err">£</span><span class="mf">0.75</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="err">£</span><span class="mf">0.01</span><span class="w"> </span><span class="p">)</span>
+</code></pre></div>
+
+<p>Horrifically and delightfully, it works:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>Linking<span class="w"> </span>opover
+<span class="m">1</span>.96
+</code></pre></div>
+
+<p>I know, I know, I feel bad for even trying. But it's also kinda cool that
+the language has this.</p>
+<p>It gets better though...</p>
+<p>While reading up on what characters can and can't be used as operators, one
+thing that stood out was the fact that, more or less, any character that
+isn't a valid identifier can be used as an operator. So... hang on, we can
+use "emoji" as identifiers?</p>
+<p>Like this?</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span><span class="w"> </span><span class="nc">Foundation</span>
+
+<span class="kr">prefix</span><span class="w"> </span><span class="kd">operator</span><span class="w"> </span><span class="err">£</span>
+<span class="kr">prefix</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="err">£</span><span class="p">(</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Decimal</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">Decimal</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">}</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="err">💵</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="err">£</span><span class="mf">1.20</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="err">£</span><span class="mf">0.75</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="err">£</span><span class="mf">0.01</span>
+
+<span class="bp">print</span><span class="p">(</span><span class="w"> </span><span class="err">💵</span><span class="w"> </span><span class="p">)</span>
+</code></pre></div>
+
+<p>Why yes. Yes we can. 😈</p>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/swift.html" class="tag">Swift</a>
+            
+            <a href="/tag/apple.html" class="tag">Apple</a>
+            
+        </div>
+        
+    </article>
+    
+    <article class="post-summary">
         <h2><a href="/2020/07/10/when-the-man-page-fibs.html">When the man page fibs</a></h2>
         
         <time datetime="2020-07-10T20:58:00+01:00"><a href="/2020/">2020</a>-<a href="/2020/07/">07</a>-<a href="/2020/07/10/">10</a> 20:58:00 UTC+01:00</time>
@@ -856,57 +940,6 @@ while.</p>
         
     </article>
     
-    <article class="post-summary">
-        <h2><a href="/2020/06/24/swift-til-3.html">Swift TIL 3</a></h2>
-        
-        <time datetime="2020-06-24T16:38:00+01:00"><a href="/2020/">2020</a>-<a href="/2020/06/">06</a>-<a href="/2020/06/24/">24</a> 16:38:00 UTC+01:00</time>
-        
-        <div class="reading-time">1 min read</div>
-        
-        <div class="category">
-            <a href="/category/til.html" class="category-link">TIL</a>
-        </div>
-        
-        <div class="post-content">
-            <p>Today's little "Swift TIL" is observers. While reading up on the language I
-was delighted to find that it has observer support baked right into the
-language, for any sort of variable. So code like this:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;David&quot;</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">    </span><span class="kr">willSet</span><span class="p">(</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="bp">print</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;About to change name from </span><span class="si">\(</span><span class="n">name</span><span class="si">)</span><span class="s"> to </span><span class="si">\(</span><span class="n">new</span><span class="si">)</span><span class="s">&quot;</span><span class="w"> </span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kr">didSet</span><span class="p">(</span><span class="w"> </span><span class="n">old</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="bp">print</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;Name changed from </span><span class="si">\(</span><span class="n">old</span><span class="si">)</span><span class="s"> to </span><span class="si">\(</span><span class="n">name</span><span class="si">)</span><span class="s">&quot;</span><span class="w"> </span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;davep&quot;</span>
-</code></pre></div>
-
-<p>Does what you'd imagine:</p>
-<div class="highlight"><pre><span></span><code>About to change name from David to davep
-Name changed from David to davep
-</code></pre></div>
-
-<p>Not only can I see how that'd be useful for the main sorts of purposes that
-Swift is put to, I can think of many times when I'd have benefitted from
-that in my general day-to-day work. Of course, you can create an observer
-approach in any language really, but having an idiom that's part of the
-language feels nice and tidy.</p>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/swift.html" class="tag">Swift</a>
-            
-            <a href="/tag/apple.html" class="tag">Apple</a>
-            
-        </div>
-        
-    </article>
-    
     
     
     
@@ -917,7 +950,7 @@ language feels nice and tidy.</p>
             
         
         
-        <span class="pagination-info">Page 11 of 20</span>
+        <span class="pagination-info">Page 11 of 21</span>
         
         
             <a href="/page/12.html" class="pagination-next">Next →</a>
