@@ -29,7 +29,7 @@ in favour of them.
 So, suddenly, the idea popped into my head: I should write my own static
 site generator that I'll use for my blog, and I should try and use GitHub
 Copilot to write 100% of the code, and documentation, and see how far I get.
-I doing so I might firm up my opinions about where we're all going with
+In doing so I might firm up my opinions about where we're all going with
 this.
 
 The requirements were going to be pretty straightforward:
