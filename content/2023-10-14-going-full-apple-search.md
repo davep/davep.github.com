@@ -28,9 +28,9 @@ see how I get on with it.
 ![Searching with Apple](/attachments/2023/10/14/apple-search.png#centre)
 
 Of course, when it comes to searching for stuff on the web, it's not going
-to make a whole heap of difference; it's sill going to end up searching with
-Google, but I do like the idea of search leaning into what Spotlight knows
-about my stuff too.
+to make a whole heap of difference; it's still going to end up searching
+with Google, but I do like the idea of search leaning into what Spotlight
+knows about my stuff too.
 
 Also, on my phone at least, it has the added benefit of freeing up a slot in
 the dock at the bottom of the home screen.
