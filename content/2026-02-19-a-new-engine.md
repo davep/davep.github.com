@@ -47,7 +47,8 @@ love to hear about
 it](https://github.com/davep/blogmore/discussions/categories/q-a).
 
 As for this being a "100% AI" project, and how I found that process and how
-I feel about the implications and the results... that's a blog post to come.
+I feel about the implications and the results... [that's a blog post to
+come](/2026/02/20/five-days-with-copilot.html).
 
 I took lots of notes.
 
