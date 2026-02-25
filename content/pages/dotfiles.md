@@ -9,6 +9,7 @@ are useful to anyone, here's a list of some (most, ideally all!) of them.
 - [Emacs](https://github.com/davep/.emacs.d)
 - [Fish](https://github.com/davep/fish)
 - [Ghostty](https://github.com/davep/ghostty)
+- [Helix](https://github.com/davep/helix)
 - [Kitty](https://github.com/davep/kitty)
 - [Python REPL](https://github.com/davep/.pythonrc.d)
 - [Vim](https://github.com/davep/.vim)
