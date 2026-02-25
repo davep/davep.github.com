@@ -10,6 +10,7 @@ are useful to anyone, here's a list of some (most, ideally all!) of them.
 - [Fish](https://github.com/davep/fish)
 - [Kitty](https://github.com/davep/kitty)
 - [Python REPL](https://github.com/davep/.pythonrc.d)
+- [Vim](https://github.com/davep/.vim)
 
 [^1]: Lots of them don't actually start with a dot these days, of course.
     Most aren't just a file either.
