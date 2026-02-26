@@ -61,7 +61,7 @@ I've nuked it all for now but a more considered evaluation is now on my TODO
 list. Things I'll need to drive into properly are:
 
 - Find a base theme that's to my taste.
-- Get Disqus working it so that any old comments remain in place.
+- Get Disqus working with it so that any old comments remain in place.
 - Get my image/attachment layout back in place.
 - Go through and tidy up all the tagging (which has been a mess with this
   blog because I never did get round to getting Jekyll to actually use
