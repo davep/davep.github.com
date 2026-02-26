@@ -11,7 +11,7 @@ Wallet app up and running.
 
 Late on yesterday afternoon (a Sunday, it has to be said, so that's some
 dedication to solving the problem) I got a reply to
-[the email I'd sent them previously](http://blog.davep.org/2016/06/18/virgin_east_coast_2.html). It
+[the email I'd sent them previously](/2016/06/18/virgin_east_coast_2.html). It
 didn't contain anything in response to what I'd written (so it looks like
 I'm never going to find out what a TOC is! *sadface*) but it did say this:
 

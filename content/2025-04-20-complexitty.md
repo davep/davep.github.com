@@ -19,7 +19,7 @@ web](https://www.youtube.com/watch?v=18ytRZrHL34) to [wearable
 items](https://www.redbubble.com/i/t-shirt/Self-Documenting-Mandelbrot-by-davepearson/1341910.0S66D).
 
 Back in the early days of [my involvement with
-Textualize](https://blog.davep.org/2024/03/28/goodbye-textualize.html) I
+Textualize](/2024/03/28/goodbye-textualize.html) I
 [wrote a deliberately worst-approach
 version](https://github.com/davep/trMandelbrot) using that framework. The
 whole thing was about taking a really silly approach while also
