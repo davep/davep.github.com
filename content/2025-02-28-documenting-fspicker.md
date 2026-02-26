@@ -28,14 +28,14 @@ Given I'm still on a bit of a coding spree in my spare time, I finally
 decided to get round to using the amazing
 [mkdocstrings](https://mkdocstrings.github.io), in conjunction with
 [mkdocs](https://www.mkdocs.org), to [get some better documentation up an
-running](https://blog.davep.org/textual-fspicker/).
+running](https://textual-fspicker.davep.dev/).
 
 The approach I decided to take with the documentation was to [have a page
 that gave some general information on how to use the
-library](https://blog.davep.org/textual-fspicker/using/) and then also
+library](https://textual-fspicker.davep.dev/using/) and then also
 [generate low-level documentation for the all the useful content of the
 library from the
-docstrings](https://blog.davep.org/textual-fspicker/library-contents/base_dialog/).
+docstrings](https://textual-fspicker.davep.dev/library-contents/base_dialog/).
 While latter isn't really useful to anyone wanting to use the library in
 their own applications, it could be useful to anyone wanting to understand
 how it hangs together at a lower-level, perhaps because they want to
