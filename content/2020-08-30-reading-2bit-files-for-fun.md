@@ -14,7 +14,7 @@ in a new environment](/2019/11/10/going-on-a-journey.html). Recently I've
 added another to the list I already have, and I used it as an excuse to get
 back into writing [some Common
 Lisp](https://github.com/davep/org-davep-2bit); and then went on to use it
-as a reason to write [yet another]((https://elisp.dev/)) package [for
+as a reason to write [yet another](https://elisp.dev/) package [for
 Emacs](https://github.com/davep/2bit.el).
 
 Having gone through the process of writing code to handle 2bit files twice

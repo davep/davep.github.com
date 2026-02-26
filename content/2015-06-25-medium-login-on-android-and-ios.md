@@ -15,7 +15,7 @@ the app won't make too much of a difference to me, but it was nice to see
 that something that had been iOS-only was now on Android too.
 
 I installed it on my Nexus 7 and Nexus 6 and then, given that
-[I have an iOS device now](http://blog.davep.org/2015/06/23/and-now-for-some-ios.html),
+[I have an iOS device now](/2015/06/23/and-now-for-some-ios.html),
 I installed it on that too. In doing so I noticed a very curious difference:
 
 ![Medium login on Android](/attachments/2015/06/25/Screenshot_2015-06-25-11-24-11.png#centre)

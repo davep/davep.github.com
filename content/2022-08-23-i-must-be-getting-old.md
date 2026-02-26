@@ -8,7 +8,7 @@ date: 2022-08-23 21:31:00 +0100
 
 A little earlier this evening I got [a new
 issue](https://github.com/davep/boxquote.el/issues/7) raised against
-[`boxquote.el`]((https://github.com/davep/boxquote.el/issues/7)). Apparently
+[`boxquote.el`](https://github.com/davep/boxquote.el/issues/7). Apparently
 Emacs 29 (I'm running 28.1 as of the time of writing) is moaning about the
 likes of:
 
