@@ -18,14 +18,13 @@ that just flow for you, and those that take a bit more effort and
 concentration. Python... feels okay to me.
 
 I also appreciate that there's been a long-standing style guide. I quite
-like [PEP 8](python.org/dev/peps/pep-0008/) as a read, and think there's a
-lot of good ideas in there; much of the content sits with how I'd approach
-things if I was tasked to come up with such a document. With this in mind,
-I'm a fairly heavy user of `pylint` and it in turn leans on PEP 8 (amongst
-other things) and I'm happy to accept most of its judgements. Not all of its
-judgements, [but even when I disagree with it I try and keep track of how
-far I'm
-drifting](/2019/11/04/my-pylint-shame.html).
+like [PEP 8](https://python.org/dev/peps/pep-0008/) as a read, and think
+there's a lot of good ideas in there; much of the content sits with how I'd
+approach things if I was tasked to come up with such a document. With this
+in mind, I'm a fairly heavy user of `pylint` and it in turn leans on PEP 8
+(amongst other things) and I'm happy to accept most of its judgements. Not
+all of its judgements, [but even when I disagree with it I try and keep
+track of how far I'm drifting](/2019/11/04/my-pylint-shame.html).
 
 But there is absolutely one hill I will happily die on when it comes to PEP
 8: the concept of ["extraneous whitespace" in lists and
