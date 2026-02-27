@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="blogmore v1.2.0">
+    <link rel="canonical" href="https://blog.davep.org/2026/02/27/brute-force-and-ignorance.html">
+    <title>Brute force and ignorance - davep</title>
+    
+    <link rel="icon" href="/icons/favicon.ico">
+    
+    
+    <!-- Shortcut icon for backward compatibility -->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- Favicon alternatives -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png">
+    <!-- Android/Chrome -->
+    <link rel="manifest" href="/icons/site.webmanifest">
+    <!-- Windows/Edge -->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-config" content="/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/fontawesome.css">
+    
+    <link rel="stylesheet" href="/static/styles.min.css">
+    
+    
+    <link rel="alternate" type="application/rss+xml" title="davep - RSS Feed" href="https://blog.davep.org/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="davep - Atom Feed" href="https://blog.davep.org/feeds/all.atom.xml">
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+<meta name="author" content="Dave Pearson">
+
+
+
+<meta name="description" content="My experiment with coding with an agent continues, and from the point of view of the usability of the results, I&#39;d say it&#39;s going well. From the point of view of learning more about this sort of tool and the pitfalls: I&#39;d also say it&#39;s going well.">
+
+
+<meta name="keywords" content="Python, Blogging, AI, LLM, Copilot, GitHub, BlogMore">
+
+
+
+<meta property="og:title" content="Brute force and ignorance">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.davep.org/2026/02/27/brute-force-and-ignorance.html">
+
+<meta property="og:description" content="My experiment with coding with an agent continues, and from the point of view of the usability of the results, I&#39;d say it&#39;s going well. From the point of view of learning more about this sort of tool and the pitfalls: I&#39;d also say it&#39;s going well.">
+
+<meta property="og:site_name" content="davep">
+
+<meta property="og:image" content="https://blog.davep.org/icons/android-chrome-512x512.png">
+
+
+
+
+
+<meta property="article:published_time" content="2026-02-27T09:45:00+00:00">
+
+
+<meta property="article:modified_time" content="2026-02-27T09:45:00+00:00">
+
+
+<meta property="article:author" content="Dave Pearson">
+
+
+<meta property="article:section" content="Coding">
+
+
+
+<meta property="article:tag" content="Python">
+
+<meta property="article:tag" content="Blogging">
+
+<meta property="article:tag" content="AI">
+
+<meta property="article:tag" content="LLM">
+
+<meta property="article:tag" content="Copilot">
+
+<meta property="article:tag" content="GitHub">
+
+<meta property="article:tag" content="BlogMore">
+
+
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Brute force and ignorance">
+
+<meta name="twitter:description" content="My experiment with coding with an agent continues, and from the point of view of the usability of the results, I&#39;d say it&#39;s going well. From the point of view of learning more about this sort of tool and the pitfalls: I&#39;d also say it&#39;s going well.">
+
+
+<meta name="twitter:image" content="https://blog.davep.org/icons/android-chrome-512x512.png">
+
+
+
+
+    <script src="/static/theme.min.js"></script>
+    
+    
+    
+    <link rel="prev" href="/2026/02/21/copilot-lied.html">
+    
+
+</head>
+<body>
+    <div class="site-container">
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-header">
+                    
+                    <div class="sidebar-logo">
+                        <a href="/">
+                            <img src="/logo.jpeg" alt="davep">
+                        </a>
+                    </div>
+                    
+
+                    <div class="sidebar-title">
+                        <h1><a href="/">davep</a></h1>
+                        
+                        <p class="sidebar-subtitle">Code and stuff</p>
+                        
+                    </div>
+                </div>
+
+                
+                <div class="sidebar-pages">
+                    <ul class="sidebar-links">
+                        
+                        <li><a href="/about.html">About</a></li>
+                        
+                        <li><a href="/dotfiles.html">Dot Files</a></li>
+                        
+                    </ul>
+                </div>
+                
+
+                
+                <section class="sidebar-section">
+                    <h2>Links</h2>
+                    <ul class="sidebar-links">
+                        
+                        <li><a href="https://davep.at/" target="_blank" rel="noopener noreferrer">davep@</a></li>
+                        
+                        <li><a href="https://raindrop.io/davep/public-46742255/sort=-created&amp;perpage=30&amp;page=0" target="_blank" rel="noopener noreferrer">Bookmarks</a></li>
+                        
+                        <li><a href="https://seenbydavep.blogspot.com/" target="_blank" rel="noopener noreferrer">Photoblog</a></li>
+                        
+                        <li><a href="https://elisp.dev/" target="_blank" rel="noopener noreferrer">Emacs Packages</a></li>
+                        
+                        <li><a href="https://pypi.org/user/davepearson/" target="_blank" rel="noopener noreferrer">Python Packages</a></li>
+                        
+                    </ul>
+                </section>
+                
+
+                
+                <section class="sidebar-section">
+                    <h2>Social</h2>
+                    <div class="sidebar-socials">
+                        
+                        <a href="https://www.flickr.com/photos/davepearson/" title="flickr" aria-label="flickr" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-flickr"></i>
+                        </a>
+                        
+                        <a href="https://github.com/davep" title="github" aria-label="github" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        
+                        <a href="https://www.last.fm/user/davepdotorg" title="lastfm" aria-label="lastfm" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-lastfm"></i>
+                        </a>
+                        
+                        <a href="https://fosstodon.org/@davep" title="mastodon" aria-label="mastodon" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-mastodon"></i>
+                        </a>
+                        
+                        <a href="https://www.npmjs.com/~davep.org" title="npm" aria-label="npm" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-npm"></i>
+                        </a>
+                        
+                        <a href="https://steamcommunity.com/id/davepdotorg" title="steam" aria-label="steam" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-steam"></i>
+                        </a>
+                        
+                        <a href="https://www.youtube.com/user/daveporg" title="youtube" aria-label="youtube" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        
+                    </div>
+                </section>
+                
+            </div>
+        </aside>
+
+        <div class="main-wrapper">
+            <header>
+                <nav>
+                    <ul>
+                        <li><a href="/categories.html">Categories</a></li>
+                        <li><a href="/tags.html">Tags</a></li>
+                        <li><a href="/archive.html">Archive</a></li>
+                        
+                        <li><a href="/search.html">Search</a></li>
+                        
+                        
+                        <li><a href="/feed.xml" title="Subscribe via RSS feed">RSS</a></li>
+                        <li><a href="/feeds/all.atom.xml" title="Subscribe via Atom feed">Atom</a></li>
+                        
+                        <li>
+                            <button class="theme-toggle" type="button" aria-label="Toggle theme">
+                                <span class="icon light-icon">☀️</span>
+                                <span class="icon dark-icon">🌙</span>
+                                <span class="theme-label">Theme</span>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                
+<article class="post">
+    
+    <nav class="post-navigation post-navigation-top">
+        
+        <a href="/2026/02/21/copilot-lied.html" class="post-nav-link post-nav-prev" title="Copilot lied">
+            <span class="post-nav-label">← Previous Post</span>
+        </a>
+        
+        
+    </nav>
+    
+    
+    <header class="post-header">
+        <h1>Brute force and ignorance</h1>
+        
+        <time datetime="2026-02-27T09:45:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/02/">02</a>-<a href="/2026/02/27/">27</a> 09:45:00 UTC</time>
+        
+        <div class="reading-time">5 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+    </header>
+    
+    <div class="post-content">
+        <p>My <a href="/2026/02/20/five-days-with-copilot.html">experiment with coding with an
+agent</a> continues, and from the
+point of view of the usability of the results, I'd say it's going well. From
+the point of view of learning more about this sort of tool and the pitfalls:
+I'd also say it's going well.</p>
+<p>The one thing I'm really starting to get an appreciation for is just how
+much it employs a sort of <em>brute force and ignorance</em> approach to getting to
+a solution for some sort of problem. I noticed this on and off as I watched
+the agent's chat, as it worked away.</p>
+<p>One example I enjoyed was when it was trying to add a new dependency to
+<a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank">BlogMore</a>. For reasons I should probably try
+and understand<sup id="fnref:190-1"><a class="footnote-ref" href="#fn:190-1">1</a></sup> it knew it should be using <code>uv</code> to add a dependency and
+it knew how to use it to update the lock file, but it didn't have <code>uv</code> to
+hand:</p>
+<blockquote>
+<p>The lock file (uv.lock) needs to be updated to include rcssmin. Since uv
+isn't available, I'll need to note this in the PR. The lock file should be
+generated by uv when the pyproject.toml is updated.</p>
+</blockquote>
+<p>So it decided the best solution was probably to... "hand-edit" the lock
+file.</p>
+<blockquote>
+<p>The lock file needs to be updated with rcssmin. Since uv is not available
+in this environment, I need to update it manually or find another way.</p>
+<p>I need to update the uv.lock file to include rcssmin. The uv.lock file needs to include:</p>
+<ol>
+<li>The rcssmin package entry with hashes</li>
+<li>The rcssmin dependency in the blogmore package section</li>
+</ol>
+<p>Let me look at the PyPI page for rcssmin 1.2.2 to get the hash.</p>
+</blockquote>
+<p>It then grabs <code>rcssmin</code> from PyPI and checks out the information it wants;
+after which it goes:</p>
+<blockquote>
+<p>I need to update the <code>uv.lock</code> file with the rcssmin package information.
+The <code>uv.lock</code> file uses SHA256 hashes. Let me look at the existing format
+in more detail to understand what I need to add, and then I'll query PyPI
+for the hashes.</p>
+<p>Actually, let me think about this differently. The <code>uv.lock</code> file is a
+generated file, and updating it manually is error-prone. The proper way to
+update it is to run <code>uv sync</code> or <code>uv lock</code>. Since uv is not available in
+this environment, I have two options:</p>
+<ol>
+<li>Let the CI update the lock file (risky if CI fails on the locked version)</li>
+</ol>
+</blockquote>
+<p>So... around this point it has some sort of plan for hand-patching the lock
+file, but also recognises that this is a dodgy approach and it should be
+using <code>uv</code> to update the lock file.</p>
+<p>I also really like the part where it says it has two options, then goes on
+to provide an exhaustive list of... one.</p>
+<p>After this it runs this code:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">urllib.request</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://pypi.org/pypi/rcssmin/json&#39;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="s1">&#39;1.2.2&#39;</span>
+    <span class="n">releases</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;releases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">releases</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;filename: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="err">\</span><span class="s2">&quot;filename</span><span class="se">\&quot;</span><span class="s2">]}&#39;)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  url: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="err">\</span><span class="s2">&quot;url</span><span class="se">\&quot;</span><span class="s2">]}&#39;)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  sha256: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="err">\</span><span class="s2">&quot;digests</span><span class="se">\&quot;</span><span class="s2">][</span><span class="se">\&quot;</span><span class="s2">sha256</span><span class="se">\&quot;</span><span class="s2">]}&#39;)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  size: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="err">\</span><span class="s2">&quot;size</span><span class="se">\&quot;</span><span class="s2">]}&#39;)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  upload_time: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="err">\</span><span class="s2">&quot;upload_time_iso_8601</span><span class="se">\&quot;</span><span class="s2">]}&#39;)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>after which it concludes:</p>
+<blockquote>
+<p>Now I have all the information I need to update the uv.lock file. I need to add:</p>
+<ol>
+<li>The rcssmin package entry in the lock file</li>
+<li>Add rcssmin to the blogmore package dependencies</li>
+</ol>
+</blockquote>
+<p>I mean... okay, I guess. Again, I'll admit that I'm still getting used to
+setting this sort of thing up and working with it (and keep in mind none of
+this was done locally; this is all via GitHub Copilot, up on GitHub), but
+it's kind of funny and wild that the approach taken was to recognise that
+using <code>uv</code> to remake the lock file was the best approach so... let's
+hand-edit the lock file.</p>
+<p>But that's not the best part. This is where it gets really fun. It had
+decided that the lock file <em>must</em> be in alphabetical order. Okay, sure, why
+not:</p>
+<blockquote>
+<p>The lock file has packages sorted alphabetically, so rcssmin should go
+between pygments and python-dateutil (since "r" comes before "py"
+actually... no, wait - "r" comes after "p" in the alphabet. Let me check
+the order again).</p>
+</blockquote>
+<p>Since "r" comes before "py."</p>
+<p><strong>Since "r" comes before "py."</strong></p>
+<p>o_O</p>
+<p>O_o</p>
+<p>Extra credit here for giving me a good giggle. I really appreciate the way
+that it catches itself mid-sentence and remembers how the alphabet actually
+works.</p>
+<p>As to the outcome of all of this? Sure, <a href="https://github.com/davep/blogmore/issues/158" rel="noopener noreferrer" target="_blank">the feature I wanted to
+add</a> <a href="https://github.com/davep/blogmore/pull/161" rel="noopener noreferrer" target="_blank">got
+added</a>; it worked away and got
+to a working solution in the end. But the route it took was, I think it's
+fair to say, a <em>"brute force and ignorance"</em> approach.</p>
+<p>I've not been spending too much time reading the agent's own chatter, but
+when I have I've found myself amused by the dead ends it'll wander down and
+then work its way back out. There is, without question, a recognisable
+process here: I believe it would be a dishonest developer who says they've
+<em>never</em> had times in the past, or just one of those off days, where they've
+fallen down a rabbit hole of a solution, only to realise it's the right
+solution implemented in the worst possible way. There's also a resemblance
+here to how more junior developers work a problem until they really develop
+their skills.</p>
+<p>I think I'm going to keep an eye on the agent chat a bit more from now on.
+While I imagine things will only improve as these tools improve, for the
+moment it's a good source of coding comedy.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:190-1">
+<p>Presumably there's things I can be doing to make its life easier.&#160;<a class="footnote-backref" href="#fnref:190-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+    </div>
+    
+    
+    <div class="tags">
+        
+        <a href="/tag/python.html" class="tag">Python</a>
+        
+        <a href="/tag/blogging.html" class="tag">Blogging</a>
+        
+        <a href="/tag/ai.html" class="tag">AI</a>
+        
+        <a href="/tag/llm.html" class="tag">LLM</a>
+        
+        <a href="/tag/copilot.html" class="tag">Copilot</a>
+        
+        <a href="/tag/github.html" class="tag">GitHub</a>
+        
+        <a href="/tag/blogmore.html" class="tag">BlogMore</a>
+        
+    </div>
+    
+    
+    
+    <nav class="post-navigation post-navigation-bottom">
+        
+        <a href="/2026/02/21/copilot-lied.html" class="post-nav-link post-nav-prev" title="Copilot lied">
+            <span class="post-nav-label">← Previous Post</span>
+        </a>
+        
+        
+    </nav>
+    
+</article>
+
+            </main>
+
+            <footer>
+                <p>Generated with <a href="https://github.com/davep/blogmore" target="_blank" rel="noopener noreferrer">Blogmore</a></p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

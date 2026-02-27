@@ -303,6 +303,60 @@
     
     
     <article class="post-summary">
+        <h2><a href="/2020/06/25/swift-til-4.html">Swift TIL 4</a></h2>
+        
+        <time datetime="2020-06-25T13:21:00+01:00"><a href="/2020/">2020</a>-<a href="/2020/06/">06</a>-<a href="/2020/06/25/">25</a> 13:21:00 UTC+01:00</time>
+        
+        <div class="reading-time">1 min read</div>
+        
+        <div class="category">
+            <a href="/category/til.html" class="category-link">TIL</a>
+        </div>
+        
+        <div class="post-content">
+            <p>Some languages favour a <a href="https://www.python.org/dev/peps/pep-0020/" rel="noopener noreferrer" target="_blank">"one way to do
+it"</a> approach, some favour
+<a href="https://en.wikipedia.org/wiki/There%27s_more_than_one_way_to_do_it" rel="noopener noreferrer" target="_blank">"there's more than one way to do
+it"</a>.
+I'm not sure I'm at a point where I have a feel for what Swift's approach
+is, but I'm getting the impression it's more the latter than the former.</p>
+<p>If there was one thing that made me think that, it was when I found out that
+Swift's <code>bool</code> type has a <code>toggle</code> method.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nv">cool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span>
+
+<span class="bp">print</span><span class="p">(</span><span class="w"> </span><span class="n">cool</span><span class="w"> </span><span class="p">)</span>
+<span class="n">cool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="o">!</span><span class="n">cool</span>
+<span class="bp">print</span><span class="p">(</span><span class="w"> </span><span class="n">cool</span><span class="w"> </span><span class="p">)</span>
+<span class="n">cool</span><span class="p">.</span><span class="n">toggle</span><span class="p">()</span>
+<span class="bp">print</span><span class="p">(</span><span class="w"> </span><span class="n">cool</span><span class="w"> </span><span class="p">)</span>
+</code></pre></div>
+
+<p>giving:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>swift<span class="w"> </span>run
+<span class="nb">false</span>
+<span class="nb">true</span>
+<span class="nb">false</span>
+</code></pre></div>
+
+<p>I can see a number of reasons why that's actually going to be handy -- the
+main one being when you want to throw around a toggling method -- but it
+still struck me as rather odd on first reading. I also think it's worth me
+making a personal note about it because <code>foo.toggle()</code> isn't going to stand
+out as much as <code>foo = !foo</code> when reading code. At least not for a short
+while.</p>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/swift.html" class="tag">Swift</a>
+            
+            <a href="/tag/apple.html" class="tag">Apple</a>
+            
+        </div>
+        
+    </article>
+    
+    <article class="post-summary">
         <h2><a href="/2020/06/24/swift-til-3.html">Swift TIL 3</a></h2>
         
         <time datetime="2020-06-24T16:38:00+01:00"><a href="/2020/">2020</a>-<a href="/2020/06/">06</a>-<a href="/2020/06/24/">24</a> 16:38:00 UTC+01:00</time>
@@ -955,92 +1009,6 @@ done the job without ever losing me any work.</p>
             <a href="/tag/lisp.html" class="tag">Lisp</a>
             
             <a href="/tag/emacs-lisp.html" class="tag">Emacs Lisp</a>
-            
-        </div>
-        
-    </article>
-    
-    <article class="post-summary">
-        <h2><a href="/2019/12/08/git2gantt.html">git2gantt -- Simple tool to visualise coding runs</a></h2>
-        
-        <time datetime="2019-12-08T13:44:00+00:00"><a href="/2019/">2019</a>-<a href="/2019/12/">12</a>-<a href="/2019/12/08/">08</a> 13:44:00 UTC</time>
-        
-        <div class="reading-time">3 min read</div>
-        
-        <div class="category">
-            <a href="/category/python.html" class="category-link">Python</a>
-        </div>
-        
-        <div class="post-content">
-            <p>At the start of this year, as part of a much bigger process to review the
-work that had taken place over the previous 12 months, I was asked (at work)
-to provide some information about how much time I'd spent on various
-projects. Now, for me, there's really only one project, but there's lots of
-different tools and libraries that I've written to support the main work I
-do. All of these are split into different repositories in the
-company-internal instance of <a href="https://about.gitlab.com/" rel="noopener noreferrer" target="_blank">GitLab</a>. This meant
-that getting a rough idea of what I was working on and when would be easy
-enough -- it's all there in the commit history.</p>
-<p>Given that this information would make up a couple of slides at most during
-a far bigger presentation, I wanted something that would be snappy and easy
-for non-developers to follow and understand. I spent a bit of time pondering
-some options and decided that (ab)using a <a href="https://en.wikipedia.org/wiki/Gantt_chart" rel="noopener noreferrer" target="_blank">gantt
-chart</a> layout would make sense.</p>
-<p>That choice was made all the more easier given that <a href="https://docs.gitlab.com/ee/user/markdown.html#mermaid" rel="noopener noreferrer" target="_blank">GitLab
-supports</a> the use of
-<a href="https://mermaid-js.github.io/mermaid/#/" rel="noopener noreferrer" target="_blank">mermaid charts</a> within its
-Markdown. This meant I could quickly write some code that took the git log
-of each repository, turned it into mermaid code, and then render it (by
-hand, this was all about getting things done quickly) via GitLab.</p>
-<p>This sounded like it could be a fun personal project. The result was some
-Python code called <a href="https://github.com/davep/git2gantt" rel="noopener noreferrer" target="_blank">git2gantt</a>.</p>
-<p>As mentioned above, the output isn't anything too clever, it's just code
-that can be used to create a plot via mermaid. For example, running
-git2gannt over itself:</p>
-<div class="highlight"><pre><span></span><code>gantt
-  title git2gantt output
-  dateFormat YYYY-MM-DD
-
-  section git2gantt
-  Development: devgit2gantt20190208, 2019-02-08, 2019-02-13
-  Development: devgit2gantt20190214, 2019-02-14, 2019-02-15
-  Development: devgit2gantt20190303, 2019-03-03, 2019-03-04
-  Development: devgit2gantt20191203, 2019-12-03, 2019-12-04
-</code></pre></div>
-
-<p>Usage is pretty straightforward: <img alt="Screenshot 2019-12-08 at
-13.18.12.png" src="/attachments/2019/12/08/Screenshot 2019-12-08 at 13.18.12.png" />
-As you can see, it can be run over multiple repos at once, and there's also
-an option to have it consider every branch within each repository. Another
-handy option is the ability to limit the output to just one author --
-perhaps you just want to document what you've done on a repo, not the
-contributions of other people.</p>
-<p>Also especially handy, if you don't want to bore people with too much
-detail, is the "fuzz" option. This lets you tell <code>git2gannt</code> how relaxed you
-want it to be when it tries to decide how long a run of work on a repo
-lasted. So, perhaps, you're working on and off on a library that supports
-some other system you're documenting, but you might only be making changes
-every other day or so. With the correct fuzz value you can make it clear you
-were working <em>on</em> the library for a couple of weeks, despite there only
-being a commit every other day.</p>
-<p>An example of running the output over a handful of projects would look
-something like this:</p>
-<p><img alt="Screenshot 2019-12-08 at 13.34.41.png" src="/attachments/2019/12/08/Screenshot 2019-12-08 at 13.34.41.png#centre" /></p>
-<p>This is one of those tools I knocked up quickly to get a job done, and
-haven't quite got round to finishing off fully. One thing I'd really like to
-do is add mermaid support directly within it, so that it actually has the
-option to emit plots, not just mermaid code (or, perhaps, drop the mermaid
-approach and use something else entirely).</p>
-<p>Meanwhile though, if you're looking for something quick and dirty that will
-help you visualise what you've been working on and when for a good period of
-time... perhaps this will help.</p>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/python.html" class="tag">Python</a>
-            
-            <a href="/tag/documentation.html" class="tag">documentation</a>
             
         </div>
         
