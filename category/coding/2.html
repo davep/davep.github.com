@@ -245,6 +245,86 @@
     
     
     <article class="post-summary">
+        <h2><a href="/2025/04/20/complexitty.html">Complexitty</a></h2>
+        
+        <time datetime="2025-04-20T09:30:00+01:00"><a href="/2025/">2025</a>-<a href="/2025/04/">04</a>-<a href="/2025/04/20/">20</a> 09:30:00 UTC+01:00</time>
+        
+        <div class="reading-time">2 min read</div>
+        <div class="post-content">
+            <p><a href="https://complexitty.davep.dev/" rel="noopener noreferrer" target="_blank"><img alt="Complexitty" src="/attachments/2025/04/20/complexitty-social-banner.png" /></a></p>
+<p>Much like <a href="https://www.davep.org/norton-guides/" rel="noopener noreferrer" target="_blank">Norton Guide readers</a> or
+the <a href="https://github.com/davep?tab=repositories&amp;q=5x5&amp;type=&amp;language=&amp;sort=" rel="noopener noreferrer" target="_blank">5x5
+puzzle</a>,
+code that has fun with the Mandelbrot set is another one of my goto
+exercises. I've written versions in many languages, and messed with plots in
+some different environments, as varied as <a href="https://www.youtube.com/watch?v=18ytRZrHL34" rel="noopener noreferrer" target="_blank">in VR on the
+web</a> to <a href="https://www.redbubble.com/i/t-shirt/Self-Documenting-Mandelbrot-by-davepearson/1341910.0S66D" rel="noopener noreferrer" target="_blank">wearable
+items</a>.</p>
+<p>Back in the early days of <a href="/2024/03/28/goodbye-textualize.html">my involvement with
+Textualize</a> I
+<a href="https://github.com/davep/trMandelbrot" rel="noopener noreferrer" target="_blank">wrote a deliberately worst-approach
+version</a> using that framework. The
+whole thing was about taking a really silly approach while also
+stress-testing Textual itself. It did the job.</p>
+<p>Later on I did <a href="https://github.com/davep/textual-mandelbrot" rel="noopener noreferrer" target="_blank">a second version that targets
+Textual</a>. This time it did a
+better job and was the catalyst for building
+<a href="https://textual-canvas.davep.dev/" rel="noopener noreferrer" target="_blank"><code>textual-canvas</code></a>. This version was
+intended more to be a widget that happened to come with an example
+application, and while it was far more better than the on-purpose-terrible
+version mentioned above, I still wasn't 100% happy with the way it worked.</p>
+<p>Recently I did some maintenance work on <code>textual-canvas</code>, cleaning up the
+repository and bringing it in line with how I like to maintain my Python
+projects these days, and this prompted me to look back at
+<code>textual-mandelbrot</code> and rework it too. Quickly I realised it wasn't really
+sensible to rewrite it in a way that it would be backward compatible (not
+that I think anyone has ever used the widget) and instead I decided to kick
+off a fresh stand-alone application.</p>
+<p><a href="https://complexitty.davep.dev/" rel="noopener noreferrer" target="_blank">Complexitty</a> is the result.</p>
+<p><img alt="Complexitty on startup" src="/attachments/2025/04/20/complexitty.png" /></p>
+<p>Right now the application has all the same features as the <code>mandelexp</code>
+application that came with <code>textual-mandelbrot</code>, plus a couple more. Also
+it's built on top of <a href="https://github.com/davep/textual-enhanced" rel="noopener noreferrer" target="_blank">the common core
+library</a> I've been putting
+together for all my own terminal-based Python applications. As time goes on
+<a href="https://github.com/davep/complexitty/issues?q=is%3Aissue%20label%3ATODO%20label%3AEnhancement" rel="noopener noreferrer" target="_blank">I'll add more
+features</a>.</p>
+<p><img alt="Zoomed in with Complexitty" src="/attachments/2025/04/20/complexitty-red.png" /></p>
+<p>As with most of my recent TUI-based projects, the application is built with
+comprehensive help for commands and key bindings.</p>
+<p><img alt="The help screen" src="/attachments/2025/04/20/complexitty-help.png" /></p>
+<p>and there's also a command palette that helps you discover (and run)
+commands and their keyboard bindings.</p>
+<p><img alt="The command palette" src="/attachments/2025/04/20/complexitty-commands.png" /></p>
+<p>Complexitty is licensed GPL-3.0 and available <a href="https://github.com/davep/complexitty" rel="noopener noreferrer" target="_blank">via
+GitHub</a> and also <a href="https://pypi.org/project/complexitty/" rel="noopener noreferrer" target="_blank">via
+PyPI</a>. If you have an environment that has
+<code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>complexitty
+</code></pre></div>
+
+<p>It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>complexitty</code>:</p>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+brew<span class="w"> </span>install<span class="w"> </span>complexitty
+</code></pre></div>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/terminal.html" class="tag">terminal</a>
+            
+            <a href="/tag/textual.html" class="tag">textual</a>
+            
+            <a href="/tag/mandelbrot.html" class="tag">mandelbrot</a>
+            
+        </div>
+        
+    </article>
+    
+    <article class="post-summary">
         <h2><a href="/2025/03/24/ng2web.html">ng2web v1.0.0</a></h2>
         
         <time datetime="2025-03-24T14:17:00+00:00"><a href="/2025/">2025</a>-<a href="/2025/03/">03</a>-<a href="/2025/03/24/">24</a> 14:17:00 UTC</time>
@@ -419,7 +499,7 @@ they wanted me to build this as test of the framework, to essentially start
 out by employing me to create some Free Software that would help dogfood the
 library, but that seemed to get forgotten.</p>
 <p>Fast forward to the start of this month and I finally felt it was time to
-tackle this. The result is <a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank">AgiNG</a><sup id="fnref:186-1"><a class="footnote-ref" href="#fn:186-1">1</a></sup>.</p>
+tackle this. The result is <a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank">AgiNG</a><sup id="fnref:187-1"><a class="footnote-ref" href="#fn:187-1">1</a></sup>.</p>
 <p><img alt="AgiNG in action" src="/attachments/2025/03/12/aging-textual-dark.png" /></p>
 <p>As of v0.1.0 it has most of the features you'd expect from a usable Norton
 Guide reader, including:</p>
@@ -489,11 +569,11 @@ time goes on.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:186-1">
+<li id="fn:187-1">
 <p>If you're wondering about the name, it's nothing more than a word that
 happens to have <code>NG</code> in it, and also a mild pun about this being an
 ageing hypertext help system; with the spelling acknowledging Peter
-Norton's nationality.&#160;<a class="footnote-backref" href="#fnref:186-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+Norton's nationality.&#160;<a class="footnote-backref" href="#fnref:187-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -1076,124 +1156,6 @@ I can turn the data into useful Markdown collections!</p>
             <a href="/tag/journey.html" class="tag">Journey</a>
             
             <a href="/tag/evernote.html" class="tag">Evernote</a>
-            
-        </div>
-        
-    </article>
-    
-    <article class="post-summary">
-        <h2><a href="/2024/08/18/paindrop.html">Paindrop v1.0.0</a></h2>
-        
-        <time datetime="2024-08-18T10:57:00+01:00"><a href="/2024/">2024</a>-<a href="/2024/08/">08</a>-<a href="/2024/08/18/">18</a> 10:57:00 UTC+01:00</time>
-        
-        <div class="reading-time">4 min read</div>
-        <div class="post-content">
-            <p>I was quite late discovering Pinboard; by the looks of things I created my
-account and paid my first subscription for it in early 2019. Since then I've
-been a pretty avid user and found it really useful. I've even written a
-couple of clients for it (<a href="https://github.com/davep/pinboard.el" rel="noopener noreferrer" target="_blank">one for
-Emacs</a> and <a href="https://github.com/davep/tinboard" rel="noopener noreferrer" target="_blank">one for the
-terminal</a>).</p>
-<p>During that time it's had its fair share of hiccups and outages, but on the
-whole I've found it a stable and useful service.</p>
-<p>The service does have its detractors, and concerns over its long-term
-stability and how well it's maintained <a href="https://news.ycombinator.com/item?id=34062802" rel="noopener noreferrer" target="_blank">are fairly
-common</a>. I half paid
-attention to these, and had started to think about where I might go if there
-was an issue.</p>
-<p>While maintaining and syncing bookmarks isn't exactly a difficult or
-unsolved problem, and while it's also true that it could be fun to roll my
-own solution, there are a couple of things I need that would make building
-my own approach a bit of a chore.</p>
-<p>Things important to me are:</p>
-<ul>
-<li>An extension for any random browser I might find myself using</li>
-<li>A good mobile client for at least iOS and iPadOS</li>
-<li>A good API so I can write my own tools if I need to</li>
-<li>A clean and focused backend website</li>
-</ul>
-<p>I kept these things in mind and kept an eye out but I'd never really felt
-the need to actively start looking around.</p>
-<p>Then I <a href="https://sfba.social/@peterme/112915495895055170" rel="noopener noreferrer" target="_blank">stumbled on this</a>
-after posting about <a href="https://fosstodon.org/@davep/112925762265869565" rel="noopener noreferrer" target="_blank">another Pinboard
-outage</a>.</p>
-<p>That... yeah, that was the final push I needed to start to think seriously
-about where to move and how.</p>
-<p>A couple of people suggested <a href="https://raindrop.io" rel="noopener noreferrer" target="_blank">Raindrop</a>, and from what
-I could tell it was coming up as a pretty popular service that some Pinboard
-users were migrating to. I had a look and it wasn't <em>quite</em> what I was
-after; but close.</p>
-<p>You see, there's two things I really like about Pinboard that Raindop didn't
-seem to cover:</p>
-<ul>
-<li>Simple support for "this shit is unread". I see things, I share to
-  whatever Pinboard app I have on my phone or tablet, etc, and then I review
-  some time later (normally in
-  <a href="https://github.com/davep/tinboard" rel="noopener noreferrer" target="_blank">Tinboard</a>).</li>
-<li>Support for Private and Public pins. I've liked <a href="https://pinboard.in/u:davep" rel="noopener noreferrer" target="_blank">having a feed of
-  bookmarks I can let people see</a> and Raindrop
-  doesn't have this.</li>
-</ul>
-<p>I looked around at some blogs that talked about Pinboard vs Raindrop and
-didn't see any that really dived into this particular aspect of migrating; I
-also asked a couple of folk who'd made the move about this and they didn't
-really have any insight (mainly because they didn't care about those
-particular uses).</p>
-<p>One thing I did notice though was that Raindrop <em>does</em> support making
-individual collections public. So, if I was willing to sacrifice any other
-uses for collections (a bookmark in Raindrop can only be in one collection),
-I could simply have a <em>Public</em> and a <em>Private</em> collection and import pins
-into the appropriate one. Also, unread pins could be left out of the
-collections and I could use that to signify unread status.</p>
-<p>This seemed fine as I'm heavy on the tags anyway.</p>
-<p>Now... Raindrop has a pretty comprehensive import facility built in. I gave
-it a try with Pinboard's backup file and it worked really well. That is...
-really well except it just threw away the public/private/unread aspect of
-the pins. There was only one thing for it then: I had to write my own
-importer!</p>
-<p>Which brings me to <a href="https://github.com/davep/paindrop" rel="noopener noreferrer" target="_blank"><code>Paindrop</code></a>. It's a
-quick hack but it does the job, and it does the import just how I wanted.
-The result of the first test was pretty much spot on (in this image I'm
-comparing what Raindrop says vs what Tinboard says I have in Pinboard):</p>
-<p><img alt="Comparing Raindrop and Tinboard contents" src="/attachments/2024/08/18/raindrop-imports.png#centre" /></p>
-<p>Usage is pretty straightforward. You create <code>Public</code> and <code>Private</code>
-collections in Raindrop, you create an app in Raindrop and get the access
-token, you grab your Pinboard access token and then:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>paindrop<span class="w"> </span>example:xxxxxxxxxxxxxxxxxxxx<span class="w"> </span>xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-</code></pre></div>
-
-<p>where the first parameter is the Pinboard access token and the second the
-Raindrop access token.</p>
-<p>If all goes well, after a few moments, the importer should finish and you
-should find that all of your pins have migrated to Raindrop, all public pins
-are in the <code>Public</code> collection and all private pins are in the <code>Private</code>
-collection. Any pins that were marked as unread will be <em>Unsorted</em>.</p>
-<p>Note that if you used different names for your public and private
-collections you can pass those names to <code>paindrop</code> with the <code>--public</code> and
-<code>--private</code> switches.</p>
-<p>If you're looking to move your bookmarking history out of Pinboard and want
-to keep the same sort of structure I had I hope Paindrop will be useful to
-you too.</p>
-<p>Paindrop can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/paindrop/" rel="noopener noreferrer" target="_blank">from
-PyPi</a>. It can also be installed with
-<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>paindrop</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>paindrop
-</code></pre></div>
-
-<p>The <a href="https://github.com/davep/paindrop" rel="noopener noreferrer" target="_blank">source is available on GitHub</a>.</p>
-<p>PS: As for the name... originally it was <code>pin2rain</code> but then <a href="https://fosstodon.org/@darrenburns/112978377299333401" rel="noopener noreferrer" target="_blank">Darren Burns
-pointed out the obvious and it had to
-happen</a>.</p>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/python.html" class="tag">Python</a>
-            
-            <a href="/tag/pinboard.html" class="tag">pinboard</a>
-            
-            <a href="/tag/raindrop.html" class="tag">raindrop</a>
             
         </div>
         

@@ -282,11 +282,13 @@
         
     
         
+    
+        
             
     <span class="pagination-ellipsis">…</span>
             
             
-    <a href="/page/20.html" class="pagination-link pagination-number">20</a>
+    <a href="/page/21.html" class="pagination-link pagination-number">21</a>
             
             
         
@@ -301,6 +303,82 @@
 
 
     
+    
+    <article class="post-summary">
+        <h2><a href="/2019/12/14/nuke-buffers-el.html">nuke-buffers.el -- Tidy up open buffers in Emacs</a></h2>
+        
+        <time datetime="2019-12-14T13:17:00+00:00"><a href="/2019/">2019</a>-<a href="/2019/12/">12</a>-<a href="/2019/12/14/">14</a> 13:17:00 UTC</time>
+        
+        <div class="reading-time">2 min read</div>
+        
+        <div class="category">
+            <a href="/category/emacs.html" class="category-link">Emacs</a>
+        </div>
+        
+        <div class="post-content">
+            <p>Both at work and at home I use Emacs by <a href="https://github.com/davep/longmacs.el" rel="noopener noreferrer" target="_blank">keeping a copy running all the
+time</a>, and use <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html#Emacs-Server" rel="noopener noreferrer" target="_blank"><code>emacsclient</code> to open
+files inside
+it</a>
+(including on remote machines thanks to a bit of
+<a href="https://en.wikipedia.org/wiki/Secure_Shell" rel="noopener noreferrer" target="_blank"><code>ssh</code></a> and heavy use of
+<a href="https://www.gnu.org/software/tramp/" rel="noopener noreferrer" target="_blank"><code>tramp</code></a> -- I might write this up at
+some point). This works really well, but does mean I tend to build up a lot
+of buffers over time.</p>
+<p>Having lots of buffers open isn't generally an issue, and if I'm working on
+lots of different files in a project during the course of a hacking session
+it's actually a good thing. But, quite often, I want to tidy up the buffer
+list, clearing it back to near-zero buffers open. Many years ago, when I had
+a "proper" tower system running 24/7, with Emacs open all the time, I'd use
+<a href="https://www.emacswiki.org/emacs/MidnightMode" rel="noopener noreferrer" target="_blank"><code>clean-buffer-list</code> as part of
+<code>midnight</code></a>. Along the way
+that fell out of favour with me, likely because I drifted into using
+machines that had Emacs open all the time but where the machine wasn't awake
+all the time.</p>
+<p>Eventually I decided to have some fun rolling my own solution, and
+<a href="https://github.com/davep/nuke-buffers.el" rel="noopener noreferrer" target="_blank"><code>nuke-buffers</code></a> was born.</p>
+<p>Rather than try and do things in an automated way, this was designed to be
+<a href="https://github.com/davep/.emacs.d/blob/ffc863ca0fb669d2f6639bda62e81764c35767ce/init.d/packages/init-packages-delpa.el#L98-L107" rel="noopener noreferrer" target="_blank">bound to a key (or
+two)</a>
+and then be run when I wanted, being as harsh as possible about cleaning up
+the buffer list. Since first writing it it's worked well for me.</p>
+<p>These days I tend to let the buffer list build up as I work on a new
+feature, or chase down a bug, etc. Then, once I've made the final commit for
+that period of focus, I'll hit the <code>nuke-buffer</code> key combo as the final act
+of confirming that I've done the job. So not only does this help tidy my
+Emacs session a bit, it also feels like a physical form of punctuation --
+back in less sensible days, when I had some terrible habits, it would have
+been when I'd reach for the celebratory cigarette; buffer-tidying feels far
+more wholesome. ;)</p>
+<p>The way the code works is, of course, mostly directed at how I work -- it's
+highly likely it wouldn't make sense for many other people. The main aim is
+to kill as many buffers as possible, but without disturbing anything else.
+The list of buffers it gathers for nuking avoids buffers that are <a href="https://github.com/davep/nuke-buffers.el/blob/d018499b78968f074565c076068f657a1631aa07/nuke-buffers.el#L60-L62" rel="noopener noreferrer" target="_blank">visiting
+files but have unsaved
+content</a>,
+avoids <a href="https://github.com/davep/nuke-buffers.el/blob/d018499b78968f074565c076068f657a1631aa07/nuke-buffers.el#L54" rel="noopener noreferrer" target="_blank">the
+minibuffer</a>
+(obviously), avoids <a href="https://github.com/davep/nuke-buffers.el/blob/d018499b78968f074565c076068f657a1631aa07/nuke-buffers.el#L56" rel="noopener noreferrer" target="_blank">any "special"
+buffer</a>
+(one that starts with a space then an asterisk), avoids <a href="https://github.com/davep/nuke-buffers.el/blob/d018499b78968f074565c076068f657a1631aa07/nuke-buffers.el#L73" rel="noopener noreferrer" target="_blank">the current
+buffer</a>
+and also avoids <a href="https://github.com/davep/nuke-buffers.el/blob/d018499b78968f074565c076068f657a1631aa07/nuke-buffers.el#L58" rel="noopener noreferrer" target="_blank">any buffer in a list of names to
+avoid</a>.</p>
+<p>I've being using this on a daily basis for around 2.5 years now and it's
+done the job without ever losing me any work.</p>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/emacs.html" class="tag">Emacs</a>
+            
+            <a href="/tag/lisp.html" class="tag">Lisp</a>
+            
+            <a href="/tag/emacs-lisp.html" class="tag">Emacs Lisp</a>
+            
+        </div>
+        
+    </article>
     
     <article class="post-summary">
         <h2><a href="/2019/12/08/git2gantt.html">git2gantt -- Simple tool to visualise coding runs</a></h2>
@@ -980,134 +1058,6 @@ and also get benefits from it as you use it.</p>
         
     </article>
     
-    <article class="post-summary">
-        <h2><a href="/2019/10/23/why-i-really-like-fish-abbreviations.html">Why I really like fish abbreviations</a></h2>
-        
-        <time datetime="2019-10-23T00:18:00+01:00"><a href="/2019/">2019</a>-<a href="/2019/10/">10</a>-<a href="/2019/10/23/">23</a> 00:18:00 UTC+01:00</time>
-        
-        <div class="reading-time">3 min read</div>
-        
-        <div class="category">
-            <a href="/category/tech.html" class="category-link">Tech</a>
-        </div>
-        
-        <div class="post-content">
-            <p><em>I'm filing this as a TIL because, while it wasn't T, I did L it very
-recently and it was a new trick that impacted on around 25 years if prior
-working practice.</em></p>
-<p>I think it must have been around 1991 when I first encountered
-<a href="https://en.wikipedia.org/wiki/4DOS" rel="noopener noreferrer" target="_blank">4DOS</a>. While I'd used the odd Unix
-shell here and there previously, it'd only been in passing. It was 4DOS that
-first introduced me to the power of aliases on the command line. Many of the
-aliases I set up and used in 4DOS still remain with me to this day, on
-GNU/Linux and macOS, in some form or another.</p>
-<p>I'm sure I don't need to tell anyone reading this why aliases and cool and
-handy and pretty much vital if you do lots of work on the command line.</p>
-<p>And then, a couple or so weeks ago, as a very recent convert to
-<a href="https://fishshell.com/" rel="noopener noreferrer" target="_blank">fish</a>, I discovered the
-<a href="https://fishshell.com/docs/current/commands.html#abbr" rel="noopener noreferrer" target="_blank"><code>abbr</code></a> command. At
-first glance it didn't seem to make much sense. It was like
-<a href="https://fishshell.com/docs/current/commands.html#alias" rel="noopener noreferrer" target="_blank"><code>alias</code></a>, only it
-expanded what you typed rather than acted as a command in its own right.</p>
-<p>I did a bit of digging and some of it started to make sense. One thing that
-really won me over -- and while it's something that doesn't directly impact
-on me -- was the argument that it allows for a far more transparent command
-history; especially if you're likely to use a transcript of a shell session
-in a place where people might not know or have access to your aliases.</p>
-<p>Imagine being in a position where you have loads of handy and cool aliases,
-but you also need to record what you've done so other people can follow your
-work (does it show that I sit amongst people who maintain lab notebooks?);
-it seems like it would be a bit of a bother needing to record all of the
-aliases in your own work environment up front. Without that information few
-people will be able to make sense of the recorded commands, with that
-information they'd still need to double-check what each command does.</p>
-<p>So imagine an alias that, when used, expands in place. Then you'd get all of
-the benefit of aliases while also having a full and readable record of what
-you <em>actually</em> did.</p>
-<p>Seems neat!</p>
-<p>Here's a silly example. For a long time I've carried around an alias called
-<code>greedy</code> that runs something like this:</p>
-<div class="highlight"><pre><span></span><code>du<span class="w"> </span>-hs<span class="w"> </span>*<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rh
-</code></pre></div>
-
-<p>It's pretty straightforward: I'm using <code>du</code> to get a sense of which
-directories are using what space, and then using <code>sort</code> to make a
-worst-to-best-offender list out of it. So I could use an alias:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">alias</span><span class="w"> </span><span class="nv">greedy</span><span class="o">=</span><span class="s2">&quot;du -hs * | sort -rh&quot;</span>
-</code></pre></div>
-
-<p>The only downside to this is that, any time I run it, if I were to record
-the shell session and make it available for someone else to read, they'd
-just see:</p>
-<div class="highlight"><pre><span></span><code>~/develop$<span class="w"> </span>greedy
-<span class="m">1</span>.1G<span class="w">    </span>JavaScript
-824M<span class="w">    </span>C
-699M<span class="w">    </span>rust
-<span class="w"> </span>93M<span class="w">    </span>python
-<span class="w"> </span>33M<span class="w">    </span>fonts
-<span class="w"> </span>33M<span class="w">    </span>elisp
-<span class="m">3</span>.4M<span class="w">    </span>zsh
-<span class="m">3</span>.0M<span class="w">    </span>misc
-<span class="m">1</span>.1M<span class="w">    </span>bash
-840K<span class="w">    </span>ocaml
-428K<span class="w">    </span>C++
-316K<span class="w">    </span>lisp
-172K<span class="w">    </span>Swift
-152K<span class="w">    </span>git
-132K<span class="w">    </span>ruby
-<span class="w"> </span>28K<span class="w">    </span>ObjC
-</code></pre></div>
-
-<p>Now, with an abbreviation rather than an alias, I'd type <code>greedy</code> but as
-soon as I hit <code>Enter</code> it'd get expanded to something anyone could read and
-follow:</p>
-<div class="highlight"><pre><span></span><code>~/develop$<span class="w"> </span>du<span class="w"> </span>-hs<span class="w"> </span>*<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rh
-<span class="m">1</span>.1G<span class="w">    </span>JavaScript
-824M<span class="w">    </span>C
-699M<span class="w">    </span>rust
-<span class="w"> </span>93M<span class="w">    </span>python
-<span class="w"> </span>33M<span class="w">    </span>fonts
-<span class="w"> </span>33M<span class="w">    </span>elisp
-<span class="m">3</span>.4M<span class="w">    </span>zsh
-<span class="m">3</span>.0M<span class="w">    </span>misc
-<span class="m">1</span>.1M<span class="w">    </span>bash
-840K<span class="w">    </span>ocaml
-428K<span class="w">    </span>C++
-316K<span class="w">    </span>lisp
-172K<span class="w">    </span>Swift
-152K<span class="w">    </span>git
-132K<span class="w">    </span>ruby
-<span class="w"> </span>28K<span class="w">    </span>ObjC
-</code></pre></div>
-
-<p>This is far from the only benefit of abbreviations; for most people it
-probably isn't one of the most important ones, but I find it neat and
-compelling and this alone drove me to rework almost all of my aliases as
-abbreviations.</p>
-<p>Having done that, I get other benefits too. For example, fish (like other
-shells) has good support for argument completion for well-known commands.
-The problem is, if you alias such a command, you don't get that completion.
-With an abbreviation though you do! All you need to do is type the
-abbreviation, hit <code>space</code> and it'll expand to the underlying command and
-then the full range of completion can happen.</p>
-<p>There's also one last reason why I like abbreviations over aliases, and it's
-kind of a silly one, but in a good way. It's actually fun to see what you
-type magically expand as you do things, it makes you look like you can type
-even faster than you normally can! ;-)</p>
-<p>PS: If you've never tried <code>fish</code> before and you're curious, it's easy to
-<a href="https://rootnroll.com/d/fish-shell/" rel="noopener noreferrer" target="_blank">try in your browser</a>.</p>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/fish.html" class="tag">fish</a>
-            
-            <a href="/tag/shell.html" class="tag">shell</a>
-            
-        </div>
-        
-    </article>
-    
     
 
     
@@ -1198,11 +1148,13 @@ even faster than you normally can! ;-)</p>
         
     
         
+    
+        
             
     <span class="pagination-ellipsis">…</span>
             
             
-    <a href="/page/20.html" class="pagination-link pagination-number">20</a>
+    <a href="/page/21.html" class="pagination-link pagination-number">21</a>
             
             
         

@@ -274,11 +274,13 @@
         
     
         
+    
+        
             
     <span class="pagination-ellipsis">…</span>
             
             
-    <a href="/page/20.html" class="pagination-link pagination-number">20</a>
+    <a href="/page/21.html" class="pagination-link pagination-number">21</a>
             
             
         
@@ -293,6 +295,113 @@
 
 
     
+    
+    <article class="post-summary">
+        <h2><a href="/2025/01/03/braindrop.html">Braindrop</a></h2>
+        
+        <time datetime="2025-01-03T16:24:00+00:00"><a href="/2025/">2025</a>-<a href="/2025/01/">01</a>-<a href="/2025/01/03/">03</a> 16:24:00 UTC</time>
+        
+        <div class="reading-time">4 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+        <div class="post-content">
+            <p><img alt="Braindrop" src="/attachments/2025/01/03/braindrop-social-banner.png" /></p>
+<p>A touch over a year ago I did the initial work on an application called
+<a href="https://github.com/davep/tinboard" rel="noopener noreferrer" target="_blank">Tinboard</a>, a terminal-based client for
+the Pinboard bookmarking service. I had a lot of fun building it and it was
+an application that I used on a near-daily basis. However, around August
+last year <a href="/2024/08/18/paindrop.html">I realised it was time for me to move on from Pinboard and try
+something new</a>; based on various recommendations
+I settled on <a href="https://raindrop.io/" rel="noopener noreferrer" target="_blank">Raindrop</a>.</p>
+<p>As mentioned <a href="/2024/08/18/paindrop.html">in the other blog post</a>, Raindrop
+offered more or less everything I had with Pinboard and so the move was
+fairly straightforward. The one thing that was missing though was an
+application similar to Tinboard.</p>
+<p>So, late on last year, with my winter break approaching, I decided to start
+from scratch and build a <em>"Tinboard for Raindrop"</em>, which I'm calling
+<a href="https://github.com/davep/braindrop" rel="noopener noreferrer" target="_blank">Braindrop</a>.</p>
+<p>This was going to be a bit of an adventure too. Since <a href="/2024/03/28/goodbye-textualize.html">being laid off from
+Textualize earlier in 2024</a> I'd not
+been following its development quite as closely as I used to, and had also
+run into some issues and bugs with it since that time; moreover, as well as
+various bugs appearing, some breaking changes had also been made. As such
+this was going to be a process where I'd wrap my head around what's happened
+with the framework over the prior six months or so.</p>
+<p>Given all this, over the past couple of weeks I've been spending a few hours
+a day doing some for-pleasure coding and v0.1.0 of Braindrop is the result.</p>
+<p><img alt="Main display" src="/attachments/2025/01/03/braindrop-main.png" /></p>
+<p>As much as possible I've tried to keep the look and feel similar to that of
+Tinboard, while also doing my best to avoid some of the <em>"ah, I wish I
+hadn't done it this way"</em> design decisions I'd made. As of the time of
+writing I'm very pleased with the result.</p>
+<p><img alt="The edit dialog" src="/attachments/2025/01/03/braindrop-edit.png" /></p>
+<p>One thing I did want to do is ensure that the application was as
+keyboard-friendly as possible, while also still allowing use of the mouse.
+Textual can sometimes get that wrong and I ran into an example of this while
+trying to ensure that there's good in-application help. Somewhat recently
+Textual added a built-in help system which, sadly, can't easily be used by
+and navigated by someone using the keyboard. So instead I've recreated the
+help system I built into Tinboard, while adopting the documentation standard
+that Textual had settled on (which, coincidentally, was kind of similar to
+what I did in Tinboard to start with).</p>
+<p><img alt="The help dialog" src="/attachments/2025/01/03/braindrop-help.png" /></p>
+<p>As with Tinboard, I've also made sure to make full use of the command
+palette, with every action that makes sense having a keyboard hotkey as well
+as a command in the palette. I also took things a little further and made
+sure that the hotkeys are shown in the command palette for easier discovery.</p>
+<p><img alt="The command palette" src="/attachments/2025/01/03/braindrop-command-palette.png" /></p>
+<p>I've also made sure that Textual's new theme system is available for easy
+use; so out goes dark/light mode toggling and in comes a collection of
+different themes. Here's a wee selection as an example:</p>
+<p><img alt="Example theme 1" src="/attachments/2025/01/03/braindrop-theme-1.png" />
+<img alt="Example theme 2" src="/attachments/2025/01/03/braindrop-theme-2.png" />
+<img alt="Example theme 3" src="/attachments/2025/01/03/braindrop-theme-3.png" />
+<img alt="Example theme 4" src="/attachments/2025/01/03/braindrop-theme-4.png" /></p>
+<p>That's a small selection of the themes, with more to explore.</p>
+<p>There's a few more things I want to do before I consider the application
+v1.0-ready, but it's already in use by me and working well. As I decide what
+else I want to add to it <a href="https://github.com/davep/braindrop/issues?q=is%3Aissue+is%3Aopen+label%3ATODO" rel="noopener noreferrer" target="_blank">I'm building up a list of TODO
+items</a>.</p>
+<p>Given that my day job these days is quite varied, isn't quite so
+coding-intensive, and isn't always related to all things Python, it's
+actually been fun to sit down and hack up a pure Python application from
+scratch again. It's also helped me discover a couple or so fresh bugs in
+Textual (which <a href="https://github.com/Textualize/textual/issues/created_by/davep" rel="noopener noreferrer" target="_blank">I've
+reported</a>, of
+course) and given me the opportunity to <a href="https://github.com/Textualize/textual/pulls/davep" rel="noopener noreferrer" target="_blank">PR some trivial fixes as I've
+noticed typos and stuff as I
+go</a>.</p>
+<p>Anyway; that's v0.1.0 out in the wild. I'm pleased with how it's turned out
+and there's more to come. It's licensed GPL-3.0 and available <a href="https://github.com/davep/braindrop" rel="noopener noreferrer" target="_blank">via
+GitHub</a> and also <a href="https://pypi.org/project/braindrop/" rel="noopener noreferrer" target="_blank">via
+PyPi</a>. If you have an environment that
+has <code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>braindrop
+</code></pre></div>
+
+<p>It can also be installed with
+<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>braindrop</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
+$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>braindrop
+</code></pre></div>
+
+<p>I hope this is useful to someone else. :-)</p>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/terminal.html" class="tag">terminal</a>
+            
+            <a href="/tag/textual.html" class="tag">textual</a>
+            
+        </div>
+        
+    </article>
     
     <article class="post-summary">
         <h2><a href="/2024/11/04/markdown-all-the-things.html">Markdown all the things</a></h2>
@@ -990,158 +1099,6 @@ down time.</p>
         
     </article>
     
-    <article class="post-summary">
-        <h2><a href="/2024/03/10/homebrew-all-the-python-things.html">Homebrew all the Python things</a></h2>
-        
-        <time datetime="2024-03-10T14:12:00+00:00"><a href="/2024/">2024</a>-<a href="/2024/03/">03</a>-<a href="/2024/03/10/">10</a> 14:12:00 UTC</time>
-        
-        <div class="reading-time">4 min read</div>
-        
-        <div class="category">
-            <a href="/category/coding.html" class="category-link">Coding</a>
-        </div>
-        
-        <div class="post-content">
-            <p>Over the past year and a half I've written a <em>lot</em> of Python code, and a lot
-of that Python code has been Textual applications; most of those Textual
-applications have been very quick demonstration or test applications built
-to help support someone asking for help; some of them have been less-trivial
-applications written in my own time and for my own use and amusement. Of
-them I'd say there are two near-daily-drivers, and a couple that I either
-have more plans for, or like to maintain just for the hell of it.</p>
-<p>Those latter applications are all ones that <a href="https://pypi.org/user/davepearson/" rel="noopener noreferrer" target="_blank">I've deployed to
-PyPI</a>, and because of that are all ones
-that I've recommenced be installed using
-<a href="https://pipx.pypa.io/stable/" rel="noopener noreferrer" target="_blank"><code>pipx</code></a>. During that time though I've had
-half an inclination to make them <a href="https://brew.sh/" rel="noopener noreferrer" target="_blank">installable via
-Homebrew</a>. While probably not installable from the core
-Homebrew repository<sup id="fnref:196-1"><a class="footnote-ref" href="#fn:196-1">1</a></sup>, at least installable from a "tap"<sup id="fnref:196-2"><a class="footnote-ref" href="#fn:196-2">2</a></sup> that's under
-my own GitHub account or something.</p>
-<p>To this end I've had <a href="https://til.simonwillison.net/homebrew/packaging-python-cli-for-homebrew" rel="noopener noreferrer" target="_blank">a blog post about packaging Python apps for
-Homebrew</a>
-saved in Pinboard for a while now, and every time I look at it I think
-<em>"this is a lot of faff, maybe later"</em>. Today was that "later".</p>
-<p>As it turned out, it was <em>way</em> easier than I first realised. The evolution
-of today pretty much went like this:</p>
-<h2 id="deciding-to-use-a-single-repository-as-the-tap">Deciding to use a single repository as the "tap"</h2>
-<p>The blog post above seemed to suggest that for every application repository
-you want a tap for, you probably want a parallel <code>homebrew-</code>-prefixed
-repository. This in turn would suggest that every time someone wants to
-install one of your tools, they'd need to add a new tap<sup id="fnref:196-3"><a class="footnote-ref" href="#fn:196-3">3</a></sup>. As I looked at
-it this seemed like way too much faff, so in the end I decided <a href="https://github.com/davep/homebrew-homebrew" rel="noopener noreferrer" target="_blank">to create a
-single repository that I'd keep all my formula files
-in</a>. The naming of
-<code>homebrew-homebrew</code> meant that the tap name would simply be
-<code>davep/homebrew</code>.</p>
-<p>Simple and clean, I think: things for homebrew, things that can be installed
-via homebrew, that come from davep. To add the tap it's simply:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-</code></pre></div>
-
-<h2 id="ensuring-that-all-my-applications-and-libraries-publish-source">Ensuring that all my applications and libraries publish source</h2>
-<p>Although it seems that it might be (possibly, maybe, perhaps, who can tell?)
-deprecated, it looked like
-<a href="https://github.com/tdsmith/homebrew-pypi-poet" rel="noopener noreferrer" target="_blank"><code>homebrew-pypi-poet</code></a> was a
-tool I'd need to do all the heavy work on making the formula file. A quick
-test threw up a problem where it was complaining that my test package (one
-of my own applications) didn't have an <code>sdist</code>. Sure enough, through nothing
-more than never having bothered to make it happen, the source of my
-libraries and applications wasn't been uploaded to PyPI when I published.</p>
-<p>So I went through some of my repositories and fixed that, making patch
-releases as I went.</p>
-<h2 id="making-a-makefile-to-let-me-be-lazy">Making a <code>Makefile</code> to let me be lazy</h2>
-<p>The next thing to do was to figure out the most lazy way of building the
-formula files. From what I could see the main steps to making all of this
-work were:</p>
-<ul>
-<li>Make a venv and activate it</li>
-<li>Install <code>homebrew-pypi-poet</code></li>
-<li>Install the package you want to package for Homebrew</li>
-<li>Run <code>poet</code> to make the formula</li>
-</ul>
-<p>Seemed simple enough. For all sorts of lazy reasons I still tend to use
-<code>pipenv</code> to get things done quickly, and that seemed to work fine here too.
-I'm also a fan of <code>PIPENV_VENV_IN_PROJECT=true</code> which makes things clean and
-tidy, so I figured a rule in a <code>Makefile</code> like this:</p>
-<div class="highlight"><pre><span></span><code><span class="nf">clean</span><span class="o">:</span>
-<span class="w">        </span>rm<span class="w"> </span>-rf<span class="w"> </span>.venv
-<span class="w">        </span>rm<span class="w"> </span>-f<span class="w"> </span>Pipfile<span class="w"> </span>Pipfile.lock
-<span class="w">        </span>pipenv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.12
-<span class="w">        </span>pipenv<span class="w"> </span>install<span class="w"> </span>--dev<span class="w"> </span>homebrew-pypi-poet
-</code></pre></div>
-
-<p>would be fine to make a clean venv ready to build the formula, and then I'd
-have a rule for the package itself that depended on the above, like this:</p>
-<div class="highlight"><pre><span></span><code><span class="nf">oshit</span><span class="o">:</span><span class="w"> </span><span class="n">clean</span>
-<span class="w">        </span>pipenv<span class="w"> </span>install<span class="w"> </span>oshit
-<span class="w">        </span>pipenv<span class="w"> </span>run<span class="w"> </span>poet<span class="w"> </span>-f<span class="w"> </span>oshit<span class="w"> </span>&gt;<span class="w"> </span>Formula/oshit.rb
-</code></pre></div>
-
-<h2 id="fixing-the-package-description">Fixing the package description</h2>
-<p>The above was great, and worked really well. But there was one issue that I
-could see: the resulting formula file always had this <code>desc</code> inside it:</p>
-<div class="highlight"><pre><span></span><code><span class="n">desc</span><span class="w"> </span><span class="s2">&quot;Shiny new formula&quot;</span>
-</code></pre></div>
-
-<p>From what I could see there was no way to tell <code>poet</code> what I wanted the
-description to be, and neither did I want to have to remember to edit that
-line each time I regenerated the formula file. So <code>sed</code> to the rescue then I
-guess, with this sort of thing:</p>
-<div class="highlight"><pre><span></span><code>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;s/Shiny new formula/The actual text I want/&#39;</span><span class="w"> </span>Formula/coolapp.rb
-</code></pre></div>
-
-<h2 id="the-result">The result</h2>
-<p>The result of all of this is that I now have <a href="https://github.com/davep/homebrew-homebrew" rel="noopener noreferrer" target="_blank">a repository that I or anyone
-else can use as a tap</a> to be
-able to install my stuff using the <code>brew</code> command. So now if you want a
-little Hacker News reader for the terminal but you don't want to be messing
-with installing <code>pipx</code> and the like, but you do use <code>brew</code> on your machine,
-it's just this:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>oshit
-</code></pre></div>
-
-<p>Fingers crossed it all "just works" when I next upgrade one of those
-packages. I will, of course, have to remember to go into
-<code>davep/homebrew-homebrew</code> and <code>make the-app</code> for the relevant application,
-and then commit and push the changes, but that's really not too difficult to
-remember and do.</p>
-<p>Hopefully it'll then all just work.</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:196-1">
-<p>I do actually <a href="https://formulae.brew.sh/formula/eg" rel="noopener noreferrer" target="_blank">have one package in
-Homebrew</a>, but it wasn't me who put
-it there.&#160;<a class="footnote-backref" href="#fnref:196-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:196-2">
-<p>I really like Homebrew as a tool for getting stuff installed, by oh my
-gods the naming of things in its ecosystem is terrible and confusing!&#160;<a class="footnote-backref" href="#fnref:196-2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-<li id="fn:196-3">
-<p>No, really, I mean it, this naming convention is kinda cringe right?&#160;<a class="footnote-backref" href="#fnref:196-3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/python.html" class="tag">Python</a>
-            
-            <a href="/tag/terminal.html" class="tag">terminal</a>
-            
-            <a href="/tag/textual.html" class="tag">textual</a>
-            
-            <a href="/tag/homebrew.html" class="tag">Homebrew</a>
-            
-            <a href="/tag/makefile.html" class="tag">Makefile</a>
-            
-        </div>
-        
-    </article>
-    
     
 
     
@@ -1224,11 +1181,13 @@ gods the naming of things in its ecosystem is terrible and confusing!&#160;<a cl
         
     
         
+    
+        
             
     <span class="pagination-ellipsis">…</span>
             
             
-    <a href="/page/20.html" class="pagination-link pagination-number">20</a>
+    <a href="/page/21.html" class="pagination-link pagination-number">21</a>
             
             
         

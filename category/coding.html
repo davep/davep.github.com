@@ -237,6 +237,82 @@
     
     
     <article class="post-summary">
+        <h2><a href="/2026/02/28/complexitty-1-1-0.html">Complexitty v1.1.0</a></h2>
+        
+        <time datetime="2026-02-28T20:40:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/02/">02</a>-<a href="/2026/02/28/">28</a> 20:40:00 UTC</time>
+        
+        <div class="reading-time">2 min read</div>
+        <div class="post-content">
+            <p><a href="https://complexitty.davep.dev/" rel="noopener noreferrer" target="_blank"><img alt="Complexitty" src="/attachments/2025/04/20/complexitty-social-banner.png" /></a></p>
+<p>I've just released v1.1.0 of Complexitty, my little Mandelbrot explorer for
+the terminal. I first released it <a href="/2025/04/20/complexitty.html">in April last
+year</a> and have tinkered with it on and off
+since. Most of the changes have been to do with easier navigation, some
+additional colour schemes, the ability to pass location information on the
+command line, that sort of thing; meanwhile, the very heart of it has stayed
+the same <em>"it's as fast as it's ever going to be expect it to not be fast"</em>
+approach.</p>
+<p>It's a Python application after all: they can be fast, but something like
+this isn't going to compete with the serious Mandelbrot explorers.</p>
+<p>v1.1.0, however, has a little optional speedup. If you install it normally
+it'll work at the pace it always did: the more you zoom in, the more you
+ramp up the iterations to tease more detail out, the slower it gets. But
+now: if you install it as <code>complexitty[faster]</code> rather than just as
+<code>complexitty</code> it will use <a href="http://numba.pydata.org" rel="noopener noreferrer" target="_blank">Numba</a> to speed up the
+main calculation.</p>
+<p>On the very first run things will be slow to start up, but from then on I
+see a real improvement. As you zoom in and explore and up the detail, the
+calculation remains pretty fast. The drop-off of speed that you see without
+Numba just isn't there.</p>
+<p>While the whole idea of Complexitty was to see what I could do with Python,
+in the terminal, using Textual, and keeping it "pure", I feel this is an
+acceptable "cheat" given it's optional.</p>
+<p>I'm considering this an experimental change for now, as I don't know how
+well it will work in all places where Complexitty could be otherwise
+installed. So give it a go, see if it installs and runs as
+<code>complexitty[faster]</code>, and if it doesn't: fall back to plain old
+<code>complexitty</code>.</p>
+<p>If you're interested you can find the source <a href="https://github.com/davep/complexitty" rel="noopener noreferrer" target="_blank">over on
+GitHub</a>, with the application
+available <a href="https://pypi.org/project/complexitty/" rel="noopener noreferrer" target="_blank">via PyPI</a>. If you use
+<code>pipx</code> you should be able to install with either:</p>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>complexitty<span class="o">[</span>faster<span class="o">]</span>
+</code></pre></div>
+
+<p>or</p>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>complexitty
+</code></pre></div>
+
+<p>If you're a fan of
+<a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"><code>uv</code></a> (and who
+isn't these days?) then try either:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>complexitty<span class="o">[</span>faster<span class="o">]</span>
+</code></pre></div>
+
+<p>or fall back to:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>complexitty
+</code></pre></div>
+
+<p>In fact, to squeeze everything you can out of Complexitty, perhaps try:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>complexitty<span class="o">[</span>faster<span class="o">]</span><span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.14
+</code></pre></div>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/terminal.html" class="tag">terminal</a>
+            
+            <a href="/tag/textual.html" class="tag">textual</a>
+            
+            <a href="/tag/mandelbrot.html" class="tag">mandelbrot</a>
+            
+        </div>
+        
+    </article>
+    
+    <article class="post-summary">
         <h2><a href="/2026/02/27/brute-force-and-ignorance.html">Brute force and ignorance</a></h2>
         
         <time datetime="2026-02-27T09:45:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/02/">02</a>-<a href="/2026/02/27/">27</a> 09:45:00 UTC</time>
@@ -254,7 +330,7 @@ a solution for some sort of problem. I noticed this on and off as I watched
 the agent's chat, as it worked away.</p>
 <p>One example I enjoyed was when it was trying to add a new dependency to
 <a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank">BlogMore</a>. For reasons I should probably try
-and understand<sup id="fnref:190-1"><a class="footnote-ref" href="#fn:190-1">1</a></sup> it knew it should be using <code>uv</code> to add a dependency and
+and understand<sup id="fnref:191-1"><a class="footnote-ref" href="#fn:191-1">1</a></sup> it knew it should be using <code>uv</code> to add a dependency and
 it knew how to use it to update the lock file, but it didn't have <code>uv</code> to
 hand:</p>
 <blockquote>
@@ -362,8 +438,8 @@ moment it's a good source of coding comedy.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:190-1">
-<p>Presumably there's things I can be doing to make its life easier.&#160;<a class="footnote-backref" href="#fnref:190-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn:191-1">
+<p>Presumably there's things I can be doing to make its life easier.&#160;<a class="footnote-backref" href="#fnref:191-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -999,7 +1075,7 @@ spoke to me enough that I jotted it down and kept coming back to it and
 thinking about it. It was a phrase I couldn't get out of my head.</p>
 <p>Around the same time I was also doing a lot of thinking about, and
 note-writing about, code reviews. Although I've been working in software
-development<sup id="fnref:201-1"><a class="footnote-ref" href="#fn:201-1">1</a></sup> for a few decades now (I started in July 1989), I was quite
+development<sup id="fnref:202-1"><a class="footnote-ref" href="#fn:202-1">1</a></sup> for a few decades now (I started in July 1989), I was quite
 late to the whole process of code review -- at least in the way we talk
 about it today. This mostly comes down to the fact that for a lot of my time
 I either worked in very small companies or I was the only developer around.</p>
@@ -1119,9 +1195,9 @@ that thrive.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:201-1">
+<li id="fn:202-1">
 <p>Or software engineering, if you prefer, but that's a whole other blog
-post I'll never get round to writing one day.&#160;<a class="footnote-backref" href="#fnref:201-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+post I'll never get round to writing one day.&#160;<a class="footnote-backref" href="#fnref:202-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -1440,86 +1516,6 @@ tool to let you check that assertion.&#160;<a class="footnote-backref" href="#fn
             <a href="/tag/disassembly.html" class="tag">disassembly</a>
             
             <a href="/tag/ast.html" class="tag">ast</a>
-            
-        </div>
-        
-    </article>
-    
-    <article class="post-summary">
-        <h2><a href="/2025/04/20/complexitty.html">Complexitty</a></h2>
-        
-        <time datetime="2025-04-20T09:30:00+01:00"><a href="/2025/">2025</a>-<a href="/2025/04/">04</a>-<a href="/2025/04/20/">20</a> 09:30:00 UTC+01:00</time>
-        
-        <div class="reading-time">2 min read</div>
-        <div class="post-content">
-            <p><a href="https://complexitty.davep.dev/" rel="noopener noreferrer" target="_blank"><img alt="Complexitty" src="/attachments/2025/04/20/complexitty-social-banner.png" /></a></p>
-<p>Much like <a href="https://www.davep.org/norton-guides/" rel="noopener noreferrer" target="_blank">Norton Guide readers</a> or
-the <a href="https://github.com/davep?tab=repositories&amp;q=5x5&amp;type=&amp;language=&amp;sort=" rel="noopener noreferrer" target="_blank">5x5
-puzzle</a>,
-code that has fun with the Mandelbrot set is another one of my goto
-exercises. I've written versions in many languages, and messed with plots in
-some different environments, as varied as <a href="https://www.youtube.com/watch?v=18ytRZrHL34" rel="noopener noreferrer" target="_blank">in VR on the
-web</a> to <a href="https://www.redbubble.com/i/t-shirt/Self-Documenting-Mandelbrot-by-davepearson/1341910.0S66D" rel="noopener noreferrer" target="_blank">wearable
-items</a>.</p>
-<p>Back in the early days of <a href="/2024/03/28/goodbye-textualize.html">my involvement with
-Textualize</a> I
-<a href="https://github.com/davep/trMandelbrot" rel="noopener noreferrer" target="_blank">wrote a deliberately worst-approach
-version</a> using that framework. The
-whole thing was about taking a really silly approach while also
-stress-testing Textual itself. It did the job.</p>
-<p>Later on I did <a href="https://github.com/davep/textual-mandelbrot" rel="noopener noreferrer" target="_blank">a second version that targets
-Textual</a>. This time it did a
-better job and was the catalyst for building
-<a href="https://textual-canvas.davep.dev/" rel="noopener noreferrer" target="_blank"><code>textual-canvas</code></a>. This version was
-intended more to be a widget that happened to come with an example
-application, and while it was far more better than the on-purpose-terrible
-version mentioned above, I still wasn't 100% happy with the way it worked.</p>
-<p>Recently I did some maintenance work on <code>textual-canvas</code>, cleaning up the
-repository and bringing it in line with how I like to maintain my Python
-projects these days, and this prompted me to look back at
-<code>textual-mandelbrot</code> and rework it too. Quickly I realised it wasn't really
-sensible to rewrite it in a way that it would be backward compatible (not
-that I think anyone has ever used the widget) and instead I decided to kick
-off a fresh stand-alone application.</p>
-<p><a href="https://complexitty.davep.dev/" rel="noopener noreferrer" target="_blank">Complexitty</a> is the result.</p>
-<p><img alt="Complexitty on startup" src="/attachments/2025/04/20/complexitty.png" /></p>
-<p>Right now the application has all the same features as the <code>mandelexp</code>
-application that came with <code>textual-mandelbrot</code>, plus a couple more. Also
-it's built on top of <a href="https://github.com/davep/textual-enhanced" rel="noopener noreferrer" target="_blank">the common core
-library</a> I've been putting
-together for all my own terminal-based Python applications. As time goes on
-<a href="https://github.com/davep/complexitty/issues?q=is%3Aissue%20label%3ATODO%20label%3AEnhancement" rel="noopener noreferrer" target="_blank">I'll add more
-features</a>.</p>
-<p><img alt="Zoomed in with Complexitty" src="/attachments/2025/04/20/complexitty-red.png" /></p>
-<p>As with most of my recent TUI-based projects, the application is built with
-comprehensive help for commands and key bindings.</p>
-<p><img alt="The help screen" src="/attachments/2025/04/20/complexitty-help.png" /></p>
-<p>and there's also a command palette that helps you discover (and run)
-commands and their keyboard bindings.</p>
-<p><img alt="The command palette" src="/attachments/2025/04/20/complexitty-commands.png" /></p>
-<p>Complexitty is licensed GPL-3.0 and available <a href="https://github.com/davep/complexitty" rel="noopener noreferrer" target="_blank">via
-GitHub</a> and also <a href="https://pypi.org/project/complexitty/" rel="noopener noreferrer" target="_blank">via
-PyPI</a>. If you have an environment that has
-<code>pipx</code> installed you should be able to get up and going with:</p>
-<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>complexitty
-</code></pre></div>
-
-<p>It can also be installed with
-<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>complexitty</code>:</p>
-<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-brew<span class="w"> </span>install<span class="w"> </span>complexitty
-</code></pre></div>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/python.html" class="tag">Python</a>
-            
-            <a href="/tag/terminal.html" class="tag">terminal</a>
-            
-            <a href="/tag/textual.html" class="tag">textual</a>
-            
-            <a href="/tag/mandelbrot.html" class="tag">mandelbrot</a>
             
         </div>
         

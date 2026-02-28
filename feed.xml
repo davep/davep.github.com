@@ -8,7 +8,71 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 28 Feb 2026 10:49:47 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 28 Feb 2026 20:44:39 +0000</lastBuildDate>
+    <item>
+      <title>Complexitty v1.1.0</title>
+      <link>https://blog.davep.org/2026/02/28/complexitty-1-1-0.html</link>
+      <description>&lt;p&gt;&lt;a href="https://complexitty.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;&lt;img alt="Complexitty" src="https://blog.davep.org/attachments/2025/04/20/complexitty-social-banner.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I've just released v1.1.0 of Complexitty, my little Mandelbrot explorer for
+the terminal. I first released it &lt;a href="https://blog.davep.org/2025/04/20/complexitty.html"&gt;in April last
+year&lt;/a&gt; and have tinkered with it on and off
+since. Most of the changes have been to do with easier navigation, some
+additional colour schemes, the ability to pass location information on the
+command line, that sort of thing; meanwhile, the very heart of it has stayed
+the same &lt;em&gt;"it's as fast as it's ever going to be expect it to not be fast"&lt;/em&gt;
+approach.&lt;/p&gt;
+&lt;p&gt;It's a Python application after all: they can be fast, but something like
+this isn't going to compete with the serious Mandelbrot explorers.&lt;/p&gt;
+&lt;p&gt;v1.1.0, however, has a little optional speedup. If you install it normally
+it'll work at the pace it always did: the more you zoom in, the more you
+ramp up the iterations to tease more detail out, the slower it gets. But
+now: if you install it as &lt;code&gt;complexitty[faster]&lt;/code&gt; rather than just as
+&lt;code&gt;complexitty&lt;/code&gt; it will use &lt;a href="http://numba.pydata.org" rel="noopener noreferrer" target="_blank"&gt;Numba&lt;/a&gt; to speed up the
+main calculation.&lt;/p&gt;
+&lt;p&gt;On the very first run things will be slow to start up, but from then on I
+see a real improvement. As you zoom in and explore and up the detail, the
+calculation remains pretty fast. The drop-off of speed that you see without
+Numba just isn't there.&lt;/p&gt;
+&lt;p&gt;While the whole idea of Complexitty was to see what I could do with Python,
+in the terminal, using Textual, and keeping it "pure", I feel this is an
+acceptable "cheat" given it's optional.&lt;/p&gt;
+&lt;p&gt;I'm considering this an experimental change for now, as I don't know how
+well it will work in all places where Complexitty could be otherwise
+installed. So give it a go, see if it installs and runs as
+&lt;code&gt;complexitty[faster]&lt;/code&gt;, and if it doesn't: fall back to plain old
+&lt;code&gt;complexitty&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you're interested you can find the source &lt;a href="https://github.com/davep/complexitty" rel="noopener noreferrer" target="_blank"&gt;over on
+GitHub&lt;/a&gt;, with the application
+available &lt;a href="https://pypi.org/project/complexitty/" rel="noopener noreferrer" target="_blank"&gt;via PyPI&lt;/a&gt;. If you use
+&lt;code&gt;pipx&lt;/code&gt; you should be able to install with either:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty&lt;span class="o"&gt;[&lt;/span&gt;faster&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If you're a fan of
+&lt;a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt; (and who
+isn't these days?) then try either:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty&lt;span class="o"&gt;[&lt;/span&gt;faster&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;or fall back to:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In fact, to squeeze everything you can out of Complexitty, perhaps try:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty&lt;span class="o"&gt;[&lt;/span&gt;faster&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--python&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.14
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/02/28/complexitty-1-1-0.html</guid>
+      <category>Coding</category>
+      <category>Python</category>
+      <category>terminal</category>
+      <category>textual</category>
+      <category>mandelbrot</category>
+      <pubDate>Sat, 28 Feb 2026 20:40:00 +0000</pubDate>
+    </item>
     <item>
       <title>Brute force and ignorance</title>
       <link>https://blog.davep.org/2026/02/27/brute-force-and-ignorance.html</link>
@@ -23,7 +87,7 @@ a solution for some sort of problem. I noticed this on and off as I watched
 the agent's chat, as it worked away.&lt;/p&gt;
 &lt;p&gt;One example I enjoyed was when it was trying to add a new dependency to
 &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;. For reasons I should probably try
-and understand&lt;sup id="fnref:190-1"&gt;&lt;a class="footnote-ref" href="#fn:190-1"&gt;1&lt;/a&gt;&lt;/sup&gt; it knew it should be using &lt;code&gt;uv&lt;/code&gt; to add a dependency and
+and understand&lt;sup id="fnref:191-1"&gt;&lt;a class="footnote-ref" href="#fn:191-1"&gt;1&lt;/a&gt;&lt;/sup&gt; it knew it should be using &lt;code&gt;uv&lt;/code&gt; to add a dependency and
 it knew how to use it to update the lock file, but it didn't have &lt;code&gt;uv&lt;/code&gt; to
 hand:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -131,8 +195,8 @@ moment it's a good source of coding comedy.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:190-1"&gt;
-&lt;p&gt;Presumably there's things I can be doing to make its life easier.&amp;#160;&lt;a class="footnote-backref" href="#fnref:190-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:191-1"&gt;
+&lt;p&gt;Presumably there's things I can be doing to make its life easier.&amp;#160;&lt;a class="footnote-backref" href="#fnref:191-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -761,7 +825,7 @@ spoke to me enough that I jotted it down and kept coming back to it and
 thinking about it. It was a phrase I couldn't get out of my head.&lt;/p&gt;
 &lt;p&gt;Around the same time I was also doing a lot of thinking about, and
 note-writing about, code reviews. Although I've been working in software
-development&lt;sup id="fnref:201-1"&gt;&lt;a class="footnote-ref" href="#fn:201-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for a few decades now (I started in July 1989), I was quite
+development&lt;sup id="fnref:202-1"&gt;&lt;a class="footnote-ref" href="#fn:202-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for a few decades now (I started in July 1989), I was quite
 late to the whole process of code review -- at least in the way we talk
 about it today. This mostly comes down to the fact that for a lot of my time
 I either worked in very small companies or I was the only developer around.&lt;/p&gt;
@@ -881,9 +945,9 @@ that thrive.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:201-1"&gt;
+&lt;li id="fn:202-1"&gt;
 &lt;p&gt;Or software engineering, if you prefer, but that's a whole other blog
-post I'll never get round to writing one day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:201-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+post I'll never get round to writing one day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:202-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1406,7 +1470,7 @@ they wanted me to build this as test of the framework, to essentially start
 out by employing me to create some Free Software that would help dogfood the
 library, but that seemed to get forgotten.&lt;/p&gt;
 &lt;p&gt;Fast forward to the start of this month and I finally felt it was time to
-tackle this. The result is &lt;a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank"&gt;AgiNG&lt;/a&gt;&lt;sup id="fnref:186-1"&gt;&lt;a class="footnote-ref" href="#fn:186-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+tackle this. The result is &lt;a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank"&gt;AgiNG&lt;/a&gt;&lt;sup id="fnref:187-1"&gt;&lt;a class="footnote-ref" href="#fn:187-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="AgiNG in action" src="https://blog.davep.org/attachments/2025/03/12/aging-textual-dark.png" /&gt;&lt;/p&gt;
 &lt;p&gt;As of v0.1.0 it has most of the features you'd expect from a usable Norton
 Guide reader, including:&lt;/p&gt;
@@ -1476,11 +1540,11 @@ time goes on.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:186-1"&gt;
+&lt;li id="fn:187-1"&gt;
 &lt;p&gt;If you're wondering about the name, it's nothing more than a word that
 happens to have &lt;code&gt;NG&lt;/code&gt; in it, and also a mild pun about this being an
 ageing hypertext help system; with the spelling acknowledging Peter
-Norton's nationality.&amp;#160;&lt;a class="footnote-backref" href="#fnref:186-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+Norton's nationality.&amp;#160;&lt;a class="footnote-backref" href="#fnref:187-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1796,97 +1860,6 @@ useful to someone else. :-)&lt;/p&gt;</description>
       <category>terminal</category>
       <category>textual</category>
       <pubDate>Sat, 25 Jan 2025 14:21:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Braindrop</title>
-      <link>https://blog.davep.org/2025/01/03/braindrop.html</link>
-      <description>&lt;p&gt;&lt;img alt="Braindrop" src="https://blog.davep.org/attachments/2025/01/03/braindrop-social-banner.png" /&gt;&lt;/p&gt;
-&lt;p&gt;A touch over a year ago I did the initial work on an application called
-&lt;a href="https://github.com/davep/tinboard" rel="noopener noreferrer" target="_blank"&gt;Tinboard&lt;/a&gt;, a terminal-based client for
-the Pinboard bookmarking service. I had a lot of fun building it and it was
-an application that I used on a near-daily basis. However, around August
-last year &lt;a href="https://blog.davep.org/2024/08/18/paindrop.html"&gt;I realised it was time for me to move on from Pinboard and try
-something new&lt;/a&gt;; based on various recommendations
-I settled on &lt;a href="https://raindrop.io/" rel="noopener noreferrer" target="_blank"&gt;Raindrop&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;As mentioned &lt;a href="https://blog.davep.org/2024/08/18/paindrop.html"&gt;in the other blog post&lt;/a&gt;, Raindrop
-offered more or less everything I had with Pinboard and so the move was
-fairly straightforward. The one thing that was missing though was an
-application similar to Tinboard.&lt;/p&gt;
-&lt;p&gt;So, late on last year, with my winter break approaching, I decided to start
-from scratch and build a &lt;em&gt;"Tinboard for Raindrop"&lt;/em&gt;, which I'm calling
-&lt;a href="https://github.com/davep/braindrop" rel="noopener noreferrer" target="_blank"&gt;Braindrop&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This was going to be a bit of an adventure too. Since &lt;a href="https://blog.davep.org/2024/03/28/goodbye-textualize.html"&gt;being laid off from
-Textualize earlier in 2024&lt;/a&gt; I'd not
-been following its development quite as closely as I used to, and had also
-run into some issues and bugs with it since that time; moreover, as well as
-various bugs appearing, some breaking changes had also been made. As such
-this was going to be a process where I'd wrap my head around what's happened
-with the framework over the prior six months or so.&lt;/p&gt;
-&lt;p&gt;Given all this, over the past couple of weeks I've been spending a few hours
-a day doing some for-pleasure coding and v0.1.0 of Braindrop is the result.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Main display" src="https://blog.davep.org/attachments/2025/01/03/braindrop-main.png" /&gt;&lt;/p&gt;
-&lt;p&gt;As much as possible I've tried to keep the look and feel similar to that of
-Tinboard, while also doing my best to avoid some of the &lt;em&gt;"ah, I wish I
-hadn't done it this way"&lt;/em&gt; design decisions I'd made. As of the time of
-writing I'm very pleased with the result.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The edit dialog" src="https://blog.davep.org/attachments/2025/01/03/braindrop-edit.png" /&gt;&lt;/p&gt;
-&lt;p&gt;One thing I did want to do is ensure that the application was as
-keyboard-friendly as possible, while also still allowing use of the mouse.
-Textual can sometimes get that wrong and I ran into an example of this while
-trying to ensure that there's good in-application help. Somewhat recently
-Textual added a built-in help system which, sadly, can't easily be used by
-and navigated by someone using the keyboard. So instead I've recreated the
-help system I built into Tinboard, while adopting the documentation standard
-that Textual had settled on (which, coincidentally, was kind of similar to
-what I did in Tinboard to start with).&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The help dialog" src="https://blog.davep.org/attachments/2025/01/03/braindrop-help.png" /&gt;&lt;/p&gt;
-&lt;p&gt;As with Tinboard, I've also made sure to make full use of the command
-palette, with every action that makes sense having a keyboard hotkey as well
-as a command in the palette. I also took things a little further and made
-sure that the hotkeys are shown in the command palette for easier discovery.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The command palette" src="https://blog.davep.org/attachments/2025/01/03/braindrop-command-palette.png" /&gt;&lt;/p&gt;
-&lt;p&gt;I've also made sure that Textual's new theme system is available for easy
-use; so out goes dark/light mode toggling and in comes a collection of
-different themes. Here's a wee selection as an example:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Example theme 1" src="https://blog.davep.org/attachments/2025/01/03/braindrop-theme-1.png" /&gt;
-&lt;img alt="Example theme 2" src="https://blog.davep.org/attachments/2025/01/03/braindrop-theme-2.png" /&gt;
-&lt;img alt="Example theme 3" src="https://blog.davep.org/attachments/2025/01/03/braindrop-theme-3.png" /&gt;
-&lt;img alt="Example theme 4" src="https://blog.davep.org/attachments/2025/01/03/braindrop-theme-4.png" /&gt;&lt;/p&gt;
-&lt;p&gt;That's a small selection of the themes, with more to explore.&lt;/p&gt;
-&lt;p&gt;There's a few more things I want to do before I consider the application
-v1.0-ready, but it's already in use by me and working well. As I decide what
-else I want to add to it &lt;a href="https://github.com/davep/braindrop/issues?q=is%3Aissue+is%3Aopen+label%3ATODO" rel="noopener noreferrer" target="_blank"&gt;I'm building up a list of TODO
-items&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Given that my day job these days is quite varied, isn't quite so
-coding-intensive, and isn't always related to all things Python, it's
-actually been fun to sit down and hack up a pure Python application from
-scratch again. It's also helped me discover a couple or so fresh bugs in
-Textual (which &lt;a href="https://github.com/Textualize/textual/issues/created_by/davep" rel="noopener noreferrer" target="_blank"&gt;I've
-reported&lt;/a&gt;, of
-course) and given me the opportunity to &lt;a href="https://github.com/Textualize/textual/pulls/davep" rel="noopener noreferrer" target="_blank"&gt;PR some trivial fixes as I've
-noticed typos and stuff as I
-go&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Anyway; that's v0.1.0 out in the wild. I'm pleased with how it's turned out
-and there's more to come. It's licensed GPL-3.0 and available &lt;a href="https://github.com/davep/braindrop" rel="noopener noreferrer" target="_blank"&gt;via
-GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/braindrop/" rel="noopener noreferrer" target="_blank"&gt;via
-PyPi&lt;/a&gt;. If you have an environment that
-has &lt;code&gt;pipx&lt;/code&gt; installed you should be able to get up and going with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;braindrop
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;It can also be installed with
-&lt;code&gt;Homebrew&lt;/code&gt; by tapping &lt;code&gt;davep/homebrew&lt;/code&gt; and then installing &lt;code&gt;braindrop&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;tap&lt;span class="w"&gt; &lt;/span&gt;davep/homebrew
-$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;braindrop
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;I hope this is useful to someone else. :-)&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2025/01/03/braindrop.html</guid>
-      <category>Coding</category>
-      <category>Python</category>
-      <category>terminal</category>
-      <category>textual</category>
-      <pubDate>Fri, 03 Jan 2025 16:24:00 +0000</pubDate>
     </item>
   </channel>
 </rss>

@@ -223,6 +223,87 @@
     
     
     <article class="post-summary">
+        <h2><a href="/2026/02/28/complexitty-1-1-0.html">Complexitty v1.1.0</a></h2>
+        
+        <time datetime="2026-02-28T20:40:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/02/">02</a>-<a href="/2026/02/28/">28</a> 20:40:00 UTC</time>
+        
+        <div class="reading-time">2 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+        <div class="post-content">
+            <p><a href="https://complexitty.davep.dev/" rel="noopener noreferrer" target="_blank"><img alt="Complexitty" src="/attachments/2025/04/20/complexitty-social-banner.png" /></a></p>
+<p>I've just released v1.1.0 of Complexitty, my little Mandelbrot explorer for
+the terminal. I first released it <a href="/2025/04/20/complexitty.html">in April last
+year</a> and have tinkered with it on and off
+since. Most of the changes have been to do with easier navigation, some
+additional colour schemes, the ability to pass location information on the
+command line, that sort of thing; meanwhile, the very heart of it has stayed
+the same <em>"it's as fast as it's ever going to be expect it to not be fast"</em>
+approach.</p>
+<p>It's a Python application after all: they can be fast, but something like
+this isn't going to compete with the serious Mandelbrot explorers.</p>
+<p>v1.1.0, however, has a little optional speedup. If you install it normally
+it'll work at the pace it always did: the more you zoom in, the more you
+ramp up the iterations to tease more detail out, the slower it gets. But
+now: if you install it as <code>complexitty[faster]</code> rather than just as
+<code>complexitty</code> it will use <a href="http://numba.pydata.org" rel="noopener noreferrer" target="_blank">Numba</a> to speed up the
+main calculation.</p>
+<p>On the very first run things will be slow to start up, but from then on I
+see a real improvement. As you zoom in and explore and up the detail, the
+calculation remains pretty fast. The drop-off of speed that you see without
+Numba just isn't there.</p>
+<p>While the whole idea of Complexitty was to see what I could do with Python,
+in the terminal, using Textual, and keeping it "pure", I feel this is an
+acceptable "cheat" given it's optional.</p>
+<p>I'm considering this an experimental change for now, as I don't know how
+well it will work in all places where Complexitty could be otherwise
+installed. So give it a go, see if it installs and runs as
+<code>complexitty[faster]</code>, and if it doesn't: fall back to plain old
+<code>complexitty</code>.</p>
+<p>If you're interested you can find the source <a href="https://github.com/davep/complexitty" rel="noopener noreferrer" target="_blank">over on
+GitHub</a>, with the application
+available <a href="https://pypi.org/project/complexitty/" rel="noopener noreferrer" target="_blank">via PyPI</a>. If you use
+<code>pipx</code> you should be able to install with either:</p>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>complexitty<span class="o">[</span>faster<span class="o">]</span>
+</code></pre></div>
+
+<p>or</p>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>complexitty
+</code></pre></div>
+
+<p>If you're a fan of
+<a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"><code>uv</code></a> (and who
+isn't these days?) then try either:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>complexitty<span class="o">[</span>faster<span class="o">]</span>
+</code></pre></div>
+
+<p>or fall back to:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>complexitty
+</code></pre></div>
+
+<p>In fact, to squeeze everything you can out of Complexitty, perhaps try:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>complexitty<span class="o">[</span>faster<span class="o">]</span><span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.14
+</code></pre></div>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/terminal.html" class="tag">terminal</a>
+            
+            <a href="/tag/textual.html" class="tag">textual</a>
+            
+            <a href="/tag/mandelbrot.html" class="tag">mandelbrot</a>
+            
+        </div>
+        
+    </article>
+    
+    <article class="post-summary">
         <h2><a href="/2026/02/11/oldnews.html">OldNews - A terminal-based client for TheOldReader</a></h2>
         
         <time datetime="2026-02-11T17:23:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/02/">02</a>-<a href="/2026/02/11/">11</a> 17:23:00 UTC</time>
@@ -638,7 +719,7 @@ they wanted me to build this as test of the framework, to essentially start
 out by employing me to create some Free Software that would help dogfood the
 library, but that seemed to get forgotten.</p>
 <p>Fast forward to the start of this month and I finally felt it was time to
-tackle this. The result is <a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank">AgiNG</a><sup id="fnref:186-1"><a class="footnote-ref" href="#fn:186-1">1</a></sup>.</p>
+tackle this. The result is <a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank">AgiNG</a><sup id="fnref:187-1"><a class="footnote-ref" href="#fn:187-1">1</a></sup>.</p>
 <p><img alt="AgiNG in action" src="/attachments/2025/03/12/aging-textual-dark.png" /></p>
 <p>As of v0.1.0 it has most of the features you'd expect from a usable Norton
 Guide reader, including:</p>
@@ -708,11 +789,11 @@ time goes on.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:186-1">
+<li id="fn:187-1">
 <p>If you're wondering about the name, it's nothing more than a word that
 happens to have <code>NG</code> in it, and also a mild pun about this being an
 ageing hypertext help system; with the spelling acknowledging Peter
-Norton's nationality.&#160;<a class="footnote-backref" href="#fnref:186-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+Norton's nationality.&#160;<a class="footnote-backref" href="#fnref:187-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -1034,68 +1115,6 @@ the default values for the privacy and read-later status of a new bookmark:</p>
 values by default. It's a feature that makes perfect sense but I didn't
 think to add it early on because... well, I set the defaults to my
 preference.</p>
-<p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/" rel="noopener noreferrer" target="_blank">from
-PyPi</a>. It can also be installed with
-<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>tinboard</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>tinboard
-</code></pre></div>
-
-<p>The <a href="https://github.com/davep/tinboard" rel="noopener noreferrer" target="_blank">source is available on GitHub</a>.</p>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/python.html" class="tag">Python</a>
-            
-            <a href="/tag/terminal.html" class="tag">terminal</a>
-            
-            <a href="/tag/textual.html" class="tag">textual</a>
-            
-            <a href="/tag/youtube.html" class="tag">YouTube</a>
-            
-        </div>
-        
-    </article>
-    
-    <article class="post-summary">
-        <h2><a href="/2024/04/18/tinboard-0-12-0.html">Tinboard v0.12.0</a></h2>
-        
-        <time datetime="2024-04-18T16:46:00+01:00"><a href="/2024/">2024</a>-<a href="/2024/04/">04</a>-<a href="/2024/04/18/">18</a> 16:46:00 UTC+01:00</time>
-        
-        <div class="reading-time">2 min read</div>
-        
-        <div class="category">
-            <a href="/category/coding.html" class="category-link">Coding</a>
-        </div>
-        
-        <div class="post-content">
-            <p><a href="https://github.com/davep/tinboard" rel="noopener noreferrer" target="_blank">Tinboard</a> has turned into a tool I use
-pretty much every day; it's probably my most-used Textual/Python-developed
-application at this point. This is causing me to think more and more about
-how I can add things to it that are related to the core purpose, but are
-also outside of the main "interface with Pinboard" thing.</p>
-<p>A thing with keeping bookmarks for a long time is that some of them go
-stale, go away. Some will just plain 404, others the whole site will
-disappear. If I find myself going back to a bookmark and seeing this is the
-case, I'll hit the <a href="https://web.archive.org/" rel="noopener noreferrer" target="_blank">Wayback Machine</a> and see if
-there's an archive there.</p>
-<p>So I got to thinking: what if I add the ability to perform this check into
-Tinboard itself? <a href="https://www.youtube.com/watch?v=XDgiM6pUP2Y" rel="noopener noreferrer" target="_blank">So I did just that</a>.</p>
-<p>Now, in the application, if you press <kbd>w</kbd> with a bookmark
-highlighted, it will check with the Wayback Machine to see if the bookmark
-is in the archive. If it isn't you see this:</p>
-<p><img alt="No archive result" src="/attachments/2024/04/18/no-archive.png#centre" /></p>
-<p>On the other hand, if it <em>is</em> in the archive, you'll see something like
-this:</p>
-<p><img alt="Is in the archive result" src="/attachments/2024/04/18/has-archive.png#centre" /></p>
-<p>I sense this is going to be the first step in a couple of features related
-to this. I'm thinking that I may go on to add a <em>"swap the URL for this
-bookmark with the Wayback Machine archive URL"</em> feature, which will be handy
-for those bookmarks that have one away, and it would also be useful to look
-at the options for a <em>"please archive a copy of this bookmark"</em> feature.</p>
-<p>But, for now, v0.12.0 is available and has this handy (for me anyway) first
-step.</p>
 <p>Tinboard can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/tinboard/" rel="noopener noreferrer" target="_blank">from
 PyPi</a>. It can also be installed with
 <code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>tinboard</code>:</p>

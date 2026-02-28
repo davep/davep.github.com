@@ -185,6 +185,87 @@
     
     
     <article class="post-summary">
+        <h2><a href="/2026/02/28/complexitty-1-1-0.html">Complexitty v1.1.0</a></h2>
+        
+        <time datetime="2026-02-28T20:40:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/02/">02</a>-<a href="/2026/02/28/">28</a> 20:40:00 UTC</time>
+        
+        <div class="reading-time">2 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+        <div class="post-content">
+            <p><a href="https://complexitty.davep.dev/" rel="noopener noreferrer" target="_blank"><img alt="Complexitty" src="/attachments/2025/04/20/complexitty-social-banner.png" /></a></p>
+<p>I've just released v1.1.0 of Complexitty, my little Mandelbrot explorer for
+the terminal. I first released it <a href="/2025/04/20/complexitty.html">in April last
+year</a> and have tinkered with it on and off
+since. Most of the changes have been to do with easier navigation, some
+additional colour schemes, the ability to pass location information on the
+command line, that sort of thing; meanwhile, the very heart of it has stayed
+the same <em>"it's as fast as it's ever going to be expect it to not be fast"</em>
+approach.</p>
+<p>It's a Python application after all: they can be fast, but something like
+this isn't going to compete with the serious Mandelbrot explorers.</p>
+<p>v1.1.0, however, has a little optional speedup. If you install it normally
+it'll work at the pace it always did: the more you zoom in, the more you
+ramp up the iterations to tease more detail out, the slower it gets. But
+now: if you install it as <code>complexitty[faster]</code> rather than just as
+<code>complexitty</code> it will use <a href="http://numba.pydata.org" rel="noopener noreferrer" target="_blank">Numba</a> to speed up the
+main calculation.</p>
+<p>On the very first run things will be slow to start up, but from then on I
+see a real improvement. As you zoom in and explore and up the detail, the
+calculation remains pretty fast. The drop-off of speed that you see without
+Numba just isn't there.</p>
+<p>While the whole idea of Complexitty was to see what I could do with Python,
+in the terminal, using Textual, and keeping it "pure", I feel this is an
+acceptable "cheat" given it's optional.</p>
+<p>I'm considering this an experimental change for now, as I don't know how
+well it will work in all places where Complexitty could be otherwise
+installed. So give it a go, see if it installs and runs as
+<code>complexitty[faster]</code>, and if it doesn't: fall back to plain old
+<code>complexitty</code>.</p>
+<p>If you're interested you can find the source <a href="https://github.com/davep/complexitty" rel="noopener noreferrer" target="_blank">over on
+GitHub</a>, with the application
+available <a href="https://pypi.org/project/complexitty/" rel="noopener noreferrer" target="_blank">via PyPI</a>. If you use
+<code>pipx</code> you should be able to install with either:</p>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>complexitty<span class="o">[</span>faster<span class="o">]</span>
+</code></pre></div>
+
+<p>or</p>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>complexitty
+</code></pre></div>
+
+<p>If you're a fan of
+<a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"><code>uv</code></a> (and who
+isn't these days?) then try either:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>complexitty<span class="o">[</span>faster<span class="o">]</span>
+</code></pre></div>
+
+<p>or fall back to:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>complexitty
+</code></pre></div>
+
+<p>In fact, to squeeze everything you can out of Complexitty, perhaps try:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>complexitty<span class="o">[</span>faster<span class="o">]</span><span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.14
+</code></pre></div>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/terminal.html" class="tag">terminal</a>
+            
+            <a href="/tag/textual.html" class="tag">textual</a>
+            
+            <a href="/tag/mandelbrot.html" class="tag">mandelbrot</a>
+            
+        </div>
+        
+    </article>
+    
+    <article class="post-summary">
         <h2><a href="/2025/04/20/complexitty.html">Complexitty</a></h2>
         
         <time datetime="2025-04-20T09:30:00+01:00"><a href="/2025/">2025</a>-<a href="/2025/04/">04</a>-<a href="/2025/04/20/">20</a> 09:30:00 UTC+01:00</time>

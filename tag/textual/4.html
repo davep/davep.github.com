@@ -231,6 +231,71 @@
     
     
     <article class="post-summary">
+        <h2><a href="/2023/09/29/mandelbrot-commands.html">Mandelbrot Commands</a></h2>
+        
+        <time datetime="2023-09-29T12:42:00+01:00"><a href="/2023/">2023</a>-<a href="/2023/09/">09</a>-<a href="/2023/09/29/">29</a> 12:42:00 UTC+01:00</time>
+        
+        <div class="reading-time">2 min read</div>
+        
+        <div class="category">
+            <a href="/category/python.html" class="category-link">Python</a>
+        </div>
+        
+        <div class="post-content">
+            <p>I don't think I've mentioned it before on this blog, but some time back I
+decided it would be fun to use <a href="https://textual.textualize.io/" rel="noopener noreferrer" target="_blank">Textual</a> to
+write a Mandelbrot explorer (simple Mandelbrot explorers have been another
+one of my favourite <a href="/2019/11/10/going-on-a-journey.html">known problem to try an unknown
+thing</a> problems). Doing it in the
+terminal seemed like a fun little hack. I started off with creating
+<a href="https://github.com/davep/textual-canvas" rel="noopener noreferrer" target="_blank"><code>textual-canvas</code></a> and then built
+<a href="https://github.com/davep/textual-mandelbrot" rel="noopener noreferrer" target="_blank"><code>textual-mandelbrot</code></a> on top
+of that.</p>
+<p>Not too long back <a href="https://textual.textualize.io/blog/2023/09/15/textual-0370-adds-a-command-palette/" rel="noopener noreferrer" target="_blank">I added a "command palette" to
+Textual</a>
+(I'd prefer to call it a minibuffer, but I get that that's not fashionable
+these days), but so far I've not used it in any of my own projects; earlier
+today I thought it could be fun to add it to <code>textual-mandelbrot</code>.</p>
+<p><img alt="Mandelbrot commands in action" src="/attachments/2023/09/29/mandelbrot-commands.png#centre" /></p>
+<p>Most of the commands I've added are trivial and really better covered by
+(and are covered by) keystrokes, but it was a good test and a way to show
+off how to create a command provider.</p>
+<p>Having started this I can see some more useful things to add: for example it
+might be interesting to add a facility where you can bookmark a specific
+location, zoom level, iteration value, etc, and revisit later. The command
+palette would feel like a great way to pull back those bookmarks.</p>
+<p>What I really liked though was how <em>easy</em> this was to do. <a href="https://github.com/davep/textual-mandelbrot/blob/main/textual_mandelbrot/commands.py" rel="noopener noreferrer" target="_blank">The code to make
+the commands
+available</a>
+is pretty trivial and, I believe, easy to follow. Although I do say so
+myself I think I managed to design a very accessible API for this.</p>
+<p>There's more I'd like to add to that (the Textual command palette itself, I
+mean), of course; this was just the start. Support for commands that accept
+and prompt for arguments would be a neat and obvious enhancement (especially
+if done in a way that's reminiscent of how commands could be defined in
+<a href="https://en.wikipedia.org/wiki/Common_Lisp_Interface_Manager" rel="noopener noreferrer" target="_blank">CLIM</a> -- I
+remember <a href="https://github.com/davep/org-davep-cldict/" rel="noopener noreferrer" target="_blank">really liking</a> how you
+could create self-documenting and self-completing commands in that).</p>
+<p>All in good time...</p>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/pypi.html" class="tag">PyPi</a>
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/coding.html" class="tag">coding</a>
+            
+            <a href="/tag/textual.html" class="tag">Textual</a>
+            
+            <a href="/tag/mandelbrot.html" class="tag">mandelbrot</a>
+            
+        </div>
+        
+    </article>
+    
+    <article class="post-summary">
         <h2><a href="/2023/09/10/textual-query-sandbox-update.html">Textual Query Sandbox Update</a></h2>
         
         <time datetime="2023-09-10T09:22:00+01:00"><a href="/2023/">2023</a>-<a href="/2023/09/">09</a>-<a href="/2023/09/10/">10</a> 09:22:00 UTC+01:00</time>
@@ -253,7 +318,7 @@ grounded together with a <code>TabbedContent</code>. So as of now the tool still
 the original playground which had an emphasis on nested containers:</p>
 <p><img alt="Playground 1" src="/attachments/2023/09/10/tqs-1.png#centre" /></p>
 <p>There's now a playground with an emphasis on selecting widgets within
-containers<sup id="fnref:159-1"><a class="footnote-ref" href="#fn:159-1">1</a></sup>:</p>
+containers<sup id="fnref:160-1"><a class="footnote-ref" href="#fn:160-1">1</a></sup>:</p>
 <p><img alt="Playground 2" src="/attachments/2023/09/10/tqs-2.png#centre" /></p>
 <p>There's also now a playground that has an emphasis on pulling out widgets
 based on ID and classes:</p>
@@ -268,23 +333,23 @@ keen on the idea of having the playgrounds "soft coded" in some way, so
 people can make their own and load them up.</p>
 <p>Another thing I want to try and work on is making the display as useful as
 possible. While I think it's actually pretty neat and clear, there's not a
-<em>lot</em> of space<sup id="fnref:159-2"><a class="footnote-ref" href="#fn:159-2">2</a></sup> available to show the playground and the results. Finding
+<em>lot</em> of space<sup id="fnref:160-2"><a class="footnote-ref" href="#fn:160-2">2</a></sup> available to show the playground and the results. Finding
 a good balance is an interesting problem.</p>
 <p>For a number of reasons this is turning into a really enjoyable tinker
 project.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:159-1">
+<li id="fn:160-1">
 <p>This is, of course, slightly nonsensical wording. Containers <em>are</em>
 widgets in Textual. Pretty much everything you see in your terminal is a
-widget, even a <code>Screen</code> is a widget.&#160;<a class="footnote-backref" href="#fnref:159-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+widget, even a <code>Screen</code> is a widget.&#160;<a class="footnote-backref" href="#fnref:160-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li id="fn:159-2">
+<li id="fn:160-2">
 <p>A lot of this of course hinges on how big someone's terminal is. I
 tend to run a fairly high resolutions with the smallest font I find
 readable so my terminal windows are often pretty "big"; other people
-tend to have something much smaller in terms of cell with/height.&#160;<a class="footnote-backref" href="#fnref:159-2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+tend to have something much smaller in terms of cell with/height.&#160;<a class="footnote-backref" href="#fnref:160-2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -506,7 +571,7 @@ that makes perfect sense.</p>
         <div class="post-content">
             <p><img alt="My new GitHub banner" src="https://raw.githubusercontent.com/davep/davep/main/davep.svg" /></p>
 <p>Ever since GitHub introduced the <a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme" rel="noopener noreferrer" target="_blank">profile
-README</a><sup id="fnref:154-1"><a class="footnote-ref" href="#fn:154-1">1</a></sup>
+README</a><sup id="fnref:155-1"><a class="footnote-ref" href="#fn:155-1">1</a></sup>
 I've had a massively low-effort one in place. I made the repo, quickly wrote
 the file, and then sort of forgot about it. Well, I didn't so much forget as
 just keep looking at it and thinking "I should do something better with that
@@ -566,12 +631,12 @@ and update the repository.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:154-1">
+<li id="fn:155-1">
 <p>It was actually kind of annoying when they introduced it because the
 repo it uses is named after your user name. I already had a <code>davep</code>
 repo: it was a private repo where I was slowly working on a (now
 abandoned, I'll start it again some day I'm sure) ground-up rewrite of
-my <code>davep.org</code> website.&#160;<a class="footnote-backref" href="#fnref:154-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+my <code>davep.org</code> website.&#160;<a class="footnote-backref" href="#fnref:155-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

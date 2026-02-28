@@ -187,6 +187,87 @@
     
     
     <article class="post-summary">
+        <h2><a href="/2026/02/28/complexitty-1-1-0.html">Complexitty v1.1.0</a></h2>
+        
+        <time datetime="2026-02-28T20:40:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/02/">02</a>-<a href="/2026/02/28/">28</a> 20:40:00 UTC</time>
+        
+        <div class="reading-time">2 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+        <div class="post-content">
+            <p><a href="https://complexitty.davep.dev/" rel="noopener noreferrer" target="_blank"><img alt="Complexitty" src="/attachments/2025/04/20/complexitty-social-banner.png" /></a></p>
+<p>I've just released v1.1.0 of Complexitty, my little Mandelbrot explorer for
+the terminal. I first released it <a href="/2025/04/20/complexitty.html">in April last
+year</a> and have tinkered with it on and off
+since. Most of the changes have been to do with easier navigation, some
+additional colour schemes, the ability to pass location information on the
+command line, that sort of thing; meanwhile, the very heart of it has stayed
+the same <em>"it's as fast as it's ever going to be expect it to not be fast"</em>
+approach.</p>
+<p>It's a Python application after all: they can be fast, but something like
+this isn't going to compete with the serious Mandelbrot explorers.</p>
+<p>v1.1.0, however, has a little optional speedup. If you install it normally
+it'll work at the pace it always did: the more you zoom in, the more you
+ramp up the iterations to tease more detail out, the slower it gets. But
+now: if you install it as <code>complexitty[faster]</code> rather than just as
+<code>complexitty</code> it will use <a href="http://numba.pydata.org" rel="noopener noreferrer" target="_blank">Numba</a> to speed up the
+main calculation.</p>
+<p>On the very first run things will be slow to start up, but from then on I
+see a real improvement. As you zoom in and explore and up the detail, the
+calculation remains pretty fast. The drop-off of speed that you see without
+Numba just isn't there.</p>
+<p>While the whole idea of Complexitty was to see what I could do with Python,
+in the terminal, using Textual, and keeping it "pure", I feel this is an
+acceptable "cheat" given it's optional.</p>
+<p>I'm considering this an experimental change for now, as I don't know how
+well it will work in all places where Complexitty could be otherwise
+installed. So give it a go, see if it installs and runs as
+<code>complexitty[faster]</code>, and if it doesn't: fall back to plain old
+<code>complexitty</code>.</p>
+<p>If you're interested you can find the source <a href="https://github.com/davep/complexitty" rel="noopener noreferrer" target="_blank">over on
+GitHub</a>, with the application
+available <a href="https://pypi.org/project/complexitty/" rel="noopener noreferrer" target="_blank">via PyPI</a>. If you use
+<code>pipx</code> you should be able to install with either:</p>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>complexitty<span class="o">[</span>faster<span class="o">]</span>
+</code></pre></div>
+
+<p>or</p>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>complexitty
+</code></pre></div>
+
+<p>If you're a fan of
+<a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"><code>uv</code></a> (and who
+isn't these days?) then try either:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>complexitty<span class="o">[</span>faster<span class="o">]</span>
+</code></pre></div>
+
+<p>or fall back to:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>complexitty
+</code></pre></div>
+
+<p>In fact, to squeeze everything you can out of Complexitty, perhaps try:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>complexitty<span class="o">[</span>faster<span class="o">]</span><span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.14
+</code></pre></div>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/terminal.html" class="tag">terminal</a>
+            
+            <a href="/tag/textual.html" class="tag">textual</a>
+            
+            <a href="/tag/mandelbrot.html" class="tag">mandelbrot</a>
+            
+        </div>
+        
+    </article>
+    
+    <article class="post-summary">
         <h2><a href="/2026/02/27/brute-force-and-ignorance.html">Brute force and ignorance</a></h2>
         
         <time datetime="2026-02-27T09:45:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/02/">02</a>-<a href="/2026/02/27/">27</a> 09:45:00 UTC</time>
@@ -209,7 +290,7 @@ a solution for some sort of problem. I noticed this on and off as I watched
 the agent's chat, as it worked away.</p>
 <p>One example I enjoyed was when it was trying to add a new dependency to
 <a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank">BlogMore</a>. For reasons I should probably try
-and understand<sup id="fnref:190-1"><a class="footnote-ref" href="#fn:190-1">1</a></sup> it knew it should be using <code>uv</code> to add a dependency and
+and understand<sup id="fnref:191-1"><a class="footnote-ref" href="#fn:191-1">1</a></sup> it knew it should be using <code>uv</code> to add a dependency and
 it knew how to use it to update the lock file, but it didn't have <code>uv</code> to
 hand:</p>
 <blockquote>
@@ -317,8 +398,8 @@ moment it's a good source of coding comedy.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:190-1">
-<p>Presumably there's things I can be doing to make its life easier.&#160;<a class="footnote-backref" href="#fnref:190-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn:191-1">
+<p>Presumably there's things I can be doing to make its life easier.&#160;<a class="footnote-backref" href="#fnref:191-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -1044,7 +1125,7 @@ spoke to me enough that I jotted it down and kept coming back to it and
 thinking about it. It was a phrase I couldn't get out of my head.</p>
 <p>Around the same time I was also doing a lot of thinking about, and
 note-writing about, code reviews. Although I've been working in software
-development<sup id="fnref:201-1"><a class="footnote-ref" href="#fn:201-1">1</a></sup> for a few decades now (I started in July 1989), I was quite
+development<sup id="fnref:202-1"><a class="footnote-ref" href="#fn:202-1">1</a></sup> for a few decades now (I started in July 1989), I was quite
 late to the whole process of code review -- at least in the way we talk
 about it today. This mostly comes down to the fact that for a lot of my time
 I either worked in very small companies or I was the only developer around.</p>
@@ -1164,9 +1245,9 @@ that thrive.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:201-1">
+<li id="fn:202-1">
 <p>Or software engineering, if you prefer, but that's a whole other blog
-post I'll never get round to writing one day.&#160;<a class="footnote-backref" href="#fnref:201-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+post I'll never get round to writing one day.&#160;<a class="footnote-backref" href="#fnref:202-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

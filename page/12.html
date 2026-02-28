@@ -282,11 +282,13 @@
         
     
         
+    
+        
             
     <span class="pagination-ellipsis">…</span>
             
             
-    <a href="/page/20.html" class="pagination-link pagination-number">20</a>
+    <a href="/page/21.html" class="pagination-link pagination-number">21</a>
             
             
         
@@ -301,6 +303,66 @@
 
 
     
+    
+    <article class="post-summary">
+        <h2><a href="/2020/06/26/switch-til-5.html">Swift TIL 5</a></h2>
+        
+        <time datetime="2020-06-26T15:44:00+01:00"><a href="/2020/">2020</a>-<a href="/2020/06/">06</a>-<a href="/2020/06/26/">26</a> 15:44:00 UTC+01:00</time>
+        
+        <div class="reading-time">1 min read</div>
+        
+        <div class="category">
+            <a href="/category/til.html" class="category-link">TIL</a>
+        </div>
+        
+        <div class="post-content">
+            <p>I'm going to file this one under "it makes perfect sense, but I don't think
+it aids in making the code readable" -- something which I'm finding is a bit
+of a theme with Swift.</p>
+<p>In Swift <code>self</code> gets used and gets used in a way you'd expect from many
+other languages. So far so good. But, it seems, <code>Self</code> is also a thing too,
+and it's different from <code>self</code>. Whereas <code>self</code> is the current instance,
+<code>Self</code> is the current type. So consider this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">Greeting</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">class</span><span class="w"> </span><span class="nc">func</span><span class="w"> </span><span class="n">message</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s">&quot;Ayup!&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">message</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s">&quot;Well hello there&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">emit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="bp">print</span><span class="p">(</span><span class="w"> </span><span class="kc">Self</span><span class="p">.</span><span class="n">message</span><span class="p">()</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="bp">print</span><span class="p">(</span><span class="w"> </span><span class="kc">self</span><span class="p">.</span><span class="n">message</span><span class="p">()</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">Greeting</span><span class="p">().</span><span class="n">emit</span><span class="p">()</span>
+</code></pre></div>
+
+<p>When run, the output is:</p>
+<div class="highlight"><pre><span></span><code>Ayup!
+Well hello there
+</code></pre></div>
+
+<p>It makes sense that that's the case. I actually really like the ability to
+use <code>Self</code> rather than having to use <code>Greeting</code>, but damn that's really
+setting things up for either mistyping or misreading code. You're going to
+want to hope that your development environment makes it super obvious what's
+a value and what's a type when it comes to using font choices.</p>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/swift.html" class="tag">Swift</a>
+            
+            <a href="/tag/apple.html" class="tag">Apple</a>
+            
+        </div>
+        
+    </article>
     
     <article class="post-summary">
         <h2><a href="/2020/06/25/swift-til-4.html">Swift TIL 4</a></h2>
@@ -703,7 +765,7 @@ really not noticing them been gone.</p>
         </div>
         
         <div class="post-content">
-            <p>When I started with this version of the blog on Hashnode<sup id="fnref:173-1"><a class="footnote-ref" href="#fn:173-1">1</a></sup>, my plan was to
+            <p>When I started with this version of the blog on Hashnode<sup id="fnref:174-1"><a class="footnote-ref" href="#fn:174-1">1</a></sup>, my plan was to
 try and write something at least once a week. I managed to do that as far as
 January this year, give or take, but then things got a little busy, the
 world got trickier, and... Well, <a href="https://en.wikipedia.org/wiki/COVID-19_pandemic" rel="noopener noreferrer" target="_blank">you don't need me to tell you about
@@ -781,9 +843,9 @@ in the running version of Emacs</a>.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:173-1">
+<li id="fn:174-1">
 <p>Note from future me: we're now back over on <code>blog.davep.org</code> of
-course.&#160;<a class="footnote-backref" href="#fnref:173-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+course.&#160;<a class="footnote-backref" href="#fnref:174-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -938,82 +1000,6 @@ things. So of course I have that configured to feel comfortable too.</p>
         
     </article>
     
-    <article class="post-summary">
-        <h2><a href="/2019/12/14/nuke-buffers-el.html">nuke-buffers.el -- Tidy up open buffers in Emacs</a></h2>
-        
-        <time datetime="2019-12-14T13:17:00+00:00"><a href="/2019/">2019</a>-<a href="/2019/12/">12</a>-<a href="/2019/12/14/">14</a> 13:17:00 UTC</time>
-        
-        <div class="reading-time">2 min read</div>
-        
-        <div class="category">
-            <a href="/category/emacs.html" class="category-link">Emacs</a>
-        </div>
-        
-        <div class="post-content">
-            <p>Both at work and at home I use Emacs by <a href="https://github.com/davep/longmacs.el" rel="noopener noreferrer" target="_blank">keeping a copy running all the
-time</a>, and use <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html#Emacs-Server" rel="noopener noreferrer" target="_blank"><code>emacsclient</code> to open
-files inside
-it</a>
-(including on remote machines thanks to a bit of
-<a href="https://en.wikipedia.org/wiki/Secure_Shell" rel="noopener noreferrer" target="_blank"><code>ssh</code></a> and heavy use of
-<a href="https://www.gnu.org/software/tramp/" rel="noopener noreferrer" target="_blank"><code>tramp</code></a> -- I might write this up at
-some point). This works really well, but does mean I tend to build up a lot
-of buffers over time.</p>
-<p>Having lots of buffers open isn't generally an issue, and if I'm working on
-lots of different files in a project during the course of a hacking session
-it's actually a good thing. But, quite often, I want to tidy up the buffer
-list, clearing it back to near-zero buffers open. Many years ago, when I had
-a "proper" tower system running 24/7, with Emacs open all the time, I'd use
-<a href="https://www.emacswiki.org/emacs/MidnightMode" rel="noopener noreferrer" target="_blank"><code>clean-buffer-list</code> as part of
-<code>midnight</code></a>. Along the way
-that fell out of favour with me, likely because I drifted into using
-machines that had Emacs open all the time but where the machine wasn't awake
-all the time.</p>
-<p>Eventually I decided to have some fun rolling my own solution, and
-<a href="https://github.com/davep/nuke-buffers.el" rel="noopener noreferrer" target="_blank"><code>nuke-buffers</code></a> was born.</p>
-<p>Rather than try and do things in an automated way, this was designed to be
-<a href="https://github.com/davep/.emacs.d/blob/ffc863ca0fb669d2f6639bda62e81764c35767ce/init.d/packages/init-packages-delpa.el#L98-L107" rel="noopener noreferrer" target="_blank">bound to a key (or
-two)</a>
-and then be run when I wanted, being as harsh as possible about cleaning up
-the buffer list. Since first writing it it's worked well for me.</p>
-<p>These days I tend to let the buffer list build up as I work on a new
-feature, or chase down a bug, etc. Then, once I've made the final commit for
-that period of focus, I'll hit the <code>nuke-buffer</code> key combo as the final act
-of confirming that I've done the job. So not only does this help tidy my
-Emacs session a bit, it also feels like a physical form of punctuation --
-back in less sensible days, when I had some terrible habits, it would have
-been when I'd reach for the celebratory cigarette; buffer-tidying feels far
-more wholesome. ;)</p>
-<p>The way the code works is, of course, mostly directed at how I work -- it's
-highly likely it wouldn't make sense for many other people. The main aim is
-to kill as many buffers as possible, but without disturbing anything else.
-The list of buffers it gathers for nuking avoids buffers that are <a href="https://github.com/davep/nuke-buffers.el/blob/d018499b78968f074565c076068f657a1631aa07/nuke-buffers.el#L60-L62" rel="noopener noreferrer" target="_blank">visiting
-files but have unsaved
-content</a>,
-avoids <a href="https://github.com/davep/nuke-buffers.el/blob/d018499b78968f074565c076068f657a1631aa07/nuke-buffers.el#L54" rel="noopener noreferrer" target="_blank">the
-minibuffer</a>
-(obviously), avoids <a href="https://github.com/davep/nuke-buffers.el/blob/d018499b78968f074565c076068f657a1631aa07/nuke-buffers.el#L56" rel="noopener noreferrer" target="_blank">any "special"
-buffer</a>
-(one that starts with a space then an asterisk), avoids <a href="https://github.com/davep/nuke-buffers.el/blob/d018499b78968f074565c076068f657a1631aa07/nuke-buffers.el#L73" rel="noopener noreferrer" target="_blank">the current
-buffer</a>
-and also avoids <a href="https://github.com/davep/nuke-buffers.el/blob/d018499b78968f074565c076068f657a1631aa07/nuke-buffers.el#L58" rel="noopener noreferrer" target="_blank">any buffer in a list of names to
-avoid</a>.</p>
-<p>I've being using this on a daily basis for around 2.5 years now and it's
-done the job without ever losing me any work.</p>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/emacs.html" class="tag">Emacs</a>
-            
-            <a href="/tag/lisp.html" class="tag">Lisp</a>
-            
-            <a href="/tag/emacs-lisp.html" class="tag">Emacs Lisp</a>
-            
-        </div>
-        
-    </article>
-    
     
 
     
@@ -1104,11 +1090,13 @@ done the job without ever losing me any work.</p>
         
     
         
+    
+        
             
     <span class="pagination-ellipsis">…</span>
             
             
-    <a href="/page/20.html" class="pagination-link pagination-number">20</a>
+    <a href="/page/21.html" class="pagination-link pagination-number">21</a>
             
             
         
