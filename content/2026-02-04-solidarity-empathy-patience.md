@@ -2,7 +2,7 @@
 layout: post
 title: Solidarity, Empathy, and Patience -- thinking about code reviews
 category: Coding
-tags: work, review, leadership, Death Stranding
+tags: work, code review, leadership, Death Stranding
 date: 2026-02-04 13:50:00 +0000
 cover: attachments/2026/02/04/chiral.jpeg
 ---
