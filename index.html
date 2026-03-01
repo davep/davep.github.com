@@ -199,6 +199,79 @@
     
     
     <article class="post-summary">
+        <h2><a href="/2026/03/01/not-so-elegant.html">Not so elegant</a></h2>
+        
+        <time datetime="2026-03-01T11:33:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/01/">01</a> 11:33:00 UTC</time>
+        
+        <div class="reading-time">2 min read</div>
+        
+        <div class="category">
+            <a href="/category/ai.html" class="category-link">AI</a>
+        </div>
+        
+        <div class="post-content">
+            <p>One thing I've been noticing with <a href="/2026/02/20/five-days-with-copilot.html">my current experiment with GitHub
+Copilot</a> is that it seems to know
+Python well enough to write code that gets the job done, and sometimes it
+knows it well enough to write more modern idiomatic Python code, but it also
+seems to write the inelegant version of it.</p>
+<p>It's hard to pin down exactly, and of course it's a matter of taste (my idea
+of elegant might burn someone else's eyes), but on occasion, as I review the
+code, I find things that make me go "ugh".</p>
+<p>Here's an example: there's a function that Copilot wrote to extract the
+first non-markup paragraph of an article (so that it can be used as a page
+description). One thing it needs to do is skip any initial images, etc. It
+takes a pretty brute force approach of looking at the start of each stripped
+line, but it gets the job done -- I can't really argue with that.</p>
+<p>But here's how it does it:</p>
+<div class="highlight"><pre><span></span><code>        <span class="c1"># Skip markdown image syntax</span>
+        <span class="k">if</span> <span class="n">stripped</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;![&quot;</span><span class="p">):</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Skip markdown linked image syntax ([![alt](img)](url))</span>
+        <span class="k">if</span> <span class="n">stripped</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;[![&quot;</span><span class="p">):</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Skip HTML img tags</span>
+        <span class="k">if</span> <span class="n">stripped</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;&lt;img&quot;</span><span class="p">):</span>
+            <span class="k">continue</span>
+</code></pre></div>
+
+<p>Now, this is good: it's using
+<a href="https://docs.python.org/3/library/stdtypes.html#str.startswith" rel="noopener noreferrer" target="_blank"><code>startswith</code></a>.
+There are less-elegant approaches it could have used so I'll give it bonus
+points for using that method. The thing is though, it's testing each prefix
+one string at a time, pretty much rolling out a load of boilerplate code.</p>
+<p>What bothers me here is that <code>startswith</code> will take a tuple of strings to
+test for. I find it curious that the generated code is idiomatic enough to
+know that <code>startswith</code> is a sensible option here, but at the same time it
+still writes the list of things to test out in a long-winded way.</p>
+<p>This is exactly the sort of thing I'd call out in <a href="/2026/02/04/solidarity-empathy-patience.html">a normal code
+review</a>. Technically, if this
+wasn't mostly a <em>"let's see how it goes about this with minimal input from
+me"</em> experiment, I'd have called it out here too (as an experiment, I might
+go back prompt it to "think" about this).</p>
+<p>If I ever find myself using this sort of tool for generating code in a work
+setting, this is exactly the sort of thing I'll be watching for.</p>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/ai.html" class="tag">AI</a>
+            
+            <a href="/tag/code-review.html" class="tag">code review</a>
+            
+            <a href="/tag/copilot.html" class="tag">Copilot</a>
+            
+            <a href="/tag/llm.html" class="tag">LLM</a>
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+        </div>
+        
+    </article>
+    
+    <article class="post-summary">
         <h2><a href="/2026/02/28/complexitty-1-1-0.html">Complexitty v1.1.0</a></h2>
         
         <time datetime="2026-02-28T20:40:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/02/">02</a>-<a href="/2026/02/28/">28</a> 20:40:00 UTC</time>
@@ -287,7 +360,7 @@ isn't these days?) then try either:</p>
         <div class="reading-time">5 min read</div>
         
         <div class="category">
-            <a href="/category/coding.html" class="category-link">Coding</a>
+            <a href="/category/ai.html" class="category-link">AI</a>
         </div>
         
         <div class="post-content">
@@ -302,7 +375,7 @@ a solution for some sort of problem. I noticed this on and off as I watched
 the agent's chat, as it worked away.</p>
 <p>One example I enjoyed was when it was trying to add a new dependency to
 <a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank">BlogMore</a>. For reasons I should probably try
-and understand<sup id="fnref:191-1"><a class="footnote-ref" href="#fn:191-1">1</a></sup> it knew it should be using <code>uv</code> to add a dependency and
+and understand<sup id="fnref:192-1"><a class="footnote-ref" href="#fn:192-1">1</a></sup> it knew it should be using <code>uv</code> to add a dependency and
 it knew how to use it to update the lock file, but it didn't have <code>uv</code> to
 hand:</p>
 <blockquote>
@@ -410,8 +483,8 @@ moment it's a good source of coding comedy.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:191-1">
-<p>Presumably there's things I can be doing to make its life easier.&#160;<a class="footnote-backref" href="#fnref:191-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn:192-1">
+<p>Presumably there's things I can be doing to make its life easier.&#160;<a class="footnote-backref" href="#fnref:192-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -445,7 +518,7 @@ moment it's a good source of coding comedy.</p>
         <div class="reading-time">4 min read</div>
         
         <div class="category">
-            <a href="/category/coding.html" class="category-link">Coding</a>
+            <a href="/category/ai.html" class="category-link">AI</a>
         </div>
         
         <div class="post-content">
@@ -595,7 +668,7 @@ want to think about what it is to be a human when communicating.&#160;<a class="
         <div class="reading-time">14 min read</div>
         
         <div class="category">
-            <a href="/category/coding.html" class="category-link">Coding</a>
+            <a href="/category/ai.html" class="category-link">AI</a>
         </div>
         
         <div class="post-content">
@@ -1137,7 +1210,7 @@ spoke to me enough that I jotted it down and kept coming back to it and
 thinking about it. It was a phrase I couldn't get out of my head.</p>
 <p>Around the same time I was also doing a lot of thinking about, and
 note-writing about, code reviews. Although I've been working in software
-development<sup id="fnref:202-1"><a class="footnote-ref" href="#fn:202-1">1</a></sup> for a few decades now (I started in July 1989), I was quite
+development<sup id="fnref:203-1"><a class="footnote-ref" href="#fn:203-1">1</a></sup> for a few decades now (I started in July 1989), I was quite
 late to the whole process of code review -- at least in the way we talk
 about it today. This mostly comes down to the fact that for a lot of my time
 I either worked in very small companies or I was the only developer around.</p>
@@ -1257,9 +1330,9 @@ that thrive.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:202-1">
+<li id="fn:203-1">
 <p>Or software engineering, if you prefer, but that's a whole other blog
-post I'll never get round to writing one day.&#160;<a class="footnote-backref" href="#fnref:202-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+post I'll never get round to writing one day.&#160;<a class="footnote-backref" href="#fnref:203-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -1267,11 +1340,11 @@ post I'll never get round to writing one day.&#160;<a class="footnote-backref" h
         
         <div class="tags">
             
+            <a href="/tag/code-review.html" class="tag">code review</a>
+            
             <a href="/tag/death-stranding.html" class="tag">Death Stranding</a>
             
             <a href="/tag/leadership.html" class="tag">leadership</a>
-            
-            <a href="/tag/review.html" class="tag">review</a>
             
             <a href="/tag/work.html" class="tag">work</a>
             
@@ -1403,85 +1476,6 @@ Norton Guide files into sources to throw at NotebookLM or similar tools:
             <a href="/tag/llm.html" class="tag">LLM</a>
             
             <a href="/tag/norton-guide.html" class="tag">Norton Guide</a>
-            
-            <a href="/tag/python.html" class="tag">Python</a>
-            
-        </div>
-        
-    </article>
-    
-    <article class="post-summary">
-        <h2><a href="/2026/01/10/obs2nlm.html">obs2nlm - Feed NotebookLM an Obsidian Vault</a></h2>
-        
-        <time datetime="2026-01-10T11:18:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/01/">01</a>-<a href="/2026/01/10/">10</a> 11:18:00 UTC</time>
-        
-        <div class="reading-time">3 min read</div>
-        
-        <div class="category">
-            <a href="/category/coding.html" class="category-link">Coding</a>
-        </div>
-        
-        <div class="post-content">
-            <p>I'm sure I've mentioned a couple of times before that I've become quite the
-fan of <a href="https://obsidian.md" rel="noopener noreferrer" target="_blank">Obsidian</a>. For the past few years, at any given
-point, I've had a couple of vaults on the go. Generally I find such vaults a
-really useful place to record things I'd otherwise forget, and of course as
-a place to go back and look things up.</p>
-<p>But... even then, it's easy enough to forget what you might have recorded
-and know that you can even go back and look things up. Also I tend to find
-that I can't quite figure out a good way of getting a good overview of what
-I've recorded, over time.</p>
-<p>Meanwhile: I've been playing around with Google's
-<a href="https://notebooklm.google.com" rel="noopener noreferrer" target="_blank">NotebookLM</a> as a tool to help research and
-understand various topics. After doing this with my recent winter break
-coding project (more on that in the future) I realised I really should get
-serious about taking this approach with my Obsidian Vaults.</p>
-<p>I'm sure this is far from novel, I'm sure lots of people have done similar
-things already; in fact I'd quickly dabbled with the idea <a href="https://github.com/davep/vault2source" rel="noopener noreferrer" target="_blank">a few months
-ago</a>, had a bit of a laugh at some of
-the things the "studio" made of a vault, and promptly forgot about it.</p>
-<p>This time though I got to thinking that I should try and take it a little
-more seriously.</p>
-<p>And so <a href="https://obs2nlm.davep.dev" rel="noopener noreferrer" target="_blank">obs2nlm</a> was born.</p>
-<p>The idea is simple enough: enumerate all the Markdown files in the vault,
-wrap them in boundary markers, add some instructions to the start of the
-file to help NotebookLM "comprehend" the content better, throw in a table of
-contents to give clues to the structure of the vault, and see what happens
-when you use the resulting file as a source.</p>
-<p>So far it's actually turning out to be really helpful. I've been using it to
-get summaries regarding my work over the past 18 months or so and it's
-helped me to consolidate my thoughts on all sorts of issues and subjects.</p>
-<p>It's not perfect, however. I've had it "hallucinate" some stuff when making
-things in the studio (most notably in the slide deck facility); for me
-though I find this an acceptable use of an LLM. I <em>know</em> the subject it's
-talking to me about and I know when it's making stuff up. This, in turn,
-makes for a useful lesson in how and when to not trust the output of a tool
-like this.</p>
-<p>Having tested it out with a currently-active vault, I'm now interested to
-find out what it'll make of some of the archived vaults I have. Back in 2024
-<a href="/2024/11/04/markdown-all-the-things.html">I wrote a couple or so tools for making vaults from other
-things</a> and so I have a vault of a
-journal I kept in <a href="https://journey.cloud" rel="noopener noreferrer" target="_blank">Journey</a> for a number of years, a
-vault of a journal I'd kept before then in <a href="https://evernote.com" rel="noopener noreferrer" target="_blank">Evernote</a>,
-and I also have a vault of all the tweets I wrote before I abandoned
-Twitter. I also have a vault that was dedicated to recording the daily
-events and thoughts of my time working at
-<a href="https://www.textualize.io/" rel="noopener noreferrer" target="_blank">Textualize</a>. It's going to be fun seeing what
-NotebookLM makes of each of those; especially the last one.</p>
-<p>Anyway, if Obsidian is your thing, and if you are dabbling with or fancy
-dabbling with NotebookLM, perhaps
-<a href="https://github.com/davep/obs2nlm" rel="noopener noreferrer" target="_blank">obs2nlm</a> will be handy for you.</p>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/ai.html" class="tag">AI</a>
-            
-            <a href="/tag/journal.html" class="tag">journal</a>
-            
-            <a href="/tag/llm.html" class="tag">LLM</a>
-            
-            <a href="/tag/obsidian.html" class="tag">Obsidian</a>
             
             <a href="/tag/python.html" class="tag">Python</a>
             

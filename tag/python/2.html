@@ -224,11 +224,13 @@
         
     
         
+    
+        
             
     <span class="pagination-ellipsis">…</span>
             
             
-    <a href="/tag/python/6.html" class="pagination-link pagination-number">6</a>
+    <a href="/tag/python/7.html" class="pagination-link pagination-number">7</a>
             
             
         
@@ -243,6 +245,91 @@
 
 
     
+    
+    <article class="post-summary">
+        <h2><a href="/2025/07/19/dhv.html">DHV</a></h2>
+        
+        <time datetime="2025-07-19T15:00:00+01:00"><a href="/2025/">2025</a>-<a href="/2025/07/">07</a>-<a href="/2025/07/19/">19</a> 15:00:00 UTC+01:00</time>
+        
+        <div class="reading-time">2 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+        <div class="post-content">
+            <p><a href="https://dhv.davep.dev/" rel="noopener noreferrer" target="_blank"><img alt="DHV" src="/attachments/2025/07/19/dhv-social-banner.png" /></a></p>
+<p>Back in the very early days of my involvement with
+<a href="https://www.textualize.io/" rel="noopener noreferrer" target="_blank">Textualize</a>, while looking for fun things to
+build to test out the framework and find problems with it, I created
+<a href="https://github.com/davep/textual-astview" rel="noopener noreferrer" target="_blank"><code>textual-astview</code></a>. The idea was
+pretty simple: exercise Textual's
+<a href="https://textual.textualize.io/widgets/tree/" rel="noopener noreferrer" target="_blank"><code>Tree</code></a> widget by using it to
+display the output of Python's <a href="https://docs.python.org/3/library/ast.html" rel="noopener noreferrer" target="_blank">abstract syntax tree
+module</a>.</p>
+<p>While the code still works, Textual has moved on a lot, as has my approach
+to building applications with Textual, and so I've been wanting to do a
+ground-up rewrite of it. At the same time I was also thinking that it might
+be interesting to build a tool that provides other ways of understanding how
+your Python source gets turned into runnable code; with this in mind I've
+ended up building a terminal-based application called DHV.</p>
+<p><a href="https://dhv.davep.dev/" rel="noopener noreferrer" target="_blank"><img alt="DHV in action" src="/attachments/2025/07/19/dhv.gif" /></a></p>
+<p>The idea is pretty straightforward: you type in, paste in, or load up,
+Python code, and you get a real-time display of what the <a href="https://docs.python.org/3/library/dis.html" rel="noopener noreferrer" target="_blank">resulting
+bytecode</a> and abstract syntax
+tree would be.</p>
+<p>If you've ever wondered what a particular bit of code looks like under the
+hood, or wondered if one particular approach to a problem is "more
+efficient"<sup id="fnref:73-1"><a class="footnote-ref" href="#fn:73-1">1</a></sup> than another, or just wondered to yourself if <code>1+1</code> ends up
+being a complex operation or simply gets turned into <code>2</code>, this tool might be
+useful to experiment and see.</p>
+<p>As of now DHV only works with Python 3.13. The main reason for this is that
+the Python <code>dis</code> module is a bit of a moving target and has had some
+noticeable interface changes over the past few versions. When I find some
+time I might work on making DHV a little more backward-compatible. But for
+now keep this in mind: when you're looking at the results for some code
+you're looking at what Python 3.13 (or later) would do, earlier Pythons may
+differ.</p>
+<p>DHV is licensed GPL-3.0 and available <a href="https://github.com/davep/dhv" rel="noopener noreferrer" target="_blank">via
+GitHub</a> and also <a href="https://pypi.org/project/dhv/" rel="noopener noreferrer" target="_blank">via
+PyPI</a>. If you have an environment that has
+<code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>dhv
+</code></pre></div>
+
+<p>If you're a fan of
+<a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"><code>uv</code></a> and friends
+you can install it like this:</p>
+<div class="highlight"><pre><span></span><code>uv tool install --python 3.13 dhv
+</code></pre></div>
+
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:73-1">
+<p>I'm sure many of us have worked with that person who claims <em>"this is
+more efficient"</em> without providing any evidence; this might just be the
+tool to let you check that assertion.&#160;<a class="footnote-backref" href="#fnref:73-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/ast.html" class="tag">ast</a>
+            
+            <a href="/tag/disassembly.html" class="tag">disassembly</a>
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/terminal.html" class="tag">terminal</a>
+            
+            <a href="/tag/textual.html" class="tag">textual</a>
+            
+        </div>
+        
+    </article>
     
     <article class="post-summary">
         <h2><a href="/2025/04/20/complexitty.html">Complexitty</a></h2>
@@ -519,7 +606,7 @@ they wanted me to build this as test of the framework, to essentially start
 out by employing me to create some Free Software that would help dogfood the
 library, but that seemed to get forgotten.</p>
 <p>Fast forward to the start of this month and I finally felt it was time to
-tackle this. The result is <a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank">AgiNG</a><sup id="fnref:187-1"><a class="footnote-ref" href="#fn:187-1">1</a></sup>.</p>
+tackle this. The result is <a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank">AgiNG</a><sup id="fnref:188-1"><a class="footnote-ref" href="#fn:188-1">1</a></sup>.</p>
 <p><img alt="AgiNG in action" src="/attachments/2025/03/12/aging-textual-dark.png" /></p>
 <p>As of v0.1.0 it has most of the features you'd expect from a usable Norton
 Guide reader, including:</p>
@@ -589,11 +676,11 @@ time goes on.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:187-1">
+<li id="fn:188-1">
 <p>If you're wondering about the name, it's nothing more than a word that
 happens to have <code>NG</code> in it, and also a mild pun about this being an
 ageing hypertext help system; with the spelling acknowledging Peter
-Norton's nationality.&#160;<a class="footnote-backref" href="#fnref:187-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+Norton's nationality.&#160;<a class="footnote-backref" href="#fnref:188-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -1154,129 +1241,6 @@ I can turn the data into useful Markdown collections!</p>
         
     </article>
     
-    <article class="post-summary">
-        <h2><a href="/2024/08/18/paindrop.html">Paindrop v1.0.0</a></h2>
-        
-        <time datetime="2024-08-18T10:57:00+01:00"><a href="/2024/">2024</a>-<a href="/2024/08/">08</a>-<a href="/2024/08/18/">18</a> 10:57:00 UTC+01:00</time>
-        
-        <div class="reading-time">4 min read</div>
-        
-        <div class="category">
-            <a href="/category/coding.html" class="category-link">Coding</a>
-        </div>
-        
-        <div class="post-content">
-            <p>I was quite late discovering Pinboard; by the looks of things I created my
-account and paid my first subscription for it in early 2019. Since then I've
-been a pretty avid user and found it really useful. I've even written a
-couple of clients for it (<a href="https://github.com/davep/pinboard.el" rel="noopener noreferrer" target="_blank">one for
-Emacs</a> and <a href="https://github.com/davep/tinboard" rel="noopener noreferrer" target="_blank">one for the
-terminal</a>).</p>
-<p>During that time it's had its fair share of hiccups and outages, but on the
-whole I've found it a stable and useful service.</p>
-<p>The service does have its detractors, and concerns over its long-term
-stability and how well it's maintained <a href="https://news.ycombinator.com/item?id=34062802" rel="noopener noreferrer" target="_blank">are fairly
-common</a>. I half paid
-attention to these, and had started to think about where I might go if there
-was an issue.</p>
-<p>While maintaining and syncing bookmarks isn't exactly a difficult or
-unsolved problem, and while it's also true that it could be fun to roll my
-own solution, there are a couple of things I need that would make building
-my own approach a bit of a chore.</p>
-<p>Things important to me are:</p>
-<ul>
-<li>An extension for any random browser I might find myself using</li>
-<li>A good mobile client for at least iOS and iPadOS</li>
-<li>A good API so I can write my own tools if I need to</li>
-<li>A clean and focused backend website</li>
-</ul>
-<p>I kept these things in mind and kept an eye out but I'd never really felt
-the need to actively start looking around.</p>
-<p>Then I <a href="https://sfba.social/@peterme/112915495895055170" rel="noopener noreferrer" target="_blank">stumbled on this</a>
-after posting about <a href="https://fosstodon.org/@davep/112925762265869565" rel="noopener noreferrer" target="_blank">another Pinboard
-outage</a>.</p>
-<p>That... yeah, that was the final push I needed to start to think seriously
-about where to move and how.</p>
-<p>A couple of people suggested <a href="https://raindrop.io" rel="noopener noreferrer" target="_blank">Raindrop</a>, and from what
-I could tell it was coming up as a pretty popular service that some Pinboard
-users were migrating to. I had a look and it wasn't <em>quite</em> what I was
-after; but close.</p>
-<p>You see, there's two things I really like about Pinboard that Raindop didn't
-seem to cover:</p>
-<ul>
-<li>Simple support for "this shit is unread". I see things, I share to
-  whatever Pinboard app I have on my phone or tablet, etc, and then I review
-  some time later (normally in
-  <a href="https://github.com/davep/tinboard" rel="noopener noreferrer" target="_blank">Tinboard</a>).</li>
-<li>Support for Private and Public pins. I've liked <a href="https://pinboard.in/u:davep" rel="noopener noreferrer" target="_blank">having a feed of
-  bookmarks I can let people see</a> and Raindrop
-  doesn't have this.</li>
-</ul>
-<p>I looked around at some blogs that talked about Pinboard vs Raindrop and
-didn't see any that really dived into this particular aspect of migrating; I
-also asked a couple of folk who'd made the move about this and they didn't
-really have any insight (mainly because they didn't care about those
-particular uses).</p>
-<p>One thing I did notice though was that Raindrop <em>does</em> support making
-individual collections public. So, if I was willing to sacrifice any other
-uses for collections (a bookmark in Raindrop can only be in one collection),
-I could simply have a <em>Public</em> and a <em>Private</em> collection and import pins
-into the appropriate one. Also, unread pins could be left out of the
-collections and I could use that to signify unread status.</p>
-<p>This seemed fine as I'm heavy on the tags anyway.</p>
-<p>Now... Raindrop has a pretty comprehensive import facility built in. I gave
-it a try with Pinboard's backup file and it worked really well. That is...
-really well except it just threw away the public/private/unread aspect of
-the pins. There was only one thing for it then: I had to write my own
-importer!</p>
-<p>Which brings me to <a href="https://github.com/davep/paindrop" rel="noopener noreferrer" target="_blank"><code>Paindrop</code></a>. It's a
-quick hack but it does the job, and it does the import just how I wanted.
-The result of the first test was pretty much spot on (in this image I'm
-comparing what Raindrop says vs what Tinboard says I have in Pinboard):</p>
-<p><img alt="Comparing Raindrop and Tinboard contents" src="/attachments/2024/08/18/raindrop-imports.png#centre" /></p>
-<p>Usage is pretty straightforward. You create <code>Public</code> and <code>Private</code>
-collections in Raindrop, you create an app in Raindrop and get the access
-token, you grab your Pinboard access token and then:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>paindrop<span class="w"> </span>example:xxxxxxxxxxxxxxxxxxxx<span class="w"> </span>xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-</code></pre></div>
-
-<p>where the first parameter is the Pinboard access token and the second the
-Raindrop access token.</p>
-<p>If all goes well, after a few moments, the importer should finish and you
-should find that all of your pins have migrated to Raindrop, all public pins
-are in the <code>Public</code> collection and all private pins are in the <code>Private</code>
-collection. Any pins that were marked as unread will be <em>Unsorted</em>.</p>
-<p>Note that if you used different names for your public and private
-collections you can pass those names to <code>paindrop</code> with the <code>--public</code> and
-<code>--private</code> switches.</p>
-<p>If you're looking to move your bookmarking history out of Pinboard and want
-to keep the same sort of structure I had I hope Paindrop will be useful to
-you too.</p>
-<p>Paindrop can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/paindrop/" rel="noopener noreferrer" target="_blank">from
-PyPi</a>. It can also be installed with
-<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>paindrop</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>paindrop
-</code></pre></div>
-
-<p>The <a href="https://github.com/davep/paindrop" rel="noopener noreferrer" target="_blank">source is available on GitHub</a>.</p>
-<p>PS: As for the name... originally it was <code>pin2rain</code> but then <a href="https://fosstodon.org/@darrenburns/112978377299333401" rel="noopener noreferrer" target="_blank">Darren Burns
-pointed out the obvious and it had to
-happen</a>.</p>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/pinboard.html" class="tag">pinboard</a>
-            
-            <a href="/tag/python.html" class="tag">Python</a>
-            
-            <a href="/tag/raindrop.html" class="tag">raindrop</a>
-            
-        </div>
-        
-    </article>
-    
     
 
     
@@ -1325,11 +1289,13 @@ happen</a>.</p>
         
     
         
+    
+        
             
     <span class="pagination-ellipsis">…</span>
             
             
-    <a href="/tag/python/6.html" class="pagination-link pagination-number">6</a>
+    <a href="/tag/python/7.html" class="pagination-link pagination-number">7</a>
             
             
         

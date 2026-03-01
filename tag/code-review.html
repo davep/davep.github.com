@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="blogmore v1.4.0">
-    <link rel="canonical" href="https://blog.davep.org/tag/review.html">
-    <title>Tag: review - davep</title>
+    <link rel="canonical" href="https://blog.davep.org/tag/code-review.html">
+    <title>Tag: code review - davep</title>
     
     <link rel="icon" href="/icons/favicon.ico">
     
@@ -43,7 +43,7 @@
     
     
     
-<meta property="og:title" content="Tag: review - davep">
+<meta property="og:title" content="Tag: code review - davep">
 
 <meta name="description" content="Dave Pearson&#39;s personal blog">
 <meta property="og:description" content="Dave Pearson&#39;s personal blog">
@@ -177,12 +177,85 @@
             <main>
                 
 <div class="tag-page">
-    <h1>Posts tagged with "review"</h1>
+    <h1>Posts tagged with "code review"</h1>
     
 
 
 
     
+    
+    <article class="post-summary">
+        <h2><a href="/2026/03/01/not-so-elegant.html">Not so elegant</a></h2>
+        
+        <time datetime="2026-03-01T11:33:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/01/">01</a> 11:33:00 UTC</time>
+        
+        <div class="reading-time">2 min read</div>
+        
+        <div class="category">
+            <a href="/category/ai.html" class="category-link">AI</a>
+        </div>
+        
+        <div class="post-content">
+            <p>One thing I've been noticing with <a href="/2026/02/20/five-days-with-copilot.html">my current experiment with GitHub
+Copilot</a> is that it seems to know
+Python well enough to write code that gets the job done, and sometimes it
+knows it well enough to write more modern idiomatic Python code, but it also
+seems to write the inelegant version of it.</p>
+<p>It's hard to pin down exactly, and of course it's a matter of taste (my idea
+of elegant might burn someone else's eyes), but on occasion, as I review the
+code, I find things that make me go "ugh".</p>
+<p>Here's an example: there's a function that Copilot wrote to extract the
+first non-markup paragraph of an article (so that it can be used as a page
+description). One thing it needs to do is skip any initial images, etc. It
+takes a pretty brute force approach of looking at the start of each stripped
+line, but it gets the job done -- I can't really argue with that.</p>
+<p>But here's how it does it:</p>
+<div class="highlight"><pre><span></span><code>        <span class="c1"># Skip markdown image syntax</span>
+        <span class="k">if</span> <span class="n">stripped</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;![&quot;</span><span class="p">):</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Skip markdown linked image syntax ([![alt](img)](url))</span>
+        <span class="k">if</span> <span class="n">stripped</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;[![&quot;</span><span class="p">):</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Skip HTML img tags</span>
+        <span class="k">if</span> <span class="n">stripped</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;&lt;img&quot;</span><span class="p">):</span>
+            <span class="k">continue</span>
+</code></pre></div>
+
+<p>Now, this is good: it's using
+<a href="https://docs.python.org/3/library/stdtypes.html#str.startswith" rel="noopener noreferrer" target="_blank"><code>startswith</code></a>.
+There are less-elegant approaches it could have used so I'll give it bonus
+points for using that method. The thing is though, it's testing each prefix
+one string at a time, pretty much rolling out a load of boilerplate code.</p>
+<p>What bothers me here is that <code>startswith</code> will take a tuple of strings to
+test for. I find it curious that the generated code is idiomatic enough to
+know that <code>startswith</code> is a sensible option here, but at the same time it
+still writes the list of things to test out in a long-winded way.</p>
+<p>This is exactly the sort of thing I'd call out in <a href="/2026/02/04/solidarity-empathy-patience.html">a normal code
+review</a>. Technically, if this
+wasn't mostly a <em>"let's see how it goes about this with minimal input from
+me"</em> experiment, I'd have called it out here too (as an experiment, I might
+go back prompt it to "think" about this).</p>
+<p>If I ever find myself using this sort of tool for generating code in a work
+setting, this is exactly the sort of thing I'll be watching for.</p>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/ai.html" class="tag">AI</a>
+            
+            <a href="/tag/code-review.html" class="tag">code review</a>
+            
+            <a href="/tag/copilot.html" class="tag">Copilot</a>
+            
+            <a href="/tag/llm.html" class="tag">LLM</a>
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+        </div>
+        
+    </article>
     
     <article class="post-summary">
         <h2><a href="/2026/02/04/solidarity-empathy-patience.html">Solidarity, Empathy, and Patience -- thinking about code reviews</a></h2>
@@ -217,7 +290,7 @@ spoke to me enough that I jotted it down and kept coming back to it and
 thinking about it. It was a phrase I couldn't get out of my head.</p>
 <p>Around the same time I was also doing a lot of thinking about, and
 note-writing about, code reviews. Although I've been working in software
-development<sup id="fnref:202-1"><a class="footnote-ref" href="#fn:202-1">1</a></sup> for a few decades now (I started in July 1989), I was quite
+development<sup id="fnref:203-1"><a class="footnote-ref" href="#fn:203-1">1</a></sup> for a few decades now (I started in July 1989), I was quite
 late to the whole process of code review -- at least in the way we talk
 about it today. This mostly comes down to the fact that for a lot of my time
 I either worked in very small companies or I was the only developer around.</p>
@@ -337,9 +410,9 @@ that thrive.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:202-1">
+<li id="fn:203-1">
 <p>Or software engineering, if you prefer, but that's a whole other blog
-post I'll never get round to writing one day.&#160;<a class="footnote-backref" href="#fnref:202-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+post I'll never get round to writing one day.&#160;<a class="footnote-backref" href="#fnref:203-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -347,11 +420,11 @@ post I'll never get round to writing one day.&#160;<a class="footnote-backref" h
         
         <div class="tags">
             
+            <a href="/tag/code-review.html" class="tag">code review</a>
+            
             <a href="/tag/death-stranding.html" class="tag">Death Stranding</a>
             
             <a href="/tag/leadership.html" class="tag">leadership</a>
-            
-            <a href="/tag/review.html" class="tag">review</a>
             
             <a href="/tag/work.html" class="tag">work</a>
             
