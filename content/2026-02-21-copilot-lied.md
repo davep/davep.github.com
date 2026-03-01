@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Copilot lied
-category: Coding
+category: AI
 tags: Python, AI, LLM, Copilot, GitHub, BlogMore
 date: 2026-02-21 14:47:00 +0000
 ---
