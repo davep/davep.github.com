@@ -2,7 +2,7 @@
 layout: post
 title: Seen by davep broke (again)
 category: Creative
-tags: blogging, photography
+tags: blogging, photography, twitter
 date: 2023-08-20 09:25:00+0000
 ---
 
