@@ -25,17 +25,17 @@ line, but it gets the job done -- I can't really argue with that.
 But here's how it does it:
 
 ```python
-        # Skip markdown image syntax
-        if stripped.startswith("!["):
-            continue
+# Skip markdown image syntax
+if stripped.startswith("!["):
+    continue
 
-        # Skip markdown linked image syntax ([![alt](img)](url))
-        if stripped.startswith("[!["):
-            continue
+# Skip markdown linked image syntax ([![alt](img)](url))
+if stripped.startswith("[!["):
+    continue
 
-        # Skip HTML img tags
-        if stripped.startswith("<img"):
-            continue
+# Skip HTML img tags
+if stripped.startswith("<img"):
+    continue
 ```
 
 Now, this is good: it's using
