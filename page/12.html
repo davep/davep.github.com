@@ -116,7 +116,7 @@
                         
                         <li><a href="https://raindrop.io/davep/public-46742255/sort=-created&amp;perpage=30&amp;page=0" target="_blank" rel="noopener noreferrer">Bookmarks</a></li>
                         
-                        <li><a href="https://seenbydavep.blogspot.com/" target="_blank" rel="noopener noreferrer">Photoblog</a></li>
+                        <li><a href="https://seen-by.davep.dev/" target="_blank" rel="noopener noreferrer">Photoblog</a></li>
                         
                         <li><a href="https://elisp.dev/" target="_blank" rel="noopener noreferrer">Emacs Packages</a></li>
                         
@@ -303,6 +303,61 @@
 
 
     
+    
+    <article class="post-summary">
+        <h2><a href="/2020/06/28/swift-til-7.html">Swift TIL 7</a></h2>
+        
+        <time datetime="2020-06-28T16:25:00+01:00"><a href="/2020/">2020</a>-<a href="/2020/06/">06</a>-<a href="/2020/06/28/">28</a> 16:25:00 UTC+01:00</time>
+        
+        <div class="reading-time">1 min read</div>
+        
+        <div class="category">
+            <a href="/category/til.html" class="category-link">TIL</a>
+        </div>
+        
+        <div class="post-content">
+            <p>This post is <em>very</em> much a case of me writing it down to try and get it all
+straight in my head, and to make sure it sticks. The other day I was reading
+about Swift's types and type-equality checks, and as I'd expect from plenty
+of other languages I've worked with, there's a way for checking that two
+types are the same, such that super/subclasses aren't taken into account,
+and a way where they are. So, given this silly code:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">Animal</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">Cat</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Animal</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="bp">print</span><span class="p">(</span><span class="w"> </span><span class="n">Cat</span><span class="p">.</span><span class="kc">self</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="n">Animal</span><span class="p">.</span><span class="kc">self</span><span class="w"> </span><span class="p">)</span><span class="w">          </span><span class="c1">// False</span>
+<span class="bp">print</span><span class="p">(</span><span class="w"> </span><span class="n">Cat</span><span class="p">.</span><span class="kc">self</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">Animal</span><span class="p">.</span><span class="kr">Type</span><span class="w"> </span><span class="p">)</span><span class="w">          </span><span class="c1">// True</span>
+<span class="bp">print</span><span class="p">(</span><span class="w"> </span><span class="n">type</span><span class="p">(</span><span class="w"> </span><span class="n">of</span><span class="p">:</span><span class="w"> </span><span class="n">Cat</span><span class="p">()</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">Animal</span><span class="p">.</span><span class="kr">Type</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c1">// True</span>
+</code></pre></div>
+
+<p>it's made clear that <code>==</code> checks for strict equality and a super/subclass
+relationship isn't taken into account. On the other hand <code>is</code> does take it
+into account.</p>
+<p>Only... what's with this whole <code>.self</code> sometimes and <code>.Type</code> other times
+business? That took a little bit of writing code and playing to get
+comfortable with. Here's how I understand it now (and do feel free to
+correct me below if I'm way off):</p>
+<p>Given the above code, <code>Animal.Type</code> is the type of a value that expresses
+the type of <code>Animal</code>. On the other hand, <code>Animal.self</code> is a value that is
+the type of an <code>Animal</code>. Yeah, I know, that still reads oddly. But written
+as code:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nv">feline</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Cat</span><span class="p">.</span><span class="kr">Type</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Cat</span><span class="p">.</span><span class="kc">self</span>
+</code></pre></div>
+
+<p>I think it makes a lot more sense. And having got there I felt I better
+understood it. I'm not 100% sure I'm 100% with it, but I'm getting there.</p>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/apple.html" class="tag">Apple</a>
+            
+            <a href="/tag/swift.html" class="tag">Swift</a>
+            
+        </div>
+        
+    </article>
     
     <article class="post-summary">
         <h2><a href="/2020/06/27/swift-til-6.html">Swift TIL 6</a></h2>
@@ -834,7 +889,7 @@ really not noticing them been gone.</p>
         </div>
         
         <div class="post-content">
-            <p>When I started with this version of the blog on Hashnode<sup id="fnref:175-1"><a class="footnote-ref" href="#fn:175-1">1</a></sup>, my plan was to
+            <p>When I started with this version of the blog on Hashnode<sup id="fnref:176-1"><a class="footnote-ref" href="#fn:176-1">1</a></sup>, my plan was to
 try and write something at least once a week. I managed to do that as far as
 January this year, give or take, but then things got a little busy, the
 world got trickier, and... Well, <a href="https://en.wikipedia.org/wiki/COVID-19_pandemic" rel="noopener noreferrer" target="_blank">you don't need me to tell you about
@@ -912,84 +967,12 @@ in the running version of Emacs</a>.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:175-1">
+<li id="fn:176-1">
 <p>Note from future me: we're now back over on <code>blog.davep.org</code> of
-course.&#160;<a class="footnote-backref" href="#fnref:175-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+course.&#160;<a class="footnote-backref" href="#fnref:176-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/emacs.html" class="tag">Emacs</a>
-            
-            <a href="/tag/emacs-lisp.html" class="tag">Emacs Lisp</a>
-            
-            <a href="/tag/lisp.html" class="tag">Lisp</a>
-            
-        </div>
-        
-    </article>
-    
-    <article class="post-summary">
-        <h2><a href="/2020/01/19/dnote-el.html">dnote.el - A wrapper for the dnote CLI</a></h2>
-        
-        <time datetime="2020-01-19T16:35:00+00:00"><a href="/2020/">2020</a>-<a href="/2020/01/">01</a>-<a href="/2020/01/19/">19</a> 16:35:00 UTC</time>
-        
-        <div class="reading-time">3 min read</div>
-        
-        <div class="category">
-            <a href="/category/emacs.html" class="category-link">Emacs</a>
-        </div>
-        
-        <div class="post-content">
-            <p>Late on last year I stumbled on an article about
-<a href="https://www.getdnote.com/" rel="noopener noreferrer" target="_blank">dnote</a>. Annoyingly, I can't recall now where I
-saw it, but I made a reminder to look at it over my Christmas break.</p>
-<p>Dnote looked like a tool that would fill a hole I had in how I work. When it
-comes to making notes about things, and keeping things for future reference,
-I use a few tools, each one being just right (for me) for the job in
-question. I use <a href="https://evernote.com/" rel="noopener noreferrer" target="_blank">Evernote</a> to track documents and
-other household type things. I use <a href="https://www.google.com/keep/" rel="noopener noreferrer" target="_blank">Keep</a> to
-make notes about stuff I need to remember short-term (say, the size of a
-space in my bedroom that I want furniture to go in) and also to record notes
-while in meetings at work. I use <a href="https://journey.cloud/" rel="noopener noreferrer" target="_blank">Journey</a> to keep a
-journal about... anything, really. Finally, <a href="https://pinboard.in/u:davep" rel="noopener noreferrer" target="_blank">I use
-Pinboard</a> to keep hold of URLs I might want to
-go back to (I also use it to create a to-read list).</p>
-<p>Amongst all of this, however, I felt I was missing something for keeping
-track of things that don't really fall into any of the categories above.
-Mostly this would be work-based or hacking-based things that are short and
-sweet but I don't always use enough to easily remember. I wanted just the
-right tool that would let me ferret away useful one-liners, remind myself of
-obscure switches that get used once or twice a year, etc.</p>
-<p>After reading up on dnote it seemed pretty clear that this was just such a
-tool.</p>
-<p>After getting back to the office at the start of this month I decided to
-make use of it and see how it went. My idea was simple: I'd record any "TIL"
-stuff that I might want to remember in the future, as well as recording
-things I need now and again but can't always remember.</p>
-<p>So far it's working quite well. I like that it has a simple CLI. I like that
-it's got a backend that you can use to sync between different machines. I
-like that it's got a web interface that's mobile-friendly. I like that <a href="https://github.com/dnote/dnote" rel="noopener noreferrer" target="_blank">it's
-Free Software</a> and so you can host your own
-server if you wish.</p>
-<p>I found I liked it enough that, of course, I felt the need to start <a href="https://github.com/davep/dnote.el" rel="noopener noreferrer" target="_blank">a
-simple Emacs wrapper for the CLI</a>.</p>
-<p>At the moment dnote.el is designed to be a simple capture system. There are
-commands for capturing a one-liner (entered in the Emacs mini-buffer), for
-capturing the content of the current buffer, and for capturing
-freshly-entered multi-line text, entered in a buffer that uses
-<code>markdown-mode</code>. There's also a command for syncing notes if you have
-configured dnote to talk to a backend.</p>
-<p>What I don't have right now is the ability to navigate and view notes. So
-far I've not really felt the need for that because the CLI approach works so
-well. Longer-term though I can see my tweaking this and adding in commands
-for searching, viewing, editing and deleting notes.</p>
-<p>But, for now, if you've not had a look at dnote, I'd highly recommend having
-a play and seeing if it makes sense for you. And, if it does, and you're an
-Emacs user, perhaps dnote.el will be useful too?</p>
         </div>
         
         <div class="tags">

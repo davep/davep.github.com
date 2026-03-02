@@ -2,11 +2,71 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-03-01T11:36:04.530822+00:00</updated>
+  <updated>2026-03-02T17:20:53.637608+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/03/02/seen-by-rescued.html</id>
+    <title>Seen by davep rescued</title>
+    <updated>2026-03-02T17:18:00+00:00</updated>
+    <content type="html">&lt;p&gt;&lt;img alt="Final Message" src="https://blog.davep.org/attachments/2026/03/02/final-message.jpeg#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;Since mid-2023 &lt;a href="https://blog.davep.org/2023/08/20/seen-by-davep-broke-again.html"&gt;my photoblog has been
+broken&lt;/a&gt;. As I mentioned at the
+time, the issue was that this second incarnation of the blog had started
+life as a proper
+&lt;a href="https://en.wikipedia.org/wiki/Mashup_(web_application_hybrid)" rel="noopener noreferrer" target="_blank"&gt;mashup&lt;/a&gt; of
+some web tools, and the heart of it was Twitter.&lt;/p&gt;
+&lt;p&gt;It all started to fall apart when Twitter got its new owner, and APIs became
+expensive, and other tools would not or could not work with it any more, and
+then it really fell apart when I finally nuked my account.&lt;/p&gt;
+&lt;p&gt;So since then the blog has been sat about, unused and unloved, with a lot of
+broken links and images.&lt;/p&gt;
+&lt;p&gt;Thankfully, though, the pipeline that I had going had been designed with
+this sort of problem in mind: part of what I had going also made a backup of
+the photos I took to Google Drive and to Google Photos. So when I got to a
+point the other day where &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; was usable
+I decided I should rescue the photos and rebuild the blog.&lt;/p&gt;
+&lt;p&gt;After downloading the full feed of the Blogger.com-hosted blog, I threw
+together some Python code that took the data (thanks to
+&lt;a href="https://github.com/kurtmckee/feedparser" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;feedparser&lt;/code&gt;&lt;/a&gt; for helping with
+that), matched up the posts with the images I had in Google Drive, slugged
+the names, wrote some Markdown and copied some images, and &lt;a href="https://github.com/davep/seen-by" rel="noopener noreferrer" target="_blank"&gt;I had the source
+of a fresh blog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The result of all of this can be seen up on
+&lt;a href="https://seen-by.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;seen-by.davep.dev&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I strongly suspect this is going to remain a pretty static site. At the
+moment I've given no thought whatsoever as to how I might have this populate
+in the way the old version of it did. Quite simply the old version was:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Take photo&lt;/li&gt;
+&lt;li&gt;Post to Twitter with a specific hashtag&lt;/li&gt;
+&lt;li&gt;Have IFTTT notice this and create the blog post, make backups&lt;/li&gt;
+&lt;li&gt;...&lt;/li&gt;
+&lt;li&gt;Profit?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I suppose, this time around, I could have something monitor &lt;a href="https://fosstodon.org/@davep" rel="noopener noreferrer" target="_blank"&gt;my Mastodon
+account&lt;/a&gt;, or my &lt;a href="https://pixelfed.social/davepearson" rel="noopener noreferrer" target="_blank"&gt;pixelfed
+account&lt;/a&gt;, and then trigger a similar
+process; but then that would need something akin to IFTTT running and
+interacting with GitHub and creating the Markdown and kicking off a build
+process and...&lt;/p&gt;
+&lt;p&gt;Eh, maybe one day. For now, though, I'll be happy that I've rescued this
+particular incarnation of my photoblog and then think about if and how I
+carry on with something similar in the future.&lt;/p&gt;
+&lt;p&gt;Meanwhile... this has got me thinking. The &lt;em&gt;original&lt;/em&gt; blog is &lt;a href="https://seenbydavep.wordpress.com/" rel="noopener noreferrer" target="_blank"&gt;backed up on
+WordPress&lt;/a&gt;. It's been sat there, all sad
+and neglected, ever since Posterous disappeared. I wonder if I can export
+all the data from there and mash it into this new version...&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/03/02/seen-by-rescued.html"/>
+    <category term="Creative"/>
+    <category term="blogging"/>
+    <category term="photography"/>
+    <category term="BlogMore"/>
+    <category term="twitter"/>
+    <published>2026-03-02T17:18:00+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/03/01/not-so-elegant.html</id>
     <title>Not so elegant</title>
@@ -25,17 +85,17 @@ description). One thing it needs to do is skip any initial images, etc. It
 takes a pretty brute force approach of looking at the start of each stripped
 line, but it gets the job done -- I can't really argue with that.&lt;/p&gt;
 &lt;p&gt;But here's how it does it:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;        &lt;span class="c1"&gt;# Skip markdown image syntax&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;stripped&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;![&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-            &lt;span class="k"&gt;continue&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Skip markdown image syntax&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;stripped&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;![&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;continue&lt;/span&gt;
 
-        &lt;span class="c1"&gt;# Skip markdown linked image syntax ([![alt](img)](url))&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;stripped&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;[![&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-            &lt;span class="k"&gt;continue&lt;/span&gt;
+&lt;span class="c1"&gt;# Skip markdown linked image syntax ([![alt](img)](url))&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;stripped&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;[![&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;continue&lt;/span&gt;
 
-        &lt;span class="c1"&gt;# Skip HTML img tags&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;stripped&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;img&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-            &lt;span class="k"&gt;continue&lt;/span&gt;
+&lt;span class="c1"&gt;# Skip HTML img tags&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;stripped&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;img&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;continue&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Now, this is good: it's using
@@ -143,7 +203,7 @@ a solution for some sort of problem. I noticed this on and off as I watched
 the agent's chat, as it worked away.&lt;/p&gt;
 &lt;p&gt;One example I enjoyed was when it was trying to add a new dependency to
 &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;. For reasons I should probably try
-and understand&lt;sup id="fnref:192-1"&gt;&lt;a class="footnote-ref" href="#fn:192-1"&gt;1&lt;/a&gt;&lt;/sup&gt; it knew it should be using &lt;code&gt;uv&lt;/code&gt; to add a dependency and
+and understand&lt;sup id="fnref:193-1"&gt;&lt;a class="footnote-ref" href="#fn:193-1"&gt;1&lt;/a&gt;&lt;/sup&gt; it knew it should be using &lt;code&gt;uv&lt;/code&gt; to add a dependency and
 it knew how to use it to update the lock file, but it didn't have &lt;code&gt;uv&lt;/code&gt; to
 hand:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -251,8 +311,8 @@ moment it's a good source of coding comedy.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:192-1"&gt;
-&lt;p&gt;Presumably there's things I can be doing to make its life easier.&amp;#160;&lt;a class="footnote-backref" href="#fnref:192-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:193-1"&gt;
+&lt;p&gt;Presumably there's things I can be doing to make its life easier.&amp;#160;&lt;a class="footnote-backref" href="#fnref:193-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -504,7 +564,7 @@ asked&lt;/a&gt;:&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Just like that, it went off &lt;a href="https://github.com/davep/blogmore/pull/1/changes/3449eec9b4df88e66eec0f6bba4369926ff1389e" rel="noopener noreferrer" target="_blank"&gt;and wrote a whole server for the
 project&lt;/a&gt;.
-While the server did need a lot of extra work to really work well&lt;sup id="fnref:129-1"&gt;&lt;a class="footnote-ref" href="#fn:129-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, the
+While the server did need a lot of extra work to really work well&lt;sup id="fnref:130-1"&gt;&lt;a class="footnote-ref" href="#fn:130-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, the
 initial version was good enough to get me going and to iterate on the
 project as a whole.&lt;/p&gt;
 &lt;h2 id="the-main-workflow"&gt;The main workflow&lt;/h2&gt;
@@ -557,8 +617,8 @@ the mistakes are likely to turn up. Once you've written enough code you've
 also written plenty of bugs and been caught out by plenty of edge-cases that
 you get a spidey-sense for trouble as you write code. I feel that this kind
 of approach can be called cautiously confident.&lt;/p&gt;
-&lt;p&gt;Working with Copilot&lt;sup id="fnref:129-2"&gt;&lt;a class="footnote-ref" href="#fn:129-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, however, I often ran into the confidently wrong
-issue. On occasion I found it would proudly&lt;sup id="fnref:129-3"&gt;&lt;a class="footnote-ref" href="#fn:129-3"&gt;3&lt;/a&gt;&lt;/sup&gt; request review for some
+&lt;p&gt;Working with Copilot&lt;sup id="fnref:130-2"&gt;&lt;a class="footnote-ref" href="#fn:130-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, however, I often ran into the confidently wrong
+issue. On occasion I found it would proudly&lt;sup id="fnref:130-3"&gt;&lt;a class="footnote-ref" href="#fn:130-3"&gt;3&lt;/a&gt;&lt;/sup&gt; request review for some
 minor bit of work, proclaiming that it had done the thing or solved the
 problem, and I'd test it and nothing had materially changed. On a couple of
 occasions, when I pushed back, I found it actually doubting my review before
@@ -625,7 +685,7 @@ experienced is bringing code to you where they've used an agent as their
 pair buddy.&lt;/p&gt;
 &lt;h2 id="the-overall-impression"&gt;The overall impression&lt;/h2&gt;
 &lt;p&gt;Now I'm at the end of the process, and using the result of this experiment
-to write this post&lt;sup id="fnref:129-4"&gt;&lt;a class="footnote-ref" href="#fn:129-4"&gt;4&lt;/a&gt;&lt;/sup&gt;, I feel better informed about what these tools offer,
+to write this post&lt;sup id="fnref:130-4"&gt;&lt;a class="footnote-ref" href="#fn:130-4"&gt;4&lt;/a&gt;&lt;/sup&gt;, I feel better informed about what these tools offer,
 and the pitfalls I need to be mindful of. Sometimes it wasn't a terrible way
 of working. For example, on the first day I started with this, at one point
 on a chilly but sunny Sunday afternoon, I was sat on the sofa, MacBook on
@@ -670,25 +730,25 @@ into perspective.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:129-1"&gt;
+&lt;li id="fn:130-1"&gt;
 &lt;p&gt;Amusingly I &lt;a href="https://github.com/davep/blogmore/issues/117" rel="noopener noreferrer" target="_blank"&gt;uncovered another
 bug&lt;/a&gt; while writing this
-post.&amp;#160;&lt;a class="footnote-backref" href="#fnref:129-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+post.&amp;#160;&lt;a class="footnote-backref" href="#fnref:130-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:129-2"&gt;
+&lt;li id="fn:130-2"&gt;
 &lt;p&gt;I keep saying Copilot, but I think it's probably more correct to say
 "Claude Sonnet 4.5" as that's what seemed to be at play under the hood,
-if I'm understanding things correctly.&amp;#160;&lt;a class="footnote-backref" href="#fnref:129-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+if I'm understanding things correctly.&amp;#160;&lt;a class="footnote-backref" href="#fnref:130-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:129-3"&gt;
+&lt;li id="fn:130-3"&gt;
 &lt;p&gt;Yes, of course that's an anthropomorphism, you'll find plenty of them
 in this article as it's hard not to write about the subject in any other
-way; it's an easy shortcut to explain some ideas&amp;#160;&lt;a class="footnote-backref" href="#fnref:129-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+way; it's an easy shortcut to explain some ideas&amp;#160;&lt;a class="footnote-backref" href="#fnref:130-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:129-4"&gt;
+&lt;li id="fn:130-4"&gt;
 &lt;p&gt;Actually I'm writing this post as I always do: in Emacs. But BlogMore
 is in the background serving a local copy of my blog so I can check it
-in the browser, and rebuilding it every time I save a change.&amp;#160;&lt;a class="footnote-backref" href="#fnref:129-4" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+in the browser, and rebuilding it every time I save a change.&amp;#160;&lt;a class="footnote-backref" href="#fnref:130-4" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -886,7 +946,7 @@ spoke to me enough that I jotted it down and kept coming back to it and
 thinking about it. It was a phrase I couldn't get out of my head.&lt;/p&gt;
 &lt;p&gt;Around the same time I was also doing a lot of thinking about, and
 note-writing about, code reviews. Although I've been working in software
-development&lt;sup id="fnref:203-1"&gt;&lt;a class="footnote-ref" href="#fn:203-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for a few decades now (I started in July 1989), I was quite
+development&lt;sup id="fnref:204-1"&gt;&lt;a class="footnote-ref" href="#fn:204-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for a few decades now (I started in July 1989), I was quite
 late to the whole process of code review -- at least in the way we talk
 about it today. This mostly comes down to the fact that for a lot of my time
 I either worked in very small companies or I was the only developer around.&lt;/p&gt;
@@ -1006,9 +1066,9 @@ that thrive.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:203-1"&gt;
+&lt;li id="fn:204-1"&gt;
 &lt;p&gt;Or software engineering, if you prefer, but that's a whole other blog
-post I'll never get round to writing one day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:203-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+post I'll never get round to writing one day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:204-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1219,7 +1279,7 @@ that publishes the guides I have? So I set about it.&lt;/p&gt;
 &lt;p&gt;There's one wrinkle to this though. While the other sites seemed to just
 publish every NG file they got their hands on, I'd prefer to try and do it
 like this: publish every guide I have in my collection &lt;em&gt;that I have a
-licence or permission to publish&lt;/em&gt;; or as near as possible&lt;sup id="fnref:102-1"&gt;&lt;a class="footnote-ref" href="#fn:102-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+licence or permission to publish&lt;/em&gt;; or as near as possible&lt;sup id="fnref:103-1"&gt;&lt;a class="footnote-ref" href="#fn:103-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;p&gt;Given all of this,
 &lt;a href="https://norton-guides.davep.dev" rel="noopener noreferrer" target="_blank"&gt;norton-guides.davep.dev&lt;/a&gt; has been born.
 The repository that drives it &lt;a href="https://github.com/davep/norton-guides" rel="noopener noreferrer" target="_blank"&gt;is on
@@ -1239,9 +1299,9 @@ you.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:102-1"&gt;
+&lt;li id="fn:103-1"&gt;
 &lt;p&gt;I will possibly be a little permissive when it comes to things that I
-believe contain public domain information to start with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:102-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+believe contain public domain information to start with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:103-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1540,7 +1600,7 @@ they wanted me to build this as test of the framework, to essentially start
 out by employing me to create some Free Software that would help dogfood the
 library, but that seemed to get forgotten.&lt;/p&gt;
 &lt;p&gt;Fast forward to the start of this month and I finally felt it was time to
-tackle this. The result is &lt;a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank"&gt;AgiNG&lt;/a&gt;&lt;sup id="fnref:188-1"&gt;&lt;a class="footnote-ref" href="#fn:188-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+tackle this. The result is &lt;a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank"&gt;AgiNG&lt;/a&gt;&lt;sup id="fnref:189-1"&gt;&lt;a class="footnote-ref" href="#fn:189-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="AgiNG in action" src="https://blog.davep.org/attachments/2025/03/12/aging-textual-dark.png" /&gt;&lt;/p&gt;
 &lt;p&gt;As of v0.1.0 it has most of the features you'd expect from a usable Norton
 Guide reader, including:&lt;/p&gt;
@@ -1610,11 +1670,11 @@ time goes on.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:188-1"&gt;
+&lt;li id="fn:189-1"&gt;
 &lt;p&gt;If you're wondering about the name, it's nothing more than a word that
 happens to have &lt;code&gt;NG&lt;/code&gt; in it, and also a mild pun about this being an
 ageing hypertext help system; with the spelling acknowledging Peter
-Norton's nationality.&amp;#160;&lt;a class="footnote-backref" href="#fnref:188-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+Norton's nationality.&amp;#160;&lt;a class="footnote-backref" href="#fnref:189-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1790,62 +1850,5 @@ start to sprinkle it over other projects too.&lt;/p&gt;</content>
     <category term="mkdocstrings"/>
     <category term="gh-pages"/>
     <published>2025-02-28T11:45:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2025/02/14/hike.html</id>
-    <title>Hike</title>
-    <updated>2025-02-14T09:22:00+00:00</updated>
-    <content type="html">&lt;p&gt;&lt;img alt="Hike" src="https://blog.davep.org/attachments/2025/02/14/hike-social-banner.png" /&gt;&lt;/p&gt;
-&lt;p&gt;The run of writing new terminal-based tools that I want still keeps going.
-First there was &lt;a href="https://blog.davep.org/2025/01/03/braindrop.html"&gt;Braindrop&lt;/a&gt;, then there was
-&lt;a href="https://blog.davep.org/2025/01/25/peplum.html"&gt;Peplum&lt;/a&gt;, and now, released today, there's
-&lt;a href="https://github.com/davep/hike" rel="noopener noreferrer" target="_blank"&gt;Hike&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Hike is yet another terminal-based Markdown browser. While it's far from the
-first, and unlikely to be the last, it's mine and it looks and works exactly
-how I need. Perhaps it'll be your sort of thing too?&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Hike viewing its README" src="https://blog.davep.org/attachments/2025/02/14/hike-in-action.png" /&gt;&lt;/p&gt;
-&lt;p&gt;This initial release has a bunch of handy features, including things like:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;A command line where file names, URLs and commands can be entered.&lt;/li&gt;
-&lt;li&gt;A persistent history for the command line.&lt;/li&gt;
-&lt;li&gt;A local file browser.&lt;/li&gt;
-&lt;li&gt;A simple bookmarking system.&lt;/li&gt;
-&lt;li&gt;A browsing history.&lt;/li&gt;
-&lt;li&gt;Commands for quickly loading and viewing files held on GitHub, GitLab,
-  Codeberg and Bitbucket.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;As there's a lot to discover in the application, I've tried to make the help
-screen as comprehensive as possible:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Hike help" src="https://blog.davep.org/attachments/2025/02/14/hike-help.png" /&gt;&lt;/p&gt;
-&lt;p&gt;and there's also the command palette to help with discovering commands and
-the keys that are associated with them:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The command palette in action" src="https://blog.davep.org/attachments/2025/02/14/hike-command-palette.png" /&gt;&lt;/p&gt;
-&lt;p&gt;Once again, themes are supported so no matter your taste you should find
-something that's easy on your eyes:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Dark" src="https://blog.davep.org/attachments/2025/02/14/hike-textual-dark.png" /&gt;
-&lt;img alt="Light" src="https://blog.davep.org/attachments/2025/02/14/hike-textual-light.png" /&gt;
-&lt;img alt="Tokyo Night" src="https://blog.davep.org/attachments/2025/02/14/hike-tokyo-night.png" /&gt;
-&lt;img alt="Solarized Light" src="https://blog.davep.org/attachments/2025/02/14/hike-solarized-light.png" /&gt;&lt;/p&gt;
-&lt;p&gt;Hike is licensed GPL-3.0 and available &lt;a href="https://github.com/davep/hike" rel="noopener noreferrer" target="_blank"&gt;via
-GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/hike/" rel="noopener noreferrer" target="_blank"&gt;via
-PyPi&lt;/a&gt;. If you have an environment that has
-&lt;code&gt;pipx&lt;/code&gt; installed you should be able to get up and going with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;hike
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;It can also be installed with
-&lt;code&gt;Homebrew&lt;/code&gt; by tapping &lt;code&gt;davep/homebrew&lt;/code&gt; and then installing &lt;code&gt;hike&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;tap&lt;span class="w"&gt; &lt;/span&gt;davep/homebrew
-$&lt;span class="w"&gt; &lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;hike
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Expect to see more updates in the near future; this is very much an ongoing
-tinker project.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2025/02/14/hike.html"/>
-    <category term="Coding"/>
-    <category term="Python"/>
-    <category term="terminal"/>
-    <category term="textual"/>
-    <published>2025-02-14T09:22:00+00:00</published>
   </entry>
 </feed>
