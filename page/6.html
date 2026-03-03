@@ -305,6 +305,73 @@
     
     
     <article class="post-summary">
+        <h2><a href="/2023/10/31/evolve-words.html">Evolve Words</a></h2>
+        
+        <time datetime="2023-10-31T21:39:00+01:00"><a href="/2023/">2023</a>-<a href="/2023/10/">10</a>-<a href="/2023/10/31/">31</a> 21:39:00 UTC+01:00</time>
+        
+        <div class="reading-time">2 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+        <div class="post-content">
+            <p>This follows on from my <a href="/2023/10/26/visual-selection.html">previous post</a>.
+If you've not read that, it's worth having a dive in first for the
+background.</p>
+<p>The Ruby code I mention, that was written back in 2008, was actually a pair
+of scripts. The first one, called <code>selection</code>, did what <code>visual-selection</code>
+does, only <code>visual-selection</code> does it with a nice TUI interface: it takes a
+random collection of letters and symbols and evolves them into a target
+phrase.</p>
+<p>As covered before: I don't remember all of the details of the conversation
+that was going on at the time, but I do seem to remember something along the
+lines of <em>"yes, but you start out and end up with something the same
+length"</em> and <em>"nothing more complex is made"</em> (let's gloss over the whole
+"complex" thing for now... well okay let's just gloss over it, end of story;
+this is just a fun coding exercise).</p>
+<p>What I do remember is that the seed of an idea was planted. Fine: how about
+I start off with one small word, and using a list of English words as the
+"fitness landscape" that the mutations had to survive in, mutate a
+population over and over and see what happens. Would I "randomly" create
+known words, with fewer letters, with the same letters, with more letters?</p>
+<p>So this version of the code randomly did three forms of mutation: it would
+randomly flip a letter, or randomly delete a letter, or randomly insert a
+random letter. It would do this over and over and eliminate words that
+aren't in the original list (the simple form of selecting for survival
+within the landscape).</p>
+<p>Like I said last time: never going to convince anyone of anything, but fun
+to write some code.</p>
+<p>This version became <code>selection2</code>.</p>
+<p>So, having turned <code>selection</code> into a TUI application with Textual, I <em>had</em>
+to do the same with this code...</p>
+<p><img alt="Evolve Words" src="/attachments/2023/10/31/evolve-words.png#centre" /></p>
+<p>As before, because it's fun to do so, this leans heavily on the <a href="https://textual.textualize.io/guide/workers/" rel="noopener noreferrer" target="_blank">worker
+API</a> and
+<a href="https://textual.textualize.io/blog/2023/10/04/announcing-textual-plotext/" rel="noopener noreferrer" target="_blank"><code>textual-plotext</code></a>.</p>
+<p>If you want to check out the app itself there's <a href="https://github.com/davep/evolve-words" rel="noopener noreferrer" target="_blank">a GitHub
+repo</a> and it can also be
+installed <a href="https://pypi.org/project/evolve-words/" rel="noopener noreferrer" target="_blank">from PyPi</a> using
+<code>pipx</code>.</p>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/biology.html" class="tag">biology</a>
+            
+            <a href="/tag/evolution.html" class="tag">evolution</a>
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/terminal.html" class="tag">terminal</a>
+            
+            <a href="/tag/textual.html" class="tag">textual</a>
+            
+        </div>
+        
+    </article>
+    
+    <article class="post-summary">
         <h2><a href="/2023/10/26/visual-selection.html">Visual Selection</a></h2>
         
         <time datetime="2023-10-26T18:50:00+01:00"><a href="/2023/">2023</a>-<a href="/2023/10/">10</a>-<a href="/2023/10/26/">26</a> 18:50:00 UTC+01:00</time>
@@ -343,7 +410,7 @@ information" and could never lead to a "desired result", or some such thing.</p>
 thing I mean.</p>
 <p>So that got me thinking back then, could I write something that could give a
 simple illustration of how this doesn't quite make sense?</p>
-<p>So I had a little hacking session and came up with some Ruby code<sup id="fnref:98-1"><a class="footnote-ref" href="#fn:98-1">1</a></sup> that
+<p>So I had a little hacking session and came up with some Ruby code<sup id="fnref:99-1"><a class="footnote-ref" href="#fn:99-1">1</a></sup> that
 did what I felt was the job. You'd give it a phrase you wanted it to
 generate (a stand-in for the current "fitness landscape", in effect), it
 would then generate a totally random string of that length, and then would
@@ -357,7 +424,7 @@ given a reasonably large target string?</p>
 <p>It got posted to the BB and of course wasn't in any way persuasive to them
 (honestly I never expected it would be). I seem to recall it being
 hand-waved away with calls of there obviously being an intelligent designer
-involved<sup id="fnref:98-2"><a class="footnote-ref" href="#fn:98-2">2</a></sup>.</p>
+involved<sup id="fnref:99-2"><a class="footnote-ref" href="#fn:99-2">2</a></sup>.</p>
 <p>Anyway, the "meanwhile..." in this: a few times this year I've thought it
 could be fun to rework this in Python (it's really not that complex after
 all; just a string-chopping loop really) and use Textual to put a fun UI on
@@ -416,15 +483,15 @@ couple of other things I'd like to add to it.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:98-1">
+<li id="fn:99-1">
 <p>Possibly unpopular opinion with some folk who will read this, but I've
 long been a fan of Ruby as a language and actually generally prefer it
-to Python.&#160;<a class="footnote-backref" href="#fnref:98-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+to Python.&#160;<a class="footnote-backref" href="#fnref:99-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li id="fn:98-2">
+<li id="fn:99-2">
 <p>Me, the coder. While utterly missing the point of a simple
 illustration, while apparently not understanding the concept of an
-analogy, I guess at least they felt I was intelligent?&#160;<a class="footnote-backref" href="#fnref:98-2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+analogy, I guess at least they felt I was intelligent?&#160;<a class="footnote-backref" href="#fnref:99-2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -921,64 +988,6 @@ could create self-documenting and self-completing commands in that).</p>
             <a href="/tag/python.html" class="tag">Python</a>
             
             <a href="/tag/textual.html" class="tag">Textual</a>
-            
-        </div>
-        
-    </article>
-    
-    <article class="post-summary">
-        <h2><a href="/2023/09/23/apple-design.html">Apple Design</a></h2>
-        
-        <time datetime="2023-09-23T08:10:00+01:00"><a href="/2023/">2023</a>-<a href="/2023/09/">09</a>-<a href="/2023/09/23/">23</a> 08:10:00 UTC+01:00</time>
-        
-        <div class="reading-time">2 min read</div>
-        
-        <div class="category">
-            <a href="/category/tech.html" class="category-link">Tech</a>
-        </div>
-        
-        <div class="post-content">
-            <p>As someone who started out in the Android ecosystem when it came to smart
-phones -- starting out with a <a href="https://en.wikipedia.org/wiki/HTC_Magic" rel="noopener noreferrer" target="_blank">HTC
-Magic</a> and going through a few
-different phones before settling on Pixels (until I finally jumped ship to
-iOS in 2020) -- I have to admit that there's always been something nice
-about the design of iPhones. iOS, less so... My first exposure to iOS was
-<a href="/2015/06/23/and-now-for-some-ios.html">back in 2015 when I got an iPod</a>,
-and I wasn't terribly impressed. It looked okay, but it felt so far behind
-Android in terms of functionality.</p>
-<p>Much has changed and improved since then. These days, 3 years into being
-totally consumed by the Apple ecosystem (one day I should write a post about
-how comprehensively I've moved over), I'm won over and I like how iOS works
-now.</p>
-<p>Except this...</p>
-<p><img alt="Bad design" src="/attachments/2023/09/23/top-bad.jpeg#centre" /></p>
-<p>That thing where, when you're in one app, it will show the most useless link
-"back" to another app, and in doing so bump the time up and out of the way a
-little. Like, seriously, compare it to when the app link thing isn't there:</p>
-<p><img alt="Good design" src="/attachments/2023/09/23/top-good.jpeg#centre" /></p>
-<p>Once you see it, you can't unsee it.</p>
-<p><img alt="Toggle of the two images" src="/attachments/2023/09/23/bad-good-toggle.gif#centre" /></p>
-<p>After all this time you'd think they would have found a less janky way of
-doing this; perhaps even simply removed it (I can't remember the last time I
-needed or wanted the ability to go "back" an app like this, especially not
-with the bottom-of-screen swipe gesture being a thing). If nothing else
-you'd think that, by now, they'd have found a way of doing it that doesn't
-look so terrible.</p>
-<p>The <em>"eh, let's just shove it here"</em> approach that seems to be on display
-here almost reminds me of <a href="/2015/10/07/imac-time-wiggle.html">the "time wiggle" that used to mildly annoy me
-back on my iMac</a>.</p>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/apple.html" class="tag">Apple</a>
-            
-            <a href="/tag/design.html" class="tag">design</a>
-            
-            <a href="/tag/ios.html" class="tag">iOS</a>
-            
-            <a href="/tag/iphone.html" class="tag">iPhone</a>
             
         </div>
         

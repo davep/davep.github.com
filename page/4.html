@@ -303,6 +303,69 @@
     
     
     <article class="post-summary">
+        <h2><a href="/2024/04/17/macos-desktop-widget-switching.html">macOS desktop widget switching</a></h2>
+        
+        <time datetime="2024-04-17T09:26:00+01:00"><a href="/2024/">2024</a>-<a href="/2024/04/">04</a>-<a href="/2024/04/17/">17</a> 09:26:00 UTC+01:00</time>
+        
+        <div class="reading-time">1 min read</div>
+        
+        <div class="category">
+            <a href="/category/tech.html" class="category-link">Tech</a>
+        </div>
+        
+        <div class="post-content">
+            <p>When <a href="https://support.apple.com/en-gb/108996" rel="noopener noreferrer" target="_blank">desktop widgets</a> first turned
+up in macOS I was pretty quick to embrace them. On my personal Mac Mini I
+use a pair of screens, the right one mostly given over to Emacs, and there
+was generally room to space there. These days that screen generally looks
+something like this:</p>
+<p><img alt="The usual layout of my right screen" src="/attachments/2024/04/17/right-screen.png#centre" /></p>
+<p>Recently I've got into <a href="https://www.youtube.com/@davep-codes/streams" rel="noopener noreferrer" target="_blank">streaming while I do some
+coding</a> and it's the
+right-hand screen that I work on and capture using OBS. When I was setting
+this up I realised that the widgets being there could be a problem; not
+because they could distract or anything, more that they could, at times,
+contain sensitive information (there's my reminder list and my calendar
+there after all).</p>
+<p>What I needed was a quick method of hiding all the widgets, and showing them
+again later, without it being a lot of faff.</p>
+<p>With a little bit of digging around on the net I finally came up with a pair
+of <code>fish</code> abbreviations that do just the job!</p>
+<div class="highlight"><pre><span></span><code>abbr -g widoff &quot;defaults write com.apple.WindowManager StandardHideWidgets -int 1&quot;
+abbr -g widon &quot;defaults write com.apple.WindowManager StandardHideWidgets -int 0&quot;
+</code></pre></div>
+
+<p>Now, when I'm going to stream, part of my "getting stuff ready to go live"
+checklist is to run <code>widoff</code> in the terminal; once I'm finished I can then
+just run <code>widon</code> again to have them come back.</p>
+<p>Fast, clean, handy.</p>
+<p>I've also got a pair for when I'm using <a href="https://support.apple.com/en-gb/guide/mac-help/mchl534ba392/mac" rel="noopener noreferrer" target="_blank">Stage
+Manager</a>:</p>
+<div class="highlight"><pre><span></span><code>abbr -g smwidoff &quot;defaults write com.apple.WindowManager StageManagerHideWidgets -int 1&quot;
+abbr -g smwidon &quot;defaults write com.apple.WindowManager StageManagerHideWidgets -int 0&quot;
+</code></pre></div>
+
+<p>Although, really, I can't remember the last time I used Stage Manager. I
+dabbled with it for a wee while, found it vaguely handy in a couple of
+situations, but it doesn't seem to have stuck as part of my workflow or work
+environment.</p>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/fish.html" class="tag">fish</a>
+            
+            <a href="/tag/macos.html" class="tag">macOS</a>
+            
+            <a href="/tag/shell.html" class="tag">shell</a>
+            
+            <a href="/tag/streaming.html" class="tag">streaming</a>
+            
+        </div>
+        
+    </article>
+    
+    <article class="post-summary">
         <h2><a href="/2024/04/09/tinboard-0-11-0.html">Tinboard v0.11.0</a></h2>
         
         <time datetime="2024-04-09T15:43:00+01:00"><a href="/2024/">2024</a>-<a href="/2024/04/">04</a>-<a href="/2024/04/09/">09</a> 15:43:00 UTC+01:00</time>
@@ -464,7 +527,7 @@ that I've recommenced be installed using
 <a href="https://pipx.pypa.io/stable/" rel="noopener noreferrer" target="_blank"><code>pipx</code></a>. During that time though I've had
 half an inclination to make them <a href="https://brew.sh/" rel="noopener noreferrer" target="_blank">installable via
 Homebrew</a>. While probably not installable from the core
-Homebrew repository<sup id="fnref:199-1"><a class="footnote-ref" href="#fn:199-1">1</a></sup>, at least installable from a "tap"<sup id="fnref:199-2"><a class="footnote-ref" href="#fn:199-2">2</a></sup> that's under
+Homebrew repository<sup id="fnref:200-1"><a class="footnote-ref" href="#fn:200-1">1</a></sup>, at least installable from a "tap"<sup id="fnref:200-2"><a class="footnote-ref" href="#fn:200-2">2</a></sup> that's under
 my own GitHub account or something.</p>
 <p>To this end I've had <a href="https://til.simonwillison.net/homebrew/packaging-python-cli-for-homebrew" rel="noopener noreferrer" target="_blank">a blog post about packaging Python apps for
 Homebrew</a>
@@ -476,7 +539,7 @@ of today pretty much went like this:</p>
 <p>The blog post above seemed to suggest that for every application repository
 you want a tap for, you probably want a parallel <code>homebrew-</code>-prefixed
 repository. This in turn would suggest that every time someone wants to
-install one of your tools, they'd need to add a new tap<sup id="fnref:199-3"><a class="footnote-ref" href="#fn:199-3">3</a></sup>. As I looked at
+install one of your tools, they'd need to add a new tap<sup id="fnref:200-3"><a class="footnote-ref" href="#fn:200-3">3</a></sup>. As I looked at
 it this seemed like way too much faff, so in the end I decided <a href="https://github.com/davep/homebrew-homebrew" rel="noopener noreferrer" target="_blank">to create a
 single repository that I'd keep all my formula files
 in</a>. The naming of
@@ -559,17 +622,17 @@ remember and do.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:199-1">
+<li id="fn:200-1">
 <p>I do actually <a href="https://formulae.brew.sh/formula/eg" rel="noopener noreferrer" target="_blank">have one package in
 Homebrew</a>, but it wasn't me who put
-it there.&#160;<a class="footnote-backref" href="#fnref:199-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+it there.&#160;<a class="footnote-backref" href="#fnref:200-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li id="fn:199-2">
+<li id="fn:200-2">
 <p>I really like Homebrew as a tool for getting stuff installed, by oh my
-gods the naming of things in its ecosystem is terrible and confusing!&#160;<a class="footnote-backref" href="#fnref:199-2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+gods the naming of things in its ecosystem is terrible and confusing!&#160;<a class="footnote-backref" href="#fnref:200-2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
-<li id="fn:199-3">
-<p>No, really, I mean it, this naming convention is kinda cringe right?&#160;<a class="footnote-backref" href="#fnref:199-3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<li id="fn:200-3">
+<p>No, really, I mean it, this naming convention is kinda cringe right?&#160;<a class="footnote-backref" href="#fnref:200-3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -749,7 +812,7 @@ year for gaming next year!)</p>
 <a href="https://www.textualize.io/about-us/" rel="noopener noreferrer" target="_blank">currently my day job</a>; on the other
 hand it's a FOSS project that I'm keen to support so <em>"free time me"</em> tries
 to work with it and support others working with it too. For this reason
-you'll often see me being terminally<sup id="fnref:117-1"><a class="footnote-ref" href="#fn:117-1">1</a></sup> online in the Textual Discord,
+you'll often see me being terminally<sup id="fnref:118-1"><a class="footnote-ref" href="#fn:118-1">1</a></sup> online in the Textual Discord,
 trying to answer questions as they come up, every waking free moment.</p>
 <p>Almost without exception the people who ask for help are appreciative and
 ask in the spirit of wanting help and wanting to work together with whoever
@@ -974,8 +1037,8 @@ metric ton of shenanigans"</em>. <code>¯\_(ツ)_/¯</code></p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:117-1">
-<p>Geddit? GEDDIT?&#160;<a class="footnote-backref" href="#fnref:117-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn:118-1">
+<p>Geddit? GEDDIT?&#160;<a class="footnote-backref" href="#fnref:118-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -1203,55 +1266,6 @@ stuff.&#160;<a class="footnote-backref" href="#fnref:22-1" title="Jump back to f
 </li>
 </ol>
 </div>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/coding.html" class="tag">coding</a>
-            
-            <a href="/tag/pypi.html" class="tag">PyPi</a>
-            
-            <a href="/tag/python.html" class="tag">Python</a>
-            
-            <a href="/tag/textual.html" class="tag">Textual</a>
-            
-        </div>
-        
-    </article>
-    
-    <article class="post-summary">
-        <h2><a href="/2024/01/11/textual-countdown.html">textual-countdown</a></h2>
-        
-        <time datetime="2024-01-11T22:52:00+01:00"><a href="/2024/">2024</a>-<a href="/2024/01/">01</a>-<a href="/2024/01/11/">11</a> 22:52:00 UTC+01:00</time>
-        
-        <div class="reading-time">1 min read</div>
-        
-        <div class="category">
-            <a href="/category/python.html" class="category-link">Python</a>
-        </div>
-        
-        <div class="post-content">
-            <p>The idea for this one popped into my head while on the bus back from Textual
-Towers this evening. So after dinner and some nonsense on TV I had to visit
-my desk and do a quick hack.</p>
-<p>This is <a href="https://github.com/davep/textual-countdown" rel="noopener noreferrer" target="_blank"><code>textual-countdown</code></a>, a
-subtle but I think useful countdown widget for Textual applications.</p>
-<p><img alt="Textual Countdown in action" src="/attachments/2024/01/11/textual-countdown.gif" /></p>
-<p>The idea is that you compose it somewhere into your screen, and when you
-start the countdown the bar highlights and then starts to shrink down to
-"nothing" in the middle of its display. When the countdown ends a message is
-posted so you can then perform the task that was being waited for in an
-event handler.</p>
-<p>Not really a novel thing, I've seen this kind of thing before on the web;
-I'm sure we all have. I just thought it would be a fun idea for Textual
-applications too.</p>
-<p>I envisage using this where, perhaps, an application needs to wait for an
-API-visiting cooldown period, or perhaps as a subtle countdown for a
-question in a quiz; something like that.</p>
-<p>Anyway, if this sounds like it's something useful for your Textual
-applications, <a href="https://pypi.org/project/textual-countdown/" rel="noopener noreferrer" target="_blank">it's now available from
-PyPi</a> and, of course, the
-source is over <a href="https://github.com/davep/textual-countdown" rel="noopener noreferrer" target="_blank">on GitHub</a>.</p>
         </div>
         
         <div class="tags">
