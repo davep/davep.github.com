@@ -2,7 +2,7 @@
 layout: post
 title: Catching up
 category: Meta
-tags: Mac, Apple
+tags: Mac, Apple, jekyll
 date: 2023-07-02 08:00:00 +0100
 ---
 

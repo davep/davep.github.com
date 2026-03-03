@@ -2,7 +2,7 @@
 layout: post
 title: The switch has been made
 category: Meta
-tags: Python, Blogging
+tags: Python, Blogging, Jekyll, Pelican
 date: 2023-07-05 17:56:00 +0100
 ---
 

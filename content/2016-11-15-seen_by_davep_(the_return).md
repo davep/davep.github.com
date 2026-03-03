@@ -2,7 +2,7 @@
 layout: post
 title: Seen by davep (the return)
 category: Creative
-tags: blogging, photography, twitter
+tags: blogging, photography, Twitter, Posterous
 date: 2016-11-15 15:52:15+0000
 ---
 

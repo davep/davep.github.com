@@ -2,7 +2,7 @@
 layout: post
 title: Considering Pelican
 category: Meta
-tags: Python, Blogging
+tags: Python, Blogging, Pelican, Jekyll
 date: 2023-07-04 08:32:00 +0100
 ---
 
