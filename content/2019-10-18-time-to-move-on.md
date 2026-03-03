@@ -2,7 +2,7 @@
 layout: post
 title: Time to move on
 category: Meta
-tags: blogging
+tags: blogging, Jekyll, Hashnode
 date: 2019-10-18 17:42:00+0100
 ---
 

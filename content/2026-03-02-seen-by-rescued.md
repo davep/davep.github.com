@@ -2,7 +2,7 @@
 layout: post
 title: Seen by davep rescued
 category: Creative
-tags: blogging, photography, BlogMore, twitter
+tags: blogging, photography, BlogMore, Twitter, Posterous
 date: 2026-03-02 17:18:00+0000
 cover: attachments/2026/03/02/final-message.jpeg
 ---
