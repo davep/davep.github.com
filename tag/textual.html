@@ -231,6 +231,79 @@
     
     
     <article class="post-summary">
+        <h2><a href="/2026/03/03/hike-1-3-0.html">Hike v1.3.0</a></h2>
+        
+        <time datetime="2026-03-03T17:10:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/03/">03</a> 17:10:00 UTC</time>
+        
+        <div class="reading-time">2 min read</div>
+        
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        
+        <div class="post-content">
+            <p>I've just released v1.3.0 of <a href="https://hike.davep.dev/" rel="noopener noreferrer" target="_blank">Hike</a>, my little
+terminal-based Markdown browser. It's about a year now <a href="/2025/02/14/hike.html">since I made the
+first release</a> and I've been making the odd update
+here and there, but mostly it's a pretty stable tool. There's a few other
+things I'd like to do with it but I keep getting distracted by different
+ideas.</p>
+<p>Today's release sort of rides on the coattails of the current love for all
+things Markdown because of "the AI". It seems that some folk are now keen on
+the idea of serving Markdown from their websites, when asked for it: <a href="https://www.skeptrune.com/posts/use-the-accept-header-to-serve-markdown-instead-of-html-to-llms/" rel="noopener noreferrer" target="_blank">as you
+can see in this
+post</a>
+for example. While that might be handy for some LLM bot or whatever, it's
+also pretty handy if you happen to have a web-friendly Markdown browser!</p>
+<p>So v1.3.0 makes a small change to how a URL is looked at when deciding if it
+might be a Markdown document, by saying <em>"hey, web server, I like Markdown
+more than anything else, so feel free to serve me that up"</em>. If we get a
+Markdown type back, we go ahead and load it into Hike.</p>
+<p>This means that the post mentioned above loads up just fine now:</p>
+<p><img alt="Viewing a Markdown site in Hike" src="/attachments/2026/03/03/hike.png" /></p>
+<p>Previously, Hike would have gone <em>"nah, that's not a Markdown document"</em> and
+would have handed off to the environment's web browser.</p>
+<p>Hike is licensed GPL-3.0 and available <a href="https://github.com/davep/hike" rel="noopener noreferrer" target="_blank">via
+GitHub</a> and also <a href="https://pypi.org/project/hike/" rel="noopener noreferrer" target="_blank">via
+PyPi</a>. If you have an environment that has
+<code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>hike
+</code></pre></div>
+
+<p>If you're more into
+<a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"><code>uv</code></a>:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>hike
+</code></pre></div>
+
+<p>If you don't have <code>uv</code> installed you can use <a href="https://uvx.sh" rel="noopener noreferrer" target="_blank">uvx.sh</a> to
+perform the installation. For GNU/Linux or macOS or similar:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-LsSf<span class="w"> </span>uvx.sh/hike/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</code></pre></div>
+
+<p>or on Windows:</p>
+<div class="highlight"><pre><span></span><code>powershell<span class="w"> </span>-ExecutionPolicy<span class="w"> </span>ByPass<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://uvx.sh/hike/install.ps1 | iex&quot;</span>
+</code></pre></div>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/ai.html" class="tag">AI</a>
+            
+            <a href="/tag/llm.html" class="tag">LLM</a>
+            
+            <a href="/tag/markdown.html" class="tag">markdown</a>
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/terminal.html" class="tag">terminal</a>
+            
+            <a href="/tag/textual.html" class="tag">textual</a>
+            
+        </div>
+        
+    </article>
+    
+    <article class="post-summary">
         <h2><a href="/2026/02/28/complexitty-1-1-0.html">Complexitty v1.1.0</a></h2>
         
         <time datetime="2026-02-28T20:40:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/02/">02</a>-<a href="/2026/02/28/">28</a> 20:40:00 UTC</time>
@@ -727,7 +800,7 @@ they wanted me to build this as test of the framework, to essentially start
 out by employing me to create some Free Software that would help dogfood the
 library, but that seemed to get forgotten.</p>
 <p>Fast forward to the start of this month and I finally felt it was time to
-tackle this. The result is <a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank">AgiNG</a><sup id="fnref:190-1"><a class="footnote-ref" href="#fn:190-1">1</a></sup>.</p>
+tackle this. The result is <a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank">AgiNG</a><sup id="fnref:191-1"><a class="footnote-ref" href="#fn:191-1">1</a></sup>.</p>
 <p><img alt="AgiNG in action" src="/attachments/2025/03/12/aging-textual-dark.png" /></p>
 <p>As of v0.1.0 it has most of the features you'd expect from a usable Norton
 Guide reader, including:</p>
@@ -797,11 +870,11 @@ time goes on.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:190-1">
+<li id="fn:191-1">
 <p>If you're wondering about the name, it's nothing more than a word that
 happens to have <code>NG</code> in it, and also a mild pun about this being an
 ageing hypertext help system; with the spelling acknowledging Peter
-Norton's nationality.&#160;<a class="footnote-backref" href="#fnref:190-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+Norton's nationality.&#160;<a class="footnote-backref" href="#fnref:191-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -1125,113 +1198,6 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
 
 <p>I'm going to be making good use of this and working on it more; I hope it's
 useful to someone else. :-)</p>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/python.html" class="tag">Python</a>
-            
-            <a href="/tag/terminal.html" class="tag">terminal</a>
-            
-            <a href="/tag/textual.html" class="tag">textual</a>
-            
-        </div>
-        
-    </article>
-    
-    <article class="post-summary">
-        <h2><a href="/2025/01/03/braindrop.html">Braindrop</a></h2>
-        
-        <time datetime="2025-01-03T16:24:00+00:00"><a href="/2025/">2025</a>-<a href="/2025/01/">01</a>-<a href="/2025/01/03/">03</a> 16:24:00 UTC</time>
-        
-        <div class="reading-time">4 min read</div>
-        
-        <div class="category">
-            <a href="/category/coding.html" class="category-link">Coding</a>
-        </div>
-        
-        <div class="post-content">
-            <p><img alt="Braindrop" src="/attachments/2025/01/03/braindrop-social-banner.png" /></p>
-<p>A touch over a year ago I did the initial work on an application called
-<a href="https://github.com/davep/tinboard" rel="noopener noreferrer" target="_blank">Tinboard</a>, a terminal-based client for
-the Pinboard bookmarking service. I had a lot of fun building it and it was
-an application that I used on a near-daily basis. However, around August
-last year <a href="/2024/08/18/paindrop.html">I realised it was time for me to move on from Pinboard and try
-something new</a>; based on various recommendations
-I settled on <a href="https://raindrop.io/" rel="noopener noreferrer" target="_blank">Raindrop</a>.</p>
-<p>As mentioned <a href="/2024/08/18/paindrop.html">in the other blog post</a>, Raindrop
-offered more or less everything I had with Pinboard and so the move was
-fairly straightforward. The one thing that was missing though was an
-application similar to Tinboard.</p>
-<p>So, late on last year, with my winter break approaching, I decided to start
-from scratch and build a <em>"Tinboard for Raindrop"</em>, which I'm calling
-<a href="https://github.com/davep/braindrop" rel="noopener noreferrer" target="_blank">Braindrop</a>.</p>
-<p>This was going to be a bit of an adventure too. Since <a href="/2024/03/28/goodbye-textualize.html">being laid off from
-Textualize earlier in 2024</a> I'd not
-been following its development quite as closely as I used to, and had also
-run into some issues and bugs with it since that time; moreover, as well as
-various bugs appearing, some breaking changes had also been made. As such
-this was going to be a process where I'd wrap my head around what's happened
-with the framework over the prior six months or so.</p>
-<p>Given all this, over the past couple of weeks I've been spending a few hours
-a day doing some for-pleasure coding and v0.1.0 of Braindrop is the result.</p>
-<p><img alt="Main display" src="/attachments/2025/01/03/braindrop-main.png" /></p>
-<p>As much as possible I've tried to keep the look and feel similar to that of
-Tinboard, while also doing my best to avoid some of the <em>"ah, I wish I
-hadn't done it this way"</em> design decisions I'd made. As of the time of
-writing I'm very pleased with the result.</p>
-<p><img alt="The edit dialog" src="/attachments/2025/01/03/braindrop-edit.png" /></p>
-<p>One thing I did want to do is ensure that the application was as
-keyboard-friendly as possible, while also still allowing use of the mouse.
-Textual can sometimes get that wrong and I ran into an example of this while
-trying to ensure that there's good in-application help. Somewhat recently
-Textual added a built-in help system which, sadly, can't easily be used by
-and navigated by someone using the keyboard. So instead I've recreated the
-help system I built into Tinboard, while adopting the documentation standard
-that Textual had settled on (which, coincidentally, was kind of similar to
-what I did in Tinboard to start with).</p>
-<p><img alt="The help dialog" src="/attachments/2025/01/03/braindrop-help.png" /></p>
-<p>As with Tinboard, I've also made sure to make full use of the command
-palette, with every action that makes sense having a keyboard hotkey as well
-as a command in the palette. I also took things a little further and made
-sure that the hotkeys are shown in the command palette for easier discovery.</p>
-<p><img alt="The command palette" src="/attachments/2025/01/03/braindrop-command-palette.png" /></p>
-<p>I've also made sure that Textual's new theme system is available for easy
-use; so out goes dark/light mode toggling and in comes a collection of
-different themes. Here's a wee selection as an example:</p>
-<p><img alt="Example theme 1" src="/attachments/2025/01/03/braindrop-theme-1.png" />
-<img alt="Example theme 2" src="/attachments/2025/01/03/braindrop-theme-2.png" />
-<img alt="Example theme 3" src="/attachments/2025/01/03/braindrop-theme-3.png" />
-<img alt="Example theme 4" src="/attachments/2025/01/03/braindrop-theme-4.png" /></p>
-<p>That's a small selection of the themes, with more to explore.</p>
-<p>There's a few more things I want to do before I consider the application
-v1.0-ready, but it's already in use by me and working well. As I decide what
-else I want to add to it <a href="https://github.com/davep/braindrop/issues?q=is%3Aissue+is%3Aopen+label%3ATODO" rel="noopener noreferrer" target="_blank">I'm building up a list of TODO
-items</a>.</p>
-<p>Given that my day job these days is quite varied, isn't quite so
-coding-intensive, and isn't always related to all things Python, it's
-actually been fun to sit down and hack up a pure Python application from
-scratch again. It's also helped me discover a couple or so fresh bugs in
-Textual (which <a href="https://github.com/Textualize/textual/issues/created_by/davep" rel="noopener noreferrer" target="_blank">I've
-reported</a>, of
-course) and given me the opportunity to <a href="https://github.com/Textualize/textual/pulls/davep" rel="noopener noreferrer" target="_blank">PR some trivial fixes as I've
-noticed typos and stuff as I
-go</a>.</p>
-<p>Anyway; that's v0.1.0 out in the wild. I'm pleased with how it's turned out
-and there's more to come. It's licensed GPL-3.0 and available <a href="https://github.com/davep/braindrop" rel="noopener noreferrer" target="_blank">via
-GitHub</a> and also <a href="https://pypi.org/project/braindrop/" rel="noopener noreferrer" target="_blank">via
-PyPi</a>. If you have an environment that
-has <code>pipx</code> installed you should be able to get up and going with:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>braindrop
-</code></pre></div>
-
-<p>It can also be installed with
-<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>braindrop</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>braindrop
-</code></pre></div>
-
-<p>I hope this is useful to someone else. :-)</p>
         </div>
         
         <div class="tags">

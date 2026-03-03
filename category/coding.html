@@ -237,6 +237,74 @@
     
     
     <article class="post-summary">
+        <h2><a href="/2026/03/03/hike-1-3-0.html">Hike v1.3.0</a></h2>
+        
+        <time datetime="2026-03-03T17:10:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/03/">03</a> 17:10:00 UTC</time>
+        
+        <div class="reading-time">2 min read</div>
+        <div class="post-content">
+            <p>I've just released v1.3.0 of <a href="https://hike.davep.dev/" rel="noopener noreferrer" target="_blank">Hike</a>, my little
+terminal-based Markdown browser. It's about a year now <a href="/2025/02/14/hike.html">since I made the
+first release</a> and I've been making the odd update
+here and there, but mostly it's a pretty stable tool. There's a few other
+things I'd like to do with it but I keep getting distracted by different
+ideas.</p>
+<p>Today's release sort of rides on the coattails of the current love for all
+things Markdown because of "the AI". It seems that some folk are now keen on
+the idea of serving Markdown from their websites, when asked for it: <a href="https://www.skeptrune.com/posts/use-the-accept-header-to-serve-markdown-instead-of-html-to-llms/" rel="noopener noreferrer" target="_blank">as you
+can see in this
+post</a>
+for example. While that might be handy for some LLM bot or whatever, it's
+also pretty handy if you happen to have a web-friendly Markdown browser!</p>
+<p>So v1.3.0 makes a small change to how a URL is looked at when deciding if it
+might be a Markdown document, by saying <em>"hey, web server, I like Markdown
+more than anything else, so feel free to serve me that up"</em>. If we get a
+Markdown type back, we go ahead and load it into Hike.</p>
+<p>This means that the post mentioned above loads up just fine now:</p>
+<p><img alt="Viewing a Markdown site in Hike" src="/attachments/2026/03/03/hike.png" /></p>
+<p>Previously, Hike would have gone <em>"nah, that's not a Markdown document"</em> and
+would have handed off to the environment's web browser.</p>
+<p>Hike is licensed GPL-3.0 and available <a href="https://github.com/davep/hike" rel="noopener noreferrer" target="_blank">via
+GitHub</a> and also <a href="https://pypi.org/project/hike/" rel="noopener noreferrer" target="_blank">via
+PyPi</a>. If you have an environment that has
+<code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>hike
+</code></pre></div>
+
+<p>If you're more into
+<a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"><code>uv</code></a>:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>hike
+</code></pre></div>
+
+<p>If you don't have <code>uv</code> installed you can use <a href="https://uvx.sh" rel="noopener noreferrer" target="_blank">uvx.sh</a> to
+perform the installation. For GNU/Linux or macOS or similar:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-LsSf<span class="w"> </span>uvx.sh/hike/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</code></pre></div>
+
+<p>or on Windows:</p>
+<div class="highlight"><pre><span></span><code>powershell<span class="w"> </span>-ExecutionPolicy<span class="w"> </span>ByPass<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://uvx.sh/hike/install.ps1 | iex&quot;</span>
+</code></pre></div>
+        </div>
+        
+        <div class="tags">
+            
+            <a href="/tag/ai.html" class="tag">AI</a>
+            
+            <a href="/tag/llm.html" class="tag">LLM</a>
+            
+            <a href="/tag/markdown.html" class="tag">markdown</a>
+            
+            <a href="/tag/python.html" class="tag">Python</a>
+            
+            <a href="/tag/terminal.html" class="tag">terminal</a>
+            
+            <a href="/tag/textual.html" class="tag">textual</a>
+            
+        </div>
+        
+    </article>
+    
+    <article class="post-summary">
         <h2><a href="/2026/02/28/complexitty-1-1-0.html">Complexitty v1.1.0</a></h2>
         
         <time datetime="2026-02-28T20:40:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/02/">02</a>-<a href="/2026/02/28/">28</a> 20:40:00 UTC</time>
@@ -459,7 +527,7 @@ spoke to me enough that I jotted it down and kept coming back to it and
 thinking about it. It was a phrase I couldn't get out of my head.</p>
 <p>Around the same time I was also doing a lot of thinking about, and
 note-writing about, code reviews. Although I've been working in software
-development<sup id="fnref:205-1"><a class="footnote-ref" href="#fn:205-1">1</a></sup> for a few decades now (I started in July 1989), I was quite
+development<sup id="fnref:206-1"><a class="footnote-ref" href="#fn:206-1">1</a></sup> for a few decades now (I started in July 1989), I was quite
 late to the whole process of code review -- at least in the way we talk
 about it today. This mostly comes down to the fact that for a lot of my time
 I either worked in very small companies or I was the only developer around.</p>
@@ -579,9 +647,9 @@ that thrive.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:205-1">
+<li id="fn:206-1">
 <p>Or software engineering, if you prefer, but that's a whole other blog
-post I'll never get round to writing one day.&#160;<a class="footnote-backref" href="#fnref:205-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+post I'll never get round to writing one day.&#160;<a class="footnote-backref" href="#fnref:206-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -1043,73 +1111,6 @@ $<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </s
             <a href="/tag/norton-guide.html" class="tag">Norton Guide</a>
             
             <a href="/tag/python.html" class="tag">Python</a>
-            
-        </div>
-        
-    </article>
-    
-    <article class="post-summary">
-        <h2><a href="/2025/03/22/aging-0-3-0.html">AgiNG v0.3.0</a></h2>
-        
-        <time datetime="2025-03-22T09:30:00+00:00"><a href="/2025/">2025</a>-<a href="/2025/03/">03</a>-<a href="/2025/03/22/">22</a> 09:30:00 UTC</time>
-        
-        <div class="reading-time">2 min read</div>
-        <div class="post-content">
-            <p>I've <a href="https://github.com/davep/aging/releases/tag/v0.3.0" rel="noopener noreferrer" target="_blank">just released AgiNG
-v0.3.0</a>. The main focus
-of this release was to get some searching added to the application. Similar
-to what I added to <a href="https://github.com/davep/weg" rel="noopener noreferrer" target="_blank">WEG</a> back in the day, I
-wanted three types of searching:</p>
-<ul>
-<li>Current entry search.</li>
-<li>Current guide-wide search.</li>
-<li>All registered guides-wide search.</li>
-</ul>
-<p>The current entry search is done with a simple modal input, and for now the
-searching is always case-insensitive (I was going to add a switch for this
-but it sort of felt unnecessary and I liked how clean the input is).</p>
-<p><img alt="Entry search" src="/attachments/2025/03/22/entry-search.png" /></p>
-<p>The search is started by pressing <kbd>/</kbd>, and if a hit is found
-<kbd>n</kbd> will take you through all subsequent matches.</p>
-<p>As always, if you're not sure of the keys, you'll find them in the help
-screen or via the command palette:</p>
-<p><img alt="Looking up search in the command palette" src="/attachments/2025/03/22/entry-search-palette.png" /></p>
-<p>Guide-wide and all-guide searching is done in the same dialog. To search
-guide-wide you enter what you want to find and untick <em>"All Guides"</em>.</p>
-<p><img alt="Setting up a guide search" src="/attachments/2025/03/22/guide-wide-setup.png" /></p>
-<p>With that, the search will stick to the current guide.</p>
-<p><img alt="Guide-wide search running" src="/attachments/2025/03/22/guide-wide-running.png" /></p>
-<p>As will be obvious, searching all guides that have been registered with
-AgiNG is as simple as ticking <em>"All Guides"</em>. Then when you search it'll
-take a walk through every entry of every guide you've added to the guide
-directory in the application.</p>
-<p><img alt="Gide-wide searching" src="/attachments/2025/03/22/guide-wide-search.gif#centre" /></p>
-<p>Global searching is accessed with <kbd>Ctrl</kbd>+<kbd>/</kbd> or via the
-command palette.</p>
-<p><img alt="Finding global search" src="/attachments/2025/03/22/global-palette.png" /></p>
-<p>With this added, I think that's most of the major functionality I wanted for
-AgiNG. I imagine there's a few more tweaks I'll think of (for example: I
-think adding regex search to the global search screen could be handy), but I
-don't think there's any more big features it needs.</p>
-<p>AgiNG can be installed with <code>pip</code> or (ideally) <code>pipx</code> <a href="https://pypi.org/project/aging/" rel="noopener noreferrer" target="_blank">from
-PyPi</a>. It can also be installed with
-<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>aging</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>aging
-</code></pre></div>
-
-<p>The <a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank">source is available on GitHub</a>.</p>
-        </div>
-        
-        <div class="tags">
-            
-            <a href="/tag/norton-guide.html" class="tag">Norton Guide</a>
-            
-            <a href="/tag/python.html" class="tag">Python</a>
-            
-            <a href="/tag/terminal.html" class="tag">terminal</a>
-            
-            <a href="/tag/textual.html" class="tag">textual</a>
             
         </div>
         
