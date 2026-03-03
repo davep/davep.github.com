@@ -126,6 +126,89 @@
     
 
     <article class="post-summary">
+        <h2><a href="/2026/03/03/blogmore-1-5-0.html">BlogMore v1.5.0</a></h2>
+        <time datetime="2026-03-03T21:34:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/03/">03</a> 21:34:00 UTC</time>
+        <div class="reading-time">3 min read</div>
+        <div class="category">
+            <a href="/category/coding.html" class="category-link">Coding</a>
+        </div>
+        <div class="post-content">
+            <p>Since switching over on the <a href="/2026/02/19/a-new-engine.html">19th of last
+month</a> I've been making lots of changes to
+BlogMore. While there's been a good few bug fixes and QoL changes, I've also
+been adding new features that I've found myself wanting.</p>
+<p>Here's a list of some of the significant additions I've added in the last
+couple of weeks (and, yes, as per the experiment, <em>all</em> of these have been
+developed by me prompting GitHub Copilot):</p>
+<ul>
+<li>All parts of a date in a post's timestamp can be clicked to get to an
+  archive of that point in time.</li>
+<li>Added fully-client-side full text search (I'm finding this especially
+  useful).</li>
+<li>Added sitemap generation.</li>
+<li>Added a general fallback description for any page that doesn't have one.</li>
+<li>Added fallback keywords for any page that doesn't have any.</li>
+<li>Added author metadata to the header of all pages.</li>
+<li>Hugely optimised the use of FontAwesome.</li>
+<li>Made best possible use of all the usual <code>og:</code> type metadata in the <code>head</code>
+  of all pages.</li>
+<li>Added optional CSS minification, improving page load times.</li>
+<li>Added optional JavaScript minification, improving page load times.</li>
+<li>Where appropriate, all pages now have <code>rel="prev"</code> and <code>rel="next"</code> tags
+  in the <code>&lt;head&gt;</code>.</li>
+<li>Added a <code>rel="canonical"</code> tag to the <code>&lt;head&gt;</code> of all pages.</li>
+<li>Improved the style and workings of the pagination of all archive type
+  pages.</li>
+<li>Improved the cosmetics of the category and tag clouds.</li>
+<li>Improved how the first paragraph is discovered for a page or post, when
+  using it as the default description in the <code>&lt;head&gt;</code> of a page.</li>
+<li>Cleaned up the generated HTML so it's more compact.</li>
+<li>Added support for custom 404 pages.</li>
+</ul>
+<p>As I say, they're just the improvements I've made that have come to mind as
+I've used BlogMore. I've also done a lot of bug fixing too. You can read the
+full changelog <a href="https://blogmore.davep.dev/changelog/" rel="noopener noreferrer" target="_blank">over on the BlogMore
+website</a><sup id="fnref:88-1"><a class="footnote-ref" href="#fn:88-1">1</a></sup>.</p>
+<p>I <em>feel</em> that the pace of updates and additions has started to slow; I
+<em>think</em> I've now got more or less everything I wanted from this. I'm pretty
+sure I can do everything I ever bothered to do with Jekyll and Pelican, and
+I am enjoying "owning" the code such that, if I have an idea for something I
+want, it's easy enough to make it happen.</p>
+<p>I'm also pretty happy with how well the results perform. Despite the fact
+I'm not a web developer, and despite this blog being served by GitHub Pages
+(which, let's be honest, isn't the most speedy host), <a href="https://pagespeed.web.dev/" rel="noopener noreferrer" target="_blank">the
+measurements</a> for a single page in the blog look
+fairly good:</p>
+<p><img alt="Desktop" src="/attachments/2026/03/03/desktop-speeds.png" /></p>
+<p>That's measuring loading in a desktop context. Even measured as mobile
+(which I've tried to make work well too) it's not too shabby:</p>
+<p><img alt="Mobile" src="/attachments/2026/03/03/mobile-speeds.png" /></p>
+<p>I think I can rightfully be satisfied with those values, given this isn't
+normally my primary focus when it comes to software development.</p>
+<p>Anyway, if you like messing with static site generators, and one that is
+blog-centric sounds useful, and if you're not put off by the fact that this
+is <a href="/2026/02/20/five-days-with-copilot.html">a deliberate <em>"use GitHub Copilot"</em>
+experiment</a>, feel free to <a href="https://github.com/davep/blogmore" rel="noopener noreferrer" target="_blank">take a
+look</a>.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:88-1">
+<p>Which, somewhat amusingly, is built with MkDocs.&#160;<a class="footnote-backref" href="#fnref:88-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+        </div>
+        <div class="tags">
+            <a href="/tag/ai.html" class="tag">AI</a>
+            <a href="/tag/blogging.html" class="tag">Blogging</a>
+            <a href="/tag/blogmore.html" class="tag">BlogMore</a>
+            <a href="/tag/copilot.html" class="tag">Copilot</a>
+            <a href="/tag/llm.html" class="tag">LLM</a>
+            <a href="/tag/python.html" class="tag">Python</a>
+        </div>
+    </article>
+    <article class="post-summary">
         <h2><a href="/2026/03/01/not-so-elegant.html">Not so elegant</a></h2>
         <time datetime="2026-03-01T11:33:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/01/">01</a> 11:33:00 UTC</time>
         <div class="reading-time">2 min read</div>
@@ -204,7 +287,7 @@ a solution for some sort of problem. I noticed this on and off as I watched
 the agent's chat, as it worked away.</p>
 <p>One example I enjoyed was when it was trying to add a new dependency to
 <a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank">BlogMore</a>. For reasons I should probably try
-and understand<sup id="fnref:196-1"><a class="footnote-ref" href="#fn:196-1">1</a></sup> it knew it should be using <code>uv</code> to add a dependency and
+and understand<sup id="fnref:197-1"><a class="footnote-ref" href="#fn:197-1">1</a></sup> it knew it should be using <code>uv</code> to add a dependency and
 it knew how to use it to update the lock file, but it didn't have <code>uv</code> to
 hand:</p>
 <blockquote>
@@ -312,8 +395,8 @@ moment it's a good source of coding comedy.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:196-1">
-<p>Presumably there's things I can be doing to make its life easier.&#160;<a class="footnote-backref" href="#fnref:196-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn:197-1">
+<p>Presumably there's things I can be doing to make its life easier.&#160;<a class="footnote-backref" href="#fnref:197-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -573,7 +656,7 @@ asked</a>:</p>
 </blockquote>
 <p>Just like that, it went off <a href="https://github.com/davep/blogmore/pull/1/changes/3449eec9b4df88e66eec0f6bba4369926ff1389e" rel="noopener noreferrer" target="_blank">and wrote a whole server for the
 project</a>.
-While the server did need a lot of extra work to really work well<sup id="fnref:133-1"><a class="footnote-ref" href="#fn:133-1">1</a></sup>, the
+While the server did need a lot of extra work to really work well<sup id="fnref:134-1"><a class="footnote-ref" href="#fn:134-1">1</a></sup>, the
 initial version was good enough to get me going and to iterate on the
 project as a whole.</p>
 <h2 id="the-main-workflow">The main workflow</h2>
@@ -626,8 +709,8 @@ the mistakes are likely to turn up. Once you've written enough code you've
 also written plenty of bugs and been caught out by plenty of edge-cases that
 you get a spidey-sense for trouble as you write code. I feel that this kind
 of approach can be called cautiously confident.</p>
-<p>Working with Copilot<sup id="fnref:133-2"><a class="footnote-ref" href="#fn:133-2">2</a></sup>, however, I often ran into the confidently wrong
-issue. On occasion I found it would proudly<sup id="fnref:133-3"><a class="footnote-ref" href="#fn:133-3">3</a></sup> request review for some
+<p>Working with Copilot<sup id="fnref:134-2"><a class="footnote-ref" href="#fn:134-2">2</a></sup>, however, I often ran into the confidently wrong
+issue. On occasion I found it would proudly<sup id="fnref:134-3"><a class="footnote-ref" href="#fn:134-3">3</a></sup> request review for some
 minor bit of work, proclaiming that it had done the thing or solved the
 problem, and I'd test it and nothing had materially changed. On a couple of
 occasions, when I pushed back, I found it actually doubting my review before
@@ -694,7 +777,7 @@ experienced is bringing code to you where they've used an agent as their
 pair buddy.</p>
 <h2 id="the-overall-impression">The overall impression</h2>
 <p>Now I'm at the end of the process, and using the result of this experiment
-to write this post<sup id="fnref:133-4"><a class="footnote-ref" href="#fn:133-4">4</a></sup>, I feel better informed about what these tools offer,
+to write this post<sup id="fnref:134-4"><a class="footnote-ref" href="#fn:134-4">4</a></sup>, I feel better informed about what these tools offer,
 and the pitfalls I need to be mindful of. Sometimes it wasn't a terrible way
 of working. For example, on the first day I started with this, at one point
 on a chilly but sunny Sunday afternoon, I was sat on the sofa, MacBook on
@@ -739,25 +822,25 @@ into perspective.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:133-1">
+<li id="fn:134-1">
 <p>Amusingly I <a href="https://github.com/davep/blogmore/issues/117" rel="noopener noreferrer" target="_blank">uncovered another
 bug</a> while writing this
-post.&#160;<a class="footnote-backref" href="#fnref:133-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+post.&#160;<a class="footnote-backref" href="#fnref:134-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li id="fn:133-2">
+<li id="fn:134-2">
 <p>I keep saying Copilot, but I think it's probably more correct to say
 "Claude Sonnet 4.5" as that's what seemed to be at play under the hood,
-if I'm understanding things correctly.&#160;<a class="footnote-backref" href="#fnref:133-2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+if I'm understanding things correctly.&#160;<a class="footnote-backref" href="#fnref:134-2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
-<li id="fn:133-3">
+<li id="fn:134-3">
 <p>Yes, of course that's an anthropomorphism, you'll find plenty of them
 in this article as it's hard not to write about the subject in any other
-way; it's an easy shortcut to explain some ideas&#160;<a class="footnote-backref" href="#fnref:133-3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+way; it's an easy shortcut to explain some ideas&#160;<a class="footnote-backref" href="#fnref:134-3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
-<li id="fn:133-4">
+<li id="fn:134-4">
 <p>Actually I'm writing this post as I always do: in Emacs. But BlogMore
 is in the background serving a local copy of my blog so I can check it
-in the browser, and rebuilding it every time I save a change.&#160;<a class="footnote-backref" href="#fnref:133-4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+in the browser, and rebuilding it every time I save a change.&#160;<a class="footnote-backref" href="#fnref:134-4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
