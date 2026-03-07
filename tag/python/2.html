@@ -144,6 +144,118 @@
 
 
     <article class="post-summary">
+    <h2><a href="/2026/02/11/oldnews.html">OldNews - A terminal-based client for TheOldReader</a></h2>
+    <time datetime="2026-02-11T17:23:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/02/">02</a>-<a href="/2026/02/11/">11</a> 17:23:00 UTC</time>
+    <div class="reading-time">3 min read</div>
+    <div class="category">
+        <a href="/category/coding.html" class="category-link">Coding</a>
+    </div>
+    <div class="post-content">
+        <p><img alt="OldNews" src="/attachments/2026/02/11/oldnews-social-banner.png" /></p>
+<p>I honestly can't remember when I was first introduced to the idea of
+RSS/Atom feeds, and the idea of having an aggregator or reader of some
+description to keep up with updates on your favourite sites. It's got to be
+over 25 years ago now. I can't remember what I used either, but I remember
+using one or two readers that ran locally, right up until I met <a href="https://en.wikipedia.org/wiki/Google_Reader" rel="noopener noreferrer" target="_blank">Google
+Reader</a>. Once I discovered that
+I was settled.</p>
+<p>As time moved on and I moved from platform to platform, and wandered into
+the smartphone era, I stuck with Google Reader (and the odd client for it
+here and there). It was a natural and sensible approach to consuming news
+and updates. It also mostly felt like a solved problem and so felt nice and
+stable.</p>
+<p>So, of course, I was annoyed when Google killed it off, <a href="https://killedbygoogle.com" rel="noopener noreferrer" target="_blank">like so many useful
+things</a>.</p>
+<p>When this happened I dabbled with a couple of alternatives and, at some
+point, finally settled on <a href="https://theoldreader.com" rel="noopener noreferrer" target="_blank">TheOldReader</a>. Since
+then it's been my "server" for feed subscriptions with me using desktop and
+mobile clients to work against it.</p>
+<p>But... I never found anything that worked for me that ran in the terminal.
+Given <a href="/tag/terminal.html">I've got a thing for writing terminal-based
+tools</a> it made sense I should have a go, and so
+<a href="https://github.com/davep/oldnews" rel="noopener noreferrer" target="_blank">OldNews</a> became my winter break project.</p>
+<p><img alt="Reading an article in OldNews" src="/attachments/2026/02/11/reading.png" /></p>
+<p>I've written it as a client application for <a href="https://github.com/theoldreader/api" rel="noopener noreferrer" target="_blank">the API of
+TheOldReader</a>, and only for that, and
+have developed it in a way that works well for me. All the functionality I
+want and need is in there:</p>
+<ul>
+<li>Add subscriptions</li>
+<li>Rename subscriptions</li>
+<li>Remove subscriptions</li>
+<li>Add folders</li>
+<li>Rename folders</li>
+<li>Remove folders</li>
+<li>Move subscriptions between folders</li>
+<li>Mark read/unread</li>
+<li>Read articles (that provide actual content in their feeds)</li>
+</ul>
+<p>Currently there's no support for starring feeds or interacting with the
+whole "friend" system (honestly: while I see mention of it in the API, I
+know nothing of that side of things and really don't care about it). As time
+goes on I might work on that.</p>
+<p>As with all of my other terminal-based applications, there's a rich command
+palette that shows you what you can do, and also what keyboard shortcuts
+will run those commands. While I do still need to work on some documentation
+for the application (although you'd hope that anyone looking for an RSS
+reader at this point would mostly be able to find their way around) the
+palette is a good place to go looking for things you can do.</p>
+<p><img alt="The command palette" src="/attachments/2026/02/11/command-palette.png" /></p>
+<p>Plus there's a help screen too.</p>
+<p><img alt="The help screen" src="/attachments/2026/02/11/help.png" /></p>
+<p>If themes are your thing, there's themes:</p>
+<p><img alt="Available themes" src="/attachments/2026/02/11/themes.png" />
+<img alt="Gruvbox" src="/attachments/2026/02/11/gruvbox.png" />
+<img alt="Textual Light" src="/attachments/2026/02/11/textual-light.png" />
+<img alt="Nord" src="/attachments/2026/02/11/nord.png" /></p>
+<p>That's a small selection, and there's more to explore.</p>
+<p>Also on the cosmetic front there's a simple compact mode, which toggles
+between two ways of showing the navigation menu, the article lists and the
+panel headers.</p>
+<p><img alt="Not compact" src="/attachments/2026/02/11/not-compact.png" />
+<img alt="Compact" src="/attachments/2026/02/11/compact.png" /></p>
+<p>OldNews has been a daily-driver for a wee while now, while also under active
+development. I think I've covered all the main functions I want and have
+also shaken out plenty of bugs, so today's the day to call it v1.0.0 and go
+from there.</p>
+<p>If you're a user of TheOldReader and fancy interacting with it from the
+terminal too then it's out there to try out. It's licensed GPL-3.0 and
+available <a href="https://github.com/davep/oldnews" rel="noopener noreferrer" target="_blank">via GitHub</a> and also <a href="https://pypi.org/project/oldnews/" rel="noopener noreferrer" target="_blank">via
+PyPI</a>. If you have an environment that
+has <code>pipx</code> installed you should be able to get up and running with:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>oldnews
+</code></pre></div>
+
+<p>It can also be installed using
+<a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"><code>uv</code></a>:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>oldnews
+</code></pre></div>
+
+<p>If you don't have <code>uv</code> installed you can use <a href="https://uvx.sh" rel="noopener noreferrer" target="_blank">uvx.sh</a> to
+perform the installation. For GNU/Linux or macOS or similar:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-LsSf<span class="w"> </span>uvx.sh/oldnews/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</code></pre></div>
+
+<p>or on Windows:</p>
+<div class="highlight"><pre><span></span><code>powershell<span class="w"> </span>-ExecutionPolicy<span class="w"> </span>ByPass<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://uvx.sh/oldnews/install.ps1 | iex&quot;</span>
+</code></pre></div>
+
+<p>Once installed, run the <code>oldnews</code> command.</p>
+<p>Hopefully this is useful to someone else; meanwhile I'll be using it more
+and more. If you need help, or have any ideas, please feel free to <a href="https://github.com/davep/oldnews/issues" rel="noopener noreferrer" target="_blank">raise an
+issue</a> or <a href="https://github.com/davep/oldnews/discussions" rel="noopener noreferrer" target="_blank">start a
+discussion</a>.</p>
+    </div>
+    <div class="tags">
+        <a href="/tag/atom.html" class="tag">atom</a>
+        <a href="/tag/python.html" class="tag">Python</a>
+        <a href="/tag/rss.html" class="tag">RSS</a>
+        <a href="/tag/terminal.html" class="tag">terminal</a>
+        <a href="/tag/textual.html" class="tag">textual</a>
+    </div>
+</article>
+
+    <article class="post-summary">
     <h2><a href="/2026/01/27/til-uvx-sh.html">TIL - uvx.sh</a></h2>
     <time datetime="2026-01-27T16:03:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/01/">01</a>-<a href="/2026/01/27/">27</a> 16:03:00 UTC</time>
     <div class="reading-time">1 min read</div>
@@ -350,7 +462,7 @@ bytecode</a> and abstract syntax
 tree would be.</p>
 <p>If you've ever wondered what a particular bit of code looks like under the
 hood, or wondered if one particular approach to a problem is "more
-efficient"<sup id="fnref:75-1"><a class="footnote-ref" href="#fn:75-1">1</a></sup> than another, or just wondered to yourself if <code>1+1</code> ends up
+efficient"<sup id="fnref:16-1"><a class="footnote-ref" href="#fn:16-1">1</a></sup> than another, or just wondered to yourself if <code>1+1</code> ends up
 being a complex operation or simply gets turned into <code>2</code>, this tool might be
 useful to experiment and see.</p>
 <p>As of now DHV only works with Python 3.13. The main reason for this is that
@@ -376,10 +488,10 @@ you can install it like this:</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:75-1">
+<li id="fn:16-1">
 <p>I'm sure many of us have worked with that person who claims <em>"this is
 more efficient"</em> without providing any evidence; this might just be the
-tool to let you check that assertion.&#160;<a class="footnote-backref" href="#fnref:75-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+tool to let you check that assertion.&#160;<a class="footnote-backref" href="#fnref:16-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -633,7 +745,7 @@ they wanted me to build this as test of the framework, to essentially start
 out by employing me to create some Free Software that would help dogfood the
 library, but that seemed to get forgotten.</p>
 <p>Fast forward to the start of this month and I finally felt it was time to
-tackle this. The result is <a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank">AgiNG</a><sup id="fnref:194-1"><a class="footnote-ref" href="#fn:194-1">1</a></sup>.</p>
+tackle this. The result is <a href="https://github.com/davep/aging" rel="noopener noreferrer" target="_blank">AgiNG</a><sup id="fnref:24-1"><a class="footnote-ref" href="#fn:24-1">1</a></sup>.</p>
 <p><img alt="AgiNG in action" src="/attachments/2025/03/12/aging-textual-dark.png" /></p>
 <p>As of v0.1.0 it has most of the features you'd expect from a usable Norton
 Guide reader, including:</p>
@@ -703,11 +815,11 @@ time goes on.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:194-1">
+<li id="fn:24-1">
 <p>If you're wondering about the name, it's nothing more than a word that
 happens to have <code>NG</code> in it, and also a mild pun about this being an
 ageing hypertext help system; with the spelling acknowledging Peter
-Norton's nationality.&#160;<a class="footnote-backref" href="#fnref:194-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+Norton's nationality.&#160;<a class="footnote-backref" href="#fnref:24-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -846,68 +958,6 @@ start to sprinkle it over other projects too.</p>
         <a href="/tag/mkdocs.html" class="tag">mkdocs</a>
         <a href="/tag/mkdocstrings.html" class="tag">mkdocstrings</a>
         <a href="/tag/python.html" class="tag">Python</a>
-        <a href="/tag/textual.html" class="tag">textual</a>
-    </div>
-</article>
-
-    <article class="post-summary">
-    <h2><a href="/2025/02/14/hike.html">Hike</a></h2>
-    <time datetime="2025-02-14T09:22:00+00:00"><a href="/2025/">2025</a>-<a href="/2025/02/">02</a>-<a href="/2025/02/14/">14</a> 09:22:00 UTC</time>
-    <div class="reading-time">1 min read</div>
-    <div class="category">
-        <a href="/category/coding.html" class="category-link">Coding</a>
-    </div>
-    <div class="post-content">
-        <p><img alt="Hike" src="/attachments/2025/02/14/hike-social-banner.png" /></p>
-<p>The run of writing new terminal-based tools that I want still keeps going.
-First there was <a href="/2025/01/03/braindrop.html">Braindrop</a>, then there was
-<a href="/2025/01/25/peplum.html">Peplum</a>, and now, released today, there's
-<a href="https://github.com/davep/hike" rel="noopener noreferrer" target="_blank">Hike</a>.</p>
-<p>Hike is yet another terminal-based Markdown browser. While it's far from the
-first, and unlikely to be the last, it's mine and it looks and works exactly
-how I need. Perhaps it'll be your sort of thing too?</p>
-<p><img alt="Hike viewing its README" src="/attachments/2025/02/14/hike-in-action.png" /></p>
-<p>This initial release has a bunch of handy features, including things like:</p>
-<ul>
-<li>A command line where file names, URLs and commands can be entered.</li>
-<li>A persistent history for the command line.</li>
-<li>A local file browser.</li>
-<li>A simple bookmarking system.</li>
-<li>A browsing history.</li>
-<li>Commands for quickly loading and viewing files held on GitHub, GitLab,
-  Codeberg and Bitbucket.</li>
-</ul>
-<p>As there's a lot to discover in the application, I've tried to make the help
-screen as comprehensive as possible:</p>
-<p><img alt="Hike help" src="/attachments/2025/02/14/hike-help.png" /></p>
-<p>and there's also the command palette to help with discovering commands and
-the keys that are associated with them:</p>
-<p><img alt="The command palette in action" src="/attachments/2025/02/14/hike-command-palette.png" /></p>
-<p>Once again, themes are supported so no matter your taste you should find
-something that's easy on your eyes:</p>
-<p><img alt="Dark" src="/attachments/2025/02/14/hike-textual-dark.png" />
-<img alt="Light" src="/attachments/2025/02/14/hike-textual-light.png" />
-<img alt="Tokyo Night" src="/attachments/2025/02/14/hike-tokyo-night.png" />
-<img alt="Solarized Light" src="/attachments/2025/02/14/hike-solarized-light.png" /></p>
-<p>Hike is licensed GPL-3.0 and available <a href="https://github.com/davep/hike" rel="noopener noreferrer" target="_blank">via
-GitHub</a> and also <a href="https://pypi.org/project/hike/" rel="noopener noreferrer" target="_blank">via
-PyPi</a>. If you have an environment that has
-<code>pipx</code> installed you should be able to get up and going with:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>hike
-</code></pre></div>
-
-<p>It can also be installed with
-<code>Homebrew</code> by tapping <code>davep/homebrew</code> and then installing <code>hike</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
-$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>hike
-</code></pre></div>
-
-<p>Expect to see more updates in the near future; this is very much an ongoing
-tinker project.</p>
-    </div>
-    <div class="tags">
-        <a href="/tag/python.html" class="tag">Python</a>
-        <a href="/tag/terminal.html" class="tag">terminal</a>
         <a href="/tag/textual.html" class="tag">textual</a>
     </div>
 </article>
