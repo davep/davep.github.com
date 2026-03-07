@@ -8,8 +8,8 @@ date: 2025-02-28 22:23:00 +0000
 
 Following on from [my post this
 morning](/2025/02/28/documenting-fspicker.html), regarding the problem I was
-having with `_mkdocstrings.css` being 404 any time I deployed by
-documentation, build with `mkdocs`/`mkdocstrings`, to GitHub Pages...
+having with `_mkdocstrings.css` being 404 any time I deployed my
+documentation, built with `mkdocs`/`mkdocstrings`, to GitHub Pages...
 
 It's come to light that I was doing this on hard mode, pretty much.
 
