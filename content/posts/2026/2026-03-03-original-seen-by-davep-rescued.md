@@ -2,7 +2,7 @@
 layout: post
 title: Original Seen by davep rescued
 category: Creative
-tags: blogging, photography, BlogMore, posterous
+tags: blogging, photography, BlogMore, posterous, photoblog
 date: 2026-03-03 09:30:00+0000
 cover: attachments/2026/03/03/still-alive.jpeg
 ---
