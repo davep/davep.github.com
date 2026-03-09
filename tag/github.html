@@ -35,7 +35,7 @@
 <meta name="keywords" content="Emacs, Python, Programming, Terminal, Textual">
 
     <script src="/static/theme.min.js"></script>
-</head>
+<link rel="next" href="/tag/github/2.html"></head>
 <body>
     <div class="site-container">
         <aside class="sidebar">
@@ -133,7 +133,67 @@
             <main>
 <div class="tag-page">
     <h1>Posts tagged with "GitHub"</h1>
-    
+    <nav class="pagination" aria-label="Page navigation">
+
+    <span class="pagination-link pagination-number pagination-current" aria-current="page">1</span>
+    <a href="/tag/github/2.html" class="pagination-link pagination-number">2</a>
+
+    <a href="/tag/github/2.html" class="pagination-link pagination-next">Next →</a>
+</nav>
+
+
+    <article class="post-summary">
+    <h2><a href="/2026/03/09/an-eager-fix.html">An eager fix</a></h2>
+    <time datetime="2026-03-09T12:56:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/09/">09</a> 12:56:00 UTC</time>
+    <div class="reading-time">2 min read</div>
+    <div class="category">
+        <a href="/category/ai.html" class="category-link">AI</a>
+    </div>
+    <div class="post-content">
+        <p><img alt="An eager fix" src="/attachments/2026/03/09/changes.png#centre" /></p>
+<p>Yesterday, <a href="/2026/03/09/seen-by-me-revived.html">while looking at starting to post to my photoblog
+again</a>, I noticed I'd missed a trick
+when I added the <a href="/2026/03/03/original-seen-by-davep-rescued.html">first</a>
+and <a href="/2026/03/02/seen-by-rescued.html">second</a> sets of photos when I
+created <a href="https://seen-by.davep.dev" rel="noopener noreferrer" target="_blank">seen-by.davep.dev</a>: I'd left off any
+<code>cover</code> frontmatter from all of the posts!</p>
+<p>While I doubt it's super important -- I can't imagine people will be sharing
+photos from the blog after all, especially not older ones -- it felt like
+I'd failed to use <a href="https://blogmore.davep.dev/writing_a_post/#cover" rel="noopener noreferrer" target="_blank">a useful
+feature</a> that I'd made
+sure <a href="https://blogmore.davep.dev" rel="noopener noreferrer" target="_blank">BlogMore</a> had.</p>
+<p>This was obviously easy to fix. I could just write a tool that would go
+through all of the Markdown files, find the image that is being displayed in
+the post, pull out the path to the file, and add a <code>cover</code> to the
+frontmatter. Not exactly the hardest thing to write, but kind of boring for
+a one-off fix.</p>
+<p>So this felt like another good time to get Copilot to do the hard work.
+Liking this plan, I <a href="https://github.com/davep/seen-by/issues/7" rel="noopener noreferrer" target="_blank">wrote an issue for the
+prompt</a> and set it to work.</p>
+<p>The result was unexpected, and in retrospect this is how I should have
+approached it in the first place; Copilot wrote the script, then ran it, and
+then submitted the PR <em>including the script and all of the changes after
+running it!</em> It's like it was super eager to do the fix so went ahead and
+just did it.</p>
+<p><img alt="The resulting PR" src="/attachments/2026/03/09/cover-eager.png#centre" /></p>
+<p>This, for me, highlights a trick/approach I'm still not fully mindful of:
+where I might once have written some throwaway code to do a job, run the
+code, and then made use of the result, when it comes to using an agent I
+always have the option of saying <em>what</em> I want done to the content of the
+repository and just let it do it.</p>
+<p>When I'm next faced with a problem like this, I think this is the approach
+I'll take: rather than ask it to write the tool to do the work, I'll just
+say what the work is I want done and let it go about it. <em>This</em> feels like
+where an agent should shine and where it's really useful.</p>
+<p>Meanwhile I can get on with the fun stuff.</p>
+    </div>
+    <div class="tags">
+        <a href="/tag/ai.html" class="tag">AI</a>
+        <a href="/tag/copilot.html" class="tag">Copilot</a>
+        <a href="/tag/github.html" class="tag">GitHub</a>
+        <a href="/tag/llm.html" class="tag">LLM</a>
+    </div>
+</article>
 
     <article class="post-summary">
     <h2><a href="/2026/03/06/zensical.html">Zensical</a></h2>
@@ -255,7 +315,7 @@ last.&#160;<a class="footnote-backref" href="#fnref:135-2" title="Jump back to f
 enjoy. I want documentation to read well, I want documentation to be useful,
 I want documentation to be accurate. I also want there to be documentation
 at all and sometimes the other parts mean it doesn't get done for FOSS
-projects<sup id="fnref:148-1"><a class="footnote-ref" href="#fn:148-1">1</a></sup>.</p>
+projects<sup id="fnref:149-1"><a class="footnote-ref" href="#fn:149-1">1</a></sup>.</p>
 <p>When <a href="/2026/02/20/five-days-with-copilot.html">I started the experiment that is
 BlogMore</a>, I very quickly <a href="https://github.com/davep/blogmore/pull/100" rel="noopener noreferrer" target="_blank">hashed
 out some ideas on how it might generate some
@@ -281,9 +341,9 @@ background while I get on with my actual day makes a lot of sense.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:148-1">
+<li id="fn:149-1">
 <p>Although I've made a point of doing it for almost every one of my
-recent <a href="/tag/textual.html">Textual</a>-based projects.&#160;<a class="footnote-backref" href="#fnref:148-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+recent <a href="/tag/textual.html">Textual</a>-based projects.&#160;<a class="footnote-backref" href="#fnref:149-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -318,7 +378,7 @@ a solution for some sort of problem. I noticed this on and off as I watched
 the agent's chat, as it worked away.</p>
 <p>One example I enjoyed was when it was trying to add a new dependency to
 <a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank">BlogMore</a>. For reasons I should probably try
-and understand<sup id="fnref:147-1"><a class="footnote-ref" href="#fn:147-1">1</a></sup> it knew it should be using <code>uv</code> to add a dependency and
+and understand<sup id="fnref:148-1"><a class="footnote-ref" href="#fn:148-1">1</a></sup> it knew it should be using <code>uv</code> to add a dependency and
 it knew how to use it to update the lock file, but it didn't have <code>uv</code> to
 hand:</p>
 <blockquote>
@@ -426,8 +486,8 @@ moment it's a good source of coding comedy.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:147-1">
-<p>Presumably there's things I can be doing to make its life easier.&#160;<a class="footnote-backref" href="#fnref:147-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn:148-1">
+<p>Presumably there's things I can be doing to make its life easier.&#160;<a class="footnote-backref" href="#fnref:148-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -1185,95 +1245,15 @@ estimating people's ages, or bad at remembering them; or both.&#160;<a class="fo
     </div>
 </article>
 
-    <article class="post-summary">
-    <h2><a href="/2023/07/03/making-my-github-banner.html">A new GitHub profile README</a></h2>
-    <time datetime="2023-07-03T08:15:00+01:00"><a href="/2023/">2023</a>-<a href="/2023/07/">07</a>-<a href="/2023/07/03/">03</a> 08:15:00 UTC+01:00</time>
-    <div class="reading-time">2 min read</div>
-    <div class="category">
-        <a href="/category/coding.html" class="category-link">Coding</a>
-    </div>
-    <div class="post-content">
-        <p><img alt="My new GitHub banner" src="https://raw.githubusercontent.com/davep/davep/main/davep.svg" /></p>
-<p>Ever since GitHub introduced the <a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme" rel="noopener noreferrer" target="_blank">profile
-README</a><sup id="fnref:75-1"><a class="footnote-ref" href="#fn:75-1">1</a></sup>
-I've had a massively low-effort one in place. I made the repo, quickly wrote
-the file, and then sort of forgot about it. Well, I didn't so much forget as
-just keep looking at it and thinking "I should do something better with that
-one day".</p>
-<p>Thing is, while there are lots of fancy approaches out there, and lots of
-neat generator tools and the like... they just weren't for me.</p>
-<p>Then yesterday, over my second morning coffee, after <a href="/2023/07/02/catching-up.html">getting my blog
-environment up and going again</a>, I had an
-idea. It could be cool to use <a href="https://textual.textualize.io/api/app/#textual.app.App.save_screenshot" rel="noopener noreferrer" target="_blank">Textual's screenshot
-facility</a>
-to make something terminal-themed! I mean, while it's not <em>all</em> I am these
-days, so much of what I'm doing right now is aimed at the terminal.</p>
-<p>So... what to do? Then I thought it could be cool to knock up some sort of
-login screen type thing; with a banner. One visit to an online large
-terminal text generator site later, I had some banner text. All that was
-left was to write <a href="https://github.com/davep/davep/blob/main/make_banner.py" rel="noopener noreferrer" target="_blank">a simple Textual application to create the
-"screen"</a>.</p>
-<p>The main layout is simple enough:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compose</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComposeResult</span><span class="p">:</span>
-    <span class="k">yield</span> <span class="n">Label</span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="s2">&quot;banner&quot;</span><span class="p">)</span>
-    <span class="k">yield</span> <span class="n">Label</span><span class="p">(</span><span class="n">PRATTLE</span><span class="p">)</span>
-    <span class="k">yield</span> <span class="n">Label</span><span class="p">(</span><span class="s2">&quot;github.com/davep login: [reverse] [/]&quot;</span><span class="p">)</span>
-</code></pre></div>
 
-<p>where <code>NAME</code> contains the banner and <code>PRATTLE</code> contains the "login message".
-With some <a href="https://textual.textualize.io/guide/CSS/" rel="noopener noreferrer" target="_blank">Textual CSS</a> sprinkled
-over it to give the exact layout and colour I wanted, all that was left was
-to make the snapshot. This was easy enough too.</p>
-<p>While the whole thing isn't fully documented just yet, Textual does have <a href="https://textual.textualize.io/api/app/#textual.app.App.run_test" rel="noopener noreferrer" target="_blank">a
-great tool for automatically running an application and interacting with
-it</a>; that
-meant I could easily write a function to load up my app and save the
-screenshot:</p>
-<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">make_banner</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">async</span> <span class="k">with</span> <span class="n">GitHubBannerApp</span><span class="p">()</span><span class="o">.</span><span class="n">run_test</span><span class="p">()</span> <span class="k">as</span> <span class="n">pilot</span><span class="p">:</span>
-        <span class="n">pilot</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">save_screenshot</span><span class="p">(</span><span class="s2">&quot;davep.svg&quot;</span><span class="p">)</span>
-</code></pre></div>
+    <nav class="pagination" aria-label="Page navigation">
 
-<p>Of course, that needs running async, but that's simple enough:</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">make_banner</span><span class="p">())</span>
-</code></pre></div>
+    <span class="pagination-link pagination-number pagination-current" aria-current="page">1</span>
+    <a href="/tag/github/2.html" class="pagination-link pagination-number">2</a>
 
-<p>Throw in a <code>Makefile</code> so I don't forget what I'm supposed to run:</p>
-<div class="highlight"><pre><span></span><code>.PHONY: all
-all:
-    pipenv run python make_banner.py
-</code></pre></div>
+    <a href="/tag/github/2.html" class="pagination-link pagination-next">Next →</a>
+</nav>
 
-<p>and that's it! Job done!</p>
-<p>From here onward I guess I could have some real fun with this. It would be
-simple enough I guess to modify the code so that it changes what's displayed
-over time; perhaps show a "last login" value that relates to recently
-activity or something; any number of things; and then run it in a cron job
-and update the repository.</p>
-<p>For now though... I'll stick with keeping things nice and simple.</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:75-1">
-<p>It was actually kind of annoying when they introduced it because the
-repo it uses is named after your user name. I already had a <code>davep</code>
-repo: it was a private repo where I was slowly working on a (now
-abandoned, I'll start it again some day I'm sure) ground-up rewrite of
-my <code>davep.org</code> website.&#160;<a class="footnote-backref" href="#fnref:75-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
-    </div>
-    <div class="tags">
-        <a href="/tag/github.html" class="tag">GitHub</a>
-        <a href="/tag/python.html" class="tag">Python</a>
-        <a href="/tag/textual.html" class="tag">Textual</a>
-    </div>
-</article>
-
-
-    
 </div>
             </main>
 

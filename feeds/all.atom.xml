@@ -2,11 +2,59 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-03-09T09:11:29.643277+00:00</updated>
+  <updated>2026-03-09T12:58:20.624105+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/03/09/an-eager-fix.html</id>
+    <title>An eager fix</title>
+    <updated>2026-03-09T12:56:00+00:00</updated>
+    <content type="html">&lt;p&gt;&lt;img alt="An eager fix" src="https://blog.davep.org/attachments/2026/03/09/changes.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;Yesterday, &lt;a href="https://blog.davep.org/2026/03/09/seen-by-me-revived.html"&gt;while looking at starting to post to my photoblog
+again&lt;/a&gt;, I noticed I'd missed a trick
+when I added the &lt;a href="https://blog.davep.org/2026/03/03/original-seen-by-davep-rescued.html"&gt;first&lt;/a&gt;
+and &lt;a href="https://blog.davep.org/2026/03/02/seen-by-rescued.html"&gt;second&lt;/a&gt; sets of photos when I
+created &lt;a href="https://seen-by.davep.dev" rel="noopener noreferrer" target="_blank"&gt;seen-by.davep.dev&lt;/a&gt;: I'd left off any
+&lt;code&gt;cover&lt;/code&gt; frontmatter from all of the posts!&lt;/p&gt;
+&lt;p&gt;While I doubt it's super important -- I can't imagine people will be sharing
+photos from the blog after all, especially not older ones -- it felt like
+I'd failed to use &lt;a href="https://blogmore.davep.dev/writing_a_post/#cover" rel="noopener noreferrer" target="_blank"&gt;a useful
+feature&lt;/a&gt; that I'd made
+sure &lt;a href="https://blogmore.davep.dev" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; had.&lt;/p&gt;
+&lt;p&gt;This was obviously easy to fix. I could just write a tool that would go
+through all of the Markdown files, find the image that is being displayed in
+the post, pull out the path to the file, and add a &lt;code&gt;cover&lt;/code&gt; to the
+frontmatter. Not exactly the hardest thing to write, but kind of boring for
+a one-off fix.&lt;/p&gt;
+&lt;p&gt;So this felt like another good time to get Copilot to do the hard work.
+Liking this plan, I &lt;a href="https://github.com/davep/seen-by/issues/7" rel="noopener noreferrer" target="_blank"&gt;wrote an issue for the
+prompt&lt;/a&gt; and set it to work.&lt;/p&gt;
+&lt;p&gt;The result was unexpected, and in retrospect this is how I should have
+approached it in the first place; Copilot wrote the script, then ran it, and
+then submitted the PR &lt;em&gt;including the script and all of the changes after
+running it!&lt;/em&gt; It's like it was super eager to do the fix so went ahead and
+just did it.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The resulting PR" src="https://blog.davep.org/attachments/2026/03/09/cover-eager.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;This, for me, highlights a trick/approach I'm still not fully mindful of:
+where I might once have written some throwaway code to do a job, run the
+code, and then made use of the result, when it comes to using an agent I
+always have the option of saying &lt;em&gt;what&lt;/em&gt; I want done to the content of the
+repository and just let it do it.&lt;/p&gt;
+&lt;p&gt;When I'm next faced with a problem like this, I think this is the approach
+I'll take: rather than ask it to write the tool to do the work, I'll just
+say what the work is I want done and let it go about it. &lt;em&gt;This&lt;/em&gt; feels like
+where an agent should shine and where it's really useful.&lt;/p&gt;
+&lt;p&gt;Meanwhile I can get on with the fun stuff.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/03/09/an-eager-fix.html"/>
+    <category term="AI"/>
+    <category term="AI"/>
+    <category term="LLM"/>
+    <category term="Copilot"/>
+    <category term="GitHub"/>
+    <published>2026-03-09T12:56:00+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/03/09/seen-by-me-revived.html</id>
     <title>Seen by davep revived</title>
@@ -79,7 +127,7 @@ ongoing experiment with &lt;a href="https://blog.davep.org/tag/copilot.html"&gt;
 release I wrote about&lt;/a&gt; I've made a couple
 of cosmetic changes, and also addressed a couple of bugs.&lt;/p&gt;
 &lt;p&gt;The first cosmetic change relates to how the blog appears on mobile
-devices&lt;sup id="fnref:146-1"&gt;&lt;a class="footnote-ref" href="#fn:146-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In such a circumstance, before the change, the sidebar content
+devices&lt;sup id="fnref:147-1"&gt;&lt;a class="footnote-ref" href="#fn:147-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In such a circumstance, before the change, the sidebar content
 would, by design, relocate to the top of the page. This made sense, it meant
 that the information was still available, but it also had the unfortunate
 effect of pushing the actual post content way down the screen, sometimes off
@@ -131,8 +179,8 @@ As I keep tinkering with BlogMore I'll be keeping this post in mind.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:146-1"&gt;
-&lt;p&gt;Okay fine any narrow viewport but you know what I mean!&amp;#160;&lt;a class="footnote-backref" href="#fnref:146-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:147-1"&gt;
+&lt;p&gt;Okay fine any narrow viewport but you know what I mean!&amp;#160;&lt;a class="footnote-backref" href="#fnref:147-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -257,7 +305,7 @@ last.&amp;#160;&lt;a class="footnote-backref" href="#fnref:135-2" title="Jump ba
 enjoy. I want documentation to read well, I want documentation to be useful,
 I want documentation to be accurate. I also want there to be documentation
 at all and sometimes the other parts mean it doesn't get done for FOSS
-projects&lt;sup id="fnref:148-1"&gt;&lt;a class="footnote-ref" href="#fn:148-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+projects&lt;sup id="fnref:149-1"&gt;&lt;a class="footnote-ref" href="#fn:149-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;When &lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;I started the experiment that is
 BlogMore&lt;/a&gt;, I very quickly &lt;a href="https://github.com/davep/blogmore/pull/100" rel="noopener noreferrer" target="_blank"&gt;hashed
 out some ideas on how it might generate some
@@ -283,9 +331,9 @@ background while I get on with my actual day makes a lot of sense.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:148-1"&gt;
+&lt;li id="fn:149-1"&gt;
 &lt;p&gt;Although I've made a point of doing it for almost every one of my
-recent &lt;a href="https://blog.davep.org/tag/textual.html"&gt;Textual&lt;/a&gt;-based projects.&amp;#160;&lt;a class="footnote-backref" href="#fnref:148-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+recent &lt;a href="https://blog.davep.org/tag/textual.html"&gt;Textual&lt;/a&gt;-based projects.&amp;#160;&lt;a class="footnote-backref" href="#fnref:149-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -673,7 +721,7 @@ a solution for some sort of problem. I noticed this on and off as I watched
 the agent's chat, as it worked away.&lt;/p&gt;
 &lt;p&gt;One example I enjoyed was when it was trying to add a new dependency to
 &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;. For reasons I should probably try
-and understand&lt;sup id="fnref:147-1"&gt;&lt;a class="footnote-ref" href="#fn:147-1"&gt;1&lt;/a&gt;&lt;/sup&gt; it knew it should be using &lt;code&gt;uv&lt;/code&gt; to add a dependency and
+and understand&lt;sup id="fnref:148-1"&gt;&lt;a class="footnote-ref" href="#fn:148-1"&gt;1&lt;/a&gt;&lt;/sup&gt; it knew it should be using &lt;code&gt;uv&lt;/code&gt; to add a dependency and
 it knew how to use it to update the lock file, but it didn't have &lt;code&gt;uv&lt;/code&gt; to
 hand:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -781,8 +829,8 @@ moment it's a good source of coding comedy.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:147-1"&gt;
-&lt;p&gt;Presumably there's things I can be doing to make its life easier.&amp;#160;&lt;a class="footnote-backref" href="#fnref:147-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:148-1"&gt;
+&lt;p&gt;Presumably there's things I can be doing to make its life easier.&amp;#160;&lt;a class="footnote-backref" href="#fnref:148-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1416,7 +1464,7 @@ spoke to me enough that I jotted it down and kept coming back to it and
 thinking about it. It was a phrase I couldn't get out of my head.&lt;/p&gt;
 &lt;p&gt;Around the same time I was also doing a lot of thinking about, and
 note-writing about, code reviews. Although I've been working in software
-development&lt;sup id="fnref:149-1"&gt;&lt;a class="footnote-ref" href="#fn:149-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for a few decades now (I started in July 1989), I was quite
+development&lt;sup id="fnref:150-1"&gt;&lt;a class="footnote-ref" href="#fn:150-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for a few decades now (I started in July 1989), I was quite
 late to the whole process of code review -- at least in the way we talk
 about it today. This mostly comes down to the fact that for a lot of my time
 I either worked in very small companies or I was the only developer around.&lt;/p&gt;
@@ -1536,9 +1584,9 @@ that thrive.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:149-1"&gt;
+&lt;li id="fn:150-1"&gt;
 &lt;p&gt;Or software engineering, if you prefer, but that's a whole other blog
-post I'll never get round to writing one day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:149-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+post I'll never get round to writing one day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:150-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1711,74 +1759,5 @@ dabbling with NotebookLM, perhaps
     <category term="LLM"/>
     <category term="Python"/>
     <published>2026-01-10T11:18:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2025/12/12/norton-guide-collection.html</id>
-    <title>A Norton Guide collection</title>
-    <updated>2025-12-12T17:00:00+00:00</updated>
-    <content type="html">&lt;p&gt;As I've mentioned a &lt;a href="https://blog.davep.org/tag/norton-guide.html"&gt;few times on this blog&lt;/a&gt;, I've
-long had a bit of a thing for &lt;a href="https://www.davep.org/norton-guides/" rel="noopener noreferrer" target="_blank"&gt;writing tools for reading the content of
-Norton Guide files&lt;/a&gt;. I first used
-Norton Guides back in the early 1990s thanks to the release of Clipper 5,
-and later on in that decade I wrote my first couple of tools to turn guides
-into HTML (and also wrote a Windows-based reader, then rewrote it, wrote one
-for OS/2, wrote one for GNU/Linux, and so on).&lt;/p&gt;
-&lt;p&gt;One tool (&lt;a href="https://github.com/davep/ng2html" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;ng2html&lt;/code&gt;&lt;/a&gt;) got used by a few
-sites on the 'net to publish all sorts of guides, but it's not something I
-ever got into doing myself. Amusingly, from time to time, because I had a
-credit on those sites as the author of the conversion tool, I'd get random
-emails from people hoping I could help them with the topic of whatever guide
-they'd been reading. Sometimes I could help, often not.&lt;/p&gt;
-&lt;p&gt;From what I've recently been told two of the biggest sites for this sort of
-thing (they might even have been the same site, or one a copy of the other,
-I didn't really dive into them too much and wasn't sure who was behind them
-anyway) have long since gone offline. This means that, as far as I can tell,
-a huge collection of knowledge from the DOS days is a lot harder to get to,
-if it hasn't disappeared altogether.&lt;/p&gt;
-&lt;p&gt;This makes me kind of sad.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Edit to add:&lt;/strong&gt; digging a little, one of the sites was called
-&lt;code&gt;www.clipx.net&lt;/code&gt; and it looks to have long-since gone offline. It is &lt;a href="https://web.archive.org/web/20050213123739/http://www.clipx.net/ng/" rel="noopener noreferrer" target="_blank"&gt;on
-archive.org though&lt;/a&gt;.
-The other was &lt;code&gt;x-hacker.org&lt;/code&gt; which, digging a wee bit more, seems to have
-been a copy of what was on clipx.net.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;So I had an idea: having &lt;a href="https://blog.davep.org/2025/03/24/ng2web.html"&gt;recently polished up my replacement for
-ng2html&lt;/a&gt;, why not use that to build my own site
-that publishes the guides I have? So I set about it.&lt;/p&gt;
-&lt;p&gt;There's one wrinkle to this though. While the other sites seemed to just
-publish every NG file they got their hands on, I'd prefer to try and do it
-like this: publish every guide I have in my collection &lt;em&gt;that I have a
-licence or permission to publish&lt;/em&gt;; or as near as possible&lt;sup id="fnref:19-1"&gt;&lt;a class="footnote-ref" href="#fn:19-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-&lt;p&gt;Given all of this,
-&lt;a href="https://norton-guides.davep.dev" rel="noopener noreferrer" target="_blank"&gt;norton-guides.davep.dev&lt;/a&gt; has been born.
-The repository that drives it &lt;a href="https://github.com/davep/norton-guides" rel="noopener noreferrer" target="_blank"&gt;is on
-GitHub&lt;/a&gt;, and &lt;a href="https://github.com/davep/norton-guides/wiki" rel="noopener noreferrer" target="_blank"&gt;I have a wiki
-page&lt;/a&gt; that lists all the guides
-I have that I could possibly publish, showing what I know about the
-copyright/licence of each one and what the publishing state is.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Snapshot of the site" src="https://blog.davep.org/attachments/2025/12/12/norton-guides.png" /&gt;&lt;/p&gt;
-&lt;p&gt;So with this, I'm putting out a call for help: if you remember the days of
-Norton Guide help files, if you have Norton Guide help files I don't have,
-and especially if you are the copyright-holder of any of these files and you
-can extend me the permission to open them up, or if you know the right
-people and can get me in touch with them, &lt;a href="mailto:davep@davep.org" rel="noopener noreferrer" target="_blank"&gt;DROP ME A LINE&lt;/a&gt;!&lt;/p&gt;
-&lt;p&gt;I'd also love to have others join me in this... quest. So if you want to
-contribute to the repository and help build it up I'd also love to hear from
-you.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:19-1"&gt;
-&lt;p&gt;I will possibly be a little permissive when it comes to things that I
-believe contain public domain information to start with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:19-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2025/12/12/norton-guide-collection.html"/>
-    <category term="Coding"/>
-    <category term="Norton Guide"/>
-    <category term="history"/>
-    <published>2025-12-12T17:00:00+00:00</published>
   </entry>
 </feed>

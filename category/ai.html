@@ -136,6 +136,56 @@
     
 
     <article class="post-summary">
+    <h2><a href="/2026/03/09/an-eager-fix.html">An eager fix</a></h2>
+    <time datetime="2026-03-09T12:56:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/09/">09</a> 12:56:00 UTC</time>
+    <div class="reading-time">2 min read</div>
+    <div class="post-content">
+        <p><img alt="An eager fix" src="/attachments/2026/03/09/changes.png#centre" /></p>
+<p>Yesterday, <a href="/2026/03/09/seen-by-me-revived.html">while looking at starting to post to my photoblog
+again</a>, I noticed I'd missed a trick
+when I added the <a href="/2026/03/03/original-seen-by-davep-rescued.html">first</a>
+and <a href="/2026/03/02/seen-by-rescued.html">second</a> sets of photos when I
+created <a href="https://seen-by.davep.dev" rel="noopener noreferrer" target="_blank">seen-by.davep.dev</a>: I'd left off any
+<code>cover</code> frontmatter from all of the posts!</p>
+<p>While I doubt it's super important -- I can't imagine people will be sharing
+photos from the blog after all, especially not older ones -- it felt like
+I'd failed to use <a href="https://blogmore.davep.dev/writing_a_post/#cover" rel="noopener noreferrer" target="_blank">a useful
+feature</a> that I'd made
+sure <a href="https://blogmore.davep.dev" rel="noopener noreferrer" target="_blank">BlogMore</a> had.</p>
+<p>This was obviously easy to fix. I could just write a tool that would go
+through all of the Markdown files, find the image that is being displayed in
+the post, pull out the path to the file, and add a <code>cover</code> to the
+frontmatter. Not exactly the hardest thing to write, but kind of boring for
+a one-off fix.</p>
+<p>So this felt like another good time to get Copilot to do the hard work.
+Liking this plan, I <a href="https://github.com/davep/seen-by/issues/7" rel="noopener noreferrer" target="_blank">wrote an issue for the
+prompt</a> and set it to work.</p>
+<p>The result was unexpected, and in retrospect this is how I should have
+approached it in the first place; Copilot wrote the script, then ran it, and
+then submitted the PR <em>including the script and all of the changes after
+running it!</em> It's like it was super eager to do the fix so went ahead and
+just did it.</p>
+<p><img alt="The resulting PR" src="/attachments/2026/03/09/cover-eager.png#centre" /></p>
+<p>This, for me, highlights a trick/approach I'm still not fully mindful of:
+where I might once have written some throwaway code to do a job, run the
+code, and then made use of the result, when it comes to using an agent I
+always have the option of saying <em>what</em> I want done to the content of the
+repository and just let it do it.</p>
+<p>When I'm next faced with a problem like this, I think this is the approach
+I'll take: rather than ask it to write the tool to do the work, I'll just
+say what the work is I want done and let it go about it. <em>This</em> feels like
+where an agent should shine and where it's really useful.</p>
+<p>Meanwhile I can get on with the fun stuff.</p>
+    </div>
+    <div class="tags">
+        <a href="/tag/ai.html" class="tag">AI</a>
+        <a href="/tag/copilot.html" class="tag">Copilot</a>
+        <a href="/tag/github.html" class="tag">GitHub</a>
+        <a href="/tag/llm.html" class="tag">LLM</a>
+    </div>
+</article>
+
+    <article class="post-summary">
     <h2><a href="/2026/03/05/documentation-generation.html">Documentation generation</a></h2>
     <time datetime="2026-03-05T16:26:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/05/">05</a> 16:26:00 UTC</time>
     <div class="reading-time">2 min read</div>
@@ -144,7 +194,7 @@
 enjoy. I want documentation to read well, I want documentation to be useful,
 I want documentation to be accurate. I also want there to be documentation
 at all and sometimes the other parts mean it doesn't get done for FOSS
-projects<sup id="fnref:148-1"><a class="footnote-ref" href="#fn:148-1">1</a></sup>.</p>
+projects<sup id="fnref:149-1"><a class="footnote-ref" href="#fn:149-1">1</a></sup>.</p>
 <p>When <a href="/2026/02/20/five-days-with-copilot.html">I started the experiment that is
 BlogMore</a>, I very quickly <a href="https://github.com/davep/blogmore/pull/100" rel="noopener noreferrer" target="_blank">hashed
 out some ideas on how it might generate some
@@ -170,9 +220,9 @@ background while I get on with my actual day makes a lot of sense.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:148-1">
+<li id="fn:149-1">
 <p>Although I've made a point of doing it for almost every one of my
-recent <a href="/tag/textual.html">Textual</a>-based projects.&#160;<a class="footnote-backref" href="#fnref:148-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+recent <a href="/tag/textual.html">Textual</a>-based projects.&#160;<a class="footnote-backref" href="#fnref:149-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -262,7 +312,7 @@ a solution for some sort of problem. I noticed this on and off as I watched
 the agent's chat, as it worked away.</p>
 <p>One example I enjoyed was when it was trying to add a new dependency to
 <a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank">BlogMore</a>. For reasons I should probably try
-and understand<sup id="fnref:147-1"><a class="footnote-ref" href="#fn:147-1">1</a></sup> it knew it should be using <code>uv</code> to add a dependency and
+and understand<sup id="fnref:148-1"><a class="footnote-ref" href="#fn:148-1">1</a></sup> it knew it should be using <code>uv</code> to add a dependency and
 it knew how to use it to update the lock file, but it didn't have <code>uv</code> to
 hand:</p>
 <blockquote>
@@ -370,8 +420,8 @@ moment it's a good source of coding comedy.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:147-1">
-<p>Presumably there's things I can be doing to make its life easier.&#160;<a class="footnote-backref" href="#fnref:147-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn:148-1">
+<p>Presumably there's things I can be doing to make its life easier.&#160;<a class="footnote-backref" href="#fnref:148-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

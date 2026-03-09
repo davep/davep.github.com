@@ -141,6 +141,59 @@
     <h1>Recent Posts</h1>
 
     <article class="post-summary">
+    <h2><a href="/2026/03/09/an-eager-fix.html">An eager fix</a></h2>
+    <time datetime="2026-03-09T12:56:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/09/">09</a> 12:56:00 UTC</time>
+    <div class="reading-time">2 min read</div>
+    <div class="category">
+        <a href="/category/ai.html" class="category-link">AI</a>
+    </div>
+    <div class="post-content">
+        <p><img alt="An eager fix" src="/attachments/2026/03/09/changes.png#centre" /></p>
+<p>Yesterday, <a href="/2026/03/09/seen-by-me-revived.html">while looking at starting to post to my photoblog
+again</a>, I noticed I'd missed a trick
+when I added the <a href="/2026/03/03/original-seen-by-davep-rescued.html">first</a>
+and <a href="/2026/03/02/seen-by-rescued.html">second</a> sets of photos when I
+created <a href="https://seen-by.davep.dev" rel="noopener noreferrer" target="_blank">seen-by.davep.dev</a>: I'd left off any
+<code>cover</code> frontmatter from all of the posts!</p>
+<p>While I doubt it's super important -- I can't imagine people will be sharing
+photos from the blog after all, especially not older ones -- it felt like
+I'd failed to use <a href="https://blogmore.davep.dev/writing_a_post/#cover" rel="noopener noreferrer" target="_blank">a useful
+feature</a> that I'd made
+sure <a href="https://blogmore.davep.dev" rel="noopener noreferrer" target="_blank">BlogMore</a> had.</p>
+<p>This was obviously easy to fix. I could just write a tool that would go
+through all of the Markdown files, find the image that is being displayed in
+the post, pull out the path to the file, and add a <code>cover</code> to the
+frontmatter. Not exactly the hardest thing to write, but kind of boring for
+a one-off fix.</p>
+<p>So this felt like another good time to get Copilot to do the hard work.
+Liking this plan, I <a href="https://github.com/davep/seen-by/issues/7" rel="noopener noreferrer" target="_blank">wrote an issue for the
+prompt</a> and set it to work.</p>
+<p>The result was unexpected, and in retrospect this is how I should have
+approached it in the first place; Copilot wrote the script, then ran it, and
+then submitted the PR <em>including the script and all of the changes after
+running it!</em> It's like it was super eager to do the fix so went ahead and
+just did it.</p>
+<p><img alt="The resulting PR" src="/attachments/2026/03/09/cover-eager.png#centre" /></p>
+<p>This, for me, highlights a trick/approach I'm still not fully mindful of:
+where I might once have written some throwaway code to do a job, run the
+code, and then made use of the result, when it comes to using an agent I
+always have the option of saying <em>what</em> I want done to the content of the
+repository and just let it do it.</p>
+<p>When I'm next faced with a problem like this, I think this is the approach
+I'll take: rather than ask it to write the tool to do the work, I'll just
+say what the work is I want done and let it go about it. <em>This</em> feels like
+where an agent should shine and where it's really useful.</p>
+<p>Meanwhile I can get on with the fun stuff.</p>
+    </div>
+    <div class="tags">
+        <a href="/tag/ai.html" class="tag">AI</a>
+        <a href="/tag/copilot.html" class="tag">Copilot</a>
+        <a href="/tag/github.html" class="tag">GitHub</a>
+        <a href="/tag/llm.html" class="tag">LLM</a>
+    </div>
+</article>
+
+    <article class="post-summary">
     <h2><a href="/2026/03/09/seen-by-me-revived.html">Seen by davep revived</a></h2>
     <time datetime="2026-03-09T09:00:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/09/">09</a> 09:00:00 UTC</time>
     <div class="reading-time">2 min read</div>
@@ -221,7 +274,7 @@ ongoing experiment with <a href="/tag/copilot.html">GitHub Copilot</a>. Since <a
 release I wrote about</a> I've made a couple
 of cosmetic changes, and also addressed a couple of bugs.</p>
 <p>The first cosmetic change relates to how the blog appears on mobile
-devices<sup id="fnref:146-1"><a class="footnote-ref" href="#fn:146-1">1</a></sup>. In such a circumstance, before the change, the sidebar content
+devices<sup id="fnref:147-1"><a class="footnote-ref" href="#fn:147-1">1</a></sup>. In such a circumstance, before the change, the sidebar content
 would, by design, relocate to the top of the page. This made sense, it meant
 that the information was still available, but it also had the unfortunate
 effect of pushing the actual post content way down the screen, sometimes off
@@ -273,8 +326,8 @@ As I keep tinkering with BlogMore I'll be keeping this post in mind.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:146-1">
-<p>Okay fine any narrow viewport but you know what I mean!&#160;<a class="footnote-backref" href="#fnref:146-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn:147-1">
+<p>Okay fine any narrow viewport but you know what I mean!&#160;<a class="footnote-backref" href="#fnref:147-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -409,7 +462,7 @@ last.&#160;<a class="footnote-backref" href="#fnref:135-2" title="Jump back to f
 enjoy. I want documentation to read well, I want documentation to be useful,
 I want documentation to be accurate. I also want there to be documentation
 at all and sometimes the other parts mean it doesn't get done for FOSS
-projects<sup id="fnref:148-1"><a class="footnote-ref" href="#fn:148-1">1</a></sup>.</p>
+projects<sup id="fnref:149-1"><a class="footnote-ref" href="#fn:149-1">1</a></sup>.</p>
 <p>When <a href="/2026/02/20/five-days-with-copilot.html">I started the experiment that is
 BlogMore</a>, I very quickly <a href="https://github.com/davep/blogmore/pull/100" rel="noopener noreferrer" target="_blank">hashed
 out some ideas on how it might generate some
@@ -435,9 +488,9 @@ background while I get on with my actual day makes a lot of sense.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:148-1">
+<li id="fn:149-1">
 <p>Although I've made a point of doing it for almost every one of my
-recent <a href="/tag/textual.html">Textual</a>-based projects.&#160;<a class="footnote-backref" href="#fnref:148-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+recent <a href="/tag/textual.html">Textual</a>-based projects.&#160;<a class="footnote-backref" href="#fnref:149-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -771,76 +824,6 @@ setting, this is exactly the sort of thing I'll be watching for.</p>
     </div>
 </article>
 
-    <article class="post-summary">
-    <h2><a href="/2026/02/28/complexitty-1-1-0.html">Complexitty v1.1.0</a></h2>
-    <time datetime="2026-02-28T20:40:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/02/">02</a>-<a href="/2026/02/28/">28</a> 20:40:00 UTC</time>
-    <div class="reading-time">2 min read</div>
-    <div class="category">
-        <a href="/category/coding.html" class="category-link">Coding</a>
-    </div>
-    <div class="post-content">
-        <p><a href="https://complexitty.davep.dev/" rel="noopener noreferrer" target="_blank"><img alt="Complexitty" src="/attachments/2025/04/20/complexitty-social-banner.png" /></a></p>
-<p>I've just released v1.1.0 of Complexitty, my little Mandelbrot explorer for
-the terminal. I first released it <a href="/2025/04/20/complexitty.html">in April last
-year</a> and have tinkered with it on and off
-since. Most of the changes have been to do with easier navigation, some
-additional colour schemes, the ability to pass location information on the
-command line, that sort of thing; meanwhile, the very heart of it has stayed
-the same <em>"it's as fast as it's ever going to be expect it to not be fast"</em>
-approach.</p>
-<p>It's a Python application after all: they can be fast, but something like
-this isn't going to compete with the serious Mandelbrot explorers.</p>
-<p>v1.1.0, however, has a little optional speedup. If you install it normally
-it'll work at the pace it always did: the more you zoom in, the more you
-ramp up the iterations to tease more detail out, the slower it gets. But
-now: if you install it as <code>complexitty[faster]</code> rather than just as
-<code>complexitty</code> it will use <a href="http://numba.pydata.org" rel="noopener noreferrer" target="_blank">Numba</a> to speed up the
-main calculation.</p>
-<p>On the very first run things will be slow to start up, but from then on I
-see a real improvement. As you zoom in and explore and up the detail, the
-calculation remains pretty fast. The drop-off of speed that you see without
-Numba just isn't there.</p>
-<p>While the whole idea of Complexitty was to see what I could do with Python,
-in the terminal, using Textual, and keeping it "pure", I feel this is an
-acceptable "cheat" given it's optional.</p>
-<p>I'm considering this an experimental change for now, as I don't know how
-well it will work in all places where Complexitty could be otherwise
-installed. So give it a go, see if it installs and runs as
-<code>complexitty[faster]</code>, and if it doesn't: fall back to plain old
-<code>complexitty</code>.</p>
-<p>If you're interested you can find the source <a href="https://github.com/davep/complexitty" rel="noopener noreferrer" target="_blank">over on
-GitHub</a>, with the application
-available <a href="https://pypi.org/project/complexitty/" rel="noopener noreferrer" target="_blank">via PyPI</a>. If you use
-<code>pipx</code> you should be able to install with either:</p>
-<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>complexitty<span class="o">[</span>faster<span class="o">]</span>
-</code></pre></div>
-
-<p>or</p>
-<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>complexitty
-</code></pre></div>
-
-<p>If you're a fan of
-<a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"><code>uv</code></a> (and who
-isn't these days?) then try either:</p>
-<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>complexitty<span class="o">[</span>faster<span class="o">]</span>
-</code></pre></div>
-
-<p>or fall back to:</p>
-<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>complexitty
-</code></pre></div>
-
-<p>In fact, to squeeze everything you can out of Complexitty, perhaps try:</p>
-<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>complexitty<span class="o">[</span>faster<span class="o">]</span><span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.14
-</code></pre></div>
-    </div>
-    <div class="tags">
-        <a href="/tag/mandelbrot.html" class="tag">mandelbrot</a>
-        <a href="/tag/python.html" class="tag">Python</a>
-        <a href="/tag/terminal.html" class="tag">terminal</a>
-        <a href="/tag/textual.html" class="tag">textual</a>
-    </div>
-</article>
-
 
     <nav class="pagination" aria-label="Page navigation">
 
@@ -848,7 +831,7 @@ isn't these days?) then try either:</p>
     <a href="/page/2.html" class="pagination-link pagination-number">2</a>
     <a href="/page/3.html" class="pagination-link pagination-number">3</a>
     <span class="pagination-ellipsis">…</span>
-    <a href="/page/21.html" class="pagination-link pagination-number">21</a>
+    <a href="/page/22.html" class="pagination-link pagination-number">22</a>
 
     <a href="/page/2.html" class="pagination-link pagination-next">Next →</a>
 </nav>
