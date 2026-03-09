@@ -47,4 +47,4 @@ But here we are, with a nice friendly green icon showing a tick and a
 friendly big "Thank you" followed by smaller text going "aye shit didn't
 work pal".
 
-[//]: # (2022-06-03-2022-06-03-failed-successfully.md ends here)
+[//]: # (2022-06-03-failed-successfully.md ends here)

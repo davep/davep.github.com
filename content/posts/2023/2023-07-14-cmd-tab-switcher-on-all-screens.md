@@ -47,6 +47,6 @@ That's perfect.
 
 [^1]: Although the work one is manual hand-cranked, not electronic
     button-push goodness like [my new one at
-    home](2023/07/08/new-desk.html).
+    home](/2023/07/08/new-desk.html).
 
 [//]: # (2023-07-14-cmd-tab-switcher-on-all-screens.md ends here)
