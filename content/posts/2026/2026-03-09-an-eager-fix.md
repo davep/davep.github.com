@@ -3,7 +3,7 @@ layout: post
 title: An eager fix
 category: AI
 tags: AI, LLM, Copilot, GitHub
-date: 2026-03-09 12:45:00 +0000
+date: 2026-03-09 12:56:00 +0000
 cover: /attachments/2026/03/09/cover-eager.png
 ---
 
