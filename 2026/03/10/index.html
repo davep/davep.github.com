@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="blogmore v1.8.0">
-<link rel="canonical" href="https://blog.davep.org/2020/06/07/index.html">    <title>Posts from June 07, 2020 - davep</title>
+<link rel="canonical" href="https://blog.davep.org/2026/03/10/index.html">    <title>Posts from March 10, 2026 - davep</title>
     <link rel="icon" href="/icons/favicon.ico">
     <!-- Shortcut icon for backward compatibility -->
     <link rel="shortcut icon" href="/favicon.ico">
@@ -28,7 +28,7 @@
     <link rel="alternate" type="application/rss+xml" title="davep - RSS Feed" href="https://blog.davep.org/feed.xml">
     <link rel="alternate" type="application/atom+xml" title="davep - Atom Feed" href="https://blog.davep.org/feeds/all.atom.xml">
     <meta name="author" content="Dave Pearson">
-<meta property="og:title" content="Posts from June 07, 2020 - davep">
+<meta property="og:title" content="Posts from March 10, 2026 - davep">
 <meta name="description" content="Dave Pearson&#39;s personal blog">
 <meta property="og:description" content="Dave Pearson&#39;s personal blog">
 <meta name="twitter:description" content="Dave Pearson&#39;s personal blog">
@@ -132,106 +132,74 @@
 
             <main>
 <div class="archive">
-    <h1>Posts from June 07, 2020</h1>
+    <h1>Posts from March 10, 2026</h1>
     
 
     <article class="post-summary">
-    <h2><a href="/2020/06/07/some-more-dot-emacs-dot-d-evolution.html">Some more ~/.emacs.d evolution</a></h2>
-    <time datetime="2020-06-07T16:48:00+01:00"><a href="/2020/">2020</a>-<a href="/2020/06/">06</a>-<a href="/2020/06/07/">07</a> 16:48:00 UTC+01:00</time>
-    <div class="reading-time">4 min read</div>
+    <h2><a href="/2026/03/10/you-get-what-you-pay-for.html">You get what you pay for</a></h2>
+    <time datetime="2026-03-10T09:00:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/10/">10</a> 09:00:00 UTC</time>
+    <div class="reading-time">3 min read</div>
     <div class="category">
-        <a href="/category/emacs.html" class="category-link">Emacs</a>
+        <a href="/category/ai.html" class="category-link">AI</a>
     </div>
     <div class="post-content">
-        <p>When I started with this version of the blog on Hashnode<sup id="fnref:186-1"><a class="footnote-ref" href="#fn:186-1">1</a></sup>, my plan was to
-try and write something at least once a week. I managed to do that as far as
-January this year, give or take, but then things got a little busy, the
-world got trickier, and... Well, <a href="https://en.wikipedia.org/wiki/COVID-19_pandemic" rel="noopener noreferrer" target="_blank">you don't need me to tell you about
-that</a>. Anyway, I'm back to
-write some more and, hopefully, try and keep up with writing. I feel it'll
-do me good.</p>
-<p>I have been busy since January. Work has, as far as possible, carried on as
-normal. The only big difference being I'm back working from home. It's an
-odd turn of events personally given that I'd worked from home for 21 years,
-then (with some trepidation) <a href="/2017/12/12/on_to_something_new.html">went back to working in an
-office</a>. Having got used to being in
-an office and being around people, it took some adjusting to working alone
-again.</p>
-<p>So, on to the main point of this post... During that period I've spent a lot
-more time at my machine than I would normally, and so it was inevitable that
-I'd end up tinkering with <a href="https://github.com/davep/.emacs.d" rel="noopener noreferrer" target="_blank">my Emacs
-configuration</a>. While it's true that
-<a href="/2019/11/23/visual-evolution-of-emacs-config.html">there's hardly a week goes by where I don't tinker with some small
-thing</a>, I try not to make
-huge changes too often. Huge changes do happen though.</p>
-<p>A handful of weeks back was another one of those times where I made a big
-change.</p>
-<p>After I <a href="/2016/05/26/starting_fresh_with_gnu_emacs.html">burnt my original <code>~/.emacs</code> file back in
-2016</a> I've had an approach
-where I've tried to make things as modular as possible, and as easy to clone
-down to a new machine as possible. The design I came up with, <a href="/2017/07/13/more_revamping_of_my_emacs_config.html">especially
-once I moved over to using
-<code>use-package</code></a>, has
-served me well. But there was always one thing that bothered me: the files
-that handled the loading and configuration of packages were, in effect,
-<a href="https://github.com/davep/.emacs.d/tree/728e74376bf5606d9ef2d297e36cc2d35e159d64/init.d/packages" rel="noopener noreferrer" target="_blank">still three large monolithic
-files</a>.
-While this was better than a single monolithic <code>~/.emacs</code>, it still didn't
-feel quite right.</p>
-<p>Giving it a bit of thought, I decided that what I really wanted was a single
-directory in which I could drop lots of small <code>.el</code> files that would handle
-the loading and configuration of all sorts of packages. While it didn't gain
-anything concrete, the idea felt tidier. Tidy is good. Feeling like the code
-smell is good, is good too.</p>
-<p>First though I needed a way to load multiple files, ideally within a whole
-directory hierarchy, without needing to know in advance what files would be
-there. After a little bit of tinkering I settled on <a href="https://github.com/davep/.emacs.d/blob/c3d53152b1adc9ba5e43baddb986870b3244b113/init.d/init-packages.el#L42-L46" rel="noopener noreferrer" target="_blank">this bit of
-code</a>
-that revolves around the use of
-<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Contents-of-Directories.html" rel="noopener noreferrer" target="_blank"><code>directory-files-recursively</code></a>:</p>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="nv">source</span><span class="w"> </span><span class="p">(</span><span class="nf">expand-file-name</span><span class="w"> </span><span class="s">&quot;init.d/packages.d/&quot;</span><span class="w"> </span><span class="nv">user-emacs-directory</span><span class="p">)))</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">when</span><span class="w"> </span><span class="p">(</span><span class="nf">file-exists-p</span><span class="w"> </span><span class="nv">source</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">cl-loop</span><span class="w"> </span><span class="nv">for</span><span class="w"> </span><span class="nv">use</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="p">(</span><span class="nv">directory-files-recursively</span><span class="w"> </span><span class="nv">source</span><span class="w"> </span><span class="p">(</span><span class="nb">rx</span><span class="w"> </span><span class="s">&quot;.el&quot;</span><span class="w"> </span><span class="nv">eol</span><span class="p">))</span>
-<span class="w">             </span><span class="nb">do</span><span class="w"> </span><span class="p">(</span><span class="nf">load</span><span class="w"> </span><span class="p">(</span><span class="nv">file-name-sans-extension</span><span class="w"> </span><span class="nv">use</span><span class="p">)))))</span>
-</code></pre></div>
-
-<p>Simply put, this code finds every file in and below
-<a href="https://github.com/davep/.emacs.d/tree/master/init.d/packages.d" rel="noopener noreferrer" target="_blank"><code>~/.emacs.d/init.d/packages.d/</code></a>
-whose name ends in <code>.el</code> (note the use of a regular expression, using
-<a href="/2019/12/01/being-phony-and-lispy-regular-expressions.html"><code>rx</code></a>
-to create it), removes the extension from the name, and loads it with <code>load</code>
-(dropping the extension means <code>load</code> can decide if it wants to load the
-compiled version of the code, or the source, depending on what's available).</p>
-<p>After writing that I could then start to populate
-<code>~/.emacs.d/init.d/packages.d/</code> with lots of smaller files that handled the
-loading of packages. In some cases there's a file just for one package, in
-other cases there's a file that handles a logical grouping of packages
-(where there are obvious direct dependencies, or where one package is
-designed to extend the other, etc). For now I've decided to break things
-down into three directories that map to the three monolithic files I had
-before:</p>
-<p><img alt="Screenshot 2020-06-07 at 16.36.28.png" src="/attachments/2020/06/07/Screenshot 2020-06-07 at 16.36.28.png" /></p>
-<p>However, I'm not totally wedded to this design and I may change this as time
-goes on.</p>
-<p>While I've not spent any time properly testing it out, I've also not really
-noticed any obvious impact on startup speed. However, this tends not to be a
-real concern for me. I seldom <em>start</em> Emacs anyway. I always have it running
-<a href="https://github.com/davep/e" rel="noopener noreferrer" target="_blank">and use <code>emacsclient</code> as my editor in most places so files open instantly
-in the running version of Emacs</a>.</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:186-1">
-<p>Note from future me: we're now back over on <code>blog.davep.org</code> of
-course.&#160;<a class="footnote-backref" href="#fnref:186-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
+        <p>Just recently I saw a post go past on Mastodon, complaining about the
+author's perception that there was a breakdown of trust in the FOSS world,
+in respect to the use of AI to work on FOSS projects, or at least the
+willingness to accept AI-assisted contributions. The post also highlighted
+the author's reliance on FOSS projects and how they're driven by ethical and
+financial motivations (some emphasis was placed on how they had no money to
+spend on these things so it wasn't even necessarily a choice to FOSS up
+their environment).</p>
+<p>This was, of course, in response to the <a href="https://hachyderm.io/@AndrewRadev/116175986749599825" rel="noopener noreferrer" target="_blank">current fuss about how Vim is being
+developed these days</a>.</p>
+<p>I don't want to comment on the Vim stuff -- <a href="https://elisp.dev/" rel="noopener noreferrer" target="_blank">I've got no dog in that
+fight</a> -- but something about the post I mention above
+got me thinking, and troubled me.</p>
+<p>Back when I first ran into the concept of <a href="https://www.gnu.org/philosophy/free-sw.en.html" rel="noopener noreferrer" target="_blank">Free
+Software</a>, before the
+concept of Open Source had ever been thought of, I can remember reading
+stuff opposed to the idea that mostly worked along the lines of <em>"you get
+what you pay for"</em> -- the implication being that Free Software would be bad
+software. I think it's fair to say that history has now shown that this
+isn't the case.</p>
+<p>But... I think it's fair to say that you <em>do</em> get what you pay for, but in a
+different sense.</p>
+<p>If your computing environment is fully reliant on the time, money and effort
+of others; reliant on people who are willing to give all of that without the
+realistic expectation of any contribution back from you; I feel it's safe to
+say that you are getting a bloody good deal. To then question the
+motivations and abilities of those people, <em>because they are exploring and
+embracing other methods of working</em>, is at best a bad-faith argument and at
+worst betrays a deep sense of entitlement.</p>
+<p>What I also found wild was, the post went on to document the author's
+concerns that they now have to worry about the ability of FOSS project
+maintainers to detect bad contributions. This for me suggests a lack of
+understanding of how non-trivial FOSS projects have worked ever since it was
+a thing.</p>
+<p>I mean, sure, there are some projects that are incredibly useful and which
+have a solo developer working away (sometimes because nobody else wants to
+contribute, but also sometimes because that solo developer doesn't play well
+with others -- you pick which scenario you think is more healthy), but for
+the most part the "important" projects have multitudes working on them, with
+contributions coming from many people of varying levels of ability. The
+point here being that, all along, you've been relying on the discernment and
+mentoring abilities of those maintainers.</p>
+<p>To suggest they're suddenly unworthy of your trust because they might be
+"using the AIs" is... well, it feels driven by dogma and it reads like a
+disingenuous take.</p>
+<p>Don't get me wrong though: you are <em>right</em> to be suspicious, you are right
+to want to question the trust you place in those who donate so much to you;
+almost always <a href="https://opensource.org/licenses" rel="noopener noreferrer" target="_blank">this is made explicit in the licence they extended to you in
+the first place</a>. But to suggest that
+suddenly they're unworthy of your trust because they're donating so much
+value <em>to you</em> in a way <em>you</em> don't approve of...</p>
+<p>...well, perhaps it's time for you to pay it back?</p>
     </div>
     <div class="tags">
-        <a href="/tag/emacs.html" class="tag">Emacs</a>
-        <a href="/tag/emacs-lisp.html" class="tag">Emacs Lisp</a>
-        <a href="/tag/lisp.html" class="tag">Lisp</a>
+        <a href="/tag/ai.html" class="tag">AI</a>
+        <a href="/tag/foss.html" class="tag">FOSS</a>
+        <a href="/tag/llm.html" class="tag">LLM</a>
     </div>
 </article>
 

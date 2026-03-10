@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="blogmore v1.8.0">
-<link rel="canonical" href="https://blog.davep.org/2020/06/07/index.html">    <title>Posts from June 07, 2020 - davep</title>
+<link rel="canonical" href="https://blog.davep.org/2026/03/page/2.html">    <title>Posts from March 2026 - davep</title>
     <link rel="icon" href="/icons/favicon.ico">
     <!-- Shortcut icon for backward compatibility -->
     <link rel="shortcut icon" href="/favicon.ico">
@@ -28,14 +28,14 @@
     <link rel="alternate" type="application/rss+xml" title="davep - RSS Feed" href="https://blog.davep.org/feed.xml">
     <link rel="alternate" type="application/atom+xml" title="davep - Atom Feed" href="https://blog.davep.org/feeds/all.atom.xml">
     <meta name="author" content="Dave Pearson">
-<meta property="og:title" content="Posts from June 07, 2020 - davep">
+<meta property="og:title" content="Posts from March 2026 - davep">
 <meta name="description" content="Dave Pearson&#39;s personal blog">
 <meta property="og:description" content="Dave Pearson&#39;s personal blog">
 <meta name="twitter:description" content="Dave Pearson&#39;s personal blog">
 <meta name="keywords" content="Emacs, Python, Programming, Terminal, Textual">
 
     <script src="/static/theme.min.js"></script>
-</head>
+<link rel="prev" href="/2026/03/index.html"></head>
 <body>
     <div class="site-container">
         <aside class="sidebar">
@@ -132,111 +132,86 @@
 
             <main>
 <div class="archive">
-    <h1>Posts from June 07, 2020</h1>
-    
+    <h1>Posts from March 2026</h1>
+    <nav class="pagination" aria-label="Page navigation">
+    <a href="/2026/03/index.html" class="pagination-link pagination-prev">← Previous</a>
+
+    <a href="/2026/03/index.html" class="pagination-link pagination-number">1</a>
+    <span class="pagination-link pagination-number pagination-current" aria-current="page">2</span>
+
+</nav>
+
 
     <article class="post-summary">
-    <h2><a href="/2020/06/07/some-more-dot-emacs-dot-d-evolution.html">Some more ~/.emacs.d evolution</a></h2>
-    <time datetime="2020-06-07T16:48:00+01:00"><a href="/2020/">2020</a>-<a href="/2020/06/">06</a>-<a href="/2020/06/07/">07</a> 16:48:00 UTC+01:00</time>
-    <div class="reading-time">4 min read</div>
+    <h2><a href="/2026/03/01/not-so-elegant.html">Not so elegant</a></h2>
+    <time datetime="2026-03-01T11:33:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/01/">01</a> 11:33:00 UTC</time>
+    <div class="reading-time">2 min read</div>
     <div class="category">
-        <a href="/category/emacs.html" class="category-link">Emacs</a>
+        <a href="/category/ai.html" class="category-link">AI</a>
     </div>
     <div class="post-content">
-        <p>When I started with this version of the blog on Hashnode<sup id="fnref:186-1"><a class="footnote-ref" href="#fn:186-1">1</a></sup>, my plan was to
-try and write something at least once a week. I managed to do that as far as
-January this year, give or take, but then things got a little busy, the
-world got trickier, and... Well, <a href="https://en.wikipedia.org/wiki/COVID-19_pandemic" rel="noopener noreferrer" target="_blank">you don't need me to tell you about
-that</a>. Anyway, I'm back to
-write some more and, hopefully, try and keep up with writing. I feel it'll
-do me good.</p>
-<p>I have been busy since January. Work has, as far as possible, carried on as
-normal. The only big difference being I'm back working from home. It's an
-odd turn of events personally given that I'd worked from home for 21 years,
-then (with some trepidation) <a href="/2017/12/12/on_to_something_new.html">went back to working in an
-office</a>. Having got used to being in
-an office and being around people, it took some adjusting to working alone
-again.</p>
-<p>So, on to the main point of this post... During that period I've spent a lot
-more time at my machine than I would normally, and so it was inevitable that
-I'd end up tinkering with <a href="https://github.com/davep/.emacs.d" rel="noopener noreferrer" target="_blank">my Emacs
-configuration</a>. While it's true that
-<a href="/2019/11/23/visual-evolution-of-emacs-config.html">there's hardly a week goes by where I don't tinker with some small
-thing</a>, I try not to make
-huge changes too often. Huge changes do happen though.</p>
-<p>A handful of weeks back was another one of those times where I made a big
-change.</p>
-<p>After I <a href="/2016/05/26/starting_fresh_with_gnu_emacs.html">burnt my original <code>~/.emacs</code> file back in
-2016</a> I've had an approach
-where I've tried to make things as modular as possible, and as easy to clone
-down to a new machine as possible. The design I came up with, <a href="/2017/07/13/more_revamping_of_my_emacs_config.html">especially
-once I moved over to using
-<code>use-package</code></a>, has
-served me well. But there was always one thing that bothered me: the files
-that handled the loading and configuration of packages were, in effect,
-<a href="https://github.com/davep/.emacs.d/tree/728e74376bf5606d9ef2d297e36cc2d35e159d64/init.d/packages" rel="noopener noreferrer" target="_blank">still three large monolithic
-files</a>.
-While this was better than a single monolithic <code>~/.emacs</code>, it still didn't
-feel quite right.</p>
-<p>Giving it a bit of thought, I decided that what I really wanted was a single
-directory in which I could drop lots of small <code>.el</code> files that would handle
-the loading and configuration of all sorts of packages. While it didn't gain
-anything concrete, the idea felt tidier. Tidy is good. Feeling like the code
-smell is good, is good too.</p>
-<p>First though I needed a way to load multiple files, ideally within a whole
-directory hierarchy, without needing to know in advance what files would be
-there. After a little bit of tinkering I settled on <a href="https://github.com/davep/.emacs.d/blob/c3d53152b1adc9ba5e43baddb986870b3244b113/init.d/init-packages.el#L42-L46" rel="noopener noreferrer" target="_blank">this bit of
-code</a>
-that revolves around the use of
-<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Contents-of-Directories.html" rel="noopener noreferrer" target="_blank"><code>directory-files-recursively</code></a>:</p>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="nv">source</span><span class="w"> </span><span class="p">(</span><span class="nf">expand-file-name</span><span class="w"> </span><span class="s">&quot;init.d/packages.d/&quot;</span><span class="w"> </span><span class="nv">user-emacs-directory</span><span class="p">)))</span>
-<span class="w">  </span><span class="p">(</span><span class="nb">when</span><span class="w"> </span><span class="p">(</span><span class="nf">file-exists-p</span><span class="w"> </span><span class="nv">source</span><span class="p">)</span>
-<span class="w">    </span><span class="p">(</span><span class="nb">cl-loop</span><span class="w"> </span><span class="nv">for</span><span class="w"> </span><span class="nv">use</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="p">(</span><span class="nv">directory-files-recursively</span><span class="w"> </span><span class="nv">source</span><span class="w"> </span><span class="p">(</span><span class="nb">rx</span><span class="w"> </span><span class="s">&quot;.el&quot;</span><span class="w"> </span><span class="nv">eol</span><span class="p">))</span>
-<span class="w">             </span><span class="nb">do</span><span class="w"> </span><span class="p">(</span><span class="nf">load</span><span class="w"> </span><span class="p">(</span><span class="nv">file-name-sans-extension</span><span class="w"> </span><span class="nv">use</span><span class="p">)))))</span>
+        <p>One thing I've been noticing with <a href="/2026/02/20/five-days-with-copilot.html">my current experiment with GitHub
+Copilot</a> is that it seems to know
+Python well enough to write code that gets the job done, and sometimes it
+knows it well enough to write more modern idiomatic Python code, but it also
+seems to write the inelegant version of it.</p>
+<p>It's hard to pin down exactly, and of course it's a matter of taste (my idea
+of elegant might burn someone else's eyes), but on occasion, as I review the
+code, I find things that make me go "ugh".</p>
+<p>Here's an example: there's a function that Copilot wrote to extract the
+first non-markup paragraph of an article (so that it can be used as a page
+description). One thing it needs to do is skip any initial images, etc. It
+takes a pretty brute force approach of looking at the start of each stripped
+line, but it gets the job done -- I can't really argue with that.</p>
+<p>But here's how it does it:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Skip markdown image syntax</span>
+<span class="k">if</span> <span class="n">stripped</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;![&quot;</span><span class="p">):</span>
+    <span class="k">continue</span>
+
+<span class="c1"># Skip markdown linked image syntax ([![alt](img)](url))</span>
+<span class="k">if</span> <span class="n">stripped</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;[![&quot;</span><span class="p">):</span>
+    <span class="k">continue</span>
+
+<span class="c1"># Skip HTML img tags</span>
+<span class="k">if</span> <span class="n">stripped</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;&lt;img&quot;</span><span class="p">):</span>
+    <span class="k">continue</span>
 </code></pre></div>
 
-<p>Simply put, this code finds every file in and below
-<a href="https://github.com/davep/.emacs.d/tree/master/init.d/packages.d" rel="noopener noreferrer" target="_blank"><code>~/.emacs.d/init.d/packages.d/</code></a>
-whose name ends in <code>.el</code> (note the use of a regular expression, using
-<a href="/2019/12/01/being-phony-and-lispy-regular-expressions.html"><code>rx</code></a>
-to create it), removes the extension from the name, and loads it with <code>load</code>
-(dropping the extension means <code>load</code> can decide if it wants to load the
-compiled version of the code, or the source, depending on what's available).</p>
-<p>After writing that I could then start to populate
-<code>~/.emacs.d/init.d/packages.d/</code> with lots of smaller files that handled the
-loading of packages. In some cases there's a file just for one package, in
-other cases there's a file that handles a logical grouping of packages
-(where there are obvious direct dependencies, or where one package is
-designed to extend the other, etc). For now I've decided to break things
-down into three directories that map to the three monolithic files I had
-before:</p>
-<p><img alt="Screenshot 2020-06-07 at 16.36.28.png" src="/attachments/2020/06/07/Screenshot 2020-06-07 at 16.36.28.png" /></p>
-<p>However, I'm not totally wedded to this design and I may change this as time
-goes on.</p>
-<p>While I've not spent any time properly testing it out, I've also not really
-noticed any obvious impact on startup speed. However, this tends not to be a
-real concern for me. I seldom <em>start</em> Emacs anyway. I always have it running
-<a href="https://github.com/davep/e" rel="noopener noreferrer" target="_blank">and use <code>emacsclient</code> as my editor in most places so files open instantly
-in the running version of Emacs</a>.</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:186-1">
-<p>Note from future me: we're now back over on <code>blog.davep.org</code> of
-course.&#160;<a class="footnote-backref" href="#fnref:186-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
+<p>Now, this is good: it's using
+<a href="https://docs.python.org/3/library/stdtypes.html#str.startswith" rel="noopener noreferrer" target="_blank"><code>startswith</code></a>.
+There are less-elegant approaches it could have used so I'll give it bonus
+points for using that method. The thing is though, it's testing each prefix
+one string at a time, pretty much rolling out a load of boilerplate code.</p>
+<p>What bothers me here is that <code>startswith</code> will take a tuple of strings to
+test for. I find it curious that the generated code is idiomatic enough to
+know that <code>startswith</code> is a sensible option here, but at the same time it
+still writes the list of things to test out in a long-winded way.</p>
+<p>This is exactly the sort of thing I'd call out in <a href="/2026/02/04/solidarity-empathy-patience.html">a normal code
+review</a>. Technically, if this
+wasn't mostly a <em>"let's see how it goes about this with minimal input from
+me"</em> experiment, I'd have called it out here too (as an experiment, I might
+go back prompt it to "think" about this).</p>
+<p>If I ever find myself using this sort of tool for generating code in a work
+setting, this is exactly the sort of thing I'll be watching for.</p>
     </div>
     <div class="tags">
-        <a href="/tag/emacs.html" class="tag">Emacs</a>
-        <a href="/tag/emacs-lisp.html" class="tag">Emacs Lisp</a>
-        <a href="/tag/lisp.html" class="tag">Lisp</a>
+        <a href="/tag/ai.html" class="tag">AI</a>
+        <a href="/tag/code-review.html" class="tag">code review</a>
+        <a href="/tag/copilot.html" class="tag">Copilot</a>
+        <a href="/tag/llm.html" class="tag">LLM</a>
+        <a href="/tag/python.html" class="tag">Python</a>
     </div>
 </article>
 
 
-    
+    <nav class="pagination" aria-label="Page navigation">
+    <a href="/2026/03/index.html" class="pagination-link pagination-prev">← Previous</a>
+
+    <a href="/2026/03/index.html" class="pagination-link pagination-number">1</a>
+    <span class="pagination-link pagination-number pagination-current" aria-current="page">2</span>
+
+</nav>
+
 </div>
             </main>
 

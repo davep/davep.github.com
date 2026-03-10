@@ -156,6 +156,66 @@
 </nav>
 
     <article class="post-summary">
+    <h2><a href="/2020/06/27/swift-til-6.html">Swift TIL 6</a></h2>
+    <time datetime="2020-06-27T21:23:00+01:00"><a href="/2020/">2020</a>-<a href="/2020/06/">06</a>-<a href="/2020/06/27/">27</a> 21:23:00 UTC+01:00</time>
+    <div class="reading-time">1 min read</div>
+    <div class="category">
+        <a href="/category/til.html" class="category-link">TIL</a>
+    </div>
+    <div class="post-content">
+        <p>I'm going to file this one under "it seems really unnecessary, but it's also
+kinda cool". While reading up about
+<a href="https://docs.swift.org/swift-book/LanguageGuide/Protocols.html" rel="noopener noreferrer" target="_blank">protocols</a>
+the book I'm reading introduced the <code>ExpressibleBy*Literal</code> protocols, where
+the <code>*</code> is one of a number of obvious literals. For example:
+<code>ExpressibleByStringLiteral</code>. As you might imagine, it lets you create a
+class that can be initialised with a literal value, as opposed to needing to
+appear to call the constructor for a class.</p>
+<p>So, for a silly example:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">Hello</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ExpressibleByStringLiteral</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">what</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+
+<span class="w">    </span><span class="kr">required</span><span class="w"> </span><span class="kd">init</span><span class="p">(</span><span class="w"> </span><span class="n">stringLiteral</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kc">self</span><span class="p">.</span><span class="n">what</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">what</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">say</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="bp">print</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;Hello, </span><span class="si">\(</span><span class="kc">self</span><span class="p">.</span><span class="n">what</span><span class="si">)</span><span class="s">!&quot;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>You could, of course, write this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nv">v1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Hello</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;world&quot;</span><span class="w"> </span><span class="p">)</span>
+<span class="n">v1</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
+</code></pre></div>
+
+<p>but because of <code>ExpressibleByStringLiteral</code> you can also write:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nv">v2</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Hello</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;universe&quot;</span>
+<span class="n">v2</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Now, sure, in this case it saves you nothing, but this does also mean that
+parameters of functions whose type uses one of the <code>`ExpressibleBy*Literal</code>
+protocols can be passed a literal, rather than a "long-hand" instantiated
+object. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span><span class="w"> </span><span class="nf">Greet</span><span class="p">(</span><span class="w"> </span><span class="kc">_</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Hello</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">h</span><span class="p">.</span><span class="n">say</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="n">Greet</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;davep&quot;</span><span class="w"> </span><span class="p">)</span>
+</code></pre></div>
+
+<p>I can see that being quite handy.</p>
+    </div>
+    <div class="tags">
+        <a href="/tag/apple.html" class="tag">Apple</a>
+        <a href="/tag/swift.html" class="tag">Swift</a>
+    </div>
+</article>
+
+    <article class="post-summary">
     <h2><a href="/2020/06/26/switch-til-5.html">Swift TIL 5</a></h2>
     <time datetime="2020-06-26T15:44:00+01:00"><a href="/2020/">2020</a>-<a href="/2020/06/">06</a>-<a href="/2020/06/26/">26</a> 15:44:00 UTC+01:00</time>
     <div class="reading-time">1 min read</div>
@@ -549,7 +609,7 @@ really not noticing them been gone.</p>
         <a href="/category/emacs.html" class="category-link">Emacs</a>
     </div>
     <div class="post-content">
-        <p>When I started with this version of the blog on Hashnode<sup id="fnref:185-1"><a class="footnote-ref" href="#fn:185-1">1</a></sup>, my plan was to
+        <p>When I started with this version of the blog on Hashnode<sup id="fnref:186-1"><a class="footnote-ref" href="#fn:186-1">1</a></sup>, my plan was to
 try and write something at least once a week. I managed to do that as far as
 January this year, give or take, but then things got a little busy, the
 world got trickier, and... Well, <a href="https://en.wikipedia.org/wiki/COVID-19_pandemic" rel="noopener noreferrer" target="_blank">you don't need me to tell you about
@@ -627,9 +687,9 @@ in the running version of Emacs</a>.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:185-1">
+<li id="fn:186-1">
 <p>Note from future me: we're now back over on <code>blog.davep.org</code> of
-course.&#160;<a class="footnote-backref" href="#fnref:185-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+course.&#160;<a class="footnote-backref" href="#fnref:186-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -700,62 +760,6 @@ Emacs user, perhaps dnote.el will be useful too?</p>
         <a href="/tag/emacs.html" class="tag">Emacs</a>
         <a href="/tag/emacs-lisp.html" class="tag">Emacs Lisp</a>
         <a href="/tag/lisp.html" class="tag">Lisp</a>
-    </div>
-</article>
-
-    <article class="post-summary">
-    <h2><a href="/2020/01/11/where-i-live-and-work.html">Where I live and work</a></h2>
-    <time datetime="2020-01-11T14:17:00+00:00"><a href="/2020/">2020</a>-<a href="/2020/01/">01</a>-<a href="/2020/01/11/">11</a> 14:17:00 UTC</time>
-    <div class="reading-time">2 min read</div>
-    <div class="category">
-        <a href="/category/coding.html" class="category-link">Coding</a>
-    </div>
-    <div class="post-content">
-        <p>It's no surprise that I spend a lot of time in Emacs. Especially when I'm
-developing software, either for work or for personal fun, most of my time is
-time spent in Emacs. While I do obviously flit over to Chrome, and mostly do
-my CLI stuff in <a href="https://iterm2.com/" rel="noopener noreferrer" target="_blank">iTerm2</a> (I really like
-<a href="https://www.gnu.org/software/emacs/manual/html_mono/eshell.html" rel="noopener noreferrer" target="_blank">eshell</a>
-but it just can't replace a good terminal for me), I spend a lot of time
-looking at Emacs.</p>
-<p>Here's what my Emacs looks like:</p>
-<p><img alt="Screenshot 2020-01-11 at 13.49.04.png" src="/attachments/2020/01/11/Screenshot 2020-01-11 at 13.49.04.png#centre" /></p>
-<p>Key elements for me are as follows:</p>
-<h1 id="light-background">Light background</h1>
-<p>Something I've never really got on with when it comes to code editing is
-dark themes and dark backgrounds. I find it too much of an eye strain.
-Oddly, I tend to prefer dark themes everywhere else, but not when it comes
-to working in Emacs. The theme I use is <a href="https://github.com/davep/.emacs.d/blob/b9a3df42f0708eabc31a6176d69a67bbdf31a087/init.d/init-style.el#L12-L13" rel="noopener noreferrer" target="_blank">the built-in adwaita
-theme</a>.</p>
-<h1 id="less-boring-mode-line">Less boring mode line</h1>
-<p>I make use of <a href="https://github.com/milkypostman/powerline" rel="noopener noreferrer" target="_blank">powerline</a> to
-<a href="https://github.com/davep/.emacs.d/blob/b9a3df42f0708eabc31a6176d69a67bbdf31a087/init.d/packages/init-packages-melpa.el#L386-L399" rel="noopener noreferrer" target="_blank">make the mode line a bit less
-boring-looking</a>.
-While the colour scheme is such that it's kept in line with the light look,
-the style is nice in that it sort of matches the style of prompt I use in my
-shell.</p>
-<p><img alt="Screenshot 2020-01-11 at 14.05.39.png" src="/attachments/2020/01/11/Screenshot 2020-01-11 at 14.05.39.png#centre" /></p>
-<h1 id="full-screen">Full screen</h1>
-<p>I always run Emacs as a full-screen application, then splitting it into
-different tiled windows using its own internal window handling. This is
-something I've done from way back when I got started with my first GNU/Linux
-desktop machine, and still like to do on macOS.</p>
-<p>I also <a href="https://github.com/davep/longmacs.el" rel="noopener noreferrer" target="_blank">run Emacs as a server</a> and
-then use <a href="https://github.com/davep/e" rel="noopener noreferrer" target="_blank">a little wrapper around <code>emacsclient</code></a>
-to open files (both locally and remotely) from the command line in that
-Emacs session.</p>
-<h1 id="comfortable-eshell-when-i-need-it">Comfortable eshell when I need it</h1>
-<p>Although I say above that I generally don't use <code>eshell</code>, preferring to use
-a full-featured terminal application, in combination with
-<a href="https://fishshell.com/" rel="noopener noreferrer" target="_blank">fish</a>, I do sometimes dip into eshell for quick
-things. So of course I have that configured to feel comfortable too.</p>
-<p><img alt="Screenshot 2020-01-11 at 14.10.07.png" src="/attachments/2020/01/11/Screenshot 2020-01-11 at 14.10.07.png#centre" /></p>
-<p>I do this easily <a href="https://github.com/davep/.emacs.d/blob/b9a3df42f0708eabc31a6176d69a67bbdf31a087/init.d/packages/init-packages-melpa.el#L181-L192" rel="noopener noreferrer" target="_blank">thanks to
-<code>eshell-git-prompt</code></a>.</p>
-    </div>
-    <div class="tags">
-        <a href="/tag/emacs.html" class="tag">Emacs</a>
-        <a href="/tag/shell.html" class="tag">shell</a>
     </div>
 </article>
 
