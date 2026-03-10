@@ -146,6 +146,78 @@
 
 
     <article class="post-summary">
+    <h2><a href="/2026/03/10/even-more-blogmore.html">Even more BlogMore</a></h2>
+    <time datetime="2026-03-10T20:58:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/10/">10</a> 20:58:00 UTC</time>
+    <div class="reading-time">3 min read</div>
+    <div class="category">
+        <a href="/category/coding.html" class="category-link">Coding</a>
+    </div>
+    <div class="post-content">
+        <p>While the additions have, for sure, slowed down, I'm still tinkering away
+with <a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank">BlogMore</a>. Recent changes stem from the
+fact that someone else has been mad enough to want to experiment with
+rebuilding their blog with it too, which, if I'm honest, is massively
+helpful with the ongoing GitHub Copilot experiment. Somehow it feels a
+little different, ganging up with the agent to implement changes for someone
+else's benefit.</p>
+<p>Recent changes include:</p>
+<ul>
+<li>Tweaking the size and layout of the "social" icons that appear in the
+  sidebar (this one was for my benefit)</li>
+<li>Making it possible to customise the title for the socials section in the
+  sidebar (also for my benefit)</li>
+<li>Providing <a href="https://blogmore.davep.dev/configuration/#post_path" rel="noopener noreferrer" target="_blank">control over the path used for
+  posts</a> -- this one
+  was a request that made a ton of sense, it's at this point it stops being
+  a tool for me and starts being a more general tool</li>
+</ul>
+<p>Next up is the first breaking change where I'm going to remove a feature.
+This came from my very initial experiment last month, where I was
+concentrating purely on building a tool for my blog and my blog alone. I'd
+made it such that the <code>/attachments</code> directory in the content directory had
+special status, and it would be copied over to the output directory in full.
+Oddly, however, this never made it into the documentation.</p>
+<p>Meanwhile, the <code>/extras</code> directory <em>also</em> had special status with its
+content, full hierarchy included, being copied over but <em>moved up one level</em>
+in the output. So, for example, <code>extras/humans.txt</code> became <code>/humans.txt</code> in
+the resulting site, etc.</p>
+<p>Presumably, at this point, you can see where this is going. Why the heck did
+I have a special <code>attachments</code> folder being copied over, when a folder of
+any name could live below <code>extras</code> and also get copied over?</p>
+<p>So, now, my blog, which uses <code>/attachments</code> for all inline images and
+covers, has been updated so that <a href="https://github.com/davep/davep.github.com/tree/main/content/extras" rel="noopener noreferrer" target="_blank">the attachments live under
+extras</a>
+and it all works as it did before; no special messing with a special folder
+name.</p>
+<p>Given all this, the next release of BlogMore will remove treating
+<code>/attachments</code> as a special case, making it less hard-coded for my habits
+and more of a general tool that could be useful for others.</p>
+<hr />
+<p>Mildly related to this: I did a lunchtime talk at work today, having turned
+<a href="/2026/02/20/five-days-with-copilot.html">Five days with Copilot</a> into a
+20-25 minute presentation. It was fun to do. I've not written or given a
+talk or presentation in a long time -- probably the last time was when I
+helped run Newton's Astronomical Society in the early 2000s -- so the
+preparation for this was a little daunting to start with.</p>
+<p>While doing this, not wanting to break a long streak of never having used
+PowerPoint, I discovered and gave <a href="https://sli.dev" rel="noopener noreferrer" target="_blank">sli.dev</a> a go. Writing a
+single Markdown file to power the talk was exactly my kind of approach. I
+don't have any experience with any other such tools, but if you're ever
+looking for something like this I recommend giving it a try.</p>
+<p>I'm also open to suggestions of other options, given I might end up doing
+this some more.</p>
+    </div>
+    <div class="tags">
+        <a href="/tag/ai.html" class="tag">AI</a>
+        <a href="/tag/blogging.html" class="tag">Blogging</a>
+        <a href="/tag/blogmore.html" class="tag">BlogMore</a>
+        <a href="/tag/copilot.html" class="tag">Copilot</a>
+        <a href="/tag/llm.html" class="tag">LLM</a>
+        <a href="/tag/python.html" class="tag">Python</a>
+    </div>
+</article>
+
+    <article class="post-summary">
     <h2><a href="/2026/03/07/more-blogmore.html">More BlogMore</a></h2>
     <time datetime="2026-03-07T11:06:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/07/">07</a> 11:06:00 UTC</time>
     <div class="reading-time">3 min read</div>
@@ -238,7 +310,7 @@ As I keep tinkering with BlogMore I'll be keeping this post in mind.</p>
 enjoy. I want documentation to read well, I want documentation to be useful,
 I want documentation to be accurate. I also want there to be documentation
 at all and sometimes the other parts mean it doesn't get done for FOSS
-projects<sup id="fnref:150-1"><a class="footnote-ref" href="#fn:150-1">1</a></sup>.</p>
+projects<sup id="fnref:151-1"><a class="footnote-ref" href="#fn:151-1">1</a></sup>.</p>
 <p>When <a href="/2026/02/20/five-days-with-copilot.html">I started the experiment that is
 BlogMore</a>, I very quickly <a href="https://github.com/davep/blogmore/pull/100" rel="noopener noreferrer" target="_blank">hashed
 out some ideas on how it might generate some
@@ -264,9 +336,9 @@ background while I get on with my actual day makes a lot of sense.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:150-1">
+<li id="fn:151-1">
 <p>Although I've made a point of doing it for almost every one of my
-recent <a href="/tag/textual.html">Textual</a>-based projects.&#160;<a class="footnote-backref" href="#fnref:150-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+recent <a href="/tag/textual.html">Textual</a>-based projects.&#160;<a class="footnote-backref" href="#fnref:151-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -1135,62 +1207,6 @@ in the browser, and rebuilding it every time I save a change.&#160;<a class="foo
 </li>
 </ol>
 </div>
-    </div>
-    <div class="tags">
-        <a href="/tag/ai.html" class="tag">AI</a>
-        <a href="/tag/blogging.html" class="tag">Blogging</a>
-        <a href="/tag/blogmore.html" class="tag">BlogMore</a>
-        <a href="/tag/copilot.html" class="tag">Copilot</a>
-        <a href="/tag/github.html" class="tag">GitHub</a>
-        <a href="/tag/llm.html" class="tag">LLM</a>
-        <a href="/tag/python.html" class="tag">Python</a>
-    </div>
-</article>
-
-    <article class="post-summary">
-    <h2><a href="/2026/02/19/a-new-engine.html">A new engine</a></h2>
-    <time datetime="2026-02-19T19:20:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/02/">02</a>-<a href="/2026/02/19/">19</a> 19:20:00 UTC</time>
-    <div class="reading-time">2 min read</div>
-    <div class="category">
-        <a href="/category/meta.html" class="category-link">Meta</a>
-    </div>
-    <div class="post-content">
-        <p>For <a href="/2023/07/05/the-switch-has-been-made.html">about 2 and a half years
-now</a> this blog has been built
-with <a href="https://getpelican.com" rel="noopener noreferrer" target="_blank">Pelican</a>. For the most part I've enjoyed using
-it, it's been easy enough to work with, although not exciting to work with
-(which I think is a positive thing to say about a static site generator).</p>
-<p>There were, however, a couple or so things I didn't like about the layout I
-was getting out of it. One issue was the archive, which was a pretty boring
-list of titles of all the posts on the site. It would have been nice to have
-them broken down by date or something, at least.</p>
-<p>Of course, there are lots of themes, and it also uses templates, so I could
-probably have tweaked it "just so"; but every time I started to look into it
-I found myself wanting to "fix" the issue by building my own engine from
-scratch.</p>
-<p>Thankfully, every time that happened, I'd come to my senses and go off and
-work on some other fun personal project. Until earlier this week, that was.</p>
-<p>The thing is... I've been looking for a project where I could dive into the
-world of "AI coding" and "Agents" and all that nonsense. Not because I want
-to abandon the absolute thrill and joy I still get from writing actual code
-as a human, but because I want to understand things from the point of view
-of people who champion these tools.</p>
-<p>The only way I'm going to have an informed opinion is to get informed; the
-only way to get informed is to try this stuff out.</p>
-<p>So, here I am, with my blog now migrated over to
-<a href="https://blogmore.davep.dev" rel="noopener noreferrer" target="_blank">BlogMore</a>; a project that gives me a
-blog-focused static site generator that I 100% drove the development of, but
-for which I wrote almost none of the code.</p>
-<p>At the moment it's working out well, as a generator. I'm happy with how it
-works, I'm happy with what it generates. I also think it's 100%
-backwards-compatible when it comes to URLs and feeds and so on. If you do
-see anything odd happening, if you do see anything that looks broken, <a href="https://github.com/davep/blogmore/discussions/categories/q-a" rel="noopener noreferrer" target="_blank">I'd
-love to hear about
-it</a>.</p>
-<p>As for this being a "100% AI" project, and how I found that process and how
-I feel about the implications and the results... <a href="/2026/02/20/five-days-with-copilot.html">that's a blog post to
-come</a>.</p>
-<p>I took lots of notes.</p>
     </div>
     <div class="tags">
         <a href="/tag/ai.html" class="tag">AI</a>
