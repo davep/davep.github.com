@@ -8,7 +8,48 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 11 Mar 2026 16:53:09 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 11 Mar 2026 20:41:01 +0000</lastBuildDate>
+    <item>
+      <title>BlogMore v1.11.0</title>
+      <link>https://blog.davep.org/2026/03/11/blogmore-1-11-0.html</link>
+      <description>&lt;p&gt;I was going to call this one "Yet more BlogMore" but I think, even after two
+posts with that naming scheme, the "...more BlogMore" thing has had its day.
+But here I am: another day, another wee change to the blogging engine I'm
+building as an experiment with developing using AI.&lt;/p&gt;
+&lt;p&gt;Just a couple of simple changes in this release. The first comes from the
+fact that I was updating my blog to include more of the "socials" icons (the
+ones you'll see towards the bottom of the sidebar if you're on a wide enough
+display, or in the collapsible header if not) and when I deployed some were
+missing. Which, after a moment of puzzling, made sense.&lt;/p&gt;
+&lt;p&gt;See: I made a change a while back such that &lt;a href="https://github.com/davep/blogmore/pull/155" rel="noopener noreferrer" target="_blank"&gt;I stopped using the full
+FontAwesome stylesheet, and instead only used a specially-built
+subset&lt;/a&gt;. This is handy in that
+it really reduces how much data goes into a page. But the downside, of
+course, is the browser will cache this file; so if you then add more
+"brands" to the list their icons will be missing until the cached version of
+the old generation of the CSS file goes stale.&lt;/p&gt;
+&lt;p&gt;So in this release &lt;a href="https://github.com/davep/blogmore/pull/253" rel="noopener noreferrer" target="_blank"&gt;I've added a generation-based cache
+buster&lt;/a&gt;; it's just the simple
+&lt;code&gt;?v=thing&lt;/code&gt; approach but it should work fine for what I need here.&lt;/p&gt;
+&lt;p&gt;The other change is &lt;a href="https://github.com/davep/blogmore/pull/252" rel="noopener noreferrer" target="_blank"&gt;I've added the generated FontAwesome CSS file to the
+list of files that get optionally minified at generation
+time&lt;/a&gt;. While it's not a massive
+change in terms of the total amount of data that gets pulled down, every
+little helps.&lt;/p&gt;
+&lt;p&gt;I feel like, at this point, I've managed to add everything I could possibly
+want from this little static site generator; yet somehow each day I have a
+new idea and off I go again.&lt;/p&gt;
+&lt;p&gt;It'll be finished soon. I'm sure.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/03/11/blogmore-1-11-0.html</guid>
+      <category>Coding</category>
+      <category>Python</category>
+      <category>Blogging</category>
+      <category>AI</category>
+      <category>LLM</category>
+      <category>Copilot</category>
+      <category>BlogMore</category>
+      <pubDate>Wed, 11 Mar 2026 20:39:00 +0000</pubDate>
+    </item>
     <item>
       <title>Even more BlogMore</title>
       <link>https://blog.davep.org/2026/03/10/even-more-blogmore.html</link>
@@ -430,7 +471,7 @@ last.&amp;#160;&lt;a class="footnote-backref" href="#fnref:135-2" title="Jump ba
 enjoy. I want documentation to read well, I want documentation to be useful,
 I want documentation to be accurate. I also want there to be documentation
 at all and sometimes the other parts mean it doesn't get done for FOSS
-projects&lt;sup id="fnref:151-1"&gt;&lt;a class="footnote-ref" href="#fn:151-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+projects&lt;sup id="fnref:152-1"&gt;&lt;a class="footnote-ref" href="#fn:152-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;When &lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;I started the experiment that is
 BlogMore&lt;/a&gt;, I very quickly &lt;a href="https://github.com/davep/blogmore/pull/100" rel="noopener noreferrer" target="_blank"&gt;hashed
 out some ideas on how it might generate some
@@ -456,9 +497,9 @@ background while I get on with my actual day makes a lot of sense.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:151-1"&gt;
+&lt;li id="fn:152-1"&gt;
 &lt;p&gt;Although I've made a point of doing it for almost every one of my
-recent &lt;a href="https://blog.davep.org/tag/textual.html"&gt;Textual&lt;/a&gt;-based projects.&amp;#160;&lt;a class="footnote-backref" href="#fnref:151-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+recent &lt;a href="https://blog.davep.org/tag/textual.html"&gt;Textual&lt;/a&gt;-based projects.&amp;#160;&lt;a class="footnote-backref" href="#fnref:152-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -839,7 +880,7 @@ a solution for some sort of problem. I noticed this on and off as I watched
 the agent's chat, as it worked away.&lt;/p&gt;
 &lt;p&gt;One example I enjoyed was when it was trying to add a new dependency to
 &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;. For reasons I should probably try
-and understand&lt;sup id="fnref:149-1"&gt;&lt;a class="footnote-ref" href="#fn:149-1"&gt;1&lt;/a&gt;&lt;/sup&gt; it knew it should be using &lt;code&gt;uv&lt;/code&gt; to add a dependency and
+and understand&lt;sup id="fnref:150-1"&gt;&lt;a class="footnote-ref" href="#fn:150-1"&gt;1&lt;/a&gt;&lt;/sup&gt; it knew it should be using &lt;code&gt;uv&lt;/code&gt; to add a dependency and
 it knew how to use it to update the lock file, but it didn't have &lt;code&gt;uv&lt;/code&gt; to
 hand:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -947,8 +988,8 @@ moment it's a good source of coding comedy.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:149-1"&gt;
-&lt;p&gt;Presumably there's things I can be doing to make its life easier.&amp;#160;&lt;a class="footnote-backref" href="#fnref:149-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:150-1"&gt;
+&lt;p&gt;Presumably there's things I can be doing to make its life easier.&amp;#160;&lt;a class="footnote-backref" href="#fnref:150-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1577,7 +1618,7 @@ spoke to me enough that I jotted it down and kept coming back to it and
 thinking about it. It was a phrase I couldn't get out of my head.&lt;/p&gt;
 &lt;p&gt;Around the same time I was also doing a lot of thinking about, and
 note-writing about, code reviews. Although I've been working in software
-development&lt;sup id="fnref:152-1"&gt;&lt;a class="footnote-ref" href="#fn:152-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for a few decades now (I started in July 1989), I was quite
+development&lt;sup id="fnref:153-1"&gt;&lt;a class="footnote-ref" href="#fn:153-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for a few decades now (I started in July 1989), I was quite
 late to the whole process of code review -- at least in the way we talk
 about it today. This mostly comes down to the fact that for a lot of my time
 I either worked in very small companies or I was the only developer around.&lt;/p&gt;
@@ -1697,9 +1738,9 @@ that thrive.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:152-1"&gt;
+&lt;li id="fn:153-1"&gt;
 &lt;p&gt;Or software engineering, if you prefer, but that's a whole other blog
-post I'll never get round to writing one day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:152-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+post I'll never get round to writing one day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:153-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1710,44 +1751,6 @@ post I'll never get round to writing one day.&amp;#160;&lt;a class="footnote-bac
       <category>leadership</category>
       <category>Death Stranding</category>
       <pubDate>Wed, 04 Feb 2026 13:50:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>TIL - uvx.sh</title>
-      <link>https://blog.davep.org/2026/01/27/til-uvx-sh.html</link>
-      <description>&lt;p&gt;In the past few months, like a lot of folk in the Python world, I've been
-won over by &lt;a href="https://docs.astral.sh/uv/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt;. When it comes to managing my
-own projects my journey over the past few years as been
-&lt;a href="https://pipenv.pypa.io/en/latest/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;pipenv&lt;/code&gt;&lt;/a&gt;, then
-&lt;a href="https://rye.astral.sh" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;rye&lt;/code&gt;&lt;/a&gt;, and then when rye was killed off I finally
-swapped to &lt;code&gt;uv&lt;/code&gt; (later than I should have, I realised in hindsight). At each
-step I've found each tool cleaner, easier to work with and more
-feature-rich.&lt;/p&gt;
-&lt;p&gt;There's no doubt in my mind that &lt;code&gt;uv&lt;/code&gt; has done the most work to make
-installing Python-based tools (or at least PyPI-based tools) &lt;a href="https://docs.astral.sh/uv/guides/tools/" rel="noopener noreferrer" target="_blank"&gt;as
-friction-free an experience as
-possible&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Now I've discovered &lt;a href="https://uvx.sh" rel="noopener noreferrer" target="_blank"&gt;uvx.sh&lt;/a&gt;. The thing with &lt;code&gt;uv&lt;/code&gt; is the
-person installing your application first needs to get and install &lt;code&gt;uv&lt;/code&gt;; this
-site removes that friction. Now if someone wants to install
-&lt;a href="https://obs2nlm.davep.dev" rel="noopener noreferrer" target="_blank"&gt;obs2nlm&lt;/a&gt; (for example) they should be able to
-just do:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-LsSf&lt;span class="w"&gt; &lt;/span&gt;uvx.sh/obs2nlm/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;and away they go (assuming they have &lt;a href="https://curl.se" rel="noopener noreferrer" target="_blank"&gt;curl&lt;/a&gt; installed,
-which is generally going to be far more likely than having &lt;code&gt;uv&lt;/code&gt; installed).&lt;/p&gt;
-&lt;p&gt;Of course, there are &lt;a href="https://www.djm.org.uk/posts/protect-yourself-from-non-obvious-dangers-curl-url-pipe-sh/" rel="noopener noreferrer" target="_blank"&gt;the usual caveats and
-concerns&lt;/a&gt;
-about the &lt;em&gt;"just pipe this stuff via &lt;code&gt;sh&lt;/code&gt; trust me bro"&lt;/em&gt; approach, but if
-you are comfortable with suggesting this kind of install method it looks
-worth adding this to an application's installation documentation.&lt;/p&gt;
-&lt;p&gt;I think I'm going to start mentioning it as an option.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/01/27/til-uvx-sh.html</guid>
-      <category>TIL</category>
-      <category>Python</category>
-      <category>PyPI</category>
-      <category>coding</category>
-      <pubDate>Tue, 27 Jan 2026 16:03:00 +0000</pubDate>
     </item>
   </channel>
 </rss>

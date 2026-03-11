@@ -23,8 +23,8 @@
     <meta name="msapplication-config" content="/icons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/fontawesome.min.css?v=1773247986">
-    <link rel="stylesheet" href="/static/styles.min.css?v=1773247986">
+    <link rel="stylesheet" href="/static/fontawesome.min.css?v=1773261656">
+    <link rel="stylesheet" href="/static/styles.min.css?v=1773261656">
     <link rel="alternate" type="application/rss+xml" title="davep - RSS Feed" href="https://blog.davep.org/feed.xml">
     <link rel="alternate" type="application/atom+xml" title="davep - Atom Feed" href="https://blog.davep.org/feeds/all.atom.xml">
     <meta name="author" content="Dave Pearson">
@@ -169,6 +169,44 @@
 
     <a href="/page/7.html" class="pagination-link pagination-next">Next →</a>
 </nav>
+
+    <article class="post-summary">
+    <h2><a href="/2024/01/11/textual-countdown.html">textual-countdown</a></h2>
+    <time datetime="2024-01-11T22:52:00+01:00"><a href="/2024/">2024</a>-<a href="/2024/01/">01</a>-<a href="/2024/01/11/">11</a> 22:52:00 UTC+01:00</time>
+    <div class="reading-time">1 min read</div>
+    <div class="category">
+        <a href="/category/python.html" class="category-link">Python</a>
+    </div>
+    <div class="post-content">
+        <p>The idea for this one popped into my head while on the bus back from Textual
+Towers this evening. So after dinner and some nonsense on TV I had to visit
+my desk and do a quick hack.</p>
+<p>This is <a href="https://github.com/davep/textual-countdown" rel="noopener noreferrer" target="_blank"><code>textual-countdown</code></a>, a
+subtle but I think useful countdown widget for Textual applications.</p>
+<p><img alt="Textual Countdown in action" src="/attachments/2024/01/11/textual-countdown.gif" /></p>
+<p>The idea is that you compose it somewhere into your screen, and when you
+start the countdown the bar highlights and then starts to shrink down to
+"nothing" in the middle of its display. When the countdown ends a message is
+posted so you can then perform the task that was being waited for in an
+event handler.</p>
+<p>Not really a novel thing, I've seen this kind of thing before on the web;
+I'm sure we all have. I just thought it would be a fun idea for Textual
+applications too.</p>
+<p>I envisage using this where, perhaps, an application needs to wait for an
+API-visiting cooldown period, or perhaps as a subtle countdown for a
+question in a quiz; something like that.</p>
+<p>Anyway, if this sounds like it's something useful for your Textual
+applications, <a href="https://pypi.org/project/textual-countdown/" rel="noopener noreferrer" target="_blank">it's now available from
+PyPi</a> and, of course, the
+source is over <a href="https://github.com/davep/textual-countdown" rel="noopener noreferrer" target="_blank">on GitHub</a>.</p>
+    </div>
+    <div class="tags">
+        <a href="/tag/coding.html" class="tag">coding</a>
+        <a href="/tag/pypi.html" class="tag">PyPi</a>
+        <a href="/tag/python.html" class="tag">Python</a>
+        <a href="/tag/textual.html" class="tag">Textual</a>
+    </div>
+</article>
 
     <article class="post-summary">
     <h2><a href="/2024/01/07/oshit-0-2-0.html">Orange Site Hit v0.2.0</a></h2>
@@ -777,61 +815,6 @@ be something for me to explore in terms of keeping a record of my progress.</p>
     <div class="tags">
         <a href="/tag/guitar.html" class="tag">guitar</a>
         <a href="/tag/music.html" class="tag">music</a>
-    </div>
-</article>
-
-    <article class="post-summary">
-    <h2><a href="/2023/10/31/evolve-words.html">Evolve Words</a></h2>
-    <time datetime="2023-10-31T21:39:00+01:00"><a href="/2023/">2023</a>-<a href="/2023/10/">10</a>-<a href="/2023/10/31/">31</a> 21:39:00 UTC+01:00</time>
-    <div class="reading-time">2 min read</div>
-    <div class="category">
-        <a href="/category/coding.html" class="category-link">Coding</a>
-    </div>
-    <div class="post-content">
-        <p>This follows on from my <a href="/2023/10/26/visual-selection.html">previous post</a>.
-If you've not read that, it's worth having a dive in first for the
-background.</p>
-<p>The Ruby code I mention, that was written back in 2008, was actually a pair
-of scripts. The first one, called <code>selection</code>, did what <code>visual-selection</code>
-does, only <code>visual-selection</code> does it with a nice TUI interface: it takes a
-random collection of letters and symbols and evolves them into a target
-phrase.</p>
-<p>As covered before: I don't remember all of the details of the conversation
-that was going on at the time, but I do seem to remember something along the
-lines of <em>"yes, but you start out and end up with something the same
-length"</em> and <em>"nothing more complex is made"</em> (let's gloss over the whole
-"complex" thing for now... well okay let's just gloss over it, end of story;
-this is just a fun coding exercise).</p>
-<p>What I do remember is that the seed of an idea was planted. Fine: how about
-I start off with one small word, and using a list of English words as the
-"fitness landscape" that the mutations had to survive in, mutate a
-population over and over and see what happens. Would I "randomly" create
-known words, with fewer letters, with the same letters, with more letters?</p>
-<p>So this version of the code randomly did three forms of mutation: it would
-randomly flip a letter, or randomly delete a letter, or randomly insert a
-random letter. It would do this over and over and eliminate words that
-aren't in the original list (the simple form of selecting for survival
-within the landscape).</p>
-<p>Like I said last time: never going to convince anyone of anything, but fun
-to write some code.</p>
-<p>This version became <code>selection2</code>.</p>
-<p>So, having turned <code>selection</code> into a TUI application with Textual, I <em>had</em>
-to do the same with this code...</p>
-<p><img alt="Evolve Words" src="/attachments/2023/10/31/evolve-words.png#centre" /></p>
-<p>As before, because it's fun to do so, this leans heavily on the <a href="https://textual.textualize.io/guide/workers/" rel="noopener noreferrer" target="_blank">worker
-API</a> and
-<a href="https://textual.textualize.io/blog/2023/10/04/announcing-textual-plotext/" rel="noopener noreferrer" target="_blank"><code>textual-plotext</code></a>.</p>
-<p>If you want to check out the app itself there's <a href="https://github.com/davep/evolve-words" rel="noopener noreferrer" target="_blank">a GitHub
-repo</a> and it can also be
-installed <a href="https://pypi.org/project/evolve-words/" rel="noopener noreferrer" target="_blank">from PyPi</a> using
-<code>pipx</code>.</p>
-    </div>
-    <div class="tags">
-        <a href="/tag/biology.html" class="tag">biology</a>
-        <a href="/tag/evolution.html" class="tag">evolution</a>
-        <a href="/tag/python.html" class="tag">Python</a>
-        <a href="/tag/terminal.html" class="tag">terminal</a>
-        <a href="/tag/textual.html" class="tag">textual</a>
     </div>
 </article>
 

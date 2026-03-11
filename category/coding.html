@@ -23,8 +23,8 @@
     <meta name="msapplication-config" content="/icons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/fontawesome.min.css?v=1773247986">
-    <link rel="stylesheet" href="/static/styles.min.css?v=1773247986">
+    <link rel="stylesheet" href="/static/fontawesome.min.css?v=1773261656">
+    <link rel="stylesheet" href="/static/styles.min.css?v=1773261656">
 <link rel="alternate" type="application/rss+xml" title="davep - Coding - RSS Feed" href="https://blog.davep.org/feeds/coding.rss.xml">
 <link rel="alternate" type="application/atom+xml" title="davep - Coding - Atom Feed" href="https://blog.davep.org/feeds/coding.atom.xml">
     <meta name="author" content="Dave Pearson">
@@ -159,6 +159,50 @@
     <a href="/category/coding/2.html" class="pagination-link pagination-next">Next →</a>
 </nav>
 
+
+    <article class="post-summary">
+    <h2><a href="/2026/03/11/blogmore-1-11-0.html">BlogMore v1.11.0</a></h2>
+    <time datetime="2026-03-11T20:39:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/11/">11</a> 20:39:00 UTC</time>
+    <div class="reading-time">2 min read</div>
+    <div class="post-content">
+        <p>I was going to call this one "Yet more BlogMore" but I think, even after two
+posts with that naming scheme, the "...more BlogMore" thing has had its day.
+But here I am: another day, another wee change to the blogging engine I'm
+building as an experiment with developing using AI.</p>
+<p>Just a couple of simple changes in this release. The first comes from the
+fact that I was updating my blog to include more of the "socials" icons (the
+ones you'll see towards the bottom of the sidebar if you're on a wide enough
+display, or in the collapsible header if not) and when I deployed some were
+missing. Which, after a moment of puzzling, made sense.</p>
+<p>See: I made a change a while back such that <a href="https://github.com/davep/blogmore/pull/155" rel="noopener noreferrer" target="_blank">I stopped using the full
+FontAwesome stylesheet, and instead only used a specially-built
+subset</a>. This is handy in that
+it really reduces how much data goes into a page. But the downside, of
+course, is the browser will cache this file; so if you then add more
+"brands" to the list their icons will be missing until the cached version of
+the old generation of the CSS file goes stale.</p>
+<p>So in this release <a href="https://github.com/davep/blogmore/pull/253" rel="noopener noreferrer" target="_blank">I've added a generation-based cache
+buster</a>; it's just the simple
+<code>?v=thing</code> approach but it should work fine for what I need here.</p>
+<p>The other change is <a href="https://github.com/davep/blogmore/pull/252" rel="noopener noreferrer" target="_blank">I've added the generated FontAwesome CSS file to the
+list of files that get optionally minified at generation
+time</a>. While it's not a massive
+change in terms of the total amount of data that gets pulled down, every
+little helps.</p>
+<p>I feel like, at this point, I've managed to add everything I could possibly
+want from this little static site generator; yet somehow each day I have a
+new idea and off I go again.</p>
+<p>It'll be finished soon. I'm sure.</p>
+    </div>
+    <div class="tags">
+        <a href="/tag/ai.html" class="tag">AI</a>
+        <a href="/tag/blogging.html" class="tag">Blogging</a>
+        <a href="/tag/blogmore.html" class="tag">BlogMore</a>
+        <a href="/tag/copilot.html" class="tag">Copilot</a>
+        <a href="/tag/llm.html" class="tag">LLM</a>
+        <a href="/tag/python.html" class="tag">Python</a>
+    </div>
+</article>
 
     <article class="post-summary">
     <h2><a href="/2026/03/10/even-more-blogmore.html">Even more BlogMore</a></h2>
@@ -752,7 +796,7 @@ spoke to me enough that I jotted it down and kept coming back to it and
 thinking about it. It was a phrase I couldn't get out of my head.</p>
 <p>Around the same time I was also doing a lot of thinking about, and
 note-writing about, code reviews. Although I've been working in software
-development<sup id="fnref:152-1"><a class="footnote-ref" href="#fn:152-1">1</a></sup> for a few decades now (I started in July 1989), I was quite
+development<sup id="fnref:153-1"><a class="footnote-ref" href="#fn:153-1">1</a></sup> for a few decades now (I started in July 1989), I was quite
 late to the whole process of code review -- at least in the way we talk
 about it today. This mostly comes down to the fact that for a lot of my time
 I either worked in very small companies or I was the only developer around.</p>
@@ -872,9 +916,9 @@ that thrive.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:152-1">
+<li id="fn:153-1">
 <p>Or software engineering, if you prefer, but that's a whole other blog
-post I'll never get round to writing one day.&#160;<a class="footnote-backref" href="#fnref:152-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+post I'll never get round to writing one day.&#160;<a class="footnote-backref" href="#fnref:153-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -946,70 +990,6 @@ Norton Guide files into sources to throw at NotebookLM or similar tools:
         <a href="/tag/ai.html" class="tag">AI</a>
         <a href="/tag/llm.html" class="tag">LLM</a>
         <a href="/tag/norton-guide.html" class="tag">Norton Guide</a>
-        <a href="/tag/python.html" class="tag">Python</a>
-    </div>
-</article>
-
-    <article class="post-summary">
-    <h2><a href="/2026/01/10/obs2nlm.html">obs2nlm - Feed NotebookLM an Obsidian Vault</a></h2>
-    <time datetime="2026-01-10T11:18:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/01/">01</a>-<a href="/2026/01/10/">10</a> 11:18:00 UTC</time>
-    <div class="reading-time">3 min read</div>
-    <div class="post-content">
-        <p>I'm sure I've mentioned a couple of times before that I've become quite the
-fan of <a href="https://obsidian.md" rel="noopener noreferrer" target="_blank">Obsidian</a>. For the past few years, at any given
-point, I've had a couple of vaults on the go. Generally I find such vaults a
-really useful place to record things I'd otherwise forget, and of course as
-a place to go back and look things up.</p>
-<p>But... even then, it's easy enough to forget what you might have recorded
-and know that you can even go back and look things up. Also I tend to find
-that I can't quite figure out a good way of getting a good overview of what
-I've recorded, over time.</p>
-<p>Meanwhile: I've been playing around with Google's
-<a href="https://notebooklm.google.com" rel="noopener noreferrer" target="_blank">NotebookLM</a> as a tool to help research and
-understand various topics. After doing this with my recent winter break
-coding project (more on that in the future) I realised I really should get
-serious about taking this approach with my Obsidian Vaults.</p>
-<p>I'm sure this is far from novel, I'm sure lots of people have done similar
-things already; in fact I'd quickly dabbled with the idea <a href="https://github.com/davep/vault2source" rel="noopener noreferrer" target="_blank">a few months
-ago</a>, had a bit of a laugh at some of
-the things the "studio" made of a vault, and promptly forgot about it.</p>
-<p>This time though I got to thinking that I should try and take it a little
-more seriously.</p>
-<p>And so <a href="https://obs2nlm.davep.dev" rel="noopener noreferrer" target="_blank">obs2nlm</a> was born.</p>
-<p>The idea is simple enough: enumerate all the Markdown files in the vault,
-wrap them in boundary markers, add some instructions to the start of the
-file to help NotebookLM "comprehend" the content better, throw in a table of
-contents to give clues to the structure of the vault, and see what happens
-when you use the resulting file as a source.</p>
-<p>So far it's actually turning out to be really helpful. I've been using it to
-get summaries regarding my work over the past 18 months or so and it's
-helped me to consolidate my thoughts on all sorts of issues and subjects.</p>
-<p>It's not perfect, however. I've had it "hallucinate" some stuff when making
-things in the studio (most notably in the slide deck facility); for me
-though I find this an acceptable use of an LLM. I <em>know</em> the subject it's
-talking to me about and I know when it's making stuff up. This, in turn,
-makes for a useful lesson in how and when to not trust the output of a tool
-like this.</p>
-<p>Having tested it out with a currently-active vault, I'm now interested to
-find out what it'll make of some of the archived vaults I have. Back in 2024
-<a href="/2024/11/04/markdown-all-the-things.html">I wrote a couple or so tools for making vaults from other
-things</a> and so I have a vault of a
-journal I kept in <a href="https://journey.cloud" rel="noopener noreferrer" target="_blank">Journey</a> for a number of years, a
-vault of a journal I'd kept before then in <a href="https://evernote.com" rel="noopener noreferrer" target="_blank">Evernote</a>,
-and I also have a vault of all the tweets I wrote before I abandoned
-Twitter. I also have a vault that was dedicated to recording the daily
-events and thoughts of my time working at
-<a href="https://www.textualize.io/" rel="noopener noreferrer" target="_blank">Textualize</a>. It's going to be fun seeing what
-NotebookLM makes of each of those; especially the last one.</p>
-<p>Anyway, if Obsidian is your thing, and if you are dabbling with or fancy
-dabbling with NotebookLM, perhaps
-<a href="https://github.com/davep/obs2nlm" rel="noopener noreferrer" target="_blank">obs2nlm</a> will be handy for you.</p>
-    </div>
-    <div class="tags">
-        <a href="/tag/ai.html" class="tag">AI</a>
-        <a href="/tag/journal.html" class="tag">journal</a>
-        <a href="/tag/llm.html" class="tag">LLM</a>
-        <a href="/tag/obsidian.html" class="tag">Obsidian</a>
         <a href="/tag/python.html" class="tag">Python</a>
     </div>
 </article>
