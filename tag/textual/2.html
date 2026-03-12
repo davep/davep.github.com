@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="blogmore v1.11.0">
+    <meta name="generator" content="blogmore v1.12.0">
 <link rel="canonical" href="https://blog.davep.org/tag/textual/2.html">    <title>Tag: textual - davep</title>
     <link rel="icon" href="/icons/favicon.ico">
     <!-- Shortcut icon for backward compatibility -->
@@ -23,8 +23,8 @@
     <meta name="msapplication-config" content="/icons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/fontawesome.min.css?v=1773261656">
-    <link rel="stylesheet" href="/static/styles.min.css?v=1773261656">
+    <link rel="stylesheet" href="/static/fontawesome.min.css?v=1773332295">
+    <link rel="stylesheet" href="/static/styles.min.css?v=1773332295">
     <link rel="alternate" type="application/rss+xml" title="davep - RSS Feed" href="https://blog.davep.org/feed.xml">
     <link rel="alternate" type="application/atom+xml" title="davep - Atom Feed" href="https://blog.davep.org/feeds/all.atom.xml">
     <meta name="author" content="Dave Pearson">
@@ -530,7 +530,7 @@ saved in Pinboard for a while now, and every time I look at it I think
 <em>"this is a lot of faff, maybe later"</em>. Today was that "later".</p>
 <p>As it turned out, it was <em>way</em> easier than I first realised. The evolution
 of today pretty much went like this:</p>
-<h2 id="deciding-to-use-a-single-repository-as-the-tap">Deciding to use a single repository as the "tap"</h2>
+<h2 id="deciding-to-use-a-single-repository-as-the-tap">Deciding to use a single repository as the "tap"<a aria-label="Link to this heading" class="heading-anchor" href="#deciding-to-use-a-single-repository-as-the-tap">¶</a></h2>
 <p>The blog post above seemed to suggest that for every application repository
 you want a tap for, you probably want a parallel <code>homebrew-</code>-prefixed
 repository. This in turn would suggest that every time someone wants to
@@ -545,7 +545,7 @@ via homebrew, that come from davep. To add the tap it's simply:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>davep/homebrew
 </code></pre></div>
 
-<h2 id="ensuring-that-all-my-applications-and-libraries-publish-source">Ensuring that all my applications and libraries publish source</h2>
+<h2 id="ensuring-that-all-my-applications-and-libraries-publish-source">Ensuring that all my applications and libraries publish source<a aria-label="Link to this heading" class="heading-anchor" href="#ensuring-that-all-my-applications-and-libraries-publish-source">¶</a></h2>
 <p>Although it seems that it might be (possibly, maybe, perhaps, who can tell?)
 deprecated, it looked like
 <a href="https://github.com/tdsmith/homebrew-pypi-poet" rel="noopener noreferrer" target="_blank"><code>homebrew-pypi-poet</code></a> was a
@@ -556,7 +556,7 @@ more than never having bothered to make it happen, the source of my
 libraries and applications wasn't been uploaded to PyPI when I published.</p>
 <p>So I went through some of my repositories and fixed that, making patch
 releases as I went.</p>
-<h2 id="making-a-makefile-to-let-me-be-lazy">Making a <code>Makefile</code> to let me be lazy</h2>
+<h2 id="making-a-makefile-to-let-me-be-lazy">Making a <code>Makefile</code> to let me be lazy<a aria-label="Link to this heading" class="heading-anchor" href="#making-a-makefile-to-let-me-be-lazy">¶</a></h2>
 <p>The next thing to do was to figure out the most lazy way of building the
 formula files. From what I could see the main steps to making all of this
 work were:</p>
@@ -584,7 +584,7 @@ have a rule for the package itself that depended on the above, like this:</p>
 <span class="w">        </span>pipenv<span class="w"> </span>run<span class="w"> </span>poet<span class="w"> </span>-f<span class="w"> </span>oshit<span class="w"> </span>&gt;<span class="w"> </span>Formula/oshit.rb
 </code></pre></div>
 
-<h2 id="fixing-the-package-description">Fixing the package description</h2>
+<h2 id="fixing-the-package-description">Fixing the package description<a aria-label="Link to this heading" class="heading-anchor" href="#fixing-the-package-description">¶</a></h2>
 <p>The above was great, and worked really well. But there was one issue that I
 could see: the resulting formula file always had this <code>desc</code> inside it:</p>
 <div class="highlight"><pre><span></span><code><span class="n">desc</span><span class="w"> </span><span class="s2">&quot;Shiny new formula&quot;</span>
@@ -597,7 +597,7 @@ guess, with this sort of thing:</p>
 <div class="highlight"><pre><span></span><code>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;s/Shiny new formula/The actual text I want/&#39;</span><span class="w"> </span>Formula/coolapp.rb
 </code></pre></div>
 
-<h2 id="the-result">The result</h2>
+<h2 id="the-result">The result<a aria-label="Link to this heading" class="heading-anchor" href="#the-result">¶</a></h2>
 <p>The result of all of this is that I now have <a href="https://github.com/davep/homebrew-homebrew" rel="noopener noreferrer" target="_blank">a repository that I or anyone
 else can use as a tap</a> to be
 able to install my stuff using the <code>brew</code> command. So now if you want a
@@ -807,7 +807,7 @@ lot of tweaking over the next few weeks, probably even months.</p>
             </main>
 
             <footer>
-                <p>Generated with <a href="https://github.com/davep/blogmore" target="_blank" rel="noopener noreferrer">Blogmore</a></p>
+                <p>Generated with <a href="https://blogmore.davep.dev/" target="_blank" rel="noopener noreferrer">BlogMore</a> v1.12.0</p>
             </footer>
         </div>
     </div>
