@@ -23,8 +23,8 @@
     <meta name="msapplication-config" content="/icons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/fontawesome.min.css?v=1773351525">
-    <link rel="stylesheet" href="/static/styles.min.css?v=1773351525">
+    <link rel="stylesheet" href="/static/fontawesome.min.css?v=1773428968">
+    <link rel="stylesheet" href="/static/styles.min.css?v=1773428968">
     <link rel="alternate" type="application/rss+xml" title="davep - RSS Feed" href="https://blog.davep.org/feed.xml">
     <link rel="alternate" type="application/atom+xml" title="davep - Atom Feed" href="https://blog.davep.org/feeds/all.atom.xml">
     <meta name="author" content="Dave Pearson">
@@ -157,6 +157,56 @@
     <a href="/2026/page/2.html" class="pagination-link pagination-next">Next →</a>
 </nav>
 
+
+    <article class="post-summary">
+    <h2><a href="/2026/03/13/blogmore-1-13-0.html">BlogMore v1.13.0</a></h2>
+    <time datetime="2026-03-13T19:07:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/13/">13</a> 19:07:00 UTC</time>
+    <div class="reading-time">1 min read</div>
+    <div class="category">
+        <a href="/category/coding.html" class="category-link">Coding</a>
+    </div>
+    <div class="post-content">
+        <p>I wasn't intending to make any changes to
+<a href="https://blogmore.davep.dev" rel="noopener noreferrer" target="_blank">BlogMore</a> today, but as luck would have it
+<a href="https://mastodon.me.uk/@andyc" rel="noopener noreferrer" target="_blank">@andyc</a> had <a href="https://github.com/davep/blogmore/issues/263" rel="noopener noreferrer" target="_blank">a feature
+request</a> which made sense and
+seemed easy enough to prompt for, <a href="https://github.com/davep/blogmore/pull/266" rel="noopener noreferrer" target="_blank">so I
+did</a>.</p>
+<p>So the change is this: if you happen to configure BlogMore such that the
+post URLs end up being something that ends in <code>index.html</code>, if you turn on
+<a href="https://blogmore.davep.dev/configuration/#clean_urls" rel="noopener noreferrer" target="_blank"><code>clean_urls</code></a>, all
+emitted URLs will leave off the <code>index.html</code>. The result of this is that a
+URL that would look like:</p>
+<blockquote>
+<p>https://blog.example.com/posts/my-first-post/index.html</p>
+</blockquote>
+<p>can then always look like:</p>
+<blockquote>
+<p>https://blog.example.com/posts/my-first-post/</p>
+</blockquote>
+<p>In other words: it gives you a way to have <a href="https://en.wikipedia.org/wiki/Clean_URL" rel="noopener noreferrer" target="_blank">clean
+URLs</a>.</p>
+<p>This is carried through all generated pages and the
+<a href="https://blogmore.davep.dev/building/#xml-sitemap" rel="noopener noreferrer" target="_blank">sitemap</a> too.</p>
+<p>It's not something I'd personally use for this blog (because it's been
+around long enough and has a specific URL layout that I want to keep
+working) but I can see it being useful for any future project, and of course
+I can see it being useful for anyone else wanting to use BlogMore.</p>
+<p>Another wee change is to make sure that the rebuild-on-change feature of the
+local test server always loads any new values set in the configuration file.
+While it was reacting to some properties changing, it wasn't reacting to
+all; so I <a href="https://github.com/davep/blogmore/issues/267" rel="noopener noreferrer" target="_blank">asked Copilot to check all the values and make sure all are
+handled</a>.</p>
+    </div>
+    <div class="tags">
+        <a href="/tag/ai.html" class="tag">AI</a>
+        <a href="/tag/blogging.html" class="tag">Blogging</a>
+        <a href="/tag/blogmore.html" class="tag">BlogMore</a>
+        <a href="/tag/copilot.html" class="tag">Copilot</a>
+        <a href="/tag/llm.html" class="tag">LLM</a>
+        <a href="/tag/python.html" class="tag">Python</a>
+    </div>
+</article>
 
     <article class="post-summary">
     <h2><a href="/2026/03/12/blogmore-1-12-0.html">BlogMore v1.12.0</a></h2>
@@ -541,7 +591,7 @@ ongoing experiment with <a href="/tag/copilot.html">GitHub Copilot</a>. Since <a
 release I wrote about</a> I've made a couple
 of cosmetic changes, and also addressed a couple of bugs.</p>
 <p>The first cosmetic change relates to how the blog appears on mobile
-devices<sup id="fnref:148-1"><a class="footnote-ref" href="#fn:148-1">1</a></sup>. In such a circumstance, before the change, the sidebar content
+devices<sup id="fnref:149-1"><a class="footnote-ref" href="#fn:149-1">1</a></sup>. In such a circumstance, before the change, the sidebar content
 would, by design, relocate to the top of the page. This made sense, it meant
 that the information was still available, but it also had the unfortunate
 effect of pushing the actual post content way down the screen, sometimes off
@@ -593,8 +643,8 @@ As I keep tinkering with BlogMore I'll be keeping this post in mind.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:148-1">
-<p>Okay fine any narrow viewport but you know what I mean!&#160;<a class="footnote-backref" href="#fnref:148-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn:149-1">
+<p>Okay fine any narrow viewport but you know what I mean!&#160;<a class="footnote-backref" href="#fnref:149-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -729,7 +779,7 @@ last.&#160;<a class="footnote-backref" href="#fnref:135-2" title="Jump back to f
 enjoy. I want documentation to read well, I want documentation to be useful,
 I want documentation to be accurate. I also want there to be documentation
 at all and sometimes the other parts mean it doesn't get done for FOSS
-projects<sup id="fnref:153-1"><a class="footnote-ref" href="#fn:153-1">1</a></sup>.</p>
+projects<sup id="fnref:154-1"><a class="footnote-ref" href="#fn:154-1">1</a></sup>.</p>
 <p>When <a href="/2026/02/20/five-days-with-copilot.html">I started the experiment that is
 BlogMore</a>, I very quickly <a href="https://github.com/davep/blogmore/pull/100" rel="noopener noreferrer" target="_blank">hashed
 out some ideas on how it might generate some
@@ -755,9 +805,9 @@ background while I get on with my actual day makes a lot of sense.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:153-1">
+<li id="fn:154-1">
 <p>Although I've made a point of doing it for almost every one of my
-recent <a href="/tag/textual.html">Textual</a>-based projects.&#160;<a class="footnote-backref" href="#fnref:153-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+recent <a href="/tag/textual.html">Textual</a>-based projects.&#160;<a class="footnote-backref" href="#fnref:154-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -768,90 +818,6 @@ recent <a href="/tag/textual.html">Textual</a>-based projects.&#160;<a class="fo
         <a href="/tag/blogmore.html" class="tag">BlogMore</a>
         <a href="/tag/copilot.html" class="tag">Copilot</a>
         <a href="/tag/github.html" class="tag">GitHub</a>
-        <a href="/tag/llm.html" class="tag">LLM</a>
-        <a href="/tag/python.html" class="tag">Python</a>
-    </div>
-</article>
-
-    <article class="post-summary">
-    <h2><a href="/2026/03/03/blogmore-1-5-0.html">BlogMore v1.5.0</a></h2>
-    <time datetime="2026-03-03T21:34:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/03/">03</a> 21:34:00 UTC</time>
-    <div class="reading-time">3 min read</div>
-    <div class="category">
-        <a href="/category/coding.html" class="category-link">Coding</a>
-    </div>
-    <div class="post-content">
-        <p>Since switching over on the <a href="/2026/02/19/a-new-engine.html">19th of last
-month</a> I've been making lots of changes to
-BlogMore. While there's been a good few bug fixes and QoL changes, I've also
-been adding new features that I've found myself wanting.</p>
-<p>Here's a list of some of the significant additions I've added in the last
-couple of weeks (and, yes, as per the experiment, <em>all</em> of these have been
-developed by me prompting GitHub Copilot):</p>
-<ul>
-<li>All parts of a date in a post's timestamp can be clicked to get to an
-  archive of that point in time.</li>
-<li>Added fully-client-side full text search (I'm finding this especially
-  useful).</li>
-<li>Added sitemap generation.</li>
-<li>Added a general fallback description for any page that doesn't have one.</li>
-<li>Added fallback keywords for any page that doesn't have any.</li>
-<li>Added author metadata to the header of all pages.</li>
-<li>Hugely optimised the use of FontAwesome.</li>
-<li>Made best possible use of all the usual <code>og:</code> type metadata in the <code>head</code>
-  of all pages.</li>
-<li>Added optional CSS minification, improving page load times.</li>
-<li>Added optional JavaScript minification, improving page load times.</li>
-<li>Where appropriate, all pages now have <code>rel="prev"</code> and <code>rel="next"</code> tags
-  in the <code>&lt;head&gt;</code>.</li>
-<li>Added a <code>rel="canonical"</code> tag to the <code>&lt;head&gt;</code> of all pages.</li>
-<li>Improved the style and workings of the pagination of all archive type
-  pages.</li>
-<li>Improved the cosmetics of the category and tag clouds.</li>
-<li>Improved how the first paragraph is discovered for a page or post, when
-  using it as the default description in the <code>&lt;head&gt;</code> of a page.</li>
-<li>Cleaned up the generated HTML so it's more compact.</li>
-<li>Added support for custom 404 pages.</li>
-</ul>
-<p>As I say, they're just the improvements I've made that have come to mind as
-I've used BlogMore. I've also done a lot of bug fixing too. You can read the
-full changelog <a href="https://blogmore.davep.dev/changelog/" rel="noopener noreferrer" target="_blank">over on the BlogMore
-website</a><sup id="fnref:139-1"><a class="footnote-ref" href="#fn:139-1">1</a></sup>.</p>
-<p>I <em>feel</em> that the pace of updates and additions has started to slow; I
-<em>think</em> I've now got more or less everything I wanted from this. I'm pretty
-sure I can do everything I ever bothered to do with Jekyll and Pelican, and
-I am enjoying "owning" the code such that, if I have an idea for something I
-want, it's easy enough to make it happen.</p>
-<p>I'm also pretty happy with how well the results perform. Despite the fact
-I'm not a web developer, and despite this blog being served by GitHub Pages
-(which, let's be honest, isn't the most speedy host), <a href="https://pagespeed.web.dev/" rel="noopener noreferrer" target="_blank">the
-measurements</a> for a single page in the blog look
-fairly good:</p>
-<p><img alt="Desktop" src="/attachments/2026/03/03/desktop-speeds.png" /></p>
-<p>That's measuring loading in a desktop context. Even measured as mobile
-(which I've tried to make work well too) it's not too shabby:</p>
-<p><img alt="Mobile" src="/attachments/2026/03/03/mobile-speeds.png" /></p>
-<p>I think I can rightfully be satisfied with those values, given this isn't
-normally my primary focus when it comes to software development.</p>
-<p>Anyway, if you like messing with static site generators, and one that is
-blog-centric sounds useful, and if you're not put off by the fact that this
-is <a href="/2026/02/20/five-days-with-copilot.html">a deliberate <em>"use GitHub Copilot"</em>
-experiment</a>, feel free to <a href="https://github.com/davep/blogmore" rel="noopener noreferrer" target="_blank">take a
-look</a>.</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:139-1">
-<p>Which, somewhat amusingly, is built with MkDocs.&#160;<a class="footnote-backref" href="#fnref:139-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
-    </div>
-    <div class="tags">
-        <a href="/tag/ai.html" class="tag">AI</a>
-        <a href="/tag/blogging.html" class="tag">Blogging</a>
-        <a href="/tag/blogmore.html" class="tag">BlogMore</a>
-        <a href="/tag/copilot.html" class="tag">Copilot</a>
         <a href="/tag/llm.html" class="tag">LLM</a>
         <a href="/tag/python.html" class="tag">Python</a>
     </div>

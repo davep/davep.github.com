@@ -23,8 +23,8 @@
     <meta name="msapplication-config" content="/icons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/fontawesome.min.css?v=1773351525">
-    <link rel="stylesheet" href="/static/styles.min.css?v=1773351525">
+    <link rel="stylesheet" href="/static/fontawesome.min.css?v=1773428968">
+    <link rel="stylesheet" href="/static/styles.min.css?v=1773428968">
 <link rel="alternate" type="application/rss+xml" title="davep - Coding - RSS Feed" href="https://blog.davep.org/feeds/coding.rss.xml">
 <link rel="alternate" type="application/atom+xml" title="davep - Coding - Atom Feed" href="https://blog.davep.org/feeds/coding.atom.xml">
     <meta name="author" content="Dave Pearson">
@@ -161,6 +161,81 @@
     <a href="/category/coding/6.html" class="pagination-link pagination-next">Next →</a>
 </nav>
 
+
+    <article class="post-summary">
+    <h2><a href="/2023/12/19/tinboard.html">Tinboard</a></h2>
+    <time datetime="2023-12-19T09:47:00+00:00"><a href="/2023/">2023</a>-<a href="/2023/12/">12</a>-<a href="/2023/12/19/">19</a> 09:47:00 UTC</time>
+    <div class="reading-time">3 min read</div>
+    <div class="post-content">
+        <p>Over the past few weeks I've been working on a new pet project, in part done
+as a <a href="https://textual.textualize.io/" rel="noopener noreferrer" target="_blank">Textual</a> "dogfooding" project, but
+also because this is a tool I've been wanting for a while now: a
+terminal-based client for the <a href="https://pinboard.in/" rel="noopener noreferrer" target="_blank">Pinboard bookmarking
+service</a>.</p>
+<p>The dogfooding side of the development has been helping, uncovering a couple
+of fun bugs in Textual; plus the act of building this has let me try out a
+few of the newer features we've recently added to the framework.</p>
+<p>What's <em>really</em> important though is this is a tool I actually <strong>wanted</strong>,
+and I'm using pretty often. I've written a <em>lot</em> of Textual-based
+applications over the past year, most small examples, <a href="https://github.com/Textualize/frogmouth" rel="noopener noreferrer" target="_blank">some quite a bit
+bigger</a>, but none of them really
+form part of my daily workflow. This changes with Tinboard.</p>
+<p><img alt="Tinboard in action" src="/attachments/2023/12/19/tinboard.png#centre" /></p>
+<p>Tinboard is designed as a fully-featured client, allowing for the creation
+of new Bookmarks, complete with tag suggestion support:</p>
+<p><img alt="Adding a new bookmark" src="/attachments/2023/12/19/new-bookmark.png#centre" /></p>
+<p>Not only are tag suggestions pulled from Pinboard, but entry of tags can
+auto-complete, taking completions from both the suggested tags and also tags
+used amongst your own bookmarks:</p>
+<p><img alt="Auto-complete of tags" src="/attachments/2023/12/19/tag-suggest.gif#centre" /></p>
+<p>That feature was really easy to add thanks to <a href="https://textual.textualize.io/api/suggester/" rel="noopener noreferrer" target="_blank">the <code>Suggester</code>
+API</a>.</p>
+<p>Thanks to the
+<a href="https://textual.textualize.io/blog/2023/09/21/textual-0380-adds-a-syntax-aware-textarea/" rel="noopener noreferrer" target="_blank">recently-added</a>
+<code>TextArea</code> widget the add/edit dialog allows for proper full editing of the
+extended text description of the bookmark too:</p>
+<p><img alt="Editing a bookmark" src="/attachments/2023/12/19/edit.png#centre" /></p>
+<p>One caveat here is a lack of word-wrapping; but this will be arriving in an
+update to Textual early in the new year.</p>
+<p>As well as all the usual add/edit/delete facilities, Tinboard is also
+designed to make it pretty easy to find bookmarks too. There are filtering
+options for seeing all read/unread, public/private and tagged/untagged
+bookmarks; this makes bookmark management really easy for me because I can
+filter for all the untagged and private bookmarks, which are likely the ones
+that need editing and expanding on, and tidy up my bookmark library.</p>
+<p>There is also, of course, full text search too.</p>
+<p><img alt="Text search entry" src="/attachments/2023/12/19/search-entry.png#centre" /></p>
+<p>When a filter or search is in operation, the related tags and the like react
+too:</p>
+<p><img alt="A search result being shown" src="/attachments/2023/12/19/search-result.png#centre" /></p>
+<p>Another thing I've made a point of doing in Tinboard is leaning pretty hard
+on the <a href="https://textual.textualize.io/guide/command_palette/" rel="noopener noreferrer" target="_blank">Command
+Palette</a>. No
+functionality is <em>only</em> available by it (I've done my best to make sure that
+keyboard is the primary input device here, with keyboard shortcuts for as
+much as possible). Initially I approached this as a "for the sake of
+completeness" feature, but already I'm finding that it's a pretty quick
+method of pulling up a tag filter.</p>
+<p><img alt="The command palette in action" src="/attachments/2023/12/19/command-palette.png#centre" /></p>
+<p>To help make all the features as discoverable possible, I've also ensured
+there's a pretty comprehensive help screen:</p>
+<p><img alt="Help" src="/attachments/2023/12/19/help.png#centre" /></p>
+<p>Anyway; that's v0.1.0 out in the wild. I'm pleased with how it's turned out
+and there's a few more things I'd like to add. It's licensed GPL-3.0 and
+available <a href="https://github.com/davep/tinboard" rel="noopener noreferrer" target="_blank">via GitHub</a> and also <a href="https://pypi.org/project/tinboard/" rel="noopener noreferrer" target="_blank">via
+PyPi</a>. If you have an environment that
+has <code>pipx</code> installed you should be able to get up and going with:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>tinboard
+</code></pre></div>
+
+<p>I hope this is useful to someone else. :-)</p>
+    </div>
+    <div class="tags">
+        <a href="/tag/python.html" class="tag">Python</a>
+        <a href="/tag/terminal.html" class="tag">terminal</a>
+        <a href="/tag/textual.html" class="tag">textual</a>
+    </div>
+</article>
 
     <article class="post-summary">
     <h2><a href="/2023/10/31/evolve-words.html">Evolve Words</a></h2>
@@ -749,275 +824,6 @@ and get to where they need to go.</p>
     </div>
     <div class="tags">
         <a href="/tag/coding.html" class="tag">coding</a>
-    </div>
-</article>
-
-    <article class="post-summary">
-    <h2><a href="/2020/09/26/reading-2bit-files-for-fun-the-sequence.html">Reading 2bit files (for fun) - the sequence</a></h2>
-    <time datetime="2020-09-26T15:57:00+01:00"><a href="/2020/">2020</a>-<a href="/2020/09/">09</a>-<a href="/2020/09/26/">26</a> 15:57:00 UTC+01:00</time>
-    <div class="reading-time">5 min read</div>
-    <div class="post-content">
-        <h1 id="introduction">Introduction</h1>
-<p>This post will cover the most important content of a 2bit file: the actual
-sequence data itself. In <a href="/2020/08/30/reading-2bit-files-for-fun.html">the first
-post</a> I wrote about the format
-of the file's header, and in <a href="/2020/09/05/reading-2bit-files-for-fun-the-index.html">the second
-post</a> I wrote about
-the content of the file's index.</p>
-<p>At this point that's enough information to know what's in the file and where
-to find it. In other words we know the list of sequences that live in the
-file, and we know where each one is positioned within the file. So, assuming
-we have our index in memory (ideally some sort of key/value store of
-sequences names and their offsets in the file), given the name of a sequence
-we can know where to go in the file to load up the data.</p>
-<p>So the next obvious question is, what will we find when we get there? Actual
-sequence data is stored like this:</p>
-<table>
-<thead>
-<tr>
-<th>Content</th>
-<th>Type</th>
-<th>Size</th>
-<th>Comments</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>DNA size</td>
-<td>Integer</td>
-<td>4 bytes</td>
-<td>Count of bases in the sequence</td>
-</tr>
-<tr>
-<td>N block count</td>
-<td>Integer</td>
-<td>4 bytes</td>
-<td>Count of N blocks in the sequence</td>
-</tr>
-<tr>
-<td>N block starts</td>
-<td>Integer Array</td>
-<td>4*count bytes</td>
-<td>Positions are zero-based</td>
-</tr>
-<tr>
-<td>N block sizes</td>
-<td>Integer Array</td>
-<td>4*count bytes</td>
-<td></td>
-</tr>
-<tr>
-<td>Mask block count</td>
-<td>Integer</td>
-<td>4 bytes</td>
-<td>Count of mask blocks in the sequence</td>
-</tr>
-<tr>
-<td>Mask block starts</td>
-<td>Integer Array</td>
-<td>4*count bytes</td>
-<td>Positions are zero-based</td>
-</tr>
-<tr>
-<td>Mask block sizes</td>
-<td>Integer Array</td>
-<td>4*count bytes</td>
-<td></td>
-</tr>
-<tr>
-<td>Reserved</td>
-<td>Integer</td>
-<td>4 bytes</td>
-<td>Should always be 0</td>
-</tr>
-<tr>
-<td>DNA data</td>
-<td>Byte Array</td>
-<td></td>
-<td>See below</td>
-</tr>
-</tbody>
-</table>
-<p>Breaking the above down:</p>
-<h1 id="n-blocks">N blocks</h1>
-<p>As mentioned in passing in the first post: technically it's necessary to
-encode 5 different characters for the bases in the sequences. As well as the
-usual T, C, A and G, there also needs to be an N, which means the base is
-unknown. Now, of course, you can't pack 5 states into two bits, so the 2bit
-file format solves this by having an array of block positions and sizes
-where any data in the actual DNA itself should be ignored and an <code>N</code> used in
-its place.</p>
-<h1 id="mask-blocks">Mask blocks</h1>
-<p>This is where my ignorance of bioinformatics shows, and where it's made very
-obvious that I'm a software developer who likes to muck about with data and
-data structures, but who doesn't always understand why they're used. I'm
-actually not sure what purpose mask blocks serve in a 2bit file, but they
-<em>do</em> affect the output. If a base falls within a mask block the value that
-is output should be a lower-case letter, rather then upper-case.</p>
-<h1 id="the-dna-data">The DNA data</h1>
-<p>So this is the fun bit, where the real data is stored. This should be viewed
-as a sequence of bytes, each of which contains 4 bases (except for the last
-byte, of course, which might contain 1, 2 or 3 depending on the size of the
-sequence).</p>
-<p>Each byte should be viewed as an array of 2 bit values, with the values
-mapping like this:</p>
-<table>
-<thead>
-<tr>
-<th>Binary</th>
-<th>Decimal</th>
-<th>Base</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>00</td>
-<td>0</td>
-<td>T</td>
-</tr>
-<tr>
-<td>01</td>
-<td>1</td>
-<td>C</td>
-</tr>
-<tr>
-<td>10</td>
-<td>2</td>
-<td>A</td>
-</tr>
-<tr>
-<td>11</td>
-<td>3</td>
-<td>G</td>
-</tr>
-</tbody>
-</table>
-<p>So, given a byte whose value is <code>27</code>, you're looking at the sequence <code>TCAG</code>.
-This is because <code>27</code> in binary is <code>00011011</code>, which breaks down as:</p>
-<table>
-<thead>
-<tr>
-<th>00</th>
-<th>01</th>
-<th>10</th>
-<th>11</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>T</td>
-<td>C</td>
-<td>A</td>
-<td>G</td>
-</tr>
-</tbody>
-</table>
-<p>How you pull that data out of the byte will depend on the language and what
-it makes available for bit-twiddling; those that don't have some form of
-<a href="https://en.wikipedia.org/wiki/Bit_field" rel="noopener noreferrer" target="_blank">bit field</a> will probably provide
-the ability to bit shift and do a bitwise <code>and</code> (it's also likely that doing
-bitwise operations is better than using bit fields anyway). In the version I
-wrote in Emacs Lisp, it's simply a case of shifting the two bits I am
-interested in over to the right of the byte and then performing a bitwise
-and to get just its value. So, given an array called <code>2bit-bases</code> whose
-content is this:</p>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">defconst</span><span class="w"> </span><span class="nv">2bit-bases</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;T&quot;</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="w"> </span><span class="s">&quot;G&quot;</span><span class="p">]</span>
-<span class="w">  </span><span class="s">&quot;Vector of the bases.</span>
-
-<span class="s">Note that the positions of each base in the vector map to the 2bit decoding</span>
-<span class="s">for them.&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<p>I use this bit of code to pull out the individual bases:</p>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nf">aref</span><span class="w"> </span><span class="nv">2bit-bases</span><span class="w"> </span><span class="p">(</span><span class="nf">logand</span><span class="w"> </span><span class="p">(</span><span class="nf">ash</span><span class="w"> </span><span class="nv">byte</span><span class="w"> </span><span class="p">(</span><span class="nf">-</span><span class="w"> </span><span class="nv">shift</span><span class="p">))</span><span class="w"> </span><span class="mb">#b11</span><span class="p">))</span>
-</code></pre></div>
-
-<p>Given code to unpack an individual byte, extracting all of the bases in a
-sequence then becomes the act of having two loops, the outer loop being over
-each byte in the file, the inner loop being over the positions within each
-individual byte.</p>
-<p>In pseudo-code, assuming that <code>start</code> and <code>end</code> hold the base locations
-we're interested in and <code>dna_pos</code> is the location in the file where the DNA
-starts, the main loop for unpacking the data looks something like this:</p>
-<div class="highlight"><pre><span></span><code># The bases.
-bases = [ &quot;T&quot;, &quot;C&quot;, &quot;A&quot;, &quot;G&quot; ]
-
-# Calculate the first and last byte to pull data from.
-start_byte = dna_pos + floor( start / 4 )
-end_byte   = dna_pos + floor( ( end - 1 ) / 4 )
-
-# Work out the starting position.
-position = ( start_byte - dna_pos ) * 4
-
-# Load up the bytes that contain the DNA.
-buffer = read_n_bytes_from( start_byte, ( end_byte - start_byte ) + 1 )
-
-# Get all the N blocks that intersect this sub-sequence.
-n_blocks = relevant_n_blocks( start, end )
-
-# Get all the mask blocks that interest this sub-sequence.
-mask_blocks = relevant_mask_blocks( start, end )
-
-# Start with an empty sequence.
-sequence = &quot;&quot;
-
-# Loop over every byte in the buffer.
-for byte in buffer
-
-  # Stepping down each pair of bits in the byte.
-  for shift from 6 downto 0 by 2
-
-    # If we&#39;re interested in this location.
-    if ( position &gt;= start ) and ( position &lt; end )
-
-      # If this position is in an N block, just collect an N.
-      if within( position, n_blocks )
-        sequence = sequence + &quot;N&quot;
-      else
-
-        # Not a N, so we should decode the base.
-        base = bases[ ( byte &gt;&gt; shift ) &amp; 0b11 ]
-
-        # If we&#39;re in a mask block, go lower case.
-        if within( position, mask_blocks )
-          sequence = sequence + lower( base )
-        else
-          sequence = sequence + base
-        end
-
-      end
-
-    end
-
-    # Move along.
-    position = position + 1
-
-  end
-
-end
-</code></pre></div>
-
-<p>Note that some of the detail is left out in the above, especially the
-business of loading up the relevant blocks; how that would be done will
-depend on language and the approach to writing the code. The Emacs Lisp code
-I've written has what I think is a fairly straightforward approach to it.
-There's a similar approach in the <a href="https://github.com/davep/org-davep-2bit" rel="noopener noreferrer" target="_blank">Common Lisp code I've
-written</a>.</p>
-<p>And that's pretty much it. There are a few other details that differ
-depending on how this is approached, the language used, and other
-considerations; one body of 2bit reader code that I've written attempts to
-optimise how it does things as much as possible because it's capable of
-reading the data locally or via ranged HTTP GETs from a web server; the
-Common Lisp version I wrote still needs some work because I was having fun
-getting back into Common Lisp; the Emacs Lisp version needs to try and keep
-data as small as possible because it's working with buffers, not direct file
-access.</p>
-<p>Having got to know the format of 2bit files a fair bit, I'm adding this to
-my list of "fun to do a version of" problems when getting to know a new
-language, or even dabbling in a language I know.</p>
-    </div>
-    <div class="tags">
-        <a href="/tag/bioinformatics.html" class="tag">Bioinformatics</a>
     </div>
 </article>
 

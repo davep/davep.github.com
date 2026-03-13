@@ -23,8 +23,8 @@
     <meta name="msapplication-config" content="/icons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/fontawesome.min.css?v=1773351525">
-    <link rel="stylesheet" href="/static/styles.min.css?v=1773351525">
+    <link rel="stylesheet" href="/static/fontawesome.min.css?v=1773428968">
+    <link rel="stylesheet" href="/static/styles.min.css?v=1773428968">
     <link rel="alternate" type="application/rss+xml" title="davep - RSS Feed" href="https://blog.davep.org/feed.xml">
     <link rel="alternate" type="application/atom+xml" title="davep - Atom Feed" href="https://blog.davep.org/feeds/all.atom.xml">
     <meta name="author" content="Dave Pearson">
@@ -156,6 +156,56 @@
     <a href="/tag/ai/2.html" class="pagination-link pagination-next">Next →</a>
 </nav>
 
+
+    <article class="post-summary">
+    <h2><a href="/2026/03/13/blogmore-1-13-0.html">BlogMore v1.13.0</a></h2>
+    <time datetime="2026-03-13T19:07:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/13/">13</a> 19:07:00 UTC</time>
+    <div class="reading-time">1 min read</div>
+    <div class="category">
+        <a href="/category/coding.html" class="category-link">Coding</a>
+    </div>
+    <div class="post-content">
+        <p>I wasn't intending to make any changes to
+<a href="https://blogmore.davep.dev" rel="noopener noreferrer" target="_blank">BlogMore</a> today, but as luck would have it
+<a href="https://mastodon.me.uk/@andyc" rel="noopener noreferrer" target="_blank">@andyc</a> had <a href="https://github.com/davep/blogmore/issues/263" rel="noopener noreferrer" target="_blank">a feature
+request</a> which made sense and
+seemed easy enough to prompt for, <a href="https://github.com/davep/blogmore/pull/266" rel="noopener noreferrer" target="_blank">so I
+did</a>.</p>
+<p>So the change is this: if you happen to configure BlogMore such that the
+post URLs end up being something that ends in <code>index.html</code>, if you turn on
+<a href="https://blogmore.davep.dev/configuration/#clean_urls" rel="noopener noreferrer" target="_blank"><code>clean_urls</code></a>, all
+emitted URLs will leave off the <code>index.html</code>. The result of this is that a
+URL that would look like:</p>
+<blockquote>
+<p>https://blog.example.com/posts/my-first-post/index.html</p>
+</blockquote>
+<p>can then always look like:</p>
+<blockquote>
+<p>https://blog.example.com/posts/my-first-post/</p>
+</blockquote>
+<p>In other words: it gives you a way to have <a href="https://en.wikipedia.org/wiki/Clean_URL" rel="noopener noreferrer" target="_blank">clean
+URLs</a>.</p>
+<p>This is carried through all generated pages and the
+<a href="https://blogmore.davep.dev/building/#xml-sitemap" rel="noopener noreferrer" target="_blank">sitemap</a> too.</p>
+<p>It's not something I'd personally use for this blog (because it's been
+around long enough and has a specific URL layout that I want to keep
+working) but I can see it being useful for any future project, and of course
+I can see it being useful for anyone else wanting to use BlogMore.</p>
+<p>Another wee change is to make sure that the rebuild-on-change feature of the
+local test server always loads any new values set in the configuration file.
+While it was reacting to some properties changing, it wasn't reacting to
+all; so I <a href="https://github.com/davep/blogmore/issues/267" rel="noopener noreferrer" target="_blank">asked Copilot to check all the values and make sure all are
+handled</a>.</p>
+    </div>
+    <div class="tags">
+        <a href="/tag/ai.html" class="tag">AI</a>
+        <a href="/tag/blogging.html" class="tag">Blogging</a>
+        <a href="/tag/blogmore.html" class="tag">BlogMore</a>
+        <a href="/tag/copilot.html" class="tag">Copilot</a>
+        <a href="/tag/llm.html" class="tag">LLM</a>
+        <a href="/tag/python.html" class="tag">Python</a>
+    </div>
+</article>
 
     <article class="post-summary">
     <h2><a href="/2026/03/12/blogmore-1-12-0.html">BlogMore v1.12.0</a></h2>
@@ -540,7 +590,7 @@ ongoing experiment with <a href="/tag/copilot.html">GitHub Copilot</a>. Since <a
 release I wrote about</a> I've made a couple
 of cosmetic changes, and also addressed a couple of bugs.</p>
 <p>The first cosmetic change relates to how the blog appears on mobile
-devices<sup id="fnref:148-1"><a class="footnote-ref" href="#fn:148-1">1</a></sup>. In such a circumstance, before the change, the sidebar content
+devices<sup id="fnref:149-1"><a class="footnote-ref" href="#fn:149-1">1</a></sup>. In such a circumstance, before the change, the sidebar content
 would, by design, relocate to the top of the page. This made sense, it meant
 that the information was still available, but it also had the unfortunate
 effect of pushing the actual post content way down the screen, sometimes off
@@ -592,8 +642,8 @@ As I keep tinkering with BlogMore I'll be keeping this post in mind.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:148-1">
-<p>Okay fine any narrow viewport but you know what I mean!&#160;<a class="footnote-backref" href="#fnref:148-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn:149-1">
+<p>Okay fine any narrow viewport but you know what I mean!&#160;<a class="footnote-backref" href="#fnref:149-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -620,7 +670,7 @@ As I keep tinkering with BlogMore I'll be keeping this post in mind.</p>
 enjoy. I want documentation to read well, I want documentation to be useful,
 I want documentation to be accurate. I also want there to be documentation
 at all and sometimes the other parts mean it doesn't get done for FOSS
-projects<sup id="fnref:153-1"><a class="footnote-ref" href="#fn:153-1">1</a></sup>.</p>
+projects<sup id="fnref:154-1"><a class="footnote-ref" href="#fn:154-1">1</a></sup>.</p>
 <p>When <a href="/2026/02/20/five-days-with-copilot.html">I started the experiment that is
 BlogMore</a>, I very quickly <a href="https://github.com/davep/blogmore/pull/100" rel="noopener noreferrer" target="_blank">hashed
 out some ideas on how it might generate some
@@ -646,9 +696,9 @@ background while I get on with my actual day makes a lot of sense.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:153-1">
+<li id="fn:154-1">
 <p>Although I've made a point of doing it for almost every one of my
-recent <a href="/tag/textual.html">Textual</a>-based projects.&#160;<a class="footnote-backref" href="#fnref:153-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+recent <a href="/tag/textual.html">Textual</a>-based projects.&#160;<a class="footnote-backref" href="#fnref:154-1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -745,66 +795,6 @@ look</a>.</p>
         <a href="/tag/copilot.html" class="tag">Copilot</a>
         <a href="/tag/llm.html" class="tag">LLM</a>
         <a href="/tag/python.html" class="tag">Python</a>
-    </div>
-</article>
-
-    <article class="post-summary">
-    <h2><a href="/2026/03/03/hike-1-3-0.html">Hike v1.3.0</a></h2>
-    <time datetime="2026-03-03T17:10:00+00:00"><a href="/2026/">2026</a>-<a href="/2026/03/">03</a>-<a href="/2026/03/03/">03</a> 17:10:00 UTC</time>
-    <div class="reading-time">2 min read</div>
-    <div class="category">
-        <a href="/category/coding.html" class="category-link">Coding</a>
-    </div>
-    <div class="post-content">
-        <p>I've just released v1.3.0 of <a href="https://hike.davep.dev/" rel="noopener noreferrer" target="_blank">Hike</a>, my little
-terminal-based Markdown browser. It's about a year now <a href="/2025/02/14/hike.html">since I made the
-first release</a> and I've been making the odd update
-here and there, but mostly it's a pretty stable tool. There's a few other
-things I'd like to do with it but I keep getting distracted by different
-ideas.</p>
-<p>Today's release sort of rides on the coattails of the current love for all
-things Markdown because of "the AI". It seems that some folk are now keen on
-the idea of serving Markdown from their websites, when asked for it: <a href="https://www.skeptrune.com/posts/use-the-accept-header-to-serve-markdown-instead-of-html-to-llms/" rel="noopener noreferrer" target="_blank">as you
-can see in this
-post</a>
-for example. While that might be handy for some LLM bot or whatever, it's
-also pretty handy if you happen to have a web-friendly Markdown browser!</p>
-<p>So v1.3.0 makes a small change to how a URL is looked at when deciding if it
-might be a Markdown document, by saying <em>"hey, web server, I like Markdown
-more than anything else, so feel free to serve me that up"</em>. If we get a
-Markdown type back, we go ahead and load it into Hike.</p>
-<p>This means that the post mentioned above loads up just fine now:</p>
-<p><img alt="Viewing a Markdown site in Hike" src="/attachments/2026/03/03/hike.png" /></p>
-<p>Previously, Hike would have gone <em>"nah, that's not a Markdown document"</em> and
-would have handed off to the environment's web browser.</p>
-<p>Hike is licensed GPL-3.0 and available <a href="https://github.com/davep/hike" rel="noopener noreferrer" target="_blank">via
-GitHub</a> and also <a href="https://pypi.org/project/hike/" rel="noopener noreferrer" target="_blank">via
-PyPi</a>. If you have an environment that has
-<code>pipx</code> installed you should be able to get up and going with:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pipx<span class="w"> </span>install<span class="w"> </span>hike
-</code></pre></div>
-
-<p>If you're more into
-<a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"><code>uv</code></a>:</p>
-<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>hike
-</code></pre></div>
-
-<p>If you don't have <code>uv</code> installed you can use <a href="https://uvx.sh" rel="noopener noreferrer" target="_blank">uvx.sh</a> to
-perform the installation. For GNU/Linux or macOS or similar:</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-LsSf<span class="w"> </span>uvx.sh/hike/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
-</code></pre></div>
-
-<p>or on Windows:</p>
-<div class="highlight"><pre><span></span><code>powershell<span class="w"> </span>-ExecutionPolicy<span class="w"> </span>ByPass<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://uvx.sh/hike/install.ps1 | iex&quot;</span>
-</code></pre></div>
-    </div>
-    <div class="tags">
-        <a href="/tag/ai.html" class="tag">AI</a>
-        <a href="/tag/llm.html" class="tag">LLM</a>
-        <a href="/tag/markdown.html" class="tag">markdown</a>
-        <a href="/tag/python.html" class="tag">Python</a>
-        <a href="/tag/terminal.html" class="tag">terminal</a>
-        <a href="/tag/textual.html" class="tag">textual</a>
     </div>
 </article>
 
