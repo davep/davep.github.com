@@ -30,7 +30,8 @@ of the hosted blog.
 ### Attachments
 
 Lots of posts have "attached" images, both inline and also cover images.
-These are held in a date-based hierarchy under [`extras/attachments`].
+These are held in a date-based hierarchy under
+[`extras/attachments`](./content/extras/attachments).
 
 ### Other files
 
