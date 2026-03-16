@@ -17,9 +17,9 @@ use to generate this blog [from Markdown
 sources](https://github.com/davep/davep.github.com). BlogMore is 100%
 AI-written: code, documentation, the lot. It was, and remains, [a deliberate
 experiment in using AI to develop a whole
-project](/2026/02/20/five-days-with-copilot.html.)
+project](/2026/02/20/five-days-with-copilot.html).
 
-As time goes on, I may use AI in the create of other applications. If that
+As time goes on, I may use AI in the creation of other applications. If that
 happens the repository and documentation will clearly state this fact.
 
 ## Position on use of AI
