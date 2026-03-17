@@ -31,7 +31,7 @@ that I was making available in case anyone found it useful, but also leaning
 heavily on GitHub as a (*a*, not *the*) place to keep backups of code I
 cared about (or even no longer cared about). Quite a lot of that green will
 likely be me having a few periods of [revamping my Emacs
-configuration](/category/emacs.html).
+configuration](/category/emacs/).
 
 The really fun part though starts about a year ago:
 
