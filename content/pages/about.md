@@ -4,8 +4,8 @@ title: About
 
 ## About the site
 
-My personal blog which covers [a handful of main topics](/categories.html)
-and wanders through [all sorts of subjects](/tags.html). Mostly you'll see
+My personal blog which covers [a handful of main topics](/categories/)
+and wanders through [all sorts of subjects](/tags/). Mostly you'll see
 me writing about coding and Python and a bit of Emacs and so on; but
 sometimes there will be more random thoughts and personal stuff.
 
@@ -21,7 +21,7 @@ years, but as it has I've made an effort to get to know and work with plenty
 of others.
 
 When I have the time (although it's not so available at the moment) I love
-playing [VR](/tag/vr.html) games, and [recording and publishing the
+playing [VR](/tag/vr/) games, and [recording and publishing the
 results](https://www.youtube.com/@DavePearson/videos).
 
 Occasionally, some evenings, you'll find me [streaming flat-screen gameplay

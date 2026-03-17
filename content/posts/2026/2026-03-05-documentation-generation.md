@@ -41,6 +41,6 @@ background while I get on with my actual day makes a lot of sense.
 I fear I might be warming to these tools, a little bit. :-/
 
 [^1]: Although I've made a point of doing it for almost every one of my
-    recent [Textual](/tag/textual.html)-based projects.
+    recent [Textual](/tag/textual/)-based projects.
 
 [//]: # (2026-03-05-documentation-generation.md ends here)
