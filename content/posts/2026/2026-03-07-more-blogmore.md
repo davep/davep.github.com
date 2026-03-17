@@ -8,7 +8,7 @@ cover: attachments/2026/03/07/archive.png
 ---
 
 I've just released v1.7.0 of [BlogMore](https://blogmore.davep.dev/), my
-ongoing experiment with [GitHub Copilot](/tag/copilot.html). Since [the last
+ongoing experiment with [GitHub Copilot](/tag/copilot/). Since [the last
 release I wrote about](/2026/03/03/blogmore-1-5-0.html) I've made a couple
 of cosmetic changes, and also addressed a couple of bugs.
 

@@ -18,7 +18,7 @@ and there again, when the desire takes me.
 The problem is the workflow. The point and purpose of the last two
 incarnations was that I just had to take image, manipulate image, post image
 and then lots of other things would happen. As I've mentioned in the posts
-linked to here, and [others here on this blog](/tag/photoblog.html), it's
+linked to here, and [others here on this blog](/tag/photoblog/), it's
 much harder these days to achieve that seamless and frictionless workflow we
 used to enjoy during the rise and the peak of "Web 2.0".
 
@@ -40,7 +40,7 @@ services (or at least I'll be able to do it in a way that I can swap out a
 step should whatever service being be lost).
 
 As an aside, for anyone who might have been following along with [my
-experiments with GitHub Copilot](/tag/copilot.html): the import tool I link
+experiments with GitHub Copilot](/tag/copilot/): the import tool I link
 to above was [written from a
 prompt](https://github.com/davep/seen-by/issues/5). This, for me, feels like
 the ideal use for such a tool. Writing that script *was* going to be a chore,

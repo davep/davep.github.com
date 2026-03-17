@@ -17,7 +17,7 @@ convenience aspect: where I can get some work going and then go and do
 
 The nature of the change itself isn't important (I'll write about it when I
 release an update), but something that happened is. As usual, I did the
-prompt as an issue, and assigned it to [Copilot](/tag/copilot.html). The
+prompt as an issue, and assigned it to [Copilot](/tag/copilot/). The
 first thing that was curious was that, after around 5 minutes, despite it
 having added the 👀 reaction (which it seems to use to indicate the agent
 has seen it has work to do), nothing happened. I didn't see an agent kick

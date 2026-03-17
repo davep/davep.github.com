@@ -7,7 +7,7 @@ date: 2025-12-12 17:00:00 +0000
 cover: attachments/2025/12/12/norton-guides.png
 ---
 
-As I've mentioned a [few times on this blog](/tag/norton-guide.html), I've
+As I've mentioned a [few times on this blog](/tag/norton-guide/), I've
 long had a bit of a thing for [writing tools for reading the content of
 Norton Guide files](https://www.davep.org/norton-guides/). I first used
 Norton Guides back in the early 1990s thanks to the release of Clipper 5,
