@@ -8,7 +8,110 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Mar 2026 20:52:32 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Mar 2026 09:12:33 +0000</lastBuildDate>
+    <item>
+      <title>BlogMore v2.0.0</title>
+      <link>https://blog.davep.org/2026/03/18/blogmore-2-0-0.html</link>
+      <description>&lt;p&gt;Well... I thought I was done with all the major changes with
+&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, but then &lt;a href="https://github.com/davep/blogmore/issues/298" rel="noopener noreferrer" target="_blank"&gt;a fairly simple
+request&lt;/a&gt; came in and that
+kicked off a whole load of changes (which in turn ran into
+&lt;a href="https://blog.davep.org/2026/03/17/when-your-model-leaves-you.html"&gt;one&lt;/a&gt; or
+&lt;a href="https://blog.davep.org/2026/03/17/too-much-work-for-copilot.html"&gt;two&lt;/a&gt; problems with GitHub
+&lt;a href="https://blog.davep.org/tag/copilot/"&gt;Copilot&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;I dived into this because I liked the idea anyway and I think it's time that
+I, as much as possible, moved the layout of my blog to clean URLs almost
+everywhere. I can't reasonably do it for actual posts because a) lots of
+posts point to other posts so there's a whole editing job to do there&lt;sup id="fnref:136-1"&gt;&lt;a class="footnote-ref" href="#fn:136-1"&gt;1&lt;/a&gt;&lt;/sup&gt;
+and b) there are some links out there that point to my blog posts&lt;sup id="fnref:136-2"&gt;&lt;a class="footnote-ref" href="#fn:136-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;The result is BlogMore v2.0.0.&lt;/p&gt;
+&lt;p&gt;Anyone who's been following the experiment with BlogMore might wonder that
+the version number is up to v2 already, given &lt;a href="https://github.com/davep/blogmore/pull/1" rel="noopener noreferrer" target="_blank"&gt;it's barely a month
+old&lt;/a&gt;. The answer to that is pretty
+simple: I'm using &lt;a href="https://semver.org" rel="noopener noreferrer" target="_blank"&gt;semver&lt;/a&gt; for the version number and
+there's a breaking change in this release with no real way of maintaining
+backward compatibility.&lt;/p&gt;
+&lt;p&gt;So what's changed? First the simple ones: I added some more &lt;code&gt;*_path&lt;/code&gt;
+configuration options to control the locations of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The archives (with &lt;a href="https://blogmore.davep.dev/configuration/#archive_path" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;archive_path&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;The categories cloud (with &lt;a href="https://blogmore.davep.dev/configuration/#categories_path" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;categories_path&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;The search facility (with &lt;a href="https://blogmore.davep.dev/configuration/#search_path" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;search_path&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;The tag cloud (with &lt;a href="https://blogmore.davep.dev/configuration/#tags_path" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;tags_path&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All of those keep their default values from before, and so can remain
+backward compatible. Personally, I've updated the configuration for this
+blog so that I'm using:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;archive_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/archive/index.html&amp;quot;&lt;/span&gt;
+&lt;span class="nt"&gt;categories_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/categories/index.html&amp;quot;&lt;/span&gt;
+&lt;span class="nt"&gt;search_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/search/index.html&amp;quot;&lt;/span&gt;
+&lt;span class="nt"&gt;tags_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/tags/index.html&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;which, combined with:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;clean_urls&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;results in cleaner URLs for all of those site features.&lt;/p&gt;
+&lt;p&gt;Another thing that came to mind was what to do about pagination. Things like
+the date-based archives, categories, tags, and so on, can all run to
+multiple pages and so all generated pages of content using a pagination
+scheme. This needed its own approach. I decided on adding a setting to
+control the first page of content
+(&lt;a href="https://blogmore.davep.dev/configuration/#page_1_path" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;page_1_path&lt;/code&gt;&lt;/a&gt;) and
+a setting for all subsequent pages
+(&lt;a href="https://blogmore.davep.dev/configuration/#page_n_path" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;page_n_path&lt;/code&gt;&lt;/a&gt;).
+But there was a problem here: to keep this approach backward compatible I'd
+need to have different settings &lt;em&gt;per area of the blog&lt;/em&gt;. That would mean
+something like &lt;code&gt;tags_page_1_path&lt;/code&gt;, &lt;code&gt;tags_page_n_path&lt;/code&gt;, &lt;code&gt;year_page_1_path&lt;/code&gt;,
+&lt;code&gt;year_page_n_path&lt;/code&gt;, &lt;code&gt;month_page_1_path&lt;/code&gt;, &lt;code&gt;month_page_n_path&lt;/code&gt;, and so on; the
+reason being each one would need its own set of variables so the user can
+set where &lt;code&gt;{tag}&lt;/code&gt; goes in the path, or &lt;code&gt;{year}&lt;/code&gt;, or &lt;code&gt;{month}&lt;/code&gt;, but one of
+those is no use in another context, and so on.&lt;/p&gt;
+&lt;p&gt;All of this would have been total overkill and an unnecessary explosion of
+things that can and might need to be modified in the configuration file; it
+would also be a nightmare to document.&lt;/p&gt;
+&lt;p&gt;So I decided this: the &lt;code&gt;page_1_path&lt;/code&gt; and &lt;code&gt;page_n_path&lt;/code&gt; settings simply
+describe what goes on the &lt;em&gt;end&lt;/em&gt; of any other URL in the blog, and because of
+that the defaults would have to be incompatible. I think the result is a
+&lt;em&gt;lot&lt;/em&gt; tidier.&lt;/p&gt;
+&lt;p&gt;This also felt like a good time to make this change because, aside from &lt;a href="https://www.yakshaving.co.uk" rel="noopener noreferrer" target="_blank"&gt;one
+other blog out there&lt;/a&gt;, I don't think anyone
+else other than me is using BlogMore at the moment.&lt;/p&gt;
+&lt;p&gt;This change &lt;em&gt;did&lt;/em&gt; mean that I'd need to &lt;a href="https://github.com/davep/davep.github.com/pull/89/changes" rel="noopener noreferrer" target="_blank"&gt;edit some of the posts in my blog
+to update for the slightly changed
+layout&lt;/a&gt;, but it
+was a small enough job with minimal impact so it was worth it. I also used a
+tweaked setting for &lt;code&gt;page_n_path&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;page_n_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/page/{page}/index.html&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;so that any paginated page has a URL that ends something like &lt;code&gt;.../page/2/&lt;/code&gt;.
+This holds for &lt;em&gt;any&lt;/em&gt; page on the blog that has multiple pages.&lt;/p&gt;
+&lt;p&gt;This is the point where I'd say something about how I think that's all the
+big changes in this project done... but I'm starting to suspect this isn't
+the plan the coding gods have for BlogMore.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:136-1"&gt;
+&lt;p&gt;Although I suspect &lt;a href="https://blog.davep.org/2026/03/09/an-eager-fix.html"&gt;I could agent the shit out of that problem&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:136-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:136-2"&gt;
+&lt;p&gt;Although few enough that I probably should't let it stop me doing this.&amp;#160;&lt;a class="footnote-backref" href="#fnref:136-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/03/18/blogmore-2-0-0.html</guid>
+      <category>Coding</category>
+      <category>Python</category>
+      <category>AI</category>
+      <category>LLM</category>
+      <category>Copilot</category>
+      <category>BlogMore</category>
+      <category>semver</category>
+      <pubDate>Wed, 18 Mar 2026 09:10:00 +0000</pubDate>
+    </item>
     <item>
       <title>Too much work for Copilot?</title>
       <link>https://blog.davep.org/2026/03/17/too-much-work-for-copilot.html</link>
@@ -107,7 +210,7 @@ don't have it?&lt;/p&gt;
 &lt;p&gt;Quickly checking elsewhere, sure enough, I had access to almost no models. I
 can't remember what there was, but it wasn't much and &lt;em&gt;all&lt;/em&gt; the Claude ones
 had disappeared. Even if I tested in the &lt;a href="https://github.com/features/copilot/cli" rel="noopener noreferrer" target="_blank"&gt;Copilot
-CLI&lt;/a&gt;&lt;sup id="fnref:146-1"&gt;&lt;a class="footnote-ref" href="#fn:146-1"&gt;1&lt;/a&gt;&lt;/sup&gt; I saw a very limited set
+CLI&lt;/a&gt;&lt;sup id="fnref:147-1"&gt;&lt;a class="footnote-ref" href="#fn:147-1"&gt;1&lt;/a&gt;&lt;/sup&gt; I saw a very limited set
 of models.&lt;/p&gt;
 &lt;p&gt;Around this time I had two reactions: one was something like &lt;em&gt;"cool, this is
 an important part of the experiment, knowing how it goes if your models are
@@ -133,7 +236,7 @@ what &lt;em&gt;does&lt;/em&gt; happen when some third party takes away the model
 to get your work done? In the time I've been building up BlogMore I've come
 to trust the quality of Claude Sonnet (in the sense that I know when and
 where I have to pay closer attention to what it's done, and where it'll very
-likely have done a pretty good job&lt;sup id="fnref:146-2"&gt;&lt;a class="footnote-ref" href="#fn:146-2"&gt;2&lt;/a&gt;&lt;/sup&gt;), so finding that I'd possibly have
+likely have done a pretty good job&lt;sup id="fnref:147-2"&gt;&lt;a class="footnote-ref" href="#fn:147-2"&gt;2&lt;/a&gt;&lt;/sup&gt;), so finding that I'd possibly have
 to switch to some other model that I've had no experience with... I
 genuinely had a moment of concern about how and where I was going to take
 BlogMore.&lt;/p&gt;
@@ -150,12 +253,12 @@ resolved&lt;/a&gt;?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:146-1"&gt;
+&lt;li id="fn:147-1"&gt;
 &lt;p&gt;Which I'm not really using at the moment, but do have installed to
-experiment with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:146-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+experiment with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:147-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:146-2"&gt;
-&lt;p&gt;So just like working with humans, oddly enough.&amp;#160;&lt;a class="footnote-backref" href="#fnref:146-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:147-2"&gt;
+&lt;p&gt;So just like working with humans, oddly enough.&amp;#160;&lt;a class="footnote-backref" href="#fnref:147-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -181,7 +284,7 @@ having a &lt;code&gt;/ai&lt;/code&gt; page, something I remember as being part o
 pages&lt;/a&gt; moment. While I've never leaned into it
 myself, I do consider it a fun idea and, given &lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;the current
 experiment&lt;/a&gt;, I did think it made
-sense to have a &lt;code&gt;/ai&lt;/code&gt; page for this blog, at least&lt;sup id="fnref:137-1"&gt;&lt;a class="footnote-ref" href="#fn:137-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+sense to have a &lt;code&gt;/ai&lt;/code&gt; page for this blog, at least&lt;sup id="fnref:138-1"&gt;&lt;a class="footnote-ref" href="#fn:138-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Yesterday's changes, to allow modifying the path used for pages, and also to
 apply the &lt;a href="https://blogmore.davep.dev/configuration/#clean_urls" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;clean_urls&lt;/code&gt;
 setting&lt;/a&gt; to them too,
@@ -206,9 +309,9 @@ the need to want to customise it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:137-1"&gt;
+&lt;li id="fn:138-1"&gt;
 &lt;p&gt;I should probably add one to my &lt;a href="https://www.davep.org/" rel="noopener noreferrer" target="_blank"&gt;main site&lt;/a&gt;
-too now I think about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:137-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+too now I think about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:138-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -242,7 +345,7 @@ so you can use "clean URLs" for pages too.&lt;/p&gt;
 &lt;p&gt;Another change I've added has been, in part, prompted by a thing I've seen
 going around the socials the past couple of days:
 &lt;a href="https://codeberg.org/robida/human.json" rel="noopener noreferrer" target="_blank"&gt;human.json&lt;/a&gt;. I did initially think
-about adding some special support for it&lt;sup id="fnref:145-1"&gt;&lt;a class="footnote-ref" href="#fn:145-1"&gt;1&lt;/a&gt;&lt;/sup&gt; -- allowing declaring the
+about adding some special support for it&lt;sup id="fnref:146-1"&gt;&lt;a class="footnote-ref" href="#fn:146-1"&gt;1&lt;/a&gt;&lt;/sup&gt; -- allowing declaring the
 values in the BlogMore configuration file -- but then I decided it made more
 sense to just include the &lt;code&gt;human.json&lt;/code&gt; file in the &lt;code&gt;extras&lt;/code&gt; directory and
 allow for adding a header.&lt;/p&gt;
@@ -257,9 +360,9 @@ often, and using a machine-readable file format is so much more... human.&lt;/p&
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:145-1"&gt;
+&lt;li id="fn:146-1"&gt;
 &lt;p&gt;Probably kind of ironic in a project that is 100% about understanding
-the AI-all-the-way approach to developing an application.&amp;#160;&lt;a class="footnote-backref" href="#fnref:145-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+the AI-all-the-way approach to developing an application.&amp;#160;&lt;a class="footnote-backref" href="#fnref:146-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -278,7 +381,7 @@ the AI-all-the-way approach to developing an application.&amp;#160;&lt;a class="
       <link>https://blog.davep.org/2026/03/14/blogmore-1-14-0.html</link>
       <description>&lt;p&gt;Somehow minor version numbers are tracking the day of the month at the
 moment, and that isn't on purpose, but here we are on March 14th with
-&lt;a href="https://blogmore.davep.dev" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; v1.14.0&lt;sup id="fnref:138-1"&gt;&lt;a class="footnote-ref" href="#fn:138-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;a href="https://blogmore.davep.dev" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; v1.14.0&lt;sup id="fnref:139-1"&gt;&lt;a class="footnote-ref" href="#fn:139-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;This release has a couple of changes: one is directly practical and the
 other a little more experimental/hopeful.&lt;/p&gt;
 &lt;p&gt;For starters, I've added a &lt;a href="https://blogmore.davep.dev/configuration/#minify_html" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;minify_html&lt;/code&gt;
@@ -316,8 +419,8 @@ as examples for an agent so that more themes can be AI-generated).&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:138-1"&gt;
-&lt;p&gt;If only it was v3.14... 🥧&amp;#160;&lt;a class="footnote-backref" href="#fnref:138-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:139-1"&gt;
+&lt;p&gt;If only it was v3.14... 🥧&amp;#160;&lt;a class="footnote-backref" href="#fnref:139-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -666,7 +769,7 @@ used to enjoy during the rise and the peak of "Web 2.0".&lt;/p&gt;
 frictionless (yet), it feels like it will work. So here's the plan:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Take photo&lt;/li&gt;
-&lt;li&gt;Manipulate photo&lt;sup id="fnref:140-1"&gt;&lt;a class="footnote-ref" href="#fn:140-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;Manipulate photo&lt;sup id="fnref:141-1"&gt;&lt;a class="footnote-ref" href="#fn:141-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;li&gt;In Apple Photos add a description to the image&lt;/li&gt;
 &lt;li&gt;Export JPEG file to a &lt;code&gt;Photoblog Inbox&lt;/code&gt; folder in iCloud Drive&lt;/li&gt;
 &lt;li&gt;Later, when I'm at my desk, &lt;a href="https://github.com/davep/seen-by/blob/main/impimg.py" rel="noopener noreferrer" target="_blank"&gt;import the image into the
@@ -691,9 +794,9 @@ busy Sunday afternoon.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:140-1"&gt;
+&lt;li id="fn:141-1"&gt;
 &lt;p&gt;Still using &lt;a href="https://en.wikipedia.org/wiki/Snapseed" rel="noopener noreferrer" target="_blank"&gt;Snapseed&lt;/a&gt;.
-Snapseed is always fun for evoking the mood.&amp;#160;&lt;a class="footnote-backref" href="#fnref:140-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+Snapseed is always fun for evoking the mood.&amp;#160;&lt;a class="footnote-backref" href="#fnref:141-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -717,7 +820,7 @@ ongoing experiment with &lt;a href="https://blog.davep.org/tag/copilot/"&gt;GitH
 release I wrote about&lt;/a&gt; I've made a couple
 of cosmetic changes, and also addressed a couple of bugs.&lt;/p&gt;
 &lt;p&gt;The first cosmetic change relates to how the blog appears on mobile
-devices&lt;sup id="fnref:154-1"&gt;&lt;a class="footnote-ref" href="#fn:154-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In such a circumstance, before the change, the sidebar content
+devices&lt;sup id="fnref:155-1"&gt;&lt;a class="footnote-ref" href="#fn:155-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In such a circumstance, before the change, the sidebar content
 would, by design, relocate to the top of the page. This made sense, it meant
 that the information was still available, but it also had the unfortunate
 effect of pushing the actual post content way down the screen, sometimes off
@@ -769,8 +872,8 @@ As I keep tinkering with BlogMore I'll be keeping this post in mind.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:154-1"&gt;
-&lt;p&gt;Okay fine any narrow viewport but you know what I mean!&amp;#160;&lt;a class="footnote-backref" href="#fnref:154-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:155-1"&gt;
+&lt;p&gt;Okay fine any narrow viewport but you know what I mean!&amp;#160;&lt;a class="footnote-backref" href="#fnref:155-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -808,9 +911,9 @@ and done a little bit of searching, and I still really don't understand what
 the heck is going on or why a tool I'm using is telling me not to use itself
 but to use a different tool. Like, really, why would MkDocs tell me not to
 use MkDocs but to use a different tool? Or was it actually MkDocs telling me
-this?&lt;sup id="fnref:136-1"&gt;&lt;a class="footnote-ref" href="#fn:136-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+this?&lt;sup id="fnref:137-1"&gt;&lt;a class="footnote-ref" href="#fn:137-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;p&gt;Really, I don't get it.&lt;/p&gt;
-&lt;p&gt;Anyway, I decided to wave it away as some FOSS drama&lt;sup id="fnref:136-2"&gt;&lt;a class="footnote-ref" href="#fn:136-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, muse about it for
+&lt;p&gt;Anyway, I decided to wave it away as some FOSS drama&lt;sup id="fnref:137-2"&gt;&lt;a class="footnote-ref" href="#fn:137-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, muse about it for
 a moment, and carry on and worry about it later. However, I did &lt;a href="https://fosstodon.org/@davep/116108463886885742" rel="noopener noreferrer" target="_blank"&gt;toot about
 my confusion&lt;/a&gt; and the
 &lt;a href="https://blog.davep.org/2025/02/28/documenting-fspicker.html"&gt;ever&lt;/a&gt;-&lt;a href="https://blog.davep.org/2025/02/28/mkdocs-gh-pages-redux.html"&gt;helpful&lt;/a&gt;
@@ -867,13 +970,13 @@ all sorted.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:136-1"&gt;
+&lt;li id="fn:137-1"&gt;
 &lt;p&gt;Turns out that it was Material for MkDocs doing this; I wish the
-warning had said this.&amp;#160;&lt;a class="footnote-backref" href="#fnref:136-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+warning had said this.&amp;#160;&lt;a class="footnote-backref" href="#fnref:137-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:136-2"&gt;
+&lt;li id="fn:137-2"&gt;
 &lt;p&gt;It's not the first I've seen in my years, and I doubt it'll be the
-last.&amp;#160;&lt;a class="footnote-backref" href="#fnref:136-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+last.&amp;#160;&lt;a class="footnote-backref" href="#fnref:137-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -893,7 +996,7 @@ last.&amp;#160;&lt;a class="footnote-backref" href="#fnref:136-2" title="Jump ba
 enjoy. I want documentation to read well, I want documentation to be useful,
 I want documentation to be accurate. I also want there to be documentation
 at all and sometimes the other parts mean it doesn't get done for FOSS
-projects&lt;sup id="fnref:160-1"&gt;&lt;a class="footnote-ref" href="#fn:160-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+projects&lt;sup id="fnref:161-1"&gt;&lt;a class="footnote-ref" href="#fn:161-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;When &lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;I started the experiment that is
 BlogMore&lt;/a&gt;, I very quickly &lt;a href="https://github.com/davep/blogmore/pull/100" rel="noopener noreferrer" target="_blank"&gt;hashed
 out some ideas on how it might generate some
@@ -919,9 +1022,9 @@ background while I get on with my actual day makes a lot of sense.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:160-1"&gt;
+&lt;li id="fn:161-1"&gt;
 &lt;p&gt;Although I've made a point of doing it for almost every one of my
-recent &lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual&lt;/a&gt;-based projects.&amp;#160;&lt;a class="footnote-backref" href="#fnref:160-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+recent &lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual&lt;/a&gt;-based projects.&amp;#160;&lt;a class="footnote-backref" href="#fnref:161-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -974,7 +1077,7 @@ developed by me prompting GitHub Copilot):&lt;/p&gt;
 &lt;p&gt;As I say, they're just the improvements I've made that have come to mind as
 I've used BlogMore. I've also done a lot of bug fixing too. You can read the
 full changelog &lt;a href="https://blogmore.davep.dev/changelog/" rel="noopener noreferrer" target="_blank"&gt;over on the BlogMore
-website&lt;/a&gt;&lt;sup id="fnref:142-1"&gt;&lt;a class="footnote-ref" href="#fn:142-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+website&lt;/a&gt;&lt;sup id="fnref:143-1"&gt;&lt;a class="footnote-ref" href="#fn:143-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;I &lt;em&gt;feel&lt;/em&gt; that the pace of updates and additions has started to slow; I
 &lt;em&gt;think&lt;/em&gt; I've now got more or less everything I wanted from this. I'm pretty
 sure I can do everything I ever bothered to do with Jekyll and Pelican, and
@@ -999,8 +1102,8 @@ look&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:142-1"&gt;
-&lt;p&gt;Which, somewhat amusingly, is built with MkDocs.&amp;#160;&lt;a class="footnote-backref" href="#fnref:142-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:143-1"&gt;
+&lt;p&gt;Which, somewhat amusingly, is built with MkDocs.&amp;#160;&lt;a class="footnote-backref" href="#fnref:143-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1168,61 +1271,6 @@ all the data from there and mash it into this new version...&lt;/p&gt;</descript
       <category>Posterous</category>
       <category>photoblog</category>
       <pubDate>Mon, 02 Mar 2026 17:18:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Not so elegant</title>
-      <link>https://blog.davep.org/2026/03/01/not-so-elegant.html</link>
-      <description>&lt;p&gt;One thing I've been noticing with &lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;my current experiment with GitHub
-Copilot&lt;/a&gt; is that it seems to know
-Python well enough to write code that gets the job done, and sometimes it
-knows it well enough to write more modern idiomatic Python code, but it also
-seems to write the inelegant version of it.&lt;/p&gt;
-&lt;p&gt;It's hard to pin down exactly, and of course it's a matter of taste (my idea
-of elegant might burn someone else's eyes), but on occasion, as I review the
-code, I find things that make me go "ugh".&lt;/p&gt;
-&lt;p&gt;Here's an example: there's a function that Copilot wrote to extract the
-first non-markup paragraph of an article (so that it can be used as a page
-description). One thing it needs to do is skip any initial images, etc. It
-takes a pretty brute force approach of looking at the start of each stripped
-line, but it gets the job done -- I can't really argue with that.&lt;/p&gt;
-&lt;p&gt;But here's how it does it:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Skip markdown image syntax&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;stripped&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;![&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;continue&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Skip markdown linked image syntax ([![alt](img)](url))&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;stripped&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;[![&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;continue&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Skip HTML img tags&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;stripped&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;img&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;continue&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Now, this is good: it's using
-&lt;a href="https://docs.python.org/3/library/stdtypes.html#str.startswith" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;startswith&lt;/code&gt;&lt;/a&gt;.
-There are less-elegant approaches it could have used so I'll give it bonus
-points for using that method. The thing is though, it's testing each prefix
-one string at a time, pretty much rolling out a load of boilerplate code.&lt;/p&gt;
-&lt;p&gt;What bothers me here is that &lt;code&gt;startswith&lt;/code&gt; will take a tuple of strings to
-test for. I find it curious that the generated code is idiomatic enough to
-know that &lt;code&gt;startswith&lt;/code&gt; is a sensible option here, but at the same time it
-still writes the list of things to test out in a long-winded way.&lt;/p&gt;
-&lt;p&gt;This is exactly the sort of thing I'd call out in &lt;a href="https://blog.davep.org/2026/02/04/solidarity-empathy-patience.html"&gt;a normal code
-review&lt;/a&gt;. Technically, if this
-wasn't mostly a &lt;em&gt;"let's see how it goes about this with minimal input from
-me"&lt;/em&gt; experiment, I'd have called it out here too (as an experiment, I might
-go back prompt it to "think" about this).&lt;/p&gt;
-&lt;p&gt;If I ever find myself using this sort of tool for generating code in a work
-setting, this is exactly the sort of thing I'll be watching for.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/03/01/not-so-elegant.html</guid>
-      <category>AI</category>
-      <category>Python</category>
-      <category>AI</category>
-      <category>LLM</category>
-      <category>Copilot</category>
-      <category>code review</category>
-      <pubDate>Sun, 01 Mar 2026 11:33:00 +0000</pubDate>
     </item>
   </channel>
 </rss>
