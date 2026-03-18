@@ -4,7 +4,7 @@
 
 This is the source for my blog, located at
 [blog.davep.org](https://blog.davep.org/). All
-[posts](https://github.com/davep/davep.github.com/tree/main/content) are
+[posts](./content/posts) are
 written in Markdown and the site itself is generated using
 [BlogMore](https://github.com/davep/blogmore).
 
@@ -39,6 +39,7 @@ While attachments are mentioned above, they're really just part of the
 [extras](https://blogmore.davep.dev/setting_up_your_blog/#the-extras-directory).
 The content of the [`extras`](./content/extras/) directory is copied in its
 entirety to the root of the hosted blog. So in there you'll also find things
-like `robots.txt`, `humans.txt`, etc.
+like [`robots.txt`](./content/extras/robots.txt),
+[`humans.txt`](./content/extras/humans.txt), etc.
 
 [//]: # (README.md ends here)
