@@ -2,7 +2,7 @@
 layout: post
 title: Brute force and ignorance
 category: AI
-tags: Python, Blogging, AI, LLM, Copilot, GitHub, BlogMore
+tags: Python, AI, LLM, Copilot, GitHub, BlogMore, coding
 date: 2026-02-27 09:45:00 +0000
 ---
 

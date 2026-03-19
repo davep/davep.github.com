@@ -2,7 +2,7 @@
 layout: post
 title: Goodbye Textualize
 category: Life
-tags: Python, textual, free-software, work
+tags: Python, textual, Free Software, work
 date: 2024-03-28 06:30:00 +0000
 cover: attachments/2024/03/28/achievement-unlocked.png
 ---
