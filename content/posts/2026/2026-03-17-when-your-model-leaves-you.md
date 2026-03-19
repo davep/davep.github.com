@@ -2,7 +2,7 @@
 layout: post
 title: When your model leaves you
 category: AI
-tags: Python, Blogging, AI, LLM, Copilot, GitHub, BlogMore
+tags: Python, AI, LLM, Copilot, GitHub, BlogMore, coding
 date: 2026-03-17 10:00:00 +0000
 cover: /attachments/2026/03/17/copilot-models.png
 ---

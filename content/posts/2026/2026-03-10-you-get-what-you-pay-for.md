@@ -2,7 +2,7 @@
 layout: post
 title: You get what you pay for
 category: AI
-tags: AI, LLM, FOSS
+tags: AI, LLM, FOSS, coding, Free Software
 date: 2026-03-10 09:00:00 +0000
 ---
 

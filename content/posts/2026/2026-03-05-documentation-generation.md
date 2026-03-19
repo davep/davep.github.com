@@ -2,7 +2,7 @@
 layout: post
 title: Documentation generation
 category: AI
-tags: Python, Blogging, AI, LLM, Copilot, GitHub, BlogMore
+tags: Python, AI, LLM, Copilot, GitHub, BlogMore
 date: 2026-03-05 16:26:00 +0000
 ---
 

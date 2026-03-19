@@ -2,7 +2,7 @@
 layout: post
 title: More BlogMore
 category: Coding
-tags: Python, Blogging, AI, LLM, Copilot, BlogMore
+tags: Python, AI, LLM, Copilot, BlogMore
 date: 2026-03-07 11:06:00 +0000
 cover: attachments/2026/03/07/archive.png
 ---
