@@ -27,7 +27,7 @@ coming from using Jekyll):
    start with.
 5. Renamed the old `_posts` directory to `content`.
 6. Kept tweaking the hell out of the [Pelican config
-   file](https://github.com/davep/davep.github.com/blob/main/pelicanconf.py)
+   file](https://github.com/davep/davep.github.com/blob/efabf531c016c7c86b30ba5ce98590c5fbab2e06/pelicanconf.py)
    until it started to look "just so" (this is a process that has been
    ongoing, and doubtless will keep happening for some time to come).
 7. Tried out a few themes and settled on
