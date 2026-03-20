@@ -2,11 +2,58 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-03-19T15:15:08.637584+00:00</updated>
+  <updated>2026-03-20T11:19:20.860760+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/03/20/blogmore-el-v1-4.html</id>
+    <title>blogmore.el v1.4</title>
+    <updated>2026-03-20T08:46:59+00:00</updated>
+    <content type="html">&lt;p&gt;Following on from &lt;a href="https://blog.davep.org/2026/03/19/some-blogmore-elisp.html"&gt;yesterday's post&lt;/a&gt;,
+in the evening I found myself in a cafe with my MacBook Pro and an hour to
+kill, so I tinkered with &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;blogmore.el&lt;/a&gt;
+a little more. The main aim here was to add a command for adding tags to a
+post and I now have &lt;code&gt;blogmore-add-tag&lt;/code&gt; as of v1.4.&lt;/p&gt;
+&lt;p&gt;One thing that stood out was just how rusty my Emacs Lisp skills are. It
+took me a wee while to get the code working, mostly due to me being caught
+out by the gotchas I'd forgotten about surrounding match data and the need
+to make good use of
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Saving-Match-Data.html" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;save-match-data&lt;/code&gt;&lt;/a&gt;
+(I had a combination of &lt;code&gt;re-search-forward&lt;/code&gt;, &lt;code&gt;string-split&lt;/code&gt; and
+&lt;code&gt;replace-match&lt;/code&gt; going on and it was chaos for a while).&lt;/p&gt;
+&lt;p&gt;I got there in the end, though, when I bothered to RTFM with a quick &lt;code&gt;C-h f
+string-split RET&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Documentation for string-split" src="https://blog.davep.org/attachments/2026/03/20/string-split.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;So now I have the following commands in Emacs when I get the urge to do
+something blog-related:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;blogmore-new&lt;/code&gt; starts a new blog post&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;blogmore-edit&lt;/code&gt; lets me edit an existing post&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;blogmore-set-category&lt;/code&gt; lets me set the category from existing categories,
+  or set a new one&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;blogmore-add-tag&lt;/code&gt; lets me add a tag from the existing tags, or add a new
+  one&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As suggested before, I think I'll probably add some other helper commands,
+things such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Update the &lt;code&gt;date&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Set the &lt;code&gt;cover&lt;/code&gt; to a particular attachment&lt;/li&gt;
+&lt;li&gt;Insert a particular attachment as a Markdown image&lt;/li&gt;
+&lt;li&gt;Insert a link to another post in the blog&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I'm sure more will come to me, but they seem like the most common operations
+I perform that would be helped with a little bit of Emacs Lisp magic.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/03/20/blogmore-el-v1-4.html"/>
+    <category term="Emacs"/>
+    <category term="Emacs"/>
+    <category term="coding"/>
+    <category term="Emacs Lisp"/>
+    <category term="Lisp"/>
+    <published>2026-03-20T08:46:59+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/03/19/some-blogmore-elisp.html</id>
     <title>Some BlogMore Elisp</title>
@@ -1060,7 +1107,7 @@ last.&amp;#160;&lt;a class="footnote-backref" href="#fnref:137-2" title="Jump ba
 enjoy. I want documentation to read well, I want documentation to be useful,
 I want documentation to be accurate. I also want there to be documentation
 at all and sometimes the other parts mean it doesn't get done for FOSS
-projects&lt;sup id="fnref:162-1"&gt;&lt;a class="footnote-ref" href="#fn:162-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+projects&lt;sup id="fnref:163-1"&gt;&lt;a class="footnote-ref" href="#fn:163-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;When &lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;I started the experiment that is
 BlogMore&lt;/a&gt;, I very quickly &lt;a href="https://github.com/davep/blogmore/pull/100" rel="noopener noreferrer" target="_blank"&gt;hashed
 out some ideas on how it might generate some
@@ -1086,9 +1133,9 @@ background while I get on with my actual day makes a lot of sense.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:162-1"&gt;
+&lt;li id="fn:163-1"&gt;
 &lt;p&gt;Although I've made a point of doing it for almost every one of my
-recent &lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual&lt;/a&gt;-based projects.&amp;#160;&lt;a class="footnote-backref" href="#fnref:162-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+recent &lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual&lt;/a&gt;-based projects.&amp;#160;&lt;a class="footnote-backref" href="#fnref:163-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1234,46 +1281,5 @@ perform the installation. For GNU/Linux or macOS or similar:&lt;/p&gt;
     <category term="AI"/>
     <category term="LLM"/>
     <published>2026-03-03T17:10:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/03/03/original-seen-by-davep-rescued.html</id>
-    <title>Original Seen by davep rescued</title>
-    <updated>2026-03-03T09:30:00+00:00</updated>
-    <content type="html">&lt;p&gt;&lt;img alt="Still Alive" src="https://blog.davep.org/attachments/2026/03/03/still-alive.jpeg#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;At the end of &lt;a href="https://blog.davep.org/2026/03/02/seen-by-rescued.html"&gt;yesterday's post&lt;/a&gt; I said I
-might see if I can rescue the original photoblog from its &lt;a href="https://seenbydavep.wordpress.com/" rel="noopener noreferrer" target="_blank"&gt;backup on
-WordPress&lt;/a&gt;. This was the first photoblog
-I played with, posting to the long-dead
-&lt;a href="https://en.wikipedia.org/wiki/Posterous" rel="noopener noreferrer" target="_blank"&gt;Posterous&lt;/a&gt; between 2009 and 2013.&lt;/p&gt;
-&lt;p&gt;So, yesterday evening, I did an extract of the full feed from WordPress, and
-also asked for a full backup of all the media. I then fired up Emacs and
-rattled out some Python code that would marry up the two sets of data and
-add to the photoblog repository. It took a little bit of working out; it
-seems that every post had two entries in the feed: a parent and a child
-entry. I've no clue why that's the case; I didn't really care to get too
-deeply into it.&lt;/p&gt;
-&lt;p&gt;Soon enough &lt;a href="https://seen-by.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;seen-by.davep.dev&lt;/a&gt; was updated with
-an extra 1,833 posts! So now &lt;a href="https://seen-by.davep.dev/categories.html" rel="noopener noreferrer" target="_blank"&gt;the
-categories&lt;/a&gt; on that blog site are
-broken down into &lt;a href="https://seen-by.davep.dev/category/seen-by-me-1.html" rel="noopener noreferrer" target="_blank"&gt;Seen By Me
-1&lt;/a&gt; (the original) and
-&lt;a href="https://seen-by.davep.dev/category/seen-by-me-2.html" rel="noopener noreferrer" target="_blank"&gt;Seen By Me 2&lt;/a&gt; (the
-second incarnation).&lt;/p&gt;
-&lt;p&gt;Sadly, for the first blog, tagging wasn't really much of a thing so the &lt;a href="https://seen-by.davep.dev/tags.html" rel="noopener noreferrer" target="_blank"&gt;tag
-cloud&lt;/a&gt; hasn't grown too much.&lt;/p&gt;
-&lt;p&gt;But, finally, I've got both the photoblogs back up and hosted somewhere I
-can point to, and I'm fully in control of their content. While it is &lt;a href="https://github.com/davep/seen-by" rel="noopener noreferrer" target="_blank"&gt;hosted
-on GitHub Pages&lt;/a&gt; I've done this in a way
-that it would be pretty easy to move elsewhere; this is down to the fact
-that it's a simple static site built with
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/03/03/original-seen-by-davep-rescued.html"/>
-    <category term="Creative"/>
-    <category term="blogging"/>
-    <category term="photography"/>
-    <category term="BlogMore"/>
-    <category term="posterous"/>
-    <category term="photoblog"/>
-    <published>2026-03-03T09:30:00+00:00</published>
   </entry>
 </feed>

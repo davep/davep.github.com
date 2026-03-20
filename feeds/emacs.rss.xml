@@ -8,7 +8,53 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 19 Mar 2026 15:15:08 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 20 Mar 2026 11:19:20 +0000</lastBuildDate>
+    <item>
+      <title>blogmore.el v1.4</title>
+      <link>https://blog.davep.org/2026/03/20/blogmore-el-v1-4.html</link>
+      <description>&lt;p&gt;Following on from &lt;a href="https://blog.davep.org/2026/03/19/some-blogmore-elisp.html"&gt;yesterday's post&lt;/a&gt;,
+in the evening I found myself in a cafe with my MacBook Pro and an hour to
+kill, so I tinkered with &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;blogmore.el&lt;/a&gt;
+a little more. The main aim here was to add a command for adding tags to a
+post and I now have &lt;code&gt;blogmore-add-tag&lt;/code&gt; as of v1.4.&lt;/p&gt;
+&lt;p&gt;One thing that stood out was just how rusty my Emacs Lisp skills are. It
+took me a wee while to get the code working, mostly due to me being caught
+out by the gotchas I'd forgotten about surrounding match data and the need
+to make good use of
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Saving-Match-Data.html" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;save-match-data&lt;/code&gt;&lt;/a&gt;
+(I had a combination of &lt;code&gt;re-search-forward&lt;/code&gt;, &lt;code&gt;string-split&lt;/code&gt; and
+&lt;code&gt;replace-match&lt;/code&gt; going on and it was chaos for a while).&lt;/p&gt;
+&lt;p&gt;I got there in the end, though, when I bothered to RTFM with a quick &lt;code&gt;C-h f
+string-split RET&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Documentation for string-split" src="https://blog.davep.org/attachments/2026/03/20/string-split.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;So now I have the following commands in Emacs when I get the urge to do
+something blog-related:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;blogmore-new&lt;/code&gt; starts a new blog post&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;blogmore-edit&lt;/code&gt; lets me edit an existing post&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;blogmore-set-category&lt;/code&gt; lets me set the category from existing categories,
+  or set a new one&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;blogmore-add-tag&lt;/code&gt; lets me add a tag from the existing tags, or add a new
+  one&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As suggested before, I think I'll probably add some other helper commands,
+things such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Update the &lt;code&gt;date&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Set the &lt;code&gt;cover&lt;/code&gt; to a particular attachment&lt;/li&gt;
+&lt;li&gt;Insert a particular attachment as a Markdown image&lt;/li&gt;
+&lt;li&gt;Insert a link to another post in the blog&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I'm sure more will come to me, but they seem like the most common operations
+I perform that would be helped with a little bit of Emacs Lisp magic.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/03/20/blogmore-el-v1-4.html</guid>
+      <category>Emacs</category>
+      <category>Emacs</category>
+      <category>coding</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <pubDate>Fri, 20 Mar 2026 08:46:59 +0000</pubDate>
+    </item>
     <item>
       <title>Some BlogMore Elisp</title>
       <link>https://blog.davep.org/2026/03/19/some-blogmore-elisp.html</link>
@@ -246,7 +292,7 @@ really not noticing them been gone.&lt;/p&gt;
     <item>
       <title>Some more ~/.emacs.d evolution</title>
       <link>https://blog.davep.org/2020/06/07/some-more-dot-emacs-dot-d-evolution.html</link>
-      <description>&lt;p&gt;When I started with this version of the blog on Hashnode&lt;sup id="fnref:198-1"&gt;&lt;a class="footnote-ref" href="#fn:198-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, my plan was to
+      <description>&lt;p&gt;When I started with this version of the blog on Hashnode&lt;sup id="fnref:199-1"&gt;&lt;a class="footnote-ref" href="#fn:199-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, my plan was to
 try and write something at least once a week. I managed to do that as far as
 January this year, give or take, but then things got a little busy, the
 world got trickier, and... Well, &lt;a href="https://en.wikipedia.org/wiki/COVID-19_pandemic" rel="noopener noreferrer" target="_blank"&gt;you don't need me to tell you about
@@ -324,9 +370,9 @@ in the running version of Emacs&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:198-1"&gt;
+&lt;li id="fn:199-1"&gt;
 &lt;p&gt;Note from future me: we're now back over on &lt;code&gt;blog.davep.org&lt;/code&gt; of
-course.&amp;#160;&lt;a class="footnote-backref" href="#fnref:198-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+course.&amp;#160;&lt;a class="footnote-backref" href="#fnref:199-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
