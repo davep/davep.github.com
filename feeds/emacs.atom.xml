@@ -2,11 +2,65 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-03-21T08:14:08.375534+00:00</updated>
+  <updated>2026-03-21T08:42:57.978596+00:00</updated>
   <link href="https://blog.davep.org/feeds/emacs.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Emacs" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/03/21/blogmore-el-v1-7.html</id>
+    <title>blogmore.el v1.7</title>
+    <updated>2026-03-21T08:41:23+00:00</updated>
+    <content type="html">&lt;p&gt;Yes, the last time I mentioned
+&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; &lt;a href="https://blog.davep.org/2026/03/20/blogmore-el-v1-4.html"&gt;it was
+v1.4&lt;/a&gt; and now it's up to v1.7. So I
+tinkered a little with it last night, okay?&lt;/p&gt;
+&lt;p&gt;Anyway, the changes and additions keep happening as I have more fun writing
+some &lt;a href="https://blog.davep.org/tag/emacs-lisp"&gt;elisp&lt;/a&gt; again. Since the last post about the package
+I've:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Added a command to refresh the &lt;code&gt;date&lt;/code&gt; frontmatter property&lt;/li&gt;
+&lt;li&gt;Added a command to add/refresh the &lt;code&gt;modified&lt;/code&gt; frontmatter property&lt;/li&gt;
+&lt;li&gt;Added a command to insert a link to a previous post into what I'm writing&lt;/li&gt;
+&lt;li&gt;Made a few things &lt;code&gt;defcustom&lt;/code&gt; rather than &lt;code&gt;defconst&lt;/code&gt; for &lt;a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Easy-Customization.html" rel="noopener noreferrer" target="_blank"&gt;easier
+  tweaking&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Added a hook that can be run after a new post is started&lt;/li&gt;
+&lt;li&gt;Dropped the dependency on &lt;a href="https://github.com/davep/end-it.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;end-it&lt;/code&gt;&lt;/a&gt;
+  and used the above hook to do the same thing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;While this package is never intended for use by others, I guess it's not
+impossible someone might want to work with it (I had the same thing in mind
+with &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; itself yet someone else has
+started working with it!) and so I'm moving it in the direction of being my
+way by default but easy to modify to other requirements.&lt;/p&gt;
+&lt;p&gt;So, now, rather than forcing someone to have to use my obsession with
+end-of-file markers, I still have that without imposing it on anyone else by
+simply setting the hook.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;use-package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:vc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;:url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://github.com/davep/blogmore.el&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:rev&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:newest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:init&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;add-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;blogmore-new-post-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;&lt;/span&gt;&lt;span class="nv"&gt;end-it&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I think my favourite addition right now is &lt;code&gt;blogmore-link-post&lt;/code&gt;. I like to
+cross-link posts in my blog as much as possible so having something that
+lets me do that and stay inside Emacs really speeds things up. So now I just
+run that command, I get speedy picker to find the post:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Picking a post to link" src="https://blog.davep.org/attachments/2026/03/21/insert-link.png" /&gt;&lt;/p&gt;
+&lt;p&gt;and the result is some Markdown inserted with the cursor between the two
+&lt;code&gt;[]&lt;/code&gt; ready for me to write the text:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;[](/2026/03/20/blogmore-el-v1-4.html)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Other things I link often are categories and tags, so I'm planning on adding
+commands that does something similar for those two.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/03/21/blogmore-el-v1-7.html"/>
+    <category term="Emacs"/>
+    <category term="Emacs"/>
+    <category term="coding"/>
+    <category term="Emacs Lisp"/>
+    <category term="Lisp"/>
+    <published>2026-03-21T08:41:23+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/03/20/blogmore-el-v1-4.html</id>
     <title>blogmore.el v1.4</title>
@@ -74,7 +128,7 @@ latter lets me quickly pick an existing post and go edit it.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="blogmore-edit in action" src="https://blog.davep.org/attachments/2026/03/19/blogmore-edit.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;As time goes on I might expand on this. For example: it might be useful to
 have a command that updates the &lt;code&gt;date&lt;/code&gt; frontmatter; perhaps another to add a
-&lt;code&gt;modified&lt;/code&gt;&lt;sup id="fnref:146-1"&gt;&lt;a class="footnote-ref" href="#fn:146-1"&gt;1&lt;/a&gt;&lt;/sup&gt;; one to set the &lt;code&gt;category&lt;/code&gt; from any of the categories I've
+&lt;code&gt;modified&lt;/code&gt;&lt;sup id="fnref:147-1"&gt;&lt;a class="footnote-ref" href="#fn:147-1"&gt;1&lt;/a&gt;&lt;/sup&gt;; one to set the &lt;code&gt;category&lt;/code&gt; from any of the categories I've
 used so far would be good; ditto the &lt;code&gt;tags&lt;/code&gt; property.&lt;/p&gt;
 &lt;p&gt;I doubt this will be useful to anyone else, although I will try my best to
 keep it so that it's easy to configure, so it's only ever going to stay
@@ -94,9 +148,9 @@ approach for all of my personal packages.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:146-1"&gt;
+&lt;li id="fn:147-1"&gt;
 &lt;p&gt;Note to self: did I make &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
-support modified dates?&amp;#160;&lt;a class="footnote-backref" href="#fnref:146-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+support modified dates?&amp;#160;&lt;a class="footnote-backref" href="#fnref:147-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -295,7 +349,7 @@ really not noticing them been gone.&lt;/p&gt;
     <id>https://blog.davep.org/2020/06/07/some-more-dot-emacs-dot-d-evolution.html</id>
     <title>Some more ~/.emacs.d evolution</title>
     <updated>2020-06-07T16:48:00+01:00</updated>
-    <content type="html">&lt;p&gt;When I started with this version of the blog on Hashnode&lt;sup id="fnref:200-1"&gt;&lt;a class="footnote-ref" href="#fn:200-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, my plan was to
+    <content type="html">&lt;p&gt;When I started with this version of the blog on Hashnode&lt;sup id="fnref:201-1"&gt;&lt;a class="footnote-ref" href="#fn:201-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, my plan was to
 try and write something at least once a week. I managed to do that as far as
 January this year, give or take, but then things got a little busy, the
 world got trickier, and... Well, &lt;a href="https://en.wikipedia.org/wiki/COVID-19_pandemic" rel="noopener noreferrer" target="_blank"&gt;you don't need me to tell you about
@@ -373,9 +427,9 @@ in the running version of Emacs&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:200-1"&gt;
+&lt;li id="fn:201-1"&gt;
 &lt;p&gt;Note from future me: we're now back over on &lt;code&gt;blog.davep.org&lt;/code&gt; of
-course.&amp;#160;&lt;a class="footnote-backref" href="#fnref:200-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+course.&amp;#160;&lt;a class="footnote-backref" href="#fnref:201-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>

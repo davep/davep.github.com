@@ -2,11 +2,65 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-03-21T08:14:08.360911+00:00</updated>
+  <updated>2026-03-21T08:42:57.967238+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/03/21/blogmore-el-v1-7.html</id>
+    <title>blogmore.el v1.7</title>
+    <updated>2026-03-21T08:41:23+00:00</updated>
+    <content type="html">&lt;p&gt;Yes, the last time I mentioned
+&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; &lt;a href="https://blog.davep.org/2026/03/20/blogmore-el-v1-4.html"&gt;it was
+v1.4&lt;/a&gt; and now it's up to v1.7. So I
+tinkered a little with it last night, okay?&lt;/p&gt;
+&lt;p&gt;Anyway, the changes and additions keep happening as I have more fun writing
+some &lt;a href="https://blog.davep.org/tag/emacs-lisp"&gt;elisp&lt;/a&gt; again. Since the last post about the package
+I've:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Added a command to refresh the &lt;code&gt;date&lt;/code&gt; frontmatter property&lt;/li&gt;
+&lt;li&gt;Added a command to add/refresh the &lt;code&gt;modified&lt;/code&gt; frontmatter property&lt;/li&gt;
+&lt;li&gt;Added a command to insert a link to a previous post into what I'm writing&lt;/li&gt;
+&lt;li&gt;Made a few things &lt;code&gt;defcustom&lt;/code&gt; rather than &lt;code&gt;defconst&lt;/code&gt; for &lt;a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Easy-Customization.html" rel="noopener noreferrer" target="_blank"&gt;easier
+  tweaking&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Added a hook that can be run after a new post is started&lt;/li&gt;
+&lt;li&gt;Dropped the dependency on &lt;a href="https://github.com/davep/end-it.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;end-it&lt;/code&gt;&lt;/a&gt;
+  and used the above hook to do the same thing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;While this package is never intended for use by others, I guess it's not
+impossible someone might want to work with it (I had the same thing in mind
+with &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; itself yet someone else has
+started working with it!) and so I'm moving it in the direction of being my
+way by default but easy to modify to other requirements.&lt;/p&gt;
+&lt;p&gt;So, now, rather than forcing someone to have to use my obsession with
+end-of-file markers, I still have that without imposing it on anyone else by
+simply setting the hook.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;use-package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:vc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;:url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://github.com/davep/blogmore.el&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:rev&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:newest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:init&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;add-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;blogmore-new-post-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;&lt;/span&gt;&lt;span class="nv"&gt;end-it&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I think my favourite addition right now is &lt;code&gt;blogmore-link-post&lt;/code&gt;. I like to
+cross-link posts in my blog as much as possible so having something that
+lets me do that and stay inside Emacs really speeds things up. So now I just
+run that command, I get speedy picker to find the post:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Picking a post to link" src="https://blog.davep.org/attachments/2026/03/21/insert-link.png" /&gt;&lt;/p&gt;
+&lt;p&gt;and the result is some Markdown inserted with the cursor between the two
+&lt;code&gt;[]&lt;/code&gt; ready for me to write the text:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;[](/2026/03/20/blogmore-el-v1-4.html)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Other things I link often are categories and tags, so I'm planning on adding
+commands that does something similar for those two.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/03/21/blogmore-el-v1-7.html"/>
+    <category term="Emacs"/>
+    <category term="Emacs"/>
+    <category term="coding"/>
+    <category term="Emacs Lisp"/>
+    <category term="Lisp"/>
+    <published>2026-03-21T08:41:23+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/03/21/astral-and-openai.html</id>
     <title>Astral and OpenAI</title>
@@ -112,7 +166,7 @@ latter lets me quickly pick an existing post and go edit it.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="blogmore-edit in action" src="https://blog.davep.org/attachments/2026/03/19/blogmore-edit.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;As time goes on I might expand on this. For example: it might be useful to
 have a command that updates the &lt;code&gt;date&lt;/code&gt; frontmatter; perhaps another to add a
-&lt;code&gt;modified&lt;/code&gt;&lt;sup id="fnref:146-1"&gt;&lt;a class="footnote-ref" href="#fn:146-1"&gt;1&lt;/a&gt;&lt;/sup&gt;; one to set the &lt;code&gt;category&lt;/code&gt; from any of the categories I've
+&lt;code&gt;modified&lt;/code&gt;&lt;sup id="fnref:147-1"&gt;&lt;a class="footnote-ref" href="#fn:147-1"&gt;1&lt;/a&gt;&lt;/sup&gt;; one to set the &lt;code&gt;category&lt;/code&gt; from any of the categories I've
 used so far would be good; ditto the &lt;code&gt;tags&lt;/code&gt; property.&lt;/p&gt;
 &lt;p&gt;I doubt this will be useful to anyone else, although I will try my best to
 keep it so that it's easy to configure, so it's only ever going to stay
@@ -132,9 +186,9 @@ approach for all of my personal packages.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:146-1"&gt;
+&lt;li id="fn:147-1"&gt;
 &lt;p&gt;Note to self: did I make &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
-support modified dates?&amp;#160;&lt;a class="footnote-backref" href="#fnref:146-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+support modified dates?&amp;#160;&lt;a class="footnote-backref" href="#fnref:147-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -350,7 +404,7 @@ don't have it?&lt;/p&gt;
 &lt;p&gt;Quickly checking elsewhere, sure enough, I had access to almost no models. I
 can't remember what there was, but it wasn't much and &lt;em&gt;all&lt;/em&gt; the Claude ones
 had disappeared. Even if I tested in the &lt;a href="https://github.com/features/copilot/cli" rel="noopener noreferrer" target="_blank"&gt;Copilot
-CLI&lt;/a&gt;&lt;sup id="fnref:148-1"&gt;&lt;a class="footnote-ref" href="#fn:148-1"&gt;1&lt;/a&gt;&lt;/sup&gt; I saw a very limited set
+CLI&lt;/a&gt;&lt;sup id="fnref:149-1"&gt;&lt;a class="footnote-ref" href="#fn:149-1"&gt;1&lt;/a&gt;&lt;/sup&gt; I saw a very limited set
 of models.&lt;/p&gt;
 &lt;p&gt;Around this time I had two reactions: one was something like &lt;em&gt;"cool, this is
 an important part of the experiment, knowing how it goes if your models are
@@ -376,7 +430,7 @@ what &lt;em&gt;does&lt;/em&gt; happen when some third party takes away the model
 to get your work done? In the time I've been building up BlogMore I've come
 to trust the quality of Claude Sonnet (in the sense that I know when and
 where I have to pay closer attention to what it's done, and where it'll very
-likely have done a pretty good job&lt;sup id="fnref:148-2"&gt;&lt;a class="footnote-ref" href="#fn:148-2"&gt;2&lt;/a&gt;&lt;/sup&gt;), so finding that I'd possibly have
+likely have done a pretty good job&lt;sup id="fnref:149-2"&gt;&lt;a class="footnote-ref" href="#fn:149-2"&gt;2&lt;/a&gt;&lt;/sup&gt;), so finding that I'd possibly have
 to switch to some other model that I've had no experience with... I
 genuinely had a moment of concern about how and where I was going to take
 BlogMore.&lt;/p&gt;
@@ -393,12 +447,12 @@ resolved&lt;/a&gt;?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:148-1"&gt;
+&lt;li id="fn:149-1"&gt;
 &lt;p&gt;Which I'm not really using at the moment, but do have installed to
-experiment with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:148-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+experiment with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:149-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:148-2"&gt;
-&lt;p&gt;So just like working with humans, oddly enough.&amp;#160;&lt;a class="footnote-backref" href="#fnref:148-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:149-2"&gt;
+&lt;p&gt;So just like working with humans, oddly enough.&amp;#160;&lt;a class="footnote-backref" href="#fnref:149-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -486,7 +540,7 @@ so you can use "clean URLs" for pages too.&lt;/p&gt;
 &lt;p&gt;Another change I've added has been, in part, prompted by a thing I've seen
 going around the socials the past couple of days:
 &lt;a href="https://codeberg.org/robida/human.json" rel="noopener noreferrer" target="_blank"&gt;human.json&lt;/a&gt;. I did initially think
-about adding some special support for it&lt;sup id="fnref:147-1"&gt;&lt;a class="footnote-ref" href="#fn:147-1"&gt;1&lt;/a&gt;&lt;/sup&gt; -- allowing declaring the
+about adding some special support for it&lt;sup id="fnref:148-1"&gt;&lt;a class="footnote-ref" href="#fn:148-1"&gt;1&lt;/a&gt;&lt;/sup&gt; -- allowing declaring the
 values in the BlogMore configuration file -- but then I decided it made more
 sense to just include the &lt;code&gt;human.json&lt;/code&gt; file in the &lt;code&gt;extras&lt;/code&gt; directory and
 allow for adding a header.&lt;/p&gt;
@@ -501,9 +555,9 @@ often, and using a machine-readable file format is so much more... human.&lt;/p&
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:147-1"&gt;
+&lt;li id="fn:148-1"&gt;
 &lt;p&gt;Probably kind of ironic in a project that is 100% about understanding
-the AI-all-the-way approach to developing an application.&amp;#160;&lt;a class="footnote-backref" href="#fnref:147-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+the AI-all-the-way approach to developing an application.&amp;#160;&lt;a class="footnote-backref" href="#fnref:148-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -916,7 +970,7 @@ used to enjoy during the rise and the peak of "Web 2.0".&lt;/p&gt;
 frictionless (yet), it feels like it will work. So here's the plan:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Take photo&lt;/li&gt;
-&lt;li&gt;Manipulate photo&lt;sup id="fnref:141-1"&gt;&lt;a class="footnote-ref" href="#fn:141-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;Manipulate photo&lt;sup id="fnref:142-1"&gt;&lt;a class="footnote-ref" href="#fn:142-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;li&gt;In Apple Photos add a description to the image&lt;/li&gt;
 &lt;li&gt;Export JPEG file to a &lt;code&gt;Photoblog Inbox&lt;/code&gt; folder in iCloud Drive&lt;/li&gt;
 &lt;li&gt;Later, when I'm at my desk, &lt;a href="https://github.com/davep/seen-by/blob/main/impimg.py" rel="noopener noreferrer" target="_blank"&gt;import the image into the
@@ -941,9 +995,9 @@ busy Sunday afternoon.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:141-1"&gt;
+&lt;li id="fn:142-1"&gt;
 &lt;p&gt;Still using &lt;a href="https://en.wikipedia.org/wiki/Snapseed" rel="noopener noreferrer" target="_blank"&gt;Snapseed&lt;/a&gt;.
-Snapseed is always fun for evoking the mood.&amp;#160;&lt;a class="footnote-backref" href="#fnref:141-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+Snapseed is always fun for evoking the mood.&amp;#160;&lt;a class="footnote-backref" href="#fnref:142-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -968,7 +1022,7 @@ ongoing experiment with &lt;a href="https://blog.davep.org/tag/copilot/"&gt;GitH
 release I wrote about&lt;/a&gt; I've made a couple
 of cosmetic changes, and also addressed a couple of bugs.&lt;/p&gt;
 &lt;p&gt;The first cosmetic change relates to how the blog appears on mobile
-devices&lt;sup id="fnref:156-1"&gt;&lt;a class="footnote-ref" href="#fn:156-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In such a circumstance, before the change, the sidebar content
+devices&lt;sup id="fnref:157-1"&gt;&lt;a class="footnote-ref" href="#fn:157-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In such a circumstance, before the change, the sidebar content
 would, by design, relocate to the top of the page. This made sense, it meant
 that the information was still available, but it also had the unfortunate
 effect of pushing the actual post content way down the screen, sometimes off
@@ -1020,8 +1074,8 @@ As I keep tinkering with BlogMore I'll be keeping this post in mind.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:156-1"&gt;
-&lt;p&gt;Okay fine any narrow viewport but you know what I mean!&amp;#160;&lt;a class="footnote-backref" href="#fnref:156-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:157-1"&gt;
+&lt;p&gt;Okay fine any narrow viewport but you know what I mean!&amp;#160;&lt;a class="footnote-backref" href="#fnref:157-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1145,7 +1199,7 @@ last.&amp;#160;&lt;a class="footnote-backref" href="#fnref:137-2" title="Jump ba
 enjoy. I want documentation to read well, I want documentation to be useful,
 I want documentation to be accurate. I also want there to be documentation
 at all and sometimes the other parts mean it doesn't get done for FOSS
-projects&lt;sup id="fnref:163-1"&gt;&lt;a class="footnote-ref" href="#fn:163-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+projects&lt;sup id="fnref:164-1"&gt;&lt;a class="footnote-ref" href="#fn:164-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;When &lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;I started the experiment that is
 BlogMore&lt;/a&gt;, I very quickly &lt;a href="https://github.com/davep/blogmore/pull/100" rel="noopener noreferrer" target="_blank"&gt;hashed
 out some ideas on how it might generate some
@@ -1171,9 +1225,9 @@ background while I get on with my actual day makes a lot of sense.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:163-1"&gt;
+&lt;li id="fn:164-1"&gt;
 &lt;p&gt;Although I've made a point of doing it for almost every one of my
-recent &lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual&lt;/a&gt;-based projects.&amp;#160;&lt;a class="footnote-backref" href="#fnref:163-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+recent &lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual&lt;/a&gt;-based projects.&amp;#160;&lt;a class="footnote-backref" href="#fnref:164-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1186,83 +1240,5 @@ recent &lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual&lt;/a&gt;-bas
     <category term="GitHub"/>
     <category term="BlogMore"/>
     <published>2026-03-05T16:26:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/03/03/blogmore-1-5-0.html</id>
-    <title>BlogMore v1.5.0</title>
-    <updated>2026-03-03T21:34:00+00:00</updated>
-    <content type="html">&lt;p&gt;Since switching over on the &lt;a href="https://blog.davep.org/2026/02/19/a-new-engine.html"&gt;19th of last
-month&lt;/a&gt; I've been making lots of changes to
-BlogMore. While there's been a good few bug fixes and QoL changes, I've also
-been adding new features that I've found myself wanting.&lt;/p&gt;
-&lt;p&gt;Here's a list of some of the significant additions I've added in the last
-couple of weeks (and, yes, as per the experiment, &lt;em&gt;all&lt;/em&gt; of these have been
-developed by me prompting GitHub Copilot):&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;All parts of a date in a post's timestamp can be clicked to get to an
-  archive of that point in time.&lt;/li&gt;
-&lt;li&gt;Added fully-client-side full text search (I'm finding this especially
-  useful).&lt;/li&gt;
-&lt;li&gt;Added sitemap generation.&lt;/li&gt;
-&lt;li&gt;Added a general fallback description for any page that doesn't have one.&lt;/li&gt;
-&lt;li&gt;Added fallback keywords for any page that doesn't have any.&lt;/li&gt;
-&lt;li&gt;Added author metadata to the header of all pages.&lt;/li&gt;
-&lt;li&gt;Hugely optimised the use of FontAwesome.&lt;/li&gt;
-&lt;li&gt;Made best possible use of all the usual &lt;code&gt;og:&lt;/code&gt; type metadata in the &lt;code&gt;head&lt;/code&gt;
-  of all pages.&lt;/li&gt;
-&lt;li&gt;Added optional CSS minification, improving page load times.&lt;/li&gt;
-&lt;li&gt;Added optional JavaScript minification, improving page load times.&lt;/li&gt;
-&lt;li&gt;Where appropriate, all pages now have &lt;code&gt;rel="prev"&lt;/code&gt; and &lt;code&gt;rel="next"&lt;/code&gt; tags
-  in the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Added a &lt;code&gt;rel="canonical"&lt;/code&gt; tag to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; of all pages.&lt;/li&gt;
-&lt;li&gt;Improved the style and workings of the pagination of all archive type
-  pages.&lt;/li&gt;
-&lt;li&gt;Improved the cosmetics of the category and tag clouds.&lt;/li&gt;
-&lt;li&gt;Improved how the first paragraph is discovered for a page or post, when
-  using it as the default description in the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; of a page.&lt;/li&gt;
-&lt;li&gt;Cleaned up the generated HTML so it's more compact.&lt;/li&gt;
-&lt;li&gt;Added support for custom 404 pages.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;As I say, they're just the improvements I've made that have come to mind as
-I've used BlogMore. I've also done a lot of bug fixing too. You can read the
-full changelog &lt;a href="https://blogmore.davep.dev/changelog/" rel="noopener noreferrer" target="_blank"&gt;over on the BlogMore
-website&lt;/a&gt;&lt;sup id="fnref:143-1"&gt;&lt;a class="footnote-ref" href="#fn:143-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;I &lt;em&gt;feel&lt;/em&gt; that the pace of updates and additions has started to slow; I
-&lt;em&gt;think&lt;/em&gt; I've now got more or less everything I wanted from this. I'm pretty
-sure I can do everything I ever bothered to do with Jekyll and Pelican, and
-I am enjoying "owning" the code such that, if I have an idea for something I
-want, it's easy enough to make it happen.&lt;/p&gt;
-&lt;p&gt;I'm also pretty happy with how well the results perform. Despite the fact
-I'm not a web developer, and despite this blog being served by GitHub Pages
-(which, let's be honest, isn't the most speedy host), &lt;a href="https://pagespeed.web.dev/" rel="noopener noreferrer" target="_blank"&gt;the
-measurements&lt;/a&gt; for a single page in the blog look
-fairly good:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Desktop" src="https://blog.davep.org/attachments/2026/03/03/desktop-speeds.png" /&gt;&lt;/p&gt;
-&lt;p&gt;That's measuring loading in a desktop context. Even measured as mobile
-(which I've tried to make work well too) it's not too shabby:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Mobile" src="https://blog.davep.org/attachments/2026/03/03/mobile-speeds.png" /&gt;&lt;/p&gt;
-&lt;p&gt;I think I can rightfully be satisfied with those values, given this isn't
-normally my primary focus when it comes to software development.&lt;/p&gt;
-&lt;p&gt;Anyway, if you like messing with static site generators, and one that is
-blog-centric sounds useful, and if you're not put off by the fact that this
-is &lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;a deliberate &lt;em&gt;"use GitHub Copilot"&lt;/em&gt;
-experiment&lt;/a&gt;, feel free to &lt;a href="https://github.com/davep/blogmore" rel="noopener noreferrer" target="_blank"&gt;take a
-look&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:143-1"&gt;
-&lt;p&gt;Which, somewhat amusingly, is built with MkDocs.&amp;#160;&lt;a class="footnote-backref" href="#fnref:143-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/03/03/blogmore-1-5-0.html"/>
-    <category term="Coding"/>
-    <category term="Python"/>
-    <category term="AI"/>
-    <category term="LLM"/>
-    <category term="Copilot"/>
-    <category term="BlogMore"/>
-    <published>2026-03-03T21:34:00+00:00</published>
   </entry>
 </feed>
