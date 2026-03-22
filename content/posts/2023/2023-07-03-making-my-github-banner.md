@@ -66,7 +66,7 @@ if __name__ == "__main__":
 
 Throw in a `Makefile` so I don't forget what I'm supposed to run:
 
-```
+```make
 .PHONY: all
 all:
     pipenv run python make_banner.py
