@@ -2,11 +2,86 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-03-21T08:42:57.991074+00:00</updated>
+  <updated>2026-03-22T10:37:51.747166+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/03/22/blogmore-v2-1-0.html</id>
+    <title>BlogMore v2.1.0</title>
+    <updated>2026-03-22T10:35:14+00:00</updated>
+    <content type="html">&lt;p&gt;It's been a couple or so days since I last made any changes to
+&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; -- mainly because I've been messing
+with &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;blogmore.el&lt;/a&gt; -- but yesterday
+morning I decided to make a change I've been wanting to make for a wee
+while.&lt;/p&gt;
+&lt;p&gt;Ensuring fenced codeblocks were handled was one of the things that was
+important when I started planning BlogMore and, while the result was looking
+good (thanks to &lt;a href="https://pygments.org/" rel="noopener noreferrer" target="_blank"&gt;Pygments&lt;/a&gt;), the way the block itself
+looked in the page wasn't quite to my taste. So yesterday I &lt;a href="https://github.com/davep/blogmore/issues/322" rel="noopener noreferrer" target="_blank"&gt;wrote out how I
+wanted things to be changed&lt;/a&gt;
+and tasked &lt;a href="https://blog.davep.org/tag/copilot/"&gt;Copilot&lt;/a&gt; with getting the job done.&lt;/p&gt;
+&lt;p&gt;I'm pretty happy with the result.&lt;/p&gt;
+&lt;div class="highlight" data-lang="lisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;greet&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;&amp;amp;optional&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;greeting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hello&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Prints a greeting to standard output.&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~A, ~A!~%&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;greeting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;For the sake of any future reader, should I happen to tweak this even more
+at some point in the future, here's what the above looks like at the time of
+writing:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Example code block" src="https://blog.davep.org/attachments/2026/03/22/code-block.png" /&gt;&lt;/p&gt;
+&lt;p&gt;As you can see: the language for the block is now shown to the left, and
+there's a handy "copy to clipboard" icon to the right. I'm still not sure
+I'm loving the subtle border around the sides and the bottom, I think I'm
+going to live with that for a few days and see how it sits with me.&lt;/p&gt;
+&lt;p&gt;I'm also wondering if I should tweak the name of the language a little too,
+so that it's capitalised correctly. Of course, I &lt;em&gt;could&lt;/em&gt; just get into the
+habit of writing the language name in the start of the block with the
+correct casing...&lt;/p&gt;
+&lt;div class="highlight" data-lang="Python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;greet&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;greeting&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hello&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Print a greeting to standard output.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Args:&lt;/span&gt;
+&lt;span class="sd"&gt;        name: The name of the person to greet.&lt;/span&gt;
+&lt;span class="sd"&gt;        greeting: The greeting to use.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;greeting&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;, &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;but given how many code blocks I've got in my blog by this point, where I've
+typed them in lower case... it's probably easier to just tweak it when
+presenting it. Moreover, I do want to try and keep my Markdown sources
+compatible with as many rendering engines as possible and I can't be sure
+that all of them would downcase before doing the language lookup (although
+&lt;a href="https://en.wikipedia.org/wiki/Robustness_principle" rel="noopener noreferrer" target="_blank"&gt;you'd hope they all
+would&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Meanwhile... given how much more I like how code is looking now, I'm going
+to have to find more reasons to include code, and Pygments supports &lt;a href="https://pygments.org/languages/" rel="noopener noreferrer" target="_blank"&gt;so many
+languages too&lt;/a&gt;! Even ones from my distant
+past...&lt;/p&gt;
+&lt;div class="highlight" data-lang="Clipper"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kr"&gt;Function&lt;/span&gt; Greet( cName, cGreeting )
+   &lt;span class="kr"&gt;If&lt;/span&gt; cGreeting == NIL
+      &lt;span class="nv"&gt;cGreeting&lt;/span&gt; := &lt;span class="s"&gt;&amp;quot;Hello&amp;quot;&lt;/span&gt;
+   &lt;span class="kr"&gt;EndIf&lt;/span&gt;
+   ? cGreeting + &lt;span class="s"&gt;&amp;quot;, &amp;quot;&lt;/span&gt; + cName + &lt;span class="s"&gt;&amp;quot;!&amp;quot;&lt;/span&gt;
+&lt;span class="kr"&gt;Return&lt;/span&gt; NIL
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;As an aside: I also just noticed that they list FoxPro, Clipper, xBase and
+VFP as aliases for xBase-type languages, but no
+&lt;a href="https://harbour.github.io" rel="noopener noreferrer" target="_blank"&gt;Harbour&lt;/a&gt;! I might have to see about doing a PR
+for that...&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/03/22/blogmore-v2-1-0.html"/>
+    <category term="Coding"/>
+    <category term="Python"/>
+    <category term="AI"/>
+    <category term="LLM"/>
+    <category term="Copilot"/>
+    <category term="BlogMore"/>
+    <published>2026-03-22T10:35:14+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/03/18/blogmore-2-0-0.html</id>
     <title>BlogMore v2.0.0</title>
@@ -41,14 +116,14 @@ configuration options to control the locations of:&lt;/p&gt;
 &lt;p&gt;All of those keep their default values from before, and so can remain
 backward compatible. Personally, I've updated the configuration for this
 blog so that I'm using:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;archive_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/archive/index.html&amp;quot;&lt;/span&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;archive_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/archive/index.html&amp;quot;&lt;/span&gt;
 &lt;span class="nt"&gt;categories_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/categories/index.html&amp;quot;&lt;/span&gt;
 &lt;span class="nt"&gt;search_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/search/index.html&amp;quot;&lt;/span&gt;
 &lt;span class="nt"&gt;tags_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/tags/index.html&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;which, combined with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;clean_urls&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;clean_urls&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;results in cleaner URLs for all of those site features.&lt;/p&gt;
@@ -82,7 +157,7 @@ to update for the slightly changed
 layout&lt;/a&gt;, but it
 was a small enough job with minimal impact so it was worth it. I also used a
 tweaked setting for &lt;code&gt;page_n_path&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;page_n_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/page/{page}/index.html&amp;quot;&lt;/span&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;page_n_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/page/{page}/index.html&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;so that any paginated page has a URL that ends something like &lt;code&gt;.../page/2/&lt;/code&gt;.
@@ -123,7 +198,7 @@ having a &lt;code&gt;/ai&lt;/code&gt; page, something I remember as being part o
 pages&lt;/a&gt; moment. While I've never leaned into it
 myself, I do consider it a fun idea and, given &lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;the current
 experiment&lt;/a&gt;, I did think it made
-sense to have a &lt;code&gt;/ai&lt;/code&gt; page for this blog, at least&lt;sup id="fnref:138-1"&gt;&lt;a class="footnote-ref" href="#fn:138-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+sense to have a &lt;code&gt;/ai&lt;/code&gt; page for this blog, at least&lt;sup id="fnref:139-1"&gt;&lt;a class="footnote-ref" href="#fn:139-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Yesterday's changes, to allow modifying the path used for pages, and also to
 apply the &lt;a href="https://blogmore.davep.dev/configuration/#clean_urls" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;clean_urls&lt;/code&gt;
 setting&lt;/a&gt; to them too,
@@ -148,9 +223,9 @@ the need to want to customise it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:138-1"&gt;
+&lt;li id="fn:139-1"&gt;
 &lt;p&gt;I should probably add one to my &lt;a href="https://www.davep.org/" rel="noopener noreferrer" target="_blank"&gt;main site&lt;/a&gt;
-too now I think about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:138-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+too now I think about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:139-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -184,7 +259,7 @@ so you can use "clean URLs" for pages too.&lt;/p&gt;
 &lt;p&gt;Another change I've added has been, in part, prompted by a thing I've seen
 going around the socials the past couple of days:
 &lt;a href="https://codeberg.org/robida/human.json" rel="noopener noreferrer" target="_blank"&gt;human.json&lt;/a&gt;. I did initially think
-about adding some special support for it&lt;sup id="fnref:148-1"&gt;&lt;a class="footnote-ref" href="#fn:148-1"&gt;1&lt;/a&gt;&lt;/sup&gt; -- allowing declaring the
+about adding some special support for it&lt;sup id="fnref:149-1"&gt;&lt;a class="footnote-ref" href="#fn:149-1"&gt;1&lt;/a&gt;&lt;/sup&gt; -- allowing declaring the
 values in the BlogMore configuration file -- but then I decided it made more
 sense to just include the &lt;code&gt;human.json&lt;/code&gt; file in the &lt;code&gt;extras&lt;/code&gt; directory and
 allow for adding a header.&lt;/p&gt;
@@ -199,9 +274,9 @@ often, and using a machine-readable file format is so much more... human.&lt;/p&
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:148-1"&gt;
+&lt;li id="fn:149-1"&gt;
 &lt;p&gt;Probably kind of ironic in a project that is 100% about understanding
-the AI-all-the-way approach to developing an application.&amp;#160;&lt;a class="footnote-backref" href="#fnref:148-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+the AI-all-the-way approach to developing an application.&amp;#160;&lt;a class="footnote-backref" href="#fnref:149-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -220,7 +295,7 @@ the AI-all-the-way approach to developing an application.&amp;#160;&lt;a class="
     <updated>2026-03-14T14:30:00+00:00</updated>
     <content type="html">&lt;p&gt;Somehow minor version numbers are tracking the day of the month at the
 moment, and that isn't on purpose, but here we are on March 14th with
-&lt;a href="https://blogmore.davep.dev" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; v1.14.0&lt;sup id="fnref:139-1"&gt;&lt;a class="footnote-ref" href="#fn:139-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;a href="https://blogmore.davep.dev" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; v1.14.0&lt;sup id="fnref:140-1"&gt;&lt;a class="footnote-ref" href="#fn:140-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;This release has a couple of changes: one is directly practical and the
 other a little more experimental/hopeful.&lt;/p&gt;
 &lt;p&gt;For starters, I've added a &lt;a href="https://blogmore.davep.dev/configuration/#minify_html" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;minify_html&lt;/code&gt;
@@ -258,8 +333,8 @@ as examples for an agent so that more themes can be AI-generated).&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:139-1"&gt;
-&lt;p&gt;If only it was v3.14... 🥧&amp;#160;&lt;a class="footnote-backref" href="#fnref:139-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:140-1"&gt;
+&lt;p&gt;If only it was v3.14... 🥧&amp;#160;&lt;a class="footnote-backref" href="#fnref:140-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -330,11 +405,11 @@ docs&lt;/a&gt;:&lt;/p&gt;
 too long, or because you want a stable &lt;code&gt;id&lt;/code&gt; that won't change if you reword
 the heading — you can set it explicitly by appending &lt;code&gt;{#your-id}&lt;/code&gt; to the end
 of the heading line:&lt;/em&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gu"&gt;### My Great Heading {#custom-id}&lt;/span&gt;
+&lt;div class="highlight" data-lang="markdown"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gu"&gt;### My Great Heading {#custom-id}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;em&gt;This produces:&lt;/em&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h3&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;custom-id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;My Great Heading&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h3&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;div class="highlight" data-lang="html"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h3&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;custom-id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;My Great Heading&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h3&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;em&gt;The custom &lt;code&gt;id&lt;/code&gt; overrides the auto-generated one. Headings without a &lt;code&gt;{#…}&lt;/code&gt;
@@ -358,7 +433,7 @@ the layout of the page in any way.&lt;/em&gt;&lt;/p&gt;
 appears at the bottom of every generated page. I always think it's nice if
 some tool lets you turn that sort of thing off, and I'd not paid attention
 to that yet. So as of v1.12.0 you can add this to the configuration file:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;with_advert&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;false&lt;/span&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;with_advert&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;false&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;and you then don't have to have that at the bottom of each page.&lt;/p&gt;
@@ -489,7 +564,7 @@ ongoing experiment with &lt;a href="https://blog.davep.org/tag/copilot/"&gt;GitH
 release I wrote about&lt;/a&gt; I've made a couple
 of cosmetic changes, and also addressed a couple of bugs.&lt;/p&gt;
 &lt;p&gt;The first cosmetic change relates to how the blog appears on mobile
-devices&lt;sup id="fnref:157-1"&gt;&lt;a class="footnote-ref" href="#fn:157-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In such a circumstance, before the change, the sidebar content
+devices&lt;sup id="fnref:158-1"&gt;&lt;a class="footnote-ref" href="#fn:158-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In such a circumstance, before the change, the sidebar content
 would, by design, relocate to the top of the page. This made sense, it meant
 that the information was still available, but it also had the unfortunate
 effect of pushing the actual post content way down the screen, sometimes off
@@ -541,8 +616,8 @@ As I keep tinkering with BlogMore I'll be keeping this post in mind.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:157-1"&gt;
-&lt;p&gt;Okay fine any narrow viewport but you know what I mean!&amp;#160;&lt;a class="footnote-backref" href="#fnref:157-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:158-1"&gt;
+&lt;p&gt;Okay fine any narrow viewport but you know what I mean!&amp;#160;&lt;a class="footnote-backref" href="#fnref:158-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -611,7 +686,7 @@ and that's it.&lt;/p&gt;
 I do like how it looks) -- worked just as it did before; which is exactly
 what I was wanting to see.&lt;/p&gt;
 &lt;p&gt;There was one wrinkle though: when it came to publishing to GitHub pages:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv run zensical gh-deploy
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv run zensical gh-deploy
 
 Usage: zensical [OPTIONS] COMMAND [ARGS]...
 Try &amp;#39;zensical --help&amp;#39; for help.
@@ -697,7 +772,7 @@ developed by me prompting GitHub Copilot):&lt;/p&gt;
 &lt;p&gt;As I say, they're just the improvements I've made that have come to mind as
 I've used BlogMore. I've also done a lot of bug fixing too. You can read the
 full changelog &lt;a href="https://blogmore.davep.dev/changelog/" rel="noopener noreferrer" target="_blank"&gt;over on the BlogMore
-website&lt;/a&gt;&lt;sup id="fnref:144-1"&gt;&lt;a class="footnote-ref" href="#fn:144-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+website&lt;/a&gt;&lt;sup id="fnref:145-1"&gt;&lt;a class="footnote-ref" href="#fn:145-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;I &lt;em&gt;feel&lt;/em&gt; that the pace of updates and additions has started to slow; I
 &lt;em&gt;think&lt;/em&gt; I've now got more or less everything I wanted from this. I'm pretty
 sure I can do everything I ever bothered to do with Jekyll and Pelican, and
@@ -722,8 +797,8 @@ look&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:144-1"&gt;
-&lt;p&gt;Which, somewhat amusingly, is built with MkDocs.&amp;#160;&lt;a class="footnote-backref" href="#fnref:144-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:145-1"&gt;
+&lt;p&gt;Which, somewhat amusingly, is built with MkDocs.&amp;#160;&lt;a class="footnote-backref" href="#fnref:145-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -765,21 +840,21 @@ would have handed off to the environment's web browser.&lt;/p&gt;
 GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/hike/" rel="noopener noreferrer" target="_blank"&gt;via
 PyPi&lt;/a&gt;. If you have an environment that has
 &lt;code&gt;pipx&lt;/code&gt; installed you should be able to get up and going with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;hike
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;hike
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;If you're more into
 &lt;a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;hike
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;hike
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;If you don't have &lt;code&gt;uv&lt;/code&gt; installed you can use &lt;a href="https://uvx.sh" rel="noopener noreferrer" target="_blank"&gt;uvx.sh&lt;/a&gt; to
 perform the installation. For GNU/Linux or macOS or similar:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-LsSf&lt;span class="w"&gt; &lt;/span&gt;uvx.sh/hike/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-LsSf&lt;span class="w"&gt; &lt;/span&gt;uvx.sh/hike/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;or on Windows:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;powershell&lt;span class="w"&gt; &lt;/span&gt;-ExecutionPolicy&lt;span class="w"&gt; &lt;/span&gt;ByPass&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;irm https://uvx.sh/hike/install.ps1 | iex&amp;quot;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;powershell&lt;span class="w"&gt; &lt;/span&gt;-ExecutionPolicy&lt;span class="w"&gt; &lt;/span&gt;ByPass&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;irm https://uvx.sh/hike/install.ps1 | iex&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
     <link href="https://blog.davep.org/2026/03/03/hike-1-3-0.html"/>
     <category term="Coding"/>
@@ -828,25 +903,25 @@ installed. So give it a go, see if it installs and runs as
 GitHub&lt;/a&gt;, with the application
 available &lt;a href="https://pypi.org/project/complexitty/" rel="noopener noreferrer" target="_blank"&gt;via PyPI&lt;/a&gt;. If you use
 &lt;code&gt;pipx&lt;/code&gt; you should be able to install with either:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty&lt;span class="o"&gt;[&lt;/span&gt;faster&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty&lt;span class="o"&gt;[&lt;/span&gt;faster&lt;span class="o"&gt;]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;or&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;If you're a fan of
 &lt;a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt; (and who
 isn't these days?) then try either:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty&lt;span class="o"&gt;[&lt;/span&gt;faster&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty&lt;span class="o"&gt;[&lt;/span&gt;faster&lt;span class="o"&gt;]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;or fall back to:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;In fact, to squeeze everything you can out of Complexitty, perhaps try:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty&lt;span class="o"&gt;[&lt;/span&gt;faster&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--python&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.14
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty&lt;span class="o"&gt;[&lt;/span&gt;faster&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--python&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.14
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
     <link href="https://blog.davep.org/2026/02/28/complexitty-1-1-0.html"/>
     <category term="Coding"/>
@@ -932,21 +1007,21 @@ terminal too then it's out there to try out. It's licensed GPL-3.0 and
 available &lt;a href="https://github.com/davep/oldnews" rel="noopener noreferrer" target="_blank"&gt;via GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/oldnews/" rel="noopener noreferrer" target="_blank"&gt;via
 PyPI&lt;/a&gt;. If you have an environment that
 has &lt;code&gt;pipx&lt;/code&gt; installed you should be able to get up and running with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;oldnews
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;oldnews
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;It can also be installed using
 &lt;a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;oldnews
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;oldnews
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;If you don't have &lt;code&gt;uv&lt;/code&gt; installed you can use &lt;a href="https://uvx.sh" rel="noopener noreferrer" target="_blank"&gt;uvx.sh&lt;/a&gt; to
 perform the installation. For GNU/Linux or macOS or similar:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-LsSf&lt;span class="w"&gt; &lt;/span&gt;uvx.sh/oldnews/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-LsSf&lt;span class="w"&gt; &lt;/span&gt;uvx.sh/oldnews/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;or on Windows:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;powershell&lt;span class="w"&gt; &lt;/span&gt;-ExecutionPolicy&lt;span class="w"&gt; &lt;/span&gt;ByPass&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;irm https://uvx.sh/oldnews/install.ps1 | iex&amp;quot;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;powershell&lt;span class="w"&gt; &lt;/span&gt;-ExecutionPolicy&lt;span class="w"&gt; &lt;/span&gt;ByPass&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;irm https://uvx.sh/oldnews/install.ps1 | iex&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Once installed, run the &lt;code&gt;oldnews&lt;/code&gt; command.&lt;/p&gt;
@@ -988,7 +1063,7 @@ spoke to me enough that I jotted it down and kept coming back to it and
 thinking about it. It was a phrase I couldn't get out of my head.&lt;/p&gt;
 &lt;p&gt;Around the same time I was also doing a lot of thinking about, and
 note-writing about, code reviews. Although I've been working in software
-development&lt;sup id="fnref:166-1"&gt;&lt;a class="footnote-ref" href="#fn:166-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for a few decades now (I started in July 1989), I was quite
+development&lt;sup id="fnref:167-1"&gt;&lt;a class="footnote-ref" href="#fn:167-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for a few decades now (I started in July 1989), I was quite
 late to the whole process of code review -- at least in the way we talk
 about it today. This mostly comes down to the fact that for a lot of my time
 I either worked in very small companies or I was the only developer around.&lt;/p&gt;
@@ -1108,9 +1183,9 @@ that thrive.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:166-1"&gt;
+&lt;li id="fn:167-1"&gt;
 &lt;p&gt;Or software engineering, if you prefer, but that's a whole other blog
-post I'll never get round to writing one day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:166-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+post I'll never get round to writing one day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:167-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1356,13 +1431,13 @@ differ.&lt;/p&gt;
 GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/dhv/" rel="noopener noreferrer" target="_blank"&gt;via
 PyPI&lt;/a&gt;. If you have an environment that has
 &lt;code&gt;pipx&lt;/code&gt; installed you should be able to get up and going with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;dhv
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;dhv
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;If you're a fan of
 &lt;a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt; and friends
 you can install it like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv tool install --python 3.13 dhv
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv tool install --python 3.13 dhv
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class="footnote"&gt;
@@ -1383,74 +1458,5 @@ tool to let you check that assertion.&amp;#160;&lt;a class="footnote-backref" hr
     <category term="disassembly"/>
     <category term="ast"/>
     <published>2025-07-19T15:00:00+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2025/04/20/complexitty.html</id>
-    <title>Complexitty</title>
-    <updated>2025-04-20T09:30:00+01:00</updated>
-    <content type="html">&lt;p&gt;&lt;a href="https://complexitty.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;&lt;img alt="Complexitty" src="https://blog.davep.org/attachments/2025/04/20/complexitty-social-banner.png" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Much like &lt;a href="https://www.davep.org/norton-guides/" rel="noopener noreferrer" target="_blank"&gt;Norton Guide readers&lt;/a&gt; or
-the &lt;a href="https://github.com/davep?tab=repositories&amp;amp;q=5x5&amp;amp;type=&amp;amp;language=&amp;amp;sort=" rel="noopener noreferrer" target="_blank"&gt;5x5
-puzzle&lt;/a&gt;,
-code that has fun with the Mandelbrot set is another one of my goto
-exercises. I've written versions in many languages, and messed with plots in
-some different environments, as varied as &lt;a href="https://www.youtube.com/watch?v=18ytRZrHL34" rel="noopener noreferrer" target="_blank"&gt;in VR on the
-web&lt;/a&gt; to &lt;a href="https://www.redbubble.com/i/t-shirt/Self-Documenting-Mandelbrot-by-davepearson/1341910.0S66D" rel="noopener noreferrer" target="_blank"&gt;wearable
-items&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Back in the early days of &lt;a href="https://blog.davep.org/2024/03/28/goodbye-textualize.html"&gt;my involvement with
-Textualize&lt;/a&gt; I
-&lt;a href="https://github.com/davep/trMandelbrot" rel="noopener noreferrer" target="_blank"&gt;wrote a deliberately worst-approach
-version&lt;/a&gt; using that framework. The
-whole thing was about taking a really silly approach while also
-stress-testing Textual itself. It did the job.&lt;/p&gt;
-&lt;p&gt;Later on I did &lt;a href="https://github.com/davep/textual-mandelbrot" rel="noopener noreferrer" target="_blank"&gt;a second version that targets
-Textual&lt;/a&gt;. This time it did a
-better job and was the catalyst for building
-&lt;a href="https://textual-canvas.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;textual-canvas&lt;/code&gt;&lt;/a&gt;. This version was
-intended more to be a widget that happened to come with an example
-application, and while it was far more better than the on-purpose-terrible
-version mentioned above, I still wasn't 100% happy with the way it worked.&lt;/p&gt;
-&lt;p&gt;Recently I did some maintenance work on &lt;code&gt;textual-canvas&lt;/code&gt;, cleaning up the
-repository and bringing it in line with how I like to maintain my Python
-projects these days, and this prompted me to look back at
-&lt;code&gt;textual-mandelbrot&lt;/code&gt; and rework it too. Quickly I realised it wasn't really
-sensible to rewrite it in a way that it would be backward compatible (not
-that I think anyone has ever used the widget) and instead I decided to kick
-off a fresh stand-alone application.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://complexitty.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Complexitty&lt;/a&gt; is the result.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Complexitty on startup" src="https://blog.davep.org/attachments/2025/04/20/complexitty.png" /&gt;&lt;/p&gt;
-&lt;p&gt;Right now the application has all the same features as the &lt;code&gt;mandelexp&lt;/code&gt;
-application that came with &lt;code&gt;textual-mandelbrot&lt;/code&gt;, plus a couple more. Also
-it's built on top of &lt;a href="https://github.com/davep/textual-enhanced" rel="noopener noreferrer" target="_blank"&gt;the common core
-library&lt;/a&gt; I've been putting
-together for all my own terminal-based Python applications. As time goes on
-&lt;a href="https://github.com/davep/complexitty/issues?q=is%3Aissue%20label%3ATODO%20label%3AEnhancement" rel="noopener noreferrer" target="_blank"&gt;I'll add more
-features&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Zoomed in with Complexitty" src="https://blog.davep.org/attachments/2025/04/20/complexitty-red.png" /&gt;&lt;/p&gt;
-&lt;p&gt;As with most of my recent TUI-based projects, the application is built with
-comprehensive help for commands and key bindings.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The help screen" src="https://blog.davep.org/attachments/2025/04/20/complexitty-help.png" /&gt;&lt;/p&gt;
-&lt;p&gt;and there's also a command palette that helps you discover (and run)
-commands and their keyboard bindings.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The command palette" src="https://blog.davep.org/attachments/2025/04/20/complexitty-commands.png" /&gt;&lt;/p&gt;
-&lt;p&gt;Complexitty is licensed GPL-3.0 and available &lt;a href="https://github.com/davep/complexitty" rel="noopener noreferrer" target="_blank"&gt;via
-GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/complexitty/" rel="noopener noreferrer" target="_blank"&gt;via
-PyPI&lt;/a&gt;. If you have an environment that has
-&lt;code&gt;pipx&lt;/code&gt; installed you should be able to get up and going with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;It can also be installed with
-&lt;code&gt;Homebrew&lt;/code&gt; by tapping &lt;code&gt;davep/homebrew&lt;/code&gt; and then installing &lt;code&gt;complexitty&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;brew&lt;span class="w"&gt; &lt;/span&gt;tap&lt;span class="w"&gt; &lt;/span&gt;davep/homebrew
-brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2025/04/20/complexitty.html"/>
-    <category term="Coding"/>
-    <category term="Python"/>
-    <category term="terminal"/>
-    <category term="textual"/>
-    <category term="mandelbrot"/>
-    <published>2025-04-20T09:30:00+01:00</published>
   </entry>
 </feed>
