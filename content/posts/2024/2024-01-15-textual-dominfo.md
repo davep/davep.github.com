@@ -88,7 +88,7 @@ $ pip install textual-dominfo
 and then attach it to your app or screen or some top-level widget you're
 interested in via `on_mount`; for example:
 
-```
+```python
 def on_mount(self) -> None:
     from textual_dominfo import DOMInfo
     DOMInfo.attach_to(self)
