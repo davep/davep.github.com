@@ -32,9 +32,9 @@ notifications that had popped up on my watch and phone.
 
 However, later on that evening, finally home and flopped on the sofa, I saw
 a question pop up that, while lacking [any useful
-detail](https://label.dev/articles/minimal-reproducible-example/) and
+detail](https://web.archive.org/web/20250427211746/https://label.dev/articles/minimal-reproducible-example/https://label.dev/articles/minimal-reproducible-example/) and
 possibly suffering a wee bit from being [an XY
-problem](https://label.dev/articles/xy-problem/), the immediate answer was
+problem](https://xyproblem.info/), the immediate answer was
 clear:
 
 > <tt>BadIdentifier: 'test.udp_json_client-input' is an invalid id; identifiers must
@@ -136,7 +136,7 @@ Anyone who has ever done support will recognise this situation, I'm sure.
 Someone has seen a problem, they've dug around a little and reached a
 conclusion about what the cause is, and turns up looking for help with the
 *conclusion* they've reached (very much a variant of [a XY
-problem](https://label.dev/articles/xy-problem/)).
+problem](https://xyproblem.info/)).
 
 That almost never gets us where we want to go, so I do the obvious thing; I
 try and reboot the question; I try and get us back to the start and try and
@@ -146,7 +146,7 @@ assumptions:
 > I'm afraid I'm still not really understanding your question, as it now no
 > longer seems to relate to what you very first asked. Perhaps you could
 > start again, ideally with an
-> [MRE](https://label.dev/articles/minimal-reproducible-example/) of what
+> [MRE](https://web.archive.org/web/20250427211746/https://label.dev/articles/minimal-reproducible-example/) of what
 > you're looking at and trying to do, for clarity?
 
 I figure, whatever the problem is, it can be illustrated with like a dozen
