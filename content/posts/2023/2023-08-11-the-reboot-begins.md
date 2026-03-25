@@ -23,7 +23,7 @@ So I put it aside and went on with my morning, doing normal Friday domestic
 stuff like the weekly supermarket shop. It was while I was out doing that
 that I realised the obvious answer: use [what we use for the Textual
 docs](https://textual.textualize.io/) and what's been used for
-[`label.dev`](https://label.dev/): [Material for
+[`label.dev`](https://web.archive.org/web/20250427142554/https://label.dev/): [Material for
 MkDocs](https://squidfunk.github.io/mkdocs-material/)!
 
 I've just spent about 40 minutes after lunch kicking that off and it was
