@@ -4,6 +4,7 @@ date: 2026-03-26 08:42:37+0000
 category: AI
 tags: AI, Coding, Copilot, Free Software, GitHub
 cover: /attachments/2026/03/26/thumbs-down.png
+modified: 2026-03-26 10:17:43+0000
 ---
 
 I guess it was inevitable[^1], but yesterday GitHub
@@ -77,6 +78,13 @@ scenario where I'm working on some [non-Free
 code](https://www.gnu.org/philosophy/categories.html) but in an environment
 where the licence isn't clear, or where it appears that the licence[^4]
 would permit such training.
+
+> [!note]
+> Editing to add: there is even [a
+> comment](https://github.com/orgs/community/discussions/188488#discussioncomment-16316523)
+> where it is acknowledged that someone could be working in such a way that
+> it's impossible to know the provenance of the code: *"Copilot ... can even
+> work when you are not connected to any repo."*
 
 Or... perhaps there's a #3, or a #4, or so on, that I've not even considered
 yet. The fact that software engineering departments suddenly have to start
