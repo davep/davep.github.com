@@ -2,7 +2,7 @@
 title: I now own a Macbook
 category: Tech
 layout: post
-tags: Mac, Apple, iMac, Unix
+tags: Mac, Apple, iMac, Unix, MacBook Air
 published: True
 date: 2016-04-28 20:07:10+0100
 ---
