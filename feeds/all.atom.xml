@@ -2,11 +2,57 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-03-28T10:31:37.880095+00:00</updated>
+  <updated>2026-03-28T15:10:35.581305+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/03/28/blogmore-v2-6-0.html</id>
+    <title>BlogMore v2.6.0</title>
+    <updated>2026-03-28T14:48:29+00:00</updated>
+    <content type="html">&lt;p&gt;Yesterday I read &lt;a href="https://www.yakshaving.co.uk/in-praise-blogmore/" rel="noopener noreferrer" target="_blank"&gt;a rather positive post about
+BlogMore&lt;/a&gt;, which was
+lovely to see. But... when I saw the link for it &lt;a href="https://mastodon.me.uk/@andyc/116301512739510280" rel="noopener noreferrer" target="_blank"&gt;over on
+Mastodon&lt;/a&gt; I noticed
+something wasn't quite right about the description in the preview:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The preview of the post" src="https://blog.davep.org/attachments/2026/03/28/post-preview.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;See, when BlogMore makes a post, if the author of the post hasn't provided a
+description in the frontmatter, the first paragraph of text will be used
+instead. When doing this the code &lt;em&gt;should&lt;/em&gt; strip out any markup (and also
+skip any initial images, that sort of thing).&lt;/p&gt;
+&lt;p&gt;But, as you can see, there are things like &lt;code&gt;[Dave][davep]&lt;/code&gt; in that
+description. So I &lt;a href="https://fosstodon.org/@davep/116301926691204655" rel="noopener noreferrer" target="_blank"&gt;checked in with
+Andy&lt;/a&gt; and that was
+something that came from the underlying Markdown. After a bit of checking,
+it became obvious that the code in BlogMore was only looking for and
+removing inline links, but wasn't doing anything about &lt;a href="https://www.markdownguide.org/basic-syntax/#reference-style-links" rel="noopener noreferrer" target="_blank"&gt;reference
+links&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So, as usual, &lt;a href="https://github.com/davep/blogmore/issues/348" rel="noopener noreferrer" target="_blank"&gt;one prompt
+later&lt;/a&gt; and the issue was
+handled.&lt;/p&gt;
+&lt;p&gt;As it stands, I don't think I'll keep up with the current approach. It
+doesn't feel quite right to me. The whole point is that the Markdown should
+be rendered down to pure text and then the first actual paragraph of text is
+used. The code I have there now is doing some &lt;a href="https://regex.info/blog/2006-09-15/247" rel="noopener noreferrer" target="_blank"&gt;regexp-based mucking
+about&lt;/a&gt; as an approximate approach.
+It works, more or less, but it feels like it's implementing a poor Markdown
+parser when there's a Markdown parser already built in.&lt;/p&gt;
+&lt;p&gt;Given this, at some point soon, I might have a play and look at the idea of
+"let's have a Markdown to pure text parser" and then use that. I could see
+it being useful for other purposes too.&lt;/p&gt;
+&lt;p&gt;Anyway, the upshot of all of this is that &lt;a href="https://blogmore.davep.dev/changelog/#v260" rel="noopener noreferrer" target="_blank"&gt;BlogMore
+v2.6.0&lt;/a&gt; is now available and it
+handles the stripping of reference links from the description, plus the
+&lt;a href="https://blog.davep.org/2026/03/27/blogmore-v2-5-0.html"&gt;recently-added&lt;/a&gt; strikethrough markup too.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/03/28/blogmore-v2-6-0.html"/>
+    <category term="Coding"/>
+    <category term="coding"/>
+    <category term="Python"/>
+    <category term="BlogMore"/>
+    <category term="Markdown"/>
+    <published>2026-03-28T14:48:29+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/03/28/hello-macbook-air-again.html</id>
     <title>Hello MacBook Air (again)</title>
@@ -146,7 +192,7 @@ memory, well the price starts to get dangerously close to...&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The MacBook Air M5" src="https://blog.davep.org/attachments/2026/03/27/macbook-air.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;So, yeah, as of today, I've kind of come full circle; a decade on from that
 MacBook Air purchase I have a new sofa hacking machine coming in the shape
-of the new M5 MacBook Air&lt;sup id="fnref:175-1"&gt;&lt;a class="footnote-ref" href="#fn:175-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+of the new M5 MacBook Air&lt;sup id="fnref:176-1"&gt;&lt;a class="footnote-ref" href="#fn:176-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So this weekend will involve me digging out my "new macOS environment"
 checklist and working through it, getting a hacking environment up and going
 again. One thing I do want to do is follow that list but also write out a
@@ -159,11 +205,11 @@ like I should be able to achieve everything I need using just
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:175-1"&gt;
+&lt;li id="fn:176-1"&gt;
 &lt;p&gt;I'm not a hardware nerd, so don't dive deep into this stuff. Despite
 what I said about the M2 Pro Mini still being there for heavy coding and
 video editing, it wouldn't surprise me to find out the Air is more than
-capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:175-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:176-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -409,7 +455,7 @@ bunch of useless but fun stats and facts about the content&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Hour of day" src="https://blog.davep.org/attachments/2026/03/24/hour-of-day.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;Or the day of the week:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Day of week" src="https://blog.davep.org/attachments/2026/03/24/day-of-week.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Or the month of the year&lt;sup id="fnref:172-1"&gt;&lt;a class="footnote-ref" href="#fn:172-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;Or the month of the year&lt;sup id="fnref:173-1"&gt;&lt;a class="footnote-ref" href="#fn:173-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Month of year" src="https://blog.davep.org/attachments/2026/03/24/month-of-year.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;This is designed to be turned off by default -- I can imagine most folk
 would not want this sort of thing on their blog -- &lt;a href="https://blogmore.davep.dev/configuration/#with_stats" rel="noopener noreferrer" target="_blank"&gt;but it can easily be
@@ -420,9 +466,9 @@ location of the stats can also be controlled &lt;a href="https://blogmore.davep.
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:172-1"&gt;
+&lt;li id="fn:173-1"&gt;
 &lt;p&gt;&lt;a href="https://blog.davep.org/2026/03/"&gt;Unsurprisingly&lt;/a&gt; March is leaping ahead as of the time of
-writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:172-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:173-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1155,63 +1201,5 @@ the AI-all-the-way approach to developing an application.&amp;#160;&lt;a class="
     <category term="Copilot"/>
     <category term="BlogMore"/>
     <published>2026-03-15T20:50:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/03/14/blogmore-1-14-0.html</id>
-    <title>BlogMore v1.14.0</title>
-    <updated>2026-03-14T14:30:00+00:00</updated>
-    <content type="html">&lt;p&gt;Somehow minor version numbers are tracking the day of the month at the
-moment, and that isn't on purpose, but here we are on March 14th with
-&lt;a href="https://blogmore.davep.dev" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; v1.14.0&lt;sup id="fnref:143-1"&gt;&lt;a class="footnote-ref" href="#fn:143-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;This release has a couple of changes: one is directly practical and the
-other a little more experimental/hopeful.&lt;/p&gt;
-&lt;p&gt;For starters, I've added a &lt;a href="https://blogmore.davep.dev/configuration/#minify_html" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;minify_html&lt;/code&gt;
-option&lt;/a&gt;. Having added
-minification for CSS and JavaScript files, it made sense to finally do this
-for all the HTML that's output too. So, if &lt;code&gt;minify_html&lt;/code&gt; is set to &lt;code&gt;true&lt;/code&gt; in
-the configuration file, &lt;a href="https://blogmore.davep.dev/command_line/#-minify-html" rel="noopener noreferrer" target="_blank"&gt;or &lt;code&gt;--minify-html&lt;/code&gt; is passed on the command
-line&lt;/a&gt;, any generated
-HTML file will be squished down as much as possible to reduce its overall
-byte size.&lt;/p&gt;
-&lt;p&gt;Every little helps, right?&lt;/p&gt;
-&lt;p&gt;The second change comes from &lt;a href="https://github.com/davep/blogmore/discussions/268" rel="noopener noreferrer" target="_blank"&gt;a
-request&lt;/a&gt; that I don't
-directly know how to handle, so this is an experiment with allowing for it.
-The request was for "themes". Now, from the start, I created BlogMore such
-that the templates can be overridden and that custom stylesheets can be
-used, but the idea of "themes" suggests something more formal. Allowing for
-this and planning for this isn't straightforward because, honestly, I'm no
-web developer and no designer.&lt;/p&gt;
-&lt;p&gt;So what I have done &lt;a href="https://github.com/davep/blogmore/pull/275" rel="noopener noreferrer" target="_blank"&gt;is try and ensure that the templates and stylesheet
-are as sensible as possible&lt;/a&gt; and
-then also expand the documentation to &lt;a href="https://blogmore.davep.dev/theming/" rel="noopener noreferrer" target="_blank"&gt;try and make it possible for someone
-to step in and write their own theme&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I've also tried to ensure that there are adequate instructions for agents in
-the codebase such that no breaking change will be made in the templates and
-styling, without this being obvious. The plan here is to keep the core of
-the theme support as stable as possible and to adequately alert people to
-any breaking change (and, ideally, to never make any breaking change).&lt;/p&gt;
-&lt;p&gt;On top of all of that, I've got Copilot to also &lt;a href="https://github.com/davep/blogmore/tree/main/examples/themes" rel="noopener noreferrer" target="_blank"&gt;make three example
-themes&lt;/a&gt;. None
-are that radical, and I might see if I can coax it into making one or two
-more that are a bit wilder, but they should at least be helpful for someone
-with skills who feels more adventurous than me (or they might at least work
-as examples for an agent so that more themes can be AI-generated).&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:143-1"&gt;
-&lt;p&gt;If only it was v3.14... 🥧&amp;#160;&lt;a class="footnote-backref" href="#fnref:143-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/03/14/blogmore-1-14-0.html"/>
-    <category term="Coding"/>
-    <category term="Python"/>
-    <category term="AI"/>
-    <category term="LLM"/>
-    <category term="Copilot"/>
-    <category term="BlogMore"/>
-    <published>2026-03-14T14:30:00+00:00</published>
   </entry>
 </feed>

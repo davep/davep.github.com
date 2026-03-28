@@ -2,11 +2,57 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-03-28T10:31:37.884616+00:00</updated>
+  <updated>2026-03-28T15:10:35.584250+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/03/28/blogmore-v2-6-0.html</id>
+    <title>BlogMore v2.6.0</title>
+    <updated>2026-03-28T14:48:29+00:00</updated>
+    <content type="html">&lt;p&gt;Yesterday I read &lt;a href="https://www.yakshaving.co.uk/in-praise-blogmore/" rel="noopener noreferrer" target="_blank"&gt;a rather positive post about
+BlogMore&lt;/a&gt;, which was
+lovely to see. But... when I saw the link for it &lt;a href="https://mastodon.me.uk/@andyc/116301512739510280" rel="noopener noreferrer" target="_blank"&gt;over on
+Mastodon&lt;/a&gt; I noticed
+something wasn't quite right about the description in the preview:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The preview of the post" src="https://blog.davep.org/attachments/2026/03/28/post-preview.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;See, when BlogMore makes a post, if the author of the post hasn't provided a
+description in the frontmatter, the first paragraph of text will be used
+instead. When doing this the code &lt;em&gt;should&lt;/em&gt; strip out any markup (and also
+skip any initial images, that sort of thing).&lt;/p&gt;
+&lt;p&gt;But, as you can see, there are things like &lt;code&gt;[Dave][davep]&lt;/code&gt; in that
+description. So I &lt;a href="https://fosstodon.org/@davep/116301926691204655" rel="noopener noreferrer" target="_blank"&gt;checked in with
+Andy&lt;/a&gt; and that was
+something that came from the underlying Markdown. After a bit of checking,
+it became obvious that the code in BlogMore was only looking for and
+removing inline links, but wasn't doing anything about &lt;a href="https://www.markdownguide.org/basic-syntax/#reference-style-links" rel="noopener noreferrer" target="_blank"&gt;reference
+links&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So, as usual, &lt;a href="https://github.com/davep/blogmore/issues/348" rel="noopener noreferrer" target="_blank"&gt;one prompt
+later&lt;/a&gt; and the issue was
+handled.&lt;/p&gt;
+&lt;p&gt;As it stands, I don't think I'll keep up with the current approach. It
+doesn't feel quite right to me. The whole point is that the Markdown should
+be rendered down to pure text and then the first actual paragraph of text is
+used. The code I have there now is doing some &lt;a href="https://regex.info/blog/2006-09-15/247" rel="noopener noreferrer" target="_blank"&gt;regexp-based mucking
+about&lt;/a&gt; as an approximate approach.
+It works, more or less, but it feels like it's implementing a poor Markdown
+parser when there's a Markdown parser already built in.&lt;/p&gt;
+&lt;p&gt;Given this, at some point soon, I might have a play and look at the idea of
+"let's have a Markdown to pure text parser" and then use that. I could see
+it being useful for other purposes too.&lt;/p&gt;
+&lt;p&gt;Anyway, the upshot of all of this is that &lt;a href="https://blogmore.davep.dev/changelog/#v260" rel="noopener noreferrer" target="_blank"&gt;BlogMore
+v2.6.0&lt;/a&gt; is now available and it
+handles the stripping of reference links from the description, plus the
+&lt;a href="https://blog.davep.org/2026/03/27/blogmore-v2-5-0.html"&gt;recently-added&lt;/a&gt; strikethrough markup too.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/03/28/blogmore-v2-6-0.html"/>
+    <category term="Coding"/>
+    <category term="coding"/>
+    <category term="Python"/>
+    <category term="BlogMore"/>
+    <category term="Markdown"/>
+    <published>2026-03-28T14:48:29+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/03/27/blogmore-v2-5-0.html</id>
     <title>BlogMore v2.5.0</title>
@@ -163,7 +209,7 @@ bunch of useless but fun stats and facts about the content&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Hour of day" src="https://blog.davep.org/attachments/2026/03/24/hour-of-day.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;Or the day of the week:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Day of week" src="https://blog.davep.org/attachments/2026/03/24/day-of-week.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Or the month of the year&lt;sup id="fnref:172-1"&gt;&lt;a class="footnote-ref" href="#fn:172-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;Or the month of the year&lt;sup id="fnref:173-1"&gt;&lt;a class="footnote-ref" href="#fn:173-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Month of year" src="https://blog.davep.org/attachments/2026/03/24/month-of-year.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;This is designed to be turned off by default -- I can imagine most folk
 would not want this sort of thing on their blog -- &lt;a href="https://blogmore.davep.dev/configuration/#with_stats" rel="noopener noreferrer" target="_blank"&gt;but it can easily be
@@ -174,9 +220,9 @@ location of the stats can also be controlled &lt;a href="https://blogmore.davep.
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:172-1"&gt;
+&lt;li id="fn:173-1"&gt;
 &lt;p&gt;&lt;a href="https://blog.davep.org/2026/03/"&gt;Unsurprisingly&lt;/a&gt; March is leaping ahead as of the time of
-writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:172-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:173-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -777,7 +823,7 @@ ongoing experiment with &lt;a href="https://blog.davep.org/tag/copilot/"&gt;GitH
 release I wrote about&lt;/a&gt; I've made a couple
 of cosmetic changes, and also addressed a couple of bugs.&lt;/p&gt;
 &lt;p&gt;The first cosmetic change relates to how the blog appears on mobile
-devices&lt;sup id="fnref:165-1"&gt;&lt;a class="footnote-ref" href="#fn:165-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In such a circumstance, before the change, the sidebar content
+devices&lt;sup id="fnref:166-1"&gt;&lt;a class="footnote-ref" href="#fn:166-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In such a circumstance, before the change, the sidebar content
 would, by design, relocate to the top of the page. This made sense, it meant
 that the information was still available, but it also had the unfortunate
 effect of pushing the actual post content way down the screen, sometimes off
@@ -829,8 +875,8 @@ As I keep tinkering with BlogMore I'll be keeping this post in mind.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:165-1"&gt;
-&lt;p&gt;Okay fine any narrow viewport but you know what I mean!&amp;#160;&lt;a class="footnote-backref" href="#fnref:165-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:166-1"&gt;
+&lt;p&gt;Okay fine any narrow viewport but you know what I mean!&amp;#160;&lt;a class="footnote-backref" href="#fnref:166-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1143,112 +1189,5 @@ isn't these days?) then try either:&lt;/p&gt;
     <category term="textual"/>
     <category term="mandelbrot"/>
     <published>2026-02-28T20:40:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/02/11/oldnews.html</id>
-    <title>OldNews - A terminal-based client for TheOldReader</title>
-    <updated>2026-02-11T17:23:00+00:00</updated>
-    <content type="html">&lt;p&gt;&lt;img alt="OldNews" src="https://blog.davep.org/attachments/2026/02/11/oldnews-social-banner.png" /&gt;&lt;/p&gt;
-&lt;p&gt;I honestly can't remember when I was first introduced to the idea of
-RSS/Atom feeds, and the idea of having an aggregator or reader of some
-description to keep up with updates on your favourite sites. It's got to be
-over 25 years ago now. I can't remember what I used either, but I remember
-using one or two readers that ran locally, right up until I met &lt;a href="https://en.wikipedia.org/wiki/Google_Reader" rel="noopener noreferrer" target="_blank"&gt;Google
-Reader&lt;/a&gt;. Once I discovered that
-I was settled.&lt;/p&gt;
-&lt;p&gt;As time moved on and I moved from platform to platform, and wandered into
-the smartphone era, I stuck with Google Reader (and the odd client for it
-here and there). It was a natural and sensible approach to consuming news
-and updates. It also mostly felt like a solved problem and so felt nice and
-stable.&lt;/p&gt;
-&lt;p&gt;So, of course, I was annoyed when Google killed it off, &lt;a href="https://killedbygoogle.com" rel="noopener noreferrer" target="_blank"&gt;like so many useful
-things&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;When this happened I dabbled with a couple of alternatives and, at some
-point, finally settled on &lt;a href="https://theoldreader.com" rel="noopener noreferrer" target="_blank"&gt;TheOldReader&lt;/a&gt;. Since
-then it's been my "server" for feed subscriptions with me using desktop and
-mobile clients to work against it.&lt;/p&gt;
-&lt;p&gt;But... I never found anything that worked for me that ran in the terminal.
-Given &lt;a href="https://blog.davep.org/tag/terminal/"&gt;I've got a thing for writing terminal-based
-tools&lt;/a&gt; it made sense I should have a go, and so
-&lt;a href="https://github.com/davep/oldnews" rel="noopener noreferrer" target="_blank"&gt;OldNews&lt;/a&gt; became my winter break project.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Reading an article in OldNews" src="https://blog.davep.org/attachments/2026/02/11/reading.png" /&gt;&lt;/p&gt;
-&lt;p&gt;I've written it as a client application for &lt;a href="https://github.com/theoldreader/api" rel="noopener noreferrer" target="_blank"&gt;the API of
-TheOldReader&lt;/a&gt;, and only for that, and
-have developed it in a way that works well for me. All the functionality I
-want and need is in there:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Add subscriptions&lt;/li&gt;
-&lt;li&gt;Rename subscriptions&lt;/li&gt;
-&lt;li&gt;Remove subscriptions&lt;/li&gt;
-&lt;li&gt;Add folders&lt;/li&gt;
-&lt;li&gt;Rename folders&lt;/li&gt;
-&lt;li&gt;Remove folders&lt;/li&gt;
-&lt;li&gt;Move subscriptions between folders&lt;/li&gt;
-&lt;li&gt;Mark read/unread&lt;/li&gt;
-&lt;li&gt;Read articles (that provide actual content in their feeds)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Currently there's no support for starring feeds or interacting with the
-whole "friend" system (honestly: while I see mention of it in the API, I
-know nothing of that side of things and really don't care about it). As time
-goes on I might work on that.&lt;/p&gt;
-&lt;p&gt;As with all of my other terminal-based applications, there's a rich command
-palette that shows you what you can do, and also what keyboard shortcuts
-will run those commands. While I do still need to work on some documentation
-for the application (although you'd hope that anyone looking for an RSS
-reader at this point would mostly be able to find their way around) the
-palette is a good place to go looking for things you can do.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The command palette" src="https://blog.davep.org/attachments/2026/02/11/command-palette.png" /&gt;&lt;/p&gt;
-&lt;p&gt;Plus there's a help screen too.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The help screen" src="https://blog.davep.org/attachments/2026/02/11/help.png" /&gt;&lt;/p&gt;
-&lt;p&gt;If themes are your thing, there's themes:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Available themes" src="https://blog.davep.org/attachments/2026/02/11/themes.png" /&gt;
-&lt;img alt="Gruvbox" src="https://blog.davep.org/attachments/2026/02/11/gruvbox.png" /&gt;
-&lt;img alt="Textual Light" src="https://blog.davep.org/attachments/2026/02/11/textual-light.png" /&gt;
-&lt;img alt="Nord" src="https://blog.davep.org/attachments/2026/02/11/nord.png" /&gt;&lt;/p&gt;
-&lt;p&gt;That's a small selection, and there's more to explore.&lt;/p&gt;
-&lt;p&gt;Also on the cosmetic front there's a simple compact mode, which toggles
-between two ways of showing the navigation menu, the article lists and the
-panel headers.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Not compact" src="https://blog.davep.org/attachments/2026/02/11/not-compact.png" /&gt;
-&lt;img alt="Compact" src="https://blog.davep.org/attachments/2026/02/11/compact.png" /&gt;&lt;/p&gt;
-&lt;p&gt;OldNews has been a daily-driver for a wee while now, while also under active
-development. I think I've covered all the main functions I want and have
-also shaken out plenty of bugs, so today's the day to call it v1.0.0 and go
-from there.&lt;/p&gt;
-&lt;p&gt;If you're a user of TheOldReader and fancy interacting with it from the
-terminal too then it's out there to try out. It's licensed GPL-3.0 and
-available &lt;a href="https://github.com/davep/oldnews" rel="noopener noreferrer" target="_blank"&gt;via GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/oldnews/" rel="noopener noreferrer" target="_blank"&gt;via
-PyPI&lt;/a&gt;. If you have an environment that
-has &lt;code&gt;pipx&lt;/code&gt; installed you should be able to get up and running with:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;oldnews
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;It can also be installed using
-&lt;a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;oldnews
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;If you don't have &lt;code&gt;uv&lt;/code&gt; installed you can use &lt;a href="https://uvx.sh" rel="noopener noreferrer" target="_blank"&gt;uvx.sh&lt;/a&gt; to
-perform the installation. For GNU/Linux or macOS or similar:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-LsSf&lt;span class="w"&gt; &lt;/span&gt;uvx.sh/oldnews/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;or on Windows:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;powershell&lt;span class="w"&gt; &lt;/span&gt;-ExecutionPolicy&lt;span class="w"&gt; &lt;/span&gt;ByPass&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;irm https://uvx.sh/oldnews/install.ps1 | iex&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Once installed, run the &lt;code&gt;oldnews&lt;/code&gt; command.&lt;/p&gt;
-&lt;p&gt;Hopefully this is useful to someone else; meanwhile I'll be using it more
-and more. If you need help, or have any ideas, please feel free to &lt;a href="https://github.com/davep/oldnews/issues" rel="noopener noreferrer" target="_blank"&gt;raise an
-issue&lt;/a&gt; or &lt;a href="https://github.com/davep/oldnews/discussions" rel="noopener noreferrer" target="_blank"&gt;start a
-discussion&lt;/a&gt;.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/02/11/oldnews.html"/>
-    <category term="Coding"/>
-    <category term="Python"/>
-    <category term="terminal"/>
-    <category term="textual"/>
-    <category term="RSS"/>
-    <category term="atom"/>
-    <published>2026-02-11T17:23:00+00:00</published>
   </entry>
 </feed>
