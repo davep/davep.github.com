@@ -8,7 +8,111 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 28 Mar 2026 15:10:35 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 29 Mar 2026 19:53:13 +0000</lastBuildDate>
+    <item>
+      <title>blogmore.el v2.0</title>
+      <link>https://blog.davep.org/2026/03/29/blogmore-el-v2-0.html</link>
+      <description>&lt;p&gt;After &lt;a href="https://blog.davep.org/2026/03/19/some-blogmore-elisp.html"&gt;kicking off &lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt;, and
+then tinkering with it &lt;a href="https://blog.davep.org/2026/03/20/blogmore-el-v1-4.html"&gt;more&lt;/a&gt; and
+&lt;a href="https://blog.davep.org/2026/03/21/blogmore-el-v1-7.html"&gt;more&lt;/a&gt;, I've found it really quite
+helpful while writing posts. One thing I have noticed though -- given I use
+&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; for this blog and &lt;a href="https://seen-by.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;my
+photoblog&lt;/a&gt; -- is that I wanted to be able to use
+the package for working with more than one blog.&lt;/p&gt;
+&lt;p&gt;So today I found myself with some time to kill and the result is that
+&lt;code&gt;blogmore.el&lt;/code&gt; v2.0 has now been released. This version allows for setting up
+multiple blogs, each with their own settings for where posts live, how their
+paths are formatted, and so on.&lt;/p&gt;
+&lt;p&gt;To handle this I've also added the &lt;code&gt;blogmore-work-on&lt;/code&gt; command so that the
+active blog can be quickly changed.&lt;/p&gt;
+&lt;p&gt;All of this can be configured using Emacs' customize feature.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Customize blogmore" src="https://blog.davep.org/attachments/2026/03/29/customize-blogmore.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;This has all changed since v1.x, where most of the customize options have
+now been renamed to include &lt;code&gt;-default-&lt;/code&gt; in their name. The idea here is that
+what was &lt;em&gt;the&lt;/em&gt; value for a setting previously is now the default value if a
+given blog hasn't had that setting defined.&lt;/p&gt;
+&lt;p&gt;For any given blog you wish to work with, you configure a name (for your own
+reference) and the path to the posts. Optionally you can also set lots of
+other values too.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Customize the blog" src="https://blog.davep.org/attachments/2026/03/29/customize-blogs.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;If a value is left on &lt;code&gt;Default&lt;/code&gt;, then the corresponding default setting will
+be used; if it's set, then that value is used for that specific blog.&lt;/p&gt;
+&lt;p&gt;The defaults out of the box match how I do things with my blogs, of course,
+so the configuration is pretty straightforward. As of the time of writing my
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/use-package/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;use-package&lt;/code&gt;&lt;/a&gt;
+for &lt;code&gt;blogmore.el&lt;/code&gt; looks like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;use-package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:vc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;:url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://github.com/davep/blogmore.el&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:rev&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:newest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:init&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;add-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;blogmore-new-post-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;&lt;/span&gt;&lt;span class="nv"&gt;end-it&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:custom&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-blogs&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blog.davep.org&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~/write/davep.github.com/content/posts/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;seen-by.davep.dev&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~/write/seen-by/content/posts/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:bind&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; m b&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-work-on&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; m p n&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-new&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; m p e&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-edit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; m s c&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-set-category&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; m a t&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-add-tag&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; m u d&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-update-date&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; m u m&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-update-modified&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; m l p&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-link-post&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; m l c&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-link-category&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; m l t&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-link-tag&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In the above you can see that I've set only the blog title and posts path
+for each blog in &lt;code&gt;blogmore-blogs&lt;/code&gt;; the remaining values are all implied
+&lt;code&gt;nil&lt;/code&gt; and so will be defaulted. The full list of values for any given blog
+are:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;BLOG-NAME&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;POSTS-DIRECTORY&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;POST-TEMPLATE&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;POST-MAKER-FUNCTION&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;CATEGORY-MAKER-FUNCTION&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;TAG-MAKER-FUNCTION&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;POST-LINK-FORMAT&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;CATEGORY-LINK-FORMAT&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;TAG-LINK-FORMAT&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;where:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;BLOG-NAME&lt;/code&gt; is the descriptive name to use for the blog.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;POSTS-DIRECTORY&lt;/code&gt; is the directory where the blog's posts are stored.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;POST-TEMPLATE&lt;/code&gt; is a template for new posts. If &lt;code&gt;nil&lt;/code&gt;,
+  &lt;code&gt;blogmore-default-template&lt;/code&gt; is used.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;POST-MAKER-FUNCTION&lt;/code&gt; is a function that takes a filename and returns a
+  string to be used in the post's URL. If &lt;code&gt;nil&lt;/code&gt;,
+  &lt;code&gt;blogmore-default-post-maker-function&lt;/code&gt; is used.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CATEGORY-MAKER-FUNCTION&lt;/code&gt; is a function that takes a category name and
+  returns a string to be used in the category's URL. If &lt;code&gt;nil&lt;/code&gt;,
+  &lt;code&gt;blogmore-default-category-maker-function&lt;/code&gt; is used.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;TAG-MAKER-FUNCTION&lt;/code&gt; is a function that takes a tag name and returns a
+  string to be used in the tag's URL. If &lt;code&gt;nil&lt;/code&gt;,
+  &lt;code&gt;blogmore-default-tag-maker-function&lt;/code&gt; is used.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;POST-LINK-FORMAT&lt;/code&gt; is a format string for the post's URL, where &lt;code&gt;%s&lt;/code&gt; is
+  replaced with the value returned by the post maker function. If &lt;code&gt;nil&lt;/code&gt;,
+  &lt;code&gt;blogmore-default-post-link-format&lt;/code&gt; is used.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CATEGORY-LINK-FORMAT&lt;/code&gt; is a format string for the category's URL, where
+  &lt;code&gt;%s&lt;/code&gt; is replaced with the value returned by the category maker function. If
+  &lt;code&gt;nil&lt;/code&gt;, &lt;code&gt;blogmore-default-category-link-format&lt;/code&gt; is used.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;TAG-LINK-FORMAT&lt;/code&gt; is a format string for the tag's URL, where &lt;code&gt;%s&lt;/code&gt; is
+  replaced with the value returned by the tag maker function. If &lt;code&gt;nil&lt;/code&gt;,
+  &lt;code&gt;blogmore-default-tag-link-format&lt;/code&gt; is used.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;While I very much doubt any of this is useful to anyone else, it's at least
+flexible for my purposes and can probably be configured to someone else's
+purpose should they happen to be using BlogMore and Emacs.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/03/29/blogmore-el-v2-0.html</guid>
+      <category>Emacs</category>
+      <category>BlogMore</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>coding</category>
+      <pubDate>Sun, 29 Mar 2026 20:50:41 +0100</pubDate>
+    </item>
     <item>
       <title>BlogMore v2.6.0</title>
       <link>https://blog.davep.org/2026/03/28/blogmore-v2-6-0.html</link>
@@ -190,7 +294,7 @@ memory, well the price starts to get dangerously close to...&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The MacBook Air M5" src="https://blog.davep.org/attachments/2026/03/27/macbook-air.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;So, yeah, as of today, I've kind of come full circle; a decade on from that
 MacBook Air purchase I have a new sofa hacking machine coming in the shape
-of the new M5 MacBook Air&lt;sup id="fnref:176-1"&gt;&lt;a class="footnote-ref" href="#fn:176-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+of the new M5 MacBook Air&lt;sup id="fnref:177-1"&gt;&lt;a class="footnote-ref" href="#fn:177-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So this weekend will involve me digging out my "new macOS environment"
 checklist and working through it, getting a hacking environment up and going
 again. One thing I do want to do is follow that list but also write out a
@@ -203,11 +307,11 @@ like I should be able to achieve everything I need using just
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:176-1"&gt;
+&lt;li id="fn:177-1"&gt;
 &lt;p&gt;I'm not a hardware nerd, so don't dive deep into this stuff. Despite
 what I said about the M2 Pro Mini still being there for heavy coding and
 video editing, it wouldn't surprise me to find out the Air is more than
-capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:176-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:177-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -223,7 +327,7 @@ capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:176-1" title="
     <item>
       <title>GitHub Copilot wants our interaction data</title>
       <link>https://blog.davep.org/2026/03/26/github-copilot-wants-our-interaction.html</link>
-      <description>&lt;p&gt;I guess it was inevitable&lt;sup id="fnref:136-1"&gt;&lt;a class="footnote-ref" href="#fn:136-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, but yesterday GitHub
+      <description>&lt;p&gt;I guess it was inevitable&lt;sup id="fnref:137-1"&gt;&lt;a class="footnote-ref" href="#fn:137-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, but yesterday GitHub
 &lt;a href="https://github.blog/news-insights/company-news/updates-to-github-copilot-interaction-data-usage-policy/" rel="noopener noreferrer" target="_blank"&gt;announced&lt;/a&gt;
 a new opt-out approach to learning from people's interactions with
 &lt;a href="https://blog.davep.org/tag/copilot/"&gt;Copilot&lt;/a&gt;. I don't have anything novel or insightful to say
@@ -232,7 +336,7 @@ rushed out posts and articles about this, but I did want to jot down just
 how curious I am to see this roll out.&lt;/p&gt;
 &lt;p&gt;For starters: for me this feels like one of those things that will get a lot
 of backlash, and in a day or so GitHub will say they're pausing rolling this
-out while they reevaluate this approach&lt;sup id="fnref:136-2"&gt;&lt;a class="footnote-ref" href="#fn:136-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. Then, eventually, they roll it
+out while they reevaluate this approach&lt;sup id="fnref:137-2"&gt;&lt;a class="footnote-ref" href="#fn:137-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. Then, eventually, they roll it
 out anyway after a "period of consultation with the community". That sort of
 thing.&lt;/p&gt;
 &lt;p&gt;I've not read further this morning, but before going to bed last night it
@@ -244,7 +348,7 @@ candid and honest with the FAQs, but kinda yikes too.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="A bad time in the FAQ" src="https://blog.davep.org/attachments/2026/03/26/thumbs-down.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;Here's the key thing I'm curious about, and which I'll be thinking about and
 watching for movement on in the next few days: all the talk here seems to be
-about protecting the privacy of the proprietary code of businesses&lt;sup id="fnref:136-3"&gt;&lt;a class="footnote-ref" href="#fn:136-3"&gt;3&lt;/a&gt;&lt;/sup&gt;.
+about protecting the privacy of the proprietary code of businesses&lt;sup id="fnref:137-3"&gt;&lt;a class="footnote-ref" href="#fn:137-3"&gt;3&lt;/a&gt;&lt;/sup&gt;.
 That... is understandable, from a business point of view, from a commercial
 adoption point of view, from a &lt;em&gt;"we want all software engineering
 departments to use Copilot"&lt;/em&gt; point of view. But how the heck are they
@@ -286,7 +390,7 @@ and so on, but it feels messy. It also feels like a scenario that could end
 up being incredibly leaky. It really would not be difficult to run into a
 scenario where I'm working on some &lt;a href="https://www.gnu.org/philosophy/categories.html" rel="noopener noreferrer" target="_blank"&gt;non-Free
 code&lt;/a&gt; but in an environment
-where the licence isn't clear, or where it appears that the licence&lt;sup id="fnref:136-4"&gt;&lt;a class="footnote-ref" href="#fn:136-4"&gt;4&lt;/a&gt;&lt;/sup&gt;
+where the licence isn't clear, or where it appears that the licence&lt;sup id="fnref:137-4"&gt;&lt;a class="footnote-ref" href="#fn:137-4"&gt;4&lt;/a&gt;&lt;/sup&gt;
 would permit such training.&lt;/p&gt;
 &lt;div class="admonition admonition-note"&gt;
 &lt;div class="admonition-title"&gt;ℹ️ Note&lt;/div&gt;
@@ -308,20 +412,20 @@ being &lt;a href="https://www.gnu.org/philosophy/free-sw.html" rel="noopener nor
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:136-1"&gt;
+&lt;li id="fn:137-1"&gt;
 &lt;p&gt;And I think a bit of me is surprised that they weren't just doing it
-anyway.&amp;#160;&lt;a class="footnote-backref" href="#fnref:136-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+anyway.&amp;#160;&lt;a class="footnote-backref" href="#fnref:137-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:136-2"&gt;
+&lt;li id="fn:137-2"&gt;
 &lt;p&gt;This isn't a prediction, I'm just saying it feels like that sort of
-announcement.&amp;#160;&lt;a class="footnote-backref" href="#fnref:136-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+announcement.&amp;#160;&lt;a class="footnote-backref" href="#fnref:137-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:136-3"&gt;
-&lt;p&gt;It's not that simple, but to save getting into the deep detail...&amp;#160;&lt;a class="footnote-backref" href="#fnref:136-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:137-3"&gt;
+&lt;p&gt;It's not that simple, but to save getting into the deep detail...&amp;#160;&lt;a class="footnote-backref" href="#fnref:137-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:136-4"&gt;
+&lt;li id="fn:137-4"&gt;
 &lt;p&gt;I'm using licence here as shorthand for a lot of things to consider
-relating to who should have access to the code and how.&amp;#160;&lt;a class="footnote-backref" href="#fnref:136-4" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+relating to who should have access to the code and how.&amp;#160;&lt;a class="footnote-backref" href="#fnref:137-4" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -449,7 +553,7 @@ bunch of useless but fun stats and facts about the content&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Hour of day" src="https://blog.davep.org/attachments/2026/03/24/hour-of-day.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;Or the day of the week:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Day of week" src="https://blog.davep.org/attachments/2026/03/24/day-of-week.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Or the month of the year&lt;sup id="fnref:173-1"&gt;&lt;a class="footnote-ref" href="#fn:173-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;Or the month of the year&lt;sup id="fnref:174-1"&gt;&lt;a class="footnote-ref" href="#fn:174-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Month of year" src="https://blog.davep.org/attachments/2026/03/24/month-of-year.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;This is designed to be turned off by default -- I can imagine most folk
 would not want this sort of thing on their blog -- &lt;a href="https://blogmore.davep.dev/configuration/#with_stats" rel="noopener noreferrer" target="_blank"&gt;but it can easily be
@@ -460,9 +564,9 @@ location of the stats can also be controlled &lt;a href="https://blogmore.davep.
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:173-1"&gt;
+&lt;li id="fn:174-1"&gt;
 &lt;p&gt;&lt;a href="https://blog.davep.org/2026/03/"&gt;Unsurprisingly&lt;/a&gt; March is leaping ahead as of the time of
-writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:173-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:174-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -785,7 +889,7 @@ latter lets me quickly pick an existing post and go edit it.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="blogmore-edit in action" src="https://blog.davep.org/attachments/2026/03/19/blogmore-edit.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;As time goes on I might expand on this. For example: it might be useful to
 have a command that updates the &lt;code&gt;date&lt;/code&gt; frontmatter; perhaps another to add a
-&lt;code&gt;modified&lt;/code&gt;&lt;sup id="fnref:154-1"&gt;&lt;a class="footnote-ref" href="#fn:154-1"&gt;1&lt;/a&gt;&lt;/sup&gt;; one to set the &lt;code&gt;category&lt;/code&gt; from any of the categories I've
+&lt;code&gt;modified&lt;/code&gt;&lt;sup id="fnref:155-1"&gt;&lt;a class="footnote-ref" href="#fn:155-1"&gt;1&lt;/a&gt;&lt;/sup&gt;; one to set the &lt;code&gt;category&lt;/code&gt; from any of the categories I've
 used so far would be good; ditto the &lt;code&gt;tags&lt;/code&gt; property.&lt;/p&gt;
 &lt;p&gt;I doubt this will be useful to anyone else, although I will try my best to
 keep it so that it's easy to configure, so it's only ever going to stay
@@ -805,9 +909,9 @@ approach for all of my personal packages.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:154-1"&gt;
+&lt;li id="fn:155-1"&gt;
 &lt;p&gt;Note to self: did I make &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
-support modified dates?&amp;#160;&lt;a class="footnote-backref" href="#fnref:154-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+support modified dates?&amp;#160;&lt;a class="footnote-backref" href="#fnref:155-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -832,8 +936,8 @@ kicked off a whole load of changes (which in turn ran into
 &lt;p&gt;I dived into this because I liked the idea anyway and I think it's time that
 I, as much as possible, moved the layout of my blog to clean URLs almost
 everywhere. I can't reasonably do it for actual posts because a) lots of
-posts point to other posts so there's a whole editing job to do there&lt;sup id="fnref:138-1"&gt;&lt;a class="footnote-ref" href="#fn:138-1"&gt;1&lt;/a&gt;&lt;/sup&gt;
-and b) there are some links out there that point to my blog posts&lt;sup id="fnref:138-2"&gt;&lt;a class="footnote-ref" href="#fn:138-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+posts point to other posts so there's a whole editing job to do there&lt;sup id="fnref:139-1"&gt;&lt;a class="footnote-ref" href="#fn:139-1"&gt;1&lt;/a&gt;&lt;/sup&gt;
+and b) there are some links out there that point to my blog posts&lt;sup id="fnref:139-2"&gt;&lt;a class="footnote-ref" href="#fn:139-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;The result is BlogMore v2.0.0.&lt;/p&gt;
 &lt;p&gt;Anyone who's been following the experiment with BlogMore might wonder that
 the version number is up to v2 already, given &lt;a href="https://github.com/davep/blogmore/pull/1" rel="noopener noreferrer" target="_blank"&gt;it's barely a month
@@ -904,11 +1008,11 @@ the plan the coding gods have for BlogMore.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:138-1"&gt;
-&lt;p&gt;Although I suspect &lt;a href="https://blog.davep.org/2026/03/09/an-eager-fix.html"&gt;I could agent the shit out of that problem&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:138-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:139-1"&gt;
+&lt;p&gt;Although I suspect &lt;a href="https://blog.davep.org/2026/03/09/an-eager-fix.html"&gt;I could agent the shit out of that problem&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:139-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:138-2"&gt;
-&lt;p&gt;Although few enough that I probably should't let it stop me doing this.&amp;#160;&lt;a class="footnote-backref" href="#fnref:138-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:139-2"&gt;
+&lt;p&gt;Although few enough that I probably should't let it stop me doing this.&amp;#160;&lt;a class="footnote-backref" href="#fnref:139-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1020,7 +1124,7 @@ don't have it?&lt;/p&gt;
 &lt;p&gt;Quickly checking elsewhere, sure enough, I had access to almost no models. I
 can't remember what there was, but it wasn't much and &lt;em&gt;all&lt;/em&gt; the Claude ones
 had disappeared. Even if I tested in the &lt;a href="https://github.com/features/copilot/cli" rel="noopener noreferrer" target="_blank"&gt;Copilot
-CLI&lt;/a&gt;&lt;sup id="fnref:156-1"&gt;&lt;a class="footnote-ref" href="#fn:156-1"&gt;1&lt;/a&gt;&lt;/sup&gt; I saw a very limited set
+CLI&lt;/a&gt;&lt;sup id="fnref:157-1"&gt;&lt;a class="footnote-ref" href="#fn:157-1"&gt;1&lt;/a&gt;&lt;/sup&gt; I saw a very limited set
 of models.&lt;/p&gt;
 &lt;p&gt;Around this time I had two reactions: one was something like &lt;em&gt;"cool, this is
 an important part of the experiment, knowing how it goes if your models are
@@ -1046,7 +1150,7 @@ what &lt;em&gt;does&lt;/em&gt; happen when some third party takes away the model
 to get your work done? In the time I've been building up BlogMore I've come
 to trust the quality of Claude Sonnet (in the sense that I know when and
 where I have to pay closer attention to what it's done, and where it'll very
-likely have done a pretty good job&lt;sup id="fnref:156-2"&gt;&lt;a class="footnote-ref" href="#fn:156-2"&gt;2&lt;/a&gt;&lt;/sup&gt;), so finding that I'd possibly have
+likely have done a pretty good job&lt;sup id="fnref:157-2"&gt;&lt;a class="footnote-ref" href="#fn:157-2"&gt;2&lt;/a&gt;&lt;/sup&gt;), so finding that I'd possibly have
 to switch to some other model that I've had no experience with... I
 genuinely had a moment of concern about how and where I was going to take
 BlogMore.&lt;/p&gt;
@@ -1063,12 +1167,12 @@ resolved&lt;/a&gt;?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:156-1"&gt;
+&lt;li id="fn:157-1"&gt;
 &lt;p&gt;Which I'm not really using at the moment, but do have installed to
-experiment with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:156-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+experiment with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:157-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:156-2"&gt;
-&lt;p&gt;So just like working with humans, oddly enough.&amp;#160;&lt;a class="footnote-backref" href="#fnref:156-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:157-2"&gt;
+&lt;p&gt;So just like working with humans, oddly enough.&amp;#160;&lt;a class="footnote-backref" href="#fnref:157-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1094,7 +1198,7 @@ having a &lt;code&gt;/ai&lt;/code&gt; page, something I remember as being part o
 pages&lt;/a&gt; moment. While I've never leaned into it
 myself, I do consider it a fun idea and, given &lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;the current
 experiment&lt;/a&gt;, I did think it made
-sense to have a &lt;code&gt;/ai&lt;/code&gt; page for this blog, at least&lt;sup id="fnref:142-1"&gt;&lt;a class="footnote-ref" href="#fn:142-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+sense to have a &lt;code&gt;/ai&lt;/code&gt; page for this blog, at least&lt;sup id="fnref:143-1"&gt;&lt;a class="footnote-ref" href="#fn:143-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Yesterday's changes, to allow modifying the path used for pages, and also to
 apply the &lt;a href="https://blogmore.davep.dev/configuration/#clean_urls" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;clean_urls&lt;/code&gt;
 setting&lt;/a&gt; to them too,
@@ -1119,9 +1223,9 @@ the need to want to customise it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:142-1"&gt;
+&lt;li id="fn:143-1"&gt;
 &lt;p&gt;I should probably add one to my &lt;a href="https://www.davep.org/" rel="noopener noreferrer" target="_blank"&gt;main site&lt;/a&gt;
-too now I think about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:142-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+too now I think about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:143-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1134,55 +1238,6 @@ too now I think about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1
       <category>BlogMore</category>
       <category>Slash Pages</category>
       <pubDate>Mon, 16 Mar 2026 16:50:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v1.15.0</title>
-      <link>https://blog.davep.org/2026/03/15/blogmore-1-15-0.html</link>
-      <description>&lt;p&gt;It feels like this blog has turned into the BlogMore blog at the moment, and
-to be fair part of the idea of BlogMore was to encourage me to blog more
-again. So I guess it's worked?&lt;/p&gt;
-&lt;p&gt;Anyway, another wee update with a couple of additions. The first is a
-follow-up to some work &lt;a href="https://blog.davep.org/2026/03/10/even-more-blogmore.html"&gt;I did a little earlier last
-week&lt;/a&gt; that meant that the user can
-configure how paths for posts are created. This takes the same idea and
-applies it to pages too, adding &lt;a href="https://blogmore.davep.dev/configuration/#page_path" rel="noopener noreferrer" target="_blank"&gt;a &lt;code&gt;page_path&lt;/code&gt;
-setting&lt;/a&gt;. Pages now
-also make use of the
-&lt;a href="https://blog.davep.org/2026/03/13/blogmore-1-13-0.html"&gt;recently-added&lt;/a&gt;
-&lt;a href="https://blogmore.davep.dev/configuration/#clean_urls" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;clean_urls&lt;/code&gt; setting&lt;/a&gt;
-so you can use "clean URLs" for pages too.&lt;/p&gt;
-&lt;p&gt;Another change I've added has been, in part, prompted by a thing I've seen
-going around the socials the past couple of days:
-&lt;a href="https://codeberg.org/robida/human.json" rel="noopener noreferrer" target="_blank"&gt;human.json&lt;/a&gt;. I did initially think
-about adding some special support for it&lt;sup id="fnref:155-1"&gt;&lt;a class="footnote-ref" href="#fn:155-1"&gt;1&lt;/a&gt;&lt;/sup&gt; -- allowing declaring the
-values in the BlogMore configuration file -- but then I decided it made more
-sense to just include the &lt;code&gt;human.json&lt;/code&gt; file in the &lt;code&gt;extras&lt;/code&gt; directory and
-allow for adding a header.&lt;/p&gt;
-&lt;p&gt;Now... adding custom headers can be done with BlogMore's templates, but that
-felt a bit heavyweight for just one simple header, so instead I've &lt;a href="https://blogmore.davep.dev/configuration/#head" rel="noopener noreferrer" target="_blank"&gt;added a
-&lt;code&gt;head&lt;/code&gt; configuration option&lt;/a&gt;
-that lets you inject some simple tags into every page's &lt;code&gt;head&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;This is good for fans of &lt;a href="https://humanstxt.org" rel="noopener noreferrer" target="_blank"&gt;humans.txt&lt;/a&gt; too; something
-I sense could have been quickly and easily extended to serve the purposes of
-what &lt;code&gt;human.json&lt;/code&gt; does, but I guess we have to reinvent wheels every so
-often, and using a machine-readable file format is so much more... human.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:155-1"&gt;
-&lt;p&gt;Probably kind of ironic in a project that is 100% about understanding
-the AI-all-the-way approach to developing an application.&amp;#160;&lt;a class="footnote-backref" href="#fnref:155-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/03/15/blogmore-1-15-0.html</guid>
-      <category>Coding</category>
-      <category>Python</category>
-      <category>AI</category>
-      <category>LLM</category>
-      <category>Copilot</category>
-      <category>BlogMore</category>
-      <pubDate>Sun, 15 Mar 2026 20:50:00 +0000</pubDate>
     </item>
   </channel>
 </rss>
