@@ -8,7 +8,52 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 29 Mar 2026 19:53:13 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 15:22:03 +0000</lastBuildDate>
+    <item>
+      <title>blogmore.el v2.1</title>
+      <link>https://blog.davep.org/2026/03/30/blogmore-el-v2-1.html</link>
+      <description>&lt;p&gt;I've given &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; a wee bump
+to v2.1. This release fixes a small problem I noticed today when I tried to
+use it to edit the tags for &lt;a href="https://seen-by.davep.dev/2026/03/30/refactored.html" rel="noopener noreferrer" target="_blank"&gt;a post on my
+photoblog&lt;/a&gt;: the code
+to find and gather properties from posts didn't handle deeply-nested
+directory hierarchies for the post markdown files. I should have noticed
+this when I first wrote the code, but of course I was so busy testing
+against my primary blog, which only goes one sub-level deep, that I never
+noticed it wasn't going to work deeper.&lt;/p&gt;
+&lt;p&gt;So rather than using &lt;code&gt;grep&lt;/code&gt; to look for things like &lt;code&gt;foo/**/*.md&lt;/code&gt; I swapped
+to a combination of &lt;code&gt;find&lt;/code&gt; and &lt;code&gt;grep&lt;/code&gt;. Which works, but is slightly (but
+noticeably) slower.&lt;/p&gt;
+&lt;p&gt;Then I got to thinking that if I was doing this by hand, on the command
+line, I'd be using &lt;a href="https://github.com/burntsushi/ripgrep" rel="noopener noreferrer" target="_blank"&gt;ripgrep&lt;/a&gt; anyway.
+Given this I might as well use it here. Of course, not everyone who might
+use &lt;code&gt;blogmore.el&lt;/code&gt; will have &lt;code&gt;rg&lt;/code&gt; installed so it makes sense to look for
+that and use it if it's available, otherwise fall back on &lt;code&gt;find&lt;/code&gt;/&lt;code&gt;grep&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;There's still some low-priority cleaning up I want to do around this; an
+obvious change I want to make being one where I want to collapse all cases
+of the same word (Tree vs tree, etc) into one "hit"&lt;sup id="fnref:140-1"&gt;&lt;a class="footnote-ref" href="#fn:140-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. For now though, as
+always, it's working well enough for &lt;em&gt;my&lt;/em&gt; needs and this change fixed an
+obvious issue I ran into.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:140-1"&gt;
+&lt;p&gt;&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; itself takes care of this, but
+it would be nice to have the prompt in &lt;code&gt;blogmore.el&lt;/code&gt; also take this into
+account.&amp;#160;&lt;a class="footnote-backref" href="#fnref:140-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/03/30/blogmore-el-v2-1.html</guid>
+      <category>Emacs</category>
+      <category>BlogMore</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>coding</category>
+      <category>Unix</category>
+      <pubDate>Mon, 30 Mar 2026 16:20:22 +0100</pubDate>
+    </item>
     <item>
       <title>blogmore.el v2.0</title>
       <link>https://blog.davep.org/2026/03/29/blogmore-el-v2-0.html</link>
@@ -231,7 +276,7 @@ latter lets me quickly pick an existing post and go edit it.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="blogmore-edit in action" src="https://blog.davep.org/attachments/2026/03/19/blogmore-edit.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;As time goes on I might expand on this. For example: it might be useful to
 have a command that updates the &lt;code&gt;date&lt;/code&gt; frontmatter; perhaps another to add a
-&lt;code&gt;modified&lt;/code&gt;&lt;sup id="fnref:155-1"&gt;&lt;a class="footnote-ref" href="#fn:155-1"&gt;1&lt;/a&gt;&lt;/sup&gt;; one to set the &lt;code&gt;category&lt;/code&gt; from any of the categories I've
+&lt;code&gt;modified&lt;/code&gt;&lt;sup id="fnref:156-1"&gt;&lt;a class="footnote-ref" href="#fn:156-1"&gt;1&lt;/a&gt;&lt;/sup&gt;; one to set the &lt;code&gt;category&lt;/code&gt; from any of the categories I've
 used so far would be good; ditto the &lt;code&gt;tags&lt;/code&gt; property.&lt;/p&gt;
 &lt;p&gt;I doubt this will be useful to anyone else, although I will try my best to
 keep it so that it's easy to configure, so it's only ever going to stay
@@ -251,9 +296,9 @@ approach for all of my personal packages.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:155-1"&gt;
+&lt;li id="fn:156-1"&gt;
 &lt;p&gt;Note to self: did I make &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
-support modified dates?&amp;#160;&lt;a class="footnote-backref" href="#fnref:155-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+support modified dates?&amp;#160;&lt;a class="footnote-backref" href="#fnref:156-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -449,7 +494,7 @@ really not noticing them been gone.&lt;/p&gt;
     <item>
       <title>Some more ~/.emacs.d evolution</title>
       <link>https://blog.davep.org/2020/06/07/some-more-dot-emacs-dot-d-evolution.html</link>
-      <description>&lt;p&gt;When I started with this version of the blog on Hashnode&lt;sup id="fnref:213-1"&gt;&lt;a class="footnote-ref" href="#fn:213-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, my plan was to
+      <description>&lt;p&gt;When I started with this version of the blog on Hashnode&lt;sup id="fnref:214-1"&gt;&lt;a class="footnote-ref" href="#fn:214-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, my plan was to
 try and write something at least once a week. I managed to do that as far as
 January this year, give or take, but then things got a little busy, the
 world got trickier, and... Well, &lt;a href="https://en.wikipedia.org/wiki/COVID-19_pandemic" rel="noopener noreferrer" target="_blank"&gt;you don't need me to tell you about
@@ -527,9 +572,9 @@ in the running version of Emacs&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:213-1"&gt;
+&lt;li id="fn:214-1"&gt;
 &lt;p&gt;Note from future me: we're now back over on &lt;code&gt;blog.davep.org&lt;/code&gt; of
-course.&amp;#160;&lt;a class="footnote-backref" href="#fnref:213-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+course.&amp;#160;&lt;a class="footnote-backref" href="#fnref:214-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>

@@ -8,7 +8,52 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 29 Mar 2026 19:53:13 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 15:22:03 +0000</lastBuildDate>
+    <item>
+      <title>blogmore.el v2.1</title>
+      <link>https://blog.davep.org/2026/03/30/blogmore-el-v2-1.html</link>
+      <description>&lt;p&gt;I've given &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; a wee bump
+to v2.1. This release fixes a small problem I noticed today when I tried to
+use it to edit the tags for &lt;a href="https://seen-by.davep.dev/2026/03/30/refactored.html" rel="noopener noreferrer" target="_blank"&gt;a post on my
+photoblog&lt;/a&gt;: the code
+to find and gather properties from posts didn't handle deeply-nested
+directory hierarchies for the post markdown files. I should have noticed
+this when I first wrote the code, but of course I was so busy testing
+against my primary blog, which only goes one sub-level deep, that I never
+noticed it wasn't going to work deeper.&lt;/p&gt;
+&lt;p&gt;So rather than using &lt;code&gt;grep&lt;/code&gt; to look for things like &lt;code&gt;foo/**/*.md&lt;/code&gt; I swapped
+to a combination of &lt;code&gt;find&lt;/code&gt; and &lt;code&gt;grep&lt;/code&gt;. Which works, but is slightly (but
+noticeably) slower.&lt;/p&gt;
+&lt;p&gt;Then I got to thinking that if I was doing this by hand, on the command
+line, I'd be using &lt;a href="https://github.com/burntsushi/ripgrep" rel="noopener noreferrer" target="_blank"&gt;ripgrep&lt;/a&gt; anyway.
+Given this I might as well use it here. Of course, not everyone who might
+use &lt;code&gt;blogmore.el&lt;/code&gt; will have &lt;code&gt;rg&lt;/code&gt; installed so it makes sense to look for
+that and use it if it's available, otherwise fall back on &lt;code&gt;find&lt;/code&gt;/&lt;code&gt;grep&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;There's still some low-priority cleaning up I want to do around this; an
+obvious change I want to make being one where I want to collapse all cases
+of the same word (Tree vs tree, etc) into one "hit"&lt;sup id="fnref:140-1"&gt;&lt;a class="footnote-ref" href="#fn:140-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. For now though, as
+always, it's working well enough for &lt;em&gt;my&lt;/em&gt; needs and this change fixed an
+obvious issue I ran into.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:140-1"&gt;
+&lt;p&gt;&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; itself takes care of this, but
+it would be nice to have the prompt in &lt;code&gt;blogmore.el&lt;/code&gt; also take this into
+account.&amp;#160;&lt;a class="footnote-backref" href="#fnref:140-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/03/30/blogmore-el-v2-1.html</guid>
+      <category>Emacs</category>
+      <category>BlogMore</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>coding</category>
+      <category>Unix</category>
+      <pubDate>Mon, 30 Mar 2026 16:20:22 +0100</pubDate>
+    </item>
     <item>
       <title>blogmore.el v2.0</title>
       <link>https://blog.davep.org/2026/03/29/blogmore-el-v2-0.html</link>
@@ -294,7 +339,7 @@ memory, well the price starts to get dangerously close to...&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The MacBook Air M5" src="https://blog.davep.org/attachments/2026/03/27/macbook-air.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;So, yeah, as of today, I've kind of come full circle; a decade on from that
 MacBook Air purchase I have a new sofa hacking machine coming in the shape
-of the new M5 MacBook Air&lt;sup id="fnref:177-1"&gt;&lt;a class="footnote-ref" href="#fn:177-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+of the new M5 MacBook Air&lt;sup id="fnref:178-1"&gt;&lt;a class="footnote-ref" href="#fn:178-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So this weekend will involve me digging out my "new macOS environment"
 checklist and working through it, getting a hacking environment up and going
 again. One thing I do want to do is follow that list but also write out a
@@ -307,11 +352,11 @@ like I should be able to achieve everything I need using just
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:177-1"&gt;
+&lt;li id="fn:178-1"&gt;
 &lt;p&gt;I'm not a hardware nerd, so don't dive deep into this stuff. Despite
 what I said about the M2 Pro Mini still being there for heavy coding and
 video editing, it wouldn't surprise me to find out the Air is more than
-capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:177-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:178-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -553,7 +598,7 @@ bunch of useless but fun stats and facts about the content&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Hour of day" src="https://blog.davep.org/attachments/2026/03/24/hour-of-day.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;Or the day of the week:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Day of week" src="https://blog.davep.org/attachments/2026/03/24/day-of-week.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Or the month of the year&lt;sup id="fnref:174-1"&gt;&lt;a class="footnote-ref" href="#fn:174-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;Or the month of the year&lt;sup id="fnref:175-1"&gt;&lt;a class="footnote-ref" href="#fn:175-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Month of year" src="https://blog.davep.org/attachments/2026/03/24/month-of-year.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;This is designed to be turned off by default -- I can imagine most folk
 would not want this sort of thing on their blog -- &lt;a href="https://blogmore.davep.dev/configuration/#with_stats" rel="noopener noreferrer" target="_blank"&gt;but it can easily be
@@ -564,9 +609,9 @@ location of the stats can also be controlled &lt;a href="https://blogmore.davep.
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:174-1"&gt;
+&lt;li id="fn:175-1"&gt;
 &lt;p&gt;&lt;a href="https://blog.davep.org/2026/03/"&gt;Unsurprisingly&lt;/a&gt; March is leaping ahead as of the time of
-writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:174-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:175-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -889,7 +934,7 @@ latter lets me quickly pick an existing post and go edit it.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="blogmore-edit in action" src="https://blog.davep.org/attachments/2026/03/19/blogmore-edit.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;As time goes on I might expand on this. For example: it might be useful to
 have a command that updates the &lt;code&gt;date&lt;/code&gt; frontmatter; perhaps another to add a
-&lt;code&gt;modified&lt;/code&gt;&lt;sup id="fnref:155-1"&gt;&lt;a class="footnote-ref" href="#fn:155-1"&gt;1&lt;/a&gt;&lt;/sup&gt;; one to set the &lt;code&gt;category&lt;/code&gt; from any of the categories I've
+&lt;code&gt;modified&lt;/code&gt;&lt;sup id="fnref:156-1"&gt;&lt;a class="footnote-ref" href="#fn:156-1"&gt;1&lt;/a&gt;&lt;/sup&gt;; one to set the &lt;code&gt;category&lt;/code&gt; from any of the categories I've
 used so far would be good; ditto the &lt;code&gt;tags&lt;/code&gt; property.&lt;/p&gt;
 &lt;p&gt;I doubt this will be useful to anyone else, although I will try my best to
 keep it so that it's easy to configure, so it's only ever going to stay
@@ -909,9 +954,9 @@ approach for all of my personal packages.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:155-1"&gt;
+&lt;li id="fn:156-1"&gt;
 &lt;p&gt;Note to self: did I make &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
-support modified dates?&amp;#160;&lt;a class="footnote-backref" href="#fnref:155-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+support modified dates?&amp;#160;&lt;a class="footnote-backref" href="#fnref:156-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1124,7 +1169,7 @@ don't have it?&lt;/p&gt;
 &lt;p&gt;Quickly checking elsewhere, sure enough, I had access to almost no models. I
 can't remember what there was, but it wasn't much and &lt;em&gt;all&lt;/em&gt; the Claude ones
 had disappeared. Even if I tested in the &lt;a href="https://github.com/features/copilot/cli" rel="noopener noreferrer" target="_blank"&gt;Copilot
-CLI&lt;/a&gt;&lt;sup id="fnref:157-1"&gt;&lt;a class="footnote-ref" href="#fn:157-1"&gt;1&lt;/a&gt;&lt;/sup&gt; I saw a very limited set
+CLI&lt;/a&gt;&lt;sup id="fnref:158-1"&gt;&lt;a class="footnote-ref" href="#fn:158-1"&gt;1&lt;/a&gt;&lt;/sup&gt; I saw a very limited set
 of models.&lt;/p&gt;
 &lt;p&gt;Around this time I had two reactions: one was something like &lt;em&gt;"cool, this is
 an important part of the experiment, knowing how it goes if your models are
@@ -1150,7 +1195,7 @@ what &lt;em&gt;does&lt;/em&gt; happen when some third party takes away the model
 to get your work done? In the time I've been building up BlogMore I've come
 to trust the quality of Claude Sonnet (in the sense that I know when and
 where I have to pay closer attention to what it's done, and where it'll very
-likely have done a pretty good job&lt;sup id="fnref:157-2"&gt;&lt;a class="footnote-ref" href="#fn:157-2"&gt;2&lt;/a&gt;&lt;/sup&gt;), so finding that I'd possibly have
+likely have done a pretty good job&lt;sup id="fnref:158-2"&gt;&lt;a class="footnote-ref" href="#fn:158-2"&gt;2&lt;/a&gt;&lt;/sup&gt;), so finding that I'd possibly have
 to switch to some other model that I've had no experience with... I
 genuinely had a moment of concern about how and where I was going to take
 BlogMore.&lt;/p&gt;
@@ -1167,12 +1212,12 @@ resolved&lt;/a&gt;?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:157-1"&gt;
+&lt;li id="fn:158-1"&gt;
 &lt;p&gt;Which I'm not really using at the moment, but do have installed to
-experiment with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:157-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+experiment with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:158-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:157-2"&gt;
-&lt;p&gt;So just like working with humans, oddly enough.&amp;#160;&lt;a class="footnote-backref" href="#fnref:157-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:158-2"&gt;
+&lt;p&gt;So just like working with humans, oddly enough.&amp;#160;&lt;a class="footnote-backref" href="#fnref:158-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1186,58 +1231,6 @@ experiment with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:157-1" tit
       <category>BlogMore</category>
       <category>coding</category>
       <pubDate>Tue, 17 Mar 2026 10:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v1.16.0</title>
-      <link>https://blog.davep.org/2026/03/16/blogmore-1-16-0.html</link>
-      <description>&lt;p&gt;Prompted in part by the &lt;a href="https://blog.davep.org/2026/03/15/blogmore-1-15-0.html"&gt;changes I made
-yesterday&lt;/a&gt;, I've made another small
-release of &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; today. The stuff to do
-with &lt;a href="https://codeberg.org/robida/human.json" rel="noopener noreferrer" target="_blank"&gt;human.json&lt;/a&gt; made mention of
-having a &lt;code&gt;/ai&lt;/code&gt; page, something I remember as being part of the &lt;a href="https://slashpages.net" rel="noopener noreferrer" target="_blank"&gt;slash
-pages&lt;/a&gt; moment. While I've never leaned into it
-myself, I do consider it a fun idea and, given &lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;the current
-experiment&lt;/a&gt;, I did think it made
-sense to have a &lt;code&gt;/ai&lt;/code&gt; page for this blog, at least&lt;sup id="fnref:143-1"&gt;&lt;a class="footnote-ref" href="#fn:143-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;Yesterday's changes, to allow modifying the path used for pages, and also to
-apply the &lt;a href="https://blogmore.davep.dev/configuration/#clean_urls" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;clean_urls&lt;/code&gt;
-setting&lt;/a&gt; to them too,
-meant it was easily doable now. But I also got to thinking that someone
-might not want the page to appear in the sidebar; perhaps they just want the
-page there but not obviously linked to.&lt;/p&gt;
-&lt;p&gt;So with today's release &lt;a href="https://github.com/davep/blogmore/issues/290" rel="noopener noreferrer" target="_blank"&gt;I've
-added&lt;/a&gt; an &lt;a href="https://blogmore.davep.dev/configuration/#pages" rel="noopener noreferrer" target="_blank"&gt;optional &lt;code&gt;pages:&lt;/code&gt;
-configuration setting&lt;/a&gt;. If
-it's omitted, BlogMore works as it always did (listing every page in the
-sidebar). If it's included, only the pages in the given list appear in the
-sidebar.&lt;/p&gt;
-&lt;p&gt;Personally I think I'd prefer to have &lt;a href="https://blog.davep.org/ai/"&gt;the &lt;code&gt;/ai&lt;/code&gt;
-page&lt;/a&gt; visible in the sidebar, and that's what
-I've gone with. But if anyone wants the option of having better control over
-this, it's there now.&lt;/p&gt;
-&lt;p&gt;While I was tinkering on sidebar things I also added a &lt;a href="https://blogmore.davep.dev/configuration/#links_title" rel="noopener noreferrer" target="_blank"&gt;setting for
-overriding the title of the links
-list&lt;/a&gt;. Again, I think
-&lt;em&gt;Links&lt;/em&gt; works fine for my purposes, for this particular blog, but I can see
-the need to want to customise it.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:143-1"&gt;
-&lt;p&gt;I should probably add one to my &lt;a href="https://www.davep.org/" rel="noopener noreferrer" target="_blank"&gt;main site&lt;/a&gt;
-too now I think about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:143-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/03/16/blogmore-1-16-0.html</guid>
-      <category>Coding</category>
-      <category>Python</category>
-      <category>AI</category>
-      <category>LLM</category>
-      <category>Copilot</category>
-      <category>BlogMore</category>
-      <category>Slash Pages</category>
-      <pubDate>Mon, 16 Mar 2026 16:50:00 +0000</pubDate>
     </item>
   </channel>
 </rss>
