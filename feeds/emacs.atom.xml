@@ -2,11 +2,105 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-03-30T15:22:03.574875+00:00</updated>
+  <updated>2026-03-30T19:32:42.001610+00:00</updated>
   <link href="https://blog.davep.org/feeds/emacs.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Emacs" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/03/30/blogmore-el-v2-2.html</id>
+    <title>blogmore.el v2.2</title>
+    <updated>2026-03-30T20:31:03+01:00</updated>
+    <content type="html">&lt;p&gt;It really feels like &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; has kicked off
+a whole new thing when it comes to personal hacking. During the past few
+years I've developed a &lt;em&gt;lot&lt;/em&gt; of &lt;a href="https://blog.davep.org/tag/python/"&gt;Python&lt;/a&gt; applications and
+libraries, and have had a ton of fun doing so, but during that time I've not
+really done anything with writing stuff for &lt;a href="https://blog.davep.org/tag/emacs/"&gt;Emacs&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To a large degree I think this says something about how stable Emacs is for
+me (I've been using it for a touch over 30 years at this point, you'd think
+I'd be kind of settled with it), but it's still always fun to have a reason
+to hack on some &lt;a href="https://blog.davep.org/tag/lisp/"&gt;Lisp&lt;/a&gt; code. There's little doubt my Lisp --
+especially Emacs Lisp -- has got a wee bit rusty.&lt;/p&gt;
+&lt;p&gt;So I'm having a lot of fun at the moment falling into the rabbit hole of
+expanding on and tinkering with
+&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt;. The reason I've just
+made v2.2 is a good example of exactly this. There are no real user-facing
+changes in the code, it was all things I just wanted to tidy up.&lt;/p&gt;
+&lt;p&gt;The main thing that has been bugging me for the past day is the repeating
+boilerplate that resulted from adding all the different current-blog-aware
+setting getter functions. There were 7 different functions, all looking like
+this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--post-maker-function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Get the post maker function for the current blog.&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--blog-post-maker-function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--chosen-blog&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nv"&gt;blogmore-default-post-maker-function&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Exact same pattern, the only thing different being the name of the getter
+function being called on, and the name of the variable that contained the
+global default value.&lt;/p&gt;
+&lt;p&gt;So just a little earlier I cleaned this up using one of my favourite things
+about Lisp: &lt;code&gt;defmacro&lt;/code&gt;. There's something about macros that makes me really
+like coding in Lisp, and which I cite as a &lt;em&gt;really good thing&lt;/em&gt; when asked
+why I like Lisp, but which I always seem to utterly fail to explain well.
+Macros feel like one of those things you just have to experience for
+yourself to really get&lt;sup id="fnref:172-1"&gt;&lt;a class="footnote-ref" href="#fn:172-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Now, thanks to this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defmacro&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Generate a function to get the value of SETTING for the current blog.&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore--%s&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Get the %s for the current blog.&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore--blog-%s&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--chosen-blog&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore-default-%s&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;all those 7 functions can collapse to this&lt;sup id="fnref:172-2"&gt;&lt;a class="footnote-ref" href="#fn:172-2"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-template&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;category-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;tag-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-link-format&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;category-link-format&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;tag-link-format&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now the code is shorter, cleaner, and if I need to change anything I only
+need to change it in one place. Sure, the latter part especially is one of
+those &lt;em&gt;"you could do that with a function too"&lt;/em&gt; things (have the work in one
+place), but here I can get the language to write me a whole load of
+functions, all of which refer to different functions and variables, each one
+based off just the one symbol.&lt;/p&gt;
+&lt;p&gt;The point of all of this being: v2.2 of &lt;code&gt;blogmore.el&lt;/code&gt; is now out, it adds
+nothing for the user (who I suspect is only me anyway), but I had an
+absolute blast dusting off more of my Emacs Lisp knowledge and getting back
+the urge to code &lt;a href="https://elisp.dev/" rel="noopener noreferrer" target="_blank"&gt;even more Emacs Lisp&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;All of this has even got me tidying up my &lt;code&gt;~/.emacs.d/&lt;/code&gt; &lt;em&gt;and&lt;/em&gt; has me
+thinking I should go back through some of my older code and &lt;a href="https://blog.davep.org/2022/08/23/i-must-be-getting-old.html"&gt;clean up all
+that legacy nonsense&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:172-1"&gt;
+&lt;p&gt;There was a time I would have said "grok" here but... well that's
+spoiled now.&amp;#160;&lt;a class="footnote-backref" href="#fnref:172-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:172-2"&gt;
+&lt;p&gt;I suppose I could reduce that to one "call" with a loop over a list of
+symbols, but that feels unnecessary here.&amp;#160;&lt;a class="footnote-backref" href="#fnref:172-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/03/30/blogmore-el-v2-2.html"/>
+    <category term="Emacs"/>
+    <category term="BlogMore"/>
+    <category term="Emacs"/>
+    <category term="Emacs Lisp"/>
+    <category term="Lisp"/>
+    <category term="coding"/>
+    <category term="defmacro"/>
+    <published>2026-03-30T20:31:03+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/03/30/blogmore-el-v2-1.html</id>
     <title>blogmore.el v2.1</title>
@@ -500,7 +594,7 @@ really not noticing them been gone.&lt;/p&gt;
     <id>https://blog.davep.org/2020/06/07/some-more-dot-emacs-dot-d-evolution.html</id>
     <title>Some more ~/.emacs.d evolution</title>
     <updated>2020-06-07T16:48:00+01:00</updated>
-    <content type="html">&lt;p&gt;When I started with this version of the blog on Hashnode&lt;sup id="fnref:214-1"&gt;&lt;a class="footnote-ref" href="#fn:214-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, my plan was to
+    <content type="html">&lt;p&gt;When I started with this version of the blog on Hashnode&lt;sup id="fnref:215-1"&gt;&lt;a class="footnote-ref" href="#fn:215-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, my plan was to
 try and write something at least once a week. I managed to do that as far as
 January this year, give or take, but then things got a little busy, the
 world got trickier, and... Well, &lt;a href="https://en.wikipedia.org/wiki/COVID-19_pandemic" rel="noopener noreferrer" target="_blank"&gt;you don't need me to tell you about
@@ -578,9 +672,9 @@ in the running version of Emacs&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:214-1"&gt;
+&lt;li id="fn:215-1"&gt;
 &lt;p&gt;Note from future me: we're now back over on &lt;code&gt;blog.davep.org&lt;/code&gt; of
-course.&amp;#160;&lt;a class="footnote-backref" href="#fnref:214-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+course.&amp;#160;&lt;a class="footnote-backref" href="#fnref:215-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>

@@ -8,7 +8,100 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 30 Mar 2026 15:22:03 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 19:32:41 +0000</lastBuildDate>
+    <item>
+      <title>blogmore.el v2.2</title>
+      <link>https://blog.davep.org/2026/03/30/blogmore-el-v2-2.html</link>
+      <description>&lt;p&gt;It really feels like &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; has kicked off
+a whole new thing when it comes to personal hacking. During the past few
+years I've developed a &lt;em&gt;lot&lt;/em&gt; of &lt;a href="https://blog.davep.org/tag/python/"&gt;Python&lt;/a&gt; applications and
+libraries, and have had a ton of fun doing so, but during that time I've not
+really done anything with writing stuff for &lt;a href="https://blog.davep.org/tag/emacs/"&gt;Emacs&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To a large degree I think this says something about how stable Emacs is for
+me (I've been using it for a touch over 30 years at this point, you'd think
+I'd be kind of settled with it), but it's still always fun to have a reason
+to hack on some &lt;a href="https://blog.davep.org/tag/lisp/"&gt;Lisp&lt;/a&gt; code. There's little doubt my Lisp --
+especially Emacs Lisp -- has got a wee bit rusty.&lt;/p&gt;
+&lt;p&gt;So I'm having a lot of fun at the moment falling into the rabbit hole of
+expanding on and tinkering with
+&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt;. The reason I've just
+made v2.2 is a good example of exactly this. There are no real user-facing
+changes in the code, it was all things I just wanted to tidy up.&lt;/p&gt;
+&lt;p&gt;The main thing that has been bugging me for the past day is the repeating
+boilerplate that resulted from adding all the different current-blog-aware
+setting getter functions. There were 7 different functions, all looking like
+this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--post-maker-function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Get the post maker function for the current blog.&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--blog-post-maker-function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--chosen-blog&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nv"&gt;blogmore-default-post-maker-function&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Exact same pattern, the only thing different being the name of the getter
+function being called on, and the name of the variable that contained the
+global default value.&lt;/p&gt;
+&lt;p&gt;So just a little earlier I cleaned this up using one of my favourite things
+about Lisp: &lt;code&gt;defmacro&lt;/code&gt;. There's something about macros that makes me really
+like coding in Lisp, and which I cite as a &lt;em&gt;really good thing&lt;/em&gt; when asked
+why I like Lisp, but which I always seem to utterly fail to explain well.
+Macros feel like one of those things you just have to experience for
+yourself to really get&lt;sup id="fnref:172-1"&gt;&lt;a class="footnote-ref" href="#fn:172-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Now, thanks to this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defmacro&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Generate a function to get the value of SETTING for the current blog.&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore--%s&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Get the %s for the current blog.&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore--blog-%s&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--chosen-blog&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore-default-%s&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;all those 7 functions can collapse to this&lt;sup id="fnref:172-2"&gt;&lt;a class="footnote-ref" href="#fn:172-2"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-template&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;category-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;tag-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-link-format&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;category-link-format&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;tag-link-format&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now the code is shorter, cleaner, and if I need to change anything I only
+need to change it in one place. Sure, the latter part especially is one of
+those &lt;em&gt;"you could do that with a function too"&lt;/em&gt; things (have the work in one
+place), but here I can get the language to write me a whole load of
+functions, all of which refer to different functions and variables, each one
+based off just the one symbol.&lt;/p&gt;
+&lt;p&gt;The point of all of this being: v2.2 of &lt;code&gt;blogmore.el&lt;/code&gt; is now out, it adds
+nothing for the user (who I suspect is only me anyway), but I had an
+absolute blast dusting off more of my Emacs Lisp knowledge and getting back
+the urge to code &lt;a href="https://elisp.dev/" rel="noopener noreferrer" target="_blank"&gt;even more Emacs Lisp&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;All of this has even got me tidying up my &lt;code&gt;~/.emacs.d/&lt;/code&gt; &lt;em&gt;and&lt;/em&gt; has me
+thinking I should go back through some of my older code and &lt;a href="https://blog.davep.org/2022/08/23/i-must-be-getting-old.html"&gt;clean up all
+that legacy nonsense&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:172-1"&gt;
+&lt;p&gt;There was a time I would have said "grok" here but... well that's
+spoiled now.&amp;#160;&lt;a class="footnote-backref" href="#fnref:172-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:172-2"&gt;
+&lt;p&gt;I suppose I could reduce that to one "call" with a loop over a list of
+symbols, but that feels unnecessary here.&amp;#160;&lt;a class="footnote-backref" href="#fnref:172-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/03/30/blogmore-el-v2-2.html</guid>
+      <category>Emacs</category>
+      <category>BlogMore</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>coding</category>
+      <category>defmacro</category>
+      <pubDate>Mon, 30 Mar 2026 20:31:03 +0100</pubDate>
+    </item>
     <item>
       <title>blogmore.el v2.1</title>
       <link>https://blog.davep.org/2026/03/30/blogmore-el-v2-1.html</link>
@@ -339,7 +432,7 @@ memory, well the price starts to get dangerously close to...&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The MacBook Air M5" src="https://blog.davep.org/attachments/2026/03/27/macbook-air.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;So, yeah, as of today, I've kind of come full circle; a decade on from that
 MacBook Air purchase I have a new sofa hacking machine coming in the shape
-of the new M5 MacBook Air&lt;sup id="fnref:178-1"&gt;&lt;a class="footnote-ref" href="#fn:178-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+of the new M5 MacBook Air&lt;sup id="fnref:179-1"&gt;&lt;a class="footnote-ref" href="#fn:179-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So this weekend will involve me digging out my "new macOS environment"
 checklist and working through it, getting a hacking environment up and going
 again. One thing I do want to do is follow that list but also write out a
@@ -352,11 +445,11 @@ like I should be able to achieve everything I need using just
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:178-1"&gt;
+&lt;li id="fn:179-1"&gt;
 &lt;p&gt;I'm not a hardware nerd, so don't dive deep into this stuff. Despite
 what I said about the M2 Pro Mini still being there for heavy coding and
 video editing, it wouldn't surprise me to find out the Air is more than
-capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:178-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:179-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -598,7 +691,7 @@ bunch of useless but fun stats and facts about the content&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Hour of day" src="https://blog.davep.org/attachments/2026/03/24/hour-of-day.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;Or the day of the week:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Day of week" src="https://blog.davep.org/attachments/2026/03/24/day-of-week.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Or the month of the year&lt;sup id="fnref:175-1"&gt;&lt;a class="footnote-ref" href="#fn:175-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;Or the month of the year&lt;sup id="fnref:176-1"&gt;&lt;a class="footnote-ref" href="#fn:176-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Month of year" src="https://blog.davep.org/attachments/2026/03/24/month-of-year.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;This is designed to be turned off by default -- I can imagine most folk
 would not want this sort of thing on their blog -- &lt;a href="https://blogmore.davep.dev/configuration/#with_stats" rel="noopener noreferrer" target="_blank"&gt;but it can easily be
@@ -609,9 +702,9 @@ location of the stats can also be controlled &lt;a href="https://blogmore.davep.
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:175-1"&gt;
+&lt;li id="fn:176-1"&gt;
 &lt;p&gt;&lt;a href="https://blog.davep.org/2026/03/"&gt;Unsurprisingly&lt;/a&gt; March is leaping ahead as of the time of
-writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:175-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:176-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1118,119 +1211,6 @@ your ability to pay.&lt;/p&gt;</description>
       <category>GitHub</category>
       <category>BlogMore</category>
       <pubDate>Tue, 17 Mar 2026 14:27:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>When your model leaves you</title>
-      <link>https://blog.davep.org/2026/03/17/when-your-model-leaves-you.html</link>
-      <description>&lt;p&gt;Yesterday evening, after dinner, but just before &lt;a href="https://store.playstation.com/en-gb/concept/10016557" rel="noopener noreferrer" target="_blank"&gt;loading up a game released
-just a few hours
-earlier&lt;/a&gt;, I decided to
-kick off a change to &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;. Part of the
-&lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;ongoing experiment&lt;/a&gt; is this
-convenience aspect: where I can get some work going and then go and do
-&lt;a href="https://www.youtube.com/live/tIqDQucBf5U" rel="noopener noreferrer" target="_blank"&gt;something entirely different&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The nature of the change itself isn't important (I'll write about it when I
-release an update), but something that happened is. As usual, I did the
-prompt as an issue, and assigned it to &lt;a href="https://blog.davep.org/tag/copilot/"&gt;Copilot&lt;/a&gt;. The
-first thing that was curious was that, after around 5 minutes, despite it
-having added the 👀 reaction (which it seems to use to indicate the agent
-has seen it has work to do), nothing happened. I didn't see an agent kick
-off doing the work. Eventually I gave up waiting and opened a Copilot
-session and asked it to set about dealing with the issue I'd raised.&lt;/p&gt;
-&lt;p&gt;It did as I requested, but apparently alongside another agent which had
-suddenly started doing the exact same work. Thinking it was a glitch (it's
-not like GitHub hasn't been &lt;a href="https://github.blog/news-insights/company-news/addressing-githubs-recent-availability-issues-2/" rel="noopener noreferrer" target="_blank"&gt;having some trouble of
-late&lt;/a&gt;)
-I stopped the newest one and let the "original" go about its work.&lt;/p&gt;
-&lt;p&gt;A wee bit later, just before I started up my game and the stream, I checked
-in on how it was doing. It had finished, but in a quick test, I noticed a
-small bug. I &lt;a href="https://github.com/davep/blogmore/pull/304#issuecomment-4069988596" rel="noopener noreferrer" target="_blank"&gt;prompted it to fix the
-problem&lt;/a&gt;,
-closed the tab, and went about the real business of killing bugs.&lt;/p&gt;
-&lt;p&gt;Fast forward a couple of hours, I was done with getting my arse kicked on
-Klendathu, I packed away my controller and headset and opened GitHub again
-to see where Copilot was at. &lt;a href="https://github.com/davep/blogmore/pull/304#issuecomment-4069988954" rel="noopener noreferrer" target="_blank"&gt;It wasn't
-good&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;@davep The model &lt;code&gt;claude-sonnet-4.6&lt;/code&gt; is not available for your account.
-This can happen if the model was disabled by your organization's policy or
-if your Copilot plan doesn't include access to it.&lt;/p&gt;
-&lt;p&gt;You can try again without specifying a model (just &lt;code&gt;@copilot&lt;/code&gt;) to use the
-default, or choose a different model from the model picker.&lt;/p&gt;
-&lt;p&gt;If you want to contact GitHub about this error, please mention the
-following identifier so they can better serve you:
-&lt;code&gt;79b81d32-e26a-4898-bd41-4bba088d08f6&lt;/code&gt;&lt;/p&gt;
-&lt;!-- copilot-coding-agent-error: model-not-available --&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Wait... what? I've been using this for weeks now, as best as I can tell I've
-generally been making all the changes and improvements using Claude Sonnet
-4.6; there's never been an issue. Then, suddenly, in the middle of a PR, I
-don't have it?&lt;/p&gt;
-&lt;p&gt;Quickly checking elsewhere, sure enough, I had access to almost no models. I
-can't remember what there was, but it wasn't much and &lt;em&gt;all&lt;/em&gt; the Claude ones
-had disappeared. Even if I tested in the &lt;a href="https://github.com/features/copilot/cli" rel="noopener noreferrer" target="_blank"&gt;Copilot
-CLI&lt;/a&gt;&lt;sup id="fnref:158-1"&gt;&lt;a class="footnote-ref" href="#fn:158-1"&gt;1&lt;/a&gt;&lt;/sup&gt; I saw a very limited set
-of models.&lt;/p&gt;
-&lt;p&gt;Around this time I had two reactions: one was something like &lt;em&gt;"cool, this is
-an important part of the experiment, knowing how it goes if your models are
-taken from you"&lt;/em&gt;, the other was a curious &lt;em&gt;"but Claude and I have an
-understanding about this codebase I can't trust some other model I've not
-been using"&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;As it was getting late into the evening and I still wanted to watch an
-episode of Stargate SG-1 (yes, I'm doing a full rewatch given it's on
-Netflix) I closed the MacBook and decided to check in on the issue in the
-morning.&lt;/p&gt;
-&lt;p&gt;Fast forward &lt;a href="https://www.imdb.com/title/tt0709091/" rel="noopener noreferrer" target="_blank"&gt;one SG1 episode&lt;/a&gt; later
-and, just before I headed to bed, I decided to do a quick search. While it
-could be a problem with my own account, it felt like it was more of a
-general issue. &lt;a href="https://github.com/orgs/community/discussions/189795" rel="noopener noreferrer" target="_blank"&gt;It was more of a general
-issue&lt;/a&gt;. At that point
-(around 23:20 UTC), checking in the GitHub app on my phone, I could see that
-some, if not all, of the models I was used to seeing, had come back.&lt;/p&gt;
-&lt;p&gt;As of this morning, as of time of writing, it's all looking back to how it
-was.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="All the models back" src="https://blog.davep.org/attachments/2026/03/17/copilot-models.png" /&gt;&lt;/p&gt;
-&lt;p&gt;All of which is a great reminder, and something useful in the experiment:
-what &lt;em&gt;does&lt;/em&gt; happen when some third party takes away the models you're using
-to get your work done? In the time I've been building up BlogMore I've come
-to trust the quality of Claude Sonnet (in the sense that I know when and
-where I have to pay closer attention to what it's done, and where it'll very
-likely have done a pretty good job&lt;sup id="fnref:158-2"&gt;&lt;a class="footnote-ref" href="#fn:158-2"&gt;2&lt;/a&gt;&lt;/sup&gt;), so finding that I'd possibly have
-to switch to some other model that I've had no experience with... I
-genuinely had a moment of concern about how and where I was going to take
-BlogMore.&lt;/p&gt;
-&lt;p&gt;Ultimately it's not &lt;em&gt;actually&lt;/em&gt; a serious concern for me: while I aim to
-maintain it for a very long time to come (it is how I'm creating the site
-for this blog after all), BlogMore isn't that critical. Moreover, I know I
-could cease using Copilot to create and maintain it and I could tidy up the
-code and hand-update and hand-manage it. There's a reason why I decided to
-really dive into this using a language I'm extremely confident with.&lt;/p&gt;
-&lt;p&gt;But for those applications some might now be relying on, developed by
-someone keen but as yet unskilled, what way forward for them if &lt;a href="https://github.com/orgs/community/discussions/189268" rel="noopener noreferrer" target="_blank"&gt;such a
-situation were to happen and not be
-resolved&lt;/a&gt;?&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:158-1"&gt;
-&lt;p&gt;Which I'm not really using at the moment, but do have installed to
-experiment with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:158-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:158-2"&gt;
-&lt;p&gt;So just like working with humans, oddly enough.&amp;#160;&lt;a class="footnote-backref" href="#fnref:158-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/03/17/when-your-model-leaves-you.html</guid>
-      <category>AI</category>
-      <category>Python</category>
-      <category>AI</category>
-      <category>LLM</category>
-      <category>Copilot</category>
-      <category>GitHub</category>
-      <category>BlogMore</category>
-      <category>coding</category>
-      <pubDate>Tue, 17 Mar 2026 10:00:00 +0000</pubDate>
     </item>
   </channel>
 </rss>
