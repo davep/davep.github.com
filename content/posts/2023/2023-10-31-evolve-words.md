@@ -2,7 +2,7 @@
 layout: post
 title: Evolve Words
 category: Coding
-tags: Python, evolution, biology, terminal, textual
+tags: Coding, PyPI, Python, biology, evolution, terminal, textual
 date: 2023-10-31 21:39:00 +0100
 cover: /attachments/2023/10/31/evolve-words-cover.png
 ---

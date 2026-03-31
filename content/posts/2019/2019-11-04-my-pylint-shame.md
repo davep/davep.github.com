@@ -2,7 +2,7 @@
 layout: post
 title: My Pylint shame
 category: Python
-tags: Python, fish
+tags: Coding, Python, fish
 date: 2019-11-04 20:39:00+0000
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: A new engine
 category: Meta
-tags: Python, Blogging, AI, LLM, Copilot, GitHub, BlogMore
+tags: AI, BlogMore, Blogging, Copilot, GitHub, LLM, PyPI, Python
 date: 2026-02-19 19:20:00 +0000
 ---
 

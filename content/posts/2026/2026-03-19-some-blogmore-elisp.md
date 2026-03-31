@@ -2,7 +2,7 @@
 layout: post
 title: Some BlogMore Elisp
 category: Emacs
-tags: Emacs, coding, Emacs Lisp, Lisp
+tags: BlogMore, Coding, Emacs, Emacs Lisp, Lisp, blogmore.el
 date: 2026-03-19 15:10:28 +0000
 cover: /attachments/2026/03/19/blogmore-edit.png
 ---

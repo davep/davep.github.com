@@ -2,7 +2,7 @@
 layout: post
 title: textual-canvas v0.2.0
 category: Python
-tags: Python, Textual, coding, PyPi
+tags: Python, Textual, coding, PyPI
 date: 2023-07-16 09:00:00 +0100
 cover: attachments/2023/07/16/textual-canvas.png
 ---

@@ -2,7 +2,7 @@
 layout: post
 title: Quizzical
 category: Coding
-tags: Python, terminal, textual
+tags: Coding, Python, Quizzical, terminal, textual
 date: 2024-01-29 21:30:00 +0000
 cover: attachments/2024/01/29/quizzical-banner.png
 ---

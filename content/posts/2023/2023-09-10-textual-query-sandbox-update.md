@@ -2,7 +2,7 @@
 layout: post
 title: Textual Query Sandbox Update
 category: Python
-tags: PyPi, Python, coding, Textual
+tags: PyPI, Python, coding, Textual
 date: 2023-09-10 09:22:00 +0100
 cover: attachments/2023/09/10/tqs-1.png
 ---

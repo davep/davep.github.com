@@ -2,7 +2,7 @@
 layout: post
 title: textual-dominfo
 category: Python
-tags: PyPi, Python, coding, Textual
+tags: PyPI, Python, coding, Textual
 date: 2024-01-15 21:20:00 +0100
 ---
 

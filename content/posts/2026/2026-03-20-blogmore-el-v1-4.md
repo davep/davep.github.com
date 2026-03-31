@@ -2,7 +2,7 @@
 layout: post
 title: blogmore.el v1.4
 category: Emacs
-tags: Emacs, coding, Emacs Lisp, Lisp
+tags: Emacs, Emacs Lisp, Lisp, blogmore.el, coding
 date: 2026-03-20 08:46:59 +0000
 cover: /attachments/2026/03/20/string-split.png
 ---

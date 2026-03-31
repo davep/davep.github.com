@@ -2,7 +2,7 @@
 layout: post
 title: How not to ask for help
 category: Coding
-tags: Free Software, foss, help
+tags: Coding, Free Software, foss, help
 date: 2024-02-04 11:27:00 +0000
 ---
 
