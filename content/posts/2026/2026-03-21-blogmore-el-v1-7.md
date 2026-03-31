@@ -2,7 +2,7 @@
 title: blogmore.el v1.7
 date: 2026-03-21 08:41:23+0000
 category: Emacs
-tags: Emacs, coding, Emacs Lisp, Lisp
+tags: Emacs, Emacs Lisp, Lisp, blogmore.el, coding
 cover: /attachments/2026/03/21/insert-link.png
 ---
 

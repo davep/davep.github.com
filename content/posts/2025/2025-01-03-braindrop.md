@@ -2,7 +2,7 @@
 layout: post
 title: Braindrop
 category: Coding
-tags: Python, terminal, textual
+tags: Braindrop, Coding, Python, Raindrop, terminal, textual
 date: 2025-01-03 16:24:00 +0000
 cover: attachments/2025/01/03/braindrop-social-banner.png
 ---
