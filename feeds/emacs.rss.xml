@@ -8,7 +8,51 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 31 Mar 2026 14:34:29 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Mar 2026 18:37:10 +0000</lastBuildDate>
+    <item>
+      <title>thinks.el v1.13</title>
+      <link>https://blog.davep.org/2026/03/31/thinks-el-v1-13.html</link>
+      <description>&lt;p&gt;Given the recent spate of &lt;a href="https://blog.davep.org/tag/blogmore-el/"&gt;hacking on some Emacs Lisp&lt;/a&gt;,
+I've got a real taste for hacking on some more. Or, more to the point,
+revisiting some of the packages I have in &lt;a href="https://melpa.org/#/" rel="noopener noreferrer" target="_blank"&gt;Melpa&lt;/a&gt; and
+tidying them up where necessary.&lt;/p&gt;
+&lt;p&gt;The main thing I'll need to address is cutting back on &lt;a href="https://blog.davep.org/2022/08/23/i-must-be-getting-old.html"&gt;all my old &lt;code&gt;setf&lt;/code&gt;
+ways&lt;/a&gt;. I liked that approach to
+doing things, it made lots of sense and felt elegant; sadly the Emacs
+maintainers didn't seem to agree.&lt;/p&gt;
+&lt;p&gt;So... kicking this off I've released v1.13 of
+&lt;a href="https://github.com/davep/thinks.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;thinks.el&lt;/code&gt;&lt;/a&gt;. This is a bit of nonsense
+I wrote back in the days when Usenet was still pretty busy and &lt;em&gt;the&lt;/em&gt; place
+to be (well, okay, back in 2000 when I was still hanging out on Usenet). The
+package itself lets you quickly and easily...&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;. o O ( ...write some text and then mark it all and then run a command and )
+      ( have it turned into something that looks a little like a thought   )
+      ( bubble.                                                            )
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It has some variations on how the bubble looks, and also lets you use
+&lt;code&gt;customize&lt;/code&gt; to tweak the characters to use, and also has an "extra silly"
+mode too.&lt;/p&gt;
+&lt;p&gt;Updating this wasn't too bad. Mostly just a case of turning some instances
+of &lt;code&gt;(setf (point) ...)&lt;/code&gt; into &lt;code&gt;(goto-char ...)&lt;/code&gt;, and also modifying one
+instance of &lt;code&gt;incf&lt;/code&gt; to be &lt;code&gt;cl-incf&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Honestly, I don't know how useful this package is to anyone anymore. Most
+folk don't even know what Usenet is these days, and all the "social" places
+seem to favour non-monospaced fonts, meaning the bubbles would look pretty
+terrible anyway.&lt;/p&gt;
+&lt;p&gt;On the other hand, it seems a shame to not update it, and perhaps someone
+somewhere still uses it to make some pithy parenthetical remark, possibly
+about &lt;a href="https://en.wikipedia.org/wiki/Eternal_September" rel="noopener noreferrer" target="_blank"&gt;September never
+ending&lt;/a&gt;.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/03/31/thinks-el-v1-13.html</guid>
+      <category>Emacs</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>coding</category>
+      <category>thinks.el</category>
+      <pubDate>Tue, 31 Mar 2026 19:35:16 +0100</pubDate>
+    </item>
     <item>
       <title>blogmore.el v2.3</title>
       <link>https://blog.davep.org/2026/03/31/blogmore-el-v2-3.html</link>
@@ -87,7 +131,7 @@ about Lisp: &lt;code&gt;defmacro&lt;/code&gt;. There's something about macros th
 like coding in Lisp, and which I cite as a &lt;em&gt;really good thing&lt;/em&gt; when asked
 why I like Lisp, but which I always seem to utterly fail to explain well.
 Macros feel like one of those things you just have to experience for
-yourself to really get&lt;sup id="fnref:173-1"&gt;&lt;a class="footnote-ref" href="#fn:173-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+yourself to really get&lt;sup id="fnref:174-1"&gt;&lt;a class="footnote-ref" href="#fn:174-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Now, thanks to this:&lt;/p&gt;
 &lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defmacro&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Generate a function to get the value of SETTING for the current blog.&amp;quot;&lt;/span&gt;
@@ -97,7 +141,7 @@ yourself to really get&lt;sup id="fnref:173-1"&gt;&lt;a class="footnote-ref" hre
 &lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore-default-%s&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;all those 7 functions can collapse to this&lt;sup id="fnref:173-2"&gt;&lt;a class="footnote-ref" href="#fn:173-2"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;all those 7 functions can collapse to this&lt;sup id="fnref:174-2"&gt;&lt;a class="footnote-ref" href="#fn:174-2"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-template&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;category-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -123,13 +167,13 @@ that legacy nonsense&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:173-1"&gt;
+&lt;li id="fn:174-1"&gt;
 &lt;p&gt;There was a time I would have said "grok" here but... well that's
-spoiled now.&amp;#160;&lt;a class="footnote-backref" href="#fnref:173-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+spoiled now.&amp;#160;&lt;a class="footnote-backref" href="#fnref:174-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:173-2"&gt;
+&lt;li id="fn:174-2"&gt;
 &lt;p&gt;I suppose I could reduce that to one "call" with a loop over a list of
-symbols, but that feels unnecessary here.&amp;#160;&lt;a class="footnote-backref" href="#fnref:173-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+symbols, but that feels unnecessary here.&amp;#160;&lt;a class="footnote-backref" href="#fnref:174-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -414,7 +458,7 @@ latter lets me quickly pick an existing post and go edit it.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="blogmore-edit in action" src="https://blog.davep.org/attachments/2026/03/19/blogmore-edit.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;As time goes on I might expand on this. For example: it might be useful to
 have a command that updates the &lt;code&gt;date&lt;/code&gt; frontmatter; perhaps another to add a
-&lt;code&gt;modified&lt;/code&gt;&lt;sup id="fnref:157-1"&gt;&lt;a class="footnote-ref" href="#fn:157-1"&gt;1&lt;/a&gt;&lt;/sup&gt;; one to set the &lt;code&gt;category&lt;/code&gt; from any of the categories I've
+&lt;code&gt;modified&lt;/code&gt;&lt;sup id="fnref:158-1"&gt;&lt;a class="footnote-ref" href="#fn:158-1"&gt;1&lt;/a&gt;&lt;/sup&gt;; one to set the &lt;code&gt;category&lt;/code&gt; from any of the categories I've
 used so far would be good; ditto the &lt;code&gt;tags&lt;/code&gt; property.&lt;/p&gt;
 &lt;p&gt;I doubt this will be useful to anyone else, although I will try my best to
 keep it so that it's easy to configure, so it's only ever going to stay
@@ -434,9 +478,9 @@ approach for all of my personal packages.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:157-1"&gt;
+&lt;li id="fn:158-1"&gt;
 &lt;p&gt;Note to self: did I make &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
-support modified dates?&amp;#160;&lt;a class="footnote-backref" href="#fnref:157-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+support modified dates?&amp;#160;&lt;a class="footnote-backref" href="#fnref:158-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -634,7 +678,7 @@ really not noticing them been gone.&lt;/p&gt;
     <item>
       <title>Some more ~/.emacs.d evolution</title>
       <link>https://blog.davep.org/2020/06/07/some-more-dot-emacs-dot-d-evolution.html</link>
-      <description>&lt;p&gt;When I started with this version of the blog on Hashnode&lt;sup id="fnref:217-1"&gt;&lt;a class="footnote-ref" href="#fn:217-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, my plan was to
+      <description>&lt;p&gt;When I started with this version of the blog on Hashnode&lt;sup id="fnref:218-1"&gt;&lt;a class="footnote-ref" href="#fn:218-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, my plan was to
 try and write something at least once a week. I managed to do that as far as
 January this year, give or take, but then things got a little busy, the
 world got trickier, and... Well, &lt;a href="https://en.wikipedia.org/wiki/COVID-19_pandemic" rel="noopener noreferrer" target="_blank"&gt;you don't need me to tell you about
@@ -712,9 +756,9 @@ in the running version of Emacs&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:217-1"&gt;
+&lt;li id="fn:218-1"&gt;
 &lt;p&gt;Note from future me: we're now back over on &lt;code&gt;blog.davep.org&lt;/code&gt; of
-course.&amp;#160;&lt;a class="footnote-backref" href="#fnref:217-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+course.&amp;#160;&lt;a class="footnote-backref" href="#fnref:218-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1167,123 +1211,6 @@ idea.&lt;/p&gt;</description>
       <category>coding</category>
       <category>Emacs Lisp</category>
       <pubDate>Thu, 13 Jul 2017 15:25:29 +0100</pubDate>
-    </item>
-    <item>
-      <title>Another revamp of my emacs config</title>
-      <link>https://blog.davep.org/2017/04/01/another_revamp_of_my_emacs_config.html</link>
-      <description>&lt;p&gt;Just under a year ago I decided to
-&lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;totally rewrite my GNU emacs config&lt;/a&gt;.
-As I wrote at the time, it'd been following me around all sorts of machines
-since the early 1990s, starting life on an OS/2 Warp machine and travelling
-via MS-DOS, GNU/Linux, Windows and, these days, macOS.&lt;/p&gt;
-&lt;p&gt;The changes I made last year have served me really well, but there were two
-related issues with it that bothered me a little: the fact that I was
-maintaining a local library of elisp code in the repository and, worse
-still, I was storing the packages I'd installed from elpa and melpa in the
-repository as well.&lt;/p&gt;
-&lt;p&gt;While this did mean it was pretty easy for me to start up a new installation
-of emacs on a machine -- all I had to do was clone the repo and run up emacs
--- I wasn't happy with the duplication involved. I didn't like holding code
-in my &lt;code&gt;.emacs.d&lt;/code&gt; repo that was already held in package archives.&lt;/p&gt;
-&lt;p&gt;The solution I saw was in two parts:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Get some of my code, that might be useful to others, into melpa.&lt;/li&gt;
-&lt;li&gt;Somehow sort my own package archive for my personal code.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;/p&gt;
-
-&lt;p&gt;Over the past week or so I've worked on this approach. It initially started
-with me tackling item 1 above: I tidied up and
-submitted
-&lt;a href="https://github.com/davep/obfusurl.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;obfusurl.el&lt;/code&gt;&lt;/a&gt;,
-&lt;a href="https://github.com/davep/protocols.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;protocols.el&lt;/code&gt;&lt;/a&gt;,
-&lt;a href="https://github.com/davep/services.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;services.el&lt;/code&gt;&lt;/a&gt;,
-&lt;a href="https://github.com/davep/thinks.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;thinks.el&lt;/code&gt;&lt;/a&gt; and
-&lt;a href="https://github.com/davep/uptimes.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;uptimes.el&lt;/code&gt;&lt;/a&gt;. This was a really
-helpful process in that it allowed me to brush up on my elisp and emacs
-knowledge. It's a good 15+ years since I last wrote any significant elisp
-code and things have moved on a little in that time.&lt;/p&gt;
-&lt;p&gt;Having done that I'd managed to move a handful of my own packages out of my
-local library of code, and so out of my &lt;code&gt;.emacs.d&lt;/code&gt; repo, but it left me with
-the problem of what to do with the rest of it.&lt;/p&gt;
-&lt;p&gt;That's when I discovered &lt;code&gt;package-x&lt;/code&gt; and:&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;,----[ C-h f package-upload-buffer RET ]
-| package-upload-buffer is an interactive compiled Lisp function in
-| ‘package-x.el’.
-|
-| (package-upload-buffer)
-|
-| Upload the current buffer as a single-file Emacs Lisp package.
-| If ‘package-archive-upload-base’ does not specify a valid upload
-| destination, prompt for one.
-`----
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;(plus &lt;code&gt;package-upload-file&lt;/code&gt; too, of course). This meant I could, in effect,
-start my own personal package archive and look at tackling issue 2 above.&lt;/p&gt;
-&lt;p&gt;This did give me one small problem though: how and where would I host the
-archive? I did consider hosting it on a DigitalOcean droplet, but that felt
-a little like overkill for something so simple. And then I
-realised: &lt;a href="https://pages.github.com/" rel="noopener noreferrer" target="_blank"&gt;GitHub Pages&lt;/a&gt;! All I needed to do was
-keep the package archive in its own repo (which I would have done anyway)
-and then make the whole repo the source for a GitHub Pages site. A quick
-test later and... it worked!&lt;/p&gt;
-&lt;p&gt;So, by this point, I'd farmed some of my code off to melpa, and now had the
-rest of it in "delpa" (which I'd called my personal archive). I could now
-use the emacs package management system to install third party packages and
-also my own.&lt;/p&gt;
-&lt;p&gt;But I was still left with one issue: I was still holding the installed
-packages inside my &lt;code&gt;.emacs.d&lt;/code&gt; repo by way of ensuring that all machines were
-in sync in terms of what was installed. Now I needed to work out how to
-solve that.&lt;/p&gt;
-&lt;p&gt;Around this time, as luck would have
-it, &lt;a href="https://github.com/tarsius" rel="noopener noreferrer" target="_blank"&gt;@tarsius&lt;/a&gt;
-had
-&lt;a href="https://github.com/davep/boxquote.el/pull/1#issuecomment-288462491" rel="noopener noreferrer" target="_blank"&gt;suggested I look at&lt;/a&gt; a
-package called &lt;a href="https://github.com/jwiegley/use-package" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;use-package&lt;/code&gt;&lt;/a&gt;
-by &lt;a href="https://github.com/jwiegley" rel="noopener noreferrer" target="_blank"&gt;@jwiegley&lt;/a&gt;. This was the bit I was missing.&lt;/p&gt;
-&lt;p&gt;With &lt;code&gt;use-package&lt;/code&gt; I would be able to declare which packages I needed, how
-they'd be installed and, most important of all, it could be set to handle
-the fact that the package wasn't even installed. If a package is requested
-and there is no local install &lt;code&gt;use-package&lt;/code&gt; is smart enough to get the emacs
-package system to install it.&lt;/p&gt;
-&lt;p&gt;So, given that, all I need to do was &lt;a href="https://github.com/davep/.emacs.d/blob/1fa67c2895f345098057654f6acb3b57a77f1194/startup/davep-packages.el" rel="noopener noreferrer" target="_blank"&gt;create a startup file that would
-declare the packages I use&lt;/a&gt; and
-I'd have a setup that should, once I'd cloned &lt;code&gt;.emacs.d&lt;/code&gt;, self-install.&lt;/p&gt;
-&lt;p&gt;Except... yeah, one more issue. &lt;code&gt;use-package&lt;/code&gt; isn't part of GNU emacs yet so
-I'd need a method of getting it to auto-install so it could then handle
-everything else. As it was that was as easy as adding this to the start of
-my &lt;a href="https://github.com/davep/.emacs.d/blob/master/init.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;init.el&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;&lt;/span&gt;
-&lt;span class="c1"&gt;;; Make sure the package system is up and running early on.&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;add-to-list&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;package-archives&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;melpa&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://melpa.org/packages/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;add-to-list&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;package-archives&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;delpa&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://blog.davep.org/delpa/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;package-initialize&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;&lt;/span&gt;
-&lt;span class="c1"&gt;;; Bootstrap `use-package&amp;#39;&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;unless&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;package-installed-p&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;use-package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;package-refresh-contents&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;package-install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;use-package&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;With that in place I was able to nuke all my config on a machine, clone a
-fresh copy of &lt;code&gt;.emacs.d&lt;/code&gt; (having now ceased tracking and storing the
-installed packages in that repo), run up emacs, wait a few moments and then
-find that everything was installed and ready to use.&lt;/p&gt;
-&lt;p&gt;Perfect!&lt;/p&gt;
-&lt;p&gt;My &lt;a href="https://github.com/davep/.emacs.d" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;.emacs.d&lt;/code&gt;&lt;/a&gt; is now a lot smaller than
-it was before and, I think, even easier to maintain. Right now I think I'm
-very close to the ideal emacs config that I wanted to create when I did the
-complete rewrite a year ago.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2017/04/01/another_revamp_of_my_emacs_config.html</guid>
-      <category>Emacs</category>
-      <category>Emacs</category>
-      <category>Lisp</category>
-      <category>Emacs Lisp</category>
-      <category>coding</category>
-      <pubDate>Sat, 01 Apr 2017 10:02:18 +0100</pubDate>
     </item>
   </channel>
 </rss>

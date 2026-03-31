@@ -8,7 +8,51 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 31 Mar 2026 14:34:29 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Mar 2026 18:37:10 +0000</lastBuildDate>
+    <item>
+      <title>thinks.el v1.13</title>
+      <link>https://blog.davep.org/2026/03/31/thinks-el-v1-13.html</link>
+      <description>&lt;p&gt;Given the recent spate of &lt;a href="https://blog.davep.org/tag/blogmore-el/"&gt;hacking on some Emacs Lisp&lt;/a&gt;,
+I've got a real taste for hacking on some more. Or, more to the point,
+revisiting some of the packages I have in &lt;a href="https://melpa.org/#/" rel="noopener noreferrer" target="_blank"&gt;Melpa&lt;/a&gt; and
+tidying them up where necessary.&lt;/p&gt;
+&lt;p&gt;The main thing I'll need to address is cutting back on &lt;a href="https://blog.davep.org/2022/08/23/i-must-be-getting-old.html"&gt;all my old &lt;code&gt;setf&lt;/code&gt;
+ways&lt;/a&gt;. I liked that approach to
+doing things, it made lots of sense and felt elegant; sadly the Emacs
+maintainers didn't seem to agree.&lt;/p&gt;
+&lt;p&gt;So... kicking this off I've released v1.13 of
+&lt;a href="https://github.com/davep/thinks.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;thinks.el&lt;/code&gt;&lt;/a&gt;. This is a bit of nonsense
+I wrote back in the days when Usenet was still pretty busy and &lt;em&gt;the&lt;/em&gt; place
+to be (well, okay, back in 2000 when I was still hanging out on Usenet). The
+package itself lets you quickly and easily...&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;. o O ( ...write some text and then mark it all and then run a command and )
+      ( have it turned into something that looks a little like a thought   )
+      ( bubble.                                                            )
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It has some variations on how the bubble looks, and also lets you use
+&lt;code&gt;customize&lt;/code&gt; to tweak the characters to use, and also has an "extra silly"
+mode too.&lt;/p&gt;
+&lt;p&gt;Updating this wasn't too bad. Mostly just a case of turning some instances
+of &lt;code&gt;(setf (point) ...)&lt;/code&gt; into &lt;code&gt;(goto-char ...)&lt;/code&gt;, and also modifying one
+instance of &lt;code&gt;incf&lt;/code&gt; to be &lt;code&gt;cl-incf&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Honestly, I don't know how useful this package is to anyone anymore. Most
+folk don't even know what Usenet is these days, and all the "social" places
+seem to favour non-monospaced fonts, meaning the bubbles would look pretty
+terrible anyway.&lt;/p&gt;
+&lt;p&gt;On the other hand, it seems a shame to not update it, and perhaps someone
+somewhere still uses it to make some pithy parenthetical remark, possibly
+about &lt;a href="https://en.wikipedia.org/wiki/Eternal_September" rel="noopener noreferrer" target="_blank"&gt;September never
+ending&lt;/a&gt;.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/03/31/thinks-el-v1-13.html</guid>
+      <category>Emacs</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>coding</category>
+      <category>thinks.el</category>
+      <pubDate>Tue, 31 Mar 2026 19:35:16 +0100</pubDate>
+    </item>
     <item>
       <title>blogmore.el v2.3</title>
       <link>https://blog.davep.org/2026/03/31/blogmore-el-v2-3.html</link>
@@ -145,7 +189,7 @@ about Lisp: &lt;code&gt;defmacro&lt;/code&gt;. There's something about macros th
 like coding in Lisp, and which I cite as a &lt;em&gt;really good thing&lt;/em&gt; when asked
 why I like Lisp, but which I always seem to utterly fail to explain well.
 Macros feel like one of those things you just have to experience for
-yourself to really get&lt;sup id="fnref:173-1"&gt;&lt;a class="footnote-ref" href="#fn:173-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+yourself to really get&lt;sup id="fnref:174-1"&gt;&lt;a class="footnote-ref" href="#fn:174-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Now, thanks to this:&lt;/p&gt;
 &lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defmacro&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Generate a function to get the value of SETTING for the current blog.&amp;quot;&lt;/span&gt;
@@ -155,7 +199,7 @@ yourself to really get&lt;sup id="fnref:173-1"&gt;&lt;a class="footnote-ref" hre
 &lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore-default-%s&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;all those 7 functions can collapse to this&lt;sup id="fnref:173-2"&gt;&lt;a class="footnote-ref" href="#fn:173-2"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;all those 7 functions can collapse to this&lt;sup id="fnref:174-2"&gt;&lt;a class="footnote-ref" href="#fn:174-2"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-template&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;category-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -181,13 +225,13 @@ that legacy nonsense&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:173-1"&gt;
+&lt;li id="fn:174-1"&gt;
 &lt;p&gt;There was a time I would have said "grok" here but... well that's
-spoiled now.&amp;#160;&lt;a class="footnote-backref" href="#fnref:173-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+spoiled now.&amp;#160;&lt;a class="footnote-backref" href="#fnref:174-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:173-2"&gt;
+&lt;li id="fn:174-2"&gt;
 &lt;p&gt;I suppose I could reduce that to one "call" with a loop over a list of
-symbols, but that feels unnecessary here.&amp;#160;&lt;a class="footnote-backref" href="#fnref:173-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+symbols, but that feels unnecessary here.&amp;#160;&lt;a class="footnote-backref" href="#fnref:174-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -533,7 +577,7 @@ memory, well the price starts to get dangerously close to...&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The MacBook Air M5" src="https://blog.davep.org/attachments/2026/03/27/macbook-air.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;So, yeah, as of today, I've kind of come full circle; a decade on from that
 MacBook Air purchase I have a new sofa hacking machine coming in the shape
-of the new M5 MacBook Air&lt;sup id="fnref:181-1"&gt;&lt;a class="footnote-ref" href="#fn:181-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+of the new M5 MacBook Air&lt;sup id="fnref:182-1"&gt;&lt;a class="footnote-ref" href="#fn:182-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So this weekend will involve me digging out my "new macOS environment"
 checklist and working through it, getting a hacking environment up and going
 again. One thing I do want to do is follow that list but also write out a
@@ -546,11 +590,11 @@ like I should be able to achieve everything I need using just
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:181-1"&gt;
+&lt;li id="fn:182-1"&gt;
 &lt;p&gt;I'm not a hardware nerd, so don't dive deep into this stuff. Despite
 what I said about the M2 Pro Mini still being there for heavy coding and
 video editing, it wouldn't surprise me to find out the Air is more than
-capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:181-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:182-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -794,7 +838,7 @@ bunch of useless but fun stats and facts about the content&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Hour of day" src="https://blog.davep.org/attachments/2026/03/24/hour-of-day.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;Or the day of the week:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Day of week" src="https://blog.davep.org/attachments/2026/03/24/day-of-week.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Or the month of the year&lt;sup id="fnref:178-1"&gt;&lt;a class="footnote-ref" href="#fn:178-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;Or the month of the year&lt;sup id="fnref:179-1"&gt;&lt;a class="footnote-ref" href="#fn:179-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Month of year" src="https://blog.davep.org/attachments/2026/03/24/month-of-year.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;This is designed to be turned off by default -- I can imagine most folk
 would not want this sort of thing on their blog -- &lt;a href="https://blogmore.davep.dev/configuration/#with_stats" rel="noopener noreferrer" target="_blank"&gt;but it can easily be
@@ -805,9 +849,9 @@ location of the stats can also be controlled &lt;a href="https://blogmore.davep.
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:178-1"&gt;
+&lt;li id="fn:179-1"&gt;
 &lt;p&gt;&lt;a href="https://blog.davep.org/2026/03/"&gt;Unsurprisingly&lt;/a&gt; March is leaping ahead as of the time of
-writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:178-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:179-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1112,61 +1156,6 @@ I perform that would be helped with a little bit of Emacs Lisp magic.&lt;/p&gt;<
       <category>blogmore.el</category>
       <category>coding</category>
       <pubDate>Fri, 20 Mar 2026 08:46:59 +0000</pubDate>
-    </item>
-    <item>
-      <title>Some BlogMore Elisp</title>
-      <link>https://blog.davep.org/2026/03/19/some-blogmore-elisp.html</link>
-      <description>&lt;p&gt;It's been a moment since I last wrote any Emacs Lisp code, at least anything
-non-trivial. I've tinkered with my Emacs configuration, I've tweaked the odd
-personal package here and there, but nothing fresh for ages. I actually
-can't remember what the last package was that I wrote.&lt;/p&gt;
-&lt;p&gt;But this morning I realised it would be handy to have a couple of functions
-in Emacs that let me start a new blog post, or edit an existing one. The
-code didn't need to be clever, just the bare minimum that gets me started;
-enough to reduce the friction when it comes to opening a new buffer and
-starting to write.&lt;/p&gt;
-&lt;p&gt;So &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;blogmore.el&lt;/a&gt; happened. Like I say:
-nothing clever, it simply adds &lt;code&gt;blogmore-new&lt;/code&gt; and &lt;code&gt;blogmore-edit&lt;/code&gt;; the
-former starts a new post with the bare minimum frontmatter filled in, the
-latter lets me quickly pick an existing post and go edit it.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="blogmore-edit in action" src="https://blog.davep.org/attachments/2026/03/19/blogmore-edit.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;As time goes on I might expand on this. For example: it might be useful to
-have a command that updates the &lt;code&gt;date&lt;/code&gt; frontmatter; perhaps another to add a
-&lt;code&gt;modified&lt;/code&gt;&lt;sup id="fnref:157-1"&gt;&lt;a class="footnote-ref" href="#fn:157-1"&gt;1&lt;/a&gt;&lt;/sup&gt;; one to set the &lt;code&gt;category&lt;/code&gt; from any of the categories I've
-used so far would be good; ditto the &lt;code&gt;tags&lt;/code&gt; property.&lt;/p&gt;
-&lt;p&gt;I doubt this will be useful to anyone else, although I will try my best to
-keep it so that it's easy to configure, so it's only ever going to stay
-amongst my list of personal packages.&lt;/p&gt;
-&lt;p&gt;Which reminds me... this is the first personal package I've not bothered to
-add to &lt;a href="https://blog.davep.org/delpa/"&gt;delpa&lt;/a&gt;. That approach to managing my
-own packages made a ton of sense at the time, but Emacs has moved on since
-then. Thanks to &lt;code&gt;use-package&lt;/code&gt; and &lt;code&gt;:vc&lt;/code&gt; I can easily pull &lt;code&gt;blogmore.el&lt;/code&gt; into
-any of my environments with a simple declaration in my
-&lt;a href="https://github.com/davep/.emacs.d" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;.emacs.d&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;use-package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:vc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;:url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://github.com/davep/blogmore.el&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:rev&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:newest&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Given how simple and clean that is I'm minded to "retire" delpa and use this
-approach for all of my personal packages.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:157-1"&gt;
-&lt;p&gt;Note to self: did I make &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
-support modified dates?&amp;#160;&lt;a class="footnote-backref" href="#fnref:157-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/03/19/some-blogmore-elisp.html</guid>
-      <category>Emacs</category>
-      <category>BlogMore</category>
-      <category>Coding</category>
-      <category>Emacs</category>
-      <category>Emacs Lisp</category>
-      <category>Lisp</category>
-      <category>blogmore.el</category>
-      <pubDate>Thu, 19 Mar 2026 15:10:28 +0000</pubDate>
     </item>
   </channel>
 </rss>
