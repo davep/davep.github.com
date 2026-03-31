@@ -2,7 +2,7 @@
 layout: post
 title: Helping myself change the default git branch
 category: Coding
-tags: git
+tags: Coding, bash, git
 date: 2020-07-09 20:17:00+0100
 ---
 

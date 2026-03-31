@@ -2,7 +2,7 @@
 layout: post
 title: Not so elegant
 category: AI
-tags: Python, AI, LLM, Copilot, code review
+tags: AI, Coding, Copilot, LLM, Python, code review
 date: 2026-03-01 11:33:00 +0000
 ---
 

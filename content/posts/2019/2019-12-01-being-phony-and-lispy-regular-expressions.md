@@ -2,7 +2,7 @@
 layout: post
 title: Being phony, and Lispy regular expressions
 category: Emacs
-tags: Emacs, Lisp, Emacs Lisp
+tags: Coding, Emacs, Emacs Lisp, Lisp
 date: 2019-12-01 16:42:00+0000
 ---
 

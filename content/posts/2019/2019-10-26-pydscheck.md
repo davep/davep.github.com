@@ -2,7 +2,7 @@
 layout: post
 title: pydscheck -- A quick hack that keeps slowly growing
 category: Python
-tags: Python, documentation
+tags: Coding, Python, documentation
 date: 2019-10-26 13:19:00+0100
 ---
 

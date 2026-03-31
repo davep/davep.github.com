@@ -2,7 +2,7 @@
 layout: post
 title: A new GitHub profile README
 category: Coding
-tags: GitHub, Python, Textual
+tags: Coding, GitHub, Python, Textual
 date: 2023-07-03 08:15:00 +0100
 ---
 

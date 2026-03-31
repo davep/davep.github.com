@@ -2,7 +2,7 @@
 layout: post
 title: A little speed issue with openpyxl
 category: Python
-tags: Python, openpyxl
+tags: Coding, Python, openpyxl
 date: 2018-06-02 13:16:37+0100
 ---
 

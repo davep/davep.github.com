@@ -2,7 +2,7 @@
 layout: post
 title: Visual Selection
 category: Coding
-tags: Python, evolution, biology, terminal, textual
+tags: Coding, Plotext, PyPI, Python, biology, evolution, terminal, textual
 date: 2023-10-26 18:50:00 +0100
 cover: attachments/2023/10/26/visual-selection-cover.png
 ---
