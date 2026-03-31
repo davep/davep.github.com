@@ -8,7 +8,48 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 31 Mar 2026 10:47:44 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Mar 2026 14:34:29 +0000</lastBuildDate>
+    <item>
+      <title>blogmore.el v2.3</title>
+      <link>https://blog.davep.org/2026/03/31/blogmore-el-v2-3.html</link>
+      <description>&lt;p&gt;I've bumped &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; to v2.3.
+The main change in this release, which I've had on my mental to-do list for
+a couple of days now, revolves around categories, tags and case.&lt;/p&gt;
+&lt;p&gt;I've got &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; set up so that it's pretty
+relaxed about case when it comes to categories and tags; so when it comes to
+generated files and URLs everything collapses to lowercase. However,
+&lt;code&gt;blogmore.el&lt;/code&gt; wasn't taking this into account.&lt;/p&gt;
+&lt;p&gt;While it wasn't a serious issue, it did have the side-effect that, if you
+had a tag of &lt;code&gt;lisp&lt;/code&gt; and a tag of &lt;code&gt;Lisp&lt;/code&gt;, both would appear in the list of
+tags you could complete from. Also, when you went to add a tag to the tags
+frontmatter (via the &lt;code&gt;blogmore-add-tag&lt;/code&gt; command), if you selected &lt;code&gt;Lisp&lt;/code&gt; and
+&lt;code&gt;lisp&lt;/code&gt; was already there, you'd end up with both versions after the command
+finished.&lt;/p&gt;
+&lt;div class="admonition admonition-note"&gt;
+&lt;div class="admonition-title"&gt;ℹ️ Note&lt;/div&gt;
+&lt;div class="admonition-content"&gt;
+&lt;p&gt;As mentioned earlier: BlogMore itself would collapse &lt;code&gt;Lisp&lt;/code&gt; and &lt;code&gt;lisp&lt;/code&gt; to
+the same tag; the downside here is you'd see both tags shown in the post
+itself. Not a real problem, just not very tidy.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;So earlier I changed things up a little; first &lt;a href="https://github.com/davep/blogmore.el/pull/30/changes" rel="noopener noreferrer" target="_blank"&gt;cleaning up when loading
+pre-existing values&lt;/a&gt;
+and then &lt;a href="https://github.com/davep/blogmore.el/pull/31/changes" rel="noopener noreferrer" target="_blank"&gt;ensuring the newly-set tags are
+deduplicated&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This now means I can edit and update a post even faster, without needing to
+worry about accidentally duplicating tags. This in turn reduces the friction
+to writing a post for my blog. That is, after all, the whole point of the
+name of the package and the blogging tool it's connected to!&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/03/31/blogmore-el-v2-3.html</guid>
+      <category>Emacs</category>
+      <category>BlogMore</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>Coding</category>
+      <pubDate>Tue, 31 Mar 2026 15:31:41 +0100</pubDate>
+    </item>
     <item>
       <title>blogmore.el v2.2</title>
       <link>https://blog.davep.org/2026/03/30/blogmore-el-v2-2.html</link>
@@ -593,7 +634,7 @@ really not noticing them been gone.&lt;/p&gt;
     <item>
       <title>Some more ~/.emacs.d evolution</title>
       <link>https://blog.davep.org/2020/06/07/some-more-dot-emacs-dot-d-evolution.html</link>
-      <description>&lt;p&gt;When I started with this version of the blog on Hashnode&lt;sup id="fnref:216-1"&gt;&lt;a class="footnote-ref" href="#fn:216-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, my plan was to
+      <description>&lt;p&gt;When I started with this version of the blog on Hashnode&lt;sup id="fnref:217-1"&gt;&lt;a class="footnote-ref" href="#fn:217-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, my plan was to
 try and write something at least once a week. I managed to do that as far as
 January this year, give or take, but then things got a little busy, the
 world got trickier, and... Well, &lt;a href="https://en.wikipedia.org/wiki/COVID-19_pandemic" rel="noopener noreferrer" target="_blank"&gt;you don't need me to tell you about
@@ -671,9 +712,9 @@ in the running version of Emacs&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:216-1"&gt;
+&lt;li id="fn:217-1"&gt;
 &lt;p&gt;Note from future me: we're now back over on &lt;code&gt;blog.davep.org&lt;/code&gt; of
-course.&amp;#160;&lt;a class="footnote-backref" href="#fnref:216-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+course.&amp;#160;&lt;a class="footnote-backref" href="#fnref:217-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1243,131 +1284,6 @@ complete rewrite a year ago.&lt;/p&gt;</description>
       <category>Emacs Lisp</category>
       <category>coding</category>
       <pubDate>Sat, 01 Apr 2017 10:02:18 +0100</pubDate>
-    </item>
-    <item>
-      <title>Starting fresh with GNU emacs</title>
-      <link>https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html</link>
-      <description>&lt;p&gt;As I've mentioned elsewhere on this blog, over the past few years, my
-use of GNU emacs has lapsed somewhat. There was a time when it was my
-only editor (except for the odd dips into vim to do some quick
-editing) and, back when I used to use GNU Linux as a desktop machine a
-lot, I'd have an emacs session up and running pretty much non-stop (it
-was one of the reasons I wrote
-&lt;a href="https://github.com/davep/uptimes.el" rel="noopener noreferrer" target="_blank"&gt;uptimes.el&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;In more recent times I've been working more on Windows and often
-inside Visual Studio. Even for my own "for fun" programming, I've
-mostly being doing things that didn't involve emacs much. In fact,
-most of my recent "for fun" coding has been done using
-&lt;a href="https://www.sublimetext.com/" rel="noopener noreferrer" target="_blank"&gt;Sublime Text&lt;/a&gt; because it was powerful,
-cross-platform and also had great support for
-&lt;a href="http://wiki.secondlife.com/wiki/LSL_Portal" rel="noopener noreferrer" target="_blank"&gt;the language I code in a lot when it comes to personal amusement projects&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;During that time I've wanted to get back into emacs. Quite a bit seems
-to have changed since I was last a very avid user and this also meant
-wanting and needing to catch up.&lt;/p&gt;
-&lt;p&gt;The first thing I needed to do was finally get around to killing off
-my old &lt;code&gt;~/.emacs&lt;/code&gt; file. This has followed me around since I first got
-into emacs on OS/2 back in the mid 1990s. The file started out with a
-few &lt;code&gt;setq&lt;/code&gt; expressions to tweak some settings and just kept growing
-and growing. It'd got to a point where there was old stuff in there
-that I had no use for and sometimes even no idea what it was
-for. Heck, to give some idea of how old the file was: there were items
-in there that handled running emacs on MS-DOS!&lt;/p&gt;
-&lt;p&gt;So, a couple of weeks back, I dumped it. Dumped the whole lot. The
-plan then was to recreate it with as little hands-on coding as
-possible. I decided that, as much as I could, I'd tweak using
-&lt;code&gt;customize&lt;/code&gt; and only hand-code (in &lt;code&gt;~/.emacs.d/init.el&lt;/code&gt; this time
-around) things when there was no obvious other way to do it.&lt;/p&gt;
-&lt;p&gt;So far this is working out really well. Gone has the ugly and
-monolithic &lt;code&gt;.emacs&lt;/code&gt;, replaced with something far more modular, much
-more tidy and far easier to maintain. Whereas my old config was almost
-1,000 lines long, the new &lt;code&gt;init.el&lt;/code&gt; is currently just 50 lines:&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;&lt;/span&gt;
-&lt;span class="c1"&gt;;; Make use of the Common Lisp compatibility module.&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;cl&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;&lt;/span&gt;
-&lt;span class="c1"&gt;;; Local config/lib directory support.&lt;/span&gt;
-
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:user-path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Given &lt;/span&gt;&lt;span class="ss"&gt;`file&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;, return a path for it in the local config.&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;concat&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;user-emacs-directory&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;defvar&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:local&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;davep:user-path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;davep/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;My local config and code directory.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;defvar&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:startup&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;davep:user-path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;davep/startup&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;My local startup code.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;defvar&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:lib&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;davep:user-path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;davep/lib&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;My local library code.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;defvar&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:lib-3rd-party&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;davep:user-path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;davep/lib-3rd-party&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;My local third party code.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:local&lt;/span&gt;&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="nv"&gt;load-path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:startup&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="nv"&gt;load-path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:lib&lt;/span&gt;&lt;span class="w"&gt;           &lt;/span&gt;&lt;span class="nv"&gt;load-path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:lib-3rd-party&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;load-path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;have-own-package-p&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Does a package of my own exist in this environment?&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;locate-library&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;davep:lib&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-
-&lt;span class="c1"&gt;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;&lt;/span&gt;
-&lt;span class="c1"&gt;;; Ensure custom values go in their own file.&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;setq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;custom-file&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;davep:user-path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;custom.el&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;load&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;custom-file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;&lt;/span&gt;
-&lt;span class="c1"&gt;;; Load various startup things.&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;load&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;env-tests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;davep-keys&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;davep-languages&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;davep-style&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;uptimes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;csrclr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;&lt;/span&gt;
-&lt;span class="c1"&gt;;; Local autoloading.&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;autoloading&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;load-davep-autoloads&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;All the other stuff, things to tweak language modes so they indent
-"just so", my own special keyboard bindings, that sort of thing,
-they're all farmed off into their own files:&lt;/p&gt;
-&lt;div class="highlight" data-lang="shell"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;davep@Bellerophon:~/.emacs.d/davep/startup$&lt;span class="w"&gt; &lt;/span&gt;v
-total&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;40&lt;/span&gt;
--rw-r--r--&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;davep&lt;span class="w"&gt;  &lt;/span&gt;staff&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="m"&gt;4211&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;24&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;May&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;14&lt;/span&gt;:38&lt;span class="w"&gt; &lt;/span&gt;davep-keys.el
--rw-r--r--&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;davep&lt;span class="w"&gt;  &lt;/span&gt;staff&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="m"&gt;4078&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;May&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;13&lt;/span&gt;:51&lt;span class="w"&gt; &lt;/span&gt;davep-languages.el
--rw-r--r--&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;davep&lt;span class="w"&gt;  &lt;/span&gt;staff&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="m"&gt;537&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;25&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;May&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;14&lt;/span&gt;:13&lt;span class="w"&gt; &lt;/span&gt;davep-style.el
--rw-r--r--&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;davep&lt;span class="w"&gt;  &lt;/span&gt;staff&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="m"&gt;1339&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;May&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;09&lt;/span&gt;:39&lt;span class="w"&gt; &lt;/span&gt;env-tests.el
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Another thing I'm trying to do is dump all the old third party code I
-had locally and, instead, use emacs' own package manager
-now. Currently this is also working well for me given that I'm using
-both &lt;a href="https://elpa.gnu.org/" rel="noopener noreferrer" target="_blank"&gt;ELPA&lt;/a&gt; and &lt;a href="https://melpa.org/#/" rel="noopener noreferrer" target="_blank"&gt;MELPA&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I haven't managed to dump everything yet, but it's a useful exercise
-to slowly work through the various files I was carting around and
-deciding if I need them or not (like, I'm fairly sure I won't be
-needing a &lt;code&gt;cobol-mode&lt;/code&gt; any time soon -- that can go).&lt;/p&gt;
-&lt;p&gt;On top of all of this, on top of starting with a "clean slate" emacs,
-I've also started keeping track of what I do on GitHub. I've got a
-private repo for my &lt;code&gt;~/.emacs.d/&lt;/code&gt; that I can now easily sync between
-my various machines.&lt;/p&gt;
-&lt;p&gt;One final thing that I'm starting to try and do is actually make full
-use of emacs again. One example is that I'm writing this blog post in
-it. Until now I've been using SublimeText with
-&lt;a href="https://packagecontrol.io/packages/Jekyll" rel="noopener noreferrer" target="_blank"&gt;a Jekyll package to compose and manage things&lt;/a&gt;
-but, this time around I'm giving &lt;a href="https://melpa.org/#/hyde" rel="noopener noreferrer" target="_blank"&gt;hyde&lt;/a&gt; and
-&lt;a href="https://melpa.org/#/markdown-mode" rel="noopener noreferrer" target="_blank"&gt;markdown-mode&lt;/a&gt; a go. So far
-they're working out pretty well too (albeit hyde was a bit odd to set
-up and isn't 100% making sense to me yet).&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html</guid>
-      <category>Emacs</category>
-      <category>Emacs</category>
-      <pubDate>Thu, 26 May 2016 12:28:48 +0100</pubDate>
     </item>
   </channel>
 </rss>

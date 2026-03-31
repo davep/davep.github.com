@@ -8,7 +8,48 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 31 Mar 2026 10:47:44 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Mar 2026 14:34:29 +0000</lastBuildDate>
+    <item>
+      <title>blogmore.el v2.3</title>
+      <link>https://blog.davep.org/2026/03/31/blogmore-el-v2-3.html</link>
+      <description>&lt;p&gt;I've bumped &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; to v2.3.
+The main change in this release, which I've had on my mental to-do list for
+a couple of days now, revolves around categories, tags and case.&lt;/p&gt;
+&lt;p&gt;I've got &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; set up so that it's pretty
+relaxed about case when it comes to categories and tags; so when it comes to
+generated files and URLs everything collapses to lowercase. However,
+&lt;code&gt;blogmore.el&lt;/code&gt; wasn't taking this into account.&lt;/p&gt;
+&lt;p&gt;While it wasn't a serious issue, it did have the side-effect that, if you
+had a tag of &lt;code&gt;lisp&lt;/code&gt; and a tag of &lt;code&gt;Lisp&lt;/code&gt;, both would appear in the list of
+tags you could complete from. Also, when you went to add a tag to the tags
+frontmatter (via the &lt;code&gt;blogmore-add-tag&lt;/code&gt; command), if you selected &lt;code&gt;Lisp&lt;/code&gt; and
+&lt;code&gt;lisp&lt;/code&gt; was already there, you'd end up with both versions after the command
+finished.&lt;/p&gt;
+&lt;div class="admonition admonition-note"&gt;
+&lt;div class="admonition-title"&gt;ℹ️ Note&lt;/div&gt;
+&lt;div class="admonition-content"&gt;
+&lt;p&gt;As mentioned earlier: BlogMore itself would collapse &lt;code&gt;Lisp&lt;/code&gt; and &lt;code&gt;lisp&lt;/code&gt; to
+the same tag; the downside here is you'd see both tags shown in the post
+itself. Not a real problem, just not very tidy.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;So earlier I changed things up a little; first &lt;a href="https://github.com/davep/blogmore.el/pull/30/changes" rel="noopener noreferrer" target="_blank"&gt;cleaning up when loading
+pre-existing values&lt;/a&gt;
+and then &lt;a href="https://github.com/davep/blogmore.el/pull/31/changes" rel="noopener noreferrer" target="_blank"&gt;ensuring the newly-set tags are
+deduplicated&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This now means I can edit and update a post even faster, without needing to
+worry about accidentally duplicating tags. This in turn reduces the friction
+to writing a post for my blog. That is, after all, the whole point of the
+name of the package and the blogging tool it's connected to!&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/03/31/blogmore-el-v2-3.html</guid>
+      <category>Emacs</category>
+      <category>BlogMore</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>Coding</category>
+      <pubDate>Tue, 31 Mar 2026 15:31:41 +0100</pubDate>
+    </item>
     <item>
       <title>OldNews v1.3.0</title>
       <link>https://blog.davep.org/2026/03/31/oldnews-v1-3-0.html</link>
@@ -492,7 +533,7 @@ memory, well the price starts to get dangerously close to...&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The MacBook Air M5" src="https://blog.davep.org/attachments/2026/03/27/macbook-air.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;So, yeah, as of today, I've kind of come full circle; a decade on from that
 MacBook Air purchase I have a new sofa hacking machine coming in the shape
-of the new M5 MacBook Air&lt;sup id="fnref:180-1"&gt;&lt;a class="footnote-ref" href="#fn:180-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+of the new M5 MacBook Air&lt;sup id="fnref:181-1"&gt;&lt;a class="footnote-ref" href="#fn:181-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So this weekend will involve me digging out my "new macOS environment"
 checklist and working through it, getting a hacking environment up and going
 again. One thing I do want to do is follow that list but also write out a
@@ -505,11 +546,11 @@ like I should be able to achieve everything I need using just
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:180-1"&gt;
+&lt;li id="fn:181-1"&gt;
 &lt;p&gt;I'm not a hardware nerd, so don't dive deep into this stuff. Despite
 what I said about the M2 Pro Mini still being there for heavy coding and
 video editing, it wouldn't surprise me to find out the Air is more than
-capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:180-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:181-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -753,7 +794,7 @@ bunch of useless but fun stats and facts about the content&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Hour of day" src="https://blog.davep.org/attachments/2026/03/24/hour-of-day.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;Or the day of the week:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Day of week" src="https://blog.davep.org/attachments/2026/03/24/day-of-week.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Or the month of the year&lt;sup id="fnref:177-1"&gt;&lt;a class="footnote-ref" href="#fn:177-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;Or the month of the year&lt;sup id="fnref:178-1"&gt;&lt;a class="footnote-ref" href="#fn:178-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Month of year" src="https://blog.davep.org/attachments/2026/03/24/month-of-year.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;This is designed to be turned off by default -- I can imagine most folk
 would not want this sort of thing on their blog -- &lt;a href="https://blogmore.davep.dev/configuration/#with_stats" rel="noopener noreferrer" target="_blank"&gt;but it can easily be
@@ -764,9 +805,9 @@ location of the stats can also be controlled &lt;a href="https://blogmore.davep.
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:177-1"&gt;
+&lt;li id="fn:178-1"&gt;
 &lt;p&gt;&lt;a href="https://blog.davep.org/2026/03/"&gt;Unsurprisingly&lt;/a&gt; March is leaping ahead as of the time of
-writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:177-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:178-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1126,110 +1167,6 @@ support modified dates?&amp;#160;&lt;a class="footnote-backref" href="#fnref:157
       <category>Lisp</category>
       <category>blogmore.el</category>
       <pubDate>Thu, 19 Mar 2026 15:10:28 +0000</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.0.0</title>
-      <link>https://blog.davep.org/2026/03/18/blogmore-2-0-0.html</link>
-      <description>&lt;p&gt;Well... I thought I was done with all the major changes with
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, but then &lt;a href="https://github.com/davep/blogmore/issues/298" rel="noopener noreferrer" target="_blank"&gt;a fairly simple
-request&lt;/a&gt; came in and that
-kicked off a whole load of changes (which in turn ran into
-&lt;a href="https://blog.davep.org/2026/03/17/when-your-model-leaves-you.html"&gt;one&lt;/a&gt; or
-&lt;a href="https://blog.davep.org/2026/03/17/too-much-work-for-copilot.html"&gt;two&lt;/a&gt; problems with GitHub
-&lt;a href="https://blog.davep.org/tag/copilot/"&gt;Copilot&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;I dived into this because I liked the idea anyway and I think it's time that
-I, as much as possible, moved the layout of my blog to clean URLs almost
-everywhere. I can't reasonably do it for actual posts because a) lots of
-posts point to other posts so there's a whole editing job to do there&lt;sup id="fnref:139-1"&gt;&lt;a class="footnote-ref" href="#fn:139-1"&gt;1&lt;/a&gt;&lt;/sup&gt;
-and b) there are some links out there that point to my blog posts&lt;sup id="fnref:139-2"&gt;&lt;a class="footnote-ref" href="#fn:139-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;The result is BlogMore v2.0.0.&lt;/p&gt;
-&lt;p&gt;Anyone who's been following the experiment with BlogMore might wonder that
-the version number is up to v2 already, given &lt;a href="https://github.com/davep/blogmore/pull/1" rel="noopener noreferrer" target="_blank"&gt;it's barely a month
-old&lt;/a&gt;. The answer to that is pretty
-simple: I'm using &lt;a href="https://semver.org" rel="noopener noreferrer" target="_blank"&gt;semver&lt;/a&gt; for the version number and
-there's a breaking change in this release with no real way of maintaining
-backward compatibility.&lt;/p&gt;
-&lt;p&gt;So what's changed? First the simple ones: I added some more &lt;code&gt;*_path&lt;/code&gt;
-configuration options to control the locations of:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The archives (with &lt;a href="https://blogmore.davep.dev/configuration/#archive_path" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;archive_path&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;The categories cloud (with &lt;a href="https://blogmore.davep.dev/configuration/#categories_path" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;categories_path&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;The search facility (with &lt;a href="https://blogmore.davep.dev/configuration/#search_path" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;search_path&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;The tag cloud (with &lt;a href="https://blogmore.davep.dev/configuration/#tags_path" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;tags_path&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;All of those keep their default values from before, and so can remain
-backward compatible. Personally, I've updated the configuration for this
-blog so that I'm using:&lt;/p&gt;
-&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;archive_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/archive/index.html&amp;quot;&lt;/span&gt;
-&lt;span class="nt"&gt;categories_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/categories/index.html&amp;quot;&lt;/span&gt;
-&lt;span class="nt"&gt;search_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/search/index.html&amp;quot;&lt;/span&gt;
-&lt;span class="nt"&gt;tags_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/tags/index.html&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;which, combined with:&lt;/p&gt;
-&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;clean_urls&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;results in cleaner URLs for all of those site features.&lt;/p&gt;
-&lt;p&gt;Another thing that came to mind was what to do about pagination. Things like
-the date-based archives, categories, tags, and so on, can all run to
-multiple pages and so all generated pages of content using a pagination
-scheme. This needed its own approach. I decided on adding a setting to
-control the first page of content
-(&lt;a href="https://blogmore.davep.dev/configuration/#page_1_path" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;page_1_path&lt;/code&gt;&lt;/a&gt;) and
-a setting for all subsequent pages
-(&lt;a href="https://blogmore.davep.dev/configuration/#page_n_path" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;page_n_path&lt;/code&gt;&lt;/a&gt;).
-But there was a problem here: to keep this approach backward compatible I'd
-need to have different settings &lt;em&gt;per area of the blog&lt;/em&gt;. That would mean
-something like &lt;code&gt;tags_page_1_path&lt;/code&gt;, &lt;code&gt;tags_page_n_path&lt;/code&gt;, &lt;code&gt;year_page_1_path&lt;/code&gt;,
-&lt;code&gt;year_page_n_path&lt;/code&gt;, &lt;code&gt;month_page_1_path&lt;/code&gt;, &lt;code&gt;month_page_n_path&lt;/code&gt;, and so on; the
-reason being each one would need its own set of variables so the user can
-set where &lt;code&gt;{tag}&lt;/code&gt; goes in the path, or &lt;code&gt;{year}&lt;/code&gt;, or &lt;code&gt;{month}&lt;/code&gt;, but one of
-those is no use in another context, and so on.&lt;/p&gt;
-&lt;p&gt;All of this would have been total overkill and an unnecessary explosion of
-things that can and might need to be modified in the configuration file; it
-would also be a nightmare to document.&lt;/p&gt;
-&lt;p&gt;So I decided this: the &lt;code&gt;page_1_path&lt;/code&gt; and &lt;code&gt;page_n_path&lt;/code&gt; settings simply
-describe what goes on the &lt;em&gt;end&lt;/em&gt; of any other URL in the blog, and because of
-that the defaults would have to be incompatible. I think the result is a
-&lt;em&gt;lot&lt;/em&gt; tidier.&lt;/p&gt;
-&lt;p&gt;This also felt like a good time to make this change because, aside from &lt;a href="https://www.yakshaving.co.uk" rel="noopener noreferrer" target="_blank"&gt;one
-other blog out there&lt;/a&gt;, I don't think anyone
-else other than me is using BlogMore at the moment.&lt;/p&gt;
-&lt;p&gt;This change &lt;em&gt;did&lt;/em&gt; mean that I'd need to &lt;a href="https://github.com/davep/davep.github.com/pull/89/changes" rel="noopener noreferrer" target="_blank"&gt;edit some of the posts in my blog
-to update for the slightly changed
-layout&lt;/a&gt;, but it
-was a small enough job with minimal impact so it was worth it. I also used a
-tweaked setting for &lt;code&gt;page_n_path&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;page_n_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/page/{page}/index.html&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;so that any paginated page has a URL that ends something like &lt;code&gt;.../page/2/&lt;/code&gt;.
-This holds for &lt;em&gt;any&lt;/em&gt; page on the blog that has multiple pages.&lt;/p&gt;
-&lt;p&gt;This is the point where I'd say something about how I think that's all the
-big changes in this project done... but I'm starting to suspect this isn't
-the plan the coding gods have for BlogMore.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:139-1"&gt;
-&lt;p&gt;Although I suspect &lt;a href="https://blog.davep.org/2026/03/09/an-eager-fix.html"&gt;I could agent the shit out of that problem&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:139-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:139-2"&gt;
-&lt;p&gt;Although few enough that I probably should't let it stop me doing this.&amp;#160;&lt;a class="footnote-backref" href="#fnref:139-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/03/18/blogmore-2-0-0.html</guid>
-      <category>Coding</category>
-      <category>AI</category>
-      <category>BlogMore</category>
-      <category>Coding</category>
-      <category>Copilot</category>
-      <category>LLM</category>
-      <category>Python</category>
-      <category>semver</category>
-      <pubDate>Wed, 18 Mar 2026 09:10:00 +0000</pubDate>
     </item>
   </channel>
 </rss>
