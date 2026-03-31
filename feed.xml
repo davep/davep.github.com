@@ -8,7 +8,65 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 30 Mar 2026 19:32:41 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Mar 2026 07:45:43 +0000</lastBuildDate>
+    <item>
+      <title>OldNews v1.3.0</title>
+      <link>https://blog.davep.org/2026/03/31/oldnews-v1-3-0.html</link>
+      <description>&lt;p&gt;&lt;img alt="OldNews" src="https://blog.davep.org/attachments/2026/02/11/oldnews-social-banner.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Yesterday evening I released v1.3.0 of
+&lt;a href="https://oldnews.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;OldNews&lt;/a&gt;, my terminal-based client for
+&lt;a href="https://theoldreader.com" rel="noopener noreferrer" target="_blank"&gt;TheOldReader&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The main reason for this release is that
+&lt;a href="https://github.com/kreuzberg-dev/html-to-markdown" rel="noopener noreferrer" target="_blank"&gt;html_to_markdown&lt;/a&gt; had a
+major release and the one function I use from it &lt;a href="https://github.com/kreuzberg-dev/html-to-markdown/releases/tag/v3.0.0" rel="noopener noreferrer" target="_blank"&gt;fundamentally changed the
+return
+type&lt;/a&gt;,
+causing OldNews to crash any time you tried to read an article.&lt;/p&gt;
+&lt;p&gt;It was a &lt;a href="https://github.com/davep/oldnews/pull/191/changes" rel="noopener noreferrer" target="_blank"&gt;quick enough
+fix&lt;/a&gt;, although it's one I
+want to go back and review and perhaps see if there's a better approach, or
+see if this new return type offers something I could be making better use
+of.&lt;/p&gt;
+&lt;p&gt;The one other change, which I made &lt;a href="https://github.com/davep/oldnews/pull/175/changes" rel="noopener noreferrer" target="_blank"&gt;a wee while
+ago&lt;/a&gt; but hadn't got round
+to releasing yet (I've &lt;a href="https://blog.davep.org/tag/blogmore/"&gt;been kind of distracted recently&lt;/a&gt;),
+is that OldNews now only makes a call out to the API to mark an article as
+read when you read it, but only &lt;em&gt;if&lt;/em&gt; it was previously unread. A small
+internal change nobody should really notice, but it saves on work.&lt;/p&gt;
+&lt;p&gt;If you're a user of TheOldReader and fancy interacting with it from the
+terminal too then it's out there to try out. It's licensed GPL-3.0 and
+available &lt;a href="https://github.com/davep/oldnews" rel="noopener noreferrer" target="_blank"&gt;via GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/oldnews/" rel="noopener noreferrer" target="_blank"&gt;via
+PyPI&lt;/a&gt;. If you have an environment that
+has &lt;code&gt;pipx&lt;/code&gt; installed you should be able to get up and running with:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;oldnews
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It can also be installed using
+&lt;a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;oldnews
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If you don't have &lt;code&gt;uv&lt;/code&gt; installed you can use &lt;a href="https://uvx.sh" rel="noopener noreferrer" target="_blank"&gt;uvx.sh&lt;/a&gt; to
+perform the installation. For GNU/Linux or macOS or similar:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-LsSf&lt;span class="w"&gt; &lt;/span&gt;uvx.sh/oldnews/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;or on Windows:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;powershell&lt;span class="w"&gt; &lt;/span&gt;-ExecutionPolicy&lt;span class="w"&gt; &lt;/span&gt;ByPass&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;irm https://uvx.sh/oldnews/install.ps1 | iex&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Once installed, run the &lt;code&gt;oldnews&lt;/code&gt; command.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/03/31/oldnews-v1-3-0.html</guid>
+      <category>Coding</category>
+      <category>Markdown</category>
+      <category>OldNews</category>
+      <category>Python</category>
+      <category>RSS</category>
+      <category>atom</category>
+      <category>terminal</category>
+      <category>textual</category>
+      <pubDate>Tue, 31 Mar 2026 08:44:00 +0100</pubDate>
+    </item>
     <item>
       <title>blogmore.el v2.2</title>
       <link>https://blog.davep.org/2026/03/30/blogmore-el-v2-2.html</link>
@@ -46,7 +104,7 @@ about Lisp: &lt;code&gt;defmacro&lt;/code&gt;. There's something about macros th
 like coding in Lisp, and which I cite as a &lt;em&gt;really good thing&lt;/em&gt; when asked
 why I like Lisp, but which I always seem to utterly fail to explain well.
 Macros feel like one of those things you just have to experience for
-yourself to really get&lt;sup id="fnref:172-1"&gt;&lt;a class="footnote-ref" href="#fn:172-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+yourself to really get&lt;sup id="fnref:173-1"&gt;&lt;a class="footnote-ref" href="#fn:173-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Now, thanks to this:&lt;/p&gt;
 &lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defmacro&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Generate a function to get the value of SETTING for the current blog.&amp;quot;&lt;/span&gt;
@@ -56,7 +114,7 @@ yourself to really get&lt;sup id="fnref:172-1"&gt;&lt;a class="footnote-ref" hre
 &lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore-default-%s&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;all those 7 functions can collapse to this&lt;sup id="fnref:172-2"&gt;&lt;a class="footnote-ref" href="#fn:172-2"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;all those 7 functions can collapse to this&lt;sup id="fnref:173-2"&gt;&lt;a class="footnote-ref" href="#fn:173-2"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-template&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;category-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -82,13 +140,13 @@ that legacy nonsense&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:172-1"&gt;
+&lt;li id="fn:173-1"&gt;
 &lt;p&gt;There was a time I would have said "grok" here but... well that's
-spoiled now.&amp;#160;&lt;a class="footnote-backref" href="#fnref:172-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+spoiled now.&amp;#160;&lt;a class="footnote-backref" href="#fnref:173-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:172-2"&gt;
+&lt;li id="fn:173-2"&gt;
 &lt;p&gt;I suppose I could reduce that to one "call" with a loop over a list of
-symbols, but that feels unnecessary here.&amp;#160;&lt;a class="footnote-backref" href="#fnref:172-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+symbols, but that feels unnecessary here.&amp;#160;&lt;a class="footnote-backref" href="#fnref:173-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -432,7 +490,7 @@ memory, well the price starts to get dangerously close to...&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The MacBook Air M5" src="https://blog.davep.org/attachments/2026/03/27/macbook-air.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;So, yeah, as of today, I've kind of come full circle; a decade on from that
 MacBook Air purchase I have a new sofa hacking machine coming in the shape
-of the new M5 MacBook Air&lt;sup id="fnref:179-1"&gt;&lt;a class="footnote-ref" href="#fn:179-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+of the new M5 MacBook Air&lt;sup id="fnref:180-1"&gt;&lt;a class="footnote-ref" href="#fn:180-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So this weekend will involve me digging out my "new macOS environment"
 checklist and working through it, getting a hacking environment up and going
 again. One thing I do want to do is follow that list but also write out a
@@ -445,11 +503,11 @@ like I should be able to achieve everything I need using just
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:179-1"&gt;
+&lt;li id="fn:180-1"&gt;
 &lt;p&gt;I'm not a hardware nerd, so don't dive deep into this stuff. Despite
 what I said about the M2 Pro Mini still being there for heavy coding and
 video editing, it wouldn't surprise me to find out the Air is more than
-capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:179-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:180-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -691,7 +749,7 @@ bunch of useless but fun stats and facts about the content&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Hour of day" src="https://blog.davep.org/attachments/2026/03/24/hour-of-day.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;Or the day of the week:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Day of week" src="https://blog.davep.org/attachments/2026/03/24/day-of-week.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Or the month of the year&lt;sup id="fnref:176-1"&gt;&lt;a class="footnote-ref" href="#fn:176-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;Or the month of the year&lt;sup id="fnref:177-1"&gt;&lt;a class="footnote-ref" href="#fn:177-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Month of year" src="https://blog.davep.org/attachments/2026/03/24/month-of-year.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;This is designed to be turned off by default -- I can imagine most folk
 would not want this sort of thing on their blog -- &lt;a href="https://blogmore.davep.dev/configuration/#with_stats" rel="noopener noreferrer" target="_blank"&gt;but it can easily be
@@ -702,9 +760,9 @@ location of the stats can also be controlled &lt;a href="https://blogmore.davep.
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:176-1"&gt;
+&lt;li id="fn:177-1"&gt;
 &lt;p&gt;&lt;a href="https://blog.davep.org/2026/03/"&gt;Unsurprisingly&lt;/a&gt; March is leaping ahead as of the time of
-writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:176-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:177-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1027,7 +1085,7 @@ latter lets me quickly pick an existing post and go edit it.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="blogmore-edit in action" src="https://blog.davep.org/attachments/2026/03/19/blogmore-edit.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;As time goes on I might expand on this. For example: it might be useful to
 have a command that updates the &lt;code&gt;date&lt;/code&gt; frontmatter; perhaps another to add a
-&lt;code&gt;modified&lt;/code&gt;&lt;sup id="fnref:156-1"&gt;&lt;a class="footnote-ref" href="#fn:156-1"&gt;1&lt;/a&gt;&lt;/sup&gt;; one to set the &lt;code&gt;category&lt;/code&gt; from any of the categories I've
+&lt;code&gt;modified&lt;/code&gt;&lt;sup id="fnref:157-1"&gt;&lt;a class="footnote-ref" href="#fn:157-1"&gt;1&lt;/a&gt;&lt;/sup&gt;; one to set the &lt;code&gt;category&lt;/code&gt; from any of the categories I've
 used so far would be good; ditto the &lt;code&gt;tags&lt;/code&gt; property.&lt;/p&gt;
 &lt;p&gt;I doubt this will be useful to anyone else, although I will try my best to
 keep it so that it's easy to configure, so it's only ever going to stay
@@ -1047,9 +1105,9 @@ approach for all of my personal packages.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:156-1"&gt;
+&lt;li id="fn:157-1"&gt;
 &lt;p&gt;Note to self: did I make &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
-support modified dates?&amp;#160;&lt;a class="footnote-backref" href="#fnref:156-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+support modified dates?&amp;#160;&lt;a class="footnote-backref" href="#fnref:157-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1163,54 +1221,6 @@ the plan the coding gods have for BlogMore.&lt;/p&gt;
       <category>BlogMore</category>
       <category>semver</category>
       <pubDate>Wed, 18 Mar 2026 09:10:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Too much work for Copilot?</title>
-      <link>https://blog.davep.org/2026/03/17/too-much-work-for-copilot.html</link>
-      <description>&lt;p&gt;I don't know if it's just that GitHub Copilot is having a bad time at the
-moment, or if I've run into a genuine problem, but all isn't well today.
-After merging &lt;a href="https://blog.davep.org/2026/03/17/when-your-model-leaves-you.html"&gt;last night's
-result&lt;/a&gt; I kicked off &lt;a href="https://github.com/davep/blogmore/issues/306" rel="noopener noreferrer" target="_blank"&gt;another
-request&lt;/a&gt; related to &lt;a href="https://github.com/davep/blogmore/issues/298" rel="noopener noreferrer" target="_blank"&gt;a group
-of changes I want to make to
-BlogMore&lt;/a&gt;. It's a little
-involved, and it did take it a wee while to work on, but mostly it got the
-work done.&lt;/p&gt;
-&lt;p&gt;Again, as I said in the earlier post, I won't get into the detail of these
-changes yet, but they're fairly extensive and do include some breaking
-changes, so it's probably going to take a wee while to have it all come
-together. Claude's first shot at the latest change was almost there but with
-the glaring bug that it did all the work but didn't actually add the part
-that &lt;em&gt;reads the configuration file settings and uses them&lt;/em&gt; (yeah, that's a
-good one, isn't it?).&lt;/p&gt;
-&lt;p&gt;So &lt;a href="https://github.com/davep/blogmore/pull/307#issuecomment-4074343536" rel="noopener noreferrer" target="_blank"&gt;I asked it to fix
-it&lt;/a&gt;. It
-went off, worked on the issue, and then suddenly...&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Denied" src="https://blog.davep.org/attachments/2026/03/17/too-many-requests.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;This surprised me. After the past few weeks I've had sessions where I've
-requested it do things way more frequently than this morning. I'm also
-nowhere near out of premium requests either:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Number of requests left" src="https://blog.davep.org/attachments/2026/03/17/requests-left.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;While the error, as shown, might be valid and might be down to my actions,
-it's massively unhelpful and doesn't really explain what I did to cause this
-or even how I can remedy it. This is made all the more frustrating by the
-fact that it seems to be saying I need to wait &lt;code&gt;&amp;lt;duration&amp;gt;&lt;/code&gt; to try again.
-Yes, literally a placeholder of &lt;code&gt;&amp;lt;duration&amp;gt;&lt;/code&gt;. O_o&lt;/p&gt;
-&lt;p&gt;One thing is for sure: this is another useful experiment in the current
-experiment. It's worth having the experience of having the tool screw with
-the flow. It doesn't come as a surprise, but it's a good reminder that using
-an agent that is hosted by someone else means you fully rely on their
-ability to keep it working, the whims of their API limits, and perhaps even
-your ability to pay.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/03/17/too-much-work-for-copilot.html</guid>
-      <category>AI</category>
-      <category>Python</category>
-      <category>AI</category>
-      <category>LLM</category>
-      <category>Copilot</category>
-      <category>GitHub</category>
-      <category>BlogMore</category>
-      <pubDate>Tue, 17 Mar 2026 14:27:00 +0000</pubDate>
     </item>
   </channel>
 </rss>

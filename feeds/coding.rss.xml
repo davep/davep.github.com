@@ -8,7 +8,65 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 30 Mar 2026 19:32:42 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Mar 2026 07:45:43 +0000</lastBuildDate>
+    <item>
+      <title>OldNews v1.3.0</title>
+      <link>https://blog.davep.org/2026/03/31/oldnews-v1-3-0.html</link>
+      <description>&lt;p&gt;&lt;img alt="OldNews" src="https://blog.davep.org/attachments/2026/02/11/oldnews-social-banner.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Yesterday evening I released v1.3.0 of
+&lt;a href="https://oldnews.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;OldNews&lt;/a&gt;, my terminal-based client for
+&lt;a href="https://theoldreader.com" rel="noopener noreferrer" target="_blank"&gt;TheOldReader&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The main reason for this release is that
+&lt;a href="https://github.com/kreuzberg-dev/html-to-markdown" rel="noopener noreferrer" target="_blank"&gt;html_to_markdown&lt;/a&gt; had a
+major release and the one function I use from it &lt;a href="https://github.com/kreuzberg-dev/html-to-markdown/releases/tag/v3.0.0" rel="noopener noreferrer" target="_blank"&gt;fundamentally changed the
+return
+type&lt;/a&gt;,
+causing OldNews to crash any time you tried to read an article.&lt;/p&gt;
+&lt;p&gt;It was a &lt;a href="https://github.com/davep/oldnews/pull/191/changes" rel="noopener noreferrer" target="_blank"&gt;quick enough
+fix&lt;/a&gt;, although it's one I
+want to go back and review and perhaps see if there's a better approach, or
+see if this new return type offers something I could be making better use
+of.&lt;/p&gt;
+&lt;p&gt;The one other change, which I made &lt;a href="https://github.com/davep/oldnews/pull/175/changes" rel="noopener noreferrer" target="_blank"&gt;a wee while
+ago&lt;/a&gt; but hadn't got round
+to releasing yet (I've &lt;a href="https://blog.davep.org/tag/blogmore/"&gt;been kind of distracted recently&lt;/a&gt;),
+is that OldNews now only makes a call out to the API to mark an article as
+read when you read it, but only &lt;em&gt;if&lt;/em&gt; it was previously unread. A small
+internal change nobody should really notice, but it saves on work.&lt;/p&gt;
+&lt;p&gt;If you're a user of TheOldReader and fancy interacting with it from the
+terminal too then it's out there to try out. It's licensed GPL-3.0 and
+available &lt;a href="https://github.com/davep/oldnews" rel="noopener noreferrer" target="_blank"&gt;via GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/oldnews/" rel="noopener noreferrer" target="_blank"&gt;via
+PyPI&lt;/a&gt;. If you have an environment that
+has &lt;code&gt;pipx&lt;/code&gt; installed you should be able to get up and running with:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;oldnews
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It can also be installed using
+&lt;a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;oldnews
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If you don't have &lt;code&gt;uv&lt;/code&gt; installed you can use &lt;a href="https://uvx.sh" rel="noopener noreferrer" target="_blank"&gt;uvx.sh&lt;/a&gt; to
+perform the installation. For GNU/Linux or macOS or similar:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-LsSf&lt;span class="w"&gt; &lt;/span&gt;uvx.sh/oldnews/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;or on Windows:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;powershell&lt;span class="w"&gt; &lt;/span&gt;-ExecutionPolicy&lt;span class="w"&gt; &lt;/span&gt;ByPass&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;irm https://uvx.sh/oldnews/install.ps1 | iex&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Once installed, run the &lt;code&gt;oldnews&lt;/code&gt; command.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/03/31/oldnews-v1-3-0.html</guid>
+      <category>Coding</category>
+      <category>Markdown</category>
+      <category>OldNews</category>
+      <category>Python</category>
+      <category>RSS</category>
+      <category>atom</category>
+      <category>terminal</category>
+      <category>textual</category>
+      <pubDate>Tue, 31 Mar 2026 08:44:00 +0100</pubDate>
+    </item>
     <item>
       <title>BlogMore v2.6.0</title>
       <link>https://blog.davep.org/2026/03/28/blogmore-v2-6-0.html</link>
@@ -206,7 +264,7 @@ bunch of useless but fun stats and facts about the content&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Hour of day" src="https://blog.davep.org/attachments/2026/03/24/hour-of-day.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;Or the day of the week:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Day of week" src="https://blog.davep.org/attachments/2026/03/24/day-of-week.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Or the month of the year&lt;sup id="fnref:176-1"&gt;&lt;a class="footnote-ref" href="#fn:176-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;Or the month of the year&lt;sup id="fnref:177-1"&gt;&lt;a class="footnote-ref" href="#fn:177-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Month of year" src="https://blog.davep.org/attachments/2026/03/24/month-of-year.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;This is designed to be turned off by default -- I can imagine most folk
 would not want this sort of thing on their blog -- &lt;a href="https://blogmore.davep.dev/configuration/#with_stats" rel="noopener noreferrer" target="_blank"&gt;but it can easily be
@@ -217,9 +275,9 @@ location of the stats can also be controlled &lt;a href="https://blogmore.davep.
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:176-1"&gt;
+&lt;li id="fn:177-1"&gt;
 &lt;p&gt;&lt;a href="https://blog.davep.org/2026/03/"&gt;Unsurprisingly&lt;/a&gt; March is leaping ahead as of the time of
-writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:176-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:177-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -510,7 +568,7 @@ so you can use "clean URLs" for pages too.&lt;/p&gt;
 &lt;p&gt;Another change I've added has been, in part, prompted by a thing I've seen
 going around the socials the past couple of days:
 &lt;a href="https://codeberg.org/robida/human.json" rel="noopener noreferrer" target="_blank"&gt;human.json&lt;/a&gt;. I did initially think
-about adding some special support for it&lt;sup id="fnref:157-1"&gt;&lt;a class="footnote-ref" href="#fn:157-1"&gt;1&lt;/a&gt;&lt;/sup&gt; -- allowing declaring the
+about adding some special support for it&lt;sup id="fnref:158-1"&gt;&lt;a class="footnote-ref" href="#fn:158-1"&gt;1&lt;/a&gt;&lt;/sup&gt; -- allowing declaring the
 values in the BlogMore configuration file -- but then I decided it made more
 sense to just include the &lt;code&gt;human.json&lt;/code&gt; file in the &lt;code&gt;extras&lt;/code&gt; directory and
 allow for adding a header.&lt;/p&gt;
@@ -525,9 +583,9 @@ often, and using a machine-readable file format is so much more... human.&lt;/p&
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:157-1"&gt;
+&lt;li id="fn:158-1"&gt;
 &lt;p&gt;Probably kind of ironic in a project that is 100% about understanding
-the AI-all-the-way approach to developing an application.&amp;#160;&lt;a class="footnote-backref" href="#fnref:157-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+the AI-all-the-way approach to developing an application.&amp;#160;&lt;a class="footnote-backref" href="#fnref:158-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -809,7 +867,7 @@ ongoing experiment with &lt;a href="https://blog.davep.org/tag/copilot/"&gt;GitH
 release I wrote about&lt;/a&gt; I've made a couple
 of cosmetic changes, and also addressed a couple of bugs.&lt;/p&gt;
 &lt;p&gt;The first cosmetic change relates to how the blog appears on mobile
-devices&lt;sup id="fnref:168-1"&gt;&lt;a class="footnote-ref" href="#fn:168-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In such a circumstance, before the change, the sidebar content
+devices&lt;sup id="fnref:169-1"&gt;&lt;a class="footnote-ref" href="#fn:169-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In such a circumstance, before the change, the sidebar content
 would, by design, relocate to the top of the page. This made sense, it meant
 that the information was still available, but it also had the unfortunate
 effect of pushing the actual post content way down the screen, sometimes off
@@ -861,8 +919,8 @@ As I keep tinkering with BlogMore I'll be keeping this post in mind.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:168-1"&gt;
-&lt;p&gt;Okay fine any narrow viewport but you know what I mean!&amp;#160;&lt;a class="footnote-backref" href="#fnref:168-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:169-1"&gt;
+&lt;p&gt;Okay fine any narrow viewport but you know what I mean!&amp;#160;&lt;a class="footnote-backref" href="#fnref:169-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1107,70 +1165,6 @@ perform the installation. For GNU/Linux or macOS or similar:&lt;/p&gt;
       <category>AI</category>
       <category>LLM</category>
       <pubDate>Tue, 03 Mar 2026 17:10:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Complexitty v1.1.0</title>
-      <link>https://blog.davep.org/2026/02/28/complexitty-1-1-0.html</link>
-      <description>&lt;p&gt;&lt;a href="https://complexitty.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;&lt;img alt="Complexitty" src="https://blog.davep.org/attachments/2025/04/20/complexitty-social-banner.png" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I've just released v1.1.0 of Complexitty, my little Mandelbrot explorer for
-the terminal. I first released it &lt;a href="https://blog.davep.org/2025/04/20/complexitty.html"&gt;in April last
-year&lt;/a&gt; and have tinkered with it on and off
-since. Most of the changes have been to do with easier navigation, some
-additional colour schemes, the ability to pass location information on the
-command line, that sort of thing; meanwhile, the very heart of it has stayed
-the same &lt;em&gt;"it's as fast as it's ever going to be expect it to not be fast"&lt;/em&gt;
-approach.&lt;/p&gt;
-&lt;p&gt;It's a Python application after all: they can be fast, but something like
-this isn't going to compete with the serious Mandelbrot explorers.&lt;/p&gt;
-&lt;p&gt;v1.1.0, however, has a little optional speedup. If you install it normally
-it'll work at the pace it always did: the more you zoom in, the more you
-ramp up the iterations to tease more detail out, the slower it gets. But
-now: if you install it as &lt;code&gt;complexitty[faster]&lt;/code&gt; rather than just as
-&lt;code&gt;complexitty&lt;/code&gt; it will use &lt;a href="http://numba.pydata.org" rel="noopener noreferrer" target="_blank"&gt;Numba&lt;/a&gt; to speed up the
-main calculation.&lt;/p&gt;
-&lt;p&gt;On the very first run things will be slow to start up, but from then on I
-see a real improvement. As you zoom in and explore and up the detail, the
-calculation remains pretty fast. The drop-off of speed that you see without
-Numba just isn't there.&lt;/p&gt;
-&lt;p&gt;While the whole idea of Complexitty was to see what I could do with Python,
-in the terminal, using Textual, and keeping it "pure", I feel this is an
-acceptable "cheat" given it's optional.&lt;/p&gt;
-&lt;p&gt;I'm considering this an experimental change for now, as I don't know how
-well it will work in all places where Complexitty could be otherwise
-installed. So give it a go, see if it installs and runs as
-&lt;code&gt;complexitty[faster]&lt;/code&gt;, and if it doesn't: fall back to plain old
-&lt;code&gt;complexitty&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;If you're interested you can find the source &lt;a href="https://github.com/davep/complexitty" rel="noopener noreferrer" target="_blank"&gt;over on
-GitHub&lt;/a&gt;, with the application
-available &lt;a href="https://pypi.org/project/complexitty/" rel="noopener noreferrer" target="_blank"&gt;via PyPI&lt;/a&gt;. If you use
-&lt;code&gt;pipx&lt;/code&gt; you should be able to install with either:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty&lt;span class="o"&gt;[&lt;/span&gt;faster&lt;span class="o"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;or&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;If you're a fan of
-&lt;a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt; (and who
-isn't these days?) then try either:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty&lt;span class="o"&gt;[&lt;/span&gt;faster&lt;span class="o"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;or fall back to:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;In fact, to squeeze everything you can out of Complexitty, perhaps try:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;complexitty&lt;span class="o"&gt;[&lt;/span&gt;faster&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--python&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.14
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/02/28/complexitty-1-1-0.html</guid>
-      <category>Coding</category>
-      <category>Python</category>
-      <category>terminal</category>
-      <category>textual</category>
-      <category>mandelbrot</category>
-      <pubDate>Sat, 28 Feb 2026 20:40:00 +0000</pubDate>
     </item>
   </channel>
 </rss>
