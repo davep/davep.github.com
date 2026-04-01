@@ -13,7 +13,7 @@ build:				# Build the site
 
 .PHONY: serve
 serve:				# Locally serve the site for testing.
-	$(blogmore) serve
+	$(blogmore) serve --include-drafts
 
 .PHONY: publish
 publish:			# Publish the site to GitHub
