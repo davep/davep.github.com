@@ -72,7 +72,7 @@ should push it in the direction of being of more general use.
 
 I highly recommend [having a read of his post reviewing a good number of
 static site
-generators](https://www.yakshaving.co.uk/fun-with-static-site-generators/).
+generators](https://www.yakshaving.co.uk/posts/fun-with-static-site-generators/).
 As I keep tinkering with BlogMore I'll be keeping this post in mind.
 
 [^1]: Okay fine any narrow viewport but you know what I mean!
