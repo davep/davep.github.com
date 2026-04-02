@@ -2,11 +2,80 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-04-02T19:10:03.602222+00:00</updated>
+  <updated>2026-04-02T19:58:01.717800+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/04/02/blogmore-el-v2-5.html</id>
+    <title>blogmore.el v2.5</title>
+    <updated>2026-04-02T20:53:09+01:00</updated>
+    <content type="html">&lt;p&gt;Following on from &lt;a href="https://blog.davep.org/2026/04/01/blogmore-el-v2-4.html"&gt;yesterday's release&lt;/a&gt;,
+I've bumped &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; to v2.5.
+The main change to the package is the thing I mentioned yesterday about the
+toggle of the &lt;code&gt;draft&lt;/code&gt; status. The &lt;code&gt;draft&lt;/code&gt; toggle yesterday was pretty
+simple, with it working like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If there is no &lt;code&gt;draft&lt;/code&gt; frontmatter, &lt;code&gt;draft: true&lt;/code&gt; is added&lt;/li&gt;
+&lt;li&gt;If there is any &lt;code&gt;draft&lt;/code&gt; frontmatter, it is removed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This meant that if you had &lt;code&gt;draft: false&lt;/code&gt; set and you went to toggle, it
+would be removed, which is the same as setting it to &lt;code&gt;draft: false&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Unlikely to generally be an issue, but I also couldn't let that stay like
+that. It bothered me.&lt;/p&gt;
+&lt;p&gt;So now it works as you'd expect:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If there is no &lt;code&gt;draft&lt;/code&gt; frontmatter, &lt;code&gt;draft: true&lt;/code&gt; is added&lt;/li&gt;
+&lt;li&gt;If &lt;code&gt;draft: true&lt;/code&gt; is there, it is removed&lt;/li&gt;
+&lt;li&gt;If &lt;code&gt;draft: false&lt;/code&gt; is there, it is set to &lt;code&gt;draft: true&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Much better.&lt;/p&gt;
+&lt;p&gt;Another change is that I fixed a problem with older supported versions of
+Emacs. I didn't know this was a problem because I'm running 30.2 everywhere.
+Meanwhile, thanks to &lt;code&gt;package-lint-current-buffer&lt;/code&gt; from
+&lt;a href="https://github.com/purcell/package-lint" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;package-lint.el&lt;/code&gt;&lt;/a&gt;, I have:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Package-Requires: ((emacs &amp;quot;29.1&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;in the metadata for the package. Turns out though that
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/eintr/Sorting.html" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;sort&lt;/code&gt;&lt;/a&gt;
+used to require two parameters (the sequence and the predicate), whereas now
+it's fine with just one (it will accept just the sequence and will default
+the predicate). So of course &lt;code&gt;blogmore.el&lt;/code&gt; was working fine for me, but
+would have crashed for someone with an earlier Emacs.&lt;/p&gt;
+&lt;p&gt;As for how I found this out... well I finally, for the first time ever,
+dived into using
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/ert/index.html" rel="noopener noreferrer" target="_blank"&gt;ERT&lt;/a&gt; to
+write &lt;a href="https://github.com/davep/blogmore.el/blob/34ed59bbe11d31b10382c244188bc3afb7c2f8d8/blogmore-tests.el" rel="noopener noreferrer" target="_blank"&gt;some
+tests&lt;/a&gt;.
+While I've used testing frameworks in other languages, I'd never looked at
+this with &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt;. It works a treat and is great to
+work with; I think I'll be using this a lot more from now on.&lt;/p&gt;
+&lt;p&gt;Having got tests going I realised I should run them with GitHub actions,
+which then meant I managed to discover
+&lt;a href="https://github.com/marketplace/actions/set-up-emacs" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;setup-emacs&lt;/code&gt;&lt;/a&gt;. Having
+found this the next logical step was to &lt;a href="https://github.com/davep/blogmore.el/blob/34ed59bbe11d31b10382c244188bc3afb7c2f8d8/.github/workflows/tests.yml" rel="noopener noreferrer" target="_blank"&gt;set up a matrix test for all the
+versions of Emacs I expect &lt;code&gt;blogmore.el&lt;/code&gt; to work
+on&lt;/a&gt;.
+This worked fine, except... it didn't. While the tests worked locally, they
+were failing for some Emacsen over on GitHub.&lt;/p&gt;
+&lt;p&gt;And that's how I discovered the issue with &lt;code&gt;sort&lt;/code&gt; on versions earlier than
+the one I'm using locally.&lt;/p&gt;
+&lt;p&gt;All in all, that was a good little period of hacking. New things discovered,
+the package improved, and a wider range of support for different versions of
+Emacs.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/04/02/blogmore-el-v2-5.html"/>
+    <category term="Emacs"/>
+    <category term="BlogMore"/>
+    <category term="Emacs"/>
+    <category term="Emacs Lisp"/>
+    <category term="Lisp"/>
+    <category term="blogmore.el"/>
+    <category term="coding"/>
+    <category term="testing"/>
+    <published>2026-04-02T20:53:09+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/04/02/blogmore-v2-8-0.html</id>
     <title>BlogMore v2.8.0</title>
@@ -45,6 +114,7 @@ plugin was dealing with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:13
     <category term="Coding"/>
     <category term="AI"/>
     <category term="BlogMore"/>
+    <category term="Copilot"/>
     <category term="Markdown"/>
     <category term="PyPI"/>
     <category term="Python"/>
@@ -176,7 +246,7 @@ for another 27.&lt;/p&gt;
     <content type="html">&lt;p&gt;This bit of &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; absolutely comes from a more
 innocent time on the Internet. Looking at it, it seems I wrote the first
 version, at least as a proper package, back in 2001. It's very possible that
-I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:189-1"&gt;&lt;a class="footnote-ref" href="#fn:189-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
+I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:190-1"&gt;&lt;a class="footnote-ref" href="#fn:190-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
 some time before, so it might date from the late 1990s. While we weren't
 absolutely &lt;em&gt;innocent&lt;/em&gt; back then, the idea of a slightly-risky-looking URL
 wasn't quite so bad as it is now.&lt;/p&gt;
@@ -200,9 +270,9 @@ exists.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:189-1"&gt;
+&lt;li id="fn:190-1"&gt;
 &lt;p&gt;For a good chunk of my first decade of using Emacs, I carried a lot of
-personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:189-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:190-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -438,7 +508,7 @@ about Lisp: &lt;code&gt;defmacro&lt;/code&gt;. There's something about macros th
 like coding in Lisp, and which I cite as a &lt;em&gt;really good thing&lt;/em&gt; when asked
 why I like Lisp, but which I always seem to utterly fail to explain well.
 Macros feel like one of those things you just have to experience for
-yourself to really get&lt;sup id="fnref:177-1"&gt;&lt;a class="footnote-ref" href="#fn:177-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+yourself to really get&lt;sup id="fnref:178-1"&gt;&lt;a class="footnote-ref" href="#fn:178-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Now, thanks to this:&lt;/p&gt;
 &lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defmacro&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Generate a function to get the value of SETTING for the current blog.&amp;quot;&lt;/span&gt;
@@ -448,7 +518,7 @@ yourself to really get&lt;sup id="fnref:177-1"&gt;&lt;a class="footnote-ref" hre
 &lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore-default-%s&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;all those 7 functions can collapse to this&lt;sup id="fnref:177-2"&gt;&lt;a class="footnote-ref" href="#fn:177-2"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;all those 7 functions can collapse to this&lt;sup id="fnref:178-2"&gt;&lt;a class="footnote-ref" href="#fn:178-2"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-template&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;category-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -474,13 +544,13 @@ that legacy nonsense&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:177-1"&gt;
+&lt;li id="fn:178-1"&gt;
 &lt;p&gt;There was a time I would have said "grok" here but... well that's
-spoiled now.&amp;#160;&lt;a class="footnote-backref" href="#fnref:177-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+spoiled now.&amp;#160;&lt;a class="footnote-backref" href="#fnref:178-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:177-2"&gt;
+&lt;li id="fn:178-2"&gt;
 &lt;p&gt;I suppose I could reduce that to one "call" with a loop over a list of
-symbols, but that feels unnecessary here.&amp;#160;&lt;a class="footnote-backref" href="#fnref:177-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+symbols, but that feels unnecessary here.&amp;#160;&lt;a class="footnote-backref" href="#fnref:178-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -832,7 +902,7 @@ memory, well the price starts to get dangerously close to...&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The MacBook Air M5" src="https://blog.davep.org/attachments/2026/03/27/macbook-air.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;So, yeah, as of today, I've kind of come full circle; a decade on from that
 MacBook Air purchase I have a new sofa hacking machine coming in the shape
-of the new M5 MacBook Air&lt;sup id="fnref:186-1"&gt;&lt;a class="footnote-ref" href="#fn:186-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+of the new M5 MacBook Air&lt;sup id="fnref:187-1"&gt;&lt;a class="footnote-ref" href="#fn:187-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So this weekend will involve me digging out my "new macOS environment"
 checklist and working through it, getting a hacking environment up and going
 again. One thing I do want to do is follow that list but also write out a
@@ -845,11 +915,11 @@ like I should be able to achieve everything I need using just
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:186-1"&gt;
+&lt;li id="fn:187-1"&gt;
 &lt;p&gt;I'm not a hardware nerd, so don't dive deep into this stuff. Despite
 what I said about the M2 Pro Mini still being there for heavy coding and
 video editing, it wouldn't surprise me to find out the Air is more than
-capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:186-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:187-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1068,60 +1138,5 @@ perform the installation. For GNU/Linux or macOS or similar:&lt;/p&gt;
     <category term="terminal"/>
     <category term="textual"/>
     <published>2026-03-25T18:54:47+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/03/24/blogmore-v2-3-0.html</id>
-    <title>BlogMore v2.3.0</title>
-    <updated>2026-03-24T20:22:37+00:00</updated>
-    <content type="html">&lt;p&gt;I've just pushed &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; v2.3.0 up &lt;a href="https://pypi.org/project/blogmore/" rel="noopener noreferrer" target="_blank"&gt;to
-PyPI&lt;/a&gt;. This release has a &lt;a href="https://blogmore.davep.dev/changelog/#v230" rel="noopener noreferrer" target="_blank"&gt;couple of bug
-fixes and a couple of significant new
-features&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The first new feature, &lt;a href="https://github.com/davep/blogmore/issues/332" rel="noopener noreferrer" target="_blank"&gt;which came in as a
-request&lt;/a&gt;, is to add support
-for control over the themes used for code blocks, including independent
-control of the themes used for
-&lt;a href="https://blogmore.davep.dev/configuration/#light_mode_code_style" rel="noopener noreferrer" target="_blank"&gt;light&lt;/a&gt; and
-&lt;a href="https://blogmore.davep.dev/configuration/#dark_mode_code_style" rel="noopener noreferrer" target="_blank"&gt;dark&lt;/a&gt; mode.
-With these you can specify any of the &lt;a href="https://pygments.org/styles/" rel="noopener noreferrer" target="_blank"&gt;Pygments
-styles&lt;/a&gt; to use for code blocks. Personally, I
-prefer to have things blend in, but this now also gives you the chance to
-have them really contrast (use a light mode theme for dark-mode blog, or a
-dark mode theme for a light-mode blog).&lt;/p&gt;
-&lt;p&gt;The other big feature popped into my head earlier today and once I thought
-about it I &lt;em&gt;had&lt;/em&gt; to have it. It's similar to something I had for the
-photography section of the &lt;a href="https://blog.davep.org/2023/08/11/admitting-defeat-on-my-website.html"&gt;older version of my
-website&lt;/a&gt;, consisting of &lt;a href="https://blog.davep.org/stats/"&gt;a
-bunch of useless but fun stats and facts about the content&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Things like which hour of the day I tend to post during:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Hour of day" src="https://blog.davep.org/attachments/2026/03/24/hour-of-day.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Or the day of the week:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Day of week" src="https://blog.davep.org/attachments/2026/03/24/day-of-week.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Or the month of the year&lt;sup id="fnref:183-1"&gt;&lt;a class="footnote-ref" href="#fn:183-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Month of year" src="https://blog.davep.org/attachments/2026/03/24/month-of-year.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;This is designed to be turned off by default -- I can imagine most folk
-would not want this sort of thing on their blog -- &lt;a href="https://blogmore.davep.dev/configuration/#with_stats" rel="noopener noreferrer" target="_blank"&gt;but it can easily be
-turned on with
-&lt;code&gt;with_stats&lt;/code&gt;&lt;/a&gt;. The
-location of the stats can also be controlled &lt;a href="https://blogmore.davep.dev/configuration/#stats_path" rel="noopener noreferrer" target="_blank"&gt;using
-&lt;code&gt;stats_path&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:183-1"&gt;
-&lt;p&gt;&lt;a href="https://blog.davep.org/2026/03/"&gt;Unsurprisingly&lt;/a&gt; March is leaping ahead as of the time of
-writing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:183-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/03/24/blogmore-v2-3-0.html"/>
-    <category term="Coding"/>
-    <category term="coding"/>
-    <category term="Python"/>
-    <category term="AI"/>
-    <category term="LLM"/>
-    <category term="Copilot"/>
-    <category term="BlogMore"/>
-    <published>2026-03-24T20:22:37+00:00</published>
   </entry>
 </feed>

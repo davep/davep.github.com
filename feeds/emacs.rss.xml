@@ -8,7 +8,75 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 02 Apr 2026 19:10:03 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 02 Apr 2026 19:58:01 +0000</lastBuildDate>
+    <item>
+      <title>blogmore.el v2.5</title>
+      <link>https://blog.davep.org/2026/04/02/blogmore-el-v2-5.html</link>
+      <description>&lt;p&gt;Following on from &lt;a href="https://blog.davep.org/2026/04/01/blogmore-el-v2-4.html"&gt;yesterday's release&lt;/a&gt;,
+I've bumped &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; to v2.5.
+The main change to the package is the thing I mentioned yesterday about the
+toggle of the &lt;code&gt;draft&lt;/code&gt; status. The &lt;code&gt;draft&lt;/code&gt; toggle yesterday was pretty
+simple, with it working like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If there is no &lt;code&gt;draft&lt;/code&gt; frontmatter, &lt;code&gt;draft: true&lt;/code&gt; is added&lt;/li&gt;
+&lt;li&gt;If there is any &lt;code&gt;draft&lt;/code&gt; frontmatter, it is removed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This meant that if you had &lt;code&gt;draft: false&lt;/code&gt; set and you went to toggle, it
+would be removed, which is the same as setting it to &lt;code&gt;draft: false&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Unlikely to generally be an issue, but I also couldn't let that stay like
+that. It bothered me.&lt;/p&gt;
+&lt;p&gt;So now it works as you'd expect:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If there is no &lt;code&gt;draft&lt;/code&gt; frontmatter, &lt;code&gt;draft: true&lt;/code&gt; is added&lt;/li&gt;
+&lt;li&gt;If &lt;code&gt;draft: true&lt;/code&gt; is there, it is removed&lt;/li&gt;
+&lt;li&gt;If &lt;code&gt;draft: false&lt;/code&gt; is there, it is set to &lt;code&gt;draft: true&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Much better.&lt;/p&gt;
+&lt;p&gt;Another change is that I fixed a problem with older supported versions of
+Emacs. I didn't know this was a problem because I'm running 30.2 everywhere.
+Meanwhile, thanks to &lt;code&gt;package-lint-current-buffer&lt;/code&gt; from
+&lt;a href="https://github.com/purcell/package-lint" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;package-lint.el&lt;/code&gt;&lt;/a&gt;, I have:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Package-Requires: ((emacs &amp;quot;29.1&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;in the metadata for the package. Turns out though that
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/eintr/Sorting.html" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;sort&lt;/code&gt;&lt;/a&gt;
+used to require two parameters (the sequence and the predicate), whereas now
+it's fine with just one (it will accept just the sequence and will default
+the predicate). So of course &lt;code&gt;blogmore.el&lt;/code&gt; was working fine for me, but
+would have crashed for someone with an earlier Emacs.&lt;/p&gt;
+&lt;p&gt;As for how I found this out... well I finally, for the first time ever,
+dived into using
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/ert/index.html" rel="noopener noreferrer" target="_blank"&gt;ERT&lt;/a&gt; to
+write &lt;a href="https://github.com/davep/blogmore.el/blob/34ed59bbe11d31b10382c244188bc3afb7c2f8d8/blogmore-tests.el" rel="noopener noreferrer" target="_blank"&gt;some
+tests&lt;/a&gt;.
+While I've used testing frameworks in other languages, I'd never looked at
+this with &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt;. It works a treat and is great to
+work with; I think I'll be using this a lot more from now on.&lt;/p&gt;
+&lt;p&gt;Having got tests going I realised I should run them with GitHub actions,
+which then meant I managed to discover
+&lt;a href="https://github.com/marketplace/actions/set-up-emacs" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;setup-emacs&lt;/code&gt;&lt;/a&gt;. Having
+found this the next logical step was to &lt;a href="https://github.com/davep/blogmore.el/blob/34ed59bbe11d31b10382c244188bc3afb7c2f8d8/.github/workflows/tests.yml" rel="noopener noreferrer" target="_blank"&gt;set up a matrix test for all the
+versions of Emacs I expect &lt;code&gt;blogmore.el&lt;/code&gt; to work
+on&lt;/a&gt;.
+This worked fine, except... it didn't. While the tests worked locally, they
+were failing for some Emacsen over on GitHub.&lt;/p&gt;
+&lt;p&gt;And that's how I discovered the issue with &lt;code&gt;sort&lt;/code&gt; on versions earlier than
+the one I'm using locally.&lt;/p&gt;
+&lt;p&gt;All in all, that was a good little period of hacking. New things discovered,
+the package improved, and a wider range of support for different versions of
+Emacs.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/04/02/blogmore-el-v2-5.html</guid>
+      <category>Emacs</category>
+      <category>BlogMore</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>blogmore.el</category>
+      <category>coding</category>
+      <category>testing</category>
+      <pubDate>Thu, 02 Apr 2026 20:53:09 +0100</pubDate>
+    </item>
     <item>
       <title>blogmore.el v2.4</title>
       <link>https://blog.davep.org/2026/04/01/blogmore-el-v2-4.html</link>
@@ -94,7 +162,7 @@ for another 27.&lt;/p&gt;
       <description>&lt;p&gt;This bit of &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; absolutely comes from a more
 innocent time on the Internet. Looking at it, it seems I wrote the first
 version, at least as a proper package, back in 2001. It's very possible that
-I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:189-1"&gt;&lt;a class="footnote-ref" href="#fn:189-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
+I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:190-1"&gt;&lt;a class="footnote-ref" href="#fn:190-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
 some time before, so it might date from the late 1990s. While we weren't
 absolutely &lt;em&gt;innocent&lt;/em&gt; back then, the idea of a slightly-risky-looking URL
 wasn't quite so bad as it is now.&lt;/p&gt;
@@ -118,9 +186,9 @@ exists.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:189-1"&gt;
+&lt;li id="fn:190-1"&gt;
 &lt;p&gt;For a good chunk of my first decade of using Emacs, I carried a lot of
-personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:189-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:190-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -293,7 +361,7 @@ about Lisp: &lt;code&gt;defmacro&lt;/code&gt;. There's something about macros th
 like coding in Lisp, and which I cite as a &lt;em&gt;really good thing&lt;/em&gt; when asked
 why I like Lisp, but which I always seem to utterly fail to explain well.
 Macros feel like one of those things you just have to experience for
-yourself to really get&lt;sup id="fnref:177-1"&gt;&lt;a class="footnote-ref" href="#fn:177-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+yourself to really get&lt;sup id="fnref:178-1"&gt;&lt;a class="footnote-ref" href="#fn:178-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Now, thanks to this:&lt;/p&gt;
 &lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defmacro&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Generate a function to get the value of SETTING for the current blog.&amp;quot;&lt;/span&gt;
@@ -303,7 +371,7 @@ yourself to really get&lt;sup id="fnref:177-1"&gt;&lt;a class="footnote-ref" hre
 &lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore-default-%s&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;all those 7 functions can collapse to this&lt;sup id="fnref:177-2"&gt;&lt;a class="footnote-ref" href="#fn:177-2"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;all those 7 functions can collapse to this&lt;sup id="fnref:178-2"&gt;&lt;a class="footnote-ref" href="#fn:178-2"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-template&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;category-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -329,13 +397,13 @@ that legacy nonsense&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:177-1"&gt;
+&lt;li id="fn:178-1"&gt;
 &lt;p&gt;There was a time I would have said "grok" here but... well that's
-spoiled now.&amp;#160;&lt;a class="footnote-backref" href="#fnref:177-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+spoiled now.&amp;#160;&lt;a class="footnote-backref" href="#fnref:178-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:177-2"&gt;
+&lt;li id="fn:178-2"&gt;
 &lt;p&gt;I suppose I could reduce that to one "call" with a loop over a list of
-symbols, but that feels unnecessary here.&amp;#160;&lt;a class="footnote-backref" href="#fnref:177-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+symbols, but that feels unnecessary here.&amp;#160;&lt;a class="footnote-backref" href="#fnref:178-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -840,7 +908,7 @@ really not noticing them been gone.&lt;/p&gt;
     <item>
       <title>Some more ~/.emacs.d evolution</title>
       <link>https://blog.davep.org/2020/06/07/some-more-dot-emacs-dot-d-evolution.html</link>
-      <description>&lt;p&gt;When I started with this version of the blog on Hashnode&lt;sup id="fnref:224-1"&gt;&lt;a class="footnote-ref" href="#fn:224-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, my plan was to
+      <description>&lt;p&gt;When I started with this version of the blog on Hashnode&lt;sup id="fnref:225-1"&gt;&lt;a class="footnote-ref" href="#fn:225-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, my plan was to
 try and write something at least once a week. I managed to do that as far as
 January this year, give or take, but then things got a little busy, the
 world got trickier, and... Well, &lt;a href="https://en.wikipedia.org/wiki/COVID-19_pandemic" rel="noopener noreferrer" target="_blank"&gt;you don't need me to tell you about
@@ -918,9 +986,9 @@ in the running version of Emacs&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:224-1"&gt;
+&lt;li id="fn:225-1"&gt;
 &lt;p&gt;Note from future me: we're now back over on &lt;code&gt;blog.davep.org&lt;/code&gt; of
-course.&amp;#160;&lt;a class="footnote-backref" href="#fnref:224-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+course.&amp;#160;&lt;a class="footnote-backref" href="#fnref:225-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1139,55 +1207,6 @@ the whole collection.&lt;/p&gt;
       <category>Emacs</category>
       <category>Emacs</category>
       <pubDate>Sun, 24 Nov 2019 17:17:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Visual evolution of ~/.emacs.d</title>
-      <link>https://blog.davep.org/2019/11/23/visual-evolution-of-emacs-config.html</link>
-      <description>&lt;p&gt;As detailed in a blog post I wrote &lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;back in
-2016&lt;/a&gt;, I first got into
-using Emacs in the mid 1990s, starting with it on OS/2 and then moving over
-to GNU/Linux. It's been my often-used and much-loved development environment
-for most of those years (I even have a couple of packages that are part of
-Emacs itself).&lt;/p&gt;
-&lt;p&gt;For most of that time my configuration was a single &lt;code&gt;~/.emacs&lt;/code&gt; file, which
-was around 1,000 lines in length (including comments and whitespace). It'd
-grown over the years, having special configuration sections for versions of
-Emacs I didn't use any more, and operating systems I didn't work on any more
-(yes, really, there were things in there specific to MS-DOS, for example).
-On top of that I always hand-installed packages I used -- Emacs' package
-management system having turned up long after I first got into using Emacs.&lt;/p&gt;
-&lt;p&gt;Then, in early 2016, I decided to nuke the whole thing and start from
-scratch. As mentioned above, the start of this &lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;is detailed in an older
-post&lt;/a&gt;. Another big round of
-changes &lt;a href="https://blog.davep.org/2017/04/01/another_revamp_of_my_emacs_config.html"&gt;happened round a year
-later&lt;/a&gt; -- which included
-the birth of &lt;a href="http://blog.davep.org/delpa/"&gt;delpa&lt;/a&gt; to manage my personal
-packages. A couple or so months later there was &lt;a href="https://blog.davep.org/2017/07/13/more_revamping_of_my_emacs_config.html"&gt;one last big round of
-changes&lt;/a&gt;, mostly killing
-off my enthusiastic embracing of
-&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Easy-Customization.html#Easy-Customization" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;customize&lt;/code&gt;&lt;/a&gt;
-and instead going back to hand-set settings, only this time done via
-&lt;a href="https://github.com/jwiegley/use-package" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;use-package&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The full history of this &lt;a href="https://github.com/davep/.emacs.d" rel="noopener noreferrer" target="_blank"&gt;can be found over on
-GitHub&lt;/a&gt;, starting with the first "throw
-everything away and start again" process and all the steps between then and
-where my Emacs configuration is now.&lt;/p&gt;
-&lt;p&gt;Which brings me to the fun part of this blog post. Earlier this week I
-stumbled on &lt;a href="https://gource.io/" rel="noopener noreferrer" target="_blank"&gt;Gource&lt;/a&gt;. It's a tool that's primarily
-designed to visualise changes in repositories, although it can be used to
-visualise anything that has a tree structure and changes over time (this
-week I produced a video of the growth of my employer's electronic lab
-notebook by hooking up the &lt;a href="https://www.benchling.com/" rel="noopener noreferrer" target="_blank"&gt;Benchling&lt;/a&gt; API with
-Gource, for example). So I got curious. What did it look like as I reworked
-and tweaked and changed and tinkered with my Emacs configuration?&lt;/p&gt;
-&lt;p&gt;This is what it looked like:&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=bH4G80aZgsM" rel="noopener noreferrer" target="_blank"&gt;&lt;img alt="Visit YouTube" src="https://img.youtube.com/vi/bH4G80aZgsM/0.jpg#centre" /&gt;&lt;/a&gt;&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2019/11/23/visual-evolution-of-emacs-config.html</guid>
-      <category>Emacs</category>
-      <category>Emacs</category>
-      <category>Lisp</category>
-      <category>Emacs Lisp</category>
-      <pubDate>Sat, 23 Nov 2019 14:42:00 +0000</pubDate>
     </item>
   </channel>
 </rss>
