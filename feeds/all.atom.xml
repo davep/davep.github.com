@@ -2,11 +2,143 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-04-03T14:11:12.845740+00:00</updated>
+  <updated>2026-04-04T10:50:22.715010+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/04/04/blogmore-el-v2-6.html</id>
+    <title>blogmore.el v2.6</title>
+    <updated>2026-04-04T11:48:21+01:00</updated>
+    <content type="html">&lt;p&gt;Like most people, I imagine, I first ran into
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_mono/transient.html" rel="noopener noreferrer" target="_blank"&gt;transient&lt;/a&gt;
+when first using &lt;a href="https://magit.vc/" rel="noopener noreferrer" target="_blank"&gt;magit&lt;/a&gt;. I took to it pretty quickly and
+it's always made sense to me as a user interface. But... I've never used it
+for any code I've ever written.&lt;/p&gt;
+&lt;p&gt;I think, incorrectly, I'd half assumed it was going to be some faff to set
+up, and of course for a good while it wasn't part of Emacs anyway. Given
+this, I'd always had it filed under the heading &lt;em&gt;"that's so neat I'll give
+it a go one day but not at the moment"&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Meanwhile... ever since I did the last big revamp of my &lt;a href="https://github.com/davep/.emacs.d" rel="noopener noreferrer" target="_blank"&gt;Emacs
+configuration&lt;/a&gt;, I found myself leaning
+into a command binding approach that does the whole &lt;em&gt;prefix-letter-letter&lt;/em&gt;
+thing. For reasons I can't actually remember I fell into the habit of using
+&lt;kbd&gt;F12&lt;/kbd&gt;&lt;sup id="fnref:135-1"&gt;&lt;a class="footnote-ref" href="#fn:135-1"&gt;1&lt;/a&gt;&lt;/sup&gt; as my chosen prefix key. As such, over the past 10 or so
+years (since I greatly overhauled my Emacs setup), I've got into setting up
+bindings for commands that follow this prefix convention.&lt;/p&gt;
+&lt;p&gt;So when I created &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; I
+set up the commands following this pattern.&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;use-package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:ensure&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:defer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:vc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;:url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://github.com/davep/blogmore.el&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:rev&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:newest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:init&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;add-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;blogmore-new-post-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;&lt;/span&gt;&lt;span class="nv"&gt;end-it&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-work-on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blog.davep.org&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:custom&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-blogs&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blog.davep.org&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~/write/davep.github.com/content/posts/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;seen-by.davep.dev&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~/write/seen-by/content/posts/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:bind&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b b&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-work-on&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b n&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-new&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b e&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-edit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b d&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-toggle-draft&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b s c&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-set-category&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b a t&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-add-tag&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b u d&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-update-date&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b u m&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-update-modified&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b l p&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-link-post&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b l c&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-link-category&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b l t&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-link-tag&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It works well, it makes it nice and easy to remember the bindings, etc.
+Nobody needs me to sell them on the merits of this approach.&lt;/p&gt;
+&lt;p&gt;Then I got to thinking last night: why am I setting up all those bindings
+when I could probably do it all via a transient? So that was the moment to
+actually RTFM and get it going. The first version was incredibly quick to
+get up and running and I was kicking myself that I'd taken so long to
+actually look at the package properly.&lt;/p&gt;
+&lt;p&gt;This morning I've worked on it a little more and the final form is still
+pretty straightforward.&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;transient-define-prefix&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Show a transient for BlogMore commands.&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;:description&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;BlogMore: %s\n&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;             &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--chosen-blog-sans-error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;                 &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--blog-title&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;               &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;No blog selected&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Blog&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Select blog&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-work-on&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Post&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;n&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;New post&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:inapt-if-not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--chosen-blog-sans-error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;e&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Edit post&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-edit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:inapt-if-not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--chosen-blog-sans-error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;d&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Toggle draft status&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-toggle-draft&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:inapt-if-not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--blog-post-p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;c&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Set post category&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-set-category&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:inapt-if-not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--blog-post-p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;t&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Add tag&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-add-tag&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:inapt-if-not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--blog-post-p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;u d&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Update date&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-update-date&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:inapt-if-not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--blog-post-p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;u m&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Update modified date&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-update-modified&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:inapt-if-not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--blog-post-p&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Links&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;l c&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Link to a category&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-link-category&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:inapt-if-not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--blog-post-p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;l p&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Link to a post&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-link-post&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:inapt-if-not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--blog-post-p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;l t&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Link to a tag&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-link-tag&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:inapt-if-not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--blog-post-p&lt;/span&gt;&lt;span class="p"&gt;)]])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;With this in place I can simplify my &lt;code&gt;use-package&lt;/code&gt; quite a bit, just binding
+a single key to run &lt;code&gt;blogmore&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;use-package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:ensure&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:defer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:vc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;:url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://github.com/davep/blogmore.el&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:rev&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:newest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:init&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;add-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;blogmore-new-post-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;&lt;/span&gt;&lt;span class="nv"&gt;end-it&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-work-on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blog.davep.org&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:custom&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-blogs&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blog.davep.org&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~/write/davep.github.com/content/posts/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;seen-by.davep.dev&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~/write/seen-by/content/posts/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:bind&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, when I'm working on a blog post, I can just hit &lt;kbd&gt;F12&lt;/kbd&gt;
+&lt;kbd&gt;b&lt;/kbd&gt; and I get a neat menu:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="BlogMore with all commands available" src="https://blog.davep.org/attachments/2026/04/04/transient-all.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;Better still, because of how &lt;code&gt;transient&lt;/code&gt; works, I can ensure that only
+applicable commands are available, while still showing them all. So if I've
+not even got a blog selected yet:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="With no commands available" src="https://blog.davep.org/attachments/2026/04/04/transient-none.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;Or with a blog selected but not actually working on a post yet:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="With some commands available" src="https://blog.davep.org/attachments/2026/04/04/transient-some.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;So far I'm really liking this approach, and I'm tempted to lean into
+transient more with some of my packages now. While on the surface it does
+seem that it has the downside of the binding choices being dictated by me,
+the fact is that the commands are all still there and anyone can use their
+own bindings, or I guess override the transient itself and do their own
+thing.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:135-1"&gt;
+&lt;p&gt;Yes, it is a bit out of the way on the keyboard, but so is
+&lt;kbd&gt;Esc&lt;/kbd&gt;. I find my muscle memory has no problem with it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:135-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/04/04/blogmore-el-v2-6.html"/>
+    <category term="Emacs"/>
+    <category term="BlogMore"/>
+    <category term="Emacs"/>
+    <category term="Emacs Lisp"/>
+    <category term="Lisp"/>
+    <category term="blogmore.el"/>
+    <category term="coding"/>
+    <category term="transient"/>
+    <published>2026-04-04T11:48:21+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/04/03/nukneval-el-v1-3.html</id>
     <title>nukneval.el v1.3</title>
@@ -23,7 +155,7 @@ before and it was really addictive as a way of hacking on code.&lt;/p&gt;
 helpful with things like a &lt;code&gt;defvar&lt;/code&gt; or a &lt;code&gt;defconst&lt;/code&gt;, if I was changing them
 up to try out new ways of doing things with the code I was working on; there
 I had to remember to get used to using &lt;code&gt;eval-defun&lt;/code&gt; (&lt;kbd&gt;C-M-x&lt;/kbd&gt;).
-Hardly a great problem, but something to keep in mind&lt;sup id="fnref:140-1"&gt;&lt;a class="footnote-ref" href="#fn:140-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+Hardly a great problem, but something to keep in mind&lt;sup id="fnref:141-1"&gt;&lt;a class="footnote-ref" href="#fn:141-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Pretty quickly, as I worked on longer packages, I found myself wanting to,
 in effect, unload a whole buffer of code and evaluate it again. From this
 desire came &lt;a href="https://github.com/davep/nukneval.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;nukneval.el&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
@@ -45,10 +177,10 @@ better feedback.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:140-1"&gt;
+&lt;li id="fn:141-1"&gt;
 &lt;p&gt;&lt;a href="https://emacsredux.com/about/" rel="noopener noreferrer" target="_blank"&gt;Bozhidar Batsov&lt;/a&gt; recently wrote a good
 post &lt;a href="https://emacsredux.com/blog/2026/03/25/reloading-emacs-lisp-code/" rel="noopener noreferrer" target="_blank"&gt;covering these sorts of
-issues&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:140-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+issues&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:141-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -277,17 +409,17 @@ modified to taste.&lt;/p&gt;</content>
     <title>binclock.el v1.12</title>
     <updated>2026-04-01T14:30:18+01:00</updated>
     <content type="html">&lt;p&gt;Some time in the late 1990s, after I'd been using GNU Emacs for a few
-years&lt;sup id="fnref:144-1"&gt;&lt;a class="footnote-ref" href="#fn:144-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I grabbed a copy of &lt;a href="https://www.oreilly.com/library/view/writing-gnu-emacs/9781449395056/" rel="noopener noreferrer" target="_blank"&gt;Writing GNU Emacs
+years&lt;sup id="fnref:145-1"&gt;&lt;a class="footnote-ref" href="#fn:145-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I grabbed a copy of &lt;a href="https://www.oreilly.com/library/view/writing-gnu-emacs/9781449395056/" rel="noopener noreferrer" target="_blank"&gt;Writing GNU Emacs
 Extensions&lt;/a&gt;.
 While I'd obviously created and added to and tinkered with my &lt;code&gt;~/.emacs&lt;/code&gt;
 some, I'd never written any non-trivial code. I feel it was around 1998 or
 1999 that I really started to get into trying to write actual extensions,
 thanks to that book.&lt;/p&gt;
 &lt;p&gt;I can't remember what the first complete package was. I &lt;em&gt;think&lt;/em&gt; it was
-actually &lt;code&gt;5x5.el&lt;/code&gt;&lt;sup id="fnref:144-2"&gt;&lt;a class="footnote-ref" href="#fn:144-2"&gt;2&lt;/a&gt;&lt;/sup&gt; but it might also have been
+actually &lt;code&gt;5x5.el&lt;/code&gt;&lt;sup id="fnref:145-2"&gt;&lt;a class="footnote-ref" href="#fn:145-2"&gt;2&lt;/a&gt;&lt;/sup&gt; but it might also have been
 &lt;a href="https://github.com/davep/binclock.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;binclock.el&lt;/code&gt;&lt;/a&gt;. Honestly, it's so
 long ago now that I don't have any good recollection and I don't have any
-record&lt;sup id="fnref:144-3"&gt;&lt;a class="footnote-ref" href="#fn:144-3"&gt;3&lt;/a&gt;&lt;/sup&gt;. All of which is to say, &lt;code&gt;binclock.el&lt;/code&gt; is one of my oldest bits
+record&lt;sup id="fnref:145-3"&gt;&lt;a class="footnote-ref" href="#fn:145-3"&gt;3&lt;/a&gt;&lt;/sup&gt;. All of which is to say, &lt;code&gt;binclock.el&lt;/code&gt; is one of my oldest bits
 of &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; code, so it seemed fair that while I'm
 cleaning things up, I should give it a tidy too.&lt;/p&gt;
 &lt;p&gt;For anyone curious: it's a very simple binary clock type of thing. It opens
@@ -302,15 +434,15 @@ for another 27.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:144-1"&gt;
-&lt;p&gt;I first met it on OS/2 of all places, in 1994, or thereabouts.&amp;#160;&lt;a class="footnote-backref" href="#fnref:144-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:145-1"&gt;
+&lt;p&gt;I first met it on OS/2 of all places, in 1994, or thereabouts.&amp;#160;&lt;a class="footnote-backref" href="#fnref:145-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:144-2"&gt;
-&lt;p&gt;Yes, the one that became &lt;code&gt;Tools &amp;gt; Games &amp;gt; 5x5&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:144-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:145-2"&gt;
+&lt;p&gt;Yes, the one that became &lt;code&gt;Tools &amp;gt; Games &amp;gt; 5x5&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:145-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:144-3"&gt;
+&lt;li id="fn:145-3"&gt;
 &lt;p&gt;If I was using version control at all then, it was probably just
-&lt;code&gt;rcs&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:144-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;code&gt;rcs&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:145-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -330,7 +462,7 @@ for another 27.&lt;/p&gt;
     <content type="html">&lt;p&gt;This bit of &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; absolutely comes from a more
 innocent time on the Internet. Looking at it, it seems I wrote the first
 version, at least as a proper package, back in 2001. It's very possible that
-I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:192-1"&gt;&lt;a class="footnote-ref" href="#fn:192-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
+I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:193-1"&gt;&lt;a class="footnote-ref" href="#fn:193-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
 some time before, so it might date from the late 1990s. While we weren't
 absolutely &lt;em&gt;innocent&lt;/em&gt; back then, the idea of a slightly-risky-looking URL
 wasn't quite so bad as it is now.&lt;/p&gt;
@@ -354,9 +486,9 @@ exists.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:192-1"&gt;
+&lt;li id="fn:193-1"&gt;
 &lt;p&gt;For a good chunk of my first decade of using Emacs, I carried a lot of
-personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:192-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:193-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -592,7 +724,7 @@ about Lisp: &lt;code&gt;defmacro&lt;/code&gt;. There's something about macros th
 like coding in Lisp, and which I cite as a &lt;em&gt;really good thing&lt;/em&gt; when asked
 why I like Lisp, but which I always seem to utterly fail to explain well.
 Macros feel like one of those things you just have to experience for
-yourself to really get&lt;sup id="fnref:180-1"&gt;&lt;a class="footnote-ref" href="#fn:180-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+yourself to really get&lt;sup id="fnref:181-1"&gt;&lt;a class="footnote-ref" href="#fn:181-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Now, thanks to this:&lt;/p&gt;
 &lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defmacro&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Generate a function to get the value of SETTING for the current blog.&amp;quot;&lt;/span&gt;
@@ -602,7 +734,7 @@ yourself to really get&lt;sup id="fnref:180-1"&gt;&lt;a class="footnote-ref" hre
 &lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore-default-%s&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;all those 7 functions can collapse to this&lt;sup id="fnref:180-2"&gt;&lt;a class="footnote-ref" href="#fn:180-2"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;all those 7 functions can collapse to this&lt;sup id="fnref:181-2"&gt;&lt;a class="footnote-ref" href="#fn:181-2"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-template&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;category-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -628,13 +760,13 @@ that legacy nonsense&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:180-1"&gt;
+&lt;li id="fn:181-1"&gt;
 &lt;p&gt;There was a time I would have said "grok" here but... well that's
-spoiled now.&amp;#160;&lt;a class="footnote-backref" href="#fnref:180-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+spoiled now.&amp;#160;&lt;a class="footnote-backref" href="#fnref:181-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:180-2"&gt;
+&lt;li id="fn:181-2"&gt;
 &lt;p&gt;I suppose I could reduce that to one "call" with a loop over a list of
-symbols, but that feels unnecessary here.&amp;#160;&lt;a class="footnote-backref" href="#fnref:180-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+symbols, but that feels unnecessary here.&amp;#160;&lt;a class="footnote-backref" href="#fnref:181-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -671,16 +803,16 @@ use &lt;code&gt;blogmore.el&lt;/code&gt; will have &lt;code&gt;rg&lt;/code&gt; i
 that and use it if it's available, otherwise fall back on &lt;code&gt;find&lt;/code&gt;/&lt;code&gt;grep&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;There's still some low-priority cleaning up I want to do around this; an
 obvious change I want to make being one where I want to collapse all cases
-of the same word (Tree vs tree, etc) into one "hit"&lt;sup id="fnref:142-1"&gt;&lt;a class="footnote-ref" href="#fn:142-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. For now though, as
+of the same word (Tree vs tree, etc) into one "hit"&lt;sup id="fnref:143-1"&gt;&lt;a class="footnote-ref" href="#fn:143-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. For now though, as
 always, it's working well enough for &lt;em&gt;my&lt;/em&gt; needs and this change fixed an
 obvious issue I ran into.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:142-1"&gt;
+&lt;li id="fn:143-1"&gt;
 &lt;p&gt;&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; itself takes care of this, but
 it would be nice to have the prompt in &lt;code&gt;blogmore.el&lt;/code&gt; also take this into
-account.&amp;#160;&lt;a class="footnote-backref" href="#fnref:142-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+account.&amp;#160;&lt;a class="footnote-backref" href="#fnref:143-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -986,7 +1118,7 @@ memory, well the price starts to get dangerously close to...&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The MacBook Air M5" src="https://blog.davep.org/attachments/2026/03/27/macbook-air.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;So, yeah, as of today, I've kind of come full circle; a decade on from that
 MacBook Air purchase I have a new sofa hacking machine coming in the shape
-of the new M5 MacBook Air&lt;sup id="fnref:189-1"&gt;&lt;a class="footnote-ref" href="#fn:189-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+of the new M5 MacBook Air&lt;sup id="fnref:190-1"&gt;&lt;a class="footnote-ref" href="#fn:190-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So this weekend will involve me digging out my "new macOS environment"
 checklist and working through it, getting a hacking environment up and going
 again. One thing I do want to do is follow that list but also write out a
@@ -999,11 +1131,11 @@ like I should be able to achieve everything I need using just
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:189-1"&gt;
+&lt;li id="fn:190-1"&gt;
 &lt;p&gt;I'm not a hardware nerd, so don't dive deep into this stuff. Despite
 what I said about the M2 Pro Mini still being there for heavy coding and
 video editing, it wouldn't surprise me to find out the Air is more than
-capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:189-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:190-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1015,120 +1147,5 @@ capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:189-1" title="
     <category term="MacBook"/>
     <category term="MacBook Air"/>
     <published>2026-03-27T14:12:21+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/03/26/github-copilot-wants-our-interaction.html</id>
-    <title>GitHub Copilot wants our interaction data</title>
-    <updated>2026-03-26T08:42:37+00:00</updated>
-    <content type="html">&lt;p&gt;I guess it was inevitable&lt;sup id="fnref:138-1"&gt;&lt;a class="footnote-ref" href="#fn:138-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, but yesterday GitHub
-&lt;a href="https://github.blog/news-insights/company-news/updates-to-github-copilot-interaction-data-usage-policy/" rel="noopener noreferrer" target="_blank"&gt;announced&lt;/a&gt;
-a new opt-out approach to learning from people's interactions with
-&lt;a href="https://blog.davep.org/tag/copilot/"&gt;Copilot&lt;/a&gt;. I don't have anything novel or insightful to say
-on this switch, and I'm sure folk with better-informed opinions have already
-rushed out posts and articles about this, but I did want to jot down just
-how curious I am to see this roll out.&lt;/p&gt;
-&lt;p&gt;For starters: for me this feels like one of those things that will get a lot
-of backlash, and in a day or so GitHub will say they're pausing rolling this
-out while they reevaluate this approach&lt;sup id="fnref:138-2"&gt;&lt;a class="footnote-ref" href="#fn:138-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. Then, eventually, they roll it
-out anyway after a "period of consultation with the community". That sort of
-thing.&lt;/p&gt;
-&lt;p&gt;I've not read further this morning, but before going to bed last night it
-wasn't a happy time in the comments section of &lt;a href="https://github.com/orgs/community/discussions/188488" rel="noopener noreferrer" target="_blank"&gt;the
-FAQ&lt;/a&gt;. I can also see
-why some would be cynical about this change, given the tone of some of the
-questions and answers in that FAQ. I'll hand it to them: they're pretty
-candid and honest with the FAQs, but kinda yikes too.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="A bad time in the FAQ" src="https://blog.davep.org/attachments/2026/03/26/thumbs-down.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Here's the key thing I'm curious about, and which I'll be thinking about and
-watching for movement on in the next few days: all the talk here seems to be
-about protecting the privacy of the proprietary code of businesses&lt;sup id="fnref:138-3"&gt;&lt;a class="footnote-ref" href="#fn:138-3"&gt;3&lt;/a&gt;&lt;/sup&gt;.
-That... is understandable, from a business point of view, from a commercial
-adoption point of view, from a &lt;em&gt;"we want all software engineering
-departments to use Copilot"&lt;/em&gt; point of view. But how the heck are they
-&lt;em&gt;really&lt;/em&gt; going to manage that?&lt;/p&gt;
-&lt;p&gt;In the comments in the FAQ &lt;a href="https://github.com/orgs/community/discussions/188488#discussioncomment-16317873" rel="noopener noreferrer" target="_blank"&gt;this explanation stood
-out&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;We do not train on the contents from any paid organization’s repos,
-regardless of whether a user is working in that repo with a Copilot Free,
-Pro, or Pro+ subscription. If a user’s GitHub account is a member of or
-outside collaborator with a paid organization, we exclude their
-interaction data from model training.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This seems somewhat unclear to me. Let's walk this one through for a moment:
-&lt;a href="https://github.com/davep" rel="noopener noreferrer" target="_blank"&gt;my GitHub account&lt;/a&gt; &lt;em&gt;is&lt;/em&gt; a member of a "paid
-organisation". My account is also my account, for my personal code, I've had
-it &lt;a href="https://blog.davep.org/2023/10/01/all-green-on-github.html"&gt;a long time&lt;/a&gt; and it's filled with
-a lot of FOSS repos and I keep adding more. So which scenario is the right
-one here?&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Because I'm currently a member of at least one "paid organisation" I'm
-   always opted-out of this training no matter how the opt in/out setting is
-   set and no matter what code I work on?&lt;/li&gt;
-&lt;li&gt;Because I'm currently a member of at least one "paid organisation" I
-   &lt;em&gt;can&lt;/em&gt; opt in when working on code that is from a repository which is
-   mine, but I'm opted out when I'm working on code from a repository
-   belonging to the paid organisation?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;I think it reads like it's #1. But then that seems rather odd to me because,
-if I go and look at my settings right now, I can elect to opt in/out of this
-training system. If the correct reading is #1 why not just disable that
-setting altogether and say below it that I'm opted-out because I'm part of a
-paid organisation?&lt;/p&gt;
-&lt;p&gt;Which sort of suggests we should perhaps read it as #2? If that, that raises
-all sorts of questions. How would Copilot know I'm working on code from such
-a repository? Sure, it's not impossible to infer if I am working within the
-context of a given repository, doing some fun stuff to work out the origin
-and so on, but it feels messy. It also feels like a scenario that could end
-up being incredibly leaky. It really would not be difficult to run into a
-scenario where I'm working on some &lt;a href="https://www.gnu.org/philosophy/categories.html" rel="noopener noreferrer" target="_blank"&gt;non-Free
-code&lt;/a&gt; but in an environment
-where the licence isn't clear, or where it appears that the licence&lt;sup id="fnref:138-4"&gt;&lt;a class="footnote-ref" href="#fn:138-4"&gt;4&lt;/a&gt;&lt;/sup&gt;
-would permit such training.&lt;/p&gt;
-&lt;div class="admonition admonition-note"&gt;
-&lt;div class="admonition-title"&gt;ℹ️ Note&lt;/div&gt;
-&lt;div class="admonition-content"&gt;
-&lt;p&gt;Editing to add: there is even &lt;a href="https://github.com/orgs/community/discussions/188488#discussioncomment-16316523" rel="noopener noreferrer" target="_blank"&gt;a
-comment&lt;/a&gt;
-where it is acknowledged that someone could be working in such a way that
-it's impossible to know the provenance of the code: &lt;em&gt;"Copilot ... can even
-work when you are not connected to any repo."&lt;/em&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Or... perhaps there's a #3, or a #4, or so on, that I've not even considered
-yet. The fact that software engineering departments suddenly have to start
-thinking about this issue (yes, I know, it's been a background issue for a
-while but this really drags it out into the open) is going to make for a few
-interesting weeks, assuming people care about where their code ends up.&lt;/p&gt;
-&lt;p&gt;Who knows. Perhaps, in some strange way, this &lt;em&gt;is&lt;/em&gt; how all software ends up
-being &lt;a href="https://www.gnu.org/philosophy/free-sw.html" rel="noopener noreferrer" target="_blank"&gt;Free&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:138-1"&gt;
-&lt;p&gt;And I think a bit of me is surprised that they weren't just doing it
-anyway.&amp;#160;&lt;a class="footnote-backref" href="#fnref:138-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:138-2"&gt;
-&lt;p&gt;This isn't a prediction, I'm just saying it feels like that sort of
-announcement.&amp;#160;&lt;a class="footnote-backref" href="#fnref:138-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:138-3"&gt;
-&lt;p&gt;It's not that simple, but to save getting into the deep detail...&amp;#160;&lt;a class="footnote-backref" href="#fnref:138-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:138-4"&gt;
-&lt;p&gt;I'm using licence here as shorthand for a lot of things to consider
-relating to who should have access to the code and how.&amp;#160;&lt;a class="footnote-backref" href="#fnref:138-4" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/03/26/github-copilot-wants-our-interaction.html"/>
-    <category term="AI"/>
-    <category term="AI"/>
-    <category term="Coding"/>
-    <category term="Copilot"/>
-    <category term="Free Software"/>
-    <category term="GitHub"/>
-    <published>2026-03-26T08:42:37+00:00</published>
   </entry>
 </feed>
