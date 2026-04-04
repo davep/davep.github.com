@@ -2,11 +2,116 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-04-04T10:50:22.715010+00:00</updated>
+  <updated>2026-04-04T18:27:16.992769+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/04/04/blogmore-el-v2-7.html</id>
+    <title>blogmore.el v2.7</title>
+    <updated>2026-04-04T19:24:39+01:00</updated>
+    <content type="html">&lt;p&gt;There's no question that the
+&lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;experiment&lt;/a&gt; that is
+&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; has resulted in me blogging more.
+Although my previous setup wasn't exactly all friction, there's something
+about "owning" most of the tools and really knowing how they work, and being
+able to quickly modify them so they work "just so", that makes me more
+inclined to quickly write something up.&lt;/p&gt;
+&lt;p&gt;I can see this if I look at the &lt;a href="https://blog.davep.org/archive/"&gt;numbers in the archive for this
+blog&lt;/a&gt;. In &lt;a href="https://blog.davep.org/2026/03/"&gt;March alone&lt;/a&gt; I wrote 43 posts; that's more
+than I wrote in any whole year, other than &lt;a href="https://blog.davep.org/2023/"&gt;2023&lt;/a&gt;. While I suspect
+this will start to calm down as work on BlogMore and
+&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; settles down, I sense
+I'll be writing a bit more often for some time to come.&lt;/p&gt;
+&lt;p&gt;Because of this I decided to do a little bit of housekeeping on the &lt;a href="https://github.com/davep/davep.github.com/tree/main/content/posts" rel="noopener noreferrer" target="_blank"&gt;posts
+directory&lt;/a&gt;
+in the blog's &lt;a href="https://github.com/davep/davep.github.com" rel="noopener noreferrer" target="_blank"&gt;source
+repository&lt;/a&gt;. Originally I had the
+Markdown source for every post all in one directory. Then last month &lt;a href="https://github.com/davep/davep.github.com/pull/59" rel="noopener noreferrer" target="_blank"&gt;I
+broke those down by
+year&lt;/a&gt;. Then earlier
+today, seeing how this year is going, &lt;a href="https://github.com/davep/davep.github.com/pull/137" rel="noopener noreferrer" target="_blank"&gt;I decided to break 2026 down by
+month&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Then I realised I had a problem in &lt;code&gt;blogmore.el&lt;/code&gt;. It assumed that the
+Markdown file for a new post (&lt;code&gt;blogmore-new&lt;/code&gt;) would always be created in a
+subdirectory named after the year, underneath the defined posts directory.
+Until today that was the case&lt;sup id="fnref:243-1"&gt;&lt;a class="footnote-ref" href="#fn:243-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, but now &lt;em&gt;I&lt;/em&gt; wanted it to work
+differently.&lt;/p&gt;
+&lt;p&gt;So this is why I'm making a second release in one day: &lt;a href="https://github.com/davep/blogmore.el/pull/45" rel="noopener noreferrer" target="_blank"&gt;I added the ability
+to configure the subdirectory where a new post is
+created&lt;/a&gt;. I've changed the
+default now so that it assumes the user wants the subdirectory to be
+&lt;code&gt;YYYY/MM/DD&lt;/code&gt; (because more granular feels like the right default). In my
+case I don't want that, I just want &lt;code&gt;YYYY/MM&lt;/code&gt;, but now I can configure that.
+The value that is set is a function that returns the name of the
+subdirectory, so in the case of my blog I have it as:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format-time-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%Y/%m/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;On the other hand, for my &lt;a href="https://seen-by.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;photoblog&lt;/a&gt; I want the
+full date as a subdirectory so I can leave it as the default. The whole
+&lt;code&gt;use-package&lt;/code&gt; for &lt;code&gt;blogmore&lt;/code&gt; now looks like:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;use-package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:ensure&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:defer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:vc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;:url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://github.com/davep/blogmore.el&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:rev&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:newest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:init&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;add-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;blogmore-new-post-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;&lt;/span&gt;&lt;span class="nv"&gt;end-it&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-work-on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blog.davep.org&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:custom&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-blogs&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blog.davep.org&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="c1"&gt;;; Root directory for posts.&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~/write/davep.github.com/content/posts/&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="c1"&gt;;; Subdirectory for new posts, relative to the root.&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format-time-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%Y/%m/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;seen-by.davep.dev&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="c1"&gt;;; Root directory for posts.&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~/write/seen-by/content/posts/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:bind&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Technically this is a breaking change because it bumps &lt;a href="https://github.com/davep/blogmore.el/blob/b80743391eedeb507c5b743c1af531701a2f858a/blogmore.el#L48-L86" rel="noopener noreferrer" target="_blank"&gt;the meaning of each
+"position" in the values within
+&lt;code&gt;blogmore-blogs&lt;/code&gt;&lt;/a&gt;.
+However, in my case, because I was only ever defining the blog name and the
+top-level directory for the posts (both mandatory), this didn't break
+anything; I also strongly suspect nobody else is using this so I very much
+doubt I'm messing with someone else's setup&lt;sup id="fnref:243-2"&gt;&lt;a class="footnote-ref" href="#fn:243-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. If I have I apologise; do
+let me know.&lt;/p&gt;
+&lt;p&gt;Anyway, all of this goes to explain why the heck I made two releases of the
+same package back to back in the same day. This is what happens when &lt;a href="https://www.metoffice.gov.uk/about-us/news-and-media/media-centre/weather-and-climate-news/2026/amber-wind-warning-for-easter" rel="noopener noreferrer" target="_blank"&gt;my
+namesake is having fun
+outside&lt;/a&gt;
+and so I just want to sit on the sofa, hack on some code, and watch the
+chaos in the garden.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:243-1"&gt;
+&lt;p&gt;For my blog, which again shows that &lt;code&gt;blogmore.el&lt;/code&gt; started as a quick
+hack for getting work done on my blog, but I also want to make it as
+configurable as possible.&amp;#160;&lt;a class="footnote-backref" href="#fnref:243-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:243-2"&gt;
+&lt;p&gt;Even if someone else &lt;em&gt;is&lt;/em&gt; using this I would suspect they hadn't
+configured anything more than I have.&amp;#160;&lt;a class="footnote-backref" href="#fnref:243-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/04/04/blogmore-el-v2-7.html"/>
+    <category term="Emacs"/>
+    <category term="BlogMore"/>
+    <category term="Emacs"/>
+    <category term="Emacs Lisp"/>
+    <category term="Lisp"/>
+    <category term="blogmore.el"/>
+    <category term="coding"/>
+    <category term="transient"/>
+    <published>2026-04-04T19:24:39+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/04/04/blogmore-el-v2-6.html</id>
     <title>blogmore.el v2.6</title>
@@ -24,7 +129,7 @@ it a go one day but not at the moment"&lt;/em&gt;.&lt;/p&gt;
 configuration&lt;/a&gt;, I found myself leaning
 into a command binding approach that does the whole &lt;em&gt;prefix-letter-letter&lt;/em&gt;
 thing. For reasons I can't actually remember I fell into the habit of using
-&lt;kbd&gt;F12&lt;/kbd&gt;&lt;sup id="fnref:135-1"&gt;&lt;a class="footnote-ref" href="#fn:135-1"&gt;1&lt;/a&gt;&lt;/sup&gt; as my chosen prefix key. As such, over the past 10 or so
+&lt;kbd&gt;F12&lt;/kbd&gt;&lt;sup id="fnref:241-1"&gt;&lt;a class="footnote-ref" href="#fn:241-1"&gt;1&lt;/a&gt;&lt;/sup&gt; as my chosen prefix key. As such, over the past 10 or so
 years (since I greatly overhauled my Emacs setup), I've got into setting up
 bindings for commands that follow this prefix convention.&lt;/p&gt;
 &lt;p&gt;So when I created &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; I
@@ -122,9 +227,9 @@ thing.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:135-1"&gt;
+&lt;li id="fn:241-1"&gt;
 &lt;p&gt;Yes, it is a bit out of the way on the keyboard, but so is
-&lt;kbd&gt;Esc&lt;/kbd&gt;. I find my muscle memory has no problem with it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:135-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;kbd&gt;Esc&lt;/kbd&gt;. I find my muscle memory has no problem with it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:241-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -155,7 +260,7 @@ before and it was really addictive as a way of hacking on code.&lt;/p&gt;
 helpful with things like a &lt;code&gt;defvar&lt;/code&gt; or a &lt;code&gt;defconst&lt;/code&gt;, if I was changing them
 up to try out new ways of doing things with the code I was working on; there
 I had to remember to get used to using &lt;code&gt;eval-defun&lt;/code&gt; (&lt;kbd&gt;C-M-x&lt;/kbd&gt;).
-Hardly a great problem, but something to keep in mind&lt;sup id="fnref:141-1"&gt;&lt;a class="footnote-ref" href="#fn:141-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+Hardly a great problem, but something to keep in mind&lt;sup id="fnref:242-1"&gt;&lt;a class="footnote-ref" href="#fn:242-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Pretty quickly, as I worked on longer packages, I found myself wanting to,
 in effect, unload a whole buffer of code and evaluate it again. From this
 desire came &lt;a href="https://github.com/davep/nukneval.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;nukneval.el&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
@@ -177,10 +282,10 @@ better feedback.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:141-1"&gt;
+&lt;li id="fn:242-1"&gt;
 &lt;p&gt;&lt;a href="https://emacsredux.com/about/" rel="noopener noreferrer" target="_blank"&gt;Bozhidar Batsov&lt;/a&gt; recently wrote a good
 post &lt;a href="https://emacsredux.com/blog/2026/03/25/reloading-emacs-lisp-code/" rel="noopener noreferrer" target="_blank"&gt;covering these sorts of
-issues&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:141-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+issues&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:242-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -310,7 +415,7 @@ via &lt;a href="https://textual.textualize.io/widgets/markdown/" rel="noopener n
 &lt;a href="https://hike.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Hike&lt;/a&gt;), and so also let it decide which extensions
 made most sense given the request. I've honestly never run into the idea of
 &lt;a href="https://python-markdown.github.io/extensions/meta_data/" rel="noopener noreferrer" target="_blank"&gt;metadata&lt;/a&gt; before,
-only ever dealing with or caring about frontmatter&lt;sup id="fnref:132-1"&gt;&lt;a class="footnote-ref" href="#fn:132-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+only ever dealing with or caring about frontmatter&lt;sup id="fnref:240-1"&gt;&lt;a class="footnote-ref" href="#fn:240-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;On the other hand, I will say this: I was cooking dinner when the report
 came in; I pointed Copilot at the issue and let it figure it out. After
 eating, clearing things away, and general post-dinner chilling, I dropped
@@ -319,10 +424,10 @@ out and fixed it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:132-1"&gt;
+&lt;li id="fn:240-1"&gt;
 &lt;p&gt;I guess technically they're the same thing, but here I mean I'm more
 used to the delimited YAML of frontmatter than whatever it is the &lt;code&gt;meta&lt;/code&gt;
-plugin was dealing with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:132-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+plugin was dealing with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:240-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -409,17 +514,17 @@ modified to taste.&lt;/p&gt;</content>
     <title>binclock.el v1.12</title>
     <updated>2026-04-01T14:30:18+01:00</updated>
     <content type="html">&lt;p&gt;Some time in the late 1990s, after I'd been using GNU Emacs for a few
-years&lt;sup id="fnref:145-1"&gt;&lt;a class="footnote-ref" href="#fn:145-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I grabbed a copy of &lt;a href="https://www.oreilly.com/library/view/writing-gnu-emacs/9781449395056/" rel="noopener noreferrer" target="_blank"&gt;Writing GNU Emacs
+years&lt;sup id="fnref:244-1"&gt;&lt;a class="footnote-ref" href="#fn:244-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I grabbed a copy of &lt;a href="https://www.oreilly.com/library/view/writing-gnu-emacs/9781449395056/" rel="noopener noreferrer" target="_blank"&gt;Writing GNU Emacs
 Extensions&lt;/a&gt;.
 While I'd obviously created and added to and tinkered with my &lt;code&gt;~/.emacs&lt;/code&gt;
 some, I'd never written any non-trivial code. I feel it was around 1998 or
 1999 that I really started to get into trying to write actual extensions,
 thanks to that book.&lt;/p&gt;
 &lt;p&gt;I can't remember what the first complete package was. I &lt;em&gt;think&lt;/em&gt; it was
-actually &lt;code&gt;5x5.el&lt;/code&gt;&lt;sup id="fnref:145-2"&gt;&lt;a class="footnote-ref" href="#fn:145-2"&gt;2&lt;/a&gt;&lt;/sup&gt; but it might also have been
+actually &lt;code&gt;5x5.el&lt;/code&gt;&lt;sup id="fnref:244-2"&gt;&lt;a class="footnote-ref" href="#fn:244-2"&gt;2&lt;/a&gt;&lt;/sup&gt; but it might also have been
 &lt;a href="https://github.com/davep/binclock.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;binclock.el&lt;/code&gt;&lt;/a&gt;. Honestly, it's so
 long ago now that I don't have any good recollection and I don't have any
-record&lt;sup id="fnref:145-3"&gt;&lt;a class="footnote-ref" href="#fn:145-3"&gt;3&lt;/a&gt;&lt;/sup&gt;. All of which is to say, &lt;code&gt;binclock.el&lt;/code&gt; is one of my oldest bits
+record&lt;sup id="fnref:244-3"&gt;&lt;a class="footnote-ref" href="#fn:244-3"&gt;3&lt;/a&gt;&lt;/sup&gt;. All of which is to say, &lt;code&gt;binclock.el&lt;/code&gt; is one of my oldest bits
 of &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; code, so it seemed fair that while I'm
 cleaning things up, I should give it a tidy too.&lt;/p&gt;
 &lt;p&gt;For anyone curious: it's a very simple binary clock type of thing. It opens
@@ -434,15 +539,15 @@ for another 27.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:145-1"&gt;
-&lt;p&gt;I first met it on OS/2 of all places, in 1994, or thereabouts.&amp;#160;&lt;a class="footnote-backref" href="#fnref:145-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:244-1"&gt;
+&lt;p&gt;I first met it on OS/2 of all places, in 1994, or thereabouts.&amp;#160;&lt;a class="footnote-backref" href="#fnref:244-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:145-2"&gt;
-&lt;p&gt;Yes, the one that became &lt;code&gt;Tools &amp;gt; Games &amp;gt; 5x5&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:145-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:244-2"&gt;
+&lt;p&gt;Yes, the one that became &lt;code&gt;Tools &amp;gt; Games &amp;gt; 5x5&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:244-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:145-3"&gt;
+&lt;li id="fn:244-3"&gt;
 &lt;p&gt;If I was using version control at all then, it was probably just
-&lt;code&gt;rcs&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:145-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;code&gt;rcs&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:244-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -462,7 +567,7 @@ for another 27.&lt;/p&gt;
     <content type="html">&lt;p&gt;This bit of &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; absolutely comes from a more
 innocent time on the Internet. Looking at it, it seems I wrote the first
 version, at least as a proper package, back in 2001. It's very possible that
-I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:193-1"&gt;&lt;a class="footnote-ref" href="#fn:193-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
+I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:249-1"&gt;&lt;a class="footnote-ref" href="#fn:249-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
 some time before, so it might date from the late 1990s. While we weren't
 absolutely &lt;em&gt;innocent&lt;/em&gt; back then, the idea of a slightly-risky-looking URL
 wasn't quite so bad as it is now.&lt;/p&gt;
@@ -486,9 +591,9 @@ exists.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:193-1"&gt;
+&lt;li id="fn:249-1"&gt;
 &lt;p&gt;For a good chunk of my first decade of using Emacs, I carried a lot of
-personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:193-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:249-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -724,7 +829,7 @@ about Lisp: &lt;code&gt;defmacro&lt;/code&gt;. There's something about macros th
 like coding in Lisp, and which I cite as a &lt;em&gt;really good thing&lt;/em&gt; when asked
 why I like Lisp, but which I always seem to utterly fail to explain well.
 Macros feel like one of those things you just have to experience for
-yourself to really get&lt;sup id="fnref:181-1"&gt;&lt;a class="footnote-ref" href="#fn:181-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+yourself to really get&lt;sup id="fnref:232-1"&gt;&lt;a class="footnote-ref" href="#fn:232-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Now, thanks to this:&lt;/p&gt;
 &lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defmacro&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Generate a function to get the value of SETTING for the current blog.&amp;quot;&lt;/span&gt;
@@ -734,7 +839,7 @@ yourself to really get&lt;sup id="fnref:181-1"&gt;&lt;a class="footnote-ref" hre
 &lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore-default-%s&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;all those 7 functions can collapse to this&lt;sup id="fnref:181-2"&gt;&lt;a class="footnote-ref" href="#fn:181-2"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;all those 7 functions can collapse to this&lt;sup id="fnref:232-2"&gt;&lt;a class="footnote-ref" href="#fn:232-2"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-template&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;post-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--setting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;category-maker-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -760,13 +865,13 @@ that legacy nonsense&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:181-1"&gt;
+&lt;li id="fn:232-1"&gt;
 &lt;p&gt;There was a time I would have said "grok" here but... well that's
-spoiled now.&amp;#160;&lt;a class="footnote-backref" href="#fnref:181-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+spoiled now.&amp;#160;&lt;a class="footnote-backref" href="#fnref:232-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:181-2"&gt;
+&lt;li id="fn:232-2"&gt;
 &lt;p&gt;I suppose I could reduce that to one "call" with a loop over a list of
-symbols, but that feels unnecessary here.&amp;#160;&lt;a class="footnote-backref" href="#fnref:181-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+symbols, but that feels unnecessary here.&amp;#160;&lt;a class="footnote-backref" href="#fnref:232-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -803,16 +908,16 @@ use &lt;code&gt;blogmore.el&lt;/code&gt; will have &lt;code&gt;rg&lt;/code&gt; i
 that and use it if it's available, otherwise fall back on &lt;code&gt;find&lt;/code&gt;/&lt;code&gt;grep&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;There's still some low-priority cleaning up I want to do around this; an
 obvious change I want to make being one where I want to collapse all cases
-of the same word (Tree vs tree, etc) into one "hit"&lt;sup id="fnref:143-1"&gt;&lt;a class="footnote-ref" href="#fn:143-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. For now though, as
+of the same word (Tree vs tree, etc) into one "hit"&lt;sup id="fnref:201-1"&gt;&lt;a class="footnote-ref" href="#fn:201-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. For now though, as
 always, it's working well enough for &lt;em&gt;my&lt;/em&gt; needs and this change fixed an
 obvious issue I ran into.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:143-1"&gt;
+&lt;li id="fn:201-1"&gt;
 &lt;p&gt;&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; itself takes care of this, but
 it would be nice to have the prompt in &lt;code&gt;blogmore.el&lt;/code&gt; also take this into
-account.&amp;#160;&lt;a class="footnote-backref" href="#fnref:143-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+account.&amp;#160;&lt;a class="footnote-backref" href="#fnref:201-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1079,73 +1184,5 @@ time to time &lt;del&gt;to time&lt;/del&gt;.&lt;/p&gt;</content>
     <category term="Python"/>
     <category term="BlogMore"/>
     <published>2026-03-27T16:26:47+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/03/27/macbook-air-m5.html</id>
-    <title>MacBook Air M5</title>
-    <updated>2026-03-27T14:12:21+00:00</updated>
-    <content type="html">&lt;p&gt;It's just over a month shy of being 10 years since &lt;a href="https://blog.davep.org/2016/04/28/i-now-own-a-macbook.html"&gt;I bought my first
-MacBook&lt;/a&gt;. As I mentioned at the time:
-I'd bought my first Mac about 10 months earlier than that, had got used to
-it, had grown to like the OS, and had need of a small and light hacking
-machine to use while doing a lot of train travel (and I &lt;em&gt;really&lt;/em&gt; did do &lt;a href="https://blog.davep.org/tag/virgin/"&gt;a
-lot of train travel after that&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;Fast forward a touch over 3 years and, by accident of a windfall due to work
-things, I ended up treating myself to a MacBook Pro. This was one of the
-last Intel models. It worked well and served as my main hack-at-home machine
-for quite a long time. I used it to code and edit videos and a bunch of
-other things. It sat there, on my desk, plugged into a couple of screens,
-and never really served as a portable machine.&lt;/p&gt;
-&lt;p&gt;Fast forward around 4 years and, having been using a MacBook Pro M1 for a
-while through where I worked then, I had a desire to get a M-chip Mac for
-personal use and settled on an M2 Pro Mac Mini. That thing was, and remains,
-a beast of a machine. It's set up here in my office right now and I'm sure
-will last me for some time to come.&lt;/p&gt;
-&lt;p&gt;The thing is, in the last 6 months, my home life has changed. I moved. I now
-share a place again. It's nice to sofa hack and hang out and all that "share
-a space with other people" stuff. To that end I've been using the Intel
-MacBook Pro again but I'm noticing that it's getting old now. It's not that
-it isn't coping with what I need it for -- far from it -- but having the
-fans kick in lots, and just the heat, and also the fact that the OS is stuck
-in the past because it's now a "legacy" machine... I sensed it was time for
-an upgrade.&lt;/p&gt;
-&lt;p&gt;A new MacBook Pro was an option, of course, but that feels like overkill for
-some sofa hacking. If I want to do any heavy video editing or any heavy
-coding the M2 Pro Mini is still the machine for the job. The new Neo looked
-really good too, but the entry-level storage seemed a bit stingy these days
-and once you bump up to the next level, while still stuck with the same
-memory, well the price starts to get dangerously close to...&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The MacBook Air M5" src="https://blog.davep.org/attachments/2026/03/27/macbook-air.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;So, yeah, as of today, I've kind of come full circle; a decade on from that
-MacBook Air purchase I have a new sofa hacking machine coming in the shape
-of the new M5 MacBook Air&lt;sup id="fnref:190-1"&gt;&lt;a class="footnote-ref" href="#fn:190-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;So this weekend will involve me digging out my "new macOS environment"
-checklist and working through it, getting a hacking environment up and going
-again. One thing I do want to do is follow that list but also write out a
-fresh copy, because this time around I want to see if I can get a good
-Python environment up and going minus &lt;a href="https://blog.davep.org/2022/11/05/python-and-macos.html"&gt;the use of
-pyenv&lt;/a&gt;. Not that
-&lt;a href="https://github.com/pyenv/pyenv" rel="noopener noreferrer" target="_blank"&gt;pyenv&lt;/a&gt; is a problem, at all, but I feel
-like I should be able to achieve everything I need using just
-&lt;a href="https://docs.astral.sh/uv/" rel="noopener noreferrer" target="_blank"&gt;uv&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:190-1"&gt;
-&lt;p&gt;I'm not a hardware nerd, so don't dive deep into this stuff. Despite
-what I said about the M2 Pro Mini still being there for heavy coding and
-video editing, it wouldn't surprise me to find out the Air is more than
-capable too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:190-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/03/27/macbook-air-m5.html"/>
-    <category term="Tech"/>
-    <category term="Mac"/>
-    <category term="Apple"/>
-    <category term="macOS"/>
-    <category term="MacBook"/>
-    <category term="MacBook Air"/>
-    <published>2026-03-27T14:12:21+00:00</published>
   </entry>
 </feed>
