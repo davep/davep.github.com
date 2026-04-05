@@ -8,7 +8,164 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 04 Apr 2026 18:56:41 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 05 Apr 2026 19:06:37 +0000</lastBuildDate>
+    <item>
+      <title>blogmore.el v3.1</title>
+      <link>https://blog.davep.org/2026/04/05/blogmore-el-v3-1.html</link>
+      <description>&lt;p&gt;When &lt;a href="https://blog.davep.org/2026/03/19/some-blogmore-elisp.html"&gt;I first started writing
+&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; it was just going to be
+a handful of commands that let me spin up a new blog post, and insert the
+odd link here and there when needed. Initially it only handled a single
+blog, and everything it did was based around how I lay my personal blog out,
+and was also very much geared to how I'd made
+&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; work.&lt;/p&gt;
+&lt;p&gt;But then I wanted to use it to edit both my personal blog &lt;em&gt;and&lt;/em&gt; my
+&lt;a href="https://seen-by.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;photoblog&lt;/a&gt;. So then I had to add support for
+configuring different ways of laying out posts for different blogs, etc.&lt;/p&gt;
+&lt;p&gt;Still, it was mostly written as a personal tool that worked for my stuff. I
+&lt;em&gt;tried&lt;/em&gt; to make it so that it was easy enough to configure (and let's be
+fair: it's for Emacs and written in &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt;, it's
+kind of hard to not be very configurable if you're happy to get your hands
+dirty with some coding), but there were still some parts of it that weren't
+as easy to change as I'd have liked.&lt;/p&gt;
+&lt;p&gt;Also, when I'd originally added the multi-blog configuration, I'd chosen a
+format for the list of blogs that was an assoc-list of pure lists wrapped by
+a &lt;code&gt;cl-defstruct&lt;/code&gt; to make for easier access. It worked well but was very
+positional in its nature.&lt;/p&gt;
+&lt;p&gt;So when &lt;a href="https://mastodon.me.uk/@andyc/116348654225582976" rel="noopener noreferrer" target="_blank"&gt;the request came
+in&lt;/a&gt; to be able to have
+better control over the name of the file when starting a new post, which
+meant I was going to need to rearrange the structure again, it was time to
+try and do something about it.&lt;/p&gt;
+&lt;p&gt;Which is how I'm now on v3.1 (yes, there was a
+&lt;a href="https://github.com/davep/blogmore.el/releases/tag/v3.0" rel="noopener noreferrer" target="_blank"&gt;v3.0&lt;/a&gt; but I quickly
+found something in that that needed fixing&lt;sup id="fnref:247-1"&gt;&lt;a class="footnote-ref" href="#fn:247-1"&gt;1&lt;/a&gt;&lt;/sup&gt;). It's a major version bump
+because I've totally changed how the &lt;code&gt;blogmore-blogs&lt;/code&gt; variable holds the
+data.&lt;/p&gt;
+&lt;p&gt;From now on I'm using
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/eieio/" rel="noopener noreferrer" target="_blank"&gt;EIEIO&lt;/a&gt; to
+create a class that holds all of the data for a given blog. This, I believe,
+makes the code easier to read and should also make it more resilient to the
+addition of any new properties. Also thanks to &lt;a href="https://www.gnu.org/software/emacs/manual/html_node/eieio/Customizing.html" rel="noopener noreferrer" target="_blank"&gt;how such classes can work
+with the customize
+system&lt;/a&gt;
+the &lt;code&gt;customize&lt;/code&gt; experience remains pretty much the same too.&lt;/p&gt;
+&lt;p&gt;Personally I don't use the &lt;code&gt;customize&lt;/code&gt; UI, instead I declare everything
+via &lt;code&gt;use-package&lt;/code&gt;. As of the time of writing my declaration for &lt;code&gt;blogmore&lt;/code&gt;
+looks like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;use-package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:ensure&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:defer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:vc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;:url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://github.com/davep/blogmore.el&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:rev&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:newest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:init&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;add-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;blogmore-new-post-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;&lt;/span&gt;&lt;span class="nv"&gt;end-it&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-work-on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blog.davep.org&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:custom&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-blogs&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-blog&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;:title&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blog.davep.org&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;:posts-directory&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~/write/davep.github.com/content/posts/&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;:post-subdirectory-function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format-time-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%Y/%m/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-blog&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;:title&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;seen-by.davep.dev&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;:posts-directory&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~/write/seen-by/content/posts/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:bind&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;There's a bunch of other changes and tweaks under the hood in this release
+too. All of these should come together to make &lt;code&gt;blogmore.el&lt;/code&gt; a little more
+configurable than it was before. I think, to get the best out of it, anyone
+wanting to configure it "just so" for their purposes will still have to do a
+little bit of work, which makes me want to spend some time soon writing some
+proper documentation, complete with examples of how you might achieve
+different things.&lt;/p&gt;
+&lt;p&gt;One big change I've made under the hood is to the code that is used when you
+insert a link to a post (&lt;code&gt;blogmore-link-post&lt;/code&gt;). When this runs it lets me
+pick a file in your filesystem that is a post from my currently-active blog.
+Once it has the filename it needs to turn it into a root-relative link. So
+this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;~/write/davep.github.com/content/posts/2026/04/01/2026-04-01-foo.md
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;needs to become:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/2026/04/01/foo.html
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Until now I just did some regexp faffing that took the &lt;code&gt;2026-04-01-&lt;/code&gt; at the
+start of the filename and swapped each &lt;code&gt;-&lt;/code&gt; for &lt;code&gt;/&lt;/code&gt;. Nice and easy. Simple
+enough to code up and get things working a few weeks back. Not at all
+flexible.&lt;/p&gt;
+&lt;p&gt;So as a proof-of-concept of how sophisticated someone could get with
+configuring this I've changed &lt;code&gt;blogmore-default-post-maker-function&lt;/code&gt; from
+this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defcustom&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-default-post-maker-function&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;replace-regexp-in-string&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;bos&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;group&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;digit&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;group&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;digit&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;group&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;digit&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;\\1/\\2/\\3/&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;file-name-base&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;file-name-sans-extension&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Default function to generate a link for a blog post from its filename.&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:type&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;function&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:group&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;blogmore&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and turned it into this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defcustom&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-default-post-maker-function&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%s/%s&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format-time-string&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%Y/%m/%d&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;with-temp-buffer&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;insert-file-contents-literally&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;parse-iso8601-time-string&lt;/span&gt;
+&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--clean-time-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--get-frontmatter-property&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;replace-regexp-in-string&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;bol&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;digit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;digit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;digit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;file-name-base&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Default function to generate a link for a blog post from its filename.&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:type&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;function&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:group&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;blogmore&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;So whereas before I was simply messing with the file's name, now I'm loading
+the &lt;code&gt;date&lt;/code&gt; frontmatter from the chosen file and using &lt;em&gt;that&lt;/em&gt; to create the
+date portion of the path in the URL that I use on my blog. The benefit here
+is that someone might want to keep the date portion of the path in the URL,
+but never want it as part of the Markdown source file's name, and so this
+change means they can call the file anything they want; it doesn't look at
+that but instead uses the actual date from the post's frontmatter.&lt;/p&gt;
+&lt;p&gt;I think this nicely demonstrates that, especially thanks to how powerful
+Emacs and Emacs Lisp are, it's fairly easy to make &lt;code&gt;blogmore.el&lt;/code&gt; work just
+the way you want. I &lt;em&gt;think&lt;/em&gt; I've provided almost all the hooks necessary to
+configure it all sorts of ways, but if you do happen to use it and run into
+something I might have missed, &lt;a href="https://github.com/davep/blogmore.el/issues" rel="noopener noreferrer" target="_blank"&gt;let me
+know&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:247-1"&gt;
+&lt;p&gt;I have at least two slightly different &lt;code&gt;date&lt;/code&gt; formats going on in my
+Markdown and Emacs' &lt;code&gt;parse-iso8601-time-string&lt;/code&gt; is kind of picky. So I
+&lt;a href="https://github.com/davep/blogmore.el/pull/57/changes" rel="noopener noreferrer" target="_blank"&gt;added a function to try and clean that
+up&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:247-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/04/05/blogmore-el-v3-1.html</guid>
+      <category>Emacs</category>
+      <category>BlogMore</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>blogmore.el</category>
+      <category>coding</category>
+      <category>EIEIO</category>
+      <pubDate>Sun, 05 Apr 2026 20:04:44 +0100</pubDate>
+    </item>
     <item>
       <title>BlogMore v2.9.0</title>
       <link>https://blog.davep.org/2026/04/04/blogmore-v2-9-0.html</link>
@@ -586,7 +743,7 @@ for another 27.&lt;/p&gt;
       <description>&lt;p&gt;This bit of &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; absolutely comes from a more
 innocent time on the Internet. Looking at it, it seems I wrote the first
 version, at least as a proper package, back in 2001. It's very possible that
-I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:250-1"&gt;&lt;a class="footnote-ref" href="#fn:250-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
+I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:251-1"&gt;&lt;a class="footnote-ref" href="#fn:251-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
 some time before, so it might date from the late 1990s. While we weren't
 absolutely &lt;em&gt;innocent&lt;/em&gt; back then, the idea of a slightly-risky-looking URL
 wasn't quite so bad as it is now.&lt;/p&gt;
@@ -610,9 +767,9 @@ exists.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:250-1"&gt;
+&lt;li id="fn:251-1"&gt;
 &lt;p&gt;For a good chunk of my first decade of using Emacs, I carried a lot of
-personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:250-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:251-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1094,68 +1251,6 @@ handles the stripping of reference links from the description, plus the
       <category>BlogMore</category>
       <category>Markdown</category>
       <pubDate>Sat, 28 Mar 2026 14:48:29 +0000</pubDate>
-    </item>
-    <item>
-      <title>Hello MacBook Air (again)</title>
-      <link>https://blog.davep.org/2026/03/28/hello-macbook-air-again.html</link>
-      <description>&lt;p&gt;As I &lt;a href="https://blog.davep.org/2026/03/27/macbook-air-m5.html"&gt;mentioned yesterday&lt;/a&gt; I decided it was
-time to update my portable/sofa hacking setup and treat myself to a nice new
-MacBook Air. It's here (well, I picked it up yesterday evening after
-dinner).&lt;/p&gt;
-&lt;p&gt;&lt;img alt="MacBook Air M5" src="https://blog.davep.org/attachments/2026/03/28/macbook-air.jpeg#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;So far I'm &lt;em&gt;very&lt;/em&gt; pleased with the choice. It's light but feels sturdy. The
-screen is very pleasing to read. The keyboard is really nice to type on
-(albeit I do prefer the old MacBook Pro, but on the other hand this is a bit
-more quiet, which matters if you're sharing a living room with someone
-else). It's fast. So fast! It's also so quiet! So very quiet! And cool too.
-The Intel-based MacBook Pro would get very warm as I worked; this just stays
-cold.&lt;/p&gt;
-&lt;p&gt;The really great part though is the battery life. Depending on what I was
-doing, with the Intel Pro, I'd get a couple of hours off the cable. On the
-other hand, last night, I spent a few hours setting things up on the Air and
-I barely noticed the battery drop at all. This, more than anything, is what
-I wanted.&lt;/p&gt;
-&lt;p&gt;Well, okay, I wanted the speed, the quiet, the lack of heat, and the long
-battery life.&lt;/p&gt;
-&lt;p&gt;Oh, and the rather lovely "Midnight" colour. It's not black, but it's close
-enough.&lt;/p&gt;
-&lt;p&gt;The setup itself went pretty well, although for some odd reason I ran into
-problems when setting up Emacs. These days I always use &lt;a href="https://github.com/d12frosted/homebrew-emacs-plus" rel="noopener noreferrer" target="_blank"&gt;Emacs Plus via
-Homebrew&lt;/a&gt; and have never
-had issues. Weirdly though, this time, if I did the installation method that
-builds locally all sorts of things went wrong. I don't know if I missed a
-step or something but I did what I normally do when dropping Emacs on a Mac.
-So I started again with the pre-built approach and that worked better.&lt;/p&gt;
-&lt;p&gt;Even then though, I ran into problems with &lt;a href="https://github.com/davep/.emacs.d" rel="noopener noreferrer" target="_blank"&gt;my setup downloading
-everything&lt;/a&gt;. Things &lt;em&gt;mostly&lt;/em&gt; worked but I
-kept seeing all sorts of issues relating to &lt;code&gt;git-gutter&lt;/code&gt; and
-&lt;code&gt;git-gutter-fringe&lt;/code&gt; not being able to load (despite the fact they'd
-downloaded fine, from what I could see).&lt;/p&gt;
-&lt;p&gt;In the end I gave up trying to get it to all work from scratch and
-hand-removed and then hand-installed via &lt;code&gt;package-list-packages&lt;/code&gt; instead.
-Not the most scientific of approaches, and one I'm sure I'll regret at some
-point in the future, but at least I got to a point where I could get other
-stuff done on the machine.&lt;/p&gt;
-&lt;p&gt;All of which is to say: if you're reading this blog post I got my Emacs and
-git environment to the point I can write things and push them out to the
-world. At which point that's the really important stuff up and going and I
-can call this "set up".&lt;/p&gt;
-&lt;p&gt;Once I'm happy that's working, I think it's time to revisit my Emacs setup.
-While I don't think it needs another &lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;complete
-restart&lt;/a&gt;, I think it might
-be time to at least look through what I have loading in and perhaps remove
-some things I don't use any more (for example, I always carry around &lt;code&gt;vterm&lt;/code&gt;
-from the days when I was testing every possible terminal I could get my
-hands on -- &lt;a href="https://blog.davep.org/2024/03/28/goodbye-textualize.html"&gt;that's less important to me these
-days&lt;/a&gt;.)&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/03/28/hello-macbook-air-again.html</guid>
-      <category>Tech</category>
-      <category>Mac</category>
-      <category>Apple</category>
-      <category>macOS</category>
-      <category>MacBook</category>
-      <category>MacBook Air</category>
-      <pubDate>Sat, 28 Mar 2026 10:30:09 +0000</pubDate>
     </item>
   </channel>
 </rss>
