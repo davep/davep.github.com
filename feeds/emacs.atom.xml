@@ -2,11 +2,84 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-04-06T16:05:42.148748+00:00</updated>
+  <updated>2026-04-06T19:45:52.144192+00:00</updated>
   <link href="https://blog.davep.org/feeds/emacs.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Emacs" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/04/06/expando-el-v1-5.html</id>
+    <title>expando.el v1.5</title>
+    <updated>2026-04-06T20:43:29+01:00</updated>
+    <content type="html">&lt;p&gt;While I have been doing a &lt;em&gt;lot&lt;/em&gt; of hacking on
+&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt;, I haven't forgotten
+my plan to revisit and refresh some of my older personal packages. This
+evening I've paid some attention to
+&lt;a href="https://github.com/davep/expando.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;expando.el&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This started life a &lt;em&gt;long&lt;/em&gt; time ago, as part of my grab-bag of handy
+functions that got carried around and copied from machine to machine, until
+I did a big tidy-up of everything back in 2017 and turned various things
+into packages that I managed via a self-hosted (well, GitHub pages hosted)
+package index.&lt;/p&gt;
+&lt;p&gt;It's a pretty simple but very useful bit of code that lets me quickly
+macroexpand a sexp at &lt;code&gt;point&lt;/code&gt; and pretty print it into a display window.
+I've often found it indispensable when it came to writing my own macros.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="expando in action" src="https://blog.davep.org/attachments/2026/04/06/expando.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;This release simply adds a &lt;code&gt;lexical-binding&lt;/code&gt; header to the file, and also
+adds a &lt;code&gt;q&lt;/code&gt; key binding to the resulting view window so that it can be
+quickly and easily closed.&lt;/p&gt;
+&lt;p&gt;Also, as with all my other personal packages, I've swapped away from using
+&lt;a href="https://blog.davep.org/delpa/"&gt;delpa&lt;/a&gt; to simply using &lt;code&gt;:vc&lt;/code&gt; to pull it in.&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;use-package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;expando&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:vc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;:url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://github.com/davep/expando.el&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:rev&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:newest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:bind&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;C-c e&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;expando-macro&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or perhaps I should say...&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;progn&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;use-package-vc-install&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;expando&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;:url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://github.com/davep/expando.el&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;defvar&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;use-package--warning69&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;keyword&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;err&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;msg&lt;/span&gt;
+&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%s/%s: %s&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;expando&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;keyword&lt;/span&gt;
+&lt;span class="w"&gt;                      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error-message-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;err&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;display-warning&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;use-package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;msg&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:error&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;condition-case&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;err&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;progn&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;fboundp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;expando-macro&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;nil&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;autoload&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;&lt;/span&gt;&lt;span class="nv"&gt;expando-macro&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;expando&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let*&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;C-c e&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;key&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;101&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="w"&gt;             &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;kmap&lt;/span&gt;
+&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;symbolp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;symbol-value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;                  &lt;/span&gt;&lt;span class="nv"&gt;global-map&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;             &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;kdesc&lt;/span&gt;
+&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stringp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;key-description&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;                    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;symbolp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;nil&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;             &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;binding&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;lookup-key&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;kmap&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;key&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;bind-key&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let&lt;/span&gt;
+&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;entry&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;assoc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;kdesc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;personal-keybindings&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;               &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;details&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;&lt;/span&gt;&lt;span class="nv"&gt;expando-macro&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;numberp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;binding&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;binding&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;entry&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;setcdr&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;entry&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;details&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;add-to-list&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;personal-keybindings&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;kdesc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;details&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;define-key&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;kmap&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;key&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;&lt;/span&gt;&lt;span class="nv"&gt;expando-macro&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;debug&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ne"&gt;error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;funcall&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;use-package--warning69&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:catch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;err&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/04/06/expando-el-v1-5.html"/>
+    <category term="Emacs"/>
+    <category term="Emacs"/>
+    <category term="Emacs Lisp"/>
+    <category term="Lisp"/>
+    <category term="coding"/>
+    <category term="expando.el"/>
+    <category term="defmacro"/>
+    <published>2026-04-06T20:43:29+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/04/06/blogmore-el-v4-0.html</id>
     <title>blogmore.el v4.0</title>
@@ -136,7 +209,7 @@ meant I was going to need to rearrange the structure again, it was time to
 try and do something about it.&lt;/p&gt;
 &lt;p&gt;Which is how I'm now on v3.1 (yes, there was a
 &lt;a href="https://github.com/davep/blogmore.el/releases/tag/v3.0" rel="noopener noreferrer" target="_blank"&gt;v3.0&lt;/a&gt; but I quickly
-found something in that that needed fixing&lt;sup id="fnref:248-1"&gt;&lt;a class="footnote-ref" href="#fn:248-1"&gt;1&lt;/a&gt;&lt;/sup&gt;). It's a major version bump
+found something in that that needed fixing&lt;sup id="fnref:249-1"&gt;&lt;a class="footnote-ref" href="#fn:249-1"&gt;1&lt;/a&gt;&lt;/sup&gt;). It's a major version bump
 because I've totally changed how the &lt;code&gt;blogmore-blogs&lt;/code&gt; variable holds the
 data.&lt;/p&gt;
 &lt;p&gt;From now on I'm using
@@ -244,11 +317,11 @@ know&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:248-1"&gt;
+&lt;li id="fn:249-1"&gt;
 &lt;p&gt;I have at least two slightly different &lt;code&gt;date&lt;/code&gt; formats going on in my
 Markdown and Emacs' &lt;code&gt;parse-iso8601-time-string&lt;/code&gt; is kind of picky. So I
 &lt;a href="https://github.com/davep/blogmore.el/pull/57/changes" rel="noopener noreferrer" target="_blank"&gt;added a function to try and clean that
-up&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:248-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+up&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:249-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -741,7 +814,7 @@ for another 27.&lt;/p&gt;
     <content type="html">&lt;p&gt;This bit of &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; absolutely comes from a more
 innocent time on the Internet. Looking at it, it seems I wrote the first
 version, at least as a proper package, back in 2001. It's very possible that
-I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:252-1"&gt;&lt;a class="footnote-ref" href="#fn:252-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
+I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:253-1"&gt;&lt;a class="footnote-ref" href="#fn:253-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
 some time before, so it might date from the late 1990s. While we weren't
 absolutely &lt;em&gt;innocent&lt;/em&gt; back then, the idea of a slightly-risky-looking URL
 wasn't quite so bad as it is now.&lt;/p&gt;
@@ -765,9 +838,9 @@ exists.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:252-1"&gt;
+&lt;li id="fn:253-1"&gt;
 &lt;p&gt;For a good chunk of my first decade of using Emacs, I carried a lot of
-personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:252-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:253-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1311,103 +1384,5 @@ support modified dates?&amp;#160;&lt;a class="footnote-backref" href="#fnref:219
     <category term="Lisp"/>
     <category term="blogmore.el"/>
     <published>2026-03-19T15:10:28+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2022/08/23/i-must-be-getting-old.html</id>
-    <title>I must be getting old</title>
-    <updated>2022-08-23T21:31:00+01:00</updated>
-    <content type="html">&lt;p&gt;A little earlier this evening I got &lt;a href="https://github.com/davep/boxquote.el/issues/7" rel="noopener noreferrer" target="_blank"&gt;a new
-issue&lt;/a&gt; raised against
-&lt;a href="https://github.com/davep/boxquote.el/issues/7" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;boxquote.el&lt;/code&gt;&lt;/a&gt;. Apparently
-Emacs 29 (I'm running 28.1 as of the time of writing) is moaning about the
-likes of:&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;setf&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;point&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;some-location-or-other&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;and&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;setf&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;buffer-string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;There's a whole background to why I've tended to code like that, that stems
-from enjoying Common Lisp, my days reading (and sometimes posting to)
-&lt;code&gt;comp.lang.lisp&lt;/code&gt;, and I &lt;em&gt;think&lt;/em&gt; some of the stuff &lt;a href="https://en.wikipedia.org/wiki/Erik_Naggum" rel="noopener noreferrer" target="_blank"&gt;Erik
-Naggum&lt;/a&gt; wrote back in the day. I
-won't get into it all now; I'm not sure I can even remember a lot of how I
-got there given how far back it was.&lt;/p&gt;
-&lt;p&gt;But...&lt;/p&gt;
-&lt;p&gt;Wanting to quickly get to the bottom of why the above was suddenly an issue,
-I dived into the &lt;code&gt;NEWS&lt;/code&gt; file and &lt;a href="https://github.com/emacs-mirror/emacs/blob/67a15ce1564ce35ece24a19f00e03a36e0575746/etc/NEWS#L2585" rel="noopener noreferrer" target="_blank"&gt;found the
-following&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;** Many seldom-used generalized variables have been made obsolete.
-Emacs has a number of rather obscure generalized variables defined,
-that, for instance, allowed you to say things like:
-
-   (setf (point-min) 4)
-
-These never caught on and have been made obsolete.  The form above,
-for instance, is the same as saying
-
-   (narrow-to-region 4 (point-max))
-
-The following generalized variables have been made obsolete:
-&amp;#39;buffer-file-name&amp;#39;, &amp;#39;buffer-local-value&amp;#39;, &amp;#39;buffer-modified-p&amp;#39;,
-&amp;#39;buffer-name&amp;#39;, &amp;#39;buffer-string&amp;#39;, &amp;#39;buffer-substring&amp;#39;, &amp;#39;current-buffer&amp;#39;,
-&amp;#39;current-column&amp;#39;, &amp;#39;current-global-map&amp;#39;, &amp;#39;current-input-mode&amp;#39;,
-&amp;#39;current-local-map&amp;#39;, &amp;#39;current-window-configuration&amp;#39;,
-&amp;#39;default-file-modes&amp;#39;, &amp;#39;documentation-property&amp;#39;, &amp;#39;frame-height&amp;#39;,
-&amp;#39;frame-visible-p&amp;#39;, &amp;#39;global-key-binding&amp;#39;, &amp;#39;local-key-binding&amp;#39;, &amp;#39;mark&amp;#39;,
-&amp;#39;mark-marker&amp;#39;, &amp;#39;marker-position&amp;#39;, &amp;#39;mouse-position&amp;#39;, &amp;#39;point&amp;#39;,
-&amp;#39;point-marker&amp;#39;, &amp;#39;point-max&amp;#39;, &amp;#39;point-min&amp;#39;, &amp;#39;read-mouse-position&amp;#39;,
-&amp;#39;screen-height&amp;#39;, &amp;#39;screen-width&amp;#39;, &amp;#39;selected-frame&amp;#39;, &amp;#39;selected-screen&amp;#39;,
-&amp;#39;selected-window&amp;#39;, &amp;#39;standard-case-table&amp;#39;, &amp;#39;syntax-table&amp;#39;,
-&amp;#39;visited-file-modtime&amp;#39;, &amp;#39;window-height&amp;#39;, &amp;#39;window-width&amp;#39;, and
-&amp;#39;x-get-secondary-selection&amp;#39;.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;As suggested above... this is my thing, this is how I coded some Elisp
-stuff. Look through much of my &lt;a href="https://elisp.dev/" rel="noopener noreferrer" target="_blank"&gt;Emacs Lisp code&lt;/a&gt; and
-you'll find me &lt;code&gt;setf&lt;/code&gt;ing stuff all over the place.&lt;/p&gt;
-&lt;p&gt;Apparently my style is "obscure". Actually, I'm kinda okay with that if I'm
-honest.&lt;/p&gt;
-&lt;p&gt;This is going to be a bit of a pain in the arse; I'm going to have to go
-through a whole bunch of code and make it "less obscure", at some point.&lt;/p&gt;
-&lt;p&gt;But...&lt;/p&gt;
-&lt;p&gt;This isn't the part that had me thinking I must be getting old. Oh no. The
-&lt;code&gt;NEWS&lt;/code&gt; file had another little surprise in store:&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;** The quickurl.el library is now obsolete.
-Use &amp;#39;abbrev&amp;#39;, &amp;#39;skeleton&amp;#39; or &amp;#39;tempo&amp;#39; instead.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;That.... that's me that is. Well, it's one of the me things. If you run
-&lt;code&gt;about-emacs&lt;/code&gt;, dive into &lt;code&gt;Authors&lt;/code&gt;, and search for my name, in any copy of
-GNU Emacs from the last decade or two, you'll find this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Dave Pearson: wrote 5x5.el quickurl.el
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;a href="https://github.com/davep/quickurl.el/blob/master/quickurl.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;quickurl.el&lt;/code&gt;&lt;/a&gt;
-was a package I wrote back in the late 1990s, back when I was a very heavy
-user of &lt;a href="https://en.wikipedia.org/wiki/Usenet" rel="noopener noreferrer" target="_blank"&gt;Usenet&lt;/a&gt;, and often found
-myself posting the same URLs in posts again and again; especially in
-&lt;code&gt;comp.lang.clipper&lt;/code&gt;. As a fairly quick hack I wrote the code so that I could
-very quickly insert often-used URLs.&lt;/p&gt;
-&lt;p&gt;Some time later, I got an email from the
-&lt;a href="https://en.wikipedia.org/wiki/Free_Software_Foundation" rel="noopener noreferrer" target="_blank"&gt;FSF&lt;/a&gt; (I actually
-think it was from &lt;a href="https://en.wikipedia.org/wiki/Richard_Stallman" rel="noopener noreferrer" target="_blank"&gt;RMS&lt;/a&gt; --
-but that's an &lt;a href="https://en.wikipedia.org/wiki/Mbox" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;mbox&lt;/code&gt;&lt;/a&gt; I've long ago
-lost -- or a backup of it might be in storage back in England, on a DVD),
-asking if I wanted to contribute it to Emacs proper. This seemed like an odd
-thing to add to Emacs but, sure, why the hell not?&lt;/p&gt;
-&lt;p&gt;And so I had my second contribution to a body of code I used a lot (the
-first being &lt;a href="https://github.com/davep/5x5.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;5x5.el&lt;/code&gt;&lt;/a&gt; -- which itself was
-my first ever attempt at writing some non-trivial Elisp code).&lt;/p&gt;
-&lt;p&gt;So... yeah... here we are. I'm now old enough to have written some Emacs
-Lisp code, had it required by the FSF for inclusion in Emacs, had it live in
-there for something like two decades, and then &lt;em&gt;become obselete&lt;/em&gt;!&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2022/08/23/i-must-be-getting-old.html"/>
-    <category term="Emacs"/>
-    <category term="Emacs"/>
-    <category term="Lisp"/>
-    <category term="Emacs Lisp"/>
-    <published>2022-08-23T21:31:00+01:00</published>
   </entry>
 </feed>
