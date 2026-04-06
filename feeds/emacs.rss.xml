@@ -8,7 +8,104 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 05 Apr 2026 19:06:37 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 Apr 2026 16:05:42 +0000</lastBuildDate>
+    <item>
+      <title>blogmore.el v4.0</title>
+      <link>https://blog.davep.org/2026/04/06/blogmore-el-v4-0.html</link>
+      <description>&lt;p&gt;Despite having bumped it from 2.x to 3.x
+&lt;a href="https://blog.davep.org/2026/04/05/blogmore-el-v3-1.html"&gt;yesterday&lt;/a&gt;, I'm calling
+&lt;a href="https://github.com/davep/blogmore.el/releases/tag/v4.0" rel="noopener noreferrer" target="_blank"&gt;v4.0&lt;/a&gt; on
+&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; today. There's a good
+reason for this though. While tinkering with some of the configuration
+yesterday, and also answering a configuration question last night, I
+realised that it made sense to make some of the internals into public
+utility functions.&lt;/p&gt;
+&lt;p&gt;Now, sure, &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; doesn't really have &lt;em&gt;internals&lt;/em&gt; in
+the private function sense, but I've always liked the approach that a
+&lt;code&gt;package--&lt;/code&gt; prefix communicates &lt;em&gt;"internal, might go away"&lt;/em&gt; vs &lt;code&gt;package-&lt;/code&gt;
+which tells me &lt;em&gt;"this is a stable part of the API of this package"&lt;/em&gt;. With
+this in mind I've always tried to write my code using this convention. I did
+this with &lt;code&gt;blogmore.el&lt;/code&gt; too and a &lt;em&gt;lot&lt;/em&gt; of the code had the &lt;code&gt;blogmore--&lt;/code&gt;
+prefix.&lt;/p&gt;
+&lt;p&gt;There's plenty of code in there that someone might want to make use of, if
+they wanted to add their own commands, or do fun things with the
+configuration. So with this in mind I've "promoted" a bunch of code to being
+"public" and, in that case, I feel this deserves another major version
+bump&lt;sup id="fnref:247-1"&gt;&lt;a class="footnote-ref" href="#fn:247-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Things that are now part of the "public" interface include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;blogmore-clean-time-string&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;blogmore-get-frontmatter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;blogmore-remove-frontmatter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;blogmore-set-frontmatter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;blogmore-slug&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;blogmore-toggle-frontmatter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;blogmore-with-post&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Each one is documented via its docstring (just a quick
+&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;h&lt;/kbd&gt; &lt;kbd&gt;f&lt;/kbd&gt; &lt;code&gt;function-name&lt;/code&gt; &lt;kbd&gt;RET&lt;/kbd&gt;
+away) and hopefully is pretty self-explanatory.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;blogmore-with-post&lt;/code&gt; is especially handy as it provides a quick and easy way
+of pulling information from a post file. So something like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-with-post&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~/write/davep.github.com/content/posts/2026/04/2026-04-05-blogmore-el-v3-1.md&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-get-frontmatter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-get-frontmatter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;resulting in:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore.el v3.1&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;2026-04-05 20:04:44+0100&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Meaning that this snippet from &lt;a href="https://blog.davep.org/2026/04/05/blogmore-el-v3-1.html"&gt;yesterday's
+post&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;with-temp-buffer&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;insert-file-contents-literally&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;parse-iso8601-time-string&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--clean-time-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--get-frontmatter-property&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;becomes:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-with-post&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;parse-iso8601-time-string&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-clean-time-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-get-frontmatter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Not massively different, but it reads better and now all the calls are to
+the "public API" of the package.&lt;/p&gt;
+&lt;p&gt;Not all the changes are "promoted internals". I've also added a
+&lt;code&gt;blogmore-remove-tag&lt;/code&gt; command (and also added it to the transient menu).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Removing a tag" src="https://blog.davep.org/attachments/2026/04/06/remove-tag.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;I've also changed the way that &lt;code&gt;blogmore-add-tag&lt;/code&gt; works so that, now, if
+it's called from the transient, it immediately goes back to the tag input
+prompt, allowing for another tag to be immediately selected (you can quit
+out of this with &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;g&lt;/kbd&gt;). Removal of a tag works in a
+similar way, making things a lot quicker.&lt;/p&gt;
+&lt;p&gt;I've also added some extra tests too, which makes it even easier for me to
+make future changes with confidence. The more I work with it the more I
+appreciate that
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_mono/ert.html" rel="noopener noreferrer" target="_blank"&gt;ERT&lt;/a&gt; is
+available.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:247-1"&gt;
+&lt;p&gt;Ordinarily it shouldn't matter as the public interface isn't changing,
+but some of the "internal" functions had been mentioned as options for
+configuration.&amp;#160;&lt;a class="footnote-backref" href="#fnref:247-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/04/06/blogmore-el-v4-0.html</guid>
+      <category>Emacs</category>
+      <category>BlogMore</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>blogmore.el</category>
+      <category>coding</category>
+      <pubDate>Mon, 06 Apr 2026 17:04:16 +0100</pubDate>
+    </item>
     <item>
       <title>blogmore.el v3.1</title>
       <link>https://blog.davep.org/2026/04/05/blogmore-el-v3-1.html</link>
@@ -39,7 +136,7 @@ meant I was going to need to rearrange the structure again, it was time to
 try and do something about it.&lt;/p&gt;
 &lt;p&gt;Which is how I'm now on v3.1 (yes, there was a
 &lt;a href="https://github.com/davep/blogmore.el/releases/tag/v3.0" rel="noopener noreferrer" target="_blank"&gt;v3.0&lt;/a&gt; but I quickly
-found something in that that needed fixing&lt;sup id="fnref:247-1"&gt;&lt;a class="footnote-ref" href="#fn:247-1"&gt;1&lt;/a&gt;&lt;/sup&gt;). It's a major version bump
+found something in that that needed fixing&lt;sup id="fnref:248-1"&gt;&lt;a class="footnote-ref" href="#fn:248-1"&gt;1&lt;/a&gt;&lt;/sup&gt;). It's a major version bump
 because I've totally changed how the &lt;code&gt;blogmore-blogs&lt;/code&gt; variable holds the
 data.&lt;/p&gt;
 &lt;p&gt;From now on I'm using
@@ -147,11 +244,11 @@ know&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:247-1"&gt;
+&lt;li id="fn:248-1"&gt;
 &lt;p&gt;I have at least two slightly different &lt;code&gt;date&lt;/code&gt; formats going on in my
 Markdown and Emacs' &lt;code&gt;parse-iso8601-time-string&lt;/code&gt; is kind of picky. So I
 &lt;a href="https://github.com/davep/blogmore.el/pull/57/changes" rel="noopener noreferrer" target="_blank"&gt;added a function to try and clean that
-up&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:247-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+up&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:248-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -636,7 +733,7 @@ for another 27.&lt;/p&gt;
       <description>&lt;p&gt;This bit of &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; absolutely comes from a more
 innocent time on the Internet. Looking at it, it seems I wrote the first
 version, at least as a proper package, back in 2001. It's very possible that
-I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:251-1"&gt;&lt;a class="footnote-ref" href="#fn:251-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
+I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:252-1"&gt;&lt;a class="footnote-ref" href="#fn:252-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
 some time before, so it might date from the late 1990s. While we weren't
 absolutely &lt;em&gt;innocent&lt;/em&gt; back then, the idea of a slightly-risky-looking URL
 wasn't quite so bad as it is now.&lt;/p&gt;
@@ -660,9 +757,9 @@ exists.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:251-1"&gt;
+&lt;li id="fn:252-1"&gt;
 &lt;p&gt;For a good chunk of my first decade of using Emacs, I carried a lot of
-personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:251-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:252-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1294,90 +1391,6 @@ there for something like two decades, and then &lt;em&gt;become obselete&lt;/em&
       <category>Lisp</category>
       <category>Emacs Lisp</category>
       <pubDate>Tue, 23 Aug 2022 21:31:00 +0100</pubDate>
-    </item>
-    <item>
-      <title>My journey to the dark side is complete</title>
-      <link>https://blog.davep.org/2020/06/14/my-journey-to-the-dark-side-is-complete.html</link>
-      <description>&lt;p&gt;Ever since the whole business of "light mode" and "dark mode" really kicked
-off in the mobile OS world, I've been a fan of the dark modes. On both
-Android and iOS/iPadOS, when apps became available with dark modes, I'd
-switch to it. When the operating systems themselves adopted the switch,
-that's what I went for. As well as having a love for all things black
-(anyone who knows me personally will know that), I think it just looks
-better on mobile devices. I can't quite say why, but it just works best for
-me.&lt;/p&gt;
-&lt;p&gt;So, when macOS got a supported dark mode, I instantly switched it on,
-obviously. Then, within a day, I switched it back to light mode.
-Surprisingly it just didn't work for me, and I wasn't sure why. Since then
-I've tried living with it a few times and it's rarely lasted more than a few
-hours. There was something, something I couldn't quite put my finger on,
-that didn't sit right.&lt;/p&gt;
-&lt;p&gt;Last Monday I decided to give it another go. This time, however, I thought
-I'd figured it out. The "problem" was Emacs! As mentioned &lt;a href="https://blog.davep.org/2020/01/11/where-i-live-and-work.html"&gt;back in
-January&lt;/a&gt;,
-for as long as I've used it (so since the mid-1990s), my Emacs has always
-had a light background -- probably because that's how it came "out of the
-box" (I'm talking Emacs in graphical mode here; I started with it on &lt;a href="https://en.wikipedia.org/wiki/OS/2#1994%E2%80%931996:_The_%22Warp%22_years" rel="noopener noreferrer" target="_blank"&gt;OS/2
-Warp&lt;/a&gt;
-and then moved to a GNU/Linux X-based desktop). I figured that the contrast
-between the colour scheme of Emacs, and the rest of the machine, was the
-issue here.&lt;/p&gt;
-&lt;p&gt;I spend most of my working day either in Emacs, or in
-&lt;a href="https://www.iterm2.com/" rel="noopener noreferrer" target="_blank"&gt;iTerm2&lt;/a&gt; -- often rapidly switching between the
-two. I've always run iTerm2 in the usual dark background mode with light
-text. So I figured the problem was having a dark OS desktop, dark terminal,
-and then a light editing environment. Eventually that'd feel wrong.&lt;/p&gt;
-&lt;p&gt;So I decided that, for the first time in about 25 years, I should give Emacs
-a go with a dark mode. Taking a quick look at &lt;a href="https://pawelbx.github.io/emacs-theme-gallery/" rel="noopener noreferrer" target="_blank"&gt;popular dark
-themes&lt;/a&gt; I noticed
-&lt;a href="https://github.com/purcell/color-theme-sanityinc-tomorrow" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;sanityinc-tomorrow-night&lt;/code&gt;&lt;/a&gt;
-looked easy on the eye, so I gave that a go (actually, I gave each of the
-themes in that set a go, &lt;a href="https://github.com/davep/.emacs.d/commit/07f1c4c4c8c0c476f1e5e34845a834956d2be0c4" rel="noopener noreferrer" target="_blank"&gt;initially starting with
-&lt;code&gt;sanityinc-tomorrow-eighties&lt;/code&gt;&lt;/a&gt;,
-but I finally settled on &lt;code&gt;sanityinc-tomorrow-night&lt;/code&gt;).&lt;/p&gt;
-&lt;p&gt;To start with it didn't look too good; not because of a problem with the
-theme itself, but because, over time, I'd made changes and tweaks to my
-setup that assumed I'd be using my usual light theme. After some dabbling
-and tinkering and trying things out, I got it looking "just so".&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Screenshot 2020-06-14 at 19.40.43.png" src="https://blog.davep.org/attachments/2020/06/14/Screenshot 2020-06-14 at 19.40.43.png" /&gt;&lt;/p&gt;
-&lt;p&gt;Having got that working, I then thought it would be nice to be able to have
-Emacs -- at least on restart -- adapt to me switching between dark and light
-mode on macOS. It turns out that detecting if macOS is in dark mode is easy
-enough, the command &lt;code&gt;defaults read -g AppleInterfaceStyle&lt;/code&gt; will emit &lt;code&gt;Dark&lt;/code&gt;
-if in dark mode. So, knowing that, I updated &lt;a href="https://github.com/davep/is-a.el/blob/2b3eb99a213454536d789325f01477e3ce7eec87/is-a.el#L67-L70" rel="noopener noreferrer" target="_blank"&gt;my personal package for
-checking things about the environment that Emacs is in to use that
-information&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;defconst&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;is-a-macOS-dark-mode-window-p&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;and&lt;/span&gt;
-&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nv"&gt;is-a-macOS-window-p&lt;/span&gt;
-&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;string=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;shell-command-to-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;defaults read -g AppleInterfaceStyle&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Dark\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Are we running in a macOS window in dark mode?&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;So, as of now, my Emacs setup is such that, &lt;a href="https://github.com/davep/.emacs.d/blob/f8389ac8f93b66c614ef82705929b86f01efc130/init.d/init-style.el#L15-L24" rel="noopener noreferrer" target="_blank"&gt;if I'm in graphical mode on
-macOS and I'm in dark mode, Emacs will use a dark theme, otherwise it'll do
-what it did before -- with a light background in a graphical mode and a more
-Borland-a-like blue background when in CHUI
-mode&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This seems to have made a difference. Almost one week on my work Macbook is
-still in dark mode, and I've switched both of my personal Macbooks, and my
-iMac, into dark mode too. I think it's sticking this time. Next up is to
-give some serious consideration to darkening the web in general. Only now am
-I noticing just how damn bright most of it is!&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;As a slight aside to the above, I've also made one other change to Emacs:
-I've finally dropped the display of scroll bars. In the themes I'm using
-they didn't look so great, appearing to be distracting. For the past 25
-years I've had the scrollbars there, but never actually &lt;em&gt;used&lt;/em&gt; them; all
-they've ever done is serve as a visual aid to where I am in a file. Thing
-is, I'm not sure I ever really pay that much attention to that either. So,
-as a test, I've also been running with them turned off and, so far, I'm
-really not noticing them been gone.&lt;/p&gt;
-&lt;p&gt;The habits we form that we convince ourselves make sense...&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2020/06/14/my-journey-to-the-dark-side-is-complete.html</guid>
-      <category>Emacs</category>
-      <category>Emacs</category>
-      <pubDate>Sun, 14 Jun 2020 20:00:00 +0100</pubDate>
     </item>
   </channel>
 </rss>
