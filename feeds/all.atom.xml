@@ -2,11 +2,90 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-04-08T15:56:58.074630+00:00</updated>
+  <updated>2026-04-09T08:30:53.054435+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/04/09/blogmore-v2-11-0.html</id>
+    <title>BlogMore v2.11.0</title>
+    <updated>2026-04-09T08:42:34+01:00</updated>
+    <content type="html">&lt;p&gt;After adding the streak display to the stats &lt;a href="https://blog.davep.org/2026/04/07/blogmore-v2-10-0.html"&gt;a couple of days
+back&lt;/a&gt;, I got a little more obsessed with
+knowing what sort of runs of days of posting to the blog I had. I even said
+in that post:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It almost makes me want to do a whole-blog-lifetime version of it, or
+perhaps some sort of more calendar-oriented version of the archive.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Despite saying that I fancied the idea of that calendar-type view, first off
+I got to thinking it would be interesting to see a table of my 10 longest
+streaks. So &lt;a href="https://github.com/davep/blogmore/pull/369" rel="noopener noreferrer" target="_blank"&gt;that got added&lt;/a&gt; and
+can now be found in the &lt;a href="https://blog.davep.org/stats/"&gt;stats page&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A table of my 10 longest streaks" src="https://blog.davep.org/attachments/2026/04/09/streak-table.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;Having added that, I kept thinking about the whole-blog visual view of
+"here's the whole time of the blog, and here are the days you posted". I did
+think it might be interesting to use the same style and layout as the streak
+display -- perhaps something that would look like &lt;a href="https://blog.davep.org/attachments/2023/10/01/contributions.png"&gt;my whole contribution
+history on GitHub&lt;/a&gt; that I wrote
+about &lt;a href="https://blog.davep.org/2023/10/01/all-green-on-github.html"&gt;back in 2023&lt;/a&gt; -- but the
+problem with that is it's tricky to make it work well on all display types.
+I needed something that would collapse better on smaller displays.&lt;/p&gt;
+&lt;p&gt;So I decided that &lt;a href="https://github.com/davep/blogmore/issues/372" rel="noopener noreferrer" target="_blank"&gt;a more conventional calendar
+display&lt;/a&gt; might work better.
+While &lt;a href="https://github.com/davep/blogmore/pull/373" rel="noopener noreferrer" target="_blank"&gt;it took a bit of work to get it to really land as I
+wanted&lt;/a&gt;, it turned out pretty
+much how I wanted.&lt;/p&gt;
+&lt;p&gt;So now there is a &lt;a href="https://blogmore.davep.dev/configuration/#with_calendar" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;with_calendar&lt;/code&gt; configuration
+option&lt;/a&gt; that, if
+set to &lt;code&gt;true&lt;/code&gt;, will add a calendar link at the top of the site. By default
+it looks like this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The default calendar view" src="https://blog.davep.org/attachments/2026/04/09/calendar-backward.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;If it looks a little unconventional at first glance, that's because it is. I
+wanted something that started with the most recent month in which there's a
+post, and which then worked backwards. This way I can see things as a proper
+history. But I can also see that this might seem odd to some people. Given
+this, I've also added a
+&lt;a href="https://blogmore.davep.dev/configuration/#forward_calendar" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;forward_calendar&lt;/code&gt;&lt;/a&gt;
+configuration option that can be used (when set to &lt;code&gt;true&lt;/code&gt;), to flip the
+calendar into a more normal flow.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The alternative calendar view" src="https://blog.davep.org/attachments/2026/04/09/calendar-forward.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;As you might expect, the calendar links to other parts of the site: clicking
+on a day with a post takes you to the archive for that day, clicking on a
+month name where there are posts in a month takes you to the archive for
+that month, and the same again for a year title.&lt;/p&gt;
+&lt;p&gt;I'm pretty pleased with the result. In testing it seems nicely responsive to
+different display types and I'm also finding it to be yet another
+interesting way to discover older posts (and get a sense of when I was
+encouraged to post going back over the last 11 years of this particular
+blog&lt;sup id="fnref:253-1"&gt;&lt;a class="footnote-ref" href="#fn:253-1"&gt;1&lt;/a&gt;&lt;/sup&gt;).&lt;/p&gt;
+&lt;p&gt;One final little feature I've added is a small enhancement to the read time
+that can appear on each post. While it's long since been possible &lt;a href="https://blogmore.davep.dev/configuration/#with_read_time" rel="noopener noreferrer" target="_blank"&gt;to decide
+if you want it there or
+not&lt;/a&gt;, the
+calculation itself has been hard-wired to the assumption that 200 wpm is the
+reading speed of the reader. I've now added
+&lt;a href="https://blogmore.davep.dev/configuration/#read_time_wpm" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;read_time_wpm&lt;/code&gt;&lt;/a&gt;
+as a configuration option so you can set it to suit your own taste.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:253-1"&gt;
+&lt;p&gt;I have other, much older, blogs out there on the net. One day I might
+merge them with this one and back-fill the whole thing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:253-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/04/09/blogmore-v2-11-0.html"/>
+    <category term="Coding"/>
+    <category term="BlogMore"/>
+    <category term="Markdown"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="coding"/>
+    <published>2026-04-09T08:42:34+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/04/08/quiz-el-v1-7.html</id>
     <title>quiz.el v1.7</title>
@@ -372,7 +451,7 @@ meant I was going to need to rearrange the structure again, it was time to
 try and do something about it.&lt;/p&gt;
 &lt;p&gt;Which is how I'm now on v3.1 (yes, there was a
 &lt;a href="https://github.com/davep/blogmore.el/releases/tag/v3.0" rel="noopener noreferrer" target="_blank"&gt;v3.0&lt;/a&gt; but I quickly
-found something in that that needed fixing&lt;sup id="fnref:253-1"&gt;&lt;a class="footnote-ref" href="#fn:253-1"&gt;1&lt;/a&gt;&lt;/sup&gt;). It's a major version bump
+found something in that that needed fixing&lt;sup id="fnref:254-1"&gt;&lt;a class="footnote-ref" href="#fn:254-1"&gt;1&lt;/a&gt;&lt;/sup&gt;). It's a major version bump
 because I've totally changed how the &lt;code&gt;blogmore-blogs&lt;/code&gt; variable holds the
 data.&lt;/p&gt;
 &lt;p&gt;From now on I'm using
@@ -480,11 +559,11 @@ know&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:253-1"&gt;
+&lt;li id="fn:254-1"&gt;
 &lt;p&gt;I have at least two slightly different &lt;code&gt;date&lt;/code&gt; formats going on in my
 Markdown and Emacs' &lt;code&gt;parse-iso8601-time-string&lt;/code&gt; is kind of picky. So I
 &lt;a href="https://github.com/davep/blogmore.el/pull/57/changes" rel="noopener noreferrer" target="_blank"&gt;added a function to try and clean that
-up&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:253-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+up&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:254-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1087,7 +1166,7 @@ for another 27.&lt;/p&gt;
     <content type="html">&lt;p&gt;This bit of &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; absolutely comes from a more
 innocent time on the Internet. Looking at it, it seems I wrote the first
 version, at least as a proper package, back in 2001. It's very possible that
-I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:257-1"&gt;&lt;a class="footnote-ref" href="#fn:257-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
+I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:258-1"&gt;&lt;a class="footnote-ref" href="#fn:258-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
 some time before, so it might date from the late 1990s. While we weren't
 absolutely &lt;em&gt;innocent&lt;/em&gt; back then, the idea of a slightly-risky-looking URL
 wasn't quite so bad as it is now.&lt;/p&gt;
@@ -1111,9 +1190,9 @@ exists.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:257-1"&gt;
+&lt;li id="fn:258-1"&gt;
 &lt;p&gt;For a good chunk of my first decade of using Emacs, I carried a lot of
-personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:257-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:258-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1164,50 +1243,5 @@ yet.&lt;/p&gt;</content>
     <category term="coding"/>
     <category term="eg.el"/>
     <published>2026-03-31T21:10:58+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/03/31/thinks-el-v1-13.html</id>
-    <title>thinks.el v1.13</title>
-    <updated>2026-03-31T19:35:16+01:00</updated>
-    <content type="html">&lt;p&gt;Given the recent spate of &lt;a href="https://blog.davep.org/tag/blogmore-el/"&gt;hacking on some Emacs Lisp&lt;/a&gt;,
-I've got a real taste for hacking on some more. Or, more to the point,
-revisiting some of the packages I have in &lt;a href="https://melpa.org/#/" rel="noopener noreferrer" target="_blank"&gt;Melpa&lt;/a&gt; and
-tidying them up where necessary.&lt;/p&gt;
-&lt;p&gt;The main thing I'll need to address is cutting back on &lt;a href="https://blog.davep.org/2022/08/23/i-must-be-getting-old.html"&gt;all my old &lt;code&gt;setf&lt;/code&gt;
-ways&lt;/a&gt;. I liked that approach to
-doing things, it made lots of sense and felt elegant; sadly the Emacs
-maintainers didn't seem to agree.&lt;/p&gt;
-&lt;p&gt;So... kicking this off I've released v1.13 of
-&lt;a href="https://github.com/davep/thinks.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;thinks.el&lt;/code&gt;&lt;/a&gt;. This is a bit of nonsense
-I wrote back in the days when Usenet was still pretty busy and &lt;em&gt;the&lt;/em&gt; place
-to be (well, okay, back in 2000 when I was still hanging out on Usenet). The
-package itself lets you quickly and easily...&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;. o O ( ...write some text and then mark it all and then run a command and )
-      ( have it turned into something that looks a little like a thought   )
-      ( bubble.                                                            )
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;It has some variations on how the bubble looks, and also lets you use
-&lt;code&gt;customize&lt;/code&gt; to tweak the characters to use, and also has an "extra silly"
-mode too.&lt;/p&gt;
-&lt;p&gt;Updating this wasn't too bad. Mostly just a case of turning some instances
-of &lt;code&gt;(setf (point) ...)&lt;/code&gt; into &lt;code&gt;(goto-char ...)&lt;/code&gt;, and also modifying one
-instance of &lt;code&gt;incf&lt;/code&gt; to be &lt;code&gt;cl-incf&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Honestly, I don't know how useful this package is to anyone anymore. Most
-folk don't even know what Usenet is these days, and all the "social" places
-seem to favour non-monospaced fonts, meaning the bubbles would look pretty
-terrible anyway.&lt;/p&gt;
-&lt;p&gt;On the other hand, it seems a shame to not update it, and perhaps someone
-somewhere still uses it to make some pithy parenthetical remark, possibly
-about &lt;a href="https://en.wikipedia.org/wiki/Eternal_September" rel="noopener noreferrer" target="_blank"&gt;September never
-ending&lt;/a&gt;.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/03/31/thinks-el-v1-13.html"/>
-    <category term="Emacs"/>
-    <category term="Emacs"/>
-    <category term="Emacs Lisp"/>
-    <category term="Lisp"/>
-    <category term="coding"/>
-    <category term="thinks.el"/>
-    <published>2026-03-31T19:35:16+01:00</published>
   </entry>
 </feed>

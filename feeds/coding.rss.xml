@@ -8,7 +8,85 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 08 Apr 2026 15:56:58 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Apr 2026 08:30:53 +0000</lastBuildDate>
+    <item>
+      <title>BlogMore v2.11.0</title>
+      <link>https://blog.davep.org/2026/04/09/blogmore-v2-11-0.html</link>
+      <description>&lt;p&gt;After adding the streak display to the stats &lt;a href="https://blog.davep.org/2026/04/07/blogmore-v2-10-0.html"&gt;a couple of days
+back&lt;/a&gt;, I got a little more obsessed with
+knowing what sort of runs of days of posting to the blog I had. I even said
+in that post:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It almost makes me want to do a whole-blog-lifetime version of it, or
+perhaps some sort of more calendar-oriented version of the archive.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Despite saying that I fancied the idea of that calendar-type view, first off
+I got to thinking it would be interesting to see a table of my 10 longest
+streaks. So &lt;a href="https://github.com/davep/blogmore/pull/369" rel="noopener noreferrer" target="_blank"&gt;that got added&lt;/a&gt; and
+can now be found in the &lt;a href="https://blog.davep.org/stats/"&gt;stats page&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A table of my 10 longest streaks" src="https://blog.davep.org/attachments/2026/04/09/streak-table.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;Having added that, I kept thinking about the whole-blog visual view of
+"here's the whole time of the blog, and here are the days you posted". I did
+think it might be interesting to use the same style and layout as the streak
+display -- perhaps something that would look like &lt;a href="https://blog.davep.org/attachments/2023/10/01/contributions.png"&gt;my whole contribution
+history on GitHub&lt;/a&gt; that I wrote
+about &lt;a href="https://blog.davep.org/2023/10/01/all-green-on-github.html"&gt;back in 2023&lt;/a&gt; -- but the
+problem with that is it's tricky to make it work well on all display types.
+I needed something that would collapse better on smaller displays.&lt;/p&gt;
+&lt;p&gt;So I decided that &lt;a href="https://github.com/davep/blogmore/issues/372" rel="noopener noreferrer" target="_blank"&gt;a more conventional calendar
+display&lt;/a&gt; might work better.
+While &lt;a href="https://github.com/davep/blogmore/pull/373" rel="noopener noreferrer" target="_blank"&gt;it took a bit of work to get it to really land as I
+wanted&lt;/a&gt;, it turned out pretty
+much how I wanted.&lt;/p&gt;
+&lt;p&gt;So now there is a &lt;a href="https://blogmore.davep.dev/configuration/#with_calendar" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;with_calendar&lt;/code&gt; configuration
+option&lt;/a&gt; that, if
+set to &lt;code&gt;true&lt;/code&gt;, will add a calendar link at the top of the site. By default
+it looks like this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The default calendar view" src="https://blog.davep.org/attachments/2026/04/09/calendar-backward.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;If it looks a little unconventional at first glance, that's because it is. I
+wanted something that started with the most recent month in which there's a
+post, and which then worked backwards. This way I can see things as a proper
+history. But I can also see that this might seem odd to some people. Given
+this, I've also added a
+&lt;a href="https://blogmore.davep.dev/configuration/#forward_calendar" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;forward_calendar&lt;/code&gt;&lt;/a&gt;
+configuration option that can be used (when set to &lt;code&gt;true&lt;/code&gt;), to flip the
+calendar into a more normal flow.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The alternative calendar view" src="https://blog.davep.org/attachments/2026/04/09/calendar-forward.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;As you might expect, the calendar links to other parts of the site: clicking
+on a day with a post takes you to the archive for that day, clicking on a
+month name where there are posts in a month takes you to the archive for
+that month, and the same again for a year title.&lt;/p&gt;
+&lt;p&gt;I'm pretty pleased with the result. In testing it seems nicely responsive to
+different display types and I'm also finding it to be yet another
+interesting way to discover older posts (and get a sense of when I was
+encouraged to post going back over the last 11 years of this particular
+blog&lt;sup id="fnref:253-1"&gt;&lt;a class="footnote-ref" href="#fn:253-1"&gt;1&lt;/a&gt;&lt;/sup&gt;).&lt;/p&gt;
+&lt;p&gt;One final little feature I've added is a small enhancement to the read time
+that can appear on each post. While it's long since been possible &lt;a href="https://blogmore.davep.dev/configuration/#with_read_time" rel="noopener noreferrer" target="_blank"&gt;to decide
+if you want it there or
+not&lt;/a&gt;, the
+calculation itself has been hard-wired to the assumption that 200 wpm is the
+reading speed of the reader. I've now added
+&lt;a href="https://blogmore.davep.dev/configuration/#read_time_wpm" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;read_time_wpm&lt;/code&gt;&lt;/a&gt;
+as a configuration option so you can set it to suit your own taste.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:253-1"&gt;
+&lt;p&gt;I have other, much older, blogs out there on the net. One day I might
+merge them with this one and back-fill the whole thing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:253-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/04/09/blogmore-v2-11-0.html</guid>
+      <category>Coding</category>
+      <category>BlogMore</category>
+      <category>Markdown</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>coding</category>
+      <pubDate>Thu, 09 Apr 2026 08:42:34 +0100</pubDate>
+    </item>
     <item>
       <title>BlogMore v2.10.0</title>
       <link>https://blog.davep.org/2026/04/07/blogmore-v2-10-0.html</link>
@@ -961,72 +1039,6 @@ new idea and off I go again.&lt;/p&gt;
       <category>LLM</category>
       <category>Python</category>
       <pubDate>Wed, 11 Mar 2026 20:39:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Even more BlogMore</title>
-      <link>https://blog.davep.org/2026/03/10/even-more-blogmore.html</link>
-      <description>&lt;p&gt;While the additions have, for sure, slowed down, I'm still tinkering away
-with &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;. Recent changes stem from the
-fact that someone else has been mad enough to want to experiment with
-rebuilding their blog with it too, which, if I'm honest, is massively
-helpful with the ongoing GitHub Copilot experiment. Somehow it feels a
-little different, ganging up with the agent to implement changes for someone
-else's benefit.&lt;/p&gt;
-&lt;p&gt;Recent changes include:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Tweaking the size and layout of the "social" icons that appear in the
-  sidebar (this one was for my benefit)&lt;/li&gt;
-&lt;li&gt;Making it possible to customise the title for the socials section in the
-  sidebar (also for my benefit)&lt;/li&gt;
-&lt;li&gt;Providing &lt;a href="https://blogmore.davep.dev/configuration/#post_path" rel="noopener noreferrer" target="_blank"&gt;control over the path used for
-  posts&lt;/a&gt; -- this one
-  was a request that made a ton of sense, it's at this point it stops being
-  a tool for me and starts being a more general tool&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Next up is the first breaking change where I'm going to remove a feature.
-This came from my very initial experiment last month, where I was
-concentrating purely on building a tool for my blog and my blog alone. I'd
-made it such that the &lt;code&gt;/attachments&lt;/code&gt; directory in the content directory had
-special status, and it would be copied over to the output directory in full.
-Oddly, however, this never made it into the documentation.&lt;/p&gt;
-&lt;p&gt;Meanwhile, the &lt;code&gt;/extras&lt;/code&gt; directory &lt;em&gt;also&lt;/em&gt; had special status with its
-content, full hierarchy included, being copied over but &lt;em&gt;moved up one level&lt;/em&gt;
-in the output. So, for example, &lt;code&gt;extras/humans.txt&lt;/code&gt; became &lt;code&gt;/humans.txt&lt;/code&gt; in
-the resulting site, etc.&lt;/p&gt;
-&lt;p&gt;Presumably, at this point, you can see where this is going. Why the heck did
-I have a special &lt;code&gt;attachments&lt;/code&gt; folder being copied over, when a folder of
-any name could live below &lt;code&gt;extras&lt;/code&gt; and also get copied over?&lt;/p&gt;
-&lt;p&gt;So, now, my blog, which uses &lt;code&gt;/attachments&lt;/code&gt; for all inline images and
-covers, has been updated so that &lt;a href="https://github.com/davep/davep.github.com/tree/main/content/extras" rel="noopener noreferrer" target="_blank"&gt;the attachments live under
-extras&lt;/a&gt;
-and it all works as it did before; no special messing with a special folder
-name.&lt;/p&gt;
-&lt;p&gt;Given all this, the next release of BlogMore will remove treating
-&lt;code&gt;/attachments&lt;/code&gt; as a special case, making it less hard-coded for my habits
-and more of a general tool that could be useful for others.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;Mildly related to this: I did a lunchtime talk at work today, having turned
-&lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;Five days with Copilot&lt;/a&gt; into a
-20-25 minute presentation. It was fun to do. I've not written or given a
-talk or presentation in a long time -- probably the last time was when I
-helped run Newton's Astronomical Society in the early 2000s -- so the
-preparation for this was a little daunting to start with.&lt;/p&gt;
-&lt;p&gt;While doing this, not wanting to break a long streak of never having used
-PowerPoint, I discovered and gave &lt;a href="https://sli.dev" rel="noopener noreferrer" target="_blank"&gt;sli.dev&lt;/a&gt; a go. Writing a
-single Markdown file to power the talk was exactly my kind of approach. I
-don't have any experience with any other such tools, but if you're ever
-looking for something like this I recommend giving it a try.&lt;/p&gt;
-&lt;p&gt;I'm also open to suggestions of other options, given I might end up doing
-this some more.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/03/10/even-more-blogmore.html</guid>
-      <category>Coding</category>
-      <category>AI</category>
-      <category>BlogMore</category>
-      <category>Coding</category>
-      <category>Copilot</category>
-      <category>LLM</category>
-      <category>Python</category>
-      <pubDate>Tue, 10 Mar 2026 20:58:00 +0000</pubDate>
     </item>
   </channel>
 </rss>
