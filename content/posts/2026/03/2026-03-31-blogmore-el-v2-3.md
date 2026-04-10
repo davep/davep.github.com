@@ -2,7 +2,7 @@
 title: blogmore.el v2.3
 date: 2026-03-31 15:31:41+0100
 category: Emacs
-tags: BlogMore, Emacs, Emacs Lisp, Lisp, Coding
+tags: BlogMore, Coding, Emacs, Emacs Lisp, Lisp, blogmore.el
 ---
 
 I've bumped [`blogmore.el`](https://github.com/davep/blogmore.el) to v2.3.
