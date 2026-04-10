@@ -2,7 +2,7 @@
 title: blogmore.el v2.2
 date: 2026-03-30 20:31:03+0100
 category: Emacs
-tags: BlogMore, Emacs, Emacs Lisp, Lisp, coding, defmacro
+tags: BlogMore, Emacs, Emacs Lisp, Lisp, blogmore.el, coding, defmacro
 ---
 
 It really feels like [BlogMore](https://blogmore.davep.dev/) has kicked off
