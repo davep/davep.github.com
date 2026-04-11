@@ -2,11 +2,75 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-04-11T10:48:27.295390+00:00</updated>
+  <updated>2026-04-11T20:05:15.210010+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/04/11/ngmcp-an-mcp-experiment.html</id>
+    <title>NGMCP - An MCP experiment</title>
+    <updated>2026-04-11T21:01:03+01:00</updated>
+    <content type="html">&lt;p&gt;Recently I've been thinking that it would be interesting to get to know a
+little about the &lt;a href="https://en.wikipedia.org/wiki/Model_Context_Protocol" rel="noopener noreferrer" target="_blank"&gt;Model Context
+Protocol&lt;/a&gt; and see what
+it's about and get a feel for how useful it might be, if at all, for
+anything I do.&lt;/p&gt;
+&lt;p&gt;As always happens when I want to try out something new, I reached for a
+problem I know well so I don't have to get bogged down in solving the
+problem itself. As almost always happens, I decided I should base it around
+&lt;a href="https://www.davep.org/norton-guides/" rel="noopener noreferrer" target="_blank"&gt;Norton Guides&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Part of the point of MCP seems to be providing an interface over sources of
+data and actions, that an LLM might not otherwise be able to cope with, and
+so it sounded to me like providing a bridge to the content of Norton Guide
+files would be a perfect test. Of course, &lt;a href="https://blog.davep.org/2026/01/13/ng2nlm.html"&gt;this isn't the first time I've
+bridged LLMs and NG files&lt;/a&gt;, but this is obviously
+intended to be a more generic solution than &lt;a href="https://ng2nlm.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;throwing a Markdown file at
+NotebookLM&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Earlier this afternoon I sat down and did some reading, and then decided to
+throw the problem at GitHub Copilot. I told it I wanted to use my
+&lt;a href="https://ngdb.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;NGDB&lt;/a&gt; library as the core of the tool, and that it
+should wrap it up with
+&lt;a href="https://gofastmcp.com/getting-started/welcome" rel="noopener noreferrer" target="_blank"&gt;FastMCP&lt;/a&gt;. The initial result
+was... a bit of a mess. It sort of worked, sort of, but it also seemed to
+try and put together a project that mostly looked how my Python repos look,
+but with some bits just wrong.&lt;/p&gt;
+&lt;p&gt;I did some cleaning up, did some testing, did some tweaking, and &lt;a href="https://github.com/davep/ngmcp" rel="noopener noreferrer" target="_blank"&gt;eventually
+I had something working&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Asking what NGMCP can do" src="https://blog.davep.org/attachments/2026/04/11/ngmcp-intro.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;So far I've given the code a fairly quick read over, and I can see what it's
+doing and how it's going about this. This approach obviously has the
+disadvantage that I didn't hand-write it so there's still a lot to read to
+really appreciate what's going on; on the other hand, it does have the
+advantage that it's implemented a tool based on my library so I know what to
+expect it to be doing.&lt;/p&gt;
+&lt;p&gt;There will be more code reading happening, and I also intend to look to tidy
+up the code more and perhaps hand-add some more features.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Looking at the credits of a guide" src="https://blog.davep.org/attachments/2026/04/11/ngmcp-credits.png" /&gt;&lt;/p&gt;
+&lt;p&gt;I very much doubt that this particular MCP server is going to be any use to
+anyone, but as a proof of concept it works well for me. If I were in a
+position of needing to build something genuinely useful, I now have a start
+and a vague idea.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Reading some text from a guide" src="https://blog.davep.org/attachments/2026/04/11/ngmcp-reading.png" /&gt;&lt;/p&gt;
+&lt;p&gt;On the other hand: once again, as with &lt;a href="https://blog.davep.org/tag/norton-guide/"&gt;other projects I've done related to
+Norton Guides&lt;/a&gt;, this &lt;em&gt;is&lt;/em&gt; a tool that helps keep the
+content available and accessible; that alone is one reason for me to tidy
+this up and move it towards v1.0.0 and keep it maintained.&lt;/p&gt;
+&lt;p&gt;If you fancy having a play, some (currently Copilot-generated) documentation
+&lt;a href="https://ngmcp.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;can be found on the server's dedicated site&lt;/a&gt;.
+When I get a bit more time I'm going to flesh this out.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/04/11/ngmcp-an-mcp-experiment.html"/>
+    <category term="AI"/>
+    <category term="AI"/>
+    <category term="Coding"/>
+    <category term="Copilot"/>
+    <category term="LLM"/>
+    <category term="MCP"/>
+    <category term="Norton Guide"/>
+    <category term="history"/>
+    <category term="NGMCP"/>
+    <published>2026-04-11T21:01:03+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/04/11/blogmore-v2-13-0.html</id>
     <title>BlogMore v2.13.0</title>
@@ -155,7 +219,7 @@ noticed that if I had any HTML inside my &lt;a href="https://blogmore.davep.dev/
 directory&lt;/a&gt;
 it was turning up in the sitemap; something I didn't intend and didn't want.
 So that's now fixed: only pages generated by BlogMore will appear in
-&lt;code&gt;sitemap.xml&lt;/code&gt;&lt;sup id="fnref:246-1"&gt;&lt;a class="footnote-ref" href="#fn:246-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;code&gt;sitemap.xml&lt;/code&gt;&lt;sup id="fnref:247-1"&gt;&lt;a class="footnote-ref" href="#fn:247-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;The second is that the stats page, despite being in the sitemap, had a
 &lt;code&gt;noindex&lt;/code&gt; header for some reason. That's now been fixed. The only generated
 page I've intentionally set up so that it isn't indexed is the search page.&lt;/p&gt;
@@ -169,10 +233,10 @@ times are turned off.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:246-1"&gt;
+&lt;li id="fn:247-1"&gt;
 &lt;p&gt;Now I think about it, I suppose there might be occasion where someone
 wants extra HTML to appear in the sitemap. I might consider the idea of
-allowing extra entries to be declared via the configuration file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:246-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+allowing extra entries to be declared via the configuration file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:247-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -237,7 +301,7 @@ that month, and the same again for a year title.&lt;/p&gt;
 different display types and I'm also finding it to be yet another
 interesting way to discover older posts (and get a sense of when I was
 encouraged to post going back over the last 11 years of this particular
-blog&lt;sup id="fnref:257-1"&gt;&lt;a class="footnote-ref" href="#fn:257-1"&gt;1&lt;/a&gt;&lt;/sup&gt;).&lt;/p&gt;
+blog&lt;sup id="fnref:258-1"&gt;&lt;a class="footnote-ref" href="#fn:258-1"&gt;1&lt;/a&gt;&lt;/sup&gt;).&lt;/p&gt;
 &lt;p&gt;One final little feature I've added is a small enhancement to the read time
 that can appear on each post. While it's long since been possible &lt;a href="https://blogmore.davep.dev/configuration/#with_read_time" rel="noopener noreferrer" target="_blank"&gt;to decide
 if you want it there or
@@ -249,9 +313,9 @@ as a configuration option so you can set it to suit your own taste.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:257-1"&gt;
+&lt;li id="fn:258-1"&gt;
 &lt;p&gt;I have other, much older, blogs out there on the net. One day I might
-merge them with this one and back-fill the whole thing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:257-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+merge them with this one and back-fill the whole thing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:258-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -354,7 +418,7 @@ on, and also an indication of how many posts I've made that day.&lt;/p&gt;
 &lt;p&gt;Of course, it's not &lt;em&gt;quite&lt;/em&gt; a full streak tracker. It's only going to show
 the days up to the day the site was last generated; so when a reader visits
 and looks, if you've not generated the site for a month, it's not going to
-show that you've not blogged for a month&lt;sup id="fnref:254-1"&gt;&lt;a class="footnote-ref" href="#fn:254-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The point is that if you last
+show that you've not blogged for a month&lt;sup id="fnref:255-1"&gt;&lt;a class="footnote-ref" href="#fn:255-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The point is that if you last
 blog in January, come March or so the reader &lt;em&gt;isn't&lt;/em&gt; going to see 2 months
 of empty days, until you regenerate the site.&lt;/p&gt;
 &lt;p&gt;So, not perfect, but good enough I think. Also it gives the reader another
@@ -377,10 +441,10 @@ that.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:254-1"&gt;
+&lt;li id="fn:255-1"&gt;
 &lt;p&gt;I could solve this problem by having the whole thing generated on the
 fly with some JavaScript, but that felt like it wasn't in the spirit of
-a static site generator.&amp;#160;&lt;a class="footnote-backref" href="#fnref:254-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+a static site generator.&amp;#160;&lt;a class="footnote-backref" href="#fnref:255-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -523,7 +587,7 @@ prefix.&lt;/p&gt;
 they wanted to add their own commands, or do fun things with the
 configuration. So with this in mind I've "promoted" a bunch of code to being
 "public" and, in that case, I feel this deserves another major version
-bump&lt;sup id="fnref:253-1"&gt;&lt;a class="footnote-ref" href="#fn:253-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+bump&lt;sup id="fnref:254-1"&gt;&lt;a class="footnote-ref" href="#fn:254-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Things that are now part of the "public" interface include:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;blogmore-clean-time-string&lt;/code&gt;&lt;/li&gt;
@@ -581,10 +645,10 @@ available.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:253-1"&gt;
+&lt;li id="fn:254-1"&gt;
 &lt;p&gt;Ordinarily it shouldn't matter as the public interface isn't changing,
 but some of the "internal" functions had been mentioned as options for
-configuration.&amp;#160;&lt;a class="footnote-backref" href="#fnref:253-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+configuration.&amp;#160;&lt;a class="footnote-backref" href="#fnref:254-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -629,7 +693,7 @@ meant I was going to need to rearrange the structure again, it was time to
 try and do something about it.&lt;/p&gt;
 &lt;p&gt;Which is how I'm now on v3.1 (yes, there was a
 &lt;a href="https://github.com/davep/blogmore.el/releases/tag/v3.0" rel="noopener noreferrer" target="_blank"&gt;v3.0&lt;/a&gt; but I quickly
-found something in that that needed fixing&lt;sup id="fnref:258-1"&gt;&lt;a class="footnote-ref" href="#fn:258-1"&gt;1&lt;/a&gt;&lt;/sup&gt;). It's a major version bump
+found something in that that needed fixing&lt;sup id="fnref:259-1"&gt;&lt;a class="footnote-ref" href="#fn:259-1"&gt;1&lt;/a&gt;&lt;/sup&gt;). It's a major version bump
 because I've totally changed how the &lt;code&gt;blogmore-blogs&lt;/code&gt; variable holds the
 data.&lt;/p&gt;
 &lt;p&gt;From now on I'm using
@@ -737,11 +801,11 @@ know&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:258-1"&gt;
+&lt;li id="fn:259-1"&gt;
 &lt;p&gt;I have at least two slightly different &lt;code&gt;date&lt;/code&gt; formats going on in my
 Markdown and Emacs' &lt;code&gt;parse-iso8601-time-string&lt;/code&gt; is kind of picky. So I
 &lt;a href="https://github.com/davep/blogmore.el/pull/57/changes" rel="noopener noreferrer" target="_blank"&gt;added a function to try and clean that
-up&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:258-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+up&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:259-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -813,7 +877,7 @@ month&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Then I realised I had a problem in &lt;code&gt;blogmore.el&lt;/code&gt;. It assumed that the
 Markdown file for a new post (&lt;code&gt;blogmore-new&lt;/code&gt;) would always be created in a
 subdirectory named after the year, underneath the defined posts directory.
-Until today that was the case&lt;sup id="fnref:247-1"&gt;&lt;a class="footnote-ref" href="#fn:247-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, but now &lt;em&gt;I&lt;/em&gt; wanted it to work
+Until today that was the case&lt;sup id="fnref:248-1"&gt;&lt;a class="footnote-ref" href="#fn:248-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, but now &lt;em&gt;I&lt;/em&gt; wanted it to work
 differently.&lt;/p&gt;
 &lt;p&gt;So this is why I'm making a second release in one day: &lt;a href="https://github.com/davep/blogmore.el/pull/45" rel="noopener noreferrer" target="_blank"&gt;I added the ability
 to configure the subdirectory where a new post is
@@ -856,7 +920,7 @@ full date as a subdirectory so I can leave it as the default. The whole
 However, in my case, because I was only ever defining the blog name and the
 top-level directory for the posts (both mandatory), this didn't break
 anything; I also strongly suspect nobody else is using this so I very much
-doubt I'm messing with someone else's setup&lt;sup id="fnref:247-2"&gt;&lt;a class="footnote-ref" href="#fn:247-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. If I have I apologise; do
+doubt I'm messing with someone else's setup&lt;sup id="fnref:248-2"&gt;&lt;a class="footnote-ref" href="#fn:248-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. If I have I apologise; do
 let me know.&lt;/p&gt;
 &lt;p&gt;Anyway, all of this goes to explain why the heck I made two releases of the
 same package back to back in the same day. This is what happens when &lt;a href="https://www.metoffice.gov.uk/about-us/news-and-media/media-centre/weather-and-climate-news/2026/amber-wind-warning-for-easter" rel="noopener noreferrer" target="_blank"&gt;my
@@ -867,14 +931,14 @@ chaos in the garden.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:247-1"&gt;
+&lt;li id="fn:248-1"&gt;
 &lt;p&gt;For my blog, which again shows that &lt;code&gt;blogmore.el&lt;/code&gt; started as a quick
 hack for getting work done on my blog, but I also want to make it as
-configurable as possible.&amp;#160;&lt;a class="footnote-backref" href="#fnref:247-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+configurable as possible.&amp;#160;&lt;a class="footnote-backref" href="#fnref:248-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:247-2"&gt;
+&lt;li id="fn:248-2"&gt;
 &lt;p&gt;Even if someone else &lt;em&gt;is&lt;/em&gt; using this I would suspect they hadn't
-configured anything more than I have.&amp;#160;&lt;a class="footnote-backref" href="#fnref:247-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+configured anything more than I have.&amp;#160;&lt;a class="footnote-backref" href="#fnref:248-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -906,7 +970,7 @@ it a go one day but not at the moment"&lt;/em&gt;.&lt;/p&gt;
 configuration&lt;/a&gt;, I found myself leaning
 into a command binding approach that does the whole &lt;em&gt;prefix-letter-letter&lt;/em&gt;
 thing. For reasons I can't actually remember I fell into the habit of using
-&lt;kbd&gt;F12&lt;/kbd&gt;&lt;sup id="fnref:243-1"&gt;&lt;a class="footnote-ref" href="#fn:243-1"&gt;1&lt;/a&gt;&lt;/sup&gt; as my chosen prefix key. As such, over the past 10 or so
+&lt;kbd&gt;F12&lt;/kbd&gt;&lt;sup id="fnref:244-1"&gt;&lt;a class="footnote-ref" href="#fn:244-1"&gt;1&lt;/a&gt;&lt;/sup&gt; as my chosen prefix key. As such, over the past 10 or so
 years (since I greatly overhauled my Emacs setup), I've got into setting up
 bindings for commands that follow this prefix convention.&lt;/p&gt;
 &lt;p&gt;So when I created &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; I
@@ -1004,9 +1068,9 @@ thing.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:243-1"&gt;
+&lt;li id="fn:244-1"&gt;
 &lt;p&gt;Yes, it is a bit out of the way on the keyboard, but so is
-&lt;kbd&gt;Esc&lt;/kbd&gt;. I find my muscle memory has no problem with it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:243-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;kbd&gt;Esc&lt;/kbd&gt;. I find my muscle memory has no problem with it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:244-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1037,7 +1101,7 @@ before and it was really addictive as a way of hacking on code.&lt;/p&gt;
 helpful with things like a &lt;code&gt;defvar&lt;/code&gt; or a &lt;code&gt;defconst&lt;/code&gt;, if I was changing them
 up to try out new ways of doing things with the code I was working on; there
 I had to remember to get used to using &lt;code&gt;eval-defun&lt;/code&gt; (&lt;kbd&gt;C-M-x&lt;/kbd&gt;).
-Hardly a great problem, but something to keep in mind&lt;sup id="fnref:245-1"&gt;&lt;a class="footnote-ref" href="#fn:245-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+Hardly a great problem, but something to keep in mind&lt;sup id="fnref:246-1"&gt;&lt;a class="footnote-ref" href="#fn:246-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Pretty quickly, as I worked on longer packages, I found myself wanting to,
 in effect, unload a whole buffer of code and evaluate it again. From this
 desire came &lt;a href="https://github.com/davep/nukneval.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;nukneval.el&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
@@ -1059,10 +1123,10 @@ better feedback.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:245-1"&gt;
+&lt;li id="fn:246-1"&gt;
 &lt;p&gt;&lt;a href="https://emacsredux.com/about/" rel="noopener noreferrer" target="_blank"&gt;Bozhidar Batsov&lt;/a&gt; recently wrote a good
 post &lt;a href="https://emacsredux.com/blog/2026/03/25/reloading-emacs-lisp-code/" rel="noopener noreferrer" target="_blank"&gt;covering these sorts of
-issues&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:245-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+issues&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:246-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1218,35 +1282,5 @@ plugin was dealing with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:24
     <category term="Python"/>
     <category term="coding"/>
     <published>2026-04-02T20:08:05+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/04/01/blogmore-el-v2-4.html</id>
-    <title>blogmore.el v2.4</title>
-    <updated>2026-04-01T20:00:44+01:00</updated>
-    <content type="html">&lt;p&gt;I've just released a little update to
-&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt;, adding
-&lt;code&gt;blogmore-toggle-draft&lt;/code&gt; as a command. This came about in connection with the
-feature request that resulted in &lt;a href="https://blog.davep.org/2026/04/01/blogmore-v2-7-0.html"&gt;BlogMore v2.7.0 being
-released&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;While I don't personally use &lt;code&gt;draft&lt;/code&gt; for my posts, I can see the utility of
-it and if someone were to happen to use &lt;code&gt;blogmore.el&lt;/code&gt;, it could be useful to
-have this bound to a handy key combination.&lt;/p&gt;
-&lt;p&gt;As for how it works: that's simple. When run, if there is no &lt;code&gt;draft:&lt;/code&gt;
-frontmatter property, then &lt;code&gt;draft: true&lt;/code&gt; is added. If &lt;code&gt;draft:&lt;/code&gt; is there it
-is removed. Yes, it does mean that it will also remove &lt;code&gt;draft: false&lt;/code&gt; too
-but... eh. Okay, fine, I &lt;em&gt;might&lt;/em&gt; handle that case as a followup but I
-couldn't really imagine someone wanting to keep &lt;code&gt;draft: false&lt;/code&gt; in the
-frontmatter.&lt;/p&gt;
-&lt;p&gt;If a post is ready to go, why bother with a header that means the same thing
-when it's not there?&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/04/01/blogmore-el-v2-4.html"/>
-    <category term="Emacs"/>
-    <category term="BlogMore"/>
-    <category term="Emacs"/>
-    <category term="Emacs Lisp"/>
-    <category term="Lisp"/>
-    <category term="coding"/>
-    <category term="blogmore.el"/>
-    <published>2026-04-01T20:00:44+01:00</published>
   </entry>
 </feed>
