@@ -34,8 +34,8 @@ was... a bit of a mess. It sort of worked, sort of, but it also seemed to
 try and put together a project that mostly looked how my Python repos look,
 but with some bits just wrong.
 
-I did some cleaning up, did some testing, did some tweaking, and eventually
-I had something working.
+I did some cleaning up, did some testing, did some tweaking, and [eventually
+I had something working](https://github.com/davep/ngmcp).
 
 ![Asking what NGMCP can do](/attachments/2026/04/11/ngmcp-intro.png#centre)
 
@@ -62,5 +62,9 @@ On the other hand: once again, as with [other projects I've done related to
 Norton Guides](/tag/norton-guide/), this *is* a tool that helps keep the
 content available and accessible; that alone is one reason for me to tidy
 this up and move it towards v1.0.0 and keep it maintained.
+
+If you fancy having a play, some (currently Copilot-generated) documentation
+[can be found on the server's dedicated site](https://ngmcp.davep.dev/).
+When I get a bit more time I'm going to flesh this out.
 
 [//]: # (2026-04-11-ngmcp-an-mcp-experiment.md ends here)
