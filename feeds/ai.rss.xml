@@ -8,7 +8,65 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 12 Apr 2026 10:53:05 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 12 Apr 2026 20:39:10 +0000</lastBuildDate>
+    <item>
+      <title>NGMCP v0.2.0</title>
+      <link>https://blog.davep.org/2026/04/12/ngmcp-v0-2-0.html</link>
+      <description>&lt;p&gt;The &lt;a href="https://blog.davep.org/2026/04/11/ngmcp-an-mcp-experiment.html"&gt;experiment with building an MCP
+server&lt;/a&gt; continues, with some
+hacking on it happening over a couple of hours while killing time in an
+Edinburgh coffee shop.&lt;/p&gt;
+&lt;p&gt;It is, of course, a solution looking for a problem, and I suspect I'm the
+only person who will ever use it, and even then only as a test, but building
+it is proving interesting.&lt;/p&gt;
+&lt;p&gt;The main changes in v0.2.0 are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I turned the current &lt;code&gt;search_guide&lt;/code&gt; tool into a &lt;code&gt;line_search_guide&lt;/code&gt; tool
+  (because that's what it was doing: a line-by-line search).&lt;/li&gt;
+&lt;li&gt;I added a &lt;code&gt;body_search_guide&lt;/code&gt; tool that treats all the lines in an entry
+  as a single block of text and then does the search in that (so searches
+  over line breaks will work).&lt;/li&gt;
+&lt;li&gt;I added a &lt;code&gt;read_entry_source&lt;/code&gt; tool that, rather than rendering the entry
+  of a guide as plain text with all the markup removed, it instead delivers
+  the underlying "source" for the entry; something that could be useful if
+  you wanted to get an agent to convert it into another marked-up body of
+  text.&lt;/li&gt;
+&lt;li&gt;I added a markup glossary resource, which technically tells an agent
+  everything it needs to know about Norton Guide markup.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The latter one is interesting. I added it and did some experimenting
+&lt;a href="https://blog.davep.org/2026/04/12/global-and-local-mcp-servers-with-copilot-cli.html"&gt;locally&lt;/a&gt;
+and it seemed to be helpful and I could ask questions about markup and
+Copilot seemed to use it. Meanwhile, having installed v0.2.0 globally on my
+machine, and having enabled it, I'm finding that Copilot seems to have zero
+clue about the markup and instead is using the server to go off and read the
+guides to work out the markup&lt;sup id="fnref:255-1"&gt;&lt;a class="footnote-ref" href="#fn:255-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;On the other hand, the new "get source" tool seems to work a treat.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Peeking at the source for an entry" src="https://blog.davep.org/attachments/2026/04/12/show-source.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;So I suspect I still have some reading/experimenting to do when it comes to
+resources, so I can better understand why I'd want to provide them and what
+problem they solve.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:255-1"&gt;
+&lt;p&gt;All credit to it: it did find &lt;code&gt;CREATING.NG&lt;/code&gt; and read the markup out of
+that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:255-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/04/12/ngmcp-v0-2-0.html</guid>
+      <category>AI</category>
+      <category>AI</category>
+      <category>Coding</category>
+      <category>Copilot</category>
+      <category>LLM</category>
+      <category>MCP</category>
+      <category>Norton Guide</category>
+      <category>history</category>
+      <category>NGMCP</category>
+      <pubDate>Sun, 12 Apr 2026 21:37:55 +0100</pubDate>
+    </item>
     <item>
       <title>NGMCP - An MCP experiment</title>
       <link>https://blog.davep.org/2026/04/11/ngmcp-an-mcp-experiment.html</link>
@@ -630,7 +688,7 @@ a solution for some sort of problem. I noticed this on and off as I watched
 the agent's chat, as it worked away.&lt;/p&gt;
 &lt;p&gt;One example I enjoyed was when it was trying to add a new dependency to
 &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;. For reasons I should probably try
-and understand&lt;sup id="fnref:270-1"&gt;&lt;a class="footnote-ref" href="#fn:270-1"&gt;1&lt;/a&gt;&lt;/sup&gt; it knew it should be using &lt;code&gt;uv&lt;/code&gt; to add a dependency and
+and understand&lt;sup id="fnref:271-1"&gt;&lt;a class="footnote-ref" href="#fn:271-1"&gt;1&lt;/a&gt;&lt;/sup&gt; it knew it should be using &lt;code&gt;uv&lt;/code&gt; to add a dependency and
 it knew how to use it to update the lock file, but it didn't have &lt;code&gt;uv&lt;/code&gt; to
 hand:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -738,8 +796,8 @@ moment it's a good source of coding comedy.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:270-1"&gt;
-&lt;p&gt;Presumably there's things I can be doing to make its life easier.&amp;#160;&lt;a class="footnote-backref" href="#fnref:270-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:271-1"&gt;
+&lt;p&gt;Presumably there's things I can be doing to make its life easier.&amp;#160;&lt;a class="footnote-backref" href="#fnref:271-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -854,7 +912,7 @@ issue and then assigning that issue to it. I must remember to try that at
 some point.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;So, yeah, unsurprisingly Copilot flat out lied&lt;sup id="fnref:265-1"&gt;&lt;a class="footnote-ref" href="#fn:265-1"&gt;1&lt;/a&gt;&lt;/sup&gt; in the documentation. I'm
+&lt;p&gt;So, yeah, unsurprisingly Copilot flat out lied&lt;sup id="fnref:266-1"&gt;&lt;a class="footnote-ref" href="#fn:266-1"&gt;1&lt;/a&gt;&lt;/sup&gt; in the documentation. I'm
 not in the least bit shocked by this and, as I said, I fully expected this.
 But it was amusing to have an example of this turn up so early in the
 documentation, in such a glaring way, and in a way that was so easily fixed
@@ -868,10 +926,10 @@ lurk in the code that haven't been documented.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:265-1"&gt;
+&lt;li id="fn:266-1"&gt;
 &lt;p&gt;Yes, as I mentioned yesterday, that's an anthropomorphism. Folk who
 take such things as an indication that you don't understand "AI" might
-want to think about what it is to be a human when communicating.&amp;#160;&lt;a class="footnote-backref" href="#fnref:265-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+want to think about what it is to be a human when communicating.&amp;#160;&lt;a class="footnote-backref" href="#fnref:266-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -989,7 +1047,7 @@ asked&lt;/a&gt;:&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Just like that, it went off &lt;a href="https://github.com/davep/blogmore/pull/1/changes/3449eec9b4df88e66eec0f6bba4369926ff1389e" rel="noopener noreferrer" target="_blank"&gt;and wrote a whole server for the
 project&lt;/a&gt;.
-While the server did need a lot of extra work to really work well&lt;sup id="fnref:268-1"&gt;&lt;a class="footnote-ref" href="#fn:268-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, the
+While the server did need a lot of extra work to really work well&lt;sup id="fnref:269-1"&gt;&lt;a class="footnote-ref" href="#fn:269-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, the
 initial version was good enough to get me going and to iterate on the
 project as a whole.&lt;/p&gt;
 &lt;h2 id="the-main-workflow"&gt;The main workflow&lt;a aria-label="Link to this heading" class="heading-anchor" href="#the-main-workflow"&gt;¶&lt;/a&gt;&lt;/h2&gt;
@@ -1042,8 +1100,8 @@ the mistakes are likely to turn up. Once you've written enough code you've
 also written plenty of bugs and been caught out by plenty of edge-cases that
 you get a spidey-sense for trouble as you write code. I feel that this kind
 of approach can be called cautiously confident.&lt;/p&gt;
-&lt;p&gt;Working with Copilot&lt;sup id="fnref:268-2"&gt;&lt;a class="footnote-ref" href="#fn:268-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, however, I often ran into the confidently wrong
-issue. On occasion I found it would proudly&lt;sup id="fnref:268-3"&gt;&lt;a class="footnote-ref" href="#fn:268-3"&gt;3&lt;/a&gt;&lt;/sup&gt; request review for some
+&lt;p&gt;Working with Copilot&lt;sup id="fnref:269-2"&gt;&lt;a class="footnote-ref" href="#fn:269-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, however, I often ran into the confidently wrong
+issue. On occasion I found it would proudly&lt;sup id="fnref:269-3"&gt;&lt;a class="footnote-ref" href="#fn:269-3"&gt;3&lt;/a&gt;&lt;/sup&gt; request review for some
 minor bit of work, proclaiming that it had done the thing or solved the
 problem, and I'd test it and nothing had materially changed. On a couple of
 occasions, when I pushed back, I found it actually doubting my review before
@@ -1110,7 +1168,7 @@ experienced is bringing code to you where they've used an agent as their
 pair buddy.&lt;/p&gt;
 &lt;h2 id="the-overall-impression"&gt;The overall impression&lt;a aria-label="Link to this heading" class="heading-anchor" href="#the-overall-impression"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Now I'm at the end of the process, and using the result of this experiment
-to write this post&lt;sup id="fnref:268-4"&gt;&lt;a class="footnote-ref" href="#fn:268-4"&gt;4&lt;/a&gt;&lt;/sup&gt;, I feel better informed about what these tools offer,
+to write this post&lt;sup id="fnref:269-4"&gt;&lt;a class="footnote-ref" href="#fn:269-4"&gt;4&lt;/a&gt;&lt;/sup&gt;, I feel better informed about what these tools offer,
 and the pitfalls I need to be mindful of. Sometimes it wasn't a terrible way
 of working. For example, on the first day I started with this, at one point
 on a chilly but sunny Sunday afternoon, I was sat on the sofa, MacBook on
@@ -1155,25 +1213,25 @@ into perspective.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:268-1"&gt;
+&lt;li id="fn:269-1"&gt;
 &lt;p&gt;Amusingly I &lt;a href="https://github.com/davep/blogmore/issues/117" rel="noopener noreferrer" target="_blank"&gt;uncovered another
 bug&lt;/a&gt; while writing this
-post.&amp;#160;&lt;a class="footnote-backref" href="#fnref:268-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+post.&amp;#160;&lt;a class="footnote-backref" href="#fnref:269-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:268-2"&gt;
+&lt;li id="fn:269-2"&gt;
 &lt;p&gt;I keep saying Copilot, but I think it's probably more correct to say
 "Claude Sonnet 4.5" as that's what seemed to be at play under the hood,
-if I'm understanding things correctly.&amp;#160;&lt;a class="footnote-backref" href="#fnref:268-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+if I'm understanding things correctly.&amp;#160;&lt;a class="footnote-backref" href="#fnref:269-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:268-3"&gt;
+&lt;li id="fn:269-3"&gt;
 &lt;p&gt;Yes, of course that's an anthropomorphism, you'll find plenty of them
 in this article as it's hard not to write about the subject in any other
-way; it's an easy shortcut to explain some ideas&amp;#160;&lt;a class="footnote-backref" href="#fnref:268-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+way; it's an easy shortcut to explain some ideas&amp;#160;&lt;a class="footnote-backref" href="#fnref:269-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:268-4"&gt;
+&lt;li id="fn:269-4"&gt;
 &lt;p&gt;Actually I'm writing this post as I always do: in Emacs. But BlogMore
 is in the background serving a local copy of my blog so I can check it
-in the browser, and rebuilding it every time I save a change.&amp;#160;&lt;a class="footnote-backref" href="#fnref:268-4" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+in the browser, and rebuilding it every time I save a change.&amp;#160;&lt;a class="footnote-backref" href="#fnref:269-4" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
