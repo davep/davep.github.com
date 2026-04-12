@@ -2,11 +2,98 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-04-11T20:05:15.210010+00:00</updated>
+  <updated>2026-04-12T10:53:05.147706+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/04/12/global-and-local-mcp-servers-with-copilot-cli.html</id>
+    <title>Global and local MCP servers with Copilot CLI</title>
+    <updated>2026-04-12T11:51:13+01:00</updated>
+    <content type="html">&lt;p&gt;This morning I'm tinkering some more with
+&lt;a href="https://blog.davep.org/2026/04/11/ngmcp-an-mcp-experiment.html"&gt;NGMCP&lt;/a&gt;. Having done a release
+yesterday and tested it out by globally installing it with:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;ngmcp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I was then left with the question: how do I easily test the version of the
+code I'm working on, when I now have it set up globally? Having done the
+global installation I had &lt;code&gt;~/.copilot/mcp-config.json&lt;/code&gt; looking like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;mcpServers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;ngmcp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ngmcp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;args&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[],&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;env&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;NGMCP_GUIDE_DIRS&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/Users/davep/Documents/Norton Guides&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;whereas before it looked like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;mcpServers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;ngmcp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;uv&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;args&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;run&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ngmcp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;env&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;NGMCP_GUIDE_DIRS&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/Users/davep/Documents/Norton Guides&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;But now I want both. Ideally I'd want to be able to set up an override for a
+specific server in a specific repository. I did some searching and reading
+of the documentation and, from what I can tell, there's no method of doing
+that right now&lt;sup id="fnref:258-1"&gt;&lt;a class="footnote-ref" href="#fn:258-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. So I've settled on this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;mcpServers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;ngmcp-global&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ngmcp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;args&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[],&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;env&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;NGMCP_GUIDE_DIRS&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/Users/davep/Documents/Norton Guides&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;ngmcp-local&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;uv&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;args&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;run&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ngmcp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;env&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;NGMCP_GUIDE_DIRS&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/Users/davep/Documents/Norton Guides&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and then in Copilot CLI I just use the &lt;code&gt;/mcp&lt;/code&gt; command to &lt;code&gt;enable&lt;/code&gt; one and
+&lt;code&gt;disable&lt;/code&gt; the other. It's kind of clunky, but it works.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:258-1"&gt;
+&lt;p&gt;I did see the suggestion that you can write your MCP server so that it
+does a non-response depending on the context, but that seems horribly
+situation-specific and wouldn't really help in this case anyway because
+I want it to work in both contexts, depending on what I'm doing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:258-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/04/12/global-and-local-mcp-servers-with-copilot-cli.html"/>
+    <category term="TIL"/>
+    <category term="AI"/>
+    <category term="Coding"/>
+    <category term="Copilot"/>
+    <category term="GitHub"/>
+    <category term="LLM"/>
+    <category term="MCP"/>
+    <published>2026-04-12T11:51:13+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/04/11/ngmcp-an-mcp-experiment.html</id>
     <title>NGMCP - An MCP experiment</title>
@@ -301,7 +388,7 @@ that month, and the same again for a year title.&lt;/p&gt;
 different display types and I'm also finding it to be yet another
 interesting way to discover older posts (and get a sense of when I was
 encouraged to post going back over the last 11 years of this particular
-blog&lt;sup id="fnref:258-1"&gt;&lt;a class="footnote-ref" href="#fn:258-1"&gt;1&lt;/a&gt;&lt;/sup&gt;).&lt;/p&gt;
+blog&lt;sup id="fnref:259-1"&gt;&lt;a class="footnote-ref" href="#fn:259-1"&gt;1&lt;/a&gt;&lt;/sup&gt;).&lt;/p&gt;
 &lt;p&gt;One final little feature I've added is a small enhancement to the read time
 that can appear on each post. While it's long since been possible &lt;a href="https://blogmore.davep.dev/configuration/#with_read_time" rel="noopener noreferrer" target="_blank"&gt;to decide
 if you want it there or
@@ -313,9 +400,9 @@ as a configuration option so you can set it to suit your own taste.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:258-1"&gt;
+&lt;li id="fn:259-1"&gt;
 &lt;p&gt;I have other, much older, blogs out there on the net. One day I might
-merge them with this one and back-fill the whole thing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:258-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+merge them with this one and back-fill the whole thing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:259-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -693,7 +780,7 @@ meant I was going to need to rearrange the structure again, it was time to
 try and do something about it.&lt;/p&gt;
 &lt;p&gt;Which is how I'm now on v3.1 (yes, there was a
 &lt;a href="https://github.com/davep/blogmore.el/releases/tag/v3.0" rel="noopener noreferrer" target="_blank"&gt;v3.0&lt;/a&gt; but I quickly
-found something in that that needed fixing&lt;sup id="fnref:259-1"&gt;&lt;a class="footnote-ref" href="#fn:259-1"&gt;1&lt;/a&gt;&lt;/sup&gt;). It's a major version bump
+found something in that that needed fixing&lt;sup id="fnref:260-1"&gt;&lt;a class="footnote-ref" href="#fn:260-1"&gt;1&lt;/a&gt;&lt;/sup&gt;). It's a major version bump
 because I've totally changed how the &lt;code&gt;blogmore-blogs&lt;/code&gt; variable holds the
 data.&lt;/p&gt;
 &lt;p&gt;From now on I'm using
@@ -801,11 +888,11 @@ know&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:259-1"&gt;
+&lt;li id="fn:260-1"&gt;
 &lt;p&gt;I have at least two slightly different &lt;code&gt;date&lt;/code&gt; formats going on in my
 Markdown and Emacs' &lt;code&gt;parse-iso8601-time-string&lt;/code&gt; is kind of picky. So I
 &lt;a href="https://github.com/davep/blogmore.el/pull/57/changes" rel="noopener noreferrer" target="_blank"&gt;added a function to try and clean that
-up&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:259-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+up&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:260-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1237,50 +1324,5 @@ Emacs.&lt;/p&gt;</content>
     <category term="coding"/>
     <category term="testing"/>
     <published>2026-04-02T20:53:09+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/04/02/blogmore-v2-8-0.html</id>
-    <title>BlogMore v2.8.0</title>
-    <updated>2026-04-02T20:08:05+01:00</updated>
-    <content type="html">&lt;p&gt;I've just published &lt;a href="https://blogmore.davep.dev/changelog/#v280" rel="noopener noreferrer" target="_blank"&gt;v2.8.0&lt;/a&gt; of
-&lt;a href="https://blogmore.davep.dev" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; to
-&lt;a href="https://pypi.org/project/blogmore/" rel="noopener noreferrer" target="_blank"&gt;PyPI&lt;/a&gt;. This is a small update which
-addresses &lt;a href="https://github.com/davep/blogmore/issues/359" rel="noopener noreferrer" target="_blank"&gt;a bug that Andy
-reported&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The fix &lt;a href="https://github.com/davep/blogmore/pull/360" rel="noopener noreferrer" target="_blank"&gt;was simple enough&lt;/a&gt;, and
-is another little interesting thing to keep in mind given that BlogMore is
-an ongoing &lt;a href="https://blog.davep.org/tag/copilot/"&gt;Copilot&lt;/a&gt; experiment. When I first kicked off
-BlogMore I let it decide which library to use to handle Markdown (I'm more
-used to &lt;a href="https://markdown-it-py.readthedocs.io/en/latest/" rel="noopener noreferrer" target="_blank"&gt;markdown-it-py&lt;/a&gt;
-via &lt;a href="https://textual.textualize.io/widgets/markdown/" rel="noopener noreferrer" target="_blank"&gt;Textual&lt;/a&gt; and so via
-&lt;a href="https://hike.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Hike&lt;/a&gt;), and so also let it decide which extensions
-made most sense given the request. I've honestly never run into the idea of
-&lt;a href="https://python-markdown.github.io/extensions/meta_data/" rel="noopener noreferrer" target="_blank"&gt;metadata&lt;/a&gt; before,
-only ever dealing with or caring about frontmatter&lt;sup id="fnref:240-1"&gt;&lt;a class="footnote-ref" href="#fn:240-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;On the other hand, I will say this: I was cooking dinner when the report
-came in; I pointed Copilot at the issue and let it figure it out. After
-eating, clearing things away, and general post-dinner chilling, I dropped
-into the repo to see what it had made of it and... it had figured the issue
-out and fixed it.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:240-1"&gt;
-&lt;p&gt;I guess technically they're the same thing, but here I mean I'm more
-used to the delimited YAML of frontmatter than whatever it is the &lt;code&gt;meta&lt;/code&gt;
-plugin was dealing with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:240-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/04/02/blogmore-v2-8-0.html"/>
-    <category term="Coding"/>
-    <category term="AI"/>
-    <category term="BlogMore"/>
-    <category term="Copilot"/>
-    <category term="Markdown"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="coding"/>
-    <published>2026-04-02T20:08:05+01:00</published>
   </entry>
 </feed>
