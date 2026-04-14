@@ -2,11 +2,44 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-04-13T18:36:23.127267+00:00</updated>
+  <updated>2026-04-14T08:02:13.339939+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/04/14/wordcloud-el-v1-4.html</id>
+    <title>wordcloud.el v1.4</title>
+    <updated>2026-04-14T08:47:39+01:00</updated>
+    <content type="html">&lt;p&gt;I &lt;em&gt;think&lt;/em&gt; I'm mostly caught up with the collection of &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs
+Lisp&lt;/a&gt; packages &lt;a href="https://blog.davep.org/2022/08/23/i-must-be-getting-old.html"&gt;that need updating and
+tidying&lt;/a&gt;, which means yesterday
+evening's clean-up should be one of the last (although I would like to
+revisit a couple and actually improve and extend them at some point).&lt;/p&gt;
+&lt;p&gt;As for what I cleaned up yesterday:
+&lt;a href="https://github.com/davep/wordcloud.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;wordcloud.el&lt;/code&gt;&lt;/a&gt;. This is a package
+that, when run in a buffer, will count the frequency of words in that buffer
+and show the results in a fresh window, complete with the "word cloud"
+differing-font-size effect.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Word cloud in action" src="https://blog.davep.org/attachments/2026/04/14/wordcloud.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;This package is about 10 years old at this point, and I'm struggling to
+remember &lt;em&gt;why&lt;/em&gt; I wrote it now. I know I was doing something -- either
+writing something or reviewing it -- and the frequency of some words was
+important. I also remember this doing the job just fine and solving the
+problem I needed to solve.&lt;/p&gt;
+&lt;p&gt;Since then it's just sat around in my personal library of stuff I've written
+in Emacs Lisp, not really used. I imagine that's where it's going back to,
+but at least it's cleaned up and should be functional for a long time to
+come.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/04/14/wordcloud-el-v1-4.html"/>
+    <category term="Emacs"/>
+    <category term="Emacs"/>
+    <category term="Emacs Lisp"/>
+    <category term="Lisp"/>
+    <category term="coding"/>
+    <category term="wordcloud.el"/>
+    <published>2026-04-14T08:47:39+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/04/13/ghosted-by-ghostty.html</id>
     <title>Ghosted by Ghostty</title>
@@ -1254,59 +1287,5 @@ thing.&lt;/p&gt;
     <category term="coding"/>
     <category term="transient"/>
     <published>2026-04-04T11:48:21+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/04/03/nukneval-el-v1-3.html</id>
-    <title>nukneval.el v1.3</title>
-    <updated>2026-04-03T15:09:19+01:00</updated>
-    <content type="html">&lt;p&gt;Back when I first really got into writing &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt;
-code, one of the first things I got &lt;em&gt;very&lt;/em&gt; used to and really fell in love
-with was being able to
-&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Lisp-Eval.html" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;eval-last-sexp&lt;/code&gt;&lt;/a&gt;
-(&lt;kbd&gt;C-x&lt;/kbd&gt; &lt;kbd&gt;C-e&lt;/kbd&gt;) the code I was writing, either to test it
-right there in the buffer, or to cause it to be bound so I could use it
-elsewhere. It was so different from any other mode of working I'd used
-before and it was really addictive as a way of hacking on code.&lt;/p&gt;
-&lt;p&gt;Also quite quickly I got used to the fact that &lt;code&gt;eval-last-sexp&lt;/code&gt; wasn't so
-helpful with things like a &lt;code&gt;defvar&lt;/code&gt; or a &lt;code&gt;defconst&lt;/code&gt;, if I was changing them
-up to try out new ways of doing things with the code I was working on; there
-I had to remember to get used to using &lt;code&gt;eval-defun&lt;/code&gt; (&lt;kbd&gt;C-M-x&lt;/kbd&gt;).
-Hardly a great problem, but something to keep in mind&lt;sup id="fnref:246-1"&gt;&lt;a class="footnote-ref" href="#fn:246-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;Pretty quickly, as I worked on longer packages, I found myself wanting to,
-in effect, unload a whole buffer of code and evaluate it again. From this
-desire came &lt;a href="https://github.com/davep/nukneval.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;nukneval.el&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The original version of this has been sat around since 2002 or so, perhaps a
-little earlier, and has served me well every time I've been messing with a
-new package. While I suspect there is (now, perhaps was then too?) a better
-way of doing things, the approach used in nukneval helped me learn some
-things and served me well (and still does). Now it's muscle-memory to run
-it.&lt;/p&gt;
-&lt;p&gt;The way it works is quite simple: go to the start of a buffer, &lt;code&gt;read&lt;/code&gt; each
-form, check if the &lt;code&gt;car&lt;/code&gt; is of a given list of symbols, decide if it's
-something I want to unbind, and then pick either &lt;code&gt;makunbound&lt;/code&gt; or
-&lt;code&gt;fmakunbound&lt;/code&gt; and use that on the symbol. Finally, once the end of the
-buffer has been hit: &lt;code&gt;eval-buffer&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;I've just released v1.3 as part of my slow wander through my old Emacs Lisp
-packages, with this release cleaning up a deprecated use of &lt;code&gt;setf&lt;/code&gt; to move
-&lt;code&gt;point&lt;/code&gt;, and also rewriting the code so it's a bit cleaner and also gives
-better feedback.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:246-1"&gt;
-&lt;p&gt;&lt;a href="https://emacsredux.com/about/" rel="noopener noreferrer" target="_blank"&gt;Bozhidar Batsov&lt;/a&gt; recently wrote a good
-post &lt;a href="https://emacsredux.com/blog/2026/03/25/reloading-emacs-lisp-code/" rel="noopener noreferrer" target="_blank"&gt;covering these sorts of
-issues&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:246-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/04/03/nukneval-el-v1-3.html"/>
-    <category term="Emacs"/>
-    <category term="Emacs"/>
-    <category term="Emacs Lisp"/>
-    <category term="Lisp"/>
-    <category term="coding"/>
-    <category term="nukneval.el"/>
-    <published>2026-04-03T15:09:19+01:00</published>
   </entry>
 </feed>
