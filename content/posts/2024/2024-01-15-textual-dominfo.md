@@ -82,7 +82,7 @@ If this sounds handy to you, you can grab the code too. Install it into your
 development environment with `pip`:
 
 ```sh
-$ pip install textual-dominfo
+pip install textual-dominfo
 ```
 
 and then attach it to your app or screen or some top-level widget you're

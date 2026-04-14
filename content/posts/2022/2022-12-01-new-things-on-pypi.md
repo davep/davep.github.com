@@ -114,7 +114,7 @@ install. So, if you fancy trying to crack the puzzle in your terminal, just
 do a quick:
 
 ```sh
-$ pipx install fivepyfive
+pipx install fivepyfive
 ```
 
 and click away.
@@ -154,7 +154,7 @@ See [over here](https://pypi.org/project/pispy-client/) for the package, and
 you can install it with a:
 
 ```sh
-$ pipx install pispy-client
+pipx install pispy-client
 ```
 
 and then just run `pispy` in the terminal.

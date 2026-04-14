@@ -47,7 +47,7 @@ Simple and clean, I think: things for homebrew, things that can be installed
 via homebrew, that come from davep. To add the tap it's simply:
 
 ```sh
-$ brew tap davep/homebrew
+brew tap davep/homebrew
 ```
 
 ## Ensuring that all my applications and libraries publish source
@@ -125,8 +125,8 @@ with installing `pipx` and the like, but you do use `brew` on your machine,
 it's just this:
 
 ```sh
-$ brew tap davep/homebrew
-$ brew install oshit
+brew tap davep/homebrew
+brew install oshit
 ```
 
 Fingers crossed it all "just works" when I next upgrade one of those

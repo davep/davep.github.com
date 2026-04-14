@@ -74,8 +74,8 @@ PyPI](https://pypi.org/project/complexitty/). If you have an environment that ha
 pipx install complexitty
 ```
 
-It can also be installed with
-`Homebrew` by tapping `davep/homebrew` and then installing `complexitty`:
+It can also be installed with Homebrew by tapping `davep/homebrew` and then
+installing `complexitty`:
 
 ```sh
 brew tap davep/homebrew

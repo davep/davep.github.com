@@ -88,7 +88,7 @@ With Homebrew installed the next step for me is to install `pyenv`. Doing so
 is as easy as:
 
 ```sh
-$ brew install pyenv
+brew install pyenv
 ```
 
 Once installed, if it's not done it for you, you may need to make some
@@ -109,14 +109,14 @@ now start throwing 3.11 into the mix too).
 I use this command:
 
 ```sh
-$ pyenv install --list
+pyenv install --list
 ```
 
 to see the available versions. If I want to see what's available for a
 specific version I'll pipe through grep:
 
 ```sh
-$ pyenv install --list | fgrep "  3.9"
+pyenv install --list | fgrep "  3.9"
 ```
 
 This is handy if I want to check what the very latest release of a specific
@@ -129,7 +129,7 @@ Python. This is the version I want to get when I run `python` and I'm not
 inside a virtual environment. Doing that is as simple as:
 
 ```sh
-$ pyenv global 3.10.7
+pyenv global 3.10.7
 ```
 
 Of course, you'd swap the version for whatever works for you.
@@ -141,7 +141,7 @@ update somewhere still causes my environment to break. Now though I find
 that all it takes is a quick:
 
 ```sh
-$ pyenv rehash
+pyenv rehash
 ```
 
 and everything is good again.
@@ -161,7 +161,7 @@ working with, I ensure I have the latest version of it installed with
 that:
 
 ```sh
-$ pipenv --python 3.10.7
+pipenv --python 3.10.7
 ```
 
 When you do this, you should see `pipenv` pulling the version of Python from

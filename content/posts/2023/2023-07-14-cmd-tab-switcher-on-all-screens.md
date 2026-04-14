@@ -36,8 +36,8 @@ One quick Google later and *Today I Learnt* that the following pretty much
 solves the problem:
 
 ```sh
-$ defaults write com.apple.Dock appswitcher-all-displays -bool true
-$ killall Dock
+defaults write com.apple.Dock appswitcher-all-displays -bool true
+killall Dock
 ```
 
 As the name of the setting would suggest: once done, the switcher appears on
