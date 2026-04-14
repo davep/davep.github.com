@@ -1,5 +1,4 @@
 ---
-layout: post
 title: When your model leaves you
 category: AI
 tags: Python, AI, LLM, Copilot, GitHub, BlogMore, coding

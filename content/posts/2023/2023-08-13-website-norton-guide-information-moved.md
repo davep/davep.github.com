@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Website: Norton Guide information moved"
 category: Coding
 tags: html, web

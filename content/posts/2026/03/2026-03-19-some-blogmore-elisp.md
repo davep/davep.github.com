@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Some BlogMore Elisp
 category: Emacs
 tags: BlogMore, Coding, Emacs, Emacs Lisp, Lisp, blogmore.el

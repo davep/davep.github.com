@@ -1,9 +1,7 @@
 ---
-layout: post
 title: iMac Time Wiggle
 category: Tech
 tags: iMac, Apple, OS X
-published: True
 date: 2015-10-07 11:38:55+0100
 ---
 

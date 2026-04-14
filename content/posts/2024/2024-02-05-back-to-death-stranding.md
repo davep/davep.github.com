@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Back to Death Stranding
 category: Gaming
 tags: Death Stranding, PS5, gaming

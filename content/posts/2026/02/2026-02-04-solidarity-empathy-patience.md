@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Solidarity, Empathy, and Patience -- thinking about code reviews
 category: Coding
 tags: work, code review, leadership, Death Stranding

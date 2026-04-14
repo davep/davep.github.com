@@ -1,5 +1,4 @@
 ---
-layout: post
 title: textual-canvas v0.2.0
 category: Python
 tags: Python, Textual, coding, PyPI

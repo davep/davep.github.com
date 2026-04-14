@@ -1,5 +1,4 @@
 ---
-layout: post
 title: I turned it off and on again
 category: Tech
 tags: Obsidian, Apple, iCloud, iPhone, Mac

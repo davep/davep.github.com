@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Admitting defeat on my website
 category: Coding
 tags: php, html, web

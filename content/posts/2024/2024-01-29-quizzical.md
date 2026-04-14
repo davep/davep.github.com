@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Quizzical
 category: Coding
 tags: Coding, Python, Quizzical, terminal, textual

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Original Seen by davep rescued
 category: Creative
 tags: blogging, photography, BlogMore, posterous, photoblog

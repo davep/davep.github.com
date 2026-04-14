@@ -1,5 +1,4 @@
 ---
-layout: post
 title: A new engine
 category: Meta
 tags: AI, BlogMore, Blogging, Copilot, GitHub, LLM, PyPI, Python

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Where I live and work
 category: Coding
 tags: Emacs, shell

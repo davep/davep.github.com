@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Going on a journey
 category: Python
 tags: Coding, Python

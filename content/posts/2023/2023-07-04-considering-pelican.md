@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Considering Pelican
 category: Meta
 tags: Python, Blogging, Pelican, Jekyll

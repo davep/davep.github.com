@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Textual Query Sandbox
 category: Python
 tags: PyPI, Python, coding, Textual

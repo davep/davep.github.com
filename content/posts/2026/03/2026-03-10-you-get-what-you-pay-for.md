@@ -1,5 +1,4 @@
 ---
-layout: post
 title: You get what you pay for
 category: AI
 tags: AI, LLM, FOSS, coding, Free Software

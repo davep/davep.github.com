@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Visual Selection
 category: Coding
 tags: Coding, Plotext, PyPI, Python, biology, evolution, terminal, textual

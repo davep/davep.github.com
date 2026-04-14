@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Documentation generation
 category: AI
 tags: Python, AI, LLM, Copilot, GitHub, BlogMore

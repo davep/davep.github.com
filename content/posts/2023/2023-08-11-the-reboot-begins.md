@@ -1,5 +1,4 @@
 ---
-layout: post
 title: The reboot begins
 category: Coding
 tags: html, web

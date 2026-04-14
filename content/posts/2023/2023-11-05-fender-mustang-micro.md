@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Fender Mustang Micro
 category: Life
 tags: music, guitar

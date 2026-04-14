@@ -1,5 +1,4 @@
 ---
-layout: post
 title: The HomePod fixed itself
 category: Tech
 tags: Apple

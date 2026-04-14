@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Time to move on
 category: Meta
 tags: blogging, Jekyll, Hashnode

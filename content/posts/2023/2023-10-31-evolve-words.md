@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Evolve Words
 category: Coding
 tags: Coding, PyPI, Python, biology, evolution, terminal, textual

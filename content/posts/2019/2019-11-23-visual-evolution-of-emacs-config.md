@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Visual evolution of ~/.emacs.d
 category: Emacs
 tags: Emacs, Lisp, Emacs Lisp

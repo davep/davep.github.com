@@ -1,9 +1,7 @@
 ---
-layout: post
 title: Usenet spam, still a thing
 category: Tech
 tags: Clipper, Xbase, Spam
-published: True
 date: 2015-11-06 13:28:17+0000
 ---
 

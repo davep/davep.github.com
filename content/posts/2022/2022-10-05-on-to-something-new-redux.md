@@ -1,5 +1,4 @@
 ---
-layout: post
 title: On to something new (redux)
 category: Life
 tags: coding, work, life, Python, news

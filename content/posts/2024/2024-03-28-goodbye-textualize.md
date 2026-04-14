@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Goodbye Textualize
 category: Life
 tags: Python, textual, Free Software, work

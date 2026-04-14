@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Steam Deck
 category: Tech
 tags: gaming, Steam, Steam Deck, hardware

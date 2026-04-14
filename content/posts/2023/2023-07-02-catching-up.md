@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Catching up
 category: Meta
 tags: Mac, Apple, jekyll

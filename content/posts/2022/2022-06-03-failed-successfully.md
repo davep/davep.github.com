@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Failed successfully
 category: Tech
 tags: UI, UX

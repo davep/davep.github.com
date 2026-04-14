@@ -1,5 +1,4 @@
 ---
-layout: post
 title: The switch has been made
 category: Meta
 tags: Python, Blogging, Jekyll, Pelican

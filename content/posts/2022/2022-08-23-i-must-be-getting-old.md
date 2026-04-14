@@ -1,5 +1,4 @@
 ---
-layout: post
 title: I must be getting old
 category: Emacs
 tags: Emacs, Lisp, Emacs Lisp

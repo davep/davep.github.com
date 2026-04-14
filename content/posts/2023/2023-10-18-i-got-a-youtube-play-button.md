@@ -1,5 +1,4 @@
 ---
-layout: post
 title: I got a YouTube play button!
 category: Creative
 tags: YouTube

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Quiche Reader
 category: Tech
 tags: software, reading, recommendation, iOS, macOS, iCloud

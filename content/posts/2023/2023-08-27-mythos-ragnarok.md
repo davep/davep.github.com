@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Mythos: Ragnarok (plus Oppenheimer)"
 category: Life
 tags: Fringe, wrestling, movie

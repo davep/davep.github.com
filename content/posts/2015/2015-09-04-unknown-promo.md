@@ -1,9 +1,7 @@
 ---
-layout: post
 title: Unknown promo
 category: Tech
 tags: Google, Google Drive
-published: True
 date: 2015-09-04 08:53:39+0100
 ---
 

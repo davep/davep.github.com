@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Seen by davep revived
 category: Creative
 tags: blogging, photography, BlogMore, posterous, photoblog, AI, LLM, Copilot

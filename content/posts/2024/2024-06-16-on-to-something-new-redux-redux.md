@@ -1,5 +1,4 @@
 ---
-layout: post
 title: On to something new (redux) (redux)
 category: Life
 tags: work, YouTube, streaming, gaming, PS5

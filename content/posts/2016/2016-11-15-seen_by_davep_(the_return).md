@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Seen by davep (the return)
 category: Creative
 tags: blogging, photography, Twitter, Posterous, photoblog

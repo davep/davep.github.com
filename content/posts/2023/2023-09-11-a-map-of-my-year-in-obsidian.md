@@ -1,5 +1,4 @@
 ---
-layout: post
 title: A map of my year in Obsidian
 category: Life
 tags: journal, Obsidian, graph

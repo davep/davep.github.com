@@ -1,5 +1,4 @@
 ---
-layout: post
 title: pydscheck -- A quick hack that keeps slowly growing
 category: Python
 tags: Coding, Python, documentation

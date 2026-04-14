@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Homebrew all the Python things
 category: Coding
 tags: Python, terminal, textual, Homebrew, Makefile

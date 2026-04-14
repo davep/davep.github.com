@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Off to see Little Shop of Horrors
 category: Life
 tags: Music, Gig, Fringe

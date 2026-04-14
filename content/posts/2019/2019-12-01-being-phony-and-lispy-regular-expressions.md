@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Being phony, and Lispy regular expressions
 category: Emacs
 tags: Coding, Emacs, Emacs Lisp, Lisp, make-phony.el

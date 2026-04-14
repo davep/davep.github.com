@@ -1,5 +1,4 @@
 ---
-layout: post
 title: My Pylint shame
 category: Python
 tags: Coding, Python, fish

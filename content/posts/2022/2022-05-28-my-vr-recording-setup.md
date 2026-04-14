@@ -1,5 +1,4 @@
 ---
-layout: post
 title: My VR recording setup
 category: Tech
 tags: VR, YouTube, PCVR

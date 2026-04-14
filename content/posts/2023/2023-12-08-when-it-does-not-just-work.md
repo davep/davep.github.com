@@ -1,5 +1,4 @@
 ---
-layout: post
 title: When it doesn't just work
 category: Tech
 tags: Apple, watch

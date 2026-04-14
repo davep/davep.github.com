@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Going full Apple search
 category: Tech
 tags: Apple

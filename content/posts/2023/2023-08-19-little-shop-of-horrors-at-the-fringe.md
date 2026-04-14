@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  Little Shop of Horrors at the Fringe
 category: Life
 tags: Music, Gig, Fringe

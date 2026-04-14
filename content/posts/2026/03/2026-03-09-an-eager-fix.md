@@ -1,5 +1,4 @@
 ---
-layout: post
 title: An eager fix
 category: AI
 tags: AI, Coding, Copilot, GitHub, LLM, coding

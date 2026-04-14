@@ -1,5 +1,4 @@
 ---
-layout: post
 title: A Norton Guide collection
 category: Coding
 tags: Norton Guide, history

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Website: Miscellaneous Stuff moved"
 category: Coding
 tags: html, web

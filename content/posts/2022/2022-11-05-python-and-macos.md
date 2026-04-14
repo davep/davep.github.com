@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Python and macOS
 category: Python
 tags: Python, macOS, coding

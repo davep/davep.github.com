@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Cmd-Tab switcher on all screens
 category: TIL
 tags: Apple, Mac, macOS, Work
