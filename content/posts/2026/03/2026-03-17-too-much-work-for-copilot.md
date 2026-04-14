@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Too much work for Copilot?
 category: AI
 tags: Python, AI, LLM, Copilot, GitHub, BlogMore

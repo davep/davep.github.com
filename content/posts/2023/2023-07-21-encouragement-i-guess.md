@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Encouragement, I guess?
 category: Life
 tags: UI, UX, health, fitness

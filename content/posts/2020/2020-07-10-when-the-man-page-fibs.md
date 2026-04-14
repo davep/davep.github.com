@@ -1,5 +1,4 @@
 ---
-layout: post
 title: When the man page fibs
 category: Coding
 tags: homebrew, macOS, Unix, Python

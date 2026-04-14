@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Documenting textual-fspicker (plus a TIL)
 category: Coding
 tags: Python, textual, documentation, GitHub, mkdocs, mkdocstrings, gh-pages

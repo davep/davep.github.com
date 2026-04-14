@@ -1,5 +1,4 @@
 ---
-layout: post
 title: LinkedIn is useless
 category: Tech
 tags: LinkedIn

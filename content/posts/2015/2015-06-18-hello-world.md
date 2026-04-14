@@ -1,9 +1,7 @@
 ---
-layout: post
 title: Hello, World!
 category: Meta
 tags: blogging, Mac, Jekyll
-published: True
 date: 2015-06-18 14:53:00+0100
 ---
 

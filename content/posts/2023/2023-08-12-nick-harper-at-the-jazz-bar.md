@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Nick Harper at the Jazz Bar
 category: Life
 tags: Music, Gig, Fringe, Nick Harper

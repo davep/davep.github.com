@@ -1,5 +1,4 @@
 ---
-layout: post
 title: A bit of a backlog at the Apple store
 category: Tech
 tags: Apple, OS X, MacBook Air

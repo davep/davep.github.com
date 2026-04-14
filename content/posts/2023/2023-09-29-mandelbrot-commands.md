@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Mandelbrot Commands
 category: Python
 tags: PyPI, Python, coding, Textual, mandelbrot

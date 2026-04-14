@@ -1,5 +1,4 @@
 ---
-layout: post
 title: nuke-buffers.el -- Tidy up open buffers in Emacs
 category: Emacs
 tags: Coding, Emacs, Emacs Lisp, Lisp

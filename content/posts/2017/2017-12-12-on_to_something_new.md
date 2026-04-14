@@ -1,5 +1,4 @@
 ---
-layout: post
 title: On to something new
 category: Life
 tags: coding, work, life, news

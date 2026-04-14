@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Constant Siri voice loss
 category: Tech
 tags: Apple, iPhone, Siri

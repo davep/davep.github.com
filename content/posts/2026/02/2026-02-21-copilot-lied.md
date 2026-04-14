@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Copilot lied
 category: AI
 tags: Python, AI, LLM, Copilot, GitHub, BlogMore

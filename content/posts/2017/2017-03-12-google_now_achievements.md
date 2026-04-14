@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Google Now Achievements?
 category: Tech
 tags: Google

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Build in public, even in private
 category: Coding
 tags: coding

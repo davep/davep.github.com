@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Strange Obsidian sync issue
 category: Tech
 tags: Obsidian, Apple, iCloud, iPhone, Mac

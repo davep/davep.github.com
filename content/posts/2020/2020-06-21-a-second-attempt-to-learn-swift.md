@@ -1,5 +1,4 @@
 ---
-layout: post
 title: A second attempt to learn Swift
 category: Coding
 tags: Swift, Apple, coding

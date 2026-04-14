@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Evernote's confusing menu
 category: Tech
 tags: Evernote, coding

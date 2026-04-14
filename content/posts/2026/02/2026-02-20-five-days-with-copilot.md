@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Five days with Copilot
 category: AI
 tags: Python, AI, LLM, Copilot, GitHub, BlogMore, coding

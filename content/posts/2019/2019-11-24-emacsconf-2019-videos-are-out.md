@@ -1,5 +1,4 @@
 ---
-layout: post
 title: EmacsConf 2019 videos are out
 category: Emacs
 tags: Emacs

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Seen by davep broke (again)
 category: Creative
 tags: blogging, photography, Twitter, Posterous, photoblog

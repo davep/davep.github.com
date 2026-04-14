@@ -1,9 +1,7 @@
 ---
-layout: post
 title: And now for some iOS
 category: Tech
 tags: Mac, Apple, iOS, iPod
-published: True
 date: 2015-06-23 23:09:32+0100
 ---
 

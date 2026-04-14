@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Some more ~/.emacs.d evolution
 category: Emacs
 tags: Emacs, Lisp, Emacs Lisp

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Reading 2bit files (for fun)
 category: Coding
 tags: Bioinformatics, Coding

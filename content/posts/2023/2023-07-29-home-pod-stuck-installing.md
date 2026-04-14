@@ -1,5 +1,4 @@
 ---
-layout: post
 title: HomePod Stuck Installing Update
 category: Tech
 tags: Apple

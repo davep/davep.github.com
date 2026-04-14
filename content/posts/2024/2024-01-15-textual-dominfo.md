@@ -1,5 +1,4 @@
 ---
-layout: post
 title: textual-dominfo
 category: Python
 tags: PyPI, Python, coding, Textual

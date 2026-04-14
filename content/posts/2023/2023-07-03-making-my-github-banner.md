@@ -1,5 +1,4 @@
 ---
-layout: post
 title: A new GitHub profile README
 category: Coding
 tags: Coding, GitHub, Python, Textual

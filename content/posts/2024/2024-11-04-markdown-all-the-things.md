@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Markdown all the things
 category: Coding
 tags: Python, Twitter, Journey, Evernote, Markdown

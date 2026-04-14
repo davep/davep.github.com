@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Hello Google Pixel
 category: Tech
 tags: Google, Android, Phone

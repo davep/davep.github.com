@@ -1,5 +1,4 @@
 ---
-layout: post
 title: How not to ask for help
 category: Coding
 tags: Coding, Free Software, foss, help

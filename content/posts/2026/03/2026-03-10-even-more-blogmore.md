@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Even more BlogMore
 category: Coding
 tags: AI, BlogMore, Coding, Copilot, LLM, Python

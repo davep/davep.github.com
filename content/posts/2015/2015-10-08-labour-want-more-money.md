@@ -1,9 +1,7 @@
 ---
-layout: post
 title: Labour want more money
 category: Life
 tags: Politics, Labour, Labour Purge
-published: True
 date: 2015-10-08 10:08:02+0100
 ---
 

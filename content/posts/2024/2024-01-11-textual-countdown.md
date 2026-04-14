@@ -1,5 +1,4 @@
 ---
-layout: post
 title: textual-countdown
 category: Python
 tags: PyPi, Python, coding, Textual

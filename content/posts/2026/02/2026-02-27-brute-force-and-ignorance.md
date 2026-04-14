@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Brute force and ignorance
 category: AI
 tags: Python, AI, LLM, Copilot, GitHub, BlogMore, coding

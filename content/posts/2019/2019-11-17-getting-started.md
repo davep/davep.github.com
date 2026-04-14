@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Getting started
 category: Coding
 tags: Coding, learning

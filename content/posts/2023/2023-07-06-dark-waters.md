@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Dark Waters
 category: Music
 tags: Music

@@ -1,9 +1,7 @@
 ---
-layout: post
 title: Medium login on Android and iOS
 category: Tech
 tags: iOS, Android, Medium
-published: True
 date: 2015-06-25 15:39:26+0100
 ---
 

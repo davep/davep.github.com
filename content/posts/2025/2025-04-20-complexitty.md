@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Complexitty
 category: Coding
 tags: Complexitty, PyPI, Python, mandelbrot, terminal, textual

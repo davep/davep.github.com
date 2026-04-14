@@ -1,5 +1,4 @@
 ---
-layout: post
 title: My journey to the dark side is complete
 category: Emacs
 tags: Emacs

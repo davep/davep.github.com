@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Off to see Nick Harper
 category: Life
 tags: Music, Gig, Fringe, Nick Harper

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: All green on GitHub
 category: Coding
 tags: GitHub

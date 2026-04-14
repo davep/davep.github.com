@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Helping myself change the default git branch
 category: Coding
 tags: Coding, bash, git

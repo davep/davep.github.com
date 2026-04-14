@@ -1,9 +1,7 @@
 ---
-layout: post
 title: Apple Design
 category: Tech
 tags: Apple, iOS, iPhone, design
-published: True
 date: 2023-09-23 08:10:00+0100
 ---
 

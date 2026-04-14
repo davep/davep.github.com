@@ -1,5 +1,4 @@
 ---
-layout: post
 title: I want to like Gboard
 category: Tech
 tags: Google, Android

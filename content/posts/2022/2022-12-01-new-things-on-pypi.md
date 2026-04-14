@@ -1,5 +1,4 @@
 ---
-layout: post
 title: New Things On PyPi
 category: Python
 tags: Python, coding, Textual, PyPI

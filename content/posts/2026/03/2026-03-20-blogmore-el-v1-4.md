@@ -1,5 +1,4 @@
 ---
-layout: post
 title: blogmore.el v1.4
 category: Emacs
 tags: Emacs, Emacs Lisp, Lisp, blogmore.el, coding

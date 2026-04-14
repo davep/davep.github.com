@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Virgin East Coast
 category: Life
 tags: travel, Virgin

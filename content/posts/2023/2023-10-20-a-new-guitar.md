@@ -1,5 +1,4 @@
 ---
-layout: post
 title: A new guitar
 category: Life
 tags: music, guitar

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: MkDocs/mkdocstrings 404 CSS TIL update
 category: Coding
 tags: documentation, GitHub, mkdocs, mkdocstrings, gh-pages

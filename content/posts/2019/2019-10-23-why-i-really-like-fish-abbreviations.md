@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Why I really like fish abbreviations
 category: Tech
 tags: fish, shell

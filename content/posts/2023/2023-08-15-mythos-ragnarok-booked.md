@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  "Mythos: Ragnarok booked"
 category: Life
 tags: Fringe, wrestling

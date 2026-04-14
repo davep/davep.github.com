@@ -1,5 +1,4 @@
 ---
-layout: post
 title: The PEP 8 hill I will die on
 category: Python
 tags: Coding, Python

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Not so elegant
 category: AI
 tags: AI, Coding, Copilot, LLM, Python, code review

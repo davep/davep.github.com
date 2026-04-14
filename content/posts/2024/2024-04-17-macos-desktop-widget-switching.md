@@ -1,5 +1,4 @@
 ---
-layout: post
 title: macOS desktop widget switching
 category: Tech
 tags: macOS, fish, shell, streaming

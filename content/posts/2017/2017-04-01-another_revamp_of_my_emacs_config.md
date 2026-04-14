@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Another revamp of my emacs config
 category: Emacs
 tags: Emacs, Lisp, Emacs Lisp, coding

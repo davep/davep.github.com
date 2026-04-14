@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Braindrop
 category: Coding
 tags: Braindrop, Coding, PyPI, Python, Raindrop, terminal, textual
