@@ -46,7 +46,7 @@ that's a non-starter.
 Things got off to a good start with an easy install:
 
 ```sh
-$ pipx install "pelican[markdown]"
+pipx install "pelican[markdown]"
 ```
 
 I then used the `pelican-quickstart` to kick off a test site, copied in my

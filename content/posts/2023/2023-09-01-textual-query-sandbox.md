@@ -50,13 +50,13 @@ If you think this looks like it might be useful to you, it can be installed
 using either `pip` or (ideally) `pipx`:
 
 ```sh
-$ pipx install textual-query-sandbox
+pipx install textual-query-sandbox
 ```
 
 and then you can run it with:
 
 ```sh
-$ tqs
+tqs
 ```
 
 At which point load up the Textual query docs, type queries into the input
