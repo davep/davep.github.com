@@ -8,14 +8,125 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 15 Apr 2026 18:39:25 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 16 Apr 2026 08:04:37 +0000</lastBuildDate>
+    <item>
+      <title>boxquote.el v2.4</title>
+      <link>https://blog.davep.org/2026/04/16/boxquote-el-v2-4.html</link>
+      <description>&lt;p&gt;&lt;a href="https://github.com/davep/boxquote.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;boxquote.el&lt;/code&gt;&lt;/a&gt; is another of my
+oldest &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; packages. The original code itself was
+inspired by something I saw on Usenet, and writing my own version of it
+seemed like a great learning exercise; as noted in the thanks section in the
+commentary in the source:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Kai Grossjohann for inspiring the idea of boxquote. I wrote this code to
+mimic the "inclusion quoting" style in his Usenet posts. I could have
+hassled him for his code but it was far more fun to write it myself.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;While I never used this package to quote text I was replying to in Usenet
+posts, I did use it a &lt;em&gt;lot&lt;/em&gt; on Usenet, and in mailing lists, and similar
+places, to quote &lt;em&gt;stuff&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;The default use is to quote a body of text; often a paragraph, or a region,
+or perhaps even Emacs' idea of a &lt;code&gt;defun&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;,----
+| `boxquote.el` provides a set of functions for using a text quoting style
+| that partially boxes in the left hand side of an area of text, such a
+| marking style might be used to show externally included text or example
+| code.
+`----
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Where the package really turned into something fun and enduring, for me, was
+when I started to add the commands that grabbed information from elsewhere
+in Emacs and added a title to explain the content of the quote. For example,
+using &lt;code&gt;boxquote-describe-function&lt;/code&gt; to quote the documentation for a function
+at someone, while also showing them how to get at that documentation:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;,----[ C-h f boxquote-text RET ]
+| boxquote-text is an autoloaded interactive native-comp-function in
+| ‘boxquote.el’.
+|
+| (boxquote-text TEXT)
+|
+| Insert TEXT, boxquoted.
+`----
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or perhaps getting help with a particular key combination:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;,----[ C-h k C-c b ]
+| C-c b runs the command boxquote (found in global-map), which is an
+| interactive native-comp-function in ‘boxquote.el’.
+|
+| It is bound to C-c b.
+|
+| (boxquote)
+|
+| Show a transient for boxquote commands.
+|
+|   This function is for interactive use only.
+|
+| [back]
+`----
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or figuring out where a particular command is and how to get at it:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;,----[ C-h w fill-paragraph RET ]
+| fill-paragraph is on fill-paragraph (M-q)
+`----
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;While I seldom have use for this package these days (mainly because I don't
+write on Usenet or in mailing lists any more) I did keep carrying it around
+(always pulling it down &lt;a href="https://melpa.org/#/boxquote" rel="noopener noreferrer" target="_blank"&gt;from melpa&lt;/a&gt;) and had
+all the various commands bound to some key combination.&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;use-package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;boxquote&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:ensure&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:bind&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b i&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;boxquote-insert-file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b M-w&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;boxquote-kill-ring-save&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b y&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;boxquote-yank&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b b&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;boxquote-region&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b t&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;boxquote-title&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b h f&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;boxquote-describe-function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b h v&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;boxquote-describe-variable&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b h k&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;boxquote-describe-key&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b h w&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;boxquote-where-is&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b !&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;boxquote-shell-command&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Recently, with the &lt;a href="https://blog.davep.org/tag/blogmore-el/"&gt;creation of &lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt;, I moved
+the boxquote commands off the &lt;kbd&gt;b&lt;/kbd&gt; prefix (because I wanted that for
+blogging) and onto an &lt;kbd&gt;x&lt;/kbd&gt; prefix. Even then... that's a lot of
+commands bound to a lot of keys that I almost never use but still can't let
+go of.&lt;/p&gt;
+&lt;p&gt;Then I got to thinking: &lt;a href="https://blog.davep.org/2026/04/04/blogmore-el-v2-6.html"&gt;I'd made good use of transient in
+&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt;, why not use it here too?
+So now &lt;code&gt;boxquote.el&lt;/code&gt; has acquired a &lt;code&gt;boxquote&lt;/code&gt; command which uses transient.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The boxquote transient in action" src="https://blog.davep.org/attachments/2026/04/16/boxquote.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;Now I can have:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;use-package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;boxquote&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:ensure&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:bind&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;C-c b&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;boxquote&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and all the commands are still easy to get to and easy to (re)discover. I've
+also done my best to make them context-sensitive too, so only applicable
+commands should be usable at any given time.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/04/16/boxquote-el-v2-4.html</guid>
+      <category>Emacs</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>coding</category>
+      <category>boxquote.el</category>
+      <pubDate>Thu, 16 Apr 2026 08:29:35 +0100</pubDate>
+    </item>
     <item>
       <title>BlogMore v2.14.0</title>
       <link>https://blog.davep.org/2026/04/15/blogmore-v2-14-0.html</link>
       <description>&lt;p&gt;Quick little update for &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, with a bump
 up to &lt;a href="https://blogmore.davep.dev/changelog/#v2140" rel="noopener noreferrer" target="_blank"&gt;v2.14.0&lt;/a&gt;. This release
 comes from another feature request from
-&lt;a href="https://www.yakshaving.co.uk" rel="noopener noreferrer" target="_blank"&gt;Andy&lt;/a&gt;&lt;sup id="fnref:250-1"&gt;&lt;a class="footnote-ref" href="#fn:250-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, where he asked if it would be
+&lt;a href="https://www.yakshaving.co.uk" rel="noopener noreferrer" target="_blank"&gt;Andy&lt;/a&gt;&lt;sup id="fnref:251-1"&gt;&lt;a class="footnote-ref" href="#fn:251-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, where he asked if it would be
 possible to have a year-based bar chart in &lt;a href="https://blog.davep.org/stats/"&gt;the stats page&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Funnily enough I'd been thinking about the same thing just yesterday. I'd
 been wondering if it was worth adding, or if it would be overkill given the
@@ -30,10 +141,10 @@ complete&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:250-1"&gt;
+&lt;li id="fn:251-1"&gt;
 &lt;p&gt;Who recently wrote an interesting article about &lt;a href="https://www.yakshaving.co.uk/posts/blogging-more-with-blogmore/" rel="noopener noreferrer" target="_blank"&gt;his experience of
 migrating his blog from Hugo to
-BlogMore&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:250-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+BlogMore&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:251-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -218,7 +329,7 @@ and it seemed to be helpful and I could ask questions about markup and
 Copilot seemed to use it. Meanwhile, having installed v0.2.0 globally on my
 machine, and having enabled it, I'm finding that Copilot seems to have zero
 clue about the markup and instead is using the server to go off and read the
-guides to work out the markup&lt;sup id="fnref:259-1"&gt;&lt;a class="footnote-ref" href="#fn:259-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+guides to work out the markup&lt;sup id="fnref:260-1"&gt;&lt;a class="footnote-ref" href="#fn:260-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;On the other hand, the new "get source" tool seems to work a treat.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Peeking at the source for an entry" src="https://blog.davep.org/attachments/2026/04/12/show-source.png#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;So I suspect I still have some reading/experimenting to do when it comes to
@@ -227,9 +338,9 @@ problem they solve.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:259-1"&gt;
+&lt;li id="fn:260-1"&gt;
 &lt;p&gt;All credit to it: it did find &lt;code&gt;CREATING.NG&lt;/code&gt; and read the markup out of
-that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:259-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:260-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -287,7 +398,7 @@ global installation I had &lt;code&gt;~/.copilot/mcp-config.json&lt;/code&gt; lo
 &lt;p&gt;But now I want both. Ideally I'd want to be able to set up an override for a
 specific server in a specific repository. I did some searching and reading
 of the documentation and, from what I can tell, there's no method of doing
-that right now&lt;sup id="fnref:263-1"&gt;&lt;a class="footnote-ref" href="#fn:263-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. So I've settled on this:&lt;/p&gt;
+that right now&lt;sup id="fnref:264-1"&gt;&lt;a class="footnote-ref" href="#fn:264-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. So I've settled on this:&lt;/p&gt;
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;mcpServers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;ngmcp-global&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
@@ -313,11 +424,11 @@ that right now&lt;sup id="fnref:263-1"&gt;&lt;a class="footnote-ref" href="#fn:2
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:263-1"&gt;
+&lt;li id="fn:264-1"&gt;
 &lt;p&gt;I did see the suggestion that you can write your MCP server so that it
 does a non-response depending on the context, but that seems horribly
 situation-specific and wouldn't really help in this case anyway because
-I want it to work in both contexts, depending on what I'm doing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:263-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+I want it to work in both contexts, depending on what I'm doing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:264-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -538,7 +649,7 @@ noticed that if I had any HTML inside my &lt;a href="https://blogmore.davep.dev/
 directory&lt;/a&gt;
 it was turning up in the sitemap; something I didn't intend and didn't want.
 So that's now fixed: only pages generated by BlogMore will appear in
-&lt;code&gt;sitemap.xml&lt;/code&gt;&lt;sup id="fnref:247-1"&gt;&lt;a class="footnote-ref" href="#fn:247-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;code&gt;sitemap.xml&lt;/code&gt;&lt;sup id="fnref:248-1"&gt;&lt;a class="footnote-ref" href="#fn:248-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;The second is that the stats page, despite being in the sitemap, had a
 &lt;code&gt;noindex&lt;/code&gt; header for some reason. That's now been fixed. The only generated
 page I've intentionally set up so that it isn't indexed is the search page.&lt;/p&gt;
@@ -552,10 +663,10 @@ times are turned off.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:247-1"&gt;
+&lt;li id="fn:248-1"&gt;
 &lt;p&gt;Now I think about it, I suppose there might be occasion where someone
 wants extra HTML to appear in the sitemap. I might consider the idea of
-allowing extra entries to be declared via the configuration file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:247-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+allowing extra entries to be declared via the configuration file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:248-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -619,7 +730,7 @@ that month, and the same again for a year title.&lt;/p&gt;
 different display types and I'm also finding it to be yet another
 interesting way to discover older posts (and get a sense of when I was
 encouraged to post going back over the last 11 years of this particular
-blog&lt;sup id="fnref:264-1"&gt;&lt;a class="footnote-ref" href="#fn:264-1"&gt;1&lt;/a&gt;&lt;/sup&gt;).&lt;/p&gt;
+blog&lt;sup id="fnref:265-1"&gt;&lt;a class="footnote-ref" href="#fn:265-1"&gt;1&lt;/a&gt;&lt;/sup&gt;).&lt;/p&gt;
 &lt;p&gt;One final little feature I've added is a small enhancement to the read time
 that can appear on each post. While it's long since been possible &lt;a href="https://blogmore.davep.dev/configuration/#with_read_time" rel="noopener noreferrer" target="_blank"&gt;to decide
 if you want it there or
@@ -631,9 +742,9 @@ as a configuration option so you can set it to suit your own taste.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:264-1"&gt;
+&lt;li id="fn:265-1"&gt;
 &lt;p&gt;I have other, much older, blogs out there on the net. One day I might
-merge them with this one and back-fill the whole thing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:264-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+merge them with this one and back-fill the whole thing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:265-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -733,7 +844,7 @@ on, and also an indication of how many posts I've made that day.&lt;/p&gt;
 &lt;p&gt;Of course, it's not &lt;em&gt;quite&lt;/em&gt; a full streak tracker. It's only going to show
 the days up to the day the site was last generated; so when a reader visits
 and looks, if you've not generated the site for a month, it's not going to
-show that you've not blogged for a month&lt;sup id="fnref:260-1"&gt;&lt;a class="footnote-ref" href="#fn:260-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The point is that if you last
+show that you've not blogged for a month&lt;sup id="fnref:261-1"&gt;&lt;a class="footnote-ref" href="#fn:261-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The point is that if you last
 blog in January, come March or so the reader &lt;em&gt;isn't&lt;/em&gt; going to see 2 months
 of empty days, until you regenerate the site.&lt;/p&gt;
 &lt;p&gt;So, not perfect, but good enough I think. Also it gives the reader another
@@ -756,10 +867,10 @@ that.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:260-1"&gt;
+&lt;li id="fn:261-1"&gt;
 &lt;p&gt;I could solve this problem by having the whole thing generated on the
 fly with some JavaScript, but that felt like it wasn't in the spirit of
-a static site generator.&amp;#160;&lt;a class="footnote-backref" href="#fnref:260-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+a static site generator.&amp;#160;&lt;a class="footnote-backref" href="#fnref:261-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -899,7 +1010,7 @@ prefix.&lt;/p&gt;
 they wanted to add their own commands, or do fun things with the
 configuration. So with this in mind I've "promoted" a bunch of code to being
 "public" and, in that case, I feel this deserves another major version
-bump&lt;sup id="fnref:258-1"&gt;&lt;a class="footnote-ref" href="#fn:258-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+bump&lt;sup id="fnref:259-1"&gt;&lt;a class="footnote-ref" href="#fn:259-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Things that are now part of the "public" interface include:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;blogmore-clean-time-string&lt;/code&gt;&lt;/li&gt;
@@ -957,10 +1068,10 @@ available.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:258-1"&gt;
+&lt;li id="fn:259-1"&gt;
 &lt;p&gt;Ordinarily it shouldn't matter as the public interface isn't changing,
 but some of the "internal" functions had been mentioned as options for
-configuration.&amp;#160;&lt;a class="footnote-backref" href="#fnref:258-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+configuration.&amp;#160;&lt;a class="footnote-backref" href="#fnref:259-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -973,163 +1084,6 @@ configuration.&amp;#160;&lt;a class="footnote-backref" href="#fnref:258-1" title
       <category>blogmore.el</category>
       <category>coding</category>
       <pubDate>Mon, 06 Apr 2026 17:04:16 +0100</pubDate>
-    </item>
-    <item>
-      <title>blogmore.el v3.1</title>
-      <link>https://blog.davep.org/2026/04/05/blogmore-el-v3-1.html</link>
-      <description>&lt;p&gt;When &lt;a href="https://blog.davep.org/2026/03/19/some-blogmore-elisp.html"&gt;I first started writing
-&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; it was just going to be
-a handful of commands that let me spin up a new blog post, and insert the
-odd link here and there when needed. Initially it only handled a single
-blog, and everything it did was based around how I lay my personal blog out,
-and was also very much geared to how I'd made
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; work.&lt;/p&gt;
-&lt;p&gt;But then I wanted to use it to edit both my personal blog &lt;em&gt;and&lt;/em&gt; my
-&lt;a href="https://seen-by.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;photoblog&lt;/a&gt;. So then I had to add support for
-configuring different ways of laying out posts for different blogs, etc.&lt;/p&gt;
-&lt;p&gt;Still, it was mostly written as a personal tool that worked for my stuff. I
-&lt;em&gt;tried&lt;/em&gt; to make it so that it was easy enough to configure (and let's be
-fair: it's for Emacs and written in &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt;, it's
-kind of hard to not be very configurable if you're happy to get your hands
-dirty with some coding), but there were still some parts of it that weren't
-as easy to change as I'd have liked.&lt;/p&gt;
-&lt;p&gt;Also, when I'd originally added the multi-blog configuration, I'd chosen a
-format for the list of blogs that was an assoc-list of pure lists wrapped by
-a &lt;code&gt;cl-defstruct&lt;/code&gt; to make for easier access. It worked well but was very
-positional in its nature.&lt;/p&gt;
-&lt;p&gt;So when &lt;a href="https://mastodon.me.uk/@andyc/116348654225582976" rel="noopener noreferrer" target="_blank"&gt;the request came
-in&lt;/a&gt; to be able to have
-better control over the name of the file when starting a new post, which
-meant I was going to need to rearrange the structure again, it was time to
-try and do something about it.&lt;/p&gt;
-&lt;p&gt;Which is how I'm now on v3.1 (yes, there was a
-&lt;a href="https://github.com/davep/blogmore.el/releases/tag/v3.0" rel="noopener noreferrer" target="_blank"&gt;v3.0&lt;/a&gt; but I quickly
-found something in that that needed fixing&lt;sup id="fnref:265-1"&gt;&lt;a class="footnote-ref" href="#fn:265-1"&gt;1&lt;/a&gt;&lt;/sup&gt;). It's a major version bump
-because I've totally changed how the &lt;code&gt;blogmore-blogs&lt;/code&gt; variable holds the
-data.&lt;/p&gt;
-&lt;p&gt;From now on I'm using
-&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/eieio/" rel="noopener noreferrer" target="_blank"&gt;EIEIO&lt;/a&gt; to
-create a class that holds all of the data for a given blog. This, I believe,
-makes the code easier to read and should also make it more resilient to the
-addition of any new properties. Also thanks to &lt;a href="https://www.gnu.org/software/emacs/manual/html_node/eieio/Customizing.html" rel="noopener noreferrer" target="_blank"&gt;how such classes can work
-with the customize
-system&lt;/a&gt;
-the &lt;code&gt;customize&lt;/code&gt; experience remains pretty much the same too.&lt;/p&gt;
-&lt;p&gt;Personally I don't use the &lt;code&gt;customize&lt;/code&gt; UI, instead I declare everything
-via &lt;code&gt;use-package&lt;/code&gt;. As of the time of writing my declaration for &lt;code&gt;blogmore&lt;/code&gt;
-looks like this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;use-package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:ensure&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:defer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:vc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;:url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://github.com/davep/blogmore.el&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:rev&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:newest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:init&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;add-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;blogmore-new-post-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;&lt;/span&gt;&lt;span class="nv"&gt;end-it&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-work-on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blog.davep.org&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:custom&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-blogs&lt;/span&gt;
-&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-blog&lt;/span&gt;
-&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;:title&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blog.davep.org&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;:posts-directory&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~/write/davep.github.com/content/posts/&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;:post-subdirectory-function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format-time-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%Y/%m/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-blog&lt;/span&gt;
-&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;:title&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;seen-by.davep.dev&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;:posts-directory&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~/write/seen-by/content/posts/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:bind&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;There's a bunch of other changes and tweaks under the hood in this release
-too. All of these should come together to make &lt;code&gt;blogmore.el&lt;/code&gt; a little more
-configurable than it was before. I think, to get the best out of it, anyone
-wanting to configure it "just so" for their purposes will still have to do a
-little bit of work, which makes me want to spend some time soon writing some
-proper documentation, complete with examples of how you might achieve
-different things.&lt;/p&gt;
-&lt;p&gt;One big change I've made under the hood is to the code that is used when you
-insert a link to a post (&lt;code&gt;blogmore-link-post&lt;/code&gt;). When this runs it lets me
-pick a file in your filesystem that is a post from my currently-active blog.
-Once it has the filename it needs to turn it into a root-relative link. So
-this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;~/write/davep.github.com/content/posts/2026/04/01/2026-04-01-foo.md
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;needs to become:&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/2026/04/01/foo.html
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Until now I just did some regexp faffing that took the &lt;code&gt;2026-04-01-&lt;/code&gt; at the
-start of the filename and swapped each &lt;code&gt;-&lt;/code&gt; for &lt;code&gt;/&lt;/code&gt;. Nice and easy. Simple
-enough to code up and get things working a few weeks back. Not at all
-flexible.&lt;/p&gt;
-&lt;p&gt;So as a proof-of-concept of how sophisticated someone could get with
-configuring this I've changed &lt;code&gt;blogmore-default-post-maker-function&lt;/code&gt; from
-this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defcustom&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-default-post-maker-function&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;replace-regexp-in-string&lt;/span&gt;
-&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;bos&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;group&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;digit&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;group&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;digit&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;group&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;digit&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;\\1/\\2/\\3/&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;file-name-base&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;file-name-sans-extension&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Default function to generate a link for a blog post from its filename.&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:type&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;function&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:group&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;blogmore&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;and turned it into this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defcustom&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore-default-post-maker-function&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;
-&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%s/%s&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format-time-string&lt;/span&gt;
-&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%Y/%m/%d&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;with-temp-buffer&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;insert-file-contents-literally&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;parse-iso8601-time-string&lt;/span&gt;
-&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--clean-time-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--get-frontmatter-property&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
-&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;replace-regexp-in-string&lt;/span&gt;
-&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;bol&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;digit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;digit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;digit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;file-name-base&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Default function to generate a link for a blog post from its filename.&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:type&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;function&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:group&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;blogmore&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;So whereas before I was simply messing with the file's name, now I'm loading
-the &lt;code&gt;date&lt;/code&gt; frontmatter from the chosen file and using &lt;em&gt;that&lt;/em&gt; to create the
-date portion of the path in the URL that I use on my blog. The benefit here
-is that someone might want to keep the date portion of the path in the URL,
-but never want it as part of the Markdown source file's name, and so this
-change means they can call the file anything they want; it doesn't look at
-that but instead uses the actual date from the post's frontmatter.&lt;/p&gt;
-&lt;p&gt;I think this nicely demonstrates that, especially thanks to how powerful
-Emacs and Emacs Lisp are, it's fairly easy to make &lt;code&gt;blogmore.el&lt;/code&gt; work just
-the way you want. I &lt;em&gt;think&lt;/em&gt; I've provided almost all the hooks necessary to
-configure it all sorts of ways, but if you do happen to use it and run into
-something I might have missed, &lt;a href="https://github.com/davep/blogmore.el/issues" rel="noopener noreferrer" target="_blank"&gt;let me
-know&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:265-1"&gt;
-&lt;p&gt;I have at least two slightly different &lt;code&gt;date&lt;/code&gt; formats going on in my
-Markdown and Emacs' &lt;code&gt;parse-iso8601-time-string&lt;/code&gt; is kind of picky. So I
-&lt;a href="https://github.com/davep/blogmore.el/pull/57/changes" rel="noopener noreferrer" target="_blank"&gt;added a function to try and clean that
-up&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:265-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/04/05/blogmore-el-v3-1.html</guid>
-      <category>Emacs</category>
-      <category>BlogMore</category>
-      <category>Emacs</category>
-      <category>Emacs Lisp</category>
-      <category>Lisp</category>
-      <category>blogmore.el</category>
-      <category>coding</category>
-      <category>EIEIO</category>
-      <pubDate>Sun, 05 Apr 2026 20:04:44 +0100</pubDate>
     </item>
   </channel>
 </rss>
