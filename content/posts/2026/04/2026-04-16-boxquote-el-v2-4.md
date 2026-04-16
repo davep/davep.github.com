@@ -3,7 +3,7 @@ title: boxquote.el v2.4
 date: 2026-04-16 08:29:35+0100
 category: Emacs
 tags: Emacs, Emacs Lisp, Lisp, coding, boxquote.el
-cover: /attachments/2026/04/16/boxquote.png
+cover: /attachments/2026/04/16/boxquote.webp
 ---
 
 [`boxquote.el`](https://github.com/davep/boxquote.el) is another of my
@@ -107,7 +107,7 @@ Then I got to thinking: [I'd made good use of transient in
 `blogmore.el`](/2026/04/04/blogmore-el-v2-6.html), why not use it here too?
 So now `boxquote.el` has acquired a `boxquote` command which uses transient.
 
-![The boxquote transient in action](/attachments/2026/04/16/boxquote.png#centre)
+![The boxquote transient in action](/attachments/2026/04/16/boxquote.webp#centre)
 
 Now I can have:
 
