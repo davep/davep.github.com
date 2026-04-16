@@ -31,7 +31,7 @@ broken down into [Seen By Me
 second incarnation).
 
 Sadly, for the first blog, tagging wasn't really much of a thing so the [tag
-cloud](https://seen-by.davep.dev/tags.html) hasn't grown too much.
+cloud](https://seen-by.davep.dev/tags/) hasn't grown too much.
 
 But, finally, I've got both the photoblogs back up and hosted somewhere I
 can point to, and I'm fully in control of their content. While it is [hosted
