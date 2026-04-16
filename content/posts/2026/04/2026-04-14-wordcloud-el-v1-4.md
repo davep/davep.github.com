@@ -3,7 +3,7 @@ title: wordcloud.el v1.4
 date: 2026-04-14 08:47:39+0100
 category: Emacs
 tags: Emacs, Emacs Lisp, Lisp, coding, wordcloud.el
-cover: /attachments/2026/04/14/wordcloud.png
+cover: /attachments/2026/04/14/wordcloud.webp
 ---
 
 I *think* I'm mostly caught up with the collection of [Emacs
@@ -18,7 +18,7 @@ that, when run in a buffer, will count the frequency of words in that buffer
 and show the results in a fresh window, complete with the "word cloud"
 differing-font-size effect.
 
-![Word cloud in action](/attachments/2026/04/14/wordcloud.png#centre)
+![Word cloud in action](/attachments/2026/04/14/wordcloud.webp#centre)
 
 This package is about 10 years old at this point, and I'm struggling to
 remember *why* I wrote it now. I know I was doing something -- either

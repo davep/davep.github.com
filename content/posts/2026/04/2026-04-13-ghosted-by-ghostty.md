@@ -3,13 +3,13 @@ title: Ghosted by Ghostty
 date: 2026-04-13 19:19:31+0100
 category: Tech
 tags: MacBook, MacBook Air, Ghostty, macOS, terminal
-cover: /attachments/2026/04/13/ghosted.png
+cover: /attachments/2026/04/13/ghosted.webp
 ---
 
 I just grabbed and opened up the [MacBook
 Air](/2026/03/28/hello-macbook-air-again.html) and met this:
 
-![Ghosted!](/attachments/2026/04/13/ghosted.png#centre)
+![Ghosted!](/attachments/2026/04/13/ghosted.webp#centre)
 
 First time I've ever seen this and I've been using Ghostty for quite a while
 now.
