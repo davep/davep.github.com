@@ -1,7 +1,7 @@
 ---
 title: New Things On PyPi
 category: Python
-tags: Python, coding, Textual, PyPI
+tags: PyPI, Python, Second Life, Textual, coding
 date: 2022-12-01 22:13:00 +0000
 ---
 
