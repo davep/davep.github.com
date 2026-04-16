@@ -3,7 +3,7 @@ title: Discovering powRSS
 date: 2026-04-11 09:50:34+0100
 category: Tech
 tags: Blogging, RSS, atom, writing
-cover: /attachments/2026/04/11/powRSS-logo.png
+cover: /attachments/2026/04/11/powRSS-logo.webp
 ---
 
 This was a nice find yesterday: I think I came across it when someone I

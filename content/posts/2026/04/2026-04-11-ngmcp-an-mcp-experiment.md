@@ -3,7 +3,7 @@ title: NGMCP - An MCP experiment
 date: 2026-04-11 21:01:03+0100
 category: AI
 tags: AI, Coding, Copilot, LLM, MCP, Norton Guide, history, NGMCP
-cover: /attachments/2026/04/11/ngmcp-intro.png
+cover: /attachments/2026/04/11/ngmcp-intro.webp
 ---
 
 Recently I've been thinking that it would be interesting to get to know a
@@ -37,7 +37,7 @@ but with some bits just wrong.
 I did some cleaning up, did some testing, did some tweaking, and [eventually
 I had something working](https://github.com/davep/ngmcp).
 
-![Asking what NGMCP can do](/attachments/2026/04/11/ngmcp-intro.png#centre)
+![Asking what NGMCP can do](/attachments/2026/04/11/ngmcp-intro.webp#centre)
 
 So far I've given the code a fairly quick read over, and I can see what it's
 doing and how it's going about this. This approach obviously has the
@@ -49,14 +49,14 @@ expect it to be doing.
 There will be more code reading happening, and I also intend to look to tidy
 up the code more and perhaps hand-add some more features.
 
-![Looking at the credits of a guide](/attachments/2026/04/11/ngmcp-credits.png)
+![Looking at the credits of a guide](/attachments/2026/04/11/ngmcp-credits.webp#centre)
 
 I very much doubt that this particular MCP server is going to be any use to
 anyone, but as a proof of concept it works well for me. If I were in a
 position of needing to build something genuinely useful, I now have a start
 and a vague idea.
 
-![Reading some text from a guide](/attachments/2026/04/11/ngmcp-reading.png)
+![Reading some text from a guide](/attachments/2026/04/11/ngmcp-reading.webp#centre)
 
 On the other hand: once again, as with [other projects I've done related to
 Norton Guides](/tag/norton-guide/), this *is* a tool that helps keep the
