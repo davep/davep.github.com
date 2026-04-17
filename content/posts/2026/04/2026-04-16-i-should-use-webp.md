@@ -2,7 +2,7 @@
 title: I should use webp
 date: 2026-04-16 21:31:32+0100
 category: Meta
-tags: BlogMore, Blogging, ImageMagick, fish, pngcrush, web
+tags: BlogMore, Blogging, ImageMagick, fish, pngcrush, web, webp
 cover: /attachments/2026/04/16/use-webp.webp
 ---
 
