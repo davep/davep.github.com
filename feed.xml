@@ -8,7 +8,85 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 20 Apr 2026 18:53:14 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 21 Apr 2026 18:30:14 +0000</lastBuildDate>
+    <item>
+      <title>blogmore.el v4.2</title>
+      <link>https://blog.davep.org/2026/04/21/blogmore-el-v4-2.html</link>
+      <description>&lt;p&gt;Another wee update to &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt;,
+with a bump to v4.2.&lt;/p&gt;
+&lt;p&gt;After &lt;a href="https://blog.davep.org/2026/04/17/blogmore-el-v4-1.html"&gt;adding the webp helper command&lt;/a&gt;
+the other day, something about it has been bothering me. While the command
+is there as a simple helper if I want to &lt;a href="https://blog.davep.org/2026/04/16/i-should-use-webp.html"&gt;change an individual image to
+webp&lt;/a&gt; -- so it's not intended to be a
+general-purpose tool -- it felt "wrong" that it did this one specific thing.&lt;/p&gt;
+&lt;p&gt;So I've changed it up and now, rather than being a command that changes an
+image's filename so that it has a &lt;code&gt;webp&lt;/code&gt; extension, it now cycles through a
+small range of different image formats. Specifically it goes &lt;code&gt;jpeg&lt;/code&gt; to &lt;code&gt;png&lt;/code&gt;
+to &lt;code&gt;gif&lt;/code&gt; to &lt;code&gt;webp&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;With this change in place I can position &lt;code&gt;point&lt;/code&gt; on an image in the Markdown
+of a post and keep running the command to cycle the extension through the
+different options. I suppose at some point it might make sense to turn this
+into something that &lt;em&gt;actually&lt;/em&gt; converts the image itself, but this is about
+going back and editing key posts when I change their image formats.&lt;/p&gt;
+&lt;p&gt;Another change is to the code that slugs the title of a post to make the
+Markdown file name. I ran into the motivating issue yesterday when posting
+some images on &lt;a href="https://seen-by.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;my photoblog&lt;/a&gt;. I had a title
+with an apostrophe in it, which meant that it went from something like
+&lt;code&gt;Dave's Test&lt;/code&gt; (as the title) to &lt;code&gt;dave-s-test&lt;/code&gt; (as the slug). While the slug
+doesn't really matter, this felt sort of messy; I would prefer that it came
+out as &lt;code&gt;daves-test&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Given that wish, I modified &lt;code&gt;blogmore-slug&lt;/code&gt; so that it strips &lt;code&gt;'&lt;/code&gt; and &lt;code&gt;"&lt;/code&gt;
+before doing the conversion of non-alphanumeric characters to &lt;code&gt;-&lt;/code&gt;. While
+doing this, for the sake of completeness, I did a simple attempt at removing
+accents from some characters too. So now the slugs come out a little tidier
+still.&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-slug&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;That&amp;#39;s Café Ëmacs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;thats-cafe-emacs&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The slug function has been the perfect use for an &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs
+Lisp&lt;/a&gt; function I've never used before: &lt;code&gt;thread-last&lt;/code&gt;. It's
+not like I've been avoiding it, it's just more a case of I've never quite
+felt it was worthwhile using until now. Thanks to it the body of
+&lt;code&gt;blogmore-slug&lt;/code&gt; looks like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;thread-last&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;title&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nf"&gt;downcase&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;ucs-normalize-NFKD-string&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;seq-filter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;#x300&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;#x36F&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nf"&gt;concat&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;replace-regexp-in-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;any&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;#39;\&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;replace-regexp-in-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;any&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0-9a-z&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;replace-regexp-in-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;seq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;bol&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;seq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;eol&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;rather than something like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;replace-regexp-in-string&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;seq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;bol&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;seq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;eol&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;replace-regexp-in-string&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;any&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0-9a-z&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;replace-regexp-in-string&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;any&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;#39;\&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;concat&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;seq-filter&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;#x300&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;#x36F&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;ucs-normalize-NFKD-string&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;downcase&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;title&lt;/span&gt;&lt;span class="p"&gt;)))))))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Given that making the slug is very much a "pipeline" of functions, the
+former looks far more readable and feels more maintainable than the latter.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/04/21/blogmore-el-v4-2.html</guid>
+      <category>Emacs</category>
+      <category>BlogMore</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>blogmore.el</category>
+      <category>coding</category>
+      <pubDate>Tue, 21 Apr 2026 19:27:26 +0100</pubDate>
+    </item>
     <item>
       <title>Whitby</title>
       <link>https://blog.davep.org/2026/04/20/whitby.html</link>
@@ -895,7 +973,7 @@ that month, and the same again for a year title.&lt;/p&gt;
 different display types and I'm also finding it to be yet another
 interesting way to discover older posts (and get a sense of when I was
 encouraged to post going back over the last 11 years of this particular
-blog&lt;sup id="fnref:267-1"&gt;&lt;a class="footnote-ref" href="#fn:267-1"&gt;1&lt;/a&gt;&lt;/sup&gt;).&lt;/p&gt;
+blog&lt;sup id="fnref:268-1"&gt;&lt;a class="footnote-ref" href="#fn:268-1"&gt;1&lt;/a&gt;&lt;/sup&gt;).&lt;/p&gt;
 &lt;p&gt;One final little feature I've added is a small enhancement to the read time
 that can appear on each post. While it's long since been possible &lt;a href="https://blogmore.davep.dev/configuration/#with_read_time" rel="noopener noreferrer" target="_blank"&gt;to decide
 if you want it there or
@@ -907,9 +985,9 @@ as a configuration option so you can set it to suit your own taste.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:267-1"&gt;
+&lt;li id="fn:268-1"&gt;
 &lt;p&gt;I have other, much older, blogs out there on the net. One day I might
-merge them with this one and back-fill the whole thing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:267-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+merge them with this one and back-fill the whole thing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:268-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -995,58 +1073,6 @@ too&lt;/a&gt;.&lt;/p&gt;</description>
       <category>coding</category>
       <category>fasta.el</category>
       <pubDate>Wed, 08 Apr 2026 11:25:43 +0100</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.10.0</title>
-      <link>https://blog.davep.org/2026/04/07/blogmore-v2-10-0.html</link>
-      <description>&lt;p&gt;I've released an update to &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, with
-another little straightforward addition. This time I'm revisiting the
-&lt;a href="https://blog.davep.org/stats/"&gt;statistics&lt;/a&gt; page and adding a streak tracker, of sorts.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="My blog streak" src="https://blog.davep.org/attachments/2026/04/07/blog-streak.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Modelled after the GitHub contribution tracker, or indeed any number of
-other streak trackers, it shows which days in the recent past I've blogged
-on, and also an indication of how many posts I've made that day.&lt;/p&gt;
-&lt;p&gt;Of course, it's not &lt;em&gt;quite&lt;/em&gt; a full streak tracker. It's only going to show
-the days up to the day the site was last generated; so when a reader visits
-and looks, if you've not generated the site for a month, it's not going to
-show that you've not blogged for a month&lt;sup id="fnref:263-1"&gt;&lt;a class="footnote-ref" href="#fn:263-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The point is that if you last
-blog in January, come March or so the reader &lt;em&gt;isn't&lt;/em&gt; going to see 2 months
-of empty days, until you regenerate the site.&lt;/p&gt;
-&lt;p&gt;So, not perfect, but good enough I think. Also it gives the reader another
-method of discovering posts (each cell will take them to the archive for
-that day, so they can read the post or posts for that day).&lt;/p&gt;
-&lt;p&gt;I've also tried to make it vaguely responsive. There are narrower date
-ranges as the display gets narrower. We start out at 10 months (as you can
-see above), then drop to 9 months:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Last nine months" src="https://blog.davep.org/attachments/2026/04/07/nine-month-streak.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;and then dropping to 5 months once we get to mobile-type screens:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Just five months" src="https://blog.davep.org/attachments/2026/04/07/mobile-streak.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;For all its flaws, I feel it's kind of fun and I like it as a new discovery
-tool. It almost makes me want to do a whole-blog-lifetime version of it, or
-perhaps some sort of more calendar-oriented version of the
-&lt;a href="https://blog.davep.org/archive/"&gt;archive&lt;/a&gt;. For now though I'm going to settle with this and see
-if it encourages me to keep up a blogging streak.&lt;/p&gt;
-&lt;p&gt;While it isn't my intention to write posts for the sake of it, I am enjoying
-writing something more frequently, so this might just help keep me doing
-that.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:263-1"&gt;
-&lt;p&gt;I could solve this problem by having the whole thing generated on the
-fly with some JavaScript, but that felt like it wasn't in the spirit of
-a static site generator.&amp;#160;&lt;a class="footnote-backref" href="#fnref:263-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/04/07/blogmore-v2-10-0.html</guid>
-      <category>Coding</category>
-      <category>BlogMore</category>
-      <category>Markdown</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>coding</category>
-      <pubDate>Tue, 07 Apr 2026 19:12:08 +0100</pubDate>
     </item>
   </channel>
 </rss>
