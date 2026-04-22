@@ -8,7 +8,81 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 21 Apr 2026 18:30:14 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2026 18:24:27 +0000</lastBuildDate>
+    <item>
+      <title>expando.el v1.6</title>
+      <link>https://blog.davep.org/2026/04/22/expando-el-v1-6.html</link>
+      <description>&lt;p&gt;Recently I've had an odd problem with &lt;a href="https://blog.davep.org/category/emacs/"&gt;Emacs&lt;/a&gt;:
+occasionally, and somewhat randomly, as I wrote code, and only when I wrote
+&lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; code, and only when working in
+&lt;code&gt;emacs-lisp-mode&lt;/code&gt;, I'd find that the buffer I was working in would
+disappear. Not just fully disappear, but more like if I'd used
+&lt;code&gt;quit-window&lt;/code&gt;. Worse still, once this started happening, it wouldn't go away
+unless I turned Emacs off and on again.&lt;/p&gt;
+&lt;p&gt;Very un-Emacs!&lt;/p&gt;
+&lt;p&gt;Normally this would happen when I'm in full flow on something, so I'd just
+restart Emacs and crack on with the thing I was writing; because of this I
+wasn't diagnosing what was actually going on.&lt;/p&gt;
+&lt;p&gt;Then, today, as I was writing &lt;code&gt;require&lt;/code&gt; in some code, and kept seeing the
+buffer go away when I hit &lt;kbd&gt;q&lt;/kbd&gt;, it dawned on me.&lt;/p&gt;
+&lt;p&gt;Recently, when &lt;a href="https://blog.davep.org/2026/04/06/expando-el-v1-5.html"&gt;I cleaned up
+&lt;code&gt;expando.el&lt;/code&gt;&lt;/a&gt;, I added the ability to
+close the window with &lt;kbd&gt;q&lt;/kbd&gt;.&lt;/p&gt;
+&lt;div class="highlight" data-lang="diff"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gd"&gt;--- a/expando.el&lt;/span&gt;
+&lt;span class="gi"&gt;+++ b/expando.el&lt;/span&gt;
+&lt;span class="gu"&gt;@@ -58,7 +58,8 @@ Pass LEVEL as 2 (or prefix a call with \\[universal-argument] and&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;  (let ((form (preceding-sexp)))
+&lt;span class="w"&gt; &lt;/span&gt;    (with-current-buffer-window &amp;quot;*Expando Macro*&amp;quot; nil nil
+&lt;span class="w"&gt; &lt;/span&gt;      (emacs-lisp-mode)
+&lt;span class="gd"&gt;-      (pp (funcall (expando--expander level) form)))))&lt;/span&gt;
+&lt;span class="gi"&gt;+      (local-set-key (kbd &amp;quot;q&amp;quot;) #&amp;#39;quit-window)&lt;/span&gt;
+&lt;span class="gi"&gt;+      (pp (funcall (expando--expander level) form)))))&lt;/span&gt;
+
+&lt;span class="w"&gt; &lt;/span&gt;(provide &amp;#39;expando)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;So, after opening a window for the purposes of displaying the expanded
+macro, switch to &lt;code&gt;emacs-lisp-mode&lt;/code&gt;, locally set the binding so &lt;kbd&gt;q&lt;/kbd&gt;
+will call on &lt;code&gt;quit-window&lt;/code&gt;, and I'm all good.&lt;/p&gt;
+&lt;p&gt;Except... not, as it turns out.&lt;/p&gt;
+&lt;p&gt;To quote from the documentation for &lt;code&gt;local-set-key&lt;/code&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The binding goes in the current buffer’s local map, which in most cases is
+shared with all other buffers in the same major mode.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;D'oh!&lt;/p&gt;
+&lt;p&gt;Point being, any time I used &lt;code&gt;expando-macro&lt;/code&gt;, I was changing the meaning of
+&lt;kbd&gt;q&lt;/kbd&gt; in the keyboard map for &lt;code&gt;emacs-lisp-mode&lt;/code&gt;. :-/&lt;/p&gt;
+&lt;p&gt;And so v1.6 of &lt;a href="https://github.com/davep/expando.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;expando.el&lt;/code&gt;&lt;/a&gt; is now a
+thing, in which I introduce a derived mode of &lt;code&gt;emacs-lisp-mode&lt;/code&gt; and set
+&lt;kbd&gt;q&lt;/kbd&gt; in its keyboard map. In fact, I keep the keyboard map nice and
+simple.&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;defvar&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;expando-view-mode-map&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;map&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-sparse-keymap&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;define-key&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;map&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;kbd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;q&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;&lt;/span&gt;&lt;span class="nv"&gt;quit-window&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;map&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Mode map for &lt;/span&gt;&lt;span class="ss"&gt;`expando-view-mode&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;define-derived-mode&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;expando-view-mode&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;emacs-lisp-mode&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;expando&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Major mode for viewing expanded macros.&lt;/span&gt;
+
+&lt;span class="s"&gt;The key bindings for &lt;/span&gt;&lt;span class="ss"&gt;`expando-view-mode&amp;#39;&lt;/span&gt;&lt;span class="s"&gt; are:&lt;/span&gt;
+
+&lt;span class="s"&gt;\\{expando-view-mode-map}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;From now on I should be able to code in full flow state without the worry
+that my window will disappear at any given moment...&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/04/22/expando-el-v1-6.html</guid>
+      <category>Emacs</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>coding</category>
+      <category>expando.el</category>
+      <category>local-set-key</category>
+      <pubDate>Wed, 22 Apr 2026 19:21:40 +0100</pubDate>
+    </item>
     <item>
       <title>blogmore.el v4.2</title>
       <link>https://blog.davep.org/2026/04/21/blogmore-el-v4-2.html</link>
@@ -425,7 +499,7 @@ package index.&lt;/p&gt;
 &lt;p&gt;It's a pretty simple but very useful bit of code that lets me quickly
 macroexpand a sexp at &lt;code&gt;point&lt;/code&gt; and pretty print it into a display window.
 I've often found it indispensable when it came to writing my own macros.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="expando in action" src="https://blog.davep.org/attachments/2026/04/06/expando.png#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="expando in action" src="https://blog.davep.org/attachments/2026/04/06/expando.webp#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;This release simply adds a &lt;code&gt;lexical-binding&lt;/code&gt; header to the file, and also
 adds a &lt;kbd&gt;q&lt;/kbd&gt; key binding to the resulting view window so that it can
 be quickly and easily closed.&lt;/p&gt;
@@ -1205,7 +1279,7 @@ for another 27.&lt;/p&gt;
       <description>&lt;p&gt;This bit of &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; absolutely comes from a more
 innocent time on the Internet. Looking at it, it seems I wrote the first
 version, at least as a proper package, back in 2001. It's very possible that
-I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:275-1"&gt;&lt;a class="footnote-ref" href="#fn:275-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
+I carried a non-package version of it around as part of &lt;code&gt;dp-lib.el&lt;/code&gt;&lt;sup id="fnref:276-1"&gt;&lt;a class="footnote-ref" href="#fn:276-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for
 some time before, so it might date from the late 1990s. While we weren't
 absolutely &lt;em&gt;innocent&lt;/em&gt; back then, the idea of a slightly-risky-looking URL
 wasn't quite so bad as it is now.&lt;/p&gt;
@@ -1229,9 +1303,9 @@ exists.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:275-1"&gt;
+&lt;li id="fn:276-1"&gt;
 &lt;p&gt;For a good chunk of my first decade of using Emacs, I carried a lot of
-personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:275-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+personal code around in a rather large "library" file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:276-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1243,44 +1317,6 @@ personal code around in a rather large "library" file.&amp;#160;&lt;a class="foo
       <category>coding</category>
       <category>obfusurl.el</category>
       <pubDate>Wed, 01 Apr 2026 10:13:57 +0100</pubDate>
-    </item>
-    <item>
-      <title>eg.el v1.2</title>
-      <link>https://blog.davep.org/2026/03/31/eg-el-v1-2.html</link>
-      <description>&lt;p&gt;Okay, that's it then; this is &lt;a href="https://blog.davep.org/2026/03/31/thinks-el-v1-13.html"&gt;turning into a thing I
-think&lt;/a&gt;. Second in an occasional series of
-posts where I tidy up some of my old &lt;a href="https://elisp.dev/" rel="noopener noreferrer" target="_blank"&gt;Emacs packages&lt;/a&gt;.
-This time I dug out &lt;a href="https://github.com/davep/eg.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;eg.el&lt;/code&gt;&lt;/a&gt; and cleaned up
-some of the &lt;a href="https://blog.davep.org/2022/08/23/i-must-be-getting-old.html"&gt;frowned-upon
-behaviour&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;For anyone who doesn't know it: &lt;code&gt;eg.el&lt;/code&gt; is one of &lt;em&gt;many&lt;/em&gt; &lt;a href="https://blog.davep.org/tag/norton-guide/"&gt;Norton
-Guide&lt;/a&gt; readers &lt;a href="https://www.davep.org/norton-guides/" rel="noopener noreferrer" target="_blank"&gt;I've written over the
-years&lt;/a&gt;. This particular one was
-possibly the most fun as it was the most unlikely one to write and also, I
-think it's fair to say, my most ambitious one as well. It also holds a
-special place for me in that the bulk of it was written &lt;a href="https://blog.davep.org/tag/virgin/"&gt;on
-trains&lt;/a&gt; during multiple trips up to Scotland, before I finally
-moved here (on the &lt;a href="https://blog.davep.org/2016/04/28/i-now-own-a-macbook.html"&gt;MacBook Air&lt;/a&gt; I
-&lt;a href="https://blog.davep.org/2026/03/27/macbook-air-m5.html"&gt;mentioned the other day&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;As I look at it now, I sort of want to give it a proper revisit. I've
-written more Norton Guide code since (see &lt;a href="https://blog.davep.org/2025/03/12/aging.html"&gt;AgiNG&lt;/a&gt;
-for example) and have learnt better ways to handle certain things, and I
-also have an even bigger &lt;a href="https://blog.davep.org/2025/12/12/norton-guide-collection.html"&gt;Norton Guide
-collection&lt;/a&gt; to test against. All
-of this could make for an even better Emacs implementation.&lt;/p&gt;
-&lt;p&gt;I also suspect that, this time around, I can do a better job of handling the
-colour and retaining the original Norton Guide reader look and feel. But,
-for now, the code has been tidied up and should keep working for some time
-yet.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/03/31/eg-el-v1-2.html</guid>
-      <category>Emacs</category>
-      <category>Emacs</category>
-      <category>Emacs Lisp</category>
-      <category>Lisp</category>
-      <category>Norton Guide</category>
-      <category>coding</category>
-      <category>eg.el</category>
-      <pubDate>Tue, 31 Mar 2026 21:10:58 +0100</pubDate>
     </item>
   </channel>
 </rss>
