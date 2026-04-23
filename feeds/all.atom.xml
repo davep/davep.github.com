@@ -2,11 +2,114 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-04-22T18:24:27.083778+00:00</updated>
+  <updated>2026-04-23T08:33:28.001707+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/04/23/unabbrev-el-v1-0-0.html</id>
+    <title>unabbrev.el v1.0.0</title>
+    <updated>2026-04-23T08:25:57+01:00</updated>
+    <content type="html">&lt;p&gt;Back in the late 1990s, like plenty of people who were very online, I was a
+very avid user of Usenet. There were a few groups I was very active in, even
+a couple that I maintained a FAQ for. Being that active and wanting to help
+and answer questions, I was forever posting and pasting links to various
+resources. Given that I used &lt;a href="https://blog.davep.org/category/emacs/"&gt;Emacs&lt;/a&gt; to edit my posts&lt;sup id="fnref:251-1"&gt;&lt;a class="footnote-ref" href="#fn:251-1"&gt;1&lt;/a&gt;&lt;/sup&gt;,
+I eventually realised that I should come up with a tool that let me call on
+common URLs quickly.&lt;/p&gt;
+&lt;p&gt;So back in 1998 &lt;a href="https://github.com/davep/handyurl.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;handyurl.el&lt;/code&gt;&lt;/a&gt; was
+born. It was a simple idea: have a file of URLs that I commonly refer to and
+let me quickly pick from one and paste it. This made for a useful tool and
+also gave me something to build given I was learning &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs
+Lisp&lt;/a&gt; at the time.&lt;/p&gt;
+&lt;p&gt;For reasons I can't quite recall, some time later (the next year, by the
+looks of things), I wrote
+&lt;a href="https://github.com/davep/quickurl.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;quickurl.el&lt;/code&gt;&lt;/a&gt; as a successor to
+&lt;code&gt;handyurl.el&lt;/code&gt;. I honestly can't remember &lt;em&gt;why&lt;/em&gt; this happened, I can't
+remember why I didn't just keep extending &lt;code&gt;handyurl.el&lt;/code&gt;. But, anyway,
+&lt;code&gt;quickurl.el&lt;/code&gt; did more and was more flexible, with built-in URL-grabbing and
+editing and so on.&lt;/p&gt;
+&lt;p&gt;Not that long later I got an email from the FSF asking if I might be willing
+to hand over copyright so that &lt;code&gt;quickurl.el&lt;/code&gt; could become part of Emacs
+itself. I was, of course, delighted to do so.&lt;/p&gt;
+&lt;p&gt;Eventually &lt;a href="https://blog.davep.org/2022/08/23/i-must-be-getting-old.html"&gt;&lt;code&gt;quickurl.el&lt;/code&gt; was declared
+obsolete&lt;/a&gt; and, while it seems to
+still be shipped with Emacs, it's not documented or easy to discover.&lt;/p&gt;
+&lt;p&gt;In the deprecation notice in &lt;code&gt;NEWS&lt;/code&gt; the suggestion is that the user should
+switch to one or more of 3 alternatives:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;** The quickurl.el library is now obsolete.
+Use &amp;#39;abbrev&amp;#39;, &amp;#39;skeleton&amp;#39; or &amp;#39;tempo&amp;#39; instead.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;abbrev&lt;/code&gt; I know, the other two I've never noticed and don't know anything
+about.&lt;/p&gt;
+&lt;p&gt;Obviously, between &lt;code&gt;quickurl.el&lt;/code&gt; being pulled into Emacs, and it being made
+obsolete, my use of it fell right off. I eventually stopped posting to and
+reading Usenet, I also stopped using &lt;a href="http://www.mutt.org/" rel="noopener noreferrer" target="_blank"&gt;mutt&lt;/a&gt;+Emacs as
+my mail client of choice, and so found myself seldom writing things that
+needed lots of links, in Emacs.&lt;/p&gt;
+&lt;p&gt;Until recently.&lt;/p&gt;
+&lt;p&gt;At the moment I'm finding that I'm wanting to write on my blog more and
+more, and doing that means I often want to include some common links, and I
+write my posts in Emacs using &lt;code&gt;markdown-mode&lt;/code&gt; and with a little help from
+&lt;a href="https://blog.davep.org/tag/blogmore-el/"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt;; the need to have an easy-to-pick-from
+common menu of URLs is back.&lt;/p&gt;
+&lt;p&gt;Driven by this I've &lt;a href="https://github.com/davep/.emacs.d/blob/4d4a7b5da662b28764e779aba2700d451f5221a5/init.d/packages.d/personal/blogmore.el#L14-L17" rel="noopener noreferrer" target="_blank"&gt;made a point of using &lt;code&gt;abbrev&lt;/code&gt; to initially solve this
+problem&lt;/a&gt;.
+This works, but I do have a problem: I keep forgetting what the
+abbreviations are. I find myself wanting to have a key binding that lets me
+at the very least
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Minibuffer-Completion.html" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;completing-read&lt;/code&gt;&lt;/a&gt;
+the desired abbrev. So yesterday I quickly knocked up
+&lt;a href="https://github.com/davep/unabbrev.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;unabbrev.el&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It's simple, straightforward, small and does the job I needed. Doubtless
+there's something else out there that can do this sort of thing too, but
+part of the fun of Emacs (for me) is that I find I have a need and I can
+hack together some Lisp and get that problem solved.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="unabbrev in action" src="https://blog.davep.org/attachments/2026/04/23/unabbrev.webp#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;I suppose what I &lt;em&gt;should&lt;/em&gt; do is revive either &lt;code&gt;handyurl.el&lt;/code&gt; or &lt;code&gt;quickurl.el&lt;/code&gt;
+and tweak and update whichever, at the very least adding some sort of insert
+formatting facility that is sensitive to the underlying mode (because links
+in Markdown need a format different from links in HTML, etc).&lt;/p&gt;
+&lt;p&gt;For now though &lt;code&gt;unabbrev.el&lt;/code&gt; is going to help my failing memory when I want
+to link a common resource.&lt;/p&gt;
+&lt;p&gt;As an aside, all of this does have me wonder about one thing: is the Free
+Software Foundation the place that code goes to die? Like, sure, of course I
+&lt;em&gt;can&lt;/em&gt; make changes to &lt;code&gt;quickurl.el&lt;/code&gt; and do my own thing with it, as long as
+I don't misrepresent the copyright status and maintain a compatible licence,
+etc; but there is this thing where, if Emacs doesn't want that code any
+more, if the FSF don't want that code any more, wouldn't it be nice if
+they'd sign it back over again?&lt;/p&gt;
+&lt;p&gt;I am tempted to drop them a line and see what the deal is. I did &lt;a href="https://fosstodon.org/@davep/116376633686272162" rel="noopener noreferrer" target="_blank"&gt;tag-ask on
+Mastodon&lt;/a&gt; but got no reply.
+Unfortunately though that account looks like the FSF treat Mastodon as a
+write-only resource.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:251-1"&gt;
+&lt;p&gt;But curiously never got into
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Gnus.html" rel="noopener noreferrer" target="_blank"&gt;Gnus&lt;/a&gt;,
+my news client of choice was &lt;a href="https://www.slrn.org/" rel="noopener noreferrer" target="_blank"&gt;slrn&lt;/a&gt; and I
+composed posts in Emacs.&amp;#160;&lt;a class="footnote-backref" href="#fnref:251-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/04/23/unabbrev-el-v1-0-0.html"/>
+    <category term="Emacs"/>
+    <category term="Emacs"/>
+    <category term="Emacs Lisp"/>
+    <category term="FOSS"/>
+    <category term="FSF"/>
+    <category term="Free Software"/>
+    <category term="Lisp"/>
+    <category term="coding"/>
+    <category term="handyurl.el"/>
+    <category term="quickurl.el"/>
+    <category term="unabbrev.el"/>
+    <published>2026-04-23T08:25:57+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/04/22/expando-el-v1-6.html</id>
     <title>expando.el v1.6</title>
@@ -447,7 +550,7 @@ commands should be usable at any given time.&lt;/p&gt;</content>
     <content type="html">&lt;p&gt;Quick little update for &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, with a bump
 up to &lt;a href="https://blogmore.davep.dev/changelog/#v2140" rel="noopener noreferrer" target="_blank"&gt;v2.14.0&lt;/a&gt;. This release
 comes from another feature request from
-&lt;a href="https://www.yakshaving.co.uk" rel="noopener noreferrer" target="_blank"&gt;Andy&lt;/a&gt;&lt;sup id="fnref:252-1"&gt;&lt;a class="footnote-ref" href="#fn:252-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, where he asked if it would be
+&lt;a href="https://www.yakshaving.co.uk" rel="noopener noreferrer" target="_blank"&gt;Andy&lt;/a&gt;&lt;sup id="fnref:253-1"&gt;&lt;a class="footnote-ref" href="#fn:253-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, where he asked if it would be
 possible to have a year-based bar chart in &lt;a href="https://blog.davep.org/stats/"&gt;the stats page&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Funnily enough I'd been thinking about the same thing just yesterday. I'd
 been wondering if it was worth adding, or if it would be overkill given the
@@ -462,10 +565,10 @@ complete&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:252-1"&gt;
+&lt;li id="fn:253-1"&gt;
 &lt;p&gt;Who recently wrote an interesting article about &lt;a href="https://www.yakshaving.co.uk/posts/blogging-more-with-blogmore/" rel="noopener noreferrer" target="_blank"&gt;his experience of
 migrating his blog from Hugo to
-BlogMore&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:252-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+BlogMore&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:253-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -656,7 +759,7 @@ and it seemed to be helpful and I could ask questions about markup and
 Copilot seemed to use it. Meanwhile, having installed v0.2.0 globally on my
 machine, and having enabled it, I'm finding that Copilot seems to have zero
 clue about the markup and instead is using the server to go off and read the
-guides to work out the markup&lt;sup id="fnref:262-1"&gt;&lt;a class="footnote-ref" href="#fn:262-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+guides to work out the markup&lt;sup id="fnref:263-1"&gt;&lt;a class="footnote-ref" href="#fn:263-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;On the other hand, the new "get source" tool seems to work a treat.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Peeking at the source for an entry" src="https://blog.davep.org/attachments/2026/04/12/show-source.webp#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;So I suspect I still have some reading/experimenting to do when it comes to
@@ -665,9 +768,9 @@ problem they solve.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:262-1"&gt;
+&lt;li id="fn:263-1"&gt;
 &lt;p&gt;All credit to it: it did find &lt;code&gt;CREATING.NG&lt;/code&gt; and read the markup out of
-that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:262-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:263-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -726,7 +829,7 @@ global installation I had &lt;code&gt;~/.copilot/mcp-config.json&lt;/code&gt; lo
 &lt;p&gt;But now I want both. Ideally I'd want to be able to set up an override for a
 specific server in a specific repository. I did some searching and reading
 of the documentation and, from what I can tell, there's no method of doing
-that right now&lt;sup id="fnref:266-1"&gt;&lt;a class="footnote-ref" href="#fn:266-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. So I've settled on this:&lt;/p&gt;
+that right now&lt;sup id="fnref:267-1"&gt;&lt;a class="footnote-ref" href="#fn:267-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. So I've settled on this:&lt;/p&gt;
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;mcpServers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;ngmcp-global&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
@@ -752,11 +855,11 @@ that right now&lt;sup id="fnref:266-1"&gt;&lt;a class="footnote-ref" href="#fn:2
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:266-1"&gt;
+&lt;li id="fn:267-1"&gt;
 &lt;p&gt;I did see the suggestion that you can write your MCP server so that it
 does a non-response depending on the context, but that seems horribly
 situation-specific and wouldn't really help in this case anyway because
-I want it to work in both contexts, depending on what I'm doing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:266-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+I want it to work in both contexts, depending on what I'm doing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:267-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1064,7 +1167,7 @@ that month, and the same again for a year title.&lt;/p&gt;
 different display types and I'm also finding it to be yet another
 interesting way to discover older posts (and get a sense of when I was
 encouraged to post going back over the last 11 years of this particular
-blog&lt;sup id="fnref:268-1"&gt;&lt;a class="footnote-ref" href="#fn:268-1"&gt;1&lt;/a&gt;&lt;/sup&gt;).&lt;/p&gt;
+blog&lt;sup id="fnref:269-1"&gt;&lt;a class="footnote-ref" href="#fn:269-1"&gt;1&lt;/a&gt;&lt;/sup&gt;).&lt;/p&gt;
 &lt;p&gt;One final little feature I've added is a small enhancement to the read time
 that can appear on each post. While it's long since been possible &lt;a href="https://blogmore.davep.dev/configuration/#with_read_time" rel="noopener noreferrer" target="_blank"&gt;to decide
 if you want it there or
@@ -1076,9 +1179,9 @@ as a configuration option so you can set it to suit your own taste.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:268-1"&gt;
+&lt;li id="fn:269-1"&gt;
 &lt;p&gt;I have other, much older, blogs out there on the net. One day I might
-merge them with this one and back-fill the whole thing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:268-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+merge them with this one and back-fill the whole thing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:269-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1090,45 +1193,5 @@ merge them with this one and back-fill the whole thing.&amp;#160;&lt;a class="fo
     <category term="Python"/>
     <category term="coding"/>
     <published>2026-04-09T08:42:34+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/04/08/quiz-el-v1-7.html</id>
-    <title>quiz.el v1.7</title>
-    <updated>2026-04-08T16:54:38+01:00</updated>
-    <content type="html">&lt;p&gt;I &lt;a href="https://blog.davep.org/2026/04/07/quiz-el-v1-6.html"&gt;wondered yesterday&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;...those question headers are displaying differently, with the background
-colour no longer spanning the width of the window. I'd like to understand
-why.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Turns out it was pretty straightforward:&lt;/p&gt;
-&lt;div class="highlight" data-lang="diff"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;diff --git a/quiz.el b/quiz.el&lt;/span&gt;
-&lt;span class="gh"&gt;index 2dbe45d..c1ba255 100644&lt;/span&gt;
-&lt;span class="gd"&gt;--- a/quiz.el&lt;/span&gt;
-&lt;span class="gi"&gt;+++ b/quiz.el&lt;/span&gt;
-&lt;span class="gu"&gt;@@ -40,7 +40,8 @@&lt;/span&gt;
-&lt;span class="w"&gt; &lt;/span&gt;(defface quiz-question-number-face
-&lt;span class="w"&gt; &lt;/span&gt;  &amp;#39;((t :height 1.3
-&lt;span class="w"&gt; &lt;/span&gt;       :background &amp;quot;black&amp;quot;
-&lt;span class="gd"&gt;-       :foreground &amp;quot;white&amp;quot;))&lt;/span&gt;
-&lt;span class="gi"&gt;+       :foreground &amp;quot;white&amp;quot;&lt;/span&gt;
-&lt;span class="gi"&gt;+       :extend t))&lt;/span&gt;
-&lt;span class="w"&gt; &lt;/span&gt;  &amp;quot;Face for the question number.&amp;quot;
-&lt;span class="w"&gt; &lt;/span&gt;  :group &amp;#39;quiz)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;and so v1.7 has happened.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Quiz with reinstated header look" src="https://blog.davep.org/attachments/2026/04/08/updated-quiz.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;It looks like, perhaps, at some point in the past, &lt;code&gt;:extend&lt;/code&gt; was &lt;code&gt;t&lt;/code&gt; by
-default, but it no longer is? Either way, explicitly setting it to &lt;code&gt;t&lt;/code&gt; has
-done the trick.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/04/08/quiz-el-v1-7.html"/>
-    <category term="Emacs"/>
-    <category term="Emacs"/>
-    <category term="Emacs Lisp"/>
-    <category term="Lisp"/>
-    <category term="coding"/>
-    <category term="quiz.el"/>
-    <published>2026-04-08T16:54:38+01:00</published>
   </entry>
 </feed>
