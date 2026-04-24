@@ -2,11 +2,65 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-04-24T08:37:13.771604+00:00</updated>
+  <updated>2026-04-24T16:06:18.191671+00:00</updated>
   <link href="https://blog.davep.org/feeds/emacs.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Emacs" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/04/24/kbdify-el-v1-0-0.html</id>
+    <title>kbdify.el v1.0.0</title>
+    <updated>2026-04-24T17:04:37+01:00</updated>
+    <content type="html">&lt;p&gt;When I'm writing documentation in &lt;a href="https://blog.davep.org/tag/markdown/"&gt;Markdown&lt;/a&gt; I like, where
+possible, to mark up keys with the &lt;code&gt;&amp;lt;kbd&amp;gt;&lt;/code&gt; tag. This was the reason for &lt;a href="https://blog.davep.org/2026/04/04/blogmore-v2-9-0.html"&gt;one
+of the updates to BlogMore&lt;/a&gt;: I'd not done
+any good default markup for &lt;code&gt;&amp;lt;kbd&amp;gt;&lt;/code&gt; and the moment I realised, I knew I had
+to fix it.&lt;/p&gt;
+&lt;p&gt;Now that I'm writing more on this blog, and especially about
+&lt;a href="https://blog.davep.org/tag/coding/"&gt;coding&lt;/a&gt;, I'm mentioning keys pretty often (even more so given
+I'm doing a lot of tidying up of my &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt;
+packages). The thing is though: I find having to type out &lt;code&gt;&amp;lt;kbd&amp;gt;&lt;/code&gt; and
+&lt;code&gt;&amp;lt;/kbd&amp;gt;&lt;/code&gt; kind of tedious, and it's something I mistype from time to time. I
+guess I could use some sort of HTML tag inserting tool or whatever, but I
+got to thinking that it would be handy if I could point an Emacs command at
+a particular sequence in a buffer and have it mark up the whole thing.&lt;/p&gt;
+&lt;p&gt;This resulted in a small bit of code I'm calling
+&lt;a href="https://github.com/davep/kbdify.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;kbdify.el&lt;/code&gt;&lt;/a&gt;. It's pretty simple, if
+&lt;code&gt;point&lt;/code&gt; is sat on some text that looks like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;C-M-S-s-&amp;lt;up&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and I run &lt;code&gt;kbdify&lt;/code&gt; I get this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;lt;kbd&amp;gt;C&amp;lt;/kbd&amp;gt;-&amp;lt;kbd&amp;gt;M&amp;lt;/kbd&amp;gt;-&amp;lt;kbd&amp;gt;S&amp;lt;/kbd&amp;gt;-&amp;lt;kbd&amp;gt;s&amp;lt;/kbd&amp;gt;-&amp;lt;kbd&amp;gt;&amp;amp;lt;up&amp;amp;gt;&amp;lt;/kbd&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The result rendering as
+&lt;kbd&gt;C&lt;/kbd&gt;-&lt;kbd&gt;M&lt;/kbd&gt;-&lt;kbd&gt;S&lt;/kbd&gt;-&lt;kbd&gt;s&lt;/kbd&gt;-&lt;kbd&gt;&amp;lt;up&amp;gt;&lt;/kbd&gt;.&lt;/p&gt;
+&lt;p&gt;I could probably take it a bit further, have it optionally work on a region
+and stuff like that, but even in its current simplistic form it's going to
+be loads quicker and a lot more accurate and will probably perfectly cover
+99% of the times I need it. There is the issue that it's not going to handle
+something like &lt;code&gt;M-x some-command RET&lt;/code&gt; in the way I might like, but then
+again &lt;code&gt;some-command&lt;/code&gt; isn't a key. Like, does it make more sense to have:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;kbd&gt;M&lt;/kbd&gt;-&lt;kbd&gt;x&lt;/kbd&gt; &lt;kbd&gt;some-command&lt;/kbd&gt; &lt;kbd&gt;RET&lt;/kbd&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;anyway? Personally I think this:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;kbd&gt;M&lt;/kbd&gt;-&lt;kbd&gt;x&lt;/kbd&gt; &lt;code&gt;some-command&lt;/code&gt; &lt;kbd&gt;RET&lt;/kbd&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;probably makes more sense.&lt;/p&gt;
+&lt;p&gt;I think I'm good for now.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/04/24/kbdify-el-v1-0-0.html"/>
+    <category term="Emacs"/>
+    <category term="Emacs"/>
+    <category term="Emacs Lisp"/>
+    <category term="Lisp"/>
+    <category term="coding"/>
+    <category term="kbdify.el"/>
+    <category term="Markdown"/>
+    <published>2026-04-24T17:04:37+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/04/24/itch-el-v1-3-0.html</id>
     <title>itch.el v1.3.0</title>
@@ -850,7 +904,7 @@ meant I was going to need to rearrange the structure again, it was time to
 try and do something about it.&lt;/p&gt;
 &lt;p&gt;Which is how I'm now on v3.1 (yes, there was a
 &lt;a href="https://github.com/davep/blogmore.el/releases/tag/v3.0" rel="noopener noreferrer" target="_blank"&gt;v3.0&lt;/a&gt; but I quickly
-found something in that that needed fixing&lt;sup id="fnref:272-1"&gt;&lt;a class="footnote-ref" href="#fn:272-1"&gt;1&lt;/a&gt;&lt;/sup&gt;). It's a major version bump
+found something in that that needed fixing&lt;sup id="fnref:273-1"&gt;&lt;a class="footnote-ref" href="#fn:273-1"&gt;1&lt;/a&gt;&lt;/sup&gt;). It's a major version bump
 because I've totally changed how the &lt;code&gt;blogmore-blogs&lt;/code&gt; variable holds the
 data.&lt;/p&gt;
 &lt;p&gt;From now on I'm using
@@ -958,11 +1012,11 @@ know&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:272-1"&gt;
+&lt;li id="fn:273-1"&gt;
 &lt;p&gt;I have at least two slightly different &lt;code&gt;date&lt;/code&gt; formats going on in my
 Markdown and Emacs' &lt;code&gt;parse-iso8601-time-string&lt;/code&gt; is kind of picky. So I
 &lt;a href="https://github.com/davep/blogmore.el/pull/57/changes" rel="noopener noreferrer" target="_blank"&gt;added a function to try and clean that
-up&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:272-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+up&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:273-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1366,35 +1420,5 @@ Emacs.&lt;/p&gt;</content>
     <category term="coding"/>
     <category term="testing"/>
     <published>2026-04-02T20:53:09+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/04/01/blogmore-el-v2-4.html</id>
-    <title>blogmore.el v2.4</title>
-    <updated>2026-04-01T20:00:44+01:00</updated>
-    <content type="html">&lt;p&gt;I've just released a little update to
-&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt;, adding
-&lt;code&gt;blogmore-toggle-draft&lt;/code&gt; as a command. This came about in connection with the
-feature request that resulted in &lt;a href="https://blog.davep.org/2026/04/01/blogmore-v2-7-0.html"&gt;BlogMore v2.7.0 being
-released&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;While I don't personally use &lt;code&gt;draft&lt;/code&gt; for my posts, I can see the utility of
-it and if someone were to happen to use &lt;code&gt;blogmore.el&lt;/code&gt;, it could be useful to
-have this bound to a handy key combination.&lt;/p&gt;
-&lt;p&gt;As for how it works: that's simple. When run, if there is no &lt;code&gt;draft:&lt;/code&gt;
-frontmatter property, then &lt;code&gt;draft: true&lt;/code&gt; is added. If &lt;code&gt;draft:&lt;/code&gt; is there it
-is removed. Yes, it does mean that it will also remove &lt;code&gt;draft: false&lt;/code&gt; too
-but... eh. Okay, fine, I &lt;em&gt;might&lt;/em&gt; handle that case as a followup but I
-couldn't really imagine someone wanting to keep &lt;code&gt;draft: false&lt;/code&gt; in the
-frontmatter.&lt;/p&gt;
-&lt;p&gt;If a post is ready to go, why bother with a header that means the same thing
-when it's not there?&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/04/01/blogmore-el-v2-4.html"/>
-    <category term="Emacs"/>
-    <category term="BlogMore"/>
-    <category term="Emacs"/>
-    <category term="Emacs Lisp"/>
-    <category term="Lisp"/>
-    <category term="coding"/>
-    <category term="blogmore.el"/>
-    <published>2026-04-01T20:00:44+01:00</published>
   </entry>
 </feed>

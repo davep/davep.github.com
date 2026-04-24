@@ -8,7 +8,60 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 24 Apr 2026 08:37:13 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 24 Apr 2026 16:06:18 +0000</lastBuildDate>
+    <item>
+      <title>kbdify.el v1.0.0</title>
+      <link>https://blog.davep.org/2026/04/24/kbdify-el-v1-0-0.html</link>
+      <description>&lt;p&gt;When I'm writing documentation in &lt;a href="https://blog.davep.org/tag/markdown/"&gt;Markdown&lt;/a&gt; I like, where
+possible, to mark up keys with the &lt;code&gt;&amp;lt;kbd&amp;gt;&lt;/code&gt; tag. This was the reason for &lt;a href="https://blog.davep.org/2026/04/04/blogmore-v2-9-0.html"&gt;one
+of the updates to BlogMore&lt;/a&gt;: I'd not done
+any good default markup for &lt;code&gt;&amp;lt;kbd&amp;gt;&lt;/code&gt; and the moment I realised, I knew I had
+to fix it.&lt;/p&gt;
+&lt;p&gt;Now that I'm writing more on this blog, and especially about
+&lt;a href="https://blog.davep.org/tag/coding/"&gt;coding&lt;/a&gt;, I'm mentioning keys pretty often (even more so given
+I'm doing a lot of tidying up of my &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt;
+packages). The thing is though: I find having to type out &lt;code&gt;&amp;lt;kbd&amp;gt;&lt;/code&gt; and
+&lt;code&gt;&amp;lt;/kbd&amp;gt;&lt;/code&gt; kind of tedious, and it's something I mistype from time to time. I
+guess I could use some sort of HTML tag inserting tool or whatever, but I
+got to thinking that it would be handy if I could point an Emacs command at
+a particular sequence in a buffer and have it mark up the whole thing.&lt;/p&gt;
+&lt;p&gt;This resulted in a small bit of code I'm calling
+&lt;a href="https://github.com/davep/kbdify.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;kbdify.el&lt;/code&gt;&lt;/a&gt;. It's pretty simple, if
+&lt;code&gt;point&lt;/code&gt; is sat on some text that looks like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;C-M-S-s-&amp;lt;up&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and I run &lt;code&gt;kbdify&lt;/code&gt; I get this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;lt;kbd&amp;gt;C&amp;lt;/kbd&amp;gt;-&amp;lt;kbd&amp;gt;M&amp;lt;/kbd&amp;gt;-&amp;lt;kbd&amp;gt;S&amp;lt;/kbd&amp;gt;-&amp;lt;kbd&amp;gt;s&amp;lt;/kbd&amp;gt;-&amp;lt;kbd&amp;gt;&amp;amp;lt;up&amp;amp;gt;&amp;lt;/kbd&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The result rendering as
+&lt;kbd&gt;C&lt;/kbd&gt;-&lt;kbd&gt;M&lt;/kbd&gt;-&lt;kbd&gt;S&lt;/kbd&gt;-&lt;kbd&gt;s&lt;/kbd&gt;-&lt;kbd&gt;&amp;lt;up&amp;gt;&lt;/kbd&gt;.&lt;/p&gt;
+&lt;p&gt;I could probably take it a bit further, have it optionally work on a region
+and stuff like that, but even in its current simplistic form it's going to
+be loads quicker and a lot more accurate and will probably perfectly cover
+99% of the times I need it. There is the issue that it's not going to handle
+something like &lt;code&gt;M-x some-command RET&lt;/code&gt; in the way I might like, but then
+again &lt;code&gt;some-command&lt;/code&gt; isn't a key. Like, does it make more sense to have:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;kbd&gt;M&lt;/kbd&gt;-&lt;kbd&gt;x&lt;/kbd&gt; &lt;kbd&gt;some-command&lt;/kbd&gt; &lt;kbd&gt;RET&lt;/kbd&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;anyway? Personally I think this:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;kbd&gt;M&lt;/kbd&gt;-&lt;kbd&gt;x&lt;/kbd&gt; &lt;code&gt;some-command&lt;/code&gt; &lt;kbd&gt;RET&lt;/kbd&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;probably makes more sense.&lt;/p&gt;
+&lt;p&gt;I think I'm good for now.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/04/24/kbdify-el-v1-0-0.html</guid>
+      <category>Emacs</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>coding</category>
+      <category>kbdify.el</category>
+      <category>Markdown</category>
+      <pubDate>Fri, 24 Apr 2026 17:04:37 +0100</pubDate>
+    </item>
     <item>
       <title>BlogMore v2.15.0</title>
       <link>https://blog.davep.org/2026/04/24/blogmore-v2-15-0.html</link>
@@ -1075,49 +1128,6 @@ things to read.&lt;/p&gt;</description>
       <category>atom</category>
       <category>writing</category>
       <pubDate>Sat, 11 Apr 2026 09:50:34 +0100</pubDate>
-    </item>
-    <item>
-      <title>obs2nlm v1.2.0</title>
-      <link>https://blog.davep.org/2026/04/10/obs2nlm-v1-2-0.html</link>
-      <description>&lt;p&gt;&lt;a href="https://blog.davep.org/2026/01/10/obs2nlm.html"&gt;Three months back&lt;/a&gt; I released
-&lt;a href="https://obs2nlm.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;obs2nlm&lt;/a&gt;, a tool that takes an
-&lt;a href="https://obsidian.md" rel="noopener noreferrer" target="_blank"&gt;Obsidian&lt;/a&gt; vault and turns it into a single Markdown
-file so it can be used as a source for
-&lt;a href="https://notebooklm.google.com" rel="noopener noreferrer" target="_blank"&gt;NotebookLM&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Since then I've been using it a lot and it's working out really well.&lt;/p&gt;
-&lt;p&gt;Meanwhile, one of my vaults has started to creep up towards the &lt;a href="https://support.google.com/notebooklm/answer/16269187?hl=en#zippy=%2Climits-for-notebooklm" rel="noopener noreferrer" target="_blank"&gt;documented
-word limit for a single source in
-NotebookLM&lt;/a&gt;
-(500,000 words). Right now it's sitting at around 75% and is steadily
-creeping up.&lt;/p&gt;
-&lt;p&gt;So, with this in mind, I've made a change &lt;a href="https://github.com/davep/obs2nlm/issues/9" rel="noopener noreferrer" target="_blank"&gt;I've been planning from the
-start&lt;/a&gt; and have added a &lt;code&gt;--split&lt;/code&gt;
-option. If used, if the generated file looks like it's going to hit the word
-limit, a second (or more) file will be created. The naming scheme is simple
-enough: if you ask &lt;code&gt;obs2nlm&lt;/code&gt; to create an output file called &lt;code&gt;dirt.md&lt;/code&gt; and
-it needs to run over, it'll then create &lt;code&gt;dirt-2.md&lt;/code&gt;, &lt;code&gt;dirt-3.md&lt;/code&gt;, and so on.
-The idea then is that, rather than upload that single Markdown file as a
-source, you upload all of the generated Markdown files.&lt;/p&gt;
-&lt;p&gt;Given you get up to 50 sources per notebook, this should see me right for
-any reasonable vault. As for if it will affect the quality of the results I
-get when I query the notebook... that's hard to say until I find myself in
-that situation. If Google are to be believed it shouldn't be an issue, and
-the alternative is to fall foul of the limit so this seems like the only
-sensible solution.&lt;/p&gt;
-&lt;p&gt;I've also added a &lt;code&gt;--dry-run&lt;/code&gt; command line switch too; this should be handy
-for checking how big a vault is when compared to the word limit, without
-actually generating any files.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/04/10/obs2nlm-v1-2-0.html</guid>
-      <category>Coding</category>
-      <category>AI</category>
-      <category>LLM</category>
-      <category>Markdown</category>
-      <category>Obsidian</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>journal</category>
-      <category>obs2nlm</category>
-      <pubDate>Fri, 10 Apr 2026 19:59:11 +0100</pubDate>
     </item>
   </channel>
 </rss>
