@@ -1,7 +1,7 @@
 ---
 title: I must be getting old
 category: Emacs
-tags: Emacs, Lisp, Emacs Lisp
+tags: Emacs, Emacs Lisp, FSF, Lisp
 date: 2022-08-23 21:31:00 +0100
 ---
 
