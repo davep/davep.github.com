@@ -109,7 +109,7 @@ first being [`5x5.el`](https://github.com/davep/5x5.el) -- which itself was
 my first ever attempt at writing some non-trivial Elisp code).
 
 So... yeah... here we are. I'm now old enough to have written some Emacs
-Lisp code, had it required by the FSF for inclusion in Emacs, had it live in
-there for something like two decades, and then *become obselete*!
+Lisp code, had it requested by the FSF for inclusion in Emacs, had it live
+in there for something like two decades, and then *become obselete*!
 
 [//]: # (2022-08-23-I-must-be-getting-old.md ends here)
