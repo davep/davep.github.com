@@ -8,7 +8,137 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 25 Apr 2026 10:42:05 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 26 Apr 2026 09:41:45 +0000</lastBuildDate>
+    <item>
+      <title>But is the code that bad?</title>
+      <link>https://blog.davep.org/2026/04/26/but-is-the-code-that-bad.html</link>
+      <description>&lt;p&gt;There is, obviously and understandably, a &lt;em&gt;lot&lt;/em&gt; of conversation online about
+AI and coding and agents and all that stuff. Much of it I get, much of it I
+agree with, I share the vast majority of the concerns. The impact on people,
+the impact on society, the impact on the environment, the impact of
+security... there's a good list of things to worry us there.&lt;/p&gt;
+&lt;p&gt;The one that crops up a lot though, that I don't quite get, is the constant
+claim I see that at best AI tools produce bad code, and at worst they
+produce unworkable code. That really isn't my recent experience.&lt;/p&gt;
+&lt;p&gt;Sure, going back to 2023 or 2024, when I first started toying with these new
+chatbot things some folks were raving about, the output was laughable. I can
+remember spending some fun times trying to coax whatever version of ChatGPT
+was on the go at the time into writing workable code and being amused by
+just how bad it was.&lt;/p&gt;
+&lt;p&gt;Even back in October last year, when I first tried out the free
+&lt;a href="https://blog.davep.org/tag/copilot/"&gt;Copilot&lt;/a&gt; Pro that GitHub had given me to play with, I tried
+to get it to build a &lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual&lt;/a&gt; application for me and it was
+terrible. The code was bad, it didn't really know how to use Textual
+properly, the application I was trying to get it to write as a test barely
+worked. It was a disaster.&lt;/p&gt;
+&lt;p&gt;A month later, in November of last year, I had a second go and better
+success. That time the (still not released, perhaps one day) application I
+was building was &lt;a href="https://blog.davep.org/tag/swift/"&gt;Swift&lt;/a&gt;-based and worked really well, but I
+can't really comment on the quality of the code or how idiomatically correct
+the code is in respect to the type of application it is (it's a wee game
+that runs on iOS, iPadOS, macOS).&lt;/p&gt;
+&lt;p&gt;By the time I &lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;tried my first serious
+experiment&lt;/a&gt; things seemed to be a
+little different. The code actually wasn't bad. It wasn't good, it was &lt;em&gt;far&lt;/em&gt;
+from good, but it wasn't bad. Also, because it was Python, I was in a good
+place to judge the code.&lt;/p&gt;
+&lt;p&gt;Since I've started working on &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; I've
+noticed issues such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lots of repetitive boilerplate code.&lt;/li&gt;
+&lt;li&gt;Lots of magic numbers.&lt;/li&gt;
+&lt;li&gt;Lots of magic strings.&lt;/li&gt;
+&lt;li&gt;Functions with redundant and unused parameters.&lt;/li&gt;
+&lt;li&gt;A default state of just adding more and more code to one file.&lt;/li&gt;
+&lt;li&gt;A habit of writing least-effort-possible type hints.&lt;/li&gt;
+&lt;li&gt;A habit of sometimes taking a hacky shortcut to solve a problem.&lt;/li&gt;
+&lt;li&gt;A habit of sometimes over-engineering a solution to a problem.&lt;/li&gt;
+&lt;li&gt;A weird obsession with &lt;code&gt;import&lt;/code&gt;ing &lt;em&gt;inside&lt;/em&gt; functions.&lt;/li&gt;
+&lt;li&gt;An occasional weird obsession with guarding some imports with
+  &lt;code&gt;TYPE_CHECKING&lt;/code&gt; to work around non-existent circular imports.&lt;/li&gt;
+&lt;li&gt;An unwillingness to use newer Python capabilities (I've yet to see it make
+  use of &lt;code&gt;:=&lt;/code&gt; without being prompted, for example).&lt;/li&gt;
+&lt;li&gt;A tendency to write what I would consider less-elegant code over
+  more-elegant code.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The list isn't exhaustive, of course. The point here is that, as I've
+reviewed the PRs&lt;sup id="fnref:256-1"&gt;&lt;a class="footnote-ref" href="#fn:256-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and read the code, I've seen things I wouldn't
+personally do. I've seen things I wouldn't personally write, I've seen
+things I've felt the need to push back on, I've seen things I've fully
+rejected and started over. Ultimately BlogMore isn't the code I would have
+written, but at the moment it is the &lt;em&gt;application&lt;/em&gt; I would have written&lt;sup id="fnref:256-2"&gt;&lt;a class="footnote-ref" href="#fn:256-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;So, here's the thing: every time I see someone writing a negative toot or
+post or article or whatever, and they talk about how the code it produces is
+unworkable, I find myself wondering about how they formed this opinion. Are
+they just writing the piece for the audience they want? Are they writing the
+piece based on their experience from months to years back, when these tools
+did seem to still be laughably bad? Are they simply cynically generating the
+piece using an LLM to bait for engagement? When I see this particular aspect
+of such a post it's a bit of a red flag about where they're coming from,
+kind of like how you suddenly realise that someone who seems to speak with
+authority might be full of shit when they start to spout questionable
+"facts" on a subject you understand well.&lt;/p&gt;
+&lt;p&gt;But wait! What about that list of dodgy stuff I've seen while building
+BlogMore with Copilot? What about all the reading and reviewing I've had to
+do, and what about the other crimes against Python coding I can probably
+still find &lt;a href="https://github.com/davep/blogmore" rel="noopener noreferrer" target="_blank"&gt;in the codebase&lt;/a&gt;? Surely that
+is evidence that these tools produce terrible, unworkable, unusable code?&lt;/p&gt;
+&lt;p&gt;I mean, okay, I suppose I could reach that conclusion if I'd had a massively
+atypical experience in the software development industry and had never had
+to review anyone else's code, or had never needed to work on someone else's
+legacy code. Is what I'm seeing out of Copilot something I'd consider ideal
+code? Of course not. Is it worse than some of the worst code I've had to
+deal with since I started coding for a living in 1989? Hell no!&lt;/p&gt;
+&lt;p&gt;From what I'm seeing right now I'm getting code whose quality is... fine.
+Mostly it does the job fine. Often it needs a bit of coaxing in the right
+direction. Sometimes it gets totally confused and goes down a rabbit hole
+which needs to just be blocked off and we start again. Occasionally it needs
+rewriting to do the same thing but in a more maintainable way.&lt;/p&gt;
+&lt;p&gt;All of which sounds very familiar. I've had times where that describes &lt;em&gt;my&lt;/em&gt;
+code (and I would massively distrust anyone who says they've never had the
+same outcomes in their time writing code). For sure it describes code I've
+had to take over, maintain or review.&lt;/p&gt;
+&lt;p&gt;It's almost like it was trained on lots of code written by humans.&lt;/p&gt;
+&lt;p&gt;Meanwhile... not every instance of using these tools to get code done needs
+to be about writing actual code. More and more I'm finding Google Gemini
+(for example) to be a really handy coding buddy and faster "Google this shit
+'cos I can't remember this exact thing I want to achieve". I'll ask, I'll
+almost always get a pretty good answer, and then I can generally take that
+snippet of code and implement it how &lt;em&gt;I&lt;/em&gt; want.&lt;/p&gt;
+&lt;p&gt;I've seldom had to walk away from that sort of interaction because it was
+getting me nowhere.&lt;/p&gt;
+&lt;p&gt;All of which is to say: I remain concerned about a great many things in the
+AI space at the moment, but I'm also as equally suspicious of someone who
+just flatly says &lt;em&gt;"and the code it produces just doesn't work"&lt;/em&gt;. If that's
+part of an article or post I'm left with the feeling that the author put
+zero actual effort into forming their opinion, let alone actually writing
+it.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:256-1"&gt;
+&lt;p&gt;To varying degrees. Sometimes I have plenty of time to kill and I read
+the PR carefully, other times I glance it over, be happy there's nothing
+horrific there, and then decide to push back or merge based on the
+results of hand-testing and automated testing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:256-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:256-2"&gt;
+&lt;p&gt;To be fair, it's the application I would still be writing and would be
+some time off finishing; there's no way it would be as feature-complete
+as it is now had I been 100% hand-coding it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:256-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/04/26/but-is-the-code-that-bad.html</guid>
+      <category>AI</category>
+      <category>AI</category>
+      <category>Coding</category>
+      <category>Copilot</category>
+      <category>Gemini</category>
+      <category>Google</category>
+      <category>Python</category>
+      <pubDate>Sun, 26 Apr 2026 09:29:49 +0100</pubDate>
+    </item>
     <item>
       <title>BlogMore v2.16.0</title>
       <link>https://blog.davep.org/2026/04/25/blogmore-v2-16-0.html</link>
@@ -910,7 +1040,7 @@ and it seemed to be helpful and I could ask questions about markup and
 Copilot seemed to use it. Meanwhile, having installed v0.2.0 globally on my
 machine, and having enabled it, I'm finding that Copilot seems to have zero
 clue about the markup and instead is using the server to go off and read the
-guides to work out the markup&lt;sup id="fnref:266-1"&gt;&lt;a class="footnote-ref" href="#fn:266-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+guides to work out the markup&lt;sup id="fnref:267-1"&gt;&lt;a class="footnote-ref" href="#fn:267-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;On the other hand, the new "get source" tool seems to work a treat.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Peeking at the source for an entry" src="https://blog.davep.org/attachments/2026/04/12/show-source.webp#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;So I suspect I still have some reading/experimenting to do when it comes to
@@ -919,9 +1049,9 @@ problem they solve.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:266-1"&gt;
+&lt;li id="fn:267-1"&gt;
 &lt;p&gt;All credit to it: it did find &lt;code&gt;CREATING.NG&lt;/code&gt; and read the markup out of
-that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:266-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:267-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -979,7 +1109,7 @@ global installation I had &lt;code&gt;~/.copilot/mcp-config.json&lt;/code&gt; lo
 &lt;p&gt;But now I want both. Ideally I'd want to be able to set up an override for a
 specific server in a specific repository. I did some searching and reading
 of the documentation and, from what I can tell, there's no method of doing
-that right now&lt;sup id="fnref:270-1"&gt;&lt;a class="footnote-ref" href="#fn:270-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. So I've settled on this:&lt;/p&gt;
+that right now&lt;sup id="fnref:271-1"&gt;&lt;a class="footnote-ref" href="#fn:271-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. So I've settled on this:&lt;/p&gt;
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;mcpServers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;ngmcp-global&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
@@ -1005,11 +1135,11 @@ that right now&lt;sup id="fnref:270-1"&gt;&lt;a class="footnote-ref" href="#fn:2
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:270-1"&gt;
+&lt;li id="fn:271-1"&gt;
 &lt;p&gt;I did see the suggestion that you can write your MCP server so that it
 does a non-response depending on the context, but that seems horribly
 situation-specific and wouldn't really help in this case anyway because
-I want it to work in both contexts, depending on what I'm doing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:270-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+I want it to work in both contexts, depending on what I'm doing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:271-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1085,53 +1215,6 @@ When I get a bit more time I'm going to flesh this out.&lt;/p&gt;</description>
       <category>history</category>
       <category>NGMCP</category>
       <pubDate>Sat, 11 Apr 2026 21:01:03 +0100</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.13.0</title>
-      <link>https://blog.davep.org/2026/04/11/blogmore-v2-13-0.html</link>
-      <description>&lt;p&gt;Following on from &lt;a href="https://blog.davep.org/2026/04/10/blogmore-v2-12-0.html"&gt;yesterday's release of
-BlogMore&lt;/a&gt;, I've been looking at some more
-information in the Google Search Console, which helped me uncover a couple
-more bugs in relation to URL generation.&lt;/p&gt;
-&lt;p&gt;This time I noticed a couple of issues, both related to the &lt;a href="https://blogmore.davep.dev/configuration/#clean_urls" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;clean_urls&lt;/code&gt;
-setting&lt;/a&gt;. The first
-was that, in the &lt;a href="https://blog.davep.org/2026/04/09/blogmore-v2-11-0.html"&gt;recently added calendar
-page&lt;/a&gt;, all of the URLs for the links into
-the date-based archive weren't taking &lt;code&gt;clean_urls&lt;/code&gt; into account. That's now
-fixed.&lt;/p&gt;
-&lt;p&gt;The second problem was the &lt;code&gt;canonical&lt;/code&gt; &lt;code&gt;&amp;lt;link&amp;gt;&lt;/code&gt; tag in the headers of the
-various archive pages (categories, tags, date-based): none of the URLs used
-in the tag were being cleaned up if &lt;code&gt;clean_urls&lt;/code&gt; was &lt;code&gt;true&lt;/code&gt;. That's now also
-fixed.&lt;/p&gt;
-&lt;p&gt;The main "problem" those two issues were causing was Google was seeing the
-sitemap for my blog declare one URL, but discovering different versions of
-the URL elsewhere; the main offending part here being the canonical URL
-declaration that disagreed with the sitemap.&lt;/p&gt;
-&lt;p&gt;To the best of my understanding the above fixes should clean a lot of that
-up.&lt;/p&gt;
-&lt;p&gt;Also in this new release is a small new feature. After cleaning up the
-sitemap generation in v2.12.0 I got to thinking that, perhaps, there would
-be occasions where a user &lt;em&gt;would&lt;/em&gt; want to be able to add extra items to the
-sitemap. With this in mind I've added the &lt;a href="https://blogmore.davep.dev/configuration/#sitemap_extras" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;sitemap_extras&lt;/code&gt; configuration
-property&lt;/a&gt;. With
-this you can declare extra URLs to drop into the sitemap, if one is being
-generated.&lt;/p&gt;
-&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;sitemap_extras&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;/some/path/&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;/some/file.html&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;I don't think I have a use for this right now, I'm not sure I'll ever have a
-use for it, but it feels like a low-cost feature to add that could be useful
-to someone at some point.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/04/11/blogmore-v2-13-0.html</guid>
-      <category>Coding</category>
-      <category>BlogMore</category>
-      <category>Markdown</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>coding</category>
-      <pubDate>Sat, 11 Apr 2026 11:32:28 +0100</pubDate>
     </item>
   </channel>
 </rss>
