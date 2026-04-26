@@ -1,7 +1,7 @@
 ---
 title: My first couple of weeks with an iMac
 category: Tech
-tags: Mac, Apple, iMac, Unix, Emacs
+tags: Apple, Emacs, Mac, Unix, hardware, iMac
 date: 2015-06-27 18:41:57+0100
 ---
 
