@@ -4,6 +4,7 @@ run      := uv run
 sync     := uv sync
 python   := $(run) python
 blogmore := $(run) blogmore
+spell    := $(run) codespell
 
 ##############################################################################
 # Manage the site.
@@ -18,6 +19,10 @@ serve:				# Locally serve the site for testing.
 .PHONY: publish
 publish:			# Publish the site to GitHub
 	$(blogmore) publish
+
+.PHONY: spellcheck
+spellcheck:
+	$(spell) content/
 
 ##############################################################################
 # Utility.
