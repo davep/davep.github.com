@@ -24,9 +24,9 @@ and so the contact list was huge and out of control -- I didn't really know
 who most of the people were. So [I deleted the account](https://plus.google.com/+DavePearson/posts/jPqNPhg7idp).
 
 Back then there was, as I recall, no explicit delete option, or to do the
-delete thing you had to deactive and wait 14 days, or some such thing. I know
-that I followed the advice in the docs and did whatever was required to have my
-account totally deleted.
+delete thing you had to deactivate and wait 14 days, or some such thing. I
+know that I followed the advice in the docs and did whatever was required to
+have my account totally deleted.
 
 This week, at the urging of friends, I finally decided to create an account
 again. I initially tried to create the account using the old email address

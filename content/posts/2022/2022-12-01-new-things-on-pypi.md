@@ -11,7 +11,7 @@ So, it's fast approaching 2 months now [since I started the new
 thing](/2022/10/05/on-to-something-new-redux.html) and it's been a busy
 time. I've had to adjust to a quite a few new things, not least of which has
 been a longer and more involved commute. I'm actually mostly enjoying it
-too. While having to contend with busses isn't the *best* thing to be doing
+too. While having to contend with buses isn't the *best* thing to be doing
 with my day, I do have a very fond spot for Edinburgh and it's nice to be in
 there most days of the week.
 
