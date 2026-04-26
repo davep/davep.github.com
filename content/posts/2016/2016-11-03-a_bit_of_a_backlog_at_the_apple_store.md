@@ -1,7 +1,7 @@
 ---
 title: A bit of a backlog at the Apple store
 category: Tech
-tags: Apple, OS X, MacBook Air
+tags: Apple, MacBook Air, OS X, hardware
 date: 2016-11-03 13:45:35+0000
 ---
 

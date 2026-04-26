@@ -2,7 +2,7 @@
 title: Hello MacBook Air (again)
 date: 2026-03-28 10:30:09+0000
 category: Tech
-tags: Mac, Apple, macOS, MacBook, MacBook Air
+tags: Apple, Mac, MacBook, MacBook Air, hardware, macOS
 cover: /attachments/2026/03/28/macbook-air.jpeg
 ---
 

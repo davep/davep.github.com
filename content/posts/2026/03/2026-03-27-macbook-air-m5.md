@@ -2,7 +2,7 @@
 title: MacBook Air M5
 date: 2026-03-27 14:12:21+0000
 category: Tech
-tags: Mac, Apple, macOS, MacBook, MacBook Air
+tags: Apple, Mac, MacBook, MacBook Air, hardware, macOS
 cover: /attachments/2026/03/27/macbook-air.png
 ---
 

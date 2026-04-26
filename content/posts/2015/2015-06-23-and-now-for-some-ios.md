@@ -1,7 +1,7 @@
 ---
 title: And now for some iOS
 category: Tech
-tags: Mac, Apple, iOS, iPod
+tags: Apple, Mac, hardware, iOS, iPod
 date: 2015-06-23 23:09:32+0100
 ---
 
