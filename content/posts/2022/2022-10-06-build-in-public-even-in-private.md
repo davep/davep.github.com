@@ -19,7 +19,7 @@ some small contributions along the way, I've also always made a point of
 [building my own tools in public](https://github.com/davep/). In most cases
 they're things that are likely only helpful to me, but some are more
 generally useful. The point being though: it's all there in case it's
-helpfull to someone else.
+helpful to someone else.
 
 Which means that, as much as possible, when I'm writing code, I write it as
 if it's going to be visible in public and someone else is going to be

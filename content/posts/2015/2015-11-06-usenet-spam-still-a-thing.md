@@ -15,7 +15,7 @@ gmail spam folder is filled with emails to that and other addresses I used
 for Usenet over the years this is the first bit of "proper" spam I've had
 to it in a long time.
 
-It's signficant that it's some sort of [Xbase](https://en.wikipedia.org/wiki/XBase)-related
+It's significant that it's some sort of [Xbase](https://en.wikipedia.org/wiki/XBase)-related
 thing too. I think the Usenet group I posted to more than any other will have
 been [comp.lang.clipper](news:comp.lang.clipper). Unless I had some lapse of
 judgement at some point in the late 1990s or early 2000s (I think I only got
@@ -30,7 +30,8 @@ even if I had the address in question wouldn't have been the one used.
 So, yeah, great way to impress me with a new product: make your first contact
 with me look exactly like some old Usenet spam.
 
-**Edit to add:** I've since had it confrimed by the sender of the email that
-my address was indeed pulled from [comp.lang.clipper](news:comp.lang.clipper).
+**Edit to add:** I've since had it confirmed by the sender of the email that
+my address was indeed pulled from
+[comp.lang.clipper](news:comp.lang.clipper).
 
 [//]: # (2015-11-06-usenet-spam-still-a-thing.md ends here)

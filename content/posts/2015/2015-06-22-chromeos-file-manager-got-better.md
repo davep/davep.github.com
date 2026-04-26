@@ -24,11 +24,10 @@ the device alert you to handy new features? I mean,
 [my watch did](/2015/06/20/moto360-updated.html)!). For all I know this has
 been there a while and it's the first time I've noticed.
 
-No mater how long it's been there, it's really rather handy. I've already
+No matter how long it's been there, it's really rather handy. I've already
 been able to hook it up to my Dropbox account, there's an SMB filesystem
-handler (that I've not had a chance to test yet) and an sftp service
-(which I have tested and seem to work well enough for my needs). There's
-more too:
+handler (that I've not had a chance to test yet) and an sftp service (which
+I have tested and seem to work well enough for my needs). There's more too:
 
 ![Handlers for all](/attachments/2015/06/22/Screenshot 2015-06-22 at 16.48.52.png#centre)
 

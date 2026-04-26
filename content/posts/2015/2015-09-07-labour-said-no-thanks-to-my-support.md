@@ -28,11 +28,11 @@ But, for many reasons, I've always felt an important connection to Labour.
 
 Possibly one of the best moments, in political terms, was that night in
 [1997](https://en.wikipedia.org/wiki/United_Kingdom_general_election,_1997),
-as I drove back home, down the M3 from London, listening to the radio, hearing
-Tory after Tory fall and realising that, for the first time in my (politically
-concious) life, I was going to enjoy the benefits, we were all going to enjoy
-the benefits, of a Labour government. This was such a sweet victory after
-having really felt the defeat of
+as I drove back home, down the M3 from London, listening to the radio,
+hearing Tory after Tory fall and realising that, for the first time in my
+(politically conscious) life, I was going to enjoy the benefits, we were all
+going to enjoy the benefits, of a Labour government. This was such a sweet
+victory after having really felt the defeat of
 [1992](https://en.wikipedia.org/wiki/United_Kingdom_general_election,_1992).
 
 The Blair horror show that followed was.... horrific. I don't think I've ever
@@ -88,7 +88,7 @@ by a couple of emails from a couple of the leadership campaign groups, I
 filled in the form to ask them to hurry it up. I think it was late on Thursday
 evening (2015-09-03) or early Friday morning (2015-09-04).
 
-A little later on Friday this happened (Anroid twitter):
+A little later on Friday this happened (Android twitter):
 
 ![A follow from someone involved in Labour](/attachments/2015/09/07/Screenshot_2015-09-07-11-07-16.png#centre)
 
