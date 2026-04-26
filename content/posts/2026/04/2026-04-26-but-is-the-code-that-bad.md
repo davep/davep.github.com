@@ -8,7 +8,7 @@ tags: AI, Coding, Copilot, Gemini, Google, Python, code review
 There is, obviously and understandably, a *lot* of conversation online about
 AI and coding and agents and all that stuff. Much of it I get, much of it I
 agree with, I share the vast majority of the concerns. The impact on people,
-the impact on society, the impact on the environment, the impact of
+the impact on society, the impact on the environment, the impact on
 security... there's a good list of things to worry us there.
 
 The one that crops up a lot though, that I don't quite get, is the constant
