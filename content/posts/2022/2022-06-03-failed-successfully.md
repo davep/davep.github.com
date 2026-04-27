@@ -3,6 +3,7 @@ title: Failed successfully
 category: Tech
 tags: UI, UX
 date: 2022-06-03 09:05:05 +0100
+cover: /attachments/2022/06/03/Unexpected-error.jpeg
 ---
 
 A couple of days back (for vague values of "couple", of course), first of
@@ -15,7 +16,7 @@ coffee, routine.
 
 I get to the final movement/payment and then notice something:
 
-![Useless error message](/attachments/2022/06/03/Unexpected-error.jpeg)
+![Useless error message](/attachments/2022/06/03/Unexpected-error.jpeg#centre)
 
 That.... that text! WTF? So then I look back at my payment history and
 notice that all but one payment *hadn't* gone through! O_o
