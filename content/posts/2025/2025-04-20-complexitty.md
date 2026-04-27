@@ -1,7 +1,7 @@
 ---
 title: Complexitty
 category: Coding
-tags: Complexitty, PyPI, Python, mandelbrot, terminal, textual
+tags: Complexitty, PyPI, Python, mandelbrot, terminal, textual, textual-canvas
 date: 2025-04-20 09:30:00 +0100
 cover: attachments/2025/04/20/complexitty-social-banner.png
 ---

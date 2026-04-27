@@ -1,7 +1,7 @@
 ---
 title: textual-countdown
 category: Python
-tags: PyPi, Python, coding, Textual
+tags: PyPI, Python, coding, Textual
 date: 2024-01-11 22:52:00 +0100
 ---
 
