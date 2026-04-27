@@ -3,6 +3,7 @@ title: On to something new (redux)
 category: Life
 tags: coding, work, life, Python, news
 date: 2022-10-05 09:24:00 +0100
+modified: 2026-04-27 11:46:39+0100
 ---
 
 Just over five years ago I got a message from my then employer to say I was
@@ -49,21 +50,20 @@ and OMG NO NO NO AVOID AVOID (that was a fun one).
 
 Then I saw [Will McGugan](https://twitter.com/willmcgugan) saying he was
 hiring to expand [Textualize](https://www.textualize.io/). This caught my
-interest right away for two good reasons.
+interest right away for two reasons.
 
 I can't remember how long I've been following Will on Twitter; I likely
 stumbled on him as I got back into Python in 2018 and I also remember noting
 that he was a Python hacker just up the road from me. We'd vaguely chatted
 on Twitter, briefly, in that "Twitter acquaintance" way we all often do (I
 remember [one brief exchange about fungus on The
-Meadows](https://twitter.com/davepdotorg/status/1438887277623750661)), and
-he'd seemed like a good sort. A small company run by a "good sort" kinda
-person felt like a damn good reason.
+Meadows](https://twitter.com/davepdotorg/status/1438887277623750661)). A
+small company run by someone I was acquainted with seemed like a safe bet.
 
 The second reason was Textual itself. I'd been watching Will develop it, in
 open, with great interest. I had (and still have) a plan to write a brand
 new CHUI-based (okay fine TUI-based as the kids like to say these days!)
-Norton Guide reader, all in Python, and Textual looked like the perfect
+Norton Guide reader[^1], all in Python, and Textual looked like the perfect
 framework to do the UI in. The chance to be involved with it sounded
 awesome.
 
@@ -87,8 +87,9 @@ So, yeah, as of 2022-10-10 I'm on yet another new adventure. Time for me to
 *really* work on my Python coding as I work with Will and the rest of the
 team as part of Textualize.
 
-Or, as I put it on Twitter a few days ago: [I'm going to be a Python
-impostor syndrome
-speedrunner](https://twitter.com/davepdotorg/status/1574121611413921792)!
+Or, as I put it on Twitter a few days ago: *"I'm going to be a Python
+impostor syndrome speedrunner"*.
+
+[^1]: Future edit to add: [it happened eventually](/2025/03/12/aging.html).
 
 [//]: # (2022-10-05-on-to-something-new-redux.md ends here)

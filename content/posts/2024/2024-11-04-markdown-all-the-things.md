@@ -117,3 +117,5 @@ a bit silly, if I'm honest).
 
 Meanwhile... I might need to look at other applications and think about how
 I can turn the data into useful Markdown collections!
+
+[//]: # (2024-11-04-markdown-all-the-things.md ends here)
