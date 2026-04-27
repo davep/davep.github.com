@@ -3,6 +3,7 @@ title: On to something new (redux)
 category: Life
 tags: coding, work, life, Python, news
 date: 2022-10-05 09:24:00 +0100
+modified: 2026-04-27 11:46:39+0100
 ---
 
 Just over five years ago I got a message from my then employer to say I was
@@ -87,8 +88,8 @@ So, yeah, as of 2022-10-10 I'm on yet another new adventure. Time for me to
 *really* work on my Python coding as I work with Will and the rest of the
 team as part of Textualize.
 
-Or, as I put it on Twitter a few days ago: [I'm going to be a Python
-impostor syndrome
-speedrunner](https://twitter.com/davepdotorg/status/1574121611413921792)!
+Or, as I put it on Twitter a few days ago:
+
+> I'm going to be a Python impostor syndrome speedrunner
 
 [//]: # (2022-10-05-on-to-something-new-redux.md ends here)
