@@ -1,11 +1,11 @@
 ---
 title: My VR recording setup
 category: Tech
-tags: VR, YouTube, PCVR
+tags: PCVR, VR, YouTube, hardware
 date: 2022-05-28 17:01:00+0100
 ---
 
-# Introduction
+## Introduction
 
 For well over a year now I've been recording my VR gameplay [and uploading
 it to YouTube](https://www.youtube.com/user/daveporg). Less as a "content
@@ -29,7 +29,7 @@ for my own fun and benefit and might also help me in the future should I
 want to apply some of this again, and if it helps someone else that's a
 lovely bonus.
 
-# The Hardware
+## The Hardware
 
 While it's not exactly the point of this post, I guess it's worth mentioning
 the hardware I use as of the time of writing. Given this is about PCVR, I of
@@ -61,7 +61,7 @@ ton easier. As a bonus I have the USB cable for the headset running around
 the headset's strap and connected to it at the back and then running down my
 back.
 
-# OBS Studio
+## OBS Studio
 
 The core software used is [OBS Studio](https://obsproject.com/). This has
 got to be one of the best bits of free software I've ever used, in terms of
@@ -82,7 +82,7 @@ not streaming it (that might end up being a different blog post).
 
 That said, here are things I seem to remember as being key:
 
-## Output Settings
+### Output Settings
 
 The items in the output pane in settings that I have and which might be
 important are:
@@ -104,13 +104,13 @@ I can say that at least once I've had to hard-reboot my machine when a game
 and SteamVR and the like all got upset. I likely saved 45 minutes or more of
 footage thanks to `mkv`.
 
-# Video Settings
+## Video Settings
 
 Nothing really special in here, I simply have both the base and output
 resolutions set to the desktop resolution. This *might* be something for me
 to tinker with in the future, but so far I've not run into any problems.
 
-# VR Capture
+## VR Capture
 
 Now, of course, all of the above is great and fine and all but there's the
 issue of how you capture the VR gameplay. I approach this a couple of
@@ -135,7 +135,7 @@ that specific window. I could of course just get it to capture the focused
 window or something like that but I prefer to know that it's only grabbing
 what I want it to grab.
 
-# Conclusion
+## Conclusion
 
 That's pretty much it I think. There's not a lot to it, although on occasion
 a lot can go wrong. Mostly it's a wonder any of it works. I mean, think
