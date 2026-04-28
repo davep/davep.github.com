@@ -16,7 +16,7 @@ thing about it was it's not something I would have gone for on my own, it's
 technically not really my thing, but I got talked into it and I'm so glad I
 was!
 
-So a year back [Mariëlle](https://artisan.chat/@supermarielle) told me about
+So a year back [Mariëlle](https://mas.to/@SuperMarielle) told me about
 this wrestling show at the Fringe and how she wanted to go but nobody else
 was interested and I was all *"yebbut wrestling though?"* and didn't think
 much more about it. Eventually though, after some persuasion (I mean, an

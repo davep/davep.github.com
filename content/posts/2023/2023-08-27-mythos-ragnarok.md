@@ -14,7 +14,7 @@ least one Fringe show per week!
 
 Yesterday was a full, busy, and hugely enjoyable day. While it could have
 just been a dash into town to see the show and back home again, in
-conjunction with [Mariëlle](https://artisan.chat/@supermarielle) (who [first
+conjunction with [Mariëlle](https://mas.to/@SuperMarielle) (who [first
 introduced me to the Mythos show](/2023/08/15/mythos-ragnarok-booked.html))
 we arranged to go watch Oppenheimer first (amazing, easily the fastest any
 combined 3 hours have passed for me -- I'm not even going to try and write
