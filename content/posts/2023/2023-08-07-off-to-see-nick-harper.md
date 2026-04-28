@@ -1,6 +1,6 @@
 ---
 title: Off to see Nick Harper
-category: Life
+category: Music
 tags: Music, Gig, Fringe, Nick Harper
 date: 2023-08-07 21:56:00 +0100
 ---

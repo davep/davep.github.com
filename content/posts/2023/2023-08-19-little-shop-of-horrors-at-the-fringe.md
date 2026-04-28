@@ -1,6 +1,6 @@
 ---
 title:  Little Shop of Horrors at the Fringe
-category: Life
+category: Music
 tags: Music, Gig, Fringe
 date: 2023-08-19 15:00:00 +0100
 ---
