@@ -1,9 +1,9 @@
 ---
 title: Steam Deck
-category: Tech
+category: Gaming
 tags: gaming, Steam, Steam Deck, hardware
 date: 2023-12-14 16:47:00 +0100
-cover: attachments/2023/12/14/IMG_3842.jpeg
+cover: /attachments/2023/12/14/IMG_3842.jpeg
 ---
 
 Back in 2021, I think it was, when Value first announced the Steam Deck, I
