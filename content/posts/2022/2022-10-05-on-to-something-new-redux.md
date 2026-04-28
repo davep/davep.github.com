@@ -3,7 +3,7 @@ title: On to something new (redux)
 category: Life
 tags: coding, work, life, Python, news
 date: 2022-10-05 09:24:00 +0100
-modified: 2026-04-27 11:46:39+0100
+modified: 2026-04-28 11:25:08+0100
 ---
 
 Just over five years ago I got a message from my then employer to say I was
@@ -56,9 +56,8 @@ I can't remember how long I've been following Will on Twitter; I likely
 stumbled on him as I got back into Python in 2018 and I also remember noting
 that he was a Python hacker just up the road from me. We'd vaguely chatted
 on Twitter, briefly, in that "Twitter acquaintance" way we all often do (I
-remember [one brief exchange about fungus on The
-Meadows](https://twitter.com/davepdotorg/status/1438887277623750661)). A
-small company run by someone I was acquainted with seemed like a safe bet.
+remember one brief exchange about fungus on The Meadows). A small company
+run by someone I was acquainted with seemed like a safe bet.
 
 The second reason was Textual itself. I'd been watching Will develop it, in
 open, with great interest. I had (and still have) a plan to write a brand

@@ -4,6 +4,7 @@ category: Python
 tags: PyPI, Python, Second Life, Textual, coding
 date: 2022-12-01 22:13:00 +0000
 modified: 2026-04-28 11:12:56+0100
+cover: /attachments/2022/12/01/textual-qrcode.webp
 ---
 
 ## An update
@@ -84,7 +85,7 @@ And... yeah, I don't know why, but I remembered
 [`qrencode.el`](https://github.com/davep/qrencode.el) and so
 `textual-qrcode` was born!
 
-![The most useless Textal widget yet](/attachments/2022/12/01/textual-qrcode.png)
+![The most useless Textal widget yet](/attachments/2022/12/01/textual-qrcode.webp#centre)
 
 I think the most amusing part about this is that I did it in full knowledge
 that it would be useless; the idea being it would be a daft way of showing
