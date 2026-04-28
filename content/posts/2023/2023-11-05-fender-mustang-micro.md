@@ -1,7 +1,7 @@
 ---
 title: Fender Mustang Micro
 category: Life
-tags: music, guitar
+tags: guitar, hardware, music
 date: 2023-11-05 20:28:00 +0100
 cover: attachments/2023/10/20/IMG_3329.jpeg
 ---
