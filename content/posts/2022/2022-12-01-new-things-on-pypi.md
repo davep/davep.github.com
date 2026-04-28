@@ -3,9 +3,10 @@ title: New Things On PyPi
 category: Python
 tags: PyPI, Python, Second Life, Textual, coding
 date: 2022-12-01 22:13:00 +0000
+modified: 2026-04-28 11:12:56+0100
 ---
 
-# An update
+## An update
 
 So, it's fast approaching 2 months now [since I started the new
 thing](/2022/10/05/on-to-something-new-redux.html) and it's been a busy
@@ -17,21 +18,18 @@ there most days of the week.
 
 Part of the fallout from the new job has been that, in the last couple of
 weeks, I've thrown some more stuff up on PyPi. This comes about as part of a
-bit of a dog-fooding campaign we're on at the moment (you can read some
-background to this [over on the company
-blog](https://textual.textualize.io/blog/2022/11/26/on-dog-food-the-original-metaverse-and-not-being-bored/)).
-While they have been, and will continue to be, mentioned on the Textualize
-blog, I thought I'd give a brief mention of them here on my own blog too
-given they are, essentially, personal projects.
+bit of [a dog-fooding campaign we're on at the
+moment](/2022/11/26/on-dog-food.html). While they have been, and will
+continue to be, mentioned on the Textualize blog, I thought I'd give a brief
+mention of them here on my own blog too given they are, essentially,
+personal projects.
 
-# gridinfo
+## gridinfo
 
 This is one I'd like to tweak some more and improve on if possible. It is,
 in essence, a Python-coded terminal tool that does more or less the same as
-[`slstats.el`](https://github.com/davep/slstats.el). It started out as [a
-rather silly quick
-hack](https://twitter.com/davepdotorg/status/1590476280457490434), designed
-to do something different with
+[`slstats.el`](https://github.com/davep/slstats.el). It started out as a
+rather silly quick hack, designed to do something different with
 [`rich-pixels`](https://github.com/darrenburns/rich-pixels).
 
 Here's the finished version (as of the time of writing) being put through
@@ -47,7 +45,7 @@ encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 Download [from here](https://pypi.org/project/gridinfo/), or install and
 play with it with a quick `pipx install gridinfo`.
 
-# unbored
+## unbored
 
 The next experiment with Textual was to write a terminal-based client for
 the [Bored-API](https://www.boredapi.com/). My initial plan for this was to
@@ -73,7 +71,7 @@ encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 Download [from here](https://pypi.org/project/unbored/), or install and play
 with it with a quick `pipx install unbored`.
 
-# textual-qrcode
+## textual-qrcode
 
 This one... this one I'm going to blame on the brain fog that followed flu
 *and* Covid jabs that happened the day before (and which are still kicking
@@ -97,13 +95,12 @@ actually be handy!"
 If you're one of those people... [you'll find it
 here](https://pypi.org/project/textual-qrcode/).
 
-# FivePyFive
+## FivePyFive
 
 While I was on a roll putting stuff up on PyPi, I also decided to tweak up
-my Textual-based 5x5 and throw that up too. This was [my first app built
-with Textual](https://twitter.com/davepdotorg/status/1554207518615814148),
-initially written before I'd even spoken to Will about the position here. At
-one point I even did [a version in
+my Textual-based 5x5 and throw that up too. This was my first app built with
+Textual, initially written before I'd even spoken to Will about the position
+here. At one point I even did [a version in
 Lisp](https://github.com/davep/textual/blob/c4f60548922609133763c0e49f7b23aea5d44c2b/sandbox/davep/five_by_five.hy).
 
 It's since gone on to become [one of the example apps in Textual
@@ -128,7 +125,7 @@ picture-in-picture" allowfullscreen></iframe>
 
 You can find it [over here](https://pypi.org/project/fivepyfive/).
 
-# PISpy
+## PISpy
 
 Finally... for this week anyway, is a tool I've called PISpy. It's designed
 as a simple terminal client for looking up package information on PyPi. As
@@ -158,7 +155,7 @@ pipx install pispy-client
 
 and then just run `pispy` in the terminal.
 
-# Conclusion
+## Conclusion
 
 It's been a fun couple of weeks coming up with stuff to help exercise
 Textual, and there's more to come. Personally I've found the process really
