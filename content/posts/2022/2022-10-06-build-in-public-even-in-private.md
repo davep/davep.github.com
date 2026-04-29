@@ -56,8 +56,7 @@ team members if they ever needed to look; with future me (really, that
 helped more than once -- we all have those "that the *hell* was I thinking?"
 moments); with any developer(s) who took over from me in the future.
 
-I did all this as if I was broadcasting it in public [on
-Twitter](https://twitter.com/davepdotorg) or [on
+I did all this as if I was broadcasting it in public on Twitter or [on
 GitHub](https://github.com/davep), etc. It was in private, of course, but I
 approached it as if it was in public.
 
