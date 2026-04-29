@@ -1,7 +1,7 @@
 ---
 title: Build in public, even in private
 category: Coding
-tags: coding
+tags: coding, documentation
 date: 2022-10-06 10:44:00 +0100
 ---
 
