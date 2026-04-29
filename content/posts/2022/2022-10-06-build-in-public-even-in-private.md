@@ -1,7 +1,7 @@
 ---
 title: Build in public, even in private
 category: Coding
-tags: coding
+tags: coding, documentation
 date: 2022-10-06 10:44:00 +0100
 ---
 
@@ -56,8 +56,7 @@ team members if they ever needed to look; with future me (really, that
 helped more than once -- we all have those "that the *hell* was I thinking?"
 moments); with any developer(s) who took over from me in the future.
 
-I did all this as if I was broadcasting it in public [on
-Twitter](https://twitter.com/davepdotorg) or [on
+I did all this as if I was broadcasting it in public on Twitter or [on
 GitHub](https://github.com/davep), etc. It was in private, of course, but I
 approached it as if it was in public.
 
@@ -76,13 +75,13 @@ There were always three main reasons for this, I felt:
    wanted to be sure that whoever picked up after me would be able to do so
    without too much effort.
 
-In the end item 3 seemed to really pay off. When it came time for me to hand
-over my work to someone else, as I left, the process was really smooth and
-trouble-free. I was able to point the developer at all the documentation and
-source code, at all the issues, and invite them to read through it all and
-then come back to me with questions. In terms of time actually spent talking
-about the main system I was handing over I'd say that 4 years of work was
-handed over with just a few hours of actual talking about it.
+In the end, item 3 seemed to really pay off. When it came time for me to
+hand over my work to someone else, as I left, the process was really smooth
+and trouble-free. I was able to point the developer at all the documentation
+and source code, at all the issues, and invite them to read through it all
+and then come back to me with questions. In terms of time actually spent
+talking about the main system I was handing over I'd say that 4 years of
+work was handed over with just a few hours of actual talking about it.
 
 It remains to be seen if it really paid off, of course. If they get really
 stuck they do have an open invitation to ping me a question or two; I care
