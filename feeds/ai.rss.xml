@@ -8,7 +8,218 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 29 Apr 2026 08:32:07 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 30 Apr 2026 08:17:23 +0000</lastBuildDate>
+    <item>
+      <title>Duplication of effort</title>
+      <link>https://blog.davep.org/2026/04/30/duplication-of-effort.html</link>
+      <description>&lt;p&gt;While I don't, for a moment, think that the work on
+&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; is complete, I think it's fair to
+say that the rate of new feature additions has slowed down. Which is fine,
+there's only so much I need from a self-designed/directed static site
+generator; at a certain point there's a danger of &lt;a href="https://blog.davep.org/graph/"&gt;adding features for the
+sake of it&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Around this point I think I want to start to pay proper attention to the
+code quality and maintainability &lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;of the ongoing
+experiment&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As &lt;a href="https://blog.davep.org/2026/04/26/but-is-the-code-that-bad.html"&gt;I mentioned the other day&lt;/a&gt;,
+while working through this, I had noticed plenty of bad habits that Copilot
+(and in this case pretty much always Claude Sonnet 4.6) has. All were very
+human (obviously), but also the sort of thing you'd expect a human developer
+to educate themselves out of.&lt;/p&gt;
+&lt;p&gt;Yesterday evening, out of idle curiosity, I installed &lt;a href="https://geminicli.com/" rel="noopener noreferrer" target="_blank"&gt;Gemini
+CLI&lt;/a&gt; because I wanted to see what would happen if I
+pointed it at the &lt;a href="https://github.com/davep/blogmore/tree/v2.18.0" rel="noopener noreferrer" target="_blank"&gt;v2.18.0
+codebase&lt;/a&gt; and asked it to
+look for things to clean up, and then what would happen if I did the same
+with &lt;a href="https://github.com/features/copilot/cli" rel="noopener noreferrer" target="_blank"&gt;Copilot CLI&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I've saved the results as &lt;a href="https://github.com/davep/blogmore/pull/426" rel="noopener noreferrer" target="_blank"&gt;a PR for what Gemini came up
+with&lt;/a&gt; and &lt;a href="https://github.com/davep/blogmore/pull/427" rel="noopener noreferrer" target="_blank"&gt;what Copilot came up
+with&lt;/a&gt;&lt;sup id="fnref:264-1"&gt;&lt;a class="footnote-ref" href="#fn:264-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I've not given them a
+proper read over yet, but while having a quick glance at them something
+leapt out at me: in the code before the request, there was this in
+&lt;code&gt;utils.py&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;count_words&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Count the number of words in the given content.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Strips common Markdown and HTML formatting before counting so that only&lt;/span&gt;
+&lt;span class="sd"&gt;    prose words are included.  The same normalisation rules as&lt;/span&gt;
+&lt;span class="sd"&gt;    :func:`calculate_reading_time` are applied.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Args:&lt;/span&gt;
+&lt;span class="sd"&gt;        content: The text content to analyse (may include Markdown/HTML).&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Returns:&lt;/span&gt;
+&lt;span class="sd"&gt;        The number of words in the content.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Examples:&lt;/span&gt;
+&lt;span class="sd"&gt;        &amp;gt;&amp;gt;&amp;gt; count_words(&amp;quot;Hello world&amp;quot;)&lt;/span&gt;
+&lt;span class="sd"&gt;        2&lt;/span&gt;
+&lt;span class="sd"&gt;        &amp;gt;&amp;gt;&amp;gt; count_words(&amp;quot;word &amp;quot; * 10)&lt;/span&gt;
+&lt;span class="sd"&gt;        10&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="c1"&gt;# Remove code blocks&lt;/span&gt;
+    &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;```[\s\S]*?```&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;`[^`]+`&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Remove markdown links but keep the text: [text](url) -&amp;gt; text&lt;/span&gt;
+    &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\[([^\]]+)\]\([^\)]+\)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Remove markdown images: ![alt](url) -&amp;gt; &amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;!\[([^\]]*)\]\([^\)]+\)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Remove HTML tags&lt;/span&gt;
+    &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;[^&amp;gt;]+&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Remove markdown formatting characters&lt;/span&gt;
+    &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;[*_~`#-]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;calculate_reading_time&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;words_per_minute&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Calculate the estimated reading time for content in whole minutes.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Uses the standard reading speed of 200 words per minute. Strips markdown&lt;/span&gt;
+&lt;span class="sd"&gt;    formatting and counts only actual words to provide an accurate estimate.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Args:&lt;/span&gt;
+&lt;span class="sd"&gt;        content: The text content to analyze (can include markdown)&lt;/span&gt;
+&lt;span class="sd"&gt;        words_per_minute: Average reading speed (default: 200 WPM)&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Returns:&lt;/span&gt;
+&lt;span class="sd"&gt;        Estimated reading time in whole minutes (minimum 1 minute)&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Examples:&lt;/span&gt;
+&lt;span class="sd"&gt;        &amp;gt;&amp;gt;&amp;gt; calculate_reading_time(&amp;quot;Hello world&amp;quot;)&lt;/span&gt;
+&lt;span class="sd"&gt;        1&lt;/span&gt;
+&lt;span class="sd"&gt;        &amp;gt;&amp;gt;&amp;gt; calculate_reading_time(&amp;quot;word &amp;quot; * 400)&lt;/span&gt;
+&lt;span class="sd"&gt;        2&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="c1"&gt;# Remove code blocks (they typically take longer to read/understand)&lt;/span&gt;
+    &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;```[\s\S]*?```&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;`[^`]+`&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Remove markdown links but keep the text: [text](url) -&amp;gt; text&lt;/span&gt;
+    &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\[([^\]]+)\]\([^\)]+\)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Remove markdown images: ![alt](url) -&amp;gt; &amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;!\[([^\]]*)\]\([^\)]+\)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Remove HTML tags&lt;/span&gt;
+    &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;[^&amp;gt;]+&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Remove markdown formatting characters&lt;/span&gt;
+    &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;[*_~`#-]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Count words (split by whitespace and filter out empty strings)&lt;/span&gt;
+    &lt;span class="n"&gt;words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;word_count&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Calculate minutes, rounding to the nearest minute with a minimum of 1&lt;/span&gt;
+    &lt;span class="n"&gt;minutes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;word_count&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;words_per_minute&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;minutes&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I think this right here is a great example of why the code that these tools
+produce is generally kind of... meh. Let's just really appreciate for a
+moment the duplication of effort going on there. But it's even more fun.
+Look at the docstring&lt;sup id="fnref:264-2"&gt;&lt;a class="footnote-ref" href="#fn:264-2"&gt;2&lt;/a&gt;&lt;/sup&gt; for &lt;code&gt;count_words&lt;/code&gt;: it says right there that the
+&lt;em&gt;"same normalisation rules as &lt;code&gt;calculate_reading_time&lt;/code&gt; are applied"&lt;/em&gt;. It
+"knows" it copied the work that went into &lt;code&gt;calculate_reading_time&lt;/code&gt; too, but
+never once did it then "think" to pull the common code out and have both of
+the functions call on that helper function.&lt;/p&gt;
+&lt;p&gt;Back to the parallel invitations to refactor, having asked:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;please do a review of this codebase and see if there is any scope for
+refactoring so there's less duplication&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Both Gemini &lt;em&gt;and&lt;/em&gt; Claude noticed this and did something about it. Gemini
+came up with a:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;_strip_formatting&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;with all the regex-based-markdown-stripping code in there and then rewrote
+&lt;code&gt;count_words&lt;/code&gt; and &lt;code&gt;calculate_reading_time&lt;/code&gt; to call on that. The
+Copilot/Claude cleanup did something very similar:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;_strip_markdown_formatting&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;So it's a good thing that both of them "noticed" this duplication of effort
+and cleaned it up. What I &lt;em&gt;do&lt;/em&gt; find interesting though is what the result
+was. Stripping docstrings and comments for a moment, here's what I was left with, by
+Gemini, for &lt;code&gt;count_words&lt;/code&gt; and &lt;code&gt;calculate_reading_time&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;count_words&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;_strip_formatting&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;calculate_reading_time&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;words_per_minute&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;_strip_formatting&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;word_count&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;minutes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;word_count&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;words_per_minute&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;minutes&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and here's what Copilot/Claude came up with:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;count_words&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;_strip_markdown_formatting&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;calculate_reading_time&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;words_per_minute&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;_strip_markdown_formatting&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;words_per_minute&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In both cases &lt;code&gt;calculate_reading_time&lt;/code&gt; is still doing the work of counting
+words when &lt;code&gt;count_words&lt;/code&gt; is right there to be called! Don't even get me
+started on how the Gemini version of &lt;code&gt;calculate_reading_time&lt;/code&gt; is so obsessed
+with assigning values to variables that only get used once in the next
+line&lt;sup id="fnref:264-3"&gt;&lt;a class="footnote-ref" href="#fn:264-3"&gt;3&lt;/a&gt;&lt;/sup&gt;. Were I reviewing these PRs (oh, wait, I &lt;em&gt;am&lt;/em&gt; reviewing these
+PRs!), I'd request the latter function be turned into:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;calculate_reading_time&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;words_per_minute&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;count_words&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;words_per_minute&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I would imagine that there's a lot more of this going on in the code, and
+under ideal conditions this sort of thing would &lt;em&gt;not&lt;/em&gt; have made its way into
+the codebase in the first place. Part of the point of this experiment was to
+mostly get the agent to do its own thing, without me doing full-on reviews
+of every PR. Were I to use this sort of tool in a workplace, or even on a
+FOSS project that wasn't intended to be this exact experiment, I'd be far
+more inclined to carefully review the result and request changes.&lt;/p&gt;
+&lt;p&gt;Or, perhaps, hear me out... I have a third agent that I teach to be just
+like me and I get &lt;em&gt;it&lt;/em&gt; do the work of reviewing the PRs for me. What could
+possibly go wrong?&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:264-1"&gt;
+&lt;p&gt;Again, I guess I should stop referring to Copilot in this case and
+instead refer to Claude Sonnet.&amp;#160;&lt;a class="footnote-backref" href="#fnref:264-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:264-2"&gt;
+&lt;p&gt;Note to self: I need to educate the agents in how I prefer and always
+use the mkdocstrings &lt;a href="https://mkdocstrings.github.io/usage/?h=reference#cross-references" rel="noopener noreferrer" target="_blank"&gt;style of
+cross-references&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:264-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:264-3"&gt;
+&lt;p&gt;Yes, I know, this is a favoured clean code kind of thing in some
+circles, but it can be taken to an unnecessary extreme.&amp;#160;&lt;a class="footnote-backref" href="#fnref:264-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/04/30/duplication-of-effort.html</guid>
+      <category>AI</category>
+      <category>BlogMore</category>
+      <category>Coding</category>
+      <category>Copilot</category>
+      <category>Gemini</category>
+      <category>GitHub</category>
+      <category>Google</category>
+      <category>Python</category>
+      <category>code review</category>
+      <pubDate>Thu, 30 Apr 2026 08:20:11 +0100</pubDate>
+    </item>
     <item>
       <title>But is the code that bad?</title>
       <link>https://blog.davep.org/2026/04/26/but-is-the-code-that-bad.html</link>
@@ -171,7 +382,7 @@ and it seemed to be helpful and I could ask questions about markup and
 Copilot seemed to use it. Meanwhile, having installed v0.2.0 globally on my
 machine, and having enabled it, I'm finding that Copilot seems to have zero
 clue about the markup and instead is using the server to go off and read the
-guides to work out the markup&lt;sup id="fnref:273-1"&gt;&lt;a class="footnote-ref" href="#fn:273-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+guides to work out the markup&lt;sup id="fnref:274-1"&gt;&lt;a class="footnote-ref" href="#fn:274-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;On the other hand, the new "get source" tool seems to work a treat.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Peeking at the source for an entry" src="https://blog.davep.org/attachments/2026/04/12/show-source.webp#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;So I suspect I still have some reading/experimenting to do when it comes to
@@ -180,9 +391,9 @@ problem they solve.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:273-1"&gt;
+&lt;li id="fn:274-1"&gt;
 &lt;p&gt;All credit to it: it did find &lt;code&gt;CREATING.NG&lt;/code&gt; and read the markup out of
-that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:273-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:274-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -819,7 +1030,7 @@ a solution for some sort of problem. I noticed this on and off as I watched
 the agent's chat, as it worked away.&lt;/p&gt;
 &lt;p&gt;One example I enjoyed was when it was trying to add a new dependency to
 &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;. For reasons I should probably try
-and understand&lt;sup id="fnref:296-1"&gt;&lt;a class="footnote-ref" href="#fn:296-1"&gt;1&lt;/a&gt;&lt;/sup&gt; it knew it should be using &lt;code&gt;uv&lt;/code&gt; to add a dependency and
+and understand&lt;sup id="fnref:297-1"&gt;&lt;a class="footnote-ref" href="#fn:297-1"&gt;1&lt;/a&gt;&lt;/sup&gt; it knew it should be using &lt;code&gt;uv&lt;/code&gt; to add a dependency and
 it knew how to use it to update the lock file, but it didn't have &lt;code&gt;uv&lt;/code&gt; to
 hand:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -927,8 +1138,8 @@ moment it's a good source of coding comedy.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:296-1"&gt;
-&lt;p&gt;Presumably there's things I can be doing to make its life easier.&amp;#160;&lt;a class="footnote-backref" href="#fnref:296-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:297-1"&gt;
+&lt;p&gt;Presumably there's things I can be doing to make its life easier.&amp;#160;&lt;a class="footnote-backref" href="#fnref:297-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1043,7 +1254,7 @@ issue and then assigning that issue to it. I must remember to try that at
 some point.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;So, yeah, unsurprisingly Copilot flat out lied&lt;sup id="fnref:291-1"&gt;&lt;a class="footnote-ref" href="#fn:291-1"&gt;1&lt;/a&gt;&lt;/sup&gt; in the documentation. I'm
+&lt;p&gt;So, yeah, unsurprisingly Copilot flat out lied&lt;sup id="fnref:292-1"&gt;&lt;a class="footnote-ref" href="#fn:292-1"&gt;1&lt;/a&gt;&lt;/sup&gt; in the documentation. I'm
 not in the least bit shocked by this and, as I said, I fully expected this.
 But it was amusing to have an example of this turn up so early in the
 documentation, in such a glaring way, and in a way that was so easily fixed
@@ -1057,10 +1268,10 @@ lurk in the code that haven't been documented.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:291-1"&gt;
+&lt;li id="fn:292-1"&gt;
 &lt;p&gt;Yes, as I mentioned yesterday, that's an anthropomorphism. Folk who
 take such things as an indication that you don't understand "AI" might
-want to think about what it is to be a human when communicating.&amp;#160;&lt;a class="footnote-backref" href="#fnref:291-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+want to think about what it is to be a human when communicating.&amp;#160;&lt;a class="footnote-backref" href="#fnref:292-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1178,7 +1389,7 @@ asked&lt;/a&gt;:&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Just like that, it went off &lt;a href="https://github.com/davep/blogmore/pull/1/changes/3449eec9b4df88e66eec0f6bba4369926ff1389e" rel="noopener noreferrer" target="_blank"&gt;and wrote a whole server for the
 project&lt;/a&gt;.
-While the server did need a lot of extra work to really work well&lt;sup id="fnref:294-1"&gt;&lt;a class="footnote-ref" href="#fn:294-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, the
+While the server did need a lot of extra work to really work well&lt;sup id="fnref:295-1"&gt;&lt;a class="footnote-ref" href="#fn:295-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, the
 initial version was good enough to get me going and to iterate on the
 project as a whole.&lt;/p&gt;
 &lt;h2 id="the-main-workflow"&gt;The main workflow&lt;a aria-label="Link to this heading" class="heading-anchor" href="#the-main-workflow"&gt;¶&lt;/a&gt;&lt;/h2&gt;
@@ -1231,8 +1442,8 @@ the mistakes are likely to turn up. Once you've written enough code you've
 also written plenty of bugs and been caught out by plenty of edge-cases that
 you get a spidey-sense for trouble as you write code. I feel that this kind
 of approach can be called cautiously confident.&lt;/p&gt;
-&lt;p&gt;Working with Copilot&lt;sup id="fnref:294-2"&gt;&lt;a class="footnote-ref" href="#fn:294-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, however, I often ran into the confidently wrong
-issue. On occasion I found it would proudly&lt;sup id="fnref:294-3"&gt;&lt;a class="footnote-ref" href="#fn:294-3"&gt;3&lt;/a&gt;&lt;/sup&gt; request review for some
+&lt;p&gt;Working with Copilot&lt;sup id="fnref:295-2"&gt;&lt;a class="footnote-ref" href="#fn:295-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, however, I often ran into the confidently wrong
+issue. On occasion I found it would proudly&lt;sup id="fnref:295-3"&gt;&lt;a class="footnote-ref" href="#fn:295-3"&gt;3&lt;/a&gt;&lt;/sup&gt; request review for some
 minor bit of work, proclaiming that it had done the thing or solved the
 problem, and I'd test it and nothing had materially changed. On a couple of
 occasions, when I pushed back, I found it actually doubting my review before
@@ -1299,7 +1510,7 @@ experienced is bringing code to you where they've used an agent as their
 pair buddy.&lt;/p&gt;
 &lt;h2 id="the-overall-impression"&gt;The overall impression&lt;a aria-label="Link to this heading" class="heading-anchor" href="#the-overall-impression"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Now I'm at the end of the process, and using the result of this experiment
-to write this post&lt;sup id="fnref:294-4"&gt;&lt;a class="footnote-ref" href="#fn:294-4"&gt;4&lt;/a&gt;&lt;/sup&gt;, I feel better informed about what these tools offer,
+to write this post&lt;sup id="fnref:295-4"&gt;&lt;a class="footnote-ref" href="#fn:295-4"&gt;4&lt;/a&gt;&lt;/sup&gt;, I feel better informed about what these tools offer,
 and the pitfalls I need to be mindful of. Sometimes it wasn't a terrible way
 of working. For example, on the first day I started with this, at one point
 on a chilly but sunny Sunday afternoon, I was sat on the sofa, MacBook on
@@ -1344,25 +1555,25 @@ into perspective.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:294-1"&gt;
+&lt;li id="fn:295-1"&gt;
 &lt;p&gt;Amusingly I &lt;a href="https://github.com/davep/blogmore/issues/117" rel="noopener noreferrer" target="_blank"&gt;uncovered another
 bug&lt;/a&gt; while writing this
-post.&amp;#160;&lt;a class="footnote-backref" href="#fnref:294-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+post.&amp;#160;&lt;a class="footnote-backref" href="#fnref:295-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:294-2"&gt;
+&lt;li id="fn:295-2"&gt;
 &lt;p&gt;I keep saying Copilot, but I think it's probably more correct to say
 "Claude Sonnet 4.5" as that's what seemed to be at play under the hood,
-if I'm understanding things correctly.&amp;#160;&lt;a class="footnote-backref" href="#fnref:294-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+if I'm understanding things correctly.&amp;#160;&lt;a class="footnote-backref" href="#fnref:295-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:294-3"&gt;
+&lt;li id="fn:295-3"&gt;
 &lt;p&gt;Yes, of course that's an anthropomorphism, you'll find plenty of them
 in this article as it's hard not to write about the subject in any other
-way; it's an easy shortcut to explain some ideas&amp;#160;&lt;a class="footnote-backref" href="#fnref:294-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+way; it's an easy shortcut to explain some ideas&amp;#160;&lt;a class="footnote-backref" href="#fnref:295-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:294-4"&gt;
+&lt;li id="fn:295-4"&gt;
 &lt;p&gt;Actually I'm writing this post as I always do: in Emacs. But BlogMore
 is in the background serving a local copy of my blog so I can check it
-in the browser, and rebuilding it every time I save a change.&amp;#160;&lt;a class="footnote-backref" href="#fnref:294-4" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+in the browser, and rebuilding it every time I save a change.&amp;#160;&lt;a class="footnote-backref" href="#fnref:295-4" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
