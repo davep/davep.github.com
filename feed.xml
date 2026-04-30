@@ -8,7 +8,251 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 30 Apr 2026 08:17:23 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 30 Apr 2026 20:09:01 +0000</lastBuildDate>
+    <item>
+      <title>A different approach</title>
+      <link>https://blog.davep.org/2026/04/30/a-different-approach.html</link>
+      <description>&lt;p&gt;As mentioned in &lt;a href="https://blog.davep.org/2026/04/30/duplication-of-effort.html"&gt;the previous post&lt;/a&gt;,
+I've been having a play around with Copilot/Claude vs Gemini when it comes
+to getting the agents to seek out "bad" code and improve it. In that first
+post on the subject, I highlighted how both tools noticed some real
+duplication of effort, both addressed it in more or less the same way, and
+neither of them took the clean-up to its logical conclusion (or, at the very
+least, neither cleaned it up in a way that I feel is acceptable).&lt;/p&gt;
+&lt;p&gt;The comparison of the two PRs
+(&lt;a href="https://github.com/davep/blogmore/pull/426" rel="noopener noreferrer" target="_blank"&gt;Gemini&lt;/a&gt; vs &lt;a href="https://github.com/davep/blogmore/pull/427" rel="noopener noreferrer" target="_blank"&gt;Claude via
+Copilot&lt;/a&gt;) is going to be a slow
+and occasional read, and if I notice something that catches my interest,
+I'll note it on this blog.&lt;/p&gt;
+&lt;p&gt;Initially, I was looking at which files were touched by both. With Gemini it
+was:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/davep/blogmore/pull/426/changes#diff-ca5e941617c3b9a8d18556da79f6fc1a400c37ae04ea1ab96efff195b60185fd" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;content_path.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/davep/blogmore/pull/426/changes#diff-9bcd414441be257b448351de586a6d3c43436bc613dd542e404d8c7f080bd24a" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;generator.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/davep/blogmore/pull/426/changes#diff-5a5ec66899ab350bb8d841c129fe67d4dde77b17a55d8d24af583a02049d8693" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;pagination_path.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/davep/blogmore/pull/426/changes#diff-9efe9541885322ac1491d0a7c47d29a9b3dabe129227199a95c8056907b81b97" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;parser.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/davep/blogmore/pull/426/changes#diff-29ac7d19a2c8f6766a2fd48d76cbf6cc40216eb43b9cd32d751d9c93818377f0" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;renderer.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/davep/blogmore/pull/426/changes#diff-403ab488e41682972adf6ba09e3ed2a92de5812d8338b95112a8dd75bf0296f0" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;utils.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And with Copilot/Claude:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/davep/blogmore/pull/427/changes#diff-e1865709216be5988af59605690d590acd5544e63f95b4df6b85f9b0d755b448" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;markdown/first_paragraph.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/davep/blogmore/pull/427/changes#diff-fcabf04c8545cb76d4000f86e286ab4325e6a55eae20f0b9441c57129c57bb40" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;comment_invite.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/davep/blogmore/pull/427/changes#diff-ca5e941617c3b9a8d18556da79f6fc1a400c37ae04ea1ab96efff195b60185fd" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;content_path.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/davep/blogmore/pull/427/changes#diff-4193670647dc0d7b85a7ac81afbde4954cb2e46d0216e0e6abac33f49d2459b4" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;feeds.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/davep/blogmore/pull/427/changes#diff-5a5ec66899ab350bb8d841c129fe67d4dde77b17a55d8d24af583a02049d8693" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;pagination_path.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/davep/blogmore/pull/427/changes#diff-9efe9541885322ac1491d0a7c47d29a9b3dabe129227199a95c8056907b81b97" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;parser.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/davep/blogmore/pull/427/changes#diff-2dd82dfd583162734cc70424abd703859cb283038ed1d9e4220fd50d5c60a9e0" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;post_path.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/davep/blogmore/pull/427/changes#diff-403ab488e41682972adf6ba09e3ed2a92de5812d8338b95112a8dd75bf0296f0" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;utils.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;On the surface, it looks like Claude might have done a better job of finding
+untidy issues in the code. Of course a proper read/assessment of the outcome
+is needed to decide which is "better"; not to mention the application of a
+lot of personal taste.&lt;/p&gt;
+&lt;p&gt;So, with the initial/surface impression that "Claude went deeper", I took a
+look at the first file they had in common: &lt;code&gt;content_path.py&lt;/code&gt;. This is
+documented as a module related to:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Shared path-resolution utilities for content output paths.&lt;/p&gt;
+&lt;p&gt;This module provides the generic building blocks used by &lt;code&gt;page_path&lt;/code&gt; and
+&lt;code&gt;post_path&lt;/code&gt;. Each content type supplies its own allowed-variable set and
+variable dict; this module handles the common validation, substitution,
+and safety checks.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;There's 3 functions in there:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;validate_path_template&lt;/code&gt; -- for validating a format string used in
+  building a path.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;resolve_path&lt;/code&gt; -- given a template and some values to populate variables
+  in the template, create a path.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;safe_output_path&lt;/code&gt; -- helper function for joining paths and ensuring they
+  don't escape the output directory.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These seem like sensible functions to have in here, and I can imagine me
+writing a similar set in terms of the problem they seek to solve.&lt;/p&gt;
+&lt;p&gt;Both agents seemed to agree on what needed some work:
+&lt;code&gt;validate_path_template&lt;/code&gt;. Both also seem to agree that building knowledge of
+which variable is required into the function itself isn't terribly flexible;
+I feel this is a reasonable review of the situation. However, the two agents
+seem to disagree on how this should be resolved.&lt;/p&gt;
+&lt;p&gt;Claude's take on this is that the function should grow an optional keyword
+argument called &lt;code&gt;required_variable&lt;/code&gt;, which defaults to &lt;code&gt;slug&lt;/code&gt;. It also adds
+an &lt;code&gt;assert&lt;/code&gt; to test if the required variable exists in the
+&lt;code&gt;allowed_variables&lt;/code&gt; (okay, I could quibble about this but given this is a
+code-check rather than a user-input check, eh, I can go with it). Finally it
+does the check using the new variable and also makes the error reporting a
+touch more generic too.&lt;/p&gt;
+&lt;div class="highlight" data-lang="diff"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gd"&gt;--- /Users/davep/content_path.py        2026-04-30 13:20:00.737955197 +0100&lt;/span&gt;
+&lt;span class="gi"&gt;+++ src/blogmore/content_path.py        2026-04-30 13:20:04.560178727 +0100&lt;/span&gt;
+&lt;span class="gu"&gt;@@ -17,13 +17,15 @@&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;    template: str,
+&lt;span class="w"&gt; &lt;/span&gt;    config_key: str,
+&lt;span class="w"&gt; &lt;/span&gt;    allowed_variables: frozenset[str],
+&lt;span class="gd"&gt;-    item_name: str,&lt;/span&gt;
+&lt;span class="gi"&gt;+    item_name: str = &amp;quot;&amp;quot;,&lt;/span&gt;
+&lt;span class="gi"&gt;+    *,&lt;/span&gt;
+&lt;span class="gi"&gt;+    required_variable: str | None = &amp;quot;slug&amp;quot;,&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;) -&amp;gt; None:
+&lt;span class="w"&gt; &lt;/span&gt;    &amp;quot;&amp;quot;&amp;quot;Validate a path format string for a content type.
+
+&lt;span class="w"&gt; &lt;/span&gt;    Checks that *template* is non-empty, well-formed, references only
+&lt;span class="gd"&gt;-    variables from *allowed_variables*, and includes the mandatory&lt;/span&gt;
+&lt;span class="gd"&gt;-    ``{slug}`` placeholder.&lt;/span&gt;
+&lt;span class="gi"&gt;+    variables from *allowed_variables*, and (when *required_variable* is&lt;/span&gt;
+&lt;span class="gi"&gt;+    not ``None``) includes the mandatory placeholder.&lt;/span&gt;
+
+&lt;span class="w"&gt; &lt;/span&gt;    Args:
+&lt;span class="w"&gt; &lt;/span&gt;        template: The path format string to validate.
+&lt;span class="gu"&gt;@@ -33,11 +35,19 @@&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;            template.
+&lt;span class="w"&gt; &lt;/span&gt;        item_name: The human-readable name of the content type used in
+&lt;span class="w"&gt; &lt;/span&gt;            the uniqueness error message (e.g. ``&amp;quot;page&amp;quot;`` or ``&amp;quot;post&amp;quot;``).
+&lt;span class="gi"&gt;+            Ignored when *required_variable* is ``None``.&lt;/span&gt;
+&lt;span class="gi"&gt;+        required_variable: The variable name that must appear in the&lt;/span&gt;
+&lt;span class="gi"&gt;+            template, or ``None`` if no variable is mandatory.  Defaults&lt;/span&gt;
+&lt;span class="gi"&gt;+            to ``&amp;quot;slug&amp;quot;`` for backward compatibility.&lt;/span&gt;
+
+&lt;span class="w"&gt; &lt;/span&gt;    Raises:
+&lt;span class="w"&gt; &lt;/span&gt;        ValueError: If the template is empty, malformed, references an
+&lt;span class="gd"&gt;-            unknown variable, or omits the ``{slug}`` placeholder.&lt;/span&gt;
+&lt;span class="gi"&gt;+            unknown variable, or omits the required placeholder.&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;    &amp;quot;&amp;quot;&amp;quot;
+&lt;span class="gi"&gt;+    assert required_variable is None or required_variable in allowed_variables, (&lt;/span&gt;
+&lt;span class="gi"&gt;+        f&amp;quot;required_variable {required_variable!r} is not in allowed_variables&amp;quot;&lt;/span&gt;
+&lt;span class="gi"&gt;+    )&lt;/span&gt;
+&lt;span class="gi"&gt;+&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;    if not template:
+&lt;span class="w"&gt; &lt;/span&gt;        raise ValueError(f&amp;quot;{config_key} must not be empty&amp;quot;)
+
+&lt;span class="gu"&gt;@@ -61,9 +71,9 @@&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;            + f&amp;quot;. Allowed variables are: {&amp;#39;, &amp;#39;.join(sorted(allowed_variables))}&amp;quot;
+&lt;span class="w"&gt; &lt;/span&gt;        )
+
+&lt;span class="gd"&gt;-    if &amp;quot;slug&amp;quot; not in field_names:&lt;/span&gt;
+&lt;span class="gi"&gt;+    if required_variable is not None and required_variable not in field_names:&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;        raise ValueError(
+&lt;span class="gd"&gt;-            f&amp;quot;{config_key} &amp;#39;{template}&amp;#39; must contain the {{slug}} variable so that &amp;quot;&lt;/span&gt;
+&lt;span class="gi"&gt;+            f&amp;quot;{config_key} &amp;#39;{template}&amp;#39; must contain the {{{required_variable}}} variable so that &amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;            f&amp;quot;each {item_name} can be uniquely identified&amp;quot;
+&lt;span class="w"&gt; &lt;/span&gt;        )
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Gemini, on the other hand, has a very similar idea but allows for the fact
+that the caller might want to specify multiple required variables. So in
+this case it adds &lt;code&gt;required_variables&lt;/code&gt; (as a positional/keyword argument
+rather than a pure-keyword argument) and defaults it to a &lt;code&gt;frozenset&lt;/code&gt; that
+contains &lt;code&gt;"slug"&lt;/code&gt;. The rest of the change is also about making the test for
+the required variables, and the reporting of the error, generic. It
+&lt;em&gt;doesn't&lt;/em&gt; do anything about checking that the required variables are within
+the allowed variables.&lt;/p&gt;
+&lt;div class="highlight" data-lang="diff"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gd"&gt;--- /Users/davep/content_path.py        2026-04-30 13:20:00.737955197 +0100&lt;/span&gt;
+&lt;span class="gi"&gt;+++ src/blogmore/content_path.py        2026-04-30 14:47:41.607748447 +0100&lt;/span&gt;
+&lt;span class="gu"&gt;@@ -18,12 +18,13 @@&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;    config_key: str,
+&lt;span class="w"&gt; &lt;/span&gt;    allowed_variables: frozenset[str],
+&lt;span class="w"&gt; &lt;/span&gt;    item_name: str,
+&lt;span class="gi"&gt;+    required_variables: frozenset[str] = frozenset({&amp;quot;slug&amp;quot;}),&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;) -&amp;gt; None:
+&lt;span class="w"&gt; &lt;/span&gt;    &amp;quot;&amp;quot;&amp;quot;Validate a path format string for a content type.
+
+&lt;span class="w"&gt; &lt;/span&gt;    Checks that *template* is non-empty, well-formed, references only
+&lt;span class="gd"&gt;-    variables from *allowed_variables*, and includes the mandatory&lt;/span&gt;
+&lt;span class="gd"&gt;-    ``{slug}`` placeholder.&lt;/span&gt;
+&lt;span class="gi"&gt;+    variables from *allowed_variables*, and includes the&lt;/span&gt;
+&lt;span class="gi"&gt;+    *required_variables*.&lt;/span&gt;
+
+&lt;span class="w"&gt; &lt;/span&gt;    Args:
+&lt;span class="w"&gt; &lt;/span&gt;        template: The path format string to validate.
+&lt;span class="gu"&gt;@@ -33,10 +34,13 @@&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;            template.
+&lt;span class="w"&gt; &lt;/span&gt;        item_name: The human-readable name of the content type used in
+&lt;span class="w"&gt; &lt;/span&gt;            the uniqueness error message (e.g. ``&amp;quot;page&amp;quot;`` or ``&amp;quot;post&amp;quot;``).
+&lt;span class="gi"&gt;+        required_variables: The set of variable names that MUST appear&lt;/span&gt;
+&lt;span class="gi"&gt;+            in the template to ensure uniqueness. Defaults to&lt;/span&gt;
+&lt;span class="gi"&gt;+            ``{&amp;quot;slug&amp;quot;}``.&lt;/span&gt;
+
+&lt;span class="w"&gt; &lt;/span&gt;    Raises:
+&lt;span class="w"&gt; &lt;/span&gt;        ValueError: If the template is empty, malformed, references an
+&lt;span class="gd"&gt;-            unknown variable, or omits the ``{slug}`` placeholder.&lt;/span&gt;
+&lt;span class="gi"&gt;+            unknown variable, or omits a required variable.&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;    &amp;quot;&amp;quot;&amp;quot;
+&lt;span class="w"&gt; &lt;/span&gt;    if not template:
+&lt;span class="w"&gt; &lt;/span&gt;        raise ValueError(f&amp;quot;{config_key} must not be empty&amp;quot;)
+&lt;span class="gu"&gt;@@ -61,10 +65,12 @@&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;            + f&amp;quot;. Allowed variables are: {&amp;#39;, &amp;#39;.join(sorted(allowed_variables))}&amp;quot;
+&lt;span class="w"&gt; &lt;/span&gt;        )
+
+&lt;span class="gd"&gt;-    if &amp;quot;slug&amp;quot; not in field_names:&lt;/span&gt;
+&lt;span class="gi"&gt;+    missing = required_variables - set(field_names)&lt;/span&gt;
+&lt;span class="gi"&gt;+    if missing:&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;        raise ValueError(
+&lt;span class="gd"&gt;-            f&amp;quot;{config_key} &amp;#39;{template}&amp;#39; must contain the {{slug}} variable so that &amp;quot;&lt;/span&gt;
+&lt;span class="gd"&gt;-            f&amp;quot;each {item_name} can be uniquely identified&amp;quot;&lt;/span&gt;
+&lt;span class="gi"&gt;+            f&amp;quot;{config_key} &amp;#39;{template}&amp;#39; must contain the &amp;quot;&lt;/span&gt;
+&lt;span class="gi"&gt;+            + &amp;quot;, &amp;quot;.join(f&amp;quot;{{{v}}}&amp;quot; for v in sorted(missing))&lt;/span&gt;
+&lt;span class="gi"&gt;+            + f&amp;quot; variable(s) so that each {item_name} can be uniquely identified&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;        )
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;For the most part I think I prefer what Gemini is trying to do, although
+Claude's sanity check that the required variable is one of the possible
+variables makes sense. I kind of feel like both of them missed the point
+when it came to handling the fact that &lt;code&gt;"slug"&lt;/code&gt; is required: given that
+&lt;code&gt;validate_path&lt;/code&gt; is otherwise built to be pretty generic, I think I would
+have defaulted to nothing and simply left it up to the caller to be explicit
+that &lt;code&gt;"slug"&lt;/code&gt; is required, because that matters in context of the caller.
+This feels like a pretty obvious case of a "business logic" vs "generic
+utility code" separation of concerns scenario.&lt;/p&gt;
+&lt;p&gt;As &lt;a href="https://blog.davep.org/2026/04/26/but-is-the-code-that-bad.html"&gt;mentioned in passing in another
+post&lt;/a&gt;, it's interesting to see
+that neither of them noticed the opportunity to turn this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;unknown&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;field_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;allowed_variables&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;unknown&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;into this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;unknown&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;field_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;allowed_variables&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I know &lt;a href="https://darren.codes/" rel="noopener noreferrer" target="_blank"&gt;at least one person&lt;/a&gt; who would be happy about
+this fact.&lt;/p&gt;
+&lt;p&gt;So where does this leave me? At the moment I'm not inclined to merge either
+PR, but that's mainly because I want to carry on reading them and perhaps
+writing some more notes about what I encounter. What this does illustrate
+for me is something we know well enough anyway, but which I wanted to
+experiment with and see for myself: the initial implementation of any
+working code written by an agent seems optimised for that particular
+function or method, perhaps class if you're lucky. It will happily repeat
+the same code to solve similar problems, or perhaps even use very different
+approaches to solve the same problem. What it won't do well is recognise
+that this problem is solved elsewhere and so either use that other code by
+calling it, or perhaps modify it slightly to make it more generic and more
+applicable in more situations.&lt;/p&gt;
+&lt;p&gt;On the other hand, it &lt;em&gt;has&lt;/em&gt; shown that with a bit of prompting (and keep in
+mind that the prompt that arrived at this comparison was really quite vague)
+it is possible to get an agent to "consider" the problem of duplication and
+boilerplate and to try and address that.&lt;/p&gt;
+&lt;p&gt;Having seen the two solutions on offer here, it's hard not to conclude that
+the best solution would be for me to take the PRs as flags marking places in
+the code that could be cleaned up, and do the tidy myself.&lt;/p&gt;
+&lt;p&gt;At least I have, as of the time of writing, 1,380 tests to check that I've
+not broken anything when I do hand-clean the code. But, hmm, there's a
+question: can I &lt;em&gt;actually&lt;/em&gt; trust those tests? It's not like &lt;em&gt;I&lt;/em&gt; wrote them.&lt;/p&gt;
+&lt;p&gt;Guess that's a whole other thing to worry about at some point...&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/04/30/a-different-approach.html</guid>
+      <category>AI</category>
+      <category>BlogMore</category>
+      <category>Coding</category>
+      <category>Copilot</category>
+      <category>Gemini</category>
+      <category>GitHub</category>
+      <category>Google</category>
+      <category>Python</category>
+      <category>code review</category>
+      <pubDate>Thu, 30 Apr 2026 21:07:36 +0100</pubDate>
+    </item>
     <item>
       <title>Duplication of effort</title>
       <link>https://blog.davep.org/2026/04/30/duplication-of-effort.html</link>
@@ -34,7 +278,7 @@ look for things to clean up, and then what would happen if I did the same
 with &lt;a href="https://github.com/features/copilot/cli" rel="noopener noreferrer" target="_blank"&gt;Copilot CLI&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I've saved the results as &lt;a href="https://github.com/davep/blogmore/pull/426" rel="noopener noreferrer" target="_blank"&gt;a PR for what Gemini came up
 with&lt;/a&gt; and &lt;a href="https://github.com/davep/blogmore/pull/427" rel="noopener noreferrer" target="_blank"&gt;what Copilot came up
-with&lt;/a&gt;&lt;sup id="fnref:264-1"&gt;&lt;a class="footnote-ref" href="#fn:264-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I've not given them a
+with&lt;/a&gt;&lt;sup id="fnref:265-1"&gt;&lt;a class="footnote-ref" href="#fn:265-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I've not given them a
 proper read over yet, but while having a quick glance at them something
 leapt out at me: in the code before the request, there was this in
 &lt;code&gt;utils.py&lt;/code&gt;:&lt;/p&gt;
@@ -124,7 +368,7 @@ leapt out at me: in the code before the request, there was this in
 &lt;p&gt;I think this right here is a great example of why the code that these tools
 produce is generally kind of... meh. Let's just really appreciate for a
 moment the duplication of effort going on there. But it's even more fun.
-Look at the docstring&lt;sup id="fnref:264-2"&gt;&lt;a class="footnote-ref" href="#fn:264-2"&gt;2&lt;/a&gt;&lt;/sup&gt; for &lt;code&gt;count_words&lt;/code&gt;: it says right there that the
+Look at the docstring&lt;sup id="fnref:265-2"&gt;&lt;a class="footnote-ref" href="#fn:265-2"&gt;2&lt;/a&gt;&lt;/sup&gt; for &lt;code&gt;count_words&lt;/code&gt;: it says right there that the
 &lt;em&gt;"same normalisation rules as &lt;code&gt;calculate_reading_time&lt;/code&gt; are applied"&lt;/em&gt;. It
 "knows" it copied the work that went into &lt;code&gt;calculate_reading_time&lt;/code&gt; too, but
 never once did it then "think" to pull the common code out and have both of
@@ -174,7 +418,7 @@ Gemini, for &lt;code&gt;count_words&lt;/code&gt; and &lt;code&gt;calculate_readi
 words when &lt;code&gt;count_words&lt;/code&gt; is right there to be called! Don't even get me
 started on how the Gemini version of &lt;code&gt;calculate_reading_time&lt;/code&gt; is so obsessed
 with assigning values to variables that only get used once in the next
-line&lt;sup id="fnref:264-3"&gt;&lt;a class="footnote-ref" href="#fn:264-3"&gt;3&lt;/a&gt;&lt;/sup&gt;. Were I reviewing these PRs (oh, wait, I &lt;em&gt;am&lt;/em&gt; reviewing these
+line&lt;sup id="fnref:265-3"&gt;&lt;a class="footnote-ref" href="#fn:265-3"&gt;3&lt;/a&gt;&lt;/sup&gt;. Were I reviewing these PRs (oh, wait, I &lt;em&gt;am&lt;/em&gt; reviewing these
 PRs!), I'd request the latter function be turned into:&lt;/p&gt;
 &lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;calculate_reading_time&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;words_per_minute&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;count_words&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;words_per_minute&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
@@ -193,18 +437,18 @@ possibly go wrong?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:264-1"&gt;
+&lt;li id="fn:265-1"&gt;
 &lt;p&gt;Again, I guess I should stop referring to Copilot in this case and
-instead refer to Claude Sonnet.&amp;#160;&lt;a class="footnote-backref" href="#fnref:264-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+instead refer to Claude Sonnet.&amp;#160;&lt;a class="footnote-backref" href="#fnref:265-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:264-2"&gt;
+&lt;li id="fn:265-2"&gt;
 &lt;p&gt;Note to self: I need to educate the agents in how I prefer and always
 use the mkdocstrings &lt;a href="https://mkdocstrings.github.io/usage/?h=reference#cross-references" rel="noopener noreferrer" target="_blank"&gt;style of
-cross-references&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:264-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+cross-references&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:265-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:264-3"&gt;
+&lt;li id="fn:265-3"&gt;
 &lt;p&gt;Yes, I know, this is a favoured clean code kind of thing in some
-circles, but it can be taken to an unnecessary extreme.&amp;#160;&lt;a class="footnote-backref" href="#fnref:264-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+circles, but it can be taken to an unnecessary extreme.&amp;#160;&lt;a class="footnote-backref" href="#fnref:265-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -349,7 +593,7 @@ for www.davep.org when I did the big reboot (storing it all up on GitHub), I
 seem to have stripped out all of the photos. This makes sense as there was a
 &lt;em&gt;lot&lt;/em&gt; of data there. Making sure I had a backup of those files feels like
 something I would do -- I hang on to all sorts of data -- but at the moment
-I can't locate them&lt;sup id="fnref:270-1"&gt;&lt;a class="footnote-ref" href="#fn:270-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+I can't locate them&lt;sup id="fnref:271-1"&gt;&lt;a class="footnote-ref" href="#fn:271-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;To make this work, for this to stand any chance of working, I need to pull
 them all back out from somewhere.&lt;/p&gt;
 &lt;p&gt;Will I do this? I don't know yet. The seed is there, the itch is waiting to
@@ -365,11 +609,11 @@ of what was and is no longer.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:270-1"&gt;
+&lt;li id="fn:271-1"&gt;
 &lt;p&gt;I should point out that I have the original photos all backed up any
 number of ways and in multiple locations, but it's the specific jpeg
 files with their specific names as appeared in the photo library on my
-site that I need to make this work.&amp;#160;&lt;a class="footnote-backref" href="#fnref:270-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+site that I need to make this work.&amp;#160;&lt;a class="footnote-backref" href="#fnref:271-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -619,11 +863,11 @@ noticed issues such as:&lt;/p&gt;
   more-elegant code.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The list isn't exhaustive, of course. The point here is that, as I've
-reviewed the PRs&lt;sup id="fnref:259-1"&gt;&lt;a class="footnote-ref" href="#fn:259-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and read the code, I've seen things I wouldn't
+reviewed the PRs&lt;sup id="fnref:260-1"&gt;&lt;a class="footnote-ref" href="#fn:260-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and read the code, I've seen things I wouldn't
 personally do. I've seen things I wouldn't personally write, I've seen
 things I've felt the need to push back on, I've seen things I've fully
 rejected and started over. Ultimately BlogMore isn't the code I would have
-written, but at the moment it is the &lt;em&gt;application&lt;/em&gt; I would have written&lt;sup id="fnref:259-2"&gt;&lt;a class="footnote-ref" href="#fn:259-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+written, but at the moment it is the &lt;em&gt;application&lt;/em&gt; I would have written&lt;sup id="fnref:260-2"&gt;&lt;a class="footnote-ref" href="#fn:260-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So, here's the thing: every time I see someone writing a negative toot or
 post or article or whatever, and they talk about how the code it produces is
 unworkable, I find myself wondering about how they formed this opinion. Are
@@ -673,16 +917,16 @@ it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:259-1"&gt;
+&lt;li id="fn:260-1"&gt;
 &lt;p&gt;To varying degrees. Sometimes I have plenty of time to kill and I read
 the PR carefully, other times I glance it over, be happy there's nothing
 horrific there, and then decide to push back or merge based on the
-results of hand-testing and automated testing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:259-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+results of hand-testing and automated testing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:260-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:259-2"&gt;
+&lt;li id="fn:260-2"&gt;
 &lt;p&gt;To be fair, it's the application I would still be writing and would be
 some time off finishing; there's no way it would be as feature-complete
-as it is now had I been 100% hand-coding it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:259-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+as it is now had I been 100% hand-coding it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:260-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -813,7 +1057,7 @@ quite a bit. I find it especially useful if I'm working on some &lt;a href="http
 Lisp&lt;/a&gt; code, but I also find it handy as a place to drop
 something I want to retrieve soon, or a quick note that I want to refer back
 to soon; sometimes I even paste some text there and copy it back just to
-strip the formatting from it before using it elsewhere&lt;sup id="fnref:258-1"&gt;&lt;a class="footnote-ref" href="#fn:258-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+strip the formatting from it before using it elsewhere&lt;sup id="fnref:259-1"&gt;&lt;a class="footnote-ref" href="#fn:259-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Because of this, for a long time, I carried a little function around that I
 had bound to &lt;kbd&gt;M&lt;/kbd&gt;-&lt;kbd&gt;s&lt;/kbd&gt; to quickly take me to the &lt;code&gt;*scratch*&lt;/code&gt;
 buffer. Then, I think &lt;a href="https://blog.davep.org/2017/04/01/another_revamp_of_my_emacs_config.html"&gt;around the time I did the follow-up revamp of my Emacs
@@ -827,7 +1071,7 @@ switches to &lt;code&gt;*scratch*&lt;/code&gt; and resets the content back to th
 &lt;p&gt;More recently I've found that I'm wanting a scratch buffer that is for
 writing Markdown. Like many folk I use it a lot for documentation, and of
 course I also use it for this blog. I also use it heavily for keeping notes
-in Obsidian&lt;sup id="fnref:258-2"&gt;&lt;a class="footnote-ref" href="#fn:258-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So, often, I find myself switching to a temporary buffer
+in Obsidian&lt;sup id="fnref:259-2"&gt;&lt;a class="footnote-ref" href="#fn:259-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So, often, I find myself switching to a temporary buffer
 (&lt;code&gt;*foo*&lt;/code&gt; or something), setting it to &lt;code&gt;markdown-mode&lt;/code&gt;, and then writing what
 I need.&lt;/p&gt;
 &lt;p&gt;So yesterday I finally cracked and added &lt;code&gt;itch-markdown-scratch-buffer&lt;/code&gt;.
@@ -838,15 +1082,15 @@ can faff around just a little less when I want a Markdown scratchpad.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:258-1"&gt;
+&lt;li id="fn:259-1"&gt;
 &lt;p&gt;On macOS at least, I find the "paste without formatting" support of
 some applications to be really inconsistent; a quick layover in the
-&lt;code&gt;*scratch*&lt;/code&gt; buffer does the trick every time.&amp;#160;&lt;a class="footnote-backref" href="#fnref:258-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;code&gt;*scratch*&lt;/code&gt; buffer does the trick every time.&amp;#160;&lt;a class="footnote-backref" href="#fnref:259-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:258-2"&gt;
+&lt;li id="fn:259-2"&gt;
 &lt;p&gt;Yes, I know, I should be using Org, but sadly it's just never clicked
 for me, and I also find good syncing and having a consistent application
-on mobile and desktop are important.&amp;#160;&lt;a class="footnote-backref" href="#fnref:258-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+on mobile and desktop are important.&amp;#160;&lt;a class="footnote-backref" href="#fnref:259-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -866,7 +1110,7 @@ on mobile and desktop are important.&amp;#160;&lt;a class="footnote-backref" hre
 very avid user of Usenet. There were a few groups I was very active in, even
 a couple that I maintained a FAQ for. Being that active and wanting to help
 and answer questions, I was forever posting and pasting links to various
-resources. Given that I used &lt;a href="https://blog.davep.org/category/emacs/"&gt;Emacs&lt;/a&gt; to edit my posts&lt;sup id="fnref:254-1"&gt;&lt;a class="footnote-ref" href="#fn:254-1"&gt;1&lt;/a&gt;&lt;/sup&gt;,
+resources. Given that I used &lt;a href="https://blog.davep.org/category/emacs/"&gt;Emacs&lt;/a&gt; to edit my posts&lt;sup id="fnref:255-1"&gt;&lt;a class="footnote-ref" href="#fn:255-1"&gt;1&lt;/a&gt;&lt;/sup&gt;,
 I eventually realised that I should come up with a tool that let me call on
 common URLs quickly.&lt;/p&gt;
 &lt;p&gt;So back in 1998 &lt;a href="https://github.com/davep/handyurl.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;handyurl.el&lt;/code&gt;&lt;/a&gt; was
@@ -939,11 +1183,11 @@ write-only resource.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:254-1"&gt;
+&lt;li id="fn:255-1"&gt;
 &lt;p&gt;But curiously never got into
 &lt;a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Gnus.html" rel="noopener noreferrer" target="_blank"&gt;Gnus&lt;/a&gt;,
 my news client of choice was &lt;a href="https://www.slrn.org/" rel="noopener noreferrer" target="_blank"&gt;slrn&lt;/a&gt; and I
-composed posts in Emacs.&amp;#160;&lt;a class="footnote-backref" href="#fnref:254-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+composed posts in Emacs.&amp;#160;&lt;a class="footnote-backref" href="#fnref:255-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1394,7 +1638,7 @@ commands should be usable at any given time.&lt;/p&gt;</description>
       <description>&lt;p&gt;Quick little update for &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, with a bump
 up to &lt;a href="https://blogmore.davep.dev/changelog/#v2140" rel="noopener noreferrer" target="_blank"&gt;v2.14.0&lt;/a&gt;. This release
 comes from another feature request from
-&lt;a href="https://www.yakshaving.co.uk" rel="noopener noreferrer" target="_blank"&gt;Andy&lt;/a&gt;&lt;sup id="fnref:256-1"&gt;&lt;a class="footnote-ref" href="#fn:256-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, where he asked if it would be
+&lt;a href="https://www.yakshaving.co.uk" rel="noopener noreferrer" target="_blank"&gt;Andy&lt;/a&gt;&lt;sup id="fnref:257-1"&gt;&lt;a class="footnote-ref" href="#fn:257-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, where he asked if it would be
 possible to have a year-based bar chart in &lt;a href="https://blog.davep.org/stats/"&gt;the stats page&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Funnily enough I'd been thinking about the same thing just yesterday. I'd
 been wondering if it was worth adding, or if it would be overkill given the
@@ -1409,10 +1653,10 @@ complete&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:256-1"&gt;
+&lt;li id="fn:257-1"&gt;
 &lt;p&gt;Who recently wrote an interesting article about &lt;a href="https://www.yakshaving.co.uk/posts/blogging-more-with-blogmore/" rel="noopener noreferrer" target="_blank"&gt;his experience of
 migrating his blog from Hugo to
-BlogMore&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:256-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+BlogMore&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:257-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1424,43 +1668,6 @@ BlogMore&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:256-1" t
       <category>Python</category>
       <category>coding</category>
       <pubDate>Wed, 15 Apr 2026 19:37:47 +0100</pubDate>
-    </item>
-    <item>
-      <title>slstats.el v1.11</title>
-      <link>https://blog.davep.org/2026/04/15/slstats-el-v1-11.html</link>
-      <description>&lt;p&gt;Yet another older &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; package that has had a tidy
-up. This one is &lt;a href="https://github.com/davep/slstats.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;slstats.el&lt;/code&gt;&lt;/a&gt;, a wee
-package that can be used to look up various statistics about the Second Life
-grid. It's mainly a wrapper around the API provided by &lt;a href="https://gridsurvey.com/" rel="noopener noreferrer" target="_blank"&gt;the Second Life grid
-survey&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;When &lt;code&gt;slstats&lt;/code&gt; is run, you get an overview of all of the information
-available.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="An overview of the grid" src="https://blog.davep.org/attachments/2026/04/15/sl-overview.webp#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;There are also various commands for viewing individual details about the
-grid in the echo area:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;slstats-signups&lt;/code&gt; - Display the Second Life sign-up count&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;slstats-exchange-rate&lt;/code&gt; - Display the L$ -&amp;gt; $ exchange rate&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;slstats-inworld&lt;/code&gt; - Display how many avatars are in-world in Second Life&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;slstats-concurrency&lt;/code&gt; - Display the latest-known concurrency stats for
-  Second Life&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;slstats-grid-size&lt;/code&gt; - Display the grid size data for Second Life&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;There is also &lt;code&gt;slstats-region-info&lt;/code&gt; which will show information and the
-object and terrain maps for a specific region.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Region information for Da Boom" src="https://blog.davep.org/attachments/2026/04/15/slstats-region-info.webp#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;As with a good few of my older packages: it's probably not &lt;em&gt;that&lt;/em&gt; useful,
-but at the same time it was educational to write it to start with, and it
-can be an amusement from time to time.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/04/15/slstats-el-v1-11.html</guid>
-      <category>Emacs</category>
-      <category>Emacs</category>
-      <category>Emacs Lisp</category>
-      <category>Lisp</category>
-      <category>Second Life</category>
-      <category>coding</category>
-      <category>slstats.el</category>
-      <pubDate>Wed, 15 Apr 2026 15:52:55 +0100</pubDate>
     </item>
   </channel>
 </rss>
