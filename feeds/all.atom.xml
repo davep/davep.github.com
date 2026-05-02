@@ -2,11 +2,163 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-02T10:28:25.142229+00:00</updated>
+  <updated>2026-05-02T17:50:18.133446+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/02/me-vs-claude.html</id>
+    <title>Me vs Claude</title>
+    <updated>2026-05-02T18:48:30+01:00</updated>
+    <content type="html">&lt;p&gt;After writing the &lt;a href="https://blog.davep.org/2026/05/02/it-was-such-a-simple-request.html"&gt;earlier
+post&lt;/a&gt; I had to AFK to attend
+to normal life things. When I finally sat back at my keyboard, I decided to
+write my own take on &lt;code&gt;minified_filename&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To recap, this is what Copilot/Claude came up with first:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Compute the minified output filename for a given source filename.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Transforms the file extension: ``.css`` becomes ``.min.css`` and&lt;/span&gt;
+&lt;span class="sd"&gt;    ``.js`` becomes ``.min.js``.  For example, ``theme.js`` becomes&lt;/span&gt;
+&lt;span class="sd"&gt;    ``theme.min.js`` and ``style.css`` becomes ``style.min.css``.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Args:&lt;/span&gt;
+&lt;span class="sd"&gt;        source: Source filename ending in ``.css`` or ``.js``.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Returns:&lt;/span&gt;
+&lt;span class="sd"&gt;        The corresponding minified filename.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Raises:&lt;/span&gt;
+&lt;span class="sd"&gt;        ValueError: If *source* does not end with ``.css`` or ``.js``.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.min.css&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.min.js&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Unsupported file extension for minification: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="si"&gt;!r}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This is what it arrived at once it had self-reviewed the above:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Compute the minified output filename for a given source filename.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Transforms the file extension: ``.css`` becomes ``.min.css`` and&lt;/span&gt;
+&lt;span class="sd"&gt;    ``.js`` becomes ``.min.js``.  For example, ``theme.js`` becomes&lt;/span&gt;
+&lt;span class="sd"&gt;    ``theme.min.js`` and ``style.css`` becomes ``style.min.css``.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Args:&lt;/span&gt;
+&lt;span class="sd"&gt;        source: Source filename ending in ``.css`` or ``.js``.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Returns:&lt;/span&gt;
+&lt;span class="sd"&gt;        The corresponding minified filename.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Raises:&lt;/span&gt;
+&lt;span class="sd"&gt;        ValueError: If *source* does not end with ``.css`` or ``.js``.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;removesuffix&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.min.css&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;removesuffix&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.min.js&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Unsupported file extension for minification: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="si"&gt;!r}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The tests it wrote looked like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;TestMinifiedFilename&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test the minified_filename utility function.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_css_extension_becomes_min_css&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that a .css extension is replaced with .min.css.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;style.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;style.min.css&amp;quot;&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_js_extension_becomes_min_js&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that a .js extension is replaced with .min.js.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;theme.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;theme.min.js&amp;quot;&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_hyphenated_css_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that a hyphenated CSS filename is handled correctly.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tag-cloud.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tag-cloud.min.css&amp;quot;&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_hyphenated_js_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that a hyphenated JS filename is handled correctly.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;search.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;search.min.js&amp;quot;&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_unsupported_extension_raises&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that an unsupported extension raises ValueError.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;pytest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;raises&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Unsupported file extension&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;style.txt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I wasn't too keen on the obsession with just &lt;code&gt;.css&lt;/code&gt; and &lt;code&gt;.js&lt;/code&gt; files (it
+seemed unnecessary), and neither did I like the hard-coding of the resulting
+extensions, etc. It all felt too job-specific.&lt;/p&gt;
+&lt;p&gt;So my take on the code was this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Compute the minified output filename for a given source filename.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Args:&lt;/span&gt;
+&lt;span class="sd"&gt;        source: Source filename.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Returns:&lt;/span&gt;
+&lt;span class="sd"&gt;        The corresponding minified filename.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;suffix&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;with_suffix&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.min&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;suffix&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The tests being this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;TestMinifiedFilename&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test the minified_filename utility function.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="nd"&gt;@pytest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mark&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parametrize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;before,after&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="p"&gt;[&lt;/span&gt;
+            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;style.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;style.min.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;theme.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;theme.min.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;style.min.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;style.min.min.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;file&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;file&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.file&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.file&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.file.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.file.min.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+        &lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_min_file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;before&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that converting a filename to the minified version has the expected effect.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;before&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;So, yes, my version does work ever so slightly differently, but I feel it's
+more generic. It shouldn't be the business of this function to decide which
+type of file can have a &lt;code&gt;.min&lt;/code&gt; slapped prior to its extension; if a caller
+asks for it, let them have it, they know what they're doing! Also, although
+it's not really necessary (because the code calling on it doesn't currently
+pass a &lt;code&gt;Path&lt;/code&gt;), it will accept either a &lt;code&gt;str&lt;/code&gt; or a &lt;code&gt;Path&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I feel the big difference here too is the testing. Rather than one method
+after another, testing more or less the same thing with little variation, it
+makes more sense to have just the one test and then pass it lots of
+different input/output values. This is far more maintainable and also easier
+to write most of the time.&lt;/p&gt;
+&lt;p&gt;Of course, for an agent, it's probably easier for it to take a copy/paste
+approach than it is for it to "reason" about what makes for a maintainable
+test. I sense this is one of the dangers of letting an LLM do this job (and
+it's one that's often touted as being a prime job to do): good tests can be
+useful documentation if you're trying to understand a codebase.
+Badly-written tests, no matter how much coverage they offer, are going to
+slow you down.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/05/02/me-vs-claude.html"/>
+    <category term="AI"/>
+    <category term="BlogMore"/>
+    <category term="Coding"/>
+    <category term="Copilot"/>
+    <category term="GitHub"/>
+    <category term="Python"/>
+    <category term="code review"/>
+    <category term="testing"/>
+    <published>2026-05-02T18:48:30+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/02/it-was-such-a-simple-request.html</id>
     <title>It was such a simple request</title>
@@ -290,7 +442,7 @@ and especially not at the level you'd personally aim for. On the other hand,
 I did expect it to have covered some of the fundamentals.&lt;/p&gt;
 &lt;p&gt;Being serious about &lt;a href="https://blog.davep.org/2026/04/30/duplication-of-effort.html"&gt;wanting to hand-tidy some of the
 code&lt;/a&gt; as a way to start to get
-myself into the codebase&lt;sup id="fnref:294-1"&gt;&lt;a class="footnote-ref" href="#fn:294-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I set out to look at &lt;code&gt;validate_path_template&lt;/code&gt;
+myself into the codebase&lt;sup id="fnref:295-1"&gt;&lt;a class="footnote-ref" href="#fn:295-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I set out to look at &lt;code&gt;validate_path_template&lt;/code&gt;
 in &lt;code&gt;content_path.py&lt;/code&gt;. My plan for how to tidy the code had overlap with how
 both Claude and Gemini had approached it, but also with a slightly different
 take. Nothing too radical, with the main difference being that I didn't want
@@ -321,7 +473,7 @@ raised an exception if a template looked broken.&lt;/p&gt;
 help me. Sure, &lt;em&gt;other&lt;/em&gt; code that is being tested is calling this and if I
 change this code in ways that breaks that other code, I'll (probably) get to
 know about it. But if I want to properly understand the code (remember, I
-didn't write it, this is like getting to know someone else's&lt;sup id="fnref:294-2"&gt;&lt;a class="footnote-ref" href="#fn:294-2"&gt;2&lt;/a&gt;&lt;/sup&gt; code) it's
+didn't write it, this is like getting to know someone else's&lt;sup id="fnref:295-2"&gt;&lt;a class="footnote-ref" href="#fn:295-2"&gt;2&lt;/a&gt;&lt;/sup&gt; code) it's
 really helpful to see a set of dedicated tests &lt;em&gt;for that specific function&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;There were none.&lt;/p&gt;
 &lt;p&gt;For a moment, I'm going to give Copilot/Claude an out. When I started
@@ -371,12 +523,12 @@ tests. But look! 1,380 tests guys!&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:294-1"&gt;
+&lt;li id="fn:295-1"&gt;
 &lt;p&gt;Remember: up until this point this has mostly been an experiment in
-uncritically letting Copilot do its thing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:294-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+uncritically letting Copilot do its thing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:295-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:294-2"&gt;
-&lt;p&gt;Arguably this &lt;em&gt;is&lt;/em&gt; someone else's code, with extra steps.&amp;#160;&lt;a class="footnote-backref" href="#fnref:294-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:295-2"&gt;
+&lt;p&gt;Arguably this &lt;em&gt;is&lt;/em&gt; someone else's code, with extra steps.&amp;#160;&lt;a class="footnote-backref" href="#fnref:295-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1845,82 +1997,5 @@ when generating the site.&lt;/p&gt;</content>
     <category term="web"/>
     <category term="webp"/>
     <published>2026-04-17T10:25:37+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/04/16/i-should-use-webp.html</id>
-    <title>I should use webp</title>
-    <updated>2026-04-16T21:31:32+01:00</updated>
-    <content type="html">&lt;p&gt;For a good while now I've been pretty happy with the
-&lt;a href="https://pagespeed.web.dev/" rel="noopener noreferrer" target="_blank"&gt;PageSpeed&lt;/a&gt; measurements of this blog, which in
-turn means I've been happy with the state of what's generated by
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;. I have pretty much everything that
-can be minified nice and minimal. At this point, the main thing that causes
-the speed measurement to fluctuate is image sizes.&lt;/p&gt;
-&lt;p&gt;I use a lot of PNGs on this blog. When I'm using images, they're almost
-always in posts that include screenshots, which in turn pretty much demand
-that I use a lossless format. When I take these screenshots I don't worry
-too much about the dimensions (within reason), and of course I don't really
-do anything to optimise how they'll work and appear on different display
-sizes. If I was to get too into that, it would add friction to writing
-something, and the whole point of this is to feel less friction when it
-comes to sitting at the keyboard.&lt;/p&gt;
-&lt;p&gt;So I've been living with the fact that some images can be pretty big. While
-I do make a point of using
-&lt;a href="https://en.wikipedia.org/wiki/Pngcrush" rel="noopener noreferrer" target="_blank"&gt;pngcrush&lt;/a&gt; on every image, it
-generally doesn't make a huge saving.&lt;/p&gt;
-&lt;p&gt;Then yesterday &lt;a href="https://www.yakshaving.co.uk/posts/converting-images-to-webp-format/" rel="noopener noreferrer" target="_blank"&gt;I read this post on Andy's
-blog&lt;/a&gt;
-and I suddenly realised what I had to do!&lt;/p&gt;
-&lt;p&gt;&lt;img alt="I should use webp" src="https://blog.davep.org/attachments/2026/04/16/use-webp.webp#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Borrowing from what Andy did, I used &lt;code&gt;mogrify&lt;/code&gt; too, setting up this Fish
-&lt;code&gt;abbr&lt;/code&gt; in &lt;a href="https://github.com/davep/fish" rel="noopener noreferrer" target="_blank"&gt;my Fish configuration&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight" data-lang="fish"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;type&lt;/span&gt; -q mogrify
-    abbr -g mkwebp &lt;span class="s2"&gt;&amp;quot;mogrify -format webp -define webp:lossless=true -quality 100&amp;quot;&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;In my case, at least in the initial experiment, I decided to keep it all
-lossless. So far the results have been really good, cutting the image sizes
-down by a significant amount. For example, if I look at the images for
-&lt;a href="https://blog.davep.org/2026/04/15/"&gt;yesterday's posts&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; 90581 15 Apr 18:14 sl-overview.png
- 33446 16 Apr 20:23 sl-overview.webp
-392661 15 Apr 18:14 slstats-region-info.png
-225392 16 Apr 20:23 slstats-region-info.webp
- 36049 15 Apr 19:39 year-chart.png
- 15590 16 Apr 20:23 year-chart.webp
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;That's a pretty reasonable saving!&lt;/p&gt;
-&lt;p&gt;So far all I've done is convert the few latest posts that make up the front
-page of my blog, just so I can see what impact it has. I'm getting improved
-load times on mobile, for sure.&lt;/p&gt;
-&lt;p&gt;There are a couple of downsides to this, of course.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Now I want to do the whole blog, so while I can easily go through and
-   convert all the &lt;code&gt;png&lt;/code&gt; files to &lt;code&gt;webp&lt;/code&gt;, converting all the image markup in
-   the Markdown files isn't &lt;em&gt;quite&lt;/em&gt; so simple, and even if I do write
-   something to automate it, I'm then going to want to review it to make
-   100% sure nothing has broken.&lt;/li&gt;
-&lt;li&gt;I can't just then remove all the &lt;code&gt;png&lt;/code&gt; files to cut back on the space
-   used by the generated site. The front page of the site has a feed, and
-   all the &lt;a href="https://blog.davep.org/categories/"&gt;categories&lt;/a&gt; have a feed each too. This means that
-   there could be HTML out there from some of my oldest posts, referring to
-   the &lt;code&gt;png&lt;/code&gt; files, and just removing them will result in broken images.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Overall though, it might be worth doing at some point soon. Meanwhile, from
-now on, I think I'm going to replace my &lt;code&gt;pngcrush&lt;/code&gt; step with a &lt;code&gt;mkwebp&lt;/code&gt; step
-and just use &lt;code&gt;webp&lt;/code&gt; instead of &lt;code&gt;png&lt;/code&gt; now.&lt;/p&gt;
-&lt;p&gt;I guess I'm all modern now!&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/04/16/i-should-use-webp.html"/>
-    <category term="Meta"/>
-    <category term="BlogMore"/>
-    <category term="Blogging"/>
-    <category term="ImageMagick"/>
-    <category term="fish"/>
-    <category term="pngcrush"/>
-    <category term="web"/>
-    <category term="webp"/>
-    <published>2026-04-16T21:31:32+01:00</published>
   </entry>
 </feed>
