@@ -2,7 +2,7 @@
 title: At least there are tests
 date: 2026-05-01 17:04:26+0100
 category: AI
-tags: BlogMore, Coding, Copilot, Gemini, GitHub, Google, Python, code review
+tags: BlogMore, Coding, Copilot, Gemini, GitHub, Google, Python, code review, testing
 cover: /attachments/2026/05/01/pytest-running.webp
 ---
 
