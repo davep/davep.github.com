@@ -115,10 +115,9 @@ Note the lack of "follows @davepdotorg" in the profile?
 
 Very odd.
 
-Right now I'm not drawing any firm conclusions about what happened, and I have
-[asked them what the follow and unfollow was all about](https://twitter.com/davepdotorg/status/640829279966765056).
-It would be unfair of me to decide the events were connected without asking
-first.
+Right now I'm not drawing any firm conclusions about what happened, and I
+have asked them what the follow and unfollow was all about. It would be
+unfair of me to decide the events were connected without asking first.
 
 All of this though has made something clear to me. Labour have decided that
 they never want my support, ever again. I have it in writing. Well, sort of.
