@@ -31,8 +31,7 @@ online.
 This year, despite how shitty it's been for the world in general, has been a
 really good one for me. Lots of positive changes have happened and continue
 to happen and I noticed that I was starting to do the phone-based photoblog
-thing
-again, [albeit only via twitter](https://twitter.com/davepdotorg/media).
+thing again, albeit only via twitter.
 
 ![From up the hill](/attachments/2016/11/15/FromUpTheHill.jpg#centre)
 

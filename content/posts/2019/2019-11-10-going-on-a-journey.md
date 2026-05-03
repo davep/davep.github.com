@@ -35,10 +35,9 @@ language/toolkit/environment/framework/etc?".
 
 Even with those two as my goto projects, I'm always open to new small
 problems that might be fun to apply to languages I do know, or languages I
-want to get to know (internally at work [we have a fun "league" of sorts,
+want to get to know (internally at work we have a fun "league" of sorts,
 writing a particular hamming distance calculation tool in different
-languages](https://twitter.com/davepdotorg/status/1123952281156751361), for
-example).
+languages, for example).
 
 A few days ago, via [this repo on
 GitHub](https://github.com/Lethrir/Journeys), I discovered [this fun little

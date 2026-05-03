@@ -11,10 +11,8 @@ wrote about how pretty much every promise made by Virgin East Coast had
 (once again) been broken and it looks like it's all change (or at least
 looks a lot more promising now).
 
-After I wrote the post I did the usual thing of
-[tweeting it](https://twitter.com/davepdotorg/status/762926618188931073) and
-I then went about the business of sending off yet another set of chase-up
-emails.
+After I wrote the post I did the usual thing of tweeting it and I then went
+about the business of sending off yet another set of chase-up emails.
 
 The first to come back was from the person dealing with the compensation
 cheque. I'd pointed out that it was now a week since the sending of the
