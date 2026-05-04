@@ -2,11 +2,58 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-03T09:01:21.202951+00:00</updated>
+  <updated>2026-05-04T08:29:20.936014+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/04/blogmore-v2-19-0.html</id>
+    <title>BlogMore v2.19.0</title>
+    <updated>2026-05-04T09:07:26+01:00</updated>
+    <content type="html">&lt;p&gt;While I'm messing around in the background of
+&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, looking at the state of the code
+and looking for opportunities to clean it up, either &lt;a href="https://blog.davep.org/2026/05/02/me-vs-claude.html"&gt;by
+hand&lt;/a&gt;, or by &lt;a href="https://blog.davep.org/2026/04/30/a-different-approach.html"&gt;pitting agent against
+agent&lt;/a&gt;, I've also been doing the odd
+little fix here and there.&lt;/p&gt;
+&lt;p&gt;I've just released &lt;a href="https://blogmore.davep.dev/changelog/#v2190" rel="noopener noreferrer" target="_blank"&gt;BlogMore
+v2.19.0&lt;/a&gt;, which has a couple of
+fixes, and also a small improvement.&lt;/p&gt;
+&lt;p&gt;The first fix is something I noticed late on last week when I was sharing
+one of the archive pages from my blog with someone. I noticed that the
+preview that appeared didn't have the default blog image, nor did it have
+any sort of description. This &lt;em&gt;should&lt;/em&gt; happen in that, on any page that
+isn't a post with a specific cover image or description, it should fall back
+to the blog's defaults. Turns out this logic was missing from things like
+the date-based archives, the category and tag archives, and a number of
+other parts of the generated output.&lt;/p&gt;
+&lt;p&gt;That's &lt;a href="https://github.com/davep/blogmore/pull/432" rel="noopener noreferrer" target="_blank"&gt;now fixed&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The second fix is to the &lt;a href="https://blog.davep.org/2026/04/25/blogmore-v2-16-0.html"&gt;recently-added&lt;/a&gt;
+backlinks feature. While reviewing the effect of something else I was
+working on, I specifically noticed that &lt;a href="https://blog.davep.org/2016/11/15/seen_by_davep_(the_return).html"&gt;this
+post&lt;/a&gt; didn't have a backlink
+section at the bottom, despite the fact that it was linked to from &lt;a href="https://blog.davep.org/2017/03/08/hello_google_pixel.html"&gt;this
+post&lt;/a&gt;. The cause seemed pretty clear:
+the fact that I had parentheses in the URL. My guess was that the regex that
+the link-finding code uses wasn't taking this sort of thing into account;
+&lt;a href="https://github.com/davep/blogmore/pull/445/changes" rel="noopener noreferrer" target="_blank"&gt;my guess was right&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The final change in this release is that the per-build cache-busting feature
+has been extended to &lt;em&gt;all&lt;/em&gt; the JavaScript files that are generated when
+building the site. Before it was mostly only applied to the main stylesheets
+and a couple of long-standing bits of JavaScript. Now it's added to the code
+that's used for &lt;a href="https://blog.davep.org/search/"&gt;search&lt;/a&gt;, the code-block support code, the
+&lt;a href="https://blog.davep.org/graph/"&gt;graph&lt;/a&gt;, etc. This means that if there are any changes in those
+files between builds and deployments of a site, there's less chance of
+unexpected behaviour that needs a "clear the cache first" fix.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/05/04/blogmore-v2-19-0.html"/>
+    <category term="Coding"/>
+    <category term="BlogMore"/>
+    <category term="Coding"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <published>2026-05-04T09:07:26+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/04/29/on-github.html</id>
     <title>On GitHub</title>
@@ -941,64 +988,5 @@ to use.&lt;/p&gt;</content>
     <category term="Python"/>
     <category term="BlogMore"/>
     <published>2026-03-25T19:44:47+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/03/25/hike-v1-4-0.html</id>
-    <title>Hike v1.4.0</title>
-    <updated>2026-03-25T18:54:47+00:00</updated>
-    <content type="html">&lt;p&gt;&lt;a href="https://hike.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Hike&lt;/a&gt;, my wee terminal-based Markdown
-viewer/browser, has had an update to
-&lt;a href="https://pypi.org/project/hike/1.4.0/" rel="noopener noreferrer" target="_blank"&gt;v1.4.0&lt;/a&gt;. In this update I've made a
-change I've been meaning to make &lt;a href="https://github.com/davep/hike/issues/44" rel="noopener noreferrer" target="_blank"&gt;for
-ages&lt;/a&gt;: some support for "wiki
-links".&lt;/p&gt;
-&lt;p&gt;By that I mean the sort of link markup you often see in Markdown documents
-made with &lt;a href="https://blog.davep.org/tag/obsidian/"&gt;Obsidian&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight" data-lang="markdown"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;In other words [[this]] instead of [&lt;span class="nt"&gt;this&lt;/span&gt;](&lt;span class="na"&gt;kind-of-link.md&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Personally it's something I seldom need, but on the occasion I have been
-delving into my Obsidian vaults with Hike I've wished the links at least
-rendered "correctly", even if they wouldn't fully work.&lt;/p&gt;
-&lt;p&gt;On that note, it's worth keeping in mind that this "wiki link"
-implementation in Hike &lt;em&gt;doesn't&lt;/em&gt; support something that Obsidian does: find
-the most likely target file for a given link. If you click such a link, Hike
-expects the file to be &lt;em&gt;exactly&lt;/em&gt; where the link suggests. There's no going
-off and finding the most likely match in the "vault", etc (Hike obviously
-has no concept of a "vault").&lt;/p&gt;
-&lt;p&gt;I'm open to the idea of extending this at some point, perhaps, but not yet.
-The intention here isn't to build a terminal-based Obsidian-a-like, but
-instead to build and maintain a workable Markdown browser/viewer (and
-occasional editor).&lt;/p&gt;
-&lt;p&gt;Hike is licensed GPL-3.0 and available &lt;a href="https://github.com/davep/hike" rel="noopener noreferrer" target="_blank"&gt;via
-GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/hike/" rel="noopener noreferrer" target="_blank"&gt;via
-PyPI&lt;/a&gt;. If you have an environment that has
-&lt;code&gt;pipx&lt;/code&gt; installed you should be able to get up and going with:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;hike
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;If you're more into
-&lt;a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;hike
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;If you don't have &lt;code&gt;uv&lt;/code&gt; installed you can use &lt;a href="https://uvx.sh" rel="noopener noreferrer" target="_blank"&gt;uvx.sh&lt;/a&gt; to
-perform the installation. For GNU/Linux or macOS or similar:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-LsSf&lt;span class="w"&gt; &lt;/span&gt;uvx.sh/hike/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;or on Windows:&lt;/p&gt;
-&lt;div class="highlight" data-lang="powershell"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;powershell&lt;/span&gt; &lt;span class="n"&gt;-ExecutionPolicy&lt;/span&gt; &lt;span class="n"&gt;ByPass&lt;/span&gt; &lt;span class="n"&gt;-c&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;irm https://uvx.sh/hike/install.ps1 | iex&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/03/25/hike-v1-4-0.html"/>
-    <category term="Coding"/>
-    <category term="Coding"/>
-    <category term="Hike"/>
-    <category term="Obsidian"/>
-    <category term="Python"/>
-    <category term="markdown"/>
-    <category term="terminal"/>
-    <category term="textual"/>
-    <published>2026-03-25T18:54:47+00:00</published>
   </entry>
 </feed>
