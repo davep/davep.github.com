@@ -8,7 +8,105 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 04 May 2026 17:51:22 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 04 May 2026 20:00:36 +0000</lastBuildDate>
+    <item>
+      <title>I wouldn't start from here</title>
+      <link>https://blog.davep.org/2026/05/04/i-wouldnt-start-from-here.html</link>
+      <description>&lt;p&gt;The tidying of the &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; source carries
+on; sometimes by hand, but also sometimes by using either Copilot/Claude or
+Gemini to decide how best to nudge the codebase in a desired direction. When
+I do the latter, if I like the suggestions the agents make, but it looks
+like a bunch of work and I can't be faffed with all that typing, I get them
+to do the work; otherwise, I'll do it myself.&lt;/p&gt;
+&lt;p&gt;I am, however, seeing lots of evidence of what I expected to happen, and
+anticipated happening: to get to where I would like the code to be, I
+wouldn't have started here.&lt;/p&gt;
+&lt;p&gt;I'll stress again, for anyone who hasn't been following along, for anyone
+who might have landed into the middle of this &lt;a href="https://blog.davep.org/category/ai/"&gt;long thread of AI
+experimenting&lt;/a&gt;, that this was the point and purpose. I wanted
+to use this tool to build something relatively inconsequential, and which I
+could likely build myself given the time and the inclination, and also
+something I would actively use.&lt;/p&gt;
+&lt;p&gt;So where am I at? My main distaste at the moment is the core generation
+code. Just a few days ago this was a couple of thousand lines of repetitive
+code that did the job, but which was a bit messy. There's no question that I
+would not have written it anything like this. Because of this I've been on a
+push to try and break it up and tidy it up. While doing this I've been
+playing Copilot/Claude and Gemini off against each other, to see who does
+what.&lt;/p&gt;
+&lt;p&gt;As of the time of writing, the generator is split up, but in a way I
+wouldn't have done myself either. It's pretty much half a dozen mixin
+classes in a trench coat, all pretending to be one cohesive class. I &lt;em&gt;feel&lt;/em&gt;
+that's a reasonable solution given where I started, but honestly I wouldn't
+have started there had I been coding this by hand.&lt;/p&gt;
+&lt;p&gt;Right at the moment I'm working out the best way forward to tidy up an
+outcome of this approach that I really don't like. The generator code is
+littered with lots of &lt;code&gt;# type: ignore[attr-defined]&lt;/code&gt; to keep &lt;code&gt;mypy&lt;/code&gt; happy,
+because that's what Claude did when it built all those little mixins. To
+borrow from the explanation in &lt;code&gt;AGENTS.md&lt;/code&gt;, the current makeup looks like
+this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;MinifyMixin
+  └── AssetsMixin          (adds icons, file copying)
+
+DateArchivesMixin
+  └── ListingMixin         (adds tag/category listings)
+
+OptionalPagesMixin
+  └── PagesMixin           (adds core post/page/index/archive)
+
+SiteGenerator(
+    AssetsMixin, ContextMixin, GroupingMixin,
+    ListingMixin, PagesMixin, PathsMixin
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The issue is (for example) that &lt;code&gt;MinifyMixin&lt;/code&gt; defines a method
+&lt;code&gt;_write_html&lt;/code&gt;. Meanwhile &lt;code&gt;OptionalPagesMixin&lt;/code&gt; and &lt;code&gt;ListingMixin&lt;/code&gt; and so on
+make use of &lt;code&gt;self._write_html&lt;/code&gt;. But because there's no direct connection
+between those two classes and &lt;code&gt;MinifyMixin&lt;/code&gt;, &lt;code&gt;mypy&lt;/code&gt; complains that
+&lt;code&gt;_write_html&lt;/code&gt; isn't defined. Of course, it &lt;em&gt;isn't&lt;/em&gt; defined, because it only
+becomes available when all those classes climb into the &lt;code&gt;SiteGenerator&lt;/code&gt;
+trench coat and pretend to be a real class.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;ignore&lt;/code&gt; direction solves the problem, but it's ugly and it's cheating.&lt;/p&gt;
+&lt;p&gt;So I then set the two different agents on the path of proposing a solution
+to this. Both were quite different. Claude (via Copilot) decided that an
+abstract base class was the solution. Gemini decided that a protocol was the
+solution. I &lt;em&gt;think&lt;/em&gt; I'm siding with Gemini on this one because this is a
+provides/needs problem, not a "kind of" problem. Even then though, while I
+sense Gemini has the right approach, I'm not always happy with its
+implementation of it&lt;sup id="fnref:299-1"&gt;&lt;a class="footnote-ref" href="#fn:299-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and once again: it's a cleanup of something I'd
+sooner not be cleaning up in the first place.&lt;/p&gt;
+&lt;p&gt;So here's the thing, and this harks back to &lt;a href="https://blog.davep.org/2026/04/26/but-is-the-code-that-bad.html"&gt;wondering if the code is that
+bad&lt;/a&gt;: it isn't... but it's also
+generating work &lt;em&gt;if&lt;/em&gt; you look at the code and decide that you want it clean
+and maintainable.&lt;/p&gt;
+&lt;p&gt;To get to where I want to go, I wouldn't start from here.&lt;/p&gt;
+&lt;p&gt;I get why I'm seeing the odd report here and there of people abandoning
+their code bases, or deciding to rebuild them from scratch by hand. Part of
+me wants to start a fresh branch, remove almost everything, and rewrite the
+code so it has feature-parity but in a way where I feel the code is tidy and
+elegant.&lt;/p&gt;
+&lt;p&gt;The experiment is working as planned.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:299-1"&gt;
+&lt;p&gt;And it feels so slow. SO. SLOW!&amp;#160;&lt;a class="footnote-backref" href="#fnref:299-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/05/04/i-wouldnt-start-from-here.html</guid>
+      <category>AI</category>
+      <category>BlogMore</category>
+      <category>Coding</category>
+      <category>Copilot</category>
+      <category>Gemini</category>
+      <category>GitHub</category>
+      <category>Google</category>
+      <category>Python</category>
+      <category>code review</category>
+      <pubDate>Mon, 04 May 2026 20:59:18 +0100</pubDate>
+    </item>
     <item>
       <title>My new favourite game on Steam</title>
       <link>https://blog.davep.org/2026/05/04/my-new-favourite-game-on-steam.html</link>
@@ -1961,80 +2059,6 @@ composed posts in Emacs.&amp;#160;&lt;a class="footnote-backref" href="#fnref:25
       <category>quickurl.el</category>
       <category>unabbrev.el</category>
       <pubDate>Thu, 23 Apr 2026 08:25:57 +0100</pubDate>
-    </item>
-    <item>
-      <title>expando.el v1.6</title>
-      <link>https://blog.davep.org/2026/04/22/expando-el-v1-6.html</link>
-      <description>&lt;p&gt;Recently I've had an odd problem with &lt;a href="https://blog.davep.org/category/emacs/"&gt;Emacs&lt;/a&gt;:
-occasionally, and somewhat randomly, as I wrote code, and only when I wrote
-&lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; code, and only when working in
-&lt;code&gt;emacs-lisp-mode&lt;/code&gt;, I'd find that the buffer I was working in would
-disappear. Not just fully disappear, but more like if I'd used
-&lt;code&gt;quit-window&lt;/code&gt;. Worse still, once this started happening, it wouldn't go away
-unless I turned Emacs off and on again.&lt;/p&gt;
-&lt;p&gt;Very un-Emacs!&lt;/p&gt;
-&lt;p&gt;Normally this would happen when I'm in full flow on something, so I'd just
-restart Emacs and crack on with the thing I was writing; because of this I
-wasn't diagnosing what was actually going on.&lt;/p&gt;
-&lt;p&gt;Then, today, as I was writing &lt;code&gt;require&lt;/code&gt; in some code, and kept seeing the
-buffer go away when I hit &lt;kbd&gt;q&lt;/kbd&gt;, it dawned on me.&lt;/p&gt;
-&lt;p&gt;Recently, when &lt;a href="https://blog.davep.org/2026/04/06/expando-el-v1-5.html"&gt;I cleaned up
-&lt;code&gt;expando.el&lt;/code&gt;&lt;/a&gt;, I added the ability to
-close the window with &lt;kbd&gt;q&lt;/kbd&gt;.&lt;/p&gt;
-&lt;div class="highlight" data-lang="diff"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gd"&gt;--- a/expando.el&lt;/span&gt;
-&lt;span class="gi"&gt;+++ b/expando.el&lt;/span&gt;
-&lt;span class="gu"&gt;@@ -58,7 +58,8 @@ Pass LEVEL as 2 (or prefix a call with \\[universal-argument] and&lt;/span&gt;
-&lt;span class="w"&gt; &lt;/span&gt;  (let ((form (preceding-sexp)))
-&lt;span class="w"&gt; &lt;/span&gt;    (with-current-buffer-window &amp;quot;*Expando Macro*&amp;quot; nil nil
-&lt;span class="w"&gt; &lt;/span&gt;      (emacs-lisp-mode)
-&lt;span class="gd"&gt;-      (pp (funcall (expando--expander level) form)))))&lt;/span&gt;
-&lt;span class="gi"&gt;+      (local-set-key (kbd &amp;quot;q&amp;quot;) #&amp;#39;quit-window)&lt;/span&gt;
-&lt;span class="gi"&gt;+      (pp (funcall (expando--expander level) form)))))&lt;/span&gt;
-
-&lt;span class="w"&gt; &lt;/span&gt;(provide &amp;#39;expando)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;So, after opening a window for the purposes of displaying the expanded
-macro, switch to &lt;code&gt;emacs-lisp-mode&lt;/code&gt;, locally set the binding so &lt;kbd&gt;q&lt;/kbd&gt;
-will call on &lt;code&gt;quit-window&lt;/code&gt;, and I'm all good.&lt;/p&gt;
-&lt;p&gt;Except... not, as it turns out.&lt;/p&gt;
-&lt;p&gt;To quote from the documentation for &lt;code&gt;local-set-key&lt;/code&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The binding goes in the current buffer’s local map, which in most cases is
-shared with all other buffers in the same major mode.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;D'oh!&lt;/p&gt;
-&lt;p&gt;Point being, any time I used &lt;code&gt;expando-macro&lt;/code&gt;, I was changing the meaning of
-&lt;kbd&gt;q&lt;/kbd&gt; in the keyboard map for &lt;code&gt;emacs-lisp-mode&lt;/code&gt;. :-/&lt;/p&gt;
-&lt;p&gt;And so v1.6 of &lt;a href="https://github.com/davep/expando.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;expando.el&lt;/code&gt;&lt;/a&gt; is now a
-thing, in which I introduce a derived mode of &lt;code&gt;emacs-lisp-mode&lt;/code&gt; and set
-&lt;kbd&gt;q&lt;/kbd&gt; in its keyboard map. In fact, I keep the keyboard map nice and
-simple.&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;defvar&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;expando-view-mode-map&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;map&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-sparse-keymap&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;define-key&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;map&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;kbd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;q&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;&lt;/span&gt;&lt;span class="nv"&gt;quit-window&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;map&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Mode map for &lt;/span&gt;&lt;span class="ss"&gt;`expando-view-mode&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;define-derived-mode&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;expando-view-mode&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;emacs-lisp-mode&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;expando&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Major mode for viewing expanded macros.&lt;/span&gt;
-
-&lt;span class="s"&gt;The key bindings for &lt;/span&gt;&lt;span class="ss"&gt;`expando-view-mode&amp;#39;&lt;/span&gt;&lt;span class="s"&gt; are:&lt;/span&gt;
-
-&lt;span class="s"&gt;\\{expando-view-mode-map}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;From now on I should be able to code in full flow state without the worry
-that my window will disappear at any given moment...&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/04/22/expando-el-v1-6.html</guid>
-      <category>Emacs</category>
-      <category>Emacs</category>
-      <category>Emacs Lisp</category>
-      <category>Lisp</category>
-      <category>coding</category>
-      <category>expando.el</category>
-      <category>local-set-key</category>
-      <pubDate>Wed, 22 Apr 2026 19:21:40 +0100</pubDate>
     </item>
   </channel>
 </rss>
