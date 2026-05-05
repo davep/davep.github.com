@@ -2,7 +2,7 @@
 title: Me vs Claude
 date: 2026-05-02 18:48:30+0100
 category: AI
-tags: BlogMore, Coding, Copilot, GitHub, Python, code review, testing
+tags: BlogMore, Coding, Copilot, GitHub, Python, code review, code smell, testing
 ---
 
 After writing the [earlier
