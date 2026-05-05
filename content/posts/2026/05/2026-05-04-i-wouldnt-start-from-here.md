@@ -2,7 +2,7 @@
 title: I wouldn't start from here
 date: 2026-05-04 20:59:18+0100
 category: AI
-tags: BlogMore, Coding, Copilot, Gemini, GitHub, Google, Python, code review
+tags: BlogMore, Coding, Copilot, Gemini, GitHub, Google, Python, code review, code smell
 ---
 
 The tidying of the [BlogMore](https://blogmore.davep.dev/) source carries

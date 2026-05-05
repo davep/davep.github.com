@@ -2,7 +2,7 @@
 title: It was such a simple request
 date: 2026-05-02 11:26:34+0100
 category: AI
-tags: BlogMore, Coding, Copilot, Gemini, GitHub, Google, Python, code review, testing
+tags: BlogMore, Coding, Copilot, Gemini, GitHub, Google, Python, code review, code smell, testing
 cover: /attachments/2026/05/02/github-surge.webp
 ---
 

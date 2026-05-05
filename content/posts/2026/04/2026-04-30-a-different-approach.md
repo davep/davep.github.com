@@ -2,7 +2,7 @@
 title: A different approach
 date: 2026-04-30 21:07:36+0100
 category: AI
-tags: BlogMore, Coding, Copilot, Gemini, GitHub, Google, Python, code review
+tags: BlogMore, Coding, Copilot, Gemini, GitHub, Google, Python, code review, code smell
 cover: /attachments/2026/04/30/gemini-diff.webp
 ---
 
