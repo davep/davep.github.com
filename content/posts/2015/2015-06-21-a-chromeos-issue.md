@@ -21,7 +21,7 @@ wasn't what I saw seeing on the screen. Here's the screenshot:
 The only way I can show how it looked to me on the screen is with a (rather
 horrible I'm afraid) photo:
 
-![Photo of what the screen actually looked like](/attachments/2015/06/21/borked-photo.jpeg#centre)
+![Photo of what the screen actually looked like](/attachments/2015/06/21/borked-photo.webp#centre)
 
 It's unclear to me if this is something wrong with the Chromebook itself, or
 in this release of the OS. It is running the beta channel -- currently on
