@@ -3,6 +3,7 @@ title: Virgin East Coast
 category: Life
 tags: travel, Virgin
 date: 2016-06-17 21:13:18+0100
+cover: /attachments/2016/06/17/login-fail.webp
 ---
 
 This year has seen me travelling up and down the east coast of England (and
@@ -43,8 +44,9 @@ Virgin and hopefully save myself a tenner on the WiFi.
 
 A couple or so weeks back I finally created an account with VEC. I did my
 usual thing that I do and used a variation on my Gmail email address. You
-know the sort of thing,
-[make use of the fact that anything after the + in the address doesn't "count"](https://gmail.googleblog.com/2008/03/2-hidden-ways-to-get-more-from-your.html)
+know the sort of thing, [make use of the fact that anything after the + in
+the address doesn't
+"count"](https://gmail.googleblog.com/2008/03/2-hidden-ways-to-get-more-from-your.html)
 but can be useful to filter things and keep track of who's selling on your
 contact details.
 
@@ -56,7 +58,7 @@ lets you travel without even needing to faff around with printed tickets:
 you can do it 100% with your phone (something TTL now do too, I believe). So
 I downloaded the app, went to log in, and...
 
-![Login denied](/attachments/2016/06/17/Screenshot_20160617-152120.png#centre)
+![Login denied](/attachments/2016/06/17/login-fail.webp#centre)
 
 I tried a few times, just to be sure that I wasn't being an idiot and
 messing up but... nope, it just wasn't going to let me log in.
@@ -143,35 +145,22 @@ asked, and I reiterated my problem.
 
 At this point I got a little frustrated and tweeted my frustration:
 
-<center>
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">In support hell trying to log in with <a href="https://twitter.com/Virgin_TrainsEC">@Virgin_TrainsEC</a> Android app. Can’t imagine why it’s got this sort of rating. <a href="https://t.co/pSnuJiiUoB">pic.twitter.com/pSnuJiiUoB</a></p>&mdash; Dave Pearson (@davepdotorg) <a href="https://twitter.com/davepdotorg/status/743800419361533952">June 17, 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-</center>
 
 Which got this reply:
 
-<center>
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/davepdotorg">@davepdotorg</a> I understand it&#39;s having a couple of issues today. Booking references will be accepted on your train. ^NB</p>&mdash; Virgin Trains EC (@Virgin_TrainsEC) <a href="https://twitter.com/Virgin_TrainsEC/status/743801933933219840">June 17, 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-</center>
 
 While I get that social media staff, more than any, can be overworked and
 are often trying to put out all sorts of fires, this wasn't in any way
 helpful to me. I pointed out what the actual issue was:
 
-<center>
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/Virgin_TrainsEC">@Virgin_TrainsEC</a> The problem goes deeper than that. I’ve never been able to log in. Ever. Support says ac doesn’t exist. But it does. O_o</p>&mdash; Dave Pearson (@davepdotorg) <a href="https://twitter.com/davepdotorg/status/743802140318138372">June 17, 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-</center>
 
 I'd also tweeted after my first, talking about the frustration of how TTL
 seem to do things well, but I only get free WiFi if I book via Virgin:
 
-<center>
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">What really bugs me: <a href="https://twitter.com/Virgin_TrainsEC">@Virgin_TrainsEC</a> offer free WiFi if book thru them, but app won’t work. <a href="https://twitter.com/thetrainline">@thetrainline</a> works brill, but no free Wifi.</p>&mdash; Dave Pearson (@davepdotorg) <a href="https://twitter.com/davepdotorg/status/743802438235328512">June 17, 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js"
-charset="utf-8"></script>
-</center>
 
 That tweet got a reply from them asking if I was talking about the wallet
 app (I was, of course) and if I'd registered with the website first. O_o
@@ -187,8 +176,8 @@ and then that would mean I'd be able to log into the mobile app. Let's just
 take a moment to really appreciate what's being said: I SHOULD SPEND A
 HUNDRED POUNDS OR MORE SO I CAN EVEN LOG INTO THE APP.
 
-Only... that's
-nonsense. [According to the website](https://www.virgintrainseastcoast.com/rail-travel/your-ticket/m-tickets/)
+Only... that's nonsense. [According to the
+website](https://www.virgintrainseastcoast.com/rail-travel/your-ticket/m-tickets/)
 it works very different from that. What the website implies is:
 
 1. You create an account on the website.
