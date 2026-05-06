@@ -3,6 +3,7 @@ title: A bit of a backlog at the Apple store
 category: Tech
 tags: Apple, MacBook Air, OS X, hardware
 date: 2016-11-03 13:45:35+0000
+cover: /attachments/2016/11/03/MacbookKB.webp
 ---
 
 Over the past couple or so
@@ -13,7 +14,7 @@ irritating because it messes with the flow of typing (especially when
 writing code) and the key also feels like it's sticking or clicking in a way
 that's different from all the other keys.
 
-![Macbook Keyboard](/attachments/2016/11/03/MacbookKB.jpeg#centre)
+![Macbook Keyboard](/attachments/2016/11/03/MacbookKB.webp#centre)
 
 Given that I pass through Edinburgh on a pretty regular basis I thought I'd
 drop in and have a quick chat with someone about it. While I didn't expect a

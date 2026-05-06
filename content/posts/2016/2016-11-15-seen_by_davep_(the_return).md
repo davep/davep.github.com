@@ -3,6 +3,7 @@ title: Seen by davep (the return)
 category: Creative
 tags: blogging, photography, Twitter, Posterous, photoblog
 date: 2016-11-15 15:52:15+0000
+cover: /attachments/2016/11/15/FromUpTheHill.webp
 ---
 
 A few years back, not long after I got my first smartphone (a HTC Magic), I
@@ -16,11 +17,11 @@ It served as a visual diary, a note to future me.
 
 And, hopefully, it provided some entertainment for those who viewed it.
 
-Sadly the company who hosted
-it
-[closed down](https://en.wikipedia.org/wiki/Posterous#Shutting_down_Posterous_and_building_PostHaven) and
-the whole thing was lost, except for a hasty (and only partially successful)
-backup to [a Wordpress blog](https://seenbydavep.wordpress.com/).
+Sadly the company who hosted it [closed
+down](https://en.wikipedia.org/wiki/Posterous#Shutting_down_Posterous_and_building_PostHaven)
+and the whole thing was lost, except for a hasty (and only partially
+successful) backup to [a Wordpress
+blog](https://seenbydavep.wordpress.com/).
 
 After the blog died I sort of lost interest in trying to maintain one and,
 to some degree, lost interest in active photography in general. Between the
@@ -33,7 +34,7 @@ really good one for me. Lots of positive changes have happened and continue
 to happen and I noticed that I was starting to do the phone-based photoblog
 thing again, albeit only via twitter.
 
-![From up the hill](/attachments/2016/11/15/FromUpTheHill.jpg#centre)
+![From up the hill](/attachments/2016/11/15/FromUpTheHill.webp#centre)
 
 Finally, this week, I've cracked and decided to make it "official". My old
 "Seen by davep" blog is reborn, with new content and the same old purpose.
