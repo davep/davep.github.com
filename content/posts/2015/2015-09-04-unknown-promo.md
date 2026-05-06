@@ -3,6 +3,7 @@ title: Unknown promo
 category: Tech
 tags: Google, Google Drive
 date: 2015-09-04 08:53:39+0100
+cover: /attachments/2015/09/04/UnknownPromo.webp
 ---
 
 Ahh, Google, knower of all things that can be known about me, tracker of all
@@ -12,6 +13,6 @@ know it.
 
 Tell me again what promo that 10GB was from...
 
-![Unknown Promo](/attachments/2015/09/04/UnknownPromo.png#centre)
+![Unknown Promo](/attachments/2015/09/04/UnknownPromo.webp#centre)
 
 [//]: # (2015-09-04-unknown-promo.md ends here)
