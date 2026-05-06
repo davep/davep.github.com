@@ -3,6 +3,7 @@ title: Labour said no thanks to my support
 category: Life
 tags: Politics, Labour, Labour Purge
 date: 2015-09-07 12:16:30+0100
+cover: /attachments/2015/09/07/IGotPurged.webp
 ---
 
 I've never been a member of a political party. Ever. The main reason is I'm not
@@ -59,9 +60,9 @@ So I paid my £3.00 and looked forward to the process that was to follow.
 
 I then waited, and waited, and waited, and then on Saturday this happened:
 
-![I got purged](/attachments/2015/09/07/IGotPurged.png#centre)
+![I got purged](/attachments/2015/09/07/IGotPurged.webp#centre)
 
-In other words.... I got [purged](https://twitter.com/hashtag/labourpurge).
+In other words.... I got [purged](https://en.wikipedia.org/wiki/2015_Labour_Party_leadership_election_(UK)#Rejected_voters).
 
 And a couple of events before this have me wondering and a little suspicious
 of how this went down.
@@ -90,11 +91,11 @@ evening (2015-09-03) or early Friday morning (2015-09-04).
 
 A little later on Friday this happened (Android twitter):
 
-![A follow from someone involved in Labour](/attachments/2015/09/07/Screenshot_2015-09-07-11-07-16.png#centre)
+![A follow from someone involved in Labour](/attachments/2015/09/07/follow-android.webp#centre)
 
 Same follow as seen from Tweetdeck:
 
-![A follow from someone involved in Labour](/attachments/2015/09/07/Screen Shot 2015-09-07 at 16.17.06.png#centre)
+![A follow from someone involved in Labour](/attachments/2015/09/07/follow-tweetdeck.webp#centre)
 
 I've no idea who [@polycarponkundi](https://twitter.com/polycarponkundi) is
 but it seemed clear from their timeline that they are a Labour supporter or
@@ -109,7 +110,7 @@ Then, the following day, I get the letter telling me to sod off. Suddenly the
 coincidence seems less of a coincidence. I go and check the profile and notice
 that they've even unfollowed me, just a couple of days after the follow.
 
-![That account no longer follows me](/attachments/2015/09/07/Screen Shot 2015-09-07 at 16.21.45.png#centre)
+![That account no longer follows me](/attachments/2015/09/07/no-more-follow.webp#centre)
 
 Note the lack of "follows @davepdotorg" in the profile?
 

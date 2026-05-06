@@ -1,8 +1,9 @@
 ---
 title: Google Now Achievements?
 category: Tech
-tags: Google
+tags: Google, Google Now
 date: 2017-03-12 12:16:17+0000
+cover: /attachments/2017/03/12/blank.webp
 ---
 
 Over the past couple or so weeks I've been having some issues with Google
@@ -18,7 +19,7 @@ some time it finally loads up.
 The latter happened a little earlier and I noticed something I'd not seen
 before:
 
-![Blank Google Now](/attachments/2017/03/12/Screenshot_20170312-115910.jpg#centre)
+![Blank Google Now](/attachments/2017/03/12/blank.webp#centre)
 
 What's with that "Achievements" menu option? You'll notice that the whole of
 the menu is blank -- no profile picture or anything and none of the menu
@@ -26,7 +27,7 @@ options seemed to work.
 
 Eventually, after I'd left it for a while, it ended up working.
 
-![Google Now finally working](/attachments/2017/03/12/Screenshot_20170312-120052.jpg#centre)
+![Google Now finally working](/attachments/2017/03/12/working.webp#centre)
 
 And, once this happened, no "Achievements" option.
 

@@ -3,6 +3,7 @@ title: I want to like Gboard
 category: Tech
 tags: Google, Android
 date: 2017-03-13 08:29:16+0000
+cover: /attachments/2017/03/13/dict.webp
 ---
 
 I want to like Gboard. On paper it looks really rather good. It's a keyboard
@@ -59,7 +60,7 @@ Useful! I'd assumed that this was the case anyway -- it's Google after all
 -- but it's good to know I can ensure it's turned on. So I went to turn it
 on. This is what I found:
 
-![Gboard WTF](/attachments/2017/03/13/Screenshot_20170313-072359.png#centre)
+![Gboard WTF](/attachments/2017/03/13/dict.webp#centre)
 
 What the hell Google? Sure, I do have a Gsuite account on my phone -- as in
 various apps have access to a Gsuite account (Gmail, Drive, etc...) -- but

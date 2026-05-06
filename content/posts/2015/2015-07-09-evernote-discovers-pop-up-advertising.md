@@ -3,6 +3,7 @@ title: Evernote discovers pop-up advertising
 category: Tech
 tags: Evernote
 date: 2015-07-09 16:47:20+0100
+cover: /attachments/2015/07/09/evernote.webp
 ---
 
 By the looks of things, with the recent updates to their desktop applications,
@@ -10,7 +11,7 @@ Evernote have discovered the joys of pop-ups for advertising purposes. I'm
 finding it just as annoying as it was back in the days when people thought it
 was the smart way to make you buy things on the web.
 
-![Yay! Pop-up advertising!](/attachments/2015/07/09/Screen Shot 2015-07-09 at 16.15.25.png#centre)
+![Yay! Pop-up advertising!](/attachments/2015/07/09/evernote.webp#centre)
 
 Now, to be fair, the pop-up you see above is the one on my iMac and that at
 least has the good taste to only pop up *within* the application itself

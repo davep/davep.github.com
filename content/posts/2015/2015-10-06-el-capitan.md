@@ -3,20 +3,22 @@ title: El Capitan
 category: Tech
 tags: Mac, Apple, iMac, OS X
 date: 2015-10-06 13:53:12+0100
+cover: /attachments/2015/10/06/downloading.webp
 ---
 
 Almost a week ago (yes, I have being meaning to write something down about
 this and have kept failing to do so) my iMac told me that there was a new
 version of the OS waiting for me. While this is doubtless no big deal for
-most Mac owners, this was interesting to me because it's the first time
-I've experienced an OSX upgrade since [I got the iMac](/2015/06/27/my-first-couple-of-weeks-with-an-imac.html).
+most Mac owners, this was interesting to me because it's the first time I've
+experienced an OSX upgrade since [I got the
+iMac](/2015/06/27/my-first-couple-of-weeks-with-an-imac.html).
 
-![El Capitan downloading](/attachments/2015/10/06/Screen Shot 2015-10-01 at 12.01.37.png#centre)
+![El Capitan downloading](/attachments/2015/10/06/downloading.webp#centre)
 
 The download took a while and, while the install had a couple of curious
 bumps along the way, nothing seemed to actually go wrong.
 
-![About to get going](/attachments/2015/10/06/Screen Shot 2015-10-01 at 12.27.18.png#centre)
+![About to get going](/attachments/2015/10/06/about-to-get-going.webp#centre)
 
 The two main things I noticed were that it seemed to take the installer an
 absolute age to close down all running apps before it got to doing the
@@ -25,7 +27,7 @@ way of calculating things. Often it would tell me that there was (for example)
 28 minutes to go, it'd stay like that for 20 minutes, then drop 5 minutes,
 then appear to finish very soon after.
 
-![The final countdown](/attachments/2015/10/06/Screen Shot 2015-10-01 at 12.27.43.png#centre)
+![The final countdown](/attachments/2015/10/06/final-countdown.webp#centre)
 
 Mostly though I just left it alone and let it do its own thing. While the whole
 process took quite a while, it came back just fine (if I'm fair I'm not sure
@@ -40,9 +42,10 @@ I have found the need to split the screen before.
 
 Some of the other improvements I've read about seem to involve things I'm
 never going to use: either improvements to Safari (Chrome all the way for
-me), the Mac Mail app (Gmail all the way for me, with [Kiwi for Gmail](http://www.kiwiforgmail.com/)
-being my client of choice on the iMac) or various iOS-oriented things which
-are of little use (while [I do own an iOS device](/2015/06/23/and-now-for-some-ios.html) it's not one I use much).
+me), the Mac Mail app (Gmail all the way for me, with [Kiwi for
+Gmail](http://www.kiwiforgmail.com/) being my client of choice on the iMac)
+or various iOS-oriented things which are of little use (while [I do own an
+iOS device](/2015/06/23/and-now-for-some-ios.html) it's not one I use much).
 
 Overall the thing I'm taking away from this is that the upgrade was smooth,
 nothing was obviously broken or changed in a way that was confusing (unlike

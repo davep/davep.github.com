@@ -3,6 +3,7 @@ title: Medium login on Android and iOS
 category: Tech
 tags: iOS, Android, Medium
 date: 2015-06-25 15:39:26+0100
+cover: /attachments/2015/06/25/medium-ios.webp
 ---
 
 I woke up this morning to find that one of my more recent favourite websites,
@@ -16,11 +17,11 @@ I installed it on my Nexus 7 and Nexus 6 and then, given that
 [I have an iOS device now](/2015/06/23/and-now-for-some-ios.html),
 I installed it on that too. In doing so I noticed a very curious difference:
 
-![Medium login on Android](/attachments/2015/06/25/Screenshot_2015-06-25-11-24-11.png#centre)
+![Medium login on Android](/attachments/2015/06/25/medium-android.webp#centre)
 
 vs:
 
-![Medium login on iOS](/attachments/2015/06/25/Photo 25-06-2015 09 38 02.png#centre)
+![Medium login on iOS](/attachments/2015/06/25/medium-ios.webp#centre)
 
 Notice how Android has Google as an option whereas that's not an option on
 iOS? The curious thing is, when I installed it on my Android devices,

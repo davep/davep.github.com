@@ -3,6 +3,7 @@ title: I miss "Until next alarm"
 category: Tech
 tags: Android, Google, Marshmallow
 date: 2015-11-12 14:20:23+0000
+cover: /attachments/2015/11/12/dnd.webp
 ---
 
 I actually can't remember when the change was now, it was either Android 5.0
@@ -26,7 +27,7 @@ an utterly brilliant idea.
 So it made sense that if they changed anything about this in Marshmallow they'd
 keep that in and make it even more awesome, right? Right?!?
 
-![Nope](/attachments/2015/11/12/Screenshot_20151112-140600.png#centre)
+![Nope](/attachments/2015/11/12/dnd.webp#centre)
 
 Well fuck!
 

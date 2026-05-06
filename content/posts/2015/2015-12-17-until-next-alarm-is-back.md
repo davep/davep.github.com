@@ -3,6 +3,7 @@ title: Until next alarm is back
 category: Tech
 tags: Android, Google, Marshmallow
 date: 2015-12-17 11:32:44+0000
+cover: /attachments/2015/12/17/next-alarm-back.webp
 ---
 
 Now and again Google seem to actually listen. While they do generally have a
@@ -16,7 +17,7 @@ option when putting a device in "do not disturb" mode.
 
 Seems they've added that back in 6.0.1:
 
-![Google sees sense](/attachments/2015/12/17/Screenshot_20151217-112015.png#centre)
+![Google sees sense](/attachments/2015/12/17/next-alarm-back.webp#centre)
 
 It's a small thing, but it makes so much more sense and makes things so much
 easier (even if it's a trivial thing).

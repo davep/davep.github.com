@@ -3,6 +3,7 @@ title: A mild Chrome annoyance
 category: Tech
 tags: Google, Chrome, Mac, Windows
 date: 2015-06-18 16:49:24+0100
+cover: /attachments/2015/06/18/GmailContextWin.webp
 ---
 
 For a long time now Chrome has been my web browser of choice. It has, to some
@@ -20,7 +21,7 @@ and on ChromeOS this is simple enough, all I need to do is find the "app" in
 the Chrome app launcher, pull up the content menu, and tell it to open as a
 window.
 
-![Chrome app context menu on Windows 7](/attachments/2015/06/18/GmailContextWin.png#centre)
+![Chrome app context menu on Windows 7](/attachments/2015/06/18/GmailContextWin.webp#centre)
 
 Nice and simple[^1].
 
@@ -30,7 +31,7 @@ right?
 
 Nope.
 
-![Chrome app context menu on OS X](/attachments/2015/06/18/GmailContextMac.png#centre)
+![Chrome app context menu on OS X](/attachments/2015/06/18/GmailContextMac.webp#centre)
 
 There's no option at all to open as a window!
 

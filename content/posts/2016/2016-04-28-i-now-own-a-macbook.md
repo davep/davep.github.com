@@ -3,6 +3,7 @@ title: I now own a Macbook
 category: Tech
 tags: Apple, Mac, MacBook Air, Unix, hardware, iMac
 date: 2016-04-28 20:07:10+0100
+cover: /attachments/2016/04/28/macbook-air.webp
 ---
 
 I've had my iMac for about 10 months now and I can safely say that it's a
@@ -31,7 +32,7 @@ So I had to go and look.
 
 Having looked I came away with one.
 
-![My new Macbook, on the train](/attachments/2016/04/28/IMG_20160428_200405.jpg#centre)
+![My new Macbook, on the train](/attachments/2016/04/28/macbook-air.webp#centre)
 
 So far I'm very pleased with it. While the one I have is the lower spec
 version (just 128GB of SSD and 4GB of memory) it seems to work well for my

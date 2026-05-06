@@ -3,6 +3,7 @@ title: A ChromeOS issue
 category: Tech
 tags: ChromeOS, ChromeBook, Samsung
 date: 2015-06-21 20:05:44+0100
+cover: /attachments/2015/06/21/borked.webp
 ---
 
 Since the last update I've being having a rather odd issue on my old Chromebook.
@@ -15,12 +16,12 @@ First I tried to get a screenshot of what was going on but it didn't work. I
 did get to show that there was a problem, but what was grabbed by the screenshot
 wasn't what I saw seeing on the screen. Here's the screenshot:
 
-![Screenshot of new ChromeOS issue](/attachments/2015/06/21/Screenshot 2015-06-21 at 18.27.55.png)
+![Screenshot of new ChromeOS issue](/attachments/2015/06/21/borked.webp#centre)
 
 The only way I can show how it looked to me on the screen is with a (rather
 horrible I'm afraid) photo:
 
-![Photo of what the screen actually looked like](/attachments/2015/06/21/IMG_20150621_183146.jpg)
+![Photo of what the screen actually looked like](/attachments/2015/06/21/borked-photo.webp#centre)
 
 It's unclear to me if this is something wrong with the Chromebook itself, or
 in this release of the OS. It is running the beta channel -- currently on

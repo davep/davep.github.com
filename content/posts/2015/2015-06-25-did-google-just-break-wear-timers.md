@@ -3,6 +3,7 @@ title: Did Google just break Wear timers?
 category: Tech
 tags: Google, Android, Android Wear, Watch, Moto360
 date: 2015-06-25 22:27:02+0100
+cover: /attachments/2015/06/25/borked-timer.webp
 ---
 
 I didn't pay too much attention to it when it happened but it looks like
@@ -21,7 +22,7 @@ To be clear, the timer app is still there and, if I select to start a timer
 "OK Google, set a timer for five minutes" it still does the voice recognition
 thing:
 
-![Google still understands the request](/attachments/2015/06/25/Android Wear Screenshot.png#centre)
+![Google still understands the request](/attachments/2015/06/25/borked-timer.webp#centre)
 
 It's what happens next that's the problem. Before it would have started a
 countdown timer. As well as vibrating the watch when the timer runs down the
@@ -41,7 +42,7 @@ It's not a timer!
 Looking in the Wear app it would appear that the correct application is
 assigned to the correct action:
 
-![Google still understands the request](/attachments/2015/06/25/Screenshot_2015-06-25-22-22-03.png#centre)
+![Google still understands the request](/attachments/2015/06/25/actions.webp#centre)
 
 As such, I'm at a loss on how to fix this. I can't find anything on the watch
 itself that could be done to change this, and I've tried restarting the

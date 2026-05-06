@@ -3,12 +3,13 @@ title: Microsoft accounts
 category: Tech
 tags: Microsoft
 date: 2015-10-19 12:14:27+0100
+cover: /attachments/2015/10/19/login.webp
 ---
 
 I have too many Microsoft accounts. Far too many. And they still confuse
 the hell out of me.
 
-![Too many MS logins](/attachments/2015/10/19/Screen Shot 2015-10-19 at 12.05.30.png#centre)
+![Too many MS logins](/attachments/2015/10/19/login.webp#centre)
 
 I found out over the weekend that the office was closing down the old internal
 email server. Everything moving to Office365. I use Gmail for my email (I have

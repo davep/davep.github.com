@@ -3,6 +3,7 @@ title: My first proper BT broadband outage
 category: Tech
 tags: Broadband, BT, Communication
 date: 2015-11-18 11:25:29+0000
+cover: /attachments/2015/11/18/browser-status.webp
 ---
 
 Until I moved about a year ago I'd always used Demon Internet as my ISP. I
@@ -36,11 +37,11 @@ to load it because of the problem.
 This is my first bit of real frustration with them. Here's how the page
 looks inside a desktop browser:
 
-![Status in desktop browser](/attachments/2015/11/18/Screen Shot 2015-11-18 at 10.42.40.png#centre)
+![Status in desktop browser](/attachments/2015/11/18/browser-status.webp#centre)
 
 Now compare it as seen inside Android Chrome on my Nexus 6:
 
-![Status on my phone](/attachments/2015/11/18/Screenshot_20151118-104156.png#centre)
+![Status on my phone](/attachments/2015/11/18/phone-status.webp#centre)
 
 Apparently they have decided that I'd never want to be able to check why my
 broadband might be down, from a mobile device. Yes, sure, there's the option
@@ -54,7 +55,7 @@ need.
 Anyway, I gave up and went to bed. In the morning things were no better but,
 after another router reboot, I did manage to get a view of the status:
 
-![Finally got to see broadband status](/attachments/2015/11/18/Screen Shot 2015-11-17 at 10.29.47.png#centre)
+![Finally got to see broadband status](/attachments/2015/11/18/official-status.webp#centre)
 
 Finally! Acknowledgement of the problem. Worryingly though it was dated almost
 12 hours after I first noticed the problem. From what I can see that date and
@@ -64,7 +65,7 @@ problem all night. It's not like it was a problem that was hard to notice,
 at least from a customer's point of view. Check this graph from a [down
 detector site](http://downdetector.co.uk/problems/bt-british-telecom):
 
-![It really was down](/attachments/2015/11/18/Screen Shot 2015-11-17 at 10.27.07.png#centre)
+![It really was down](/attachments/2015/11/18/down-detector.webp#centre)
 
 You'd think that a company as big as BT would have something in place that could
 catch network problems, especially ones that are able to be caught with a simple
@@ -74,34 +75,25 @@ But... nope. Appears not. O_o
 
 Anyway, a couple or so hours later the problem was finally fixed:
 
-![Finally got to see broadband status](/attachments/2015/11/18/Screen Shot 2015-11-17 at 13.01.00.png#centre)
+![Finally got to see broadband status](/attachments/2015/11/18/finally-fixed.webp#centre)
 
 (Notice how the date and time is the same as earlier; so 100% not an update time
 but a first-added time) I mentioned this on twitter:
 
-<center>
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Looks like BT broadband problems are resolved. Everything working that I can see, and this... <a href="https://t.co/m5Mo7vm5Yu">pic.twitter.com/m5Mo7vm5Yu</a></p>&mdash; Dave Pearson (@davepdotorg) <a href="https://twitter.com/davepdotorg/status/666602185233440768">November 17, 2015</a></blockquote>
-</center>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 and I even got a reply (which I'd not gone looking for, so that was nice):
 
-<center>
 <blockquote class="twitter-tweet" data-conversation="none" data-cards="hidden" data-partner="tweetdeck"><p lang="en" dir="ltr"><a href="https://twitter.com/davepdotorg">@davepdotorg</a> Yes Dave we have the problem fixed, if you still notice a few issues then reset the hub and try again. ^Chris</p>&mdash; BT (@BTCare) <a href="https://twitter.com/BTCare/status/666642010045050880">November 17, 2015</a></blockquote>
-</center>
 
 Curious as to why it'd take almost 12 hours from the problem appearing to it
 being acknowledged on their status, I thought I'd ask:
 
-<center>
 <blockquote class="twitter-tweet" data-partner="tweetdeck"><p lang="en" dir="ltr"><a href="https://twitter.com/BTCare">@BTCare</a> All looking good. Any reason why it took 12 hours to acknowledge?</p>&mdash; Dave Pearson (@davepdotorg) <a href="https://twitter.com/davepdotorg/status/666642201783480320">November 17, 2015</a></blockquote>
-</center>
 
 which got this reply:
 
-<center>
 <blockquote class="twitter-tweet" data-partner="tweetdeck"><p lang="en" dir="ltr"><a href="https://twitter.com/davepdotorg">@davepdotorg</a> Sorry it took so long, identifing the source of the problems would have taken some time. ^Shane</p>&mdash; BT (@BTCare) <a href="https://twitter.com/BTCare/status/666666833148268548">November 17, 2015</a></blockquote>
-</center>
 
 which doesn't really make a whole lot of sense. Sure, you to spend time
 identifying the source of a problem to *fix* it, but you don't need to do that

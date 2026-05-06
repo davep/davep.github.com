@@ -3,6 +3,7 @@ title: Wear timer issue fixed, sort of
 category: Tech
 tags: Google, Android, Android Wear, Watch, Moto360
 date: 2015-06-26 12:02:31+0100
+cover: /attachments/2015/06/26/Timer Running on Watch.webp
 ---
 
 Following on from
@@ -33,7 +34,7 @@ It worked!
 
 So then I switched back to en-GB on the phone and...
 
-![I appear to have timers working again](/attachments/2015/06/26/Timer Running on Watch.png#centre)
+![I appear to have timers working again](/attachments/2015/06/26/Timer Running on Watch.webp#centre)
 
 ...it still worked!
 
