@@ -8,7 +8,55 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 06 May 2026 17:24:02 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 06 May 2026 18:49:17 +0000</lastBuildDate>
+    <item>
+      <title>The webp migration is under way</title>
+      <link>https://blog.davep.org/2026/05/06/the-webp-migration-is-under-way.html</link>
+      <description>&lt;p&gt;I've finally made a proper start on &lt;a href="https://blog.davep.org/2026/04/16/i-should-use-webp.html"&gt;the planned migration to webp for
+images&lt;/a&gt;. I did consider writing a tool
+that would go through and migrate the files, and update the Markdown, all in
+one go, but something about that makes me kind of nervous. While it wouldn't
+be a destructive approach (the whole blog &lt;a href="https://github.com/davep/davep.github.com" rel="noopener noreferrer" target="_blank"&gt;is under version control after
+all&lt;/a&gt;), I just have this niggling
+feeling that I'd miss something and it would sit broken, unnoticed, for
+ages.&lt;/p&gt;
+&lt;p&gt;So instead I've decided to take a one-post-at-a-time approach, making the
+migration by hand. As well as having the benefit of letting me go slowly and
+check my work as I go, I can also do some tidying up of old posts. So while
+I do this I'm also going to tidy up obviously broken links when I notice
+them, and also remove embedded tweets (swapping to the simple blockquote
+version).&lt;/p&gt;
+&lt;p&gt;Another thing I'm doing is adding &lt;code&gt;cover&lt;/code&gt; images where possible. I'd been
+running this blog for a long time before I started to use &lt;code&gt;cover&lt;/code&gt; (it might
+be that I didn't start until &lt;a href="https://blog.davep.org/2023/07/05/the-switch-has-been-made.html"&gt;I moved to
+Pelican&lt;/a&gt;). Since then I've tried
+to use it any time there's an appropriate image in a post. More recently, I
+&lt;a href="https://blog.davep.org/2026/04/28/blogmore-v2-18-0.html"&gt;added cover images to the graph view&lt;/a&gt; so
+they're even more useful now. Back-adding a &lt;code&gt;cover&lt;/code&gt; to older posts will make
+them more appealing to discover in the &lt;a href="https://blog.davep.org/graph/"&gt;graph&lt;/a&gt; because those older
+notes will acquire attention-grabbing thumbnails too.&lt;/p&gt;
+&lt;p&gt;One thing I wanted to do was have an easy way to keep track of where I'm up
+to in the migration. It's going to be a steady process that's going to take
+a few days, doing a few posts at a time. So to aid this I've added this
+to the &lt;code&gt;Makefile&lt;/code&gt; of the blog:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;content/extras/attachments
+find&lt;span class="w"&gt; &lt;/span&gt;-E&lt;span class="w"&gt; &lt;/span&gt;./&lt;span class="w"&gt; &lt;/span&gt;-iregex&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.*\.(png|jpg|jpeg)$&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;cut&lt;span class="w"&gt; &lt;/span&gt;-d&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-f2,3,4&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sort&lt;span class="w"&gt; &lt;/span&gt;-u
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;With this I get a handy list of dates of posts that still have unconverted
+png or jpeg files.&lt;/p&gt;
+&lt;p&gt;Of course, for a wee while, this will not get to an empty list because I
+want to make sure some of the more recent posts still have their older
+images available as they might be in feeds out there. More recently I've
+only been using &lt;code&gt;webp&lt;/code&gt; for images, so once the &lt;code&gt;webp&lt;/code&gt;-using posts fill the
+main RSS and Atom feeds I can clean out the last of the bulkier images.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/05/06/the-webp-migration-is-under-way.html</guid>
+      <category>Meta</category>
+      <category>Blogging</category>
+      <category>web</category>
+      <category>webp</category>
+      <pubDate>Wed, 06 May 2026 19:45:43 +0100</pubDate>
+    </item>
     <item>
       <title>Considering a rescue</title>
       <link>https://blog.davep.org/2026/04/28/considering-a-rescue.html</link>
@@ -498,7 +546,14 @@ the same though.&lt;/p&gt;
     <item>
       <title>Time to move on</title>
       <link>https://blog.davep.org/2019/10/18/time-to-move-on.html</link>
-      <description>&lt;p&gt;It's well over a year since I last wrote something on this blog. As
+      <description>&lt;div class="admonition admonition-note"&gt;
+&lt;div class="admonition-title"&gt;ℹ️ Note&lt;/div&gt;
+&lt;div class="admonition-content"&gt;
+&lt;p&gt;After some time I found that Hashnode wasn't for me, so I &lt;a href="https://blog.davep.org/2022/05/20/im-back.html"&gt;eventually came
+back to writing on this blog&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;It's well over a year since I last wrote something on this blog. As
 mentioned in the last post (and the one before), it's not for bad reasons or
 anything like that. Being in a new job, which actually isn't all that new
 now, has kept me busy in all the best ways possible.&lt;/p&gt;
@@ -511,9 +566,9 @@ more work than it should. Whereas most blogging systems tend to encourage
 just diving in and banging on the keyboard, there's just a bit more faff
 with the GitHub pages approach.&lt;/p&gt;
 &lt;p&gt;So, with that in mind, and with no desire right now to roll my own (which
-would be fun, it has to be said), I'm going to &lt;a href="https://blog.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;skip off over to Hashnode's
-blogging system&lt;/a&gt;. It seems to have everything I'd
-want and I can slap it on a domain of mine.&lt;/p&gt;
+would be fun, it has to be said), I'm going to skip off over to Hashnode's
+blogging system. It seems to have everything I'd want and I can slap it on a
+domain of mine.&lt;/p&gt;
 &lt;p&gt;Most of my random musings about random things really happen on Twitter, so I
 can't imagine I'll be wanting to blog about normal/mundane things. What I
 would like to do is write about development-related things from time to
