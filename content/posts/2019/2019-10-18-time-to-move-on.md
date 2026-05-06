@@ -3,7 +3,12 @@ title: Time to move on
 category: Meta
 tags: blogging, Jekyll, Hashnode
 date: 2019-10-18 17:42:00+0100
+modified: 2022-05-20 12:44:00+0100
 ---
+
+> [!note]
+> After some time I found that Hashnode wasn't for me, so I [eventually came
+> back to writing on this blog](/2022/05/20/im-back.html).
 
 It's well over a year since I last wrote something on this blog. As
 mentioned in the last post (and the one before), it's not for bad reasons or
@@ -21,9 +26,9 @@ just diving in and banging on the keyboard, there's just a bit more faff
 with the GitHub pages approach.
 
 So, with that in mind, and with no desire right now to roll my own (which
-would be fun, it has to be said), I'm going to [skip off over to Hashnode's
-blogging system](https://blog.davep.dev/). It seems to have everything I'd
-want and I can slap it on a domain of mine.
+would be fun, it has to be said), I'm going to skip off over to Hashnode's
+blogging system. It seems to have everything I'd want and I can slap it on a
+domain of mine.
 
 Most of my random musings about random things really happen on Twitter, so I
 can't imagine I'll be wanting to blog about normal/mundane things. What I
