@@ -3,6 +3,7 @@ title: My first couple of weeks with an iMac
 category: Tech
 tags: Apple, Emacs, Mac, Unix, hardware, iMac
 date: 2015-06-27 18:41:57+0100
+cover: /attachments/2015/06/27/setting-date-format.webp
 ---
 
 My history with computers starts with a Sinclair ZX81 in the early 1980s,
@@ -162,14 +163,14 @@ with the business of seeing the time format? The system preferences seem
 very flexible when it comes to setting date and time formats. I really like
 the dialog that provides this:
 
-![Setting the date format](/attachments/2015/06/27/Screen Shot 2015-06-27 at 19.23.39.png#centre)
+![Setting the date format](/attachments/2015/06/27/setting-date-format.webp#centre)
 
 As you might see above, my preference when it comes to date formats is to have
 everything in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 Having set that I then noticed that the time shown in the menu bar on the
 desktop was.... whatever the hell Apple appear to have decided for me!
 
-![This is not the date format I asked for](/attachments/2015/06/27/Screen Shot 2015-06-27 at 19.26.18.png#centre)
+![This is not the date format I asked for](/attachments/2015/06/27/not-the-format.webp#centre)
 
 Even Windows lets me set the date format as I want it in the desktop time
 display. Apple, meanwhile, seem to provide a great method of letting you
@@ -182,13 +183,13 @@ From what I could tell every Mac has a copy of GNU emacs installed, out of the
 box. That actually kind of impressed me. Sure, it's a rather out of date
 version of GNU emacs, but it's a copy of GNU emacs and that's all that matters.
 
-![It's a GNU emacs!](/attachments/2015/06/27/Screen Shot 2015-06-27 at 19.31.18.png#centre)
+![It's a GNU emacs!](/attachments/2015/06/27/emacs.webp#centre)
 
 That fact actually means something rather interesting, to me. See, there's
 two small packages that are part of GNU emacs that I originally wrote. One is
 called 5x5, the other quickurl.
 
-![My rubbish claim to fame](/attachments/2015/06/27/Screen Shot 2015-06-27 at 19.32.58.png#centre)
+![My rubbish claim to fame](/attachments/2015/06/27/claim-to-fame.webp#centre)
 
 So, yeah, from what I can see, on every new Mac you'll find two bodies of
 code that I originally wrote, pre-installed.

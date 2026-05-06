@@ -3,6 +3,7 @@ title: And now for some iOS
 category: Tech
 tags: Apple, Mac, hardware, iOS, iPod
 date: 2015-06-23 23:09:32+0100
+cover: /attachments/2015/06/23/ipod.webp
 ---
 
 I'm on a bit of a "explore other universes" trip at the moment, it would seem.
@@ -18,7 +19,7 @@ way of doing that was to grab an iPod.
 
 So I did.
 
-![I now own an iPod](/attachments/2015/06/23/Photo 23-06-2015 22 50 51.png#centre)
+![I now own an iPod](/attachments/2015/06/23/ipod.webp#centre)
 
 One of the first things I did, and I'm glad to find it was possible, was to
 load it up with apps that make it into a reasonable Google device (so, so far,
