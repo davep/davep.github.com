@@ -3,6 +3,7 @@ title: Full Apple keyboard on Windows machine
 category: Tech
 tags: Apple, keyboard, Windows
 date: 2015-08-17 11:31:15+0100
+cover: /attachments/2015/08/17/Apple-Keyboard.webp
 ---
 
 I seem to have somehow messed up my left hand. I'm not sure what the problem is
@@ -26,7 +27,7 @@ I've seen in the past, it does work with Windows, after a fashion. So I went
 to talk to the Apple guy, checked they had one in stock, handed over £40 and
 headed home again.
 
-![Apple Keyboard](/attachments/2015/08/17/Apple-Keyboard.jpg#centre)
+![Apple Keyboard](/attachments/2015/08/17/Apple-Keyboard.webp#centre)
 
 Having now worked with it for a couple of days I think this might be one of
 the best keyboard purchases I've ever made.
