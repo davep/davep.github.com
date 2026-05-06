@@ -3,6 +3,7 @@ title: On to something new
 category: Life
 tags: coding, work, life, news
 date: 2017-12-12 13:59:01+0000
+cover: /attachments/2017/12/12/bioinf-data-skills.webp
 ---
 
 Today is a fairly significant day for me. For the past 21 (and a bit) years
@@ -35,7 +36,7 @@ the norm, thankfully!), I'm also going to be working in an industry (as a
 developer still, of course) that I have no background in and no real
 knowledge of. It's going to be a seriously exciting challenge.
 
-![New book](/attachments/2017/12/12/IMG_20171212_140656-01.jpeg#centre)
+![New book](/attachments/2017/12/12/bioinf-data-skills.webp#centre)
 
 Over the next couple of weeks I've got a fair amount of background reading
 (and video watching) to be doing. This isn't so much that I can get on with
