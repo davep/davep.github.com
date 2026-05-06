@@ -3,6 +3,7 @@ title: Voice search failing on Nexus 6
 category: Tech
 tags: Google, Android, Nexus
 date: 2015-11-11 16:07:25+0000
+cover: /attachments/2015/11/11/search-fail.webp
 ---
 
 It's been quite a while since I used voiced search on my Nexus 6. Ever since
@@ -10,7 +11,7 @@ I got the Moto 360 I've not really had a need to say "OK Google" to my phone
 because I could simply say it to my wrist. Today though, because I wanted to
 quickly look something up and my phone was to hand, I spoke to it and got this:
 
-![Voice search fail](/attachments/2015/11/11/Screenshot_20151111-154157.png#centre)
+![Voice search fail](/attachments/2015/11/11/search-fail.webp#centre)
 
 Brilliant.
 

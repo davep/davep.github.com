@@ -3,6 +3,7 @@ title: A little bit of usenet
 category: Tech
 tags: OS X, iMac, NNTP, usenet, Homebrew
 date: 2015-11-13 15:45:19+0000
+cover: /attachments/2015/11/13/reading-news.webp
 ---
 
 Earlier on today I needed a copy of
@@ -25,7 +26,7 @@ ISP's. Back then my ISP was Demon Internet; these days I'm with BT. A quick
 search lead me to an article or two that BT had a NNTP server, of sorts,
 provided by a third party. So I did a quick check:
 
-![Is the server there?](/attachments/2015/11/13/Screen Shot 2015-11-13 at 15.27.43.png#centre)
+![Is the server there?](/attachments/2015/11/13/telnet.webp#centre)
 
 Yay! This looked good.
 
@@ -53,7 +54,7 @@ Given all I was interested in was the good old text groups this looked perfect.
 I quickly registered an account, ran up Unison again and plugged in my details
 and....
 
-![Is the server there?](/attachments/2015/11/13/Screen Shot 2015-11-13 at 15.19.17.png#centre)
+![Is the server there?](/attachments/2015/11/13/reading-news.webp#centre)
 
 Now that's all sorted I should try again with `slrn`. At which point I'll need
 to drag out and tidy up `post.el` ([the version that was being maintained
