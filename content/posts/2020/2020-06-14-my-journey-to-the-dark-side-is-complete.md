@@ -3,6 +3,7 @@ title: My journey to the dark side is complete
 category: Emacs
 tags: Emacs
 date: 2020-06-14 20:00:00+0100
+cover: /attachments/2020/06/14/emacs.webp
 ---
 
 Ever since the whole business of "light mode" and "dark mode" really kicked
@@ -52,7 +53,7 @@ theme itself, but because, over time, I'd made changes and tweaks to my
 setup that assumed I'd be using my usual light theme. After some dabbling
 and tinkering and trying things out, I got it looking "just so".
 
-![Screenshot 2020-06-14 at 19.40.43.png](/attachments/2020/06/14/Screenshot 2020-06-14 at 19.40.43.png)
+![Dark Emacs](/attachments/2020/06/14/emacs.webp#centre)
 
 Having got that working, I then thought it would be nice to be able to have
 Emacs -- at least on restart -- adapt to me switching between dark and light

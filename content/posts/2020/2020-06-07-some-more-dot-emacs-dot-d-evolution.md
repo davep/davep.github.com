@@ -3,6 +3,7 @@ title: Some more ~/.emacs.d evolution
 category: Emacs
 tags: Emacs, Lisp, Emacs Lisp
 date: 2020-06-07 16:48:00+0100
+cover: /attachments/2020/06/07/emacs.webp
 ---
 
 When I started with this version of the blog on Hashnode[^1], my plan was to
@@ -82,7 +83,7 @@ designed to extend the other, etc). For now I've decided to break things
 down into three directories that map to the three monolithic files I had
 before:
 
-![Screenshot 2020-06-07 at 16.36.28.png](/attachments/2020/06/07/Screenshot 2020-06-07 at 16.36.28.png)
+![Emacs](/attachments/2020/06/07/emacs.webp)
 
 However, I'm not totally wedded to this design and I may change this as time
 goes on.
