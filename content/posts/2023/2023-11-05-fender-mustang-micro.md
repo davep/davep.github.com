@@ -3,7 +3,7 @@ title: Fender Mustang Micro
 category: Life
 tags: guitar, hardware, music
 date: 2023-11-05 20:28:00 +0100
-cover: attachments/2023/10/20/IMG_3329.jpeg
+cover: /attachments/2023/11/05/fender-mustang-micro.webp
 ---
 
 The urge to go gadget crazy, when getting a new hobby, or reviving an old
@@ -13,7 +13,7 @@ play properly, it's something I'm very mindful of and doing my best to
 avoid. However, in the middle of the week I did crack and buy one little
 extra thing:
 
-![Fender Mustang Micro](/attachments/2023/11/05/IMG_3488.jpeg#centre)
+![Fender Mustang Micro](/attachments/2023/11/05/fender-mustang-micro.webp#centre)
 
 As I said in the previous blog post about the guitar: I ended up getting
 something that could be played acoustic without being annoying for
@@ -37,7 +37,7 @@ This thing might be small, but it's pretty mighty! For a complete notice
 like me, to muck about, and fiddle and get some great sounds out of it, I
 couldn't have asked for anything more.
 
-![The Options](/attachments/2023/11/05/IMG_3489.jpeg#centre)
+![The Options](/attachments/2023/11/05/options.webp#centre)
 
 The range of amp styles is way more than I could possibly do justice right
 now, but what's important for me is it's got versions that are nice and
