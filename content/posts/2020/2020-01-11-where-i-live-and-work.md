@@ -3,6 +3,7 @@ title: Where I live and work
 category: Coding
 tags: Emacs, shell
 date: 2020-01-11 14:17:00+0000
+cover: /attachments/2020/01/11/emacs.webp
 ---
 
 It's no surprise that I spend a lot of time in Emacs. Especially when I'm
@@ -15,7 +16,7 @@ looking at Emacs.
 
 Here's what my Emacs looks like:
 
-![Screenshot 2020-01-11 at 13.49.04.png](/attachments/2020/01/11/Screenshot 2020-01-11 at 13.49.04.png#centre)
+![My Emacs](/attachments/2020/01/11/emacs.webp#centre)
 
 Key elements for me are as follows:
 
@@ -36,7 +37,7 @@ While the colour scheme is such that it's kept in line with the light look,
 the style is nice in that it sort of matches the style of prompt I use in my
 shell.
 
-![Screenshot 2020-01-11 at 14.05.39.png](/attachments/2020/01/11/Screenshot 2020-01-11 at 14.05.39.png#centre)
+![Shell prompt](/attachments/2020/01/11/shell-prompt.webp#centre)
 
 # Full screen
 
@@ -57,7 +58,7 @@ a full-featured terminal application, in combination with
 [fish](https://fishshell.com/), I do sometimes dip into eshell for quick
 things. So of course I have that configured to feel comfortable too.
 
-![Screenshot 2020-01-11 at 14.10.07.png](/attachments/2020/01/11/Screenshot 2020-01-11 at 14.10.07.png#centre)
+![Eshell prompt](/attachments/2020/01/11/eshell-prompt.webp#centre)
 
 I do this easily [thanks to
 `eshell-git-prompt`](https://github.com/davep/.emacs.d/blob/b9a3df42f0708eabc31a6176d69a67bbdf31a087/init.d/packages/init-packages-melpa.el#L181-L192).
