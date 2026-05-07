@@ -4,6 +4,7 @@ category: Coding
 tags: PyPI, Python, Second Life, Textual, Work
 date: 2022-11-26 11:19:00 +0000
 modified: 2026-04-28 08:52:53+0100
+cover: /attachments/2022/11/26/gridinfo-1.webp
 ---
 
 ## Introduction
