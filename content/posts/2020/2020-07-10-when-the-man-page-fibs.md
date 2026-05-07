@@ -3,6 +3,7 @@ title: When the man page fibs
 category: Coding
 tags: homebrew, macOS, Unix, Python
 date: 2020-07-10 20:58:00+0100
+cover: /attachments/2020/07/10/venv.webp
 ---
 
 Earlier this week something in my development environment, relating to
@@ -21,7 +22,7 @@ affected; not all were and there wasn't an obvious pattern to it. What was
 obvious was that the problem came down to `python` in the `.venv` directory
 pointing to a binary that didn't exist any more.
 
-![Screenshot 2020-07-10 at 20.21.15.png](/attachments/2020/07/10/Screenshot 2020-07-10 at 20.21.15.png)
+![Where Python is pointing](/attachments/2020/07/10/venv.webp#centre)
 
 So... tracking down problematic repositories would be simple enough, just
 look for every instance of `.venv/bin/python` and be sure it points to
