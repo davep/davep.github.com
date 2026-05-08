@@ -8,7 +8,119 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 07 May 2026 18:33:16 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 08 May 2026 07:52:33 +0000</lastBuildDate>
+    <item>
+      <title>Syncing GitHub to GitLab and Codeberg</title>
+      <link>https://blog.davep.org/2026/05/08/syncing-github-to-gitlab-and-codeberg.html</link>
+      <description>&lt;p&gt;I've had a &lt;a href="https://gitlab.com/davep" rel="noopener noreferrer" target="_blank"&gt;GitLab account&lt;/a&gt; since December 2017.
+This came about &lt;a href="https://blog.davep.org/2017/12/12/on_to_something_new.html"&gt;because of the new job I started in January
+2018&lt;/a&gt;. They used a self-hosted
+internal instance of GitLab for all their code, so it made sense I get
+familiar with it (it wasn't hard; especially back in 2017 it was near enough
+a clone of GitHub in terms of what it did). Since then, though, I've never
+really done anything with it. I think I had a repo or two on there for a
+short while, but I must have nuked them at some point because the account
+has been empty for the longest time.&lt;/p&gt;
+&lt;p&gt;A &lt;a href="https://codeberg.org/davep" rel="noopener noreferrer" target="_blank"&gt;Codeberg&lt;/a&gt; account, on the other hand, &lt;a href="https://blog.davep.org/2026/05/06/trying-out-codeberg.html"&gt;only
+got created the other day&lt;/a&gt;. Having
+created this, I got to thinking about how I might use it. In doing so I
+thought back to my GitLab account and then also got to thinking about where
+all my public code lives, and how "safe" it is.&lt;/p&gt;
+&lt;p&gt;Now, sure, the whole point of &lt;a href="https://blog.davep.org/tag/git/"&gt;Git&lt;/a&gt; is that it's distributed.
+Forges are a useful thing to have and work with, but they shouldn't be &lt;em&gt;the&lt;/em&gt;
+place where your code lives. On the other hand, I've had so many machines,
+and so many work environments, that it has become the case that &lt;a href="https://github.com/davep" rel="noopener noreferrer" target="_blank"&gt;my GitHub
+account&lt;/a&gt; has become &lt;em&gt;the&lt;/em&gt; storage location for my
+code and projects.&lt;/p&gt;
+&lt;p&gt;Mostly this is fine. If GitHub were to disappear tomorrow I imagine we'd all
+have bigger things to be worrying about anyway. But the principle stands:
+why not distribute the load? Why not distribute the effort when it comes to
+sharing code I write?&lt;/p&gt;
+&lt;p&gt;So yesterday I finally decided on a plan: for the moment at least, I'm going
+to keep using GitHub as my "primary" location for working on stuff. It's
+where I'll have WiP branches, it's where I'll keep issues, it's where I'll
+encourage people to raise requests and stuff, it's where I'll host this
+blog. But I'm going to start syncing projects to both GitLab and Codeberg. I
+see this as having two benefits: anyone who doesn't want to interact with
+GitHub can now easily fork code, and if they wish they can raise issues and
+the like too. Meanwhile, in doing this, I'll also have the added benefit of
+my code being "backed up" in at least three different locations&lt;sup id="fnref:306-1"&gt;&lt;a class="footnote-ref" href="#fn:306-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;The approach I've settled on, for the moment, is based around &lt;a href="https://github.com/davep/setup-forge-sync" rel="noopener noreferrer" target="_blank"&gt;this little
+shell script&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Check if a repository name was provided&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-z&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Error: No repository name provided.&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Usage: &lt;/span&gt;&lt;span class="nv"&gt;$0&lt;/span&gt;&lt;span class="s2"&gt; &amp;lt;repo-name&amp;gt;&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="k"&gt;fi&lt;/span&gt;
+
+&lt;span class="nv"&gt;REPO_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Check if the current directory is a Git repository&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;!&lt;span class="w"&gt; &lt;/span&gt;git&lt;span class="w"&gt; &lt;/span&gt;rev-parse&lt;span class="w"&gt; &lt;/span&gt;--is-inside-work-tree&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;/dev/null&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Error: This directory is not a Git repository.&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="k"&gt;fi&lt;/span&gt;
+
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Configuring multi-forge backup sync for: &lt;/span&gt;&lt;span class="nv"&gt;$REPO_NAME&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Set up the remote called backups. Anchor it to Codeberg.&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt;remove&lt;span class="w"&gt; &lt;/span&gt;backups&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;/dev/null&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;backups&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ssh://git@codeberg.org/davep/&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;REPO_NAME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.git&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Set up the push URLs.&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt;set-url&lt;span class="w"&gt; &lt;/span&gt;--push&lt;span class="w"&gt; &lt;/span&gt;backups&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ssh://git@codeberg.org/davep/&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;REPO_NAME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.git&amp;quot;&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt;set-url&lt;span class="w"&gt; &lt;/span&gt;--add&lt;span class="w"&gt; &lt;/span&gt;--push&lt;span class="w"&gt; &lt;/span&gt;backups&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;git@gitlab.com:davep/&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;REPO_NAME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.git&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Only ever backup main.&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;config&lt;span class="w"&gt; &lt;/span&gt;remote.backups.push&lt;span class="w"&gt; &lt;/span&gt;refs/heads/main:refs/heads/main
+
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;----------------------------------------------------&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Backups configured:&amp;quot;&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt;-v
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;----------------------------------------------------&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;To perform the initial sync, run: git push backups main&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;### setup-forge-sync ends here&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I'm going to keep all repo names the same&lt;sup id="fnref:306-2"&gt;&lt;a class="footnote-ref" href="#fn:306-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So when I use this script
+it'll set things up so I can &lt;code&gt;git push backups&lt;/code&gt; and &lt;code&gt;main&lt;/code&gt; will then get
+pushed up to both GitLab and Codeberg. I don't feel the need to be keeping
+any WiP branches in sync or kicking about, likewise any &lt;code&gt;gh-pages&lt;/code&gt; branches.&lt;/p&gt;
+&lt;p&gt;While I'm sure I could have done something a little more automated, this
+feels like a neat and simple approach, and also allows me to curate what
+appears in the two other places over time (I suppose, eventually, I'll
+mirror everything that isn't a dead experimental repo, but meanwhile I'll
+prioritise projects that are either still very useful or which I'm actively
+developing and maintaining).&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:306-1"&gt;
+&lt;p&gt;Yes, I have other backups too, but they're always
+current-working-machine type backups.&amp;#160;&lt;a class="footnote-backref" href="#fnref:306-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:306-2"&gt;
+&lt;p&gt;Except, perhaps, for any repo whose name starts with &lt;code&gt;.&lt;/code&gt;; I seem to
+recall that GitLab can't handle that, for some bizarre reason. Perhaps
+that's fixed now?&amp;#160;&lt;a class="footnote-backref" href="#fnref:306-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/05/08/syncing-github-to-gitlab-and-codeberg.html</guid>
+      <category>Coding</category>
+      <category>Codeberg</category>
+      <category>Coding</category>
+      <category>FOSS</category>
+      <category>GitHub</category>
+      <category>GitLab</category>
+      <category>backups</category>
+      <category>git</category>
+      <pubDate>Fri, 08 May 2026 08:25:03 +0100</pubDate>
+    </item>
     <item>
       <title>All I did was open it</title>
       <link>https://blog.davep.org/2026/05/07/all-i-did-was-open-it.html</link>
@@ -920,51 +1032,6 @@ perform the installation. For GNU/Linux or macOS or similar:&lt;/p&gt;
       <category>terminal</category>
       <category>textual</category>
       <pubDate>Tue, 31 Mar 2026 08:44:00 +0100</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.6.0</title>
-      <link>https://blog.davep.org/2026/03/28/blogmore-v2-6-0.html</link>
-      <description>&lt;p&gt;Yesterday I read &lt;a href="https://www.yakshaving.co.uk/posts/in-praise-blogmore/" rel="noopener noreferrer" target="_blank"&gt;a rather positive post about
-BlogMore&lt;/a&gt;, which was
-lovely to see. But... when I saw the link for it &lt;a href="https://mastodon.me.uk/@andyc/116301512739510280" rel="noopener noreferrer" target="_blank"&gt;over on
-Mastodon&lt;/a&gt; I noticed
-something wasn't quite right about the description in the preview:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The preview of the post" src="https://blog.davep.org/attachments/2026/03/28/post-preview.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;See, when BlogMore makes a post, if the author of the post hasn't provided a
-description in the frontmatter, the first paragraph of text will be used
-instead. When doing this the code &lt;em&gt;should&lt;/em&gt; strip out any markup (and also
-skip any initial images, that sort of thing).&lt;/p&gt;
-&lt;p&gt;But, as you can see, there are things like &lt;code&gt;[Dave][davep]&lt;/code&gt; in that
-description. So I &lt;a href="https://fosstodon.org/@davep/116301926691204655" rel="noopener noreferrer" target="_blank"&gt;checked in with
-Andy&lt;/a&gt; and that was
-something that came from the underlying Markdown. After a bit of checking,
-it became obvious that the code in BlogMore was only looking for and
-removing inline links, but wasn't doing anything about &lt;a href="https://www.markdownguide.org/basic-syntax/#reference-style-links" rel="noopener noreferrer" target="_blank"&gt;reference
-links&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;So, as usual, &lt;a href="https://github.com/davep/blogmore/issues/348" rel="noopener noreferrer" target="_blank"&gt;one prompt
-later&lt;/a&gt; and the issue was
-handled.&lt;/p&gt;
-&lt;p&gt;As it stands, I don't think I'll keep up with the current approach. It
-doesn't feel quite right to me. The whole point is that the Markdown should
-be rendered down to pure text and then the first actual paragraph of text is
-used. The code I have there now is doing some &lt;a href="https://regex.info/blog/2006-09-15/247" rel="noopener noreferrer" target="_blank"&gt;regexp-based mucking
-about&lt;/a&gt; as an approximate approach.
-It works, more or less, but it feels like it's implementing a poor Markdown
-parser when there's a Markdown parser already built in.&lt;/p&gt;
-&lt;p&gt;Given this, at some point soon, I might have a play and look at the idea of
-"let's have a Markdown to pure text parser" and then use that. I could see
-it being useful for other purposes too.&lt;/p&gt;
-&lt;p&gt;Anyway, the upshot of all of this is that &lt;a href="https://blogmore.davep.dev/changelog/#v260" rel="noopener noreferrer" target="_blank"&gt;BlogMore
-v2.6.0&lt;/a&gt; is now available and it
-handles the stripping of reference links from the description, plus the
-&lt;a href="https://blog.davep.org/2026/03/27/blogmore-v2-5-0.html"&gt;recently-added&lt;/a&gt; strikethrough markup too.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/03/28/blogmore-v2-6-0.html</guid>
-      <category>Coding</category>
-      <category>coding</category>
-      <category>Python</category>
-      <category>BlogMore</category>
-      <category>Markdown</category>
-      <pubDate>Sat, 28 Mar 2026 14:48:29 +0000</pubDate>
     </item>
   </channel>
 </rss>

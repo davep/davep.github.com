@@ -2,11 +2,124 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-07T18:33:16.210489+00:00</updated>
+  <updated>2026-05-08T07:52:33.260359+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/08/syncing-github-to-gitlab-and-codeberg.html</id>
+    <title>Syncing GitHub to GitLab and Codeberg</title>
+    <updated>2026-05-08T08:25:03+01:00</updated>
+    <content type="html">&lt;p&gt;I've had a &lt;a href="https://gitlab.com/davep" rel="noopener noreferrer" target="_blank"&gt;GitLab account&lt;/a&gt; since December 2017.
+This came about &lt;a href="https://blog.davep.org/2017/12/12/on_to_something_new.html"&gt;because of the new job I started in January
+2018&lt;/a&gt;. They used a self-hosted
+internal instance of GitLab for all their code, so it made sense I get
+familiar with it (it wasn't hard; especially back in 2017 it was near enough
+a clone of GitHub in terms of what it did). Since then, though, I've never
+really done anything with it. I think I had a repo or two on there for a
+short while, but I must have nuked them at some point because the account
+has been empty for the longest time.&lt;/p&gt;
+&lt;p&gt;A &lt;a href="https://codeberg.org/davep" rel="noopener noreferrer" target="_blank"&gt;Codeberg&lt;/a&gt; account, on the other hand, &lt;a href="https://blog.davep.org/2026/05/06/trying-out-codeberg.html"&gt;only
+got created the other day&lt;/a&gt;. Having
+created this, I got to thinking about how I might use it. In doing so I
+thought back to my GitLab account and then also got to thinking about where
+all my public code lives, and how "safe" it is.&lt;/p&gt;
+&lt;p&gt;Now, sure, the whole point of &lt;a href="https://blog.davep.org/tag/git/"&gt;Git&lt;/a&gt; is that it's distributed.
+Forges are a useful thing to have and work with, but they shouldn't be &lt;em&gt;the&lt;/em&gt;
+place where your code lives. On the other hand, I've had so many machines,
+and so many work environments, that it has become the case that &lt;a href="https://github.com/davep" rel="noopener noreferrer" target="_blank"&gt;my GitHub
+account&lt;/a&gt; has become &lt;em&gt;the&lt;/em&gt; storage location for my
+code and projects.&lt;/p&gt;
+&lt;p&gt;Mostly this is fine. If GitHub were to disappear tomorrow I imagine we'd all
+have bigger things to be worrying about anyway. But the principle stands:
+why not distribute the load? Why not distribute the effort when it comes to
+sharing code I write?&lt;/p&gt;
+&lt;p&gt;So yesterday I finally decided on a plan: for the moment at least, I'm going
+to keep using GitHub as my "primary" location for working on stuff. It's
+where I'll have WiP branches, it's where I'll keep issues, it's where I'll
+encourage people to raise requests and stuff, it's where I'll host this
+blog. But I'm going to start syncing projects to both GitLab and Codeberg. I
+see this as having two benefits: anyone who doesn't want to interact with
+GitHub can now easily fork code, and if they wish they can raise issues and
+the like too. Meanwhile, in doing this, I'll also have the added benefit of
+my code being "backed up" in at least three different locations&lt;sup id="fnref:306-1"&gt;&lt;a class="footnote-ref" href="#fn:306-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;The approach I've settled on, for the moment, is based around &lt;a href="https://github.com/davep/setup-forge-sync" rel="noopener noreferrer" target="_blank"&gt;this little
+shell script&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Check if a repository name was provided&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-z&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Error: No repository name provided.&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Usage: &lt;/span&gt;&lt;span class="nv"&gt;$0&lt;/span&gt;&lt;span class="s2"&gt; &amp;lt;repo-name&amp;gt;&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="k"&gt;fi&lt;/span&gt;
+
+&lt;span class="nv"&gt;REPO_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Check if the current directory is a Git repository&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;!&lt;span class="w"&gt; &lt;/span&gt;git&lt;span class="w"&gt; &lt;/span&gt;rev-parse&lt;span class="w"&gt; &lt;/span&gt;--is-inside-work-tree&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;/dev/null&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Error: This directory is not a Git repository.&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="k"&gt;fi&lt;/span&gt;
+
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Configuring multi-forge backup sync for: &lt;/span&gt;&lt;span class="nv"&gt;$REPO_NAME&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Set up the remote called backups. Anchor it to Codeberg.&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt;remove&lt;span class="w"&gt; &lt;/span&gt;backups&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;/dev/null&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;backups&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ssh://git@codeberg.org/davep/&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;REPO_NAME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.git&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Set up the push URLs.&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt;set-url&lt;span class="w"&gt; &lt;/span&gt;--push&lt;span class="w"&gt; &lt;/span&gt;backups&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ssh://git@codeberg.org/davep/&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;REPO_NAME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.git&amp;quot;&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt;set-url&lt;span class="w"&gt; &lt;/span&gt;--add&lt;span class="w"&gt; &lt;/span&gt;--push&lt;span class="w"&gt; &lt;/span&gt;backups&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;git@gitlab.com:davep/&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;REPO_NAME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.git&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Only ever backup main.&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;config&lt;span class="w"&gt; &lt;/span&gt;remote.backups.push&lt;span class="w"&gt; &lt;/span&gt;refs/heads/main:refs/heads/main
+
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;----------------------------------------------------&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Backups configured:&amp;quot;&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt;-v
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;----------------------------------------------------&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;To perform the initial sync, run: git push backups main&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;### setup-forge-sync ends here&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I'm going to keep all repo names the same&lt;sup id="fnref:306-2"&gt;&lt;a class="footnote-ref" href="#fn:306-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So when I use this script
+it'll set things up so I can &lt;code&gt;git push backups&lt;/code&gt; and &lt;code&gt;main&lt;/code&gt; will then get
+pushed up to both GitLab and Codeberg. I don't feel the need to be keeping
+any WiP branches in sync or kicking about, likewise any &lt;code&gt;gh-pages&lt;/code&gt; branches.&lt;/p&gt;
+&lt;p&gt;While I'm sure I could have done something a little more automated, this
+feels like a neat and simple approach, and also allows me to curate what
+appears in the two other places over time (I suppose, eventually, I'll
+mirror everything that isn't a dead experimental repo, but meanwhile I'll
+prioritise projects that are either still very useful or which I'm actively
+developing and maintaining).&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:306-1"&gt;
+&lt;p&gt;Yes, I have other backups too, but they're always
+current-working-machine type backups.&amp;#160;&lt;a class="footnote-backref" href="#fnref:306-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:306-2"&gt;
+&lt;p&gt;Except, perhaps, for any repo whose name starts with &lt;code&gt;.&lt;/code&gt;; I seem to
+recall that GitLab can't handle that, for some bizarre reason. Perhaps
+that's fixed now?&amp;#160;&lt;a class="footnote-backref" href="#fnref:306-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/05/08/syncing-github-to-gitlab-and-codeberg.html"/>
+    <category term="Coding"/>
+    <category term="Codeberg"/>
+    <category term="Coding"/>
+    <category term="FOSS"/>
+    <category term="GitHub"/>
+    <category term="GitLab"/>
+    <category term="backups"/>
+    <category term="git"/>
+    <published>2026-05-08T08:25:03+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/07/all-i-did-was-open-it.html</id>
     <title>All I did was open it</title>
@@ -491,7 +604,7 @@ abstract base class was the solution. Gemini decided that a protocol was the
 solution. I &lt;em&gt;think&lt;/em&gt; I'm siding with Gemini on this one because this is a
 provides/needs problem, not a "kind of" problem. Even then though, while I
 sense Gemini has the right approach, I'm not always happy with its
-implementation of it&lt;sup id="fnref:307-1"&gt;&lt;a class="footnote-ref" href="#fn:307-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and once again: it's a cleanup of something I'd
+implementation of it&lt;sup id="fnref:308-1"&gt;&lt;a class="footnote-ref" href="#fn:308-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and once again: it's a cleanup of something I'd
 sooner not be cleaning up in the first place.&lt;/p&gt;
 &lt;p&gt;So here's the thing, and this harks back to &lt;a href="https://blog.davep.org/2026/04/26/but-is-the-code-that-bad.html"&gt;wondering if the code is that
 bad&lt;/a&gt;: it isn't... but it's also
@@ -507,8 +620,8 @@ elegant.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:307-1"&gt;
-&lt;p&gt;And it feels so slow. SO. SLOW!&amp;#160;&lt;a class="footnote-backref" href="#fnref:307-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:308-1"&gt;
+&lt;p&gt;And it feels so slow. SO. SLOW!&amp;#160;&lt;a class="footnote-backref" href="#fnref:308-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -713,7 +826,7 @@ off the same prompt, as it were, it came up with a &lt;em&gt;very&lt;/em&gt; dif
 approach. So my next job is to decide which of the two I like most.&lt;/p&gt;
 &lt;p&gt;As of the time of writing, the Gemini approach to cleaning this up results
 in the main &lt;code&gt;site.py&lt;/code&gt; file inside the new &lt;code&gt;generator&lt;/code&gt; subdirectory being 996
-lines; that's just under the 1,000 line limit I tend to set myself&lt;sup id="fnref:306-1"&gt;&lt;a class="footnote-ref" href="#fn:306-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, so
+lines; that's just under the 1,000 line limit I tend to set myself&lt;sup id="fnref:307-1"&gt;&lt;a class="footnote-ref" href="#fn:307-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, so
 close enough, but not ideal. Copilot/Claude, on the other hand, is sat at
 278 lines! While the idea of Gemini was to make &lt;code&gt;site.py&lt;/code&gt; a small
 descriptive top-to-bottom and start-to-finish description of &lt;em&gt;how&lt;/em&gt; a site is
@@ -723,18 +836,18 @@ intention.&lt;/p&gt;
 &lt;p&gt;Then again the Gemini version has broken the work up across 9 files, the
 Copilot/Claude version across 13. Also the Copilot/Claude version has taken
 a really fun and interesting approach to solving the problem that I'm kind
-of digging&lt;sup id="fnref:306-2"&gt;&lt;a class="footnote-ref" href="#fn:306-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+of digging&lt;sup id="fnref:307-2"&gt;&lt;a class="footnote-ref" href="#fn:307-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So now I have to decide which, if either, I'm going with.&lt;/p&gt;
 &lt;p&gt;That's probably another post.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:306-1"&gt;
+&lt;li id="fn:307-1"&gt;
 &lt;p&gt;Although in my own projects I try and keep Python files much smaller
-than that if I can help it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:306-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+than that if I can help it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:307-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:306-2"&gt;
-&lt;p&gt;Spoiler: mixins. ALL THE MIXINS!&amp;#160;&lt;a class="footnote-backref" href="#fnref:306-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:307-2"&gt;
+&lt;p&gt;Spoiler: mixins. ALL THE MIXINS!&amp;#160;&lt;a class="footnote-backref" href="#fnref:307-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1812,104 +1925,5 @@ nattering.&lt;/p&gt;</content>
     <category term="FOSS"/>
     <category term="GitHub"/>
     <published>2026-04-29T08:30:23+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/04/28/considering-a-rescue.html</id>
-    <title>Considering a rescue</title>
-    <updated>2026-04-28T20:16:50+01:00</updated>
-    <content type="html">&lt;p&gt;Ever since I kicked off the work on &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
-I've had a renewed interest in writing on this blog (as you can probably
-tell from the &lt;a href="https://blog.davep.org/stats/"&gt;stats&lt;/a&gt; and the &lt;a href="https://blog.davep.org/calendar"&gt;calendar&lt;/a&gt;). But not just
-writing: also tweaking it, tidying it up, thinking about maintaining it into
-the future, thinking about the links and the categories and so on.&lt;/p&gt;
-&lt;p&gt;In doing so, I've also been looking at other folk who persist in keeping a
-blog, and especially those who maintain blogs built with static site
-generation tools, and in some cases I'm mildly envious of how far back some
-of them stretch.&lt;/p&gt;
-&lt;p&gt;When it comes to the world of blogging I was kind of late to the party. The
-first version was just a section of my self-developed website, hosted on
-&lt;a href="https://www.davep.org/" rel="noopener noreferrer" target="_blank"&gt;www.davep.org&lt;/a&gt;. Don't go looking there for it now,
-it was long ago removed. In fact my personal website &lt;a href="https://blog.davep.org/2023/08/11/admitting-defeat-on-my-website.html"&gt;is mostly just a
-placeholder for what once
-was&lt;/a&gt;. The Wayback Machine
-still has a copy though, so I can see that &lt;a href="https://web.archive.org/web/20060212172635/http://davep.org/mumble/?show=20030331173030" rel="noopener noreferrer" target="_blank"&gt;the first blog post I wrote for
-my site was dated
-2003-03-31&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="My first blog post" src="https://blog.davep.org/attachments/2026/04/28/mumble.webp#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;I maintained this for a while, the engine for it all being some self-written
-PHP engine that was what could be best described as a dynamic static site
-(in other words it generated everything on request from underlying text
-files and HTML snippets because I had no wish to be faffing around with
-databases on a web host). Eventually though the blog side of this got to be
-too much trouble and I jumped over &lt;a href="https://davep-mumbling.blogspot.com/" rel="noopener noreferrer" target="_blank"&gt;to
-Blogger&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I maintained that blog for quite a few years, with the first post being made
-in 2006 and the last in 2011. Sadly it's all quite broken now. I used to
-include a lot of images and, while some of them are embedded in the site
-itself, most were hosted on the older version of my website, as part of the
-photo gallery I also had there.&lt;/p&gt;
-&lt;p&gt;This all fell apart &lt;a href="https://blog.davep.org/2023/08/11/the-reboot-begins.html"&gt;when I finally killed off the PHP version of my
-site&lt;/a&gt; and all the images were removed.
-Now the blog is a wasteland of broken image icons (not to mention a
-wasteland of broken external links -- so many of the sites I referred to
-back then have fallen off the net).&lt;/p&gt;
-&lt;p&gt;I hate this. I hate that thirty-something me was fired up enough to want to
-write stuff down and communicate to other people (and to future me) and it's
-all decayed. I especially dislike that the &lt;em&gt;original&lt;/em&gt; version of my blog,
-now only stored on the Wayback Machine (and perhaps on a hard drive that I
-think is in a box somewhere in storage, perhaps also on some
-burnt-as-a-backup DVDs) is otherwise inaccessible. Much like &lt;a href="https://blog.davep.org/2026/03/03/original-seen-by-davep-rescued.html"&gt;I did with my
-original photoblog&lt;/a&gt;, I want
-to rescue this. I want to rescue all of this.&lt;/p&gt;
-&lt;p&gt;The technical challenges of teasing out the original posts from the Internet
-Archive and from Blogger aren't too great. Turning a bunch of HTML into
-Markdown isn't impossible either -- the library that I use in
-&lt;a href="https://blog.davep.org/tag/oldnews/"&gt;OldNews&lt;/a&gt; should do the job fine there. All that sort of work
-feels like a fun little challenge that will keep me amused for a few
-evenings.&lt;/p&gt;
-&lt;p&gt;There are two main things that cause me to pause when thinking about doing
-this.&lt;/p&gt;
-&lt;p&gt;The first is that some of those very old posts, as I mentioned above, link
-to places that don't exist and haven't existed for a long time. It raises
-the question: do I even care to preserve things that have no context any
-more?&lt;/p&gt;
-&lt;p&gt;The second is that many of the posts in the Blogger blog, as I mention,
-relied on images hosted on my old site. Right now I'm not actually sure
-where those photos are! While I took a backup of all the code and other data
-for www.davep.org when I did the big reboot (storing it all up on GitHub), I
-seem to have stripped out all of the photos. This makes sense as there was a
-&lt;em&gt;lot&lt;/em&gt; of data there. Making sure I had a backup of those files feels like
-something I would do -- I hang on to all sorts of data -- but at the moment
-I can't locate them&lt;sup id="fnref:271-1"&gt;&lt;a class="footnote-ref" href="#fn:271-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;To make this work, for this to stand any chance of working, I need to pull
-them all back out from somewhere.&lt;/p&gt;
-&lt;p&gt;Will I do this? I don't know yet. The seed is there, the itch is waiting to
-be scratched. I look at the age span of this blog, and the calendar page,
-and think it could be really cool to &lt;em&gt;really&lt;/em&gt; back-fill it from my older
-blogs. The graph might end up looking really funky.&lt;/p&gt;
-&lt;p&gt;On the other hand: am I just trying to preserve irrelevant things as a way
-to make work for myself (albeit "work" that is fun; after all coding &lt;em&gt;is&lt;/em&gt; a
-hobby as well as a living).&lt;/p&gt;
-&lt;p&gt;On the gripping hand: if I can get the images back, a wasteland of links to
-sites that don't exist any more does, at the very least, provide a history
-of what was and is no longer.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:271-1"&gt;
-&lt;p&gt;I should point out that I have the original photos all backed up any
-number of ways and in multiple locations, but it's the specific jpeg
-files with their specific names as appeared in the photo library on my
-site that I need to make this work.&amp;#160;&lt;a class="footnote-backref" href="#fnref:271-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/04/28/considering-a-rescue.html"/>
-    <category term="Meta"/>
-    <category term="Blogging"/>
-    <category term="Coding"/>
-    <category term="history"/>
-    <category term="photography"/>
-    <published>2026-04-28T20:16:50+01:00</published>
   </entry>
 </feed>
