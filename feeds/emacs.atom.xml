@@ -2,11 +2,35 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-08T17:28:30.890344+00:00</updated>
+  <updated>2026-05-08T18:30:26.053336+00:00</updated>
   <link href="https://blog.davep.org/feeds/emacs.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Emacs" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/08/blogmore-el-v4-5-0.html</id>
+    <title>blogmore.el v4.5.0</title>
+    <updated>2026-05-08T19:27:54+01:00</updated>
+    <content type="html">&lt;p&gt;Carrying on with &lt;a href="https://blog.davep.org/2026/05/07/blogmore-el-v4-4-0.html"&gt;the theme of being lazy while editing
+posts&lt;/a&gt;, I've released
+&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; v4.5.0. This version
+adds &lt;code&gt;blogmore-set-as-cover&lt;/code&gt;. With this, if you place &lt;code&gt;point&lt;/code&gt; on a line that
+is an image and run the command, it is set as the &lt;code&gt;cover&lt;/code&gt; for the post.&lt;/p&gt;
+&lt;p&gt;Sure, it's not like it's hard to copy, move, insert a new line, type
+&lt;code&gt;cover:&lt;/code&gt; and then paste the text, but this is faster and more accurate.&lt;/p&gt;
+&lt;p&gt;And I'm lazy.&lt;/p&gt;
+&lt;p&gt;And I like hacking on &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; that makes my workflow
+flow faster.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/05/08/blogmore-el-v4-5-0.html"/>
+    <category term="Emacs"/>
+    <category term="BlogMore"/>
+    <category term="Emacs"/>
+    <category term="Emacs Lisp"/>
+    <category term="Lisp"/>
+    <category term="blogmore.el"/>
+    <category term="coding"/>
+    <published>2026-05-08T19:27:54+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/07/blogmore-el-v4-4-0.html</id>
     <title>blogmore.el v4.4.0</title>
@@ -1326,59 +1350,5 @@ thing.&lt;/p&gt;
     <category term="coding"/>
     <category term="transient"/>
     <published>2026-04-04T11:48:21+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/04/03/nukneval-el-v1-3.html</id>
-    <title>nukneval.el v1.3</title>
-    <updated>2026-04-03T15:09:19+01:00</updated>
-    <content type="html">&lt;p&gt;Back when I first really got into writing &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt;
-code, one of the first things I got &lt;em&gt;very&lt;/em&gt; used to and really fell in love
-with was being able to
-&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Lisp-Eval.html" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;eval-last-sexp&lt;/code&gt;&lt;/a&gt;
-(&lt;kbd&gt;C-x&lt;/kbd&gt; &lt;kbd&gt;C-e&lt;/kbd&gt;) the code I was writing, either to test it
-right there in the buffer, or to cause it to be bound so I could use it
-elsewhere. It was so different from any other mode of working I'd used
-before and it was really addictive as a way of hacking on code.&lt;/p&gt;
-&lt;p&gt;Also quite quickly I got used to the fact that &lt;code&gt;eval-last-sexp&lt;/code&gt; wasn't so
-helpful with things like a &lt;code&gt;defvar&lt;/code&gt; or a &lt;code&gt;defconst&lt;/code&gt;, if I was changing them
-up to try out new ways of doing things with the code I was working on; there
-I had to remember to get used to using &lt;code&gt;eval-defun&lt;/code&gt; (&lt;kbd&gt;C-M-x&lt;/kbd&gt;).
-Hardly a great problem, but something to keep in mind&lt;sup id="fnref:251-1"&gt;&lt;a class="footnote-ref" href="#fn:251-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;Pretty quickly, as I worked on longer packages, I found myself wanting to,
-in effect, unload a whole buffer of code and evaluate it again. From this
-desire came &lt;a href="https://github.com/davep/nukneval.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;nukneval.el&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The original version of this has been sat around since 2002 or so, perhaps a
-little earlier, and has served me well every time I've been messing with a
-new package. While I suspect there is (now, perhaps was then too?) a better
-way of doing things, the approach used in nukneval helped me learn some
-things and served me well (and still does). Now it's muscle-memory to run
-it.&lt;/p&gt;
-&lt;p&gt;The way it works is quite simple: go to the start of a buffer, &lt;code&gt;read&lt;/code&gt; each
-form, check if the &lt;code&gt;car&lt;/code&gt; is of a given list of symbols, decide if it's
-something I want to unbind, and then pick either &lt;code&gt;makunbound&lt;/code&gt; or
-&lt;code&gt;fmakunbound&lt;/code&gt; and use that on the symbol. Finally, once the end of the
-buffer has been hit: &lt;code&gt;eval-buffer&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;I've just released v1.3 as part of my slow wander through my old Emacs Lisp
-packages, with this release cleaning up a deprecated use of &lt;code&gt;setf&lt;/code&gt; to move
-&lt;code&gt;point&lt;/code&gt;, and also rewriting the code so it's a bit cleaner and also gives
-better feedback.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:251-1"&gt;
-&lt;p&gt;&lt;a href="https://emacsredux.com/about/" rel="noopener noreferrer" target="_blank"&gt;Bozhidar Batsov&lt;/a&gt; recently wrote a good
-post &lt;a href="https://emacsredux.com/blog/2026/03/25/reloading-emacs-lisp-code/" rel="noopener noreferrer" target="_blank"&gt;covering these sorts of
-issues&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:251-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/04/03/nukneval-el-v1-3.html"/>
-    <category term="Emacs"/>
-    <category term="Emacs"/>
-    <category term="Emacs Lisp"/>
-    <category term="Lisp"/>
-    <category term="coding"/>
-    <category term="nukneval.el"/>
-    <published>2026-04-03T15:09:19+01:00</published>
   </entry>
 </feed>
