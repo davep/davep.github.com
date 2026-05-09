@@ -3,7 +3,7 @@ title: Back to Death Stranding
 category: Gaming
 tags: Death Stranding, PS5, gaming
 date: 2024-02-05 07:45:00 +0000
-cover: attachments/2024/02/05/IMG_4223.JPG
+cover: /attachments/2024/02/05/IMG_4223.JPG
 ---
 
 ![Death Stranding](/attachments/2024/02/05/IMG_4223.JPG#centre)

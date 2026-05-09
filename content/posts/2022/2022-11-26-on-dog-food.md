@@ -92,7 +92,7 @@ So the opening screen looks like this:
 
 and a lookup of a region looks like this:
 
-![Looking up the details of the first ever region](/attachments/2022/11/26//gridinfo-2.webp#centre)
+![Looking up the details of the first ever region](/attachments/2022/11/26/gridinfo-2.webp#centre)
 
 Here's a wee video of the whole thing in action:
 
@@ -299,7 +299,7 @@ So, thanks to this bit of code in my `Activity` widget...
 > The code above used `emit_no_wait`. Since this blog post was first
 > published that method has been removed from Textual. You should use
 > [`post_message_no_wait` or
-> `post_message`](/guide/events/#sending-messages) instead now.
+> `post_message`](https://textual.textualize.io/guide/events/#sending-messages) instead now.
 
 ### Pain points
 

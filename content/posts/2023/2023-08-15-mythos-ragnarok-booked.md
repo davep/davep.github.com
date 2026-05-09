@@ -3,7 +3,7 @@ title:  "Mythos: Ragnarok booked"
 category: Life
 tags: Fringe, wrestling
 date: 2023-08-15 20:06:00 +0100
-cover: attachments/2023/08/15/IMG_7612.jpeg
+cover: /attachments/2023/08/15/IMG_7612.jpeg
 ---
 
 That's a third show booked! This means that, [as I

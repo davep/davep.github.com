@@ -3,7 +3,7 @@ title: A Norton Guide collection
 category: Coding
 tags: Norton Guide, history
 date: 2025-12-12 17:00:00 +0000
-cover: attachments/2025/12/12/norton-guides.png
+cover: /attachments/2025/12/12/norton-guides.png
 ---
 
 As I've mentioned a [few times on this blog](/tag/norton-guide/), I've

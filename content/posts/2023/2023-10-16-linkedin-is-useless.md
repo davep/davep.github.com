@@ -3,7 +3,7 @@ title: LinkedIn is useless
 category: Tech
 tags: LinkedIn
 date: 2023-10-16 14:16:00 +0100
-cover: attachments/2023/10/16/linkedin-suggestion.jpeg
+cover: /attachments/2023/10/16/linkedin-suggestion.jpeg
 ---
 
 I have a LinkedIn profile more by accident than on purpose. For most of that

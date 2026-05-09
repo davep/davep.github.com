@@ -3,7 +3,7 @@ title: Markdown all the things
 category: Coding
 tags: Python, Twitter, Journey, Evernote, Markdown
 date: 2024-11-04 21:00:00 +0000
-cover: attachments/2024/11/04/bird2glass.png
+cover: /attachments/2024/11/04/bird2glass.png
 ---
 
 Recently I've been on a bit of a *"turn stuff into Markdown files and slap

@@ -3,7 +3,7 @@ title: Constant Siri voice loss
 category: Tech
 tags: Apple, iPhone, Siri
 date: 2023-10-20 13:04:00 +0100
-cover: attachments/2023/10/20/siri-voice-loss.png
+cover: /attachments/2023/10/20/siri-voice-loss.png
 ---
 
 This seems to have started with iOS 17, and I can't narrow down the how and

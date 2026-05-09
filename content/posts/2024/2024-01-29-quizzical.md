@@ -3,7 +3,7 @@ title: Quizzical
 category: Coding
 tags: Coding, Python, Quizzical, terminal, textual
 date: 2024-01-29 21:30:00 +0000
-cover: attachments/2024/01/29/quizzical-banner.png
+cover: /attachments/2024/01/29/quizzical-banner.png
 ---
 
 I feel like I'm on a bit of a roll when it comes to building applications

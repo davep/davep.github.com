@@ -3,7 +3,7 @@ title: More BlogMore
 category: Coding
 tags: AI, BlogMore, Coding, Copilot, LLM, Python
 date: 2026-03-07 11:06:00 +0000
-cover: attachments/2026/03/07/archive.png
+cover: /attachments/2026/03/07/archive.png
 ---
 
 I've just released v1.7.0 of [BlogMore](https://blogmore.davep.dev/), my
