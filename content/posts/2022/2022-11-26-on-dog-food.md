@@ -299,7 +299,7 @@ So, thanks to this bit of code in my `Activity` widget...
 > The code above used `emit_no_wait`. Since this blog post was first
 > published that method has been removed from Textual. You should use
 > [`post_message_no_wait` or
-> `post_message`](/guide/events/#sending-messages) instead now.
+> `post_message`](https://textual.textualize.io/guide/events/#sending-messages) instead now.
 
 ### Pain points
 
