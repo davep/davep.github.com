@@ -3,7 +3,7 @@ title: Quiche Reader
 category: Tech
 tags: software, reading, recommendation, iOS, macOS, iCloud
 date: 2023-07-27 08:42:00 +0100
-cover: attachments/2023/07/27/quiche-reader.png
+cover: /attachments/2023/07/27/quiche-reader.webp
 ---
 
 I can't quite remember *where* I found this this week, I think it might have
@@ -23,7 +23,7 @@ these systems and then never reading them.
 
 Quiche Reader, so far, feels like the perfect approach.
 
-![Quiche Reader in action](/attachments/2023/07/27/quiche-reader.png)
+![Quiche Reader in action](/attachments/2023/07/27/quiche-reader.webp#centre)
 
 It's quite simple: if I see something I want to read a bit later I save it
 into the application (which will sync to my other devices via iCloud). Then,

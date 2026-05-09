@@ -3,10 +3,10 @@ title: textual-canvas v0.2.0
 category: Python
 tags: Python, Textual, coding, PyPI, textual-canvas
 date: 2023-07-16 09:00:00 +0100
-cover: attachments/2023/07/16/textual-canvas.png
+cover: /attachments/2023/07/16/textual-canvas.webp
 ---
 
-![Demo of textual-canvas](/attachments/2023/07/16/textual-canvas.png#centre)
+![Demo of textual-canvas](/attachments/2023/07/16/textual-canvas.webp#centre)
 
 Given that for a good chunk of this year I've been a bit lax about writing
 here, there's a couple or so coding projects I've not written about (well,

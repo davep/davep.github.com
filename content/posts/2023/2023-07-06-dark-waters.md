@@ -3,7 +3,7 @@ title: Dark Waters
 category: Music
 tags: Music
 date: 2023-07-06 07:36:00 +0100
-cover: attachments/2023/07/06/Delain%20Dark%20Waters.jpeg
+cover: /attachments/2023/07/06/delain-dark-waters.webp
 ---
 
 More than ever I'm listening to music while I work. Despite having grown up
@@ -24,7 +24,7 @@ album has really stuck in my head and, now that we're just over 1/2 way
 through the year, I feel it's the one that gets played more than anything
 else.
 
-![Delain Dark Waters](/attachments/2023/07/06/Delain Dark Waters.jpeg#centre)
+![Delain Dark Waters](/attachments/2023/07/06/delain-dark-waters.webp#centre)
 
 This keeps creeping back to the top of things I'm playing; sometimes when
 I'm in "bang on the keyboard lots" coding mode (you know the sort of coding
@@ -37,6 +37,6 @@ most-played album this year. According to last.fm it's at the top of the
 albums I've played (in places where I have scrobbling set up) in the last
 365 days.
 
-![My last 365 days of albums on last.fm](/attachments/2023/07/06/AlbumsInLast365Days.png#centre)
+![My last 365 days of albums on last.fm](/attachments/2023/07/06/AlbumsInLast365Days.webp#centre)
 
 [//]: # (2023-07-06-dark-waters.md ends here)
