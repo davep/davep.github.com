@@ -3,9 +3,10 @@ title: Off to see Nick Harper
 category: Music
 tags: Music, Gig, Fringe, Nick Harper
 date: 2023-08-07 21:56:00 +0100
+cover: /attachments/2023/08/07/2009-05-08-19-14-07.webp
 ---
 
-![Poster from likely the last time I saw Nick](/attachments/2023/08/07/2009-05-08-19-14-07.jpg#centre)
+![Poster from likely the last time I saw Nick](/attachments/2023/08/07/2009-05-08-19-14-07.webp#centre)
 
 I've lived near Edinburgh for getting on well over 6 years now and, aside
 form the odd show here and there, I've never really *done* the Fringe. As
@@ -27,8 +28,7 @@ This evening I've booked a ticket for an artist I've been a fan of since the
 1990s: [Nick Harper](https://en.wikipedia.org/wiki/Nick_Harper). I saw Nick
 quite a few times in the 200xs (see the image above, I *think* 2009 might be
 the last time I saw him!) and then my going to gigs tailed off somewhat
-(again, life stuff). So seeing that [he's playing here for a few
-days](https://tickets.edfringe.com/whats-on/5-nights-in-harperspace) was
+(again, life stuff). So seeing that he's playing here for a few days was
 something I could not ignore.
 
 This weekend me can thank Monday me for committing him to doing something
