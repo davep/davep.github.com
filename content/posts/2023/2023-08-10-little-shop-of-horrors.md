@@ -3,7 +3,7 @@ title: Off to see Little Shop of Horrors
 category: Music
 tags: Music, Gig, Fringe
 date: 2023-08-10 20:30:00 +0100
-cover: attachments/2023/08/10/lsoh.jpeg
+cover: attachments/2023/08/10/lsoh.webp
 ---
 
 I almost feel bad admitting this. For someone my age it feels like a thing
@@ -22,7 +22,7 @@ people seem to love it.
 So you can imagine my delight when, earlier this week, I was fighting
 through the Edinburgh crowds to get to my bus home and I saw this:
 
-![Poser for Little Shop of Horrors](/attachments/2023/08/10/IMG_2652.jpeg#centre)
+![Poster for Little Shop of Horrors](/attachments/2023/08/10/IMG_2652.webp#centre)
 
 Oh yes please! Oh so yes please! Given my desire to try and take in [a few
 more Fringe shows that I normally

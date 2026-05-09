@@ -3,7 +3,7 @@ title: Encouragement, I guess?
 category: Life
 tags: UI, UX, health, fitness
 date: 2023-07-21 08:20:00 +0100
-cover: attachments/2023/07/21/IMG_2475.jpeg
+cover: /attachments/2023/07/21/IMG_2475.webp
 ---
 
 Anyone who was (un)lucky enough to follow me on Twitter back in 2020 will
@@ -27,7 +27,7 @@ When recording my weight first thing this morning (yes, I'm one of those
 people who records it every day and have for a few years -- it makes for
 interesting data!), this is what my calorie/stats tracker had to say:
 
-![Screenshot of my calorie and weight tracking app](/attachments/2023/07/21/IMG_2475.jpeg#centre)
+![Screenshot of my calorie and weight tracking app](/attachments/2023/07/21/IMG_2475.webp#centre)
 
 I guess it's putting a positive spin in things? (for the record, I'm 5.3kg
 *above* my absolute goal).

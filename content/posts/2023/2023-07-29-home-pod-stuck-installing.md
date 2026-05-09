@@ -3,7 +3,7 @@ title: HomePod Stuck Installing Update
 category: Tech
 tags: Apple
 date: 2023-07-29 07:56:00 +0100
-cover: attachments/2023/07/29/HomePodStuck.png
+cover: /attachments/2023/07/29/HomePodStuck.webp
 ---
 
 I have three HomePods. I have a Mini in the kitchen and one in the bedroom.
@@ -14,7 +14,7 @@ Apple all over the place these days).
 This week there was an update to the software, updating to 16.6. The two
 Minis updated just fine. The big one, however, days later...
 
-![HomePod stuck installing the update](/attachments/2023/07/29/HomePodStuck.png)
+![HomePod stuck installing the update](/attachments/2023/07/29/HomePodStuck.webp#centre)
 
 It's been like this all the time since the update turned up. I've tried a
 reboot from the Home app. I've tried pulling the plug and plugging it in
