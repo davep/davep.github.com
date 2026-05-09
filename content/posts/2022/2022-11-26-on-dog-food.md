@@ -92,7 +92,7 @@ So the opening screen looks like this:
 
 and a lookup of a region looks like this:
 
-![Looking up the details of the first ever region](/attachments/2022/11/26//gridinfo-2.webp#centre)
+![Looking up the details of the first ever region](/attachments/2022/11/26/gridinfo-2.webp#centre)
 
 Here's a wee video of the whole thing in action:
 
