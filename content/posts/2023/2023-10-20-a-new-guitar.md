@@ -65,9 +65,8 @@ I moved to Scotland, but I *did* find my old tin of plectrums and the tuner.
 
 ![Standard guitar kit](/attachments/2023/10/20/IMG_3330.jpeg#centre)
 
-<center>
-    *(Yes, the tin was once mine and was once full; the early 90s were a
-    different time)*
+<center markdown="1">
+*(Yes, the tin was once mine and was once full; the early 90s were a different time)*
 </center>
 
 I even found one of my old stands, that I've had since around 1991! So now
