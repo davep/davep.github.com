@@ -3,7 +3,7 @@ title: Off to see Little Shop of Horrors
 category: Music
 tags: Music, Gig, Fringe
 date: 2023-08-10 20:30:00 +0100
-cover: attachments/2023/08/10/lsoh.webp
+cover: /attachments/2023/08/10/lsoh.webp
 ---
 
 I almost feel bad admitting this. For someone my age it feels like a thing

@@ -3,7 +3,7 @@ title: When it doesn't just work
 category: Tech
 tags: Apple, watch
 date: 2023-12-08 10:32:00 +0100
-cover: attachments/2023/12/08/watch-face.png
+cover: /attachments/2023/12/08/watch-face.png
 ---
 
 My journey into the Apple ecosystem has been gradual but all-consuming. I've

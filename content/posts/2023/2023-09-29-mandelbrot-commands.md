@@ -3,7 +3,7 @@ title: Mandelbrot Commands
 category: Python
 tags: PyPI, Python, Textual, coding, mandelbrot, textual-canvas
 date: 2023-09-29 12:42:00 +0100
-cover: attachments/2023/09/29/mandelbrot-commands.png
+cover: /attachments/2023/09/29/mandelbrot-commands.png
 ---
 
 I don't think I've mentioned it before on this blog, but some time back I

@@ -3,7 +3,7 @@ title: Braindrop
 category: Coding
 tags: Braindrop, Coding, PyPI, Python, Raindrop, terminal, textual
 date: 2025-01-03 16:24:00 +0000
-cover: attachments/2025/01/03/braindrop-social-banner.png
+cover: /attachments/2025/01/03/braindrop-social-banner.png
 ---
 
 ![Braindrop](/attachments/2025/01/03/braindrop-social-banner.png)

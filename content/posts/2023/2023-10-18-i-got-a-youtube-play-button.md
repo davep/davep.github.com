@@ -3,7 +3,7 @@ title: I got a YouTube play button!
 category: Creative
 tags: YouTube
 date: 2023-10-18 19:07:00 +0100
-cover: attachments/2023/10/18/IMG_3304.jpeg
+cover: /attachments/2023/10/18/IMG_3304.jpeg
 ---
 
 According to YouTube I joined up on 2006-09-04. I don't think that's quite

@@ -3,7 +3,7 @@ title: A map of my year in Obsidian
 category: Life
 tags: journal, Obsidian, graph
 date: 2023-09-11 20:07:00 +0100
-cover: attachments/2023/09/11/MainGraph.png
+cover: /attachments/2023/09/11/MainGraph.png
 ---
 
 Some time around late October or early November last year, around the time I
