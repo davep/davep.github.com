@@ -2,11 +2,118 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-09T07:41:59.034865+00:00</updated>
+  <updated>2026-05-09T09:50:04.456932+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/09/blogmore-v2-20-0.html</id>
+    <title>BlogMore v2.20.0</title>
+    <updated>2026-05-09T10:04:23+01:00</updated>
+    <content type="html">&lt;p&gt;I've just released &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
+&lt;a href="https://blogmore.davep.dev/changelog/#v2200" rel="noopener noreferrer" target="_blank"&gt;v2.20.0&lt;/a&gt;. There are five main
+changes in this release, and a lot of changes under the hood.&lt;/p&gt;
+&lt;p&gt;First, the under-the-hood stuff: while this isn't going to make a difference
+to anyone using BlogMore (at least it &lt;em&gt;shouldn't&lt;/em&gt; make a difference -- if it
+does that's a bug that &lt;a href="https://github.com/davep/blogmore/issues" rel="noopener noreferrer" target="_blank"&gt;deserves
+reporting&lt;/a&gt;), the &lt;a href="https://github.com/davep/blogmore/tree/main/src/blogmore/generator" rel="noopener noreferrer" target="_blank"&gt;main site
+generation
+code&lt;/a&gt;
+has had a lot of work done on it &lt;a href="https://blog.davep.org/2026/04/30/a-different-approach.html"&gt;to break it
+up&lt;/a&gt;. The motivation for this is to
+make the code easier to maintain, and to try and steer it in a direction
+closer to how I'd have laid things out had I written it by hand. The outcome
+of this is that, where the generator was over 2,000 lines of code in a
+single file, it's now a lot more modular and easier to follow.&lt;/p&gt;
+&lt;p&gt;Some other internals have been cleaned up too. Generally I've had a period
+of reviewing some of the code and reducing obvious duplication of effort,
+that sort of thing.&lt;/p&gt;
+&lt;p&gt;Now for the visible changes and enhancements in this release:&lt;/p&gt;
+&lt;h2 id="improved-word-counts"&gt;Improved word counts&lt;a aria-label="Link to this heading" class="heading-anchor" href="#improved-word-counts"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Until now the word counting (and so the reading time calculations) were done
+by stripping most of the Markdown and HTML markup from the Markdown source.
+I wasn't too keen on this approach given that the codebase had a method of
+turning Markdown into plain text. So in this release the regex-based cleanup
+code is gone and word counts (and so reading times) use the same Markdown to
+plain text pipeline as anything else that needs to work on plain text.&lt;/p&gt;
+&lt;h2 id="fixed-a-word-count-and-reading-time-disparity"&gt;Fixed a word count and reading time disparity&lt;a aria-label="Link to this heading" class="heading-anchor" href="#fixed-a-word-count-and-reading-time-disparity"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It was possible, in the &lt;a href="https://blog.davep.org/stats/"&gt;stats page&lt;/a&gt;, to have one post appear to
+have the lowest or highest word count, but to &lt;em&gt;not&lt;/em&gt; have the lowest or
+highest reading time. This was because reading times are always calculated
+to the minute and so there could be a disparity due to this rounding. The
+calculation of those stats now takes this into account.&lt;/p&gt;
+&lt;h2 id="added-an-optional-title-to-the-socials"&gt;Added an optional &lt;code&gt;title&lt;/code&gt; to the &lt;code&gt;socials&lt;/code&gt;&lt;a aria-label="Link to this heading" class="heading-anchor" href="#added-an-optional-title-to-the-socials"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="https://blogmore.davep.dev/configuration/#socials" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;socials&lt;/code&gt;&lt;/a&gt; setting
+in the configuration file has had an optional &lt;code&gt;title&lt;/code&gt; property added for
+each entry. Until now the tooltip for an entry would be whatever the &lt;code&gt;site&lt;/code&gt;
+was set to. Generally this works but if you have two or more accounts on the
+same site, or if you want to use a &lt;code&gt;site&lt;/code&gt; value for something different,
+there was no way of making the tooltip more descriptive.&lt;/p&gt;
+&lt;p&gt;As an example, currently &lt;a href="https://github.com/davep/blogmore/discussions/303" rel="noopener noreferrer" target="_blank"&gt;it's not possible to support Codeberg as a
+&lt;code&gt;site&lt;/code&gt;&lt;/a&gt;. On the other
+hand &lt;code&gt;git&lt;/code&gt; is available so it can be used as a substitute icon. The problem
+is, with this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;site&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;git&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://codeberg.org/davep&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;the tooltip will just say &lt;em&gt;"git"&lt;/em&gt;. With this update you can do this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;site&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;git&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Codeberg&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://codeberg.org/davep&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and the tooltip will say &lt;em&gt;"Codeberg"&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;As mentioned: this is optional. If there is no &lt;code&gt;title&lt;/code&gt; the previous
+behaviour still applies.&lt;/p&gt;
+&lt;h2 id="wall-clock-time-measurement"&gt;Wall-clock time measurement&lt;a aria-label="Link to this heading" class="heading-anchor" href="#wall-clock-time-measurement"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Yesterday, &lt;a href="https://www.yakshaving.co.uk/" rel="noopener noreferrer" target="_blank"&gt;Andy&lt;/a&gt; posted about &lt;a href="https://www.yakshaving.co.uk/posts/blogmore-performance/" rel="noopener noreferrer" target="_blank"&gt;BlogMore's
+performance with respect to the different optional
+features&lt;/a&gt;. It's
+something I haven't really considered yet (possibly in part because this
+blog isn't anywhere near as big as his), but could be a good source of
+tinkering in the near future. His work to test the different parts of the
+tool did get me thinking though: &lt;a href="https://github.com/davep/blogmore/issues/460" rel="noopener noreferrer" target="_blank"&gt;it would be neat to know how long each
+part of the generation process
+takes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So now, when a site is generated (either when using &lt;code&gt;build&lt;/code&gt; or &lt;code&gt;serve&lt;/code&gt;), the
+time of each step is printed, as is the overall generation time.&lt;/p&gt;
+&lt;h2 id="markdown-in-html-support"&gt;Markdown in HTML support&lt;a aria-label="Link to this heading" class="heading-anchor" href="#markdown-in-html-support"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Yesterday I noticed that, &lt;a href="https://blog.davep.org/2023/10/20/a-new-guitar.html"&gt;on one of my
+posts&lt;/a&gt;, what had been written as a simple
+caption for an image wasn't rendering as it used to. The actual content of
+the Markdown source for the post contained this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="markdown"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;lt;center&amp;gt;
+*(Yes, the tin was once mine and was once full; the early 90s were a
+different time)*
+&amp;lt;/center&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;While the text was centred, the raw Markdown was left in place (it should
+have been italic text). The reason for this is that BlogMore had never
+enabled Markdown-in-HTML support. So, as of this release, if the enclosing
+tag has &lt;code&gt;markdown="1"&lt;/code&gt;, any Markdown inside the tags will be parsed. This
+means the above becomes this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="markdown"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;lt;center markdown=&amp;quot;1&amp;quot;&amp;gt;
+*(Yes, the tin was once mine and was once full; the early 90s were a
+different time)*
+&amp;lt;/center&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I did think about doing something to turn it on by default (the fact that I
+didn't have such a "switch" in the post before suggests that
+&lt;a href="https://getpelican.com/" rel="noopener noreferrer" target="_blank"&gt;Pelican&lt;/a&gt; did just always do this), but really I
+feel this approach is more flexible and less likely to result in unintended
+consequences.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/05/09/blogmore-v2-20-0.html"/>
+    <category term="Coding"/>
+    <category term="BlogMore"/>
+    <category term="Coding"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <published>2026-05-09T10:04:23+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/09/make-phony-el-v1-4-0.html</id>
     <title>make-phony.el v1.4.0</title>
@@ -691,7 +798,7 @@ abstract base class was the solution. Gemini decided that a protocol was the
 solution. I &lt;em&gt;think&lt;/em&gt; I'm siding with Gemini on this one because this is a
 provides/needs problem, not a "kind of" problem. Even then though, while I
 sense Gemini has the right approach, I'm not always happy with its
-implementation of it&lt;sup id="fnref:311-1"&gt;&lt;a class="footnote-ref" href="#fn:311-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and once again: it's a cleanup of something I'd
+implementation of it&lt;sup id="fnref:312-1"&gt;&lt;a class="footnote-ref" href="#fn:312-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and once again: it's a cleanup of something I'd
 sooner not be cleaning up in the first place.&lt;/p&gt;
 &lt;p&gt;So here's the thing, and this harks back to &lt;a href="https://blog.davep.org/2026/04/26/but-is-the-code-that-bad.html"&gt;wondering if the code is that
 bad&lt;/a&gt;: it isn't... but it's also
@@ -707,8 +814,8 @@ elegant.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:311-1"&gt;
-&lt;p&gt;And it feels so slow. SO. SLOW!&amp;#160;&lt;a class="footnote-backref" href="#fnref:311-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:312-1"&gt;
+&lt;p&gt;And it feels so slow. SO. SLOW!&amp;#160;&lt;a class="footnote-backref" href="#fnref:312-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1102,271 +1209,5 @@ slow you down.&lt;/p&gt;</content>
     <category term="code smell"/>
     <category term="testing"/>
     <published>2026-05-02T18:48:30+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/05/02/it-was-such-a-simple-request.html</id>
-    <title>It was such a simple request</title>
-    <updated>2026-05-02T11:26:34+01:00</updated>
-    <content type="html">&lt;p&gt;As mentioned a couple of times in the last couple of days, &lt;a href="https://github.com/davep/blogmore/pull/432" rel="noopener noreferrer" target="_blank"&gt;aside from one
-particular issue I found and
-fixed&lt;/a&gt;, I'm in more of a &lt;em&gt;"let's
-review some of the code and tidy things up"&lt;/em&gt; phase with the codebase. This
-process is at times me hand-making changes, and also in part me directing
-the agent to make a very specific improvement that I want.&lt;/p&gt;
-&lt;p&gt;Yesterday evening I did a little experiment of getting Gemini CLI to look
-for code that really needed some cleaning up, and then I had it write the
-issue text &lt;a href="https://github.com/davep/blogmore/issues/434" rel="noopener noreferrer" target="_blank"&gt;which I fed directly to
-Copilot/Claude&lt;/a&gt; and had it do
-the work. Finally, when that was done, I had Gemini review the work that
-Copilot had done (it was "happy" with &lt;a href="https://github.com/davep/blogmore/pull/435" rel="noopener noreferrer" target="_blank"&gt;the
-changes&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;So, this morning, I thought I'd tackle another little thing I'd noticed in
-the code that rubbed me up the wrong way. Early on in the development
-lifecycle of &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; I added the optional
-minification of CSS and JS files (HTML too eventually, but that's not
-involved here). Because it's often been a convention I also prompted Copilot
-to ensure that if a file called &lt;code&gt;whatever.css&lt;/code&gt; was minified, it be called
-&lt;code&gt;whatever.min.css&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;The resulting code did something that made sense, but which I wouldn't ever
-have done. The constants that held the filenames looked like this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;CSS_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;style.css&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;CSS_MINIFIED_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;styles.min.css&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;SEARCH_CSS_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;search.css&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;SEARCH_CSS_MINIFIED_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;search.min.css&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;STATS_CSS_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;stats.css&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;STATS_CSS_MINIFIED_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;stats.min.css&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;ARCHIVE_CSS_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;archive.css&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;ARCHIVE_CSS_MINIFIED_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;archive.min.css&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;CALENDAR_CSS_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;calendar.css&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;CALENDAR_CSS_MINIFIED_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;calendar.min.css&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;GRAPH_CSS_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;graph.css&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;GRAPH_CSS_MINIFIED_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;graph.min.css&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;TAG_CLOUD_CSS_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tag-cloud.css&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;TAG_CLOUD_CSS_MINIFIED_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tag-cloud.min.css&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;GRAPH_JS_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;graph.js&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;GRAPH_JS_MINIFIED_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;graph.min.js&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;CODE_CSS_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;code.css&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;CODE_CSS_MINIFIED_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;code.min.css&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;THEME_JS_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;theme.js&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;THEME_JS_MINIFIED_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;theme.min.js&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;SEARCH_JS_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;search.js&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;SEARCH_JS_MINIFIED_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;search.min.js&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;CODEBLOCKS_JS_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;codeblocks.js&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;CODEBLOCKS_JS_MINIFIED_FILENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;codeblocks.min.js&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Like... sure, 10/10 for not hard-coding these all throughout the codebase as
-magic strings&lt;sup id="fnref:297-1"&gt;&lt;a class="footnote-ref" href="#fn:297-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, but this feels a little redundant. Personally I think I'd
-have just mentioned the non-minified name and then I'd have a function that
-generates the minified name from it. While technically, it would add the
-smallest amount of runtime overhead to the code, I think the
-single-source-of-truth pay-off is worth it.&lt;/p&gt;
-&lt;p&gt;For a good while though I left this alone. I was having fun playing with
-other things in the application, and adding all sorts of other amusing toys.
-But now that I'm more into a &lt;em&gt;"how can this code be improved and what issues
-does the code have"&lt;/em&gt; mode, it felt like time to tackle this.&lt;/p&gt;
-&lt;p&gt;Given that a change here would touch so much of the code, and given I wasn't
-massively keen on spending ages walking through all the code and making the
-changes related to this, I decided to &lt;a href="https://github.com/davep/blogmore/issues/437" rel="noopener noreferrer" target="_blank"&gt;prompt Copilot to get on with
-this&lt;/a&gt;. It felt like something
-it couldn't get that wrong.&lt;/p&gt;
-&lt;p&gt;While it didn't get it wrong, as such, it made some questionable choices
-along the way. It &lt;em&gt;did&lt;/em&gt; do the main thing I would have done: make a function
-to turn a filename into a minified filename. The initial version looked like
-this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Compute the minified output filename for a given source filename.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Transforms the file extension: ``.css`` becomes ``.min.css`` and&lt;/span&gt;
-&lt;span class="sd"&gt;    ``.js`` becomes ``.min.js``.  For example, ``theme.js`` becomes&lt;/span&gt;
-&lt;span class="sd"&gt;    ``theme.min.js`` and ``style.css`` becomes ``style.min.css``.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Args:&lt;/span&gt;
-&lt;span class="sd"&gt;        source: Source filename ending in ``.css`` or ``.js``.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Returns:&lt;/span&gt;
-&lt;span class="sd"&gt;        The corresponding minified filename.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Raises:&lt;/span&gt;
-&lt;span class="sd"&gt;        ValueError: If *source* does not end with ``.css`` or ``.js``.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.min.css&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.min.js&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Unsupported file extension for minification: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="si"&gt;!r}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;That string-slicing with &lt;code&gt;len&lt;/code&gt; and so on is nails on a chalkboard to me.
-When something like &lt;code&gt;removesuffix&lt;/code&gt; exists, why on earth would "you" elect to
-do this? Of course the answer is obvious, but still... ugh.&lt;/p&gt;
-&lt;p&gt;Now, I will have to give credit to the process though. So the above was the
-initial version of the code. Once the PR had been created by Copilot, and
-I'd pulled it down for review and testing, it kicked off a review of its
-own. Reviewing its own code, it pushed back on itself:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;In &lt;code&gt;src/blogmore/generator.py&lt;/code&gt;, lines 90-93: The slice syntax &lt;code&gt;source[:
--len(\".css\")]&lt;/code&gt; is less readable than using
-&lt;code&gt;source.removesuffix(\".css\")&lt;/code&gt;, which is available in Python 3.9+. Since
-this codebase targets Python 3.12+, consider using &lt;code&gt;removesuffix()&lt;/code&gt; for
-clarity.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;It then went on to do &lt;a href="https://github.com/davep/blogmore/pull/438/changes/c11b5068833bd5b714df56291d9702359c5f9bda..b93a00f65ebf0df0597d79055f89ea4fe27d486b" rel="noopener noreferrer" target="_blank"&gt;a further
-commit&lt;/a&gt;
-to tidy this up. I approve. Bonus point to Copilot here.&lt;/p&gt;
-&lt;p&gt;So now we have this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Compute the minified output filename for a given source filename.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Transforms the file extension: ``.css`` becomes ``.min.css`` and&lt;/span&gt;
-&lt;span class="sd"&gt;    ``.js`` becomes ``.min.js``.  For example, ``theme.js`` becomes&lt;/span&gt;
-&lt;span class="sd"&gt;    ``theme.min.js`` and ``style.css`` becomes ``style.min.css``.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Args:&lt;/span&gt;
-&lt;span class="sd"&gt;        source: Source filename ending in ``.css`` or ``.js``.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Returns:&lt;/span&gt;
-&lt;span class="sd"&gt;        The corresponding minified filename.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Raises:&lt;/span&gt;
-&lt;span class="sd"&gt;        ValueError: If *source* does not end with ``.css`` or ``.js``.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;removesuffix&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.min.css&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;removesuffix&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.min.js&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Unsupported file extension for minification: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="si"&gt;!r}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;At this point the code is less worse. I don't think it's great, but it's
-less worse. Honestly, I think I'd be more inclined to do something with
-&lt;a href="https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.suffixes" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;PurePath.suffixes&lt;/code&gt;&lt;/a&gt;
-and
-&lt;a href="https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.suffix" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;PurePath.suffix&lt;/code&gt;&lt;/a&gt;,
-leaning into the fact that we're dealing with filenames here, and so making
-it less about pure string slicing.&lt;/p&gt;
-&lt;p&gt;I also have other issues with the code, which I might still fix by hand:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The fact that it makes a point of only handling &lt;code&gt;.css&lt;/code&gt; and &lt;code&gt;.js&lt;/code&gt; files,
-  and throws an error otherwise, is an odd choice. I mean, in context,
-  that's what it's here to serve, but it seems oddly-specific and an
-  attention to detail that wasn't really necessary.&lt;/li&gt;
-&lt;li&gt;The hard-coding of &lt;code&gt;.min&lt;/code&gt; a couple of times grates a little.&lt;/li&gt;
-&lt;li&gt;The hard-coding of both &lt;code&gt;.css&lt;/code&gt; and &lt;code&gt;.js&lt;/code&gt; a couple of times, with the
-  doubled-up &lt;code&gt;if&lt;/code&gt; feels unnecessary.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;It's a small function. It works in context. It does the job. But it also
-could be more elegant in the way it does it.&lt;/p&gt;
-&lt;p&gt;I'd also like to go on a small aside for a moment, because there's something
-else in the above that bothers me: yesterday evening I spent some time
-directing Copilot to &lt;a href="https://github.com/davep/blogmore/pull/433" rel="noopener noreferrer" target="_blank"&gt;tidy up all the docstrings in the
-code&lt;/a&gt;. While any agent I've
-thrown at it does seem to have taken note of &lt;a href="https://github.com/davep/blogmore/blob/53af6da034d7f42708b7cf722910d98386b648bf/AGENTS.md" rel="noopener noreferrer" target="_blank"&gt;the &lt;code&gt;AGENTS.md&lt;/code&gt;
-file&lt;/a&gt;,
-and the instructions on how to write the docstrings (Google style please),
-it seems to have decided it was aiming more at
-&lt;a href="https://www.sphinx-doc.org/en/master/" rel="noopener noreferrer" target="_blank"&gt;Sphinx&lt;/a&gt; when it came to the content.
-That's fine, I hadn't been explicit.&lt;/p&gt;
-&lt;p&gt;So last night I made it clear that I wanted something more like I use in all
-my Python code, that aims to work with
-&lt;a href="https://mkdocstrings.github.io/" rel="noopener noreferrer" target="_blank"&gt;mkdocstrings&lt;/a&gt;. It should use the inline
-code and cross-reference styles that are more common when using that tool. I
-even made a point of telling Copilot to update &lt;code&gt;AGENTS.md&lt;/code&gt; to make it clear
-that this is the preference:&lt;/p&gt;
-&lt;div class="highlight" data-lang="markdown"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;All inline code and cross-references in docstrings &lt;span class="gs"&gt;**must**&lt;/span&gt; use mkdocstrings-compatible Markdown style:
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Inline code: use single backticks (\`like_this\`).
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Cross-references: use mkdocstrings reference-style Markdown links (e.g., [&lt;span class="sb"&gt;`ClassName`&lt;/span&gt;][module.ClassName] or [&lt;span class="nt"&gt;module.ClassName&lt;/span&gt;][]).
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Do &lt;span class="gs"&gt;**not**&lt;/span&gt; use Sphinx roles (e.g., :class:`ClassName`) or double-backtick code (``ClassName``).
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Now go back and look at the docstring for &lt;code&gt;minified_filename&lt;/code&gt;. So much for
-agents making a point of following the instructions from &lt;code&gt;AGENTS.md&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Anyway, back to the main flow here: given that I was thinking that I might
-rewrite &lt;code&gt;minified_filename&lt;/code&gt; by hand so that it works "just so", I made a
-point of checking that it had written tests for this; &lt;a href="https://blog.davep.org/2026/05/01/at-least-there-are-tests.html"&gt;something I couldn't
-take for granted&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Again, to the credit of the agent, it had written some tests:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;TestMinifiedFilename&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test the minified_filename utility function.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_css_extension_becomes_min_css&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that a .css extension is replaced with .min.css.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;style.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;style.min.css&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_js_extension_becomes_min_js&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that a .js extension is replaced with .min.js.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;theme.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;theme.min.js&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_hyphenated_css_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that a hyphenated CSS filename is handled correctly.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tag-cloud.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tag-cloud.min.css&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_hyphenated_js_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that a hyphenated JS filename is handled correctly.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;search.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;search.min.js&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_unsupported_extension_raises&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that an unsupported extension raises ValueError.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;pytest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;raises&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Unsupported file extension&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-            &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;style.txt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;It's a start, but I think it could be done better. There's the test of the
-intended outcomes, and the test of the &lt;code&gt;ValueError&lt;/code&gt; for passing something
-that isn't a &lt;code&gt;.js&lt;/code&gt; or a &lt;code&gt;.css&lt;/code&gt; file. Meanwhile, that business of testing
-"hyphenated" seems oddly specific for no good reason. But it's even worse:
-the test for a "hyphenated" JS file &lt;strong&gt;doesn't use a hyphenated file name&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Hilarious.&lt;/p&gt;
-&lt;p&gt;That's not all. What about the more obvious things like testing what happens
-if you pass a filename that has no extension, or a filename that already has
-two extensions, or a filename that already ends in &lt;code&gt;.min.js&lt;/code&gt;, or a filename
-that has &lt;code&gt;.min.css&lt;/code&gt; somewhere in its path that isn't at the end of the name,
-or an empty string, or...&lt;/p&gt;
-&lt;p&gt;Also why aren't most of these tests done using
-&lt;a href="https://docs.pytest.org/en/stable/how-to/parametrize.html#pytest-mark-parametrize" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;pytest.mark.parametrize&lt;/code&gt;&lt;/a&gt;?&lt;/p&gt;
-&lt;p&gt;As I said a few days ago: &lt;a href="https://blog.davep.org/2026/04/26/but-is-the-code-that-bad.html"&gt;the code is mostly
-fine&lt;/a&gt;. It gets the job done. I've
-seen worse. I reviewed worse. I've inherited worse. I think the thing that
-concerns me the most is that there &lt;em&gt;has&lt;/em&gt; to be a lot of code like this being
-uncritically accepted after generation&lt;sup id="fnref:297-2"&gt;&lt;a class="footnote-ref" href="#fn:297-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, which in turn is surely &lt;a href="https://github.blog/changelog/2026-03-25-updates-to-our-privacy-statement-and-terms-of-service-how-we-use-your-data/" rel="noopener noreferrer" target="_blank"&gt;going
-to be feeding back into future
-training&lt;/a&gt;.
-So while I can't deny that something has improved in the last six or so
-months, when it comes to agent-generated code, might it be that &lt;a href="https://en.wikipedia.org/wiki/Model_collapse" rel="noopener noreferrer" target="_blank"&gt;we are at
-peak quality right now&lt;/a&gt;? Might
-it be that from this point on we start to decline as &lt;em&gt;"eh, it's... fine"&lt;/em&gt;
-code &lt;a href="https://nitter.net/kdaigle/status/2040164759836778878" rel="noopener noreferrer" target="_blank"&gt;starts to
-overwhelm&lt;/a&gt; the most
-popular forge we have?&lt;/p&gt;
-&lt;p&gt;&lt;img alt="This is fine" src="https://blog.davep.org/attachments/2026/05/02/github-surge.webp#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;I suppose the main benefit still is that this approach is nice and cheap.
-&lt;a href="https://fortune.com/2026/04/28/nvidia-executive-cost-of-ai-is-greater-than-cost-of-employees/" rel="noopener noreferrer" target="_blank"&gt;Right&lt;/a&gt;?&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:297-1"&gt;
-&lt;p&gt;Actually, I think it &lt;em&gt;did&lt;/em&gt; hard-code the filenames throughout the
-codebase, initially, until I asked it not to. Perhaps I'm
-misremembering, but agents do seem to love magic strings and numbers for
-some reason (I think we know the reason).&amp;#160;&lt;a class="footnote-backref" href="#fnref:297-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:297-2"&gt;
-&lt;p&gt;As I have been doing with BlogMore, on purpose.&amp;#160;&lt;a class="footnote-backref" href="#fnref:297-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/05/02/it-was-such-a-simple-request.html"/>
-    <category term="AI"/>
-    <category term="BlogMore"/>
-    <category term="Coding"/>
-    <category term="Copilot"/>
-    <category term="Gemini"/>
-    <category term="GitHub"/>
-    <category term="Google"/>
-    <category term="Python"/>
-    <category term="code review"/>
-    <category term="code smell"/>
-    <category term="testing"/>
-    <published>2026-05-02T11:26:34+01:00</published>
   </entry>
 </feed>

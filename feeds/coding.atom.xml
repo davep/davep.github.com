@@ -2,11 +2,118 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-09T07:41:59.041090+00:00</updated>
+  <updated>2026-05-09T09:50:04.459289+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/09/blogmore-v2-20-0.html</id>
+    <title>BlogMore v2.20.0</title>
+    <updated>2026-05-09T10:04:23+01:00</updated>
+    <content type="html">&lt;p&gt;I've just released &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
+&lt;a href="https://blogmore.davep.dev/changelog/#v2200" rel="noopener noreferrer" target="_blank"&gt;v2.20.0&lt;/a&gt;. There are five main
+changes in this release, and a lot of changes under the hood.&lt;/p&gt;
+&lt;p&gt;First, the under-the-hood stuff: while this isn't going to make a difference
+to anyone using BlogMore (at least it &lt;em&gt;shouldn't&lt;/em&gt; make a difference -- if it
+does that's a bug that &lt;a href="https://github.com/davep/blogmore/issues" rel="noopener noreferrer" target="_blank"&gt;deserves
+reporting&lt;/a&gt;), the &lt;a href="https://github.com/davep/blogmore/tree/main/src/blogmore/generator" rel="noopener noreferrer" target="_blank"&gt;main site
+generation
+code&lt;/a&gt;
+has had a lot of work done on it &lt;a href="https://blog.davep.org/2026/04/30/a-different-approach.html"&gt;to break it
+up&lt;/a&gt;. The motivation for this is to
+make the code easier to maintain, and to try and steer it in a direction
+closer to how I'd have laid things out had I written it by hand. The outcome
+of this is that, where the generator was over 2,000 lines of code in a
+single file, it's now a lot more modular and easier to follow.&lt;/p&gt;
+&lt;p&gt;Some other internals have been cleaned up too. Generally I've had a period
+of reviewing some of the code and reducing obvious duplication of effort,
+that sort of thing.&lt;/p&gt;
+&lt;p&gt;Now for the visible changes and enhancements in this release:&lt;/p&gt;
+&lt;h2 id="improved-word-counts"&gt;Improved word counts&lt;a aria-label="Link to this heading" class="heading-anchor" href="#improved-word-counts"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Until now the word counting (and so the reading time calculations) were done
+by stripping most of the Markdown and HTML markup from the Markdown source.
+I wasn't too keen on this approach given that the codebase had a method of
+turning Markdown into plain text. So in this release the regex-based cleanup
+code is gone and word counts (and so reading times) use the same Markdown to
+plain text pipeline as anything else that needs to work on plain text.&lt;/p&gt;
+&lt;h2 id="fixed-a-word-count-and-reading-time-disparity"&gt;Fixed a word count and reading time disparity&lt;a aria-label="Link to this heading" class="heading-anchor" href="#fixed-a-word-count-and-reading-time-disparity"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It was possible, in the &lt;a href="https://blog.davep.org/stats/"&gt;stats page&lt;/a&gt;, to have one post appear to
+have the lowest or highest word count, but to &lt;em&gt;not&lt;/em&gt; have the lowest or
+highest reading time. This was because reading times are always calculated
+to the minute and so there could be a disparity due to this rounding. The
+calculation of those stats now takes this into account.&lt;/p&gt;
+&lt;h2 id="added-an-optional-title-to-the-socials"&gt;Added an optional &lt;code&gt;title&lt;/code&gt; to the &lt;code&gt;socials&lt;/code&gt;&lt;a aria-label="Link to this heading" class="heading-anchor" href="#added-an-optional-title-to-the-socials"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="https://blogmore.davep.dev/configuration/#socials" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;socials&lt;/code&gt;&lt;/a&gt; setting
+in the configuration file has had an optional &lt;code&gt;title&lt;/code&gt; property added for
+each entry. Until now the tooltip for an entry would be whatever the &lt;code&gt;site&lt;/code&gt;
+was set to. Generally this works but if you have two or more accounts on the
+same site, or if you want to use a &lt;code&gt;site&lt;/code&gt; value for something different,
+there was no way of making the tooltip more descriptive.&lt;/p&gt;
+&lt;p&gt;As an example, currently &lt;a href="https://github.com/davep/blogmore/discussions/303" rel="noopener noreferrer" target="_blank"&gt;it's not possible to support Codeberg as a
+&lt;code&gt;site&lt;/code&gt;&lt;/a&gt;. On the other
+hand &lt;code&gt;git&lt;/code&gt; is available so it can be used as a substitute icon. The problem
+is, with this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;site&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;git&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://codeberg.org/davep&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;the tooltip will just say &lt;em&gt;"git"&lt;/em&gt;. With this update you can do this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;site&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;git&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Codeberg&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://codeberg.org/davep&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and the tooltip will say &lt;em&gt;"Codeberg"&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;As mentioned: this is optional. If there is no &lt;code&gt;title&lt;/code&gt; the previous
+behaviour still applies.&lt;/p&gt;
+&lt;h2 id="wall-clock-time-measurement"&gt;Wall-clock time measurement&lt;a aria-label="Link to this heading" class="heading-anchor" href="#wall-clock-time-measurement"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Yesterday, &lt;a href="https://www.yakshaving.co.uk/" rel="noopener noreferrer" target="_blank"&gt;Andy&lt;/a&gt; posted about &lt;a href="https://www.yakshaving.co.uk/posts/blogmore-performance/" rel="noopener noreferrer" target="_blank"&gt;BlogMore's
+performance with respect to the different optional
+features&lt;/a&gt;. It's
+something I haven't really considered yet (possibly in part because this
+blog isn't anywhere near as big as his), but could be a good source of
+tinkering in the near future. His work to test the different parts of the
+tool did get me thinking though: &lt;a href="https://github.com/davep/blogmore/issues/460" rel="noopener noreferrer" target="_blank"&gt;it would be neat to know how long each
+part of the generation process
+takes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So now, when a site is generated (either when using &lt;code&gt;build&lt;/code&gt; or &lt;code&gt;serve&lt;/code&gt;), the
+time of each step is printed, as is the overall generation time.&lt;/p&gt;
+&lt;h2 id="markdown-in-html-support"&gt;Markdown in HTML support&lt;a aria-label="Link to this heading" class="heading-anchor" href="#markdown-in-html-support"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Yesterday I noticed that, &lt;a href="https://blog.davep.org/2023/10/20/a-new-guitar.html"&gt;on one of my
+posts&lt;/a&gt;, what had been written as a simple
+caption for an image wasn't rendering as it used to. The actual content of
+the Markdown source for the post contained this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="markdown"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;lt;center&amp;gt;
+*(Yes, the tin was once mine and was once full; the early 90s were a
+different time)*
+&amp;lt;/center&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;While the text was centred, the raw Markdown was left in place (it should
+have been italic text). The reason for this is that BlogMore had never
+enabled Markdown-in-HTML support. So, as of this release, if the enclosing
+tag has &lt;code&gt;markdown="1"&lt;/code&gt;, any Markdown inside the tags will be parsed. This
+means the above becomes this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="markdown"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;lt;center markdown=&amp;quot;1&amp;quot;&amp;gt;
+*(Yes, the tin was once mine and was once full; the early 90s were a
+different time)*
+&amp;lt;/center&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I did think about doing something to turn it on by default (the fact that I
+didn't have such a "switch" in the post before suggests that
+&lt;a href="https://getpelican.com/" rel="noopener noreferrer" target="_blank"&gt;Pelican&lt;/a&gt; did just always do this), but really I
+feel this approach is more flexible and less likely to result in unintended
+consequences.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/05/09/blogmore-v2-20-0.html"/>
+    <category term="Coding"/>
+    <category term="BlogMore"/>
+    <category term="Coding"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <published>2026-05-09T10:04:23+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/08/more-codeberg-issues.html</id>
     <title>More Codeberg issues</title>
@@ -980,42 +1087,5 @@ plugin was dealing with.&amp;#160;&lt;a class="footnote-backref" href="#fnref:24
     <category term="Python"/>
     <category term="coding"/>
     <published>2026-04-02T20:08:05+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/04/01/blogmore-v2-7-0.html</id>
-    <title>BlogMore v2.7.0</title>
-    <updated>2026-04-01T19:27:06+01:00</updated>
-    <content type="html">&lt;p&gt;Given I've been on a little bit of an &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; side
-quest, it's been a couple or so days since I made a release of
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;. Today's release comes after &lt;a href="https://github.com/davep/blogmore/issues/355" rel="noopener noreferrer" target="_blank"&gt;a
-feature request about draft
-posts&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;While support for marking posts as drafts, and including or excluding them
-from a build, is something that's been in BlogMore from the start, it's not
-something I've ever used. These days, when I'm writing a post, especially if
-it's one that's taking a while to write, I'll do it in a branch and
-eventually PR into &lt;code&gt;main&lt;/code&gt; before publishing. Given this it was useful to get
-a request relating to the feature as it helps me understand how someone else
-might use it.&lt;/p&gt;
-&lt;p&gt;So as of &lt;a href="https://blogmore.davep.dev/changelog/#v270" rel="noopener noreferrer" target="_blank"&gt;v2.7.0&lt;/a&gt;, if a post is
-&lt;a href="https://blogmore.davep.dev/writing_a_post/#draft" rel="noopener noreferrer" target="_blank"&gt;marked as a draft&lt;/a&gt;, and
-&lt;a href="https://blogmore.davep.dev/configuration/#include_drafts" rel="noopener noreferrer" target="_blank"&gt;if drafts are included in the
-build&lt;/a&gt;, it will be
-pretty obvious:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="A draft post" src="https://blog.davep.org/attachments/2026/04/01/draft-post.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;When the post's title appears in the archive it will also appear obvious
-that it's still a draft too:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="A draft post in the archive" src="https://blog.davep.org/attachments/2026/04/01/draft-archive.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;All of this is, of course, modifiable via the &lt;a href="https://blogmore.davep.dev/template-api/#draft-post-visual-indicator" rel="noopener noreferrer" target="_blank"&gt;template
-API&lt;/a&gt;
-and via styling, so if the choice of colour or icon doesn't suit it can be
-modified to taste.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/04/01/blogmore-v2-7-0.html"/>
-    <category term="Coding"/>
-    <category term="coding"/>
-    <category term="Python"/>
-    <category term="BlogMore"/>
-    <category term="Markdown"/>
-    <published>2026-04-01T19:27:06+01:00</published>
   </entry>
 </feed>
