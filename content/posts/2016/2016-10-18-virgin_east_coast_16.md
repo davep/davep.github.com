@@ -11,7 +11,7 @@ and, frustratingly, I don't really have much progress to write about.
 
 What had been a promising start (well, middle; the actual start of this
 process was as frustrating as hell; it was
-only [when the MD got involved](2016/08/10/virgin_east_coast_12.html) that
+only [when the MD got involved](/2016/08/10/virgin_east_coast_12.html) that
 things actually started to happen) has turned into more of the same: broken
 promises and lack of actual results.
 
