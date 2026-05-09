@@ -2,11 +2,115 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-09T09:50:04.456932+00:00</updated>
+  <updated>2026-05-09T18:16:16.954689+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/09/an-unreliable-buddy.html</id>
+    <title>An unreliable buddy</title>
+    <updated>2026-05-09T19:14:23+01:00</updated>
+    <content type="html">&lt;p&gt;At some point this morning I was looking for something on this blog and
+stumbled on a post that had a broken link. Not an external link, but an
+internal link. This got me thinking: perhaps I should add some sort of
+linting tool to &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;? I figured this
+should be doable using much of the existing code: pretty much work out the
+list of internal links, run through all pages and posts, see what links get
+generated, look for internal links&lt;sup id="fnref:293-1"&gt;&lt;a class="footnote-ref" href="#fn:293-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and see if they're all amongst those
+that are expected.&lt;/p&gt;
+&lt;p&gt;Later on in the day &lt;a href="https://github.com/davep/blogmore/issues/465" rel="noopener noreferrer" target="_blank"&gt;I prompted Copilot to have a
+go&lt;/a&gt;. Now, sure, I didn't tell
+it &lt;em&gt;how&lt;/em&gt; to do it, instead I told it what I wanted it to achieve. I hoped it
+would (going via Claude, as I've normally let it) decide on what I felt was
+the most sensible solution (use the existing configuration-reading,
+page/post-finding and post-parsing code) and run with that.&lt;/p&gt;
+&lt;p&gt;It didn't.&lt;/p&gt;
+&lt;p&gt;Once again, as I've seen before, it seemed to understand and take into
+account the existing codebase &lt;em&gt;and then copy bits from it and drop it in a
+new file&lt;/em&gt;. Worse, rather than tackle this using the relevant parts of the
+existing build engine, it concocted a whole new approach, again obsessing
+over throwing a regex or three at the problem.&lt;/p&gt;
+&lt;p&gt;I then spent the next 90 minutes or so, testing the results, finding false
+reports, finding things it missed, and telling it what I found and getting
+it to fix them. It did, but on occasion it seemed to special-case the fix
+rather than understand the general case of what was going on and address
+that.&lt;/p&gt;
+&lt;p&gt;Eventually, probably too late really, I gave up trying to nudge it in the
+right direction and, instead, decided it was time to be more explicit about
+how it should handle this&lt;sup id="fnref:293-2"&gt;&lt;a class="footnote-ref" href="#fn:293-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. The first thing that bothered me was that it
+seemed to ignore the configuration object. Where BlogMore has a method of
+loading the configuration into an object, which can be passed around the
+code, but with the linter it loaded it up, pulled it all apart, and then
+passed some of the values as a huge parameter list. Because... reasons?&lt;/p&gt;
+&lt;p&gt;Anyway, I told it to cut that shit out and prompted it about a few other
+things that looked pretty bad too. Copilot/Claude went off and worked away
+on this for a while, using up my 6th premium request of the session, and
+then eventually came back with an error telling me I'd hit a &lt;a href="https://docs.github.com/copilot/concepts/rate-limits" rel="noopener noreferrer" target="_blank"&gt;rate
+limit&lt;/a&gt; and to come
+back in a few hours.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="GitHub rate limit" src="https://blog.davep.org/attachments/2026/05/09/rate-limit.webp#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;Could I have got it to where I wanted to be a bit earlier, with more careful
+prompting? No doubt. Will a lot of people? I suspect that's rather unlikely.
+This is one of the many things that make me pretty sceptical about this as
+the tool some sell it as, at least for the moment. I see often that it's
+written about or talked about as if it's a really useful coding buddy. It
+can be, at times, but it's hugely unreliable. Here I'm testing it by
+building something as a hobby, and I'm doing so knowing that there's no real
+consequence if it craps out on me. I'm also doing it safe in the knowledge
+that I could write the code myself, albeit at a far slower pace and with
+less available time. Not everyone this is aimed at has that going for them.&lt;/p&gt;
+&lt;p&gt;But these tools are still sold like they're the most reliable coding buddies
+going.&lt;/p&gt;
+&lt;p&gt;All that said: having hit the rate limit, and having squandered six premium
+requests on the problem with no real progress, I decided to use my Google
+Gemini coding allowance instead (which, in my experience so far, seems
+pretty generous). I threw more or less the same initial prompt at it, but
+this time I stressed that I really wanted it to use the existing engine
+where possible. It managed to pretty much one-shot the problem in about 9
+minutes and used up just 2% of &lt;a href="https://geminicli.com/docs/resources/quota-and-pricing/" rel="noopener noreferrer" target="_blank"&gt;my daily
+quota&lt;/a&gt;&lt;sup id="fnref:293-3"&gt;&lt;a class="footnote-ref" href="#fn:293-3"&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;I've done a little more tidying up since, and I still need to properly
+review &lt;a href="https://github.com/davep/blogmore/pull/467" rel="noopener noreferrer" target="_blank"&gt;the result&lt;/a&gt;, but from
+what I can see of the initial results it's found all of the issues I wanted
+it to find, first time (something Claude didn't manage) and hasn't found any
+issues that don't exist (also something Claude didn't manage).&lt;/p&gt;
+&lt;p&gt;So I guess this time Gemini was the reliable buddy. But not knowing which
+buddy you can rely on makes for a pretty unreliable group of buddies.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:293-1"&gt;
+&lt;p&gt;This process could, of course, work for external links too, but I'm
+not really too keen on having a tool that visits every single external
+link to see if it's still there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:293-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:293-2"&gt;
+&lt;p&gt;Which is mostly fine; I'm doing this as an experiment in what it's
+capable of, and also I was sofa-hacking while having a conversation
+about naming Easter eggs in Minecraft.&amp;#160;&lt;a class="footnote-backref" href="#fnref:293-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:293-3"&gt;
+&lt;p&gt;Imagine that too! Imagine knowing exactly how much of your quota
+you've used at any given moment! Presumably GitHub don't show you where
+you are in respect to the rate limits on top of your monthly quota
+because grinding to a halt with no warning is more... fun?&amp;#160;&lt;a class="footnote-backref" href="#fnref:293-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/05/09/an-unreliable-buddy.html"/>
+    <category term="AI"/>
+    <category term="BlogMore"/>
+    <category term="Coding"/>
+    <category term="Copilot"/>
+    <category term="Gemini"/>
+    <category term="GitHub"/>
+    <category term="Google"/>
+    <category term="Python"/>
+    <category term="code review"/>
+    <category term="code smell"/>
+    <published>2026-05-09T19:14:23+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/09/blogmore-v2-20-0.html</id>
     <title>BlogMore v2.20.0</title>
@@ -237,7 +341,7 @@ blog. But I'm going to start syncing projects to both GitLab and Codeberg. I
 see this as having two benefits: anyone who doesn't want to interact with
 GitHub can now easily fork code, and if they wish they can raise issues and
 the like too. Meanwhile, in doing this, I'll also have the added benefit of
-my code being "backed up" in at least three different locations&lt;sup id="fnref:309-1"&gt;&lt;a class="footnote-ref" href="#fn:309-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+my code being "backed up" in at least three different locations&lt;sup id="fnref:310-1"&gt;&lt;a class="footnote-ref" href="#fn:310-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;The approach I've settled on, for the moment, is based around &lt;a href="https://github.com/davep/setup-forge-sync" rel="noopener noreferrer" target="_blank"&gt;this little
 shell script&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
@@ -279,7 +383,7 @@ git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt
 &lt;span class="c1"&gt;### setup-forge-sync ends here&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;I'm going to keep all repo names the same&lt;sup id="fnref:309-2"&gt;&lt;a class="footnote-ref" href="#fn:309-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So when I use this script
+&lt;p&gt;I'm going to keep all repo names the same&lt;sup id="fnref:310-2"&gt;&lt;a class="footnote-ref" href="#fn:310-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So when I use this script
 it'll set things up so I can &lt;code&gt;git push backups&lt;/code&gt; and &lt;code&gt;main&lt;/code&gt; will then get
 pushed up to both GitLab and Codeberg. I don't feel the need to be keeping
 any WiP branches in sync or kicking about, likewise any &lt;code&gt;gh-pages&lt;/code&gt; branches.&lt;/p&gt;
@@ -292,14 +396,14 @@ developing and maintaining).&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:309-1"&gt;
+&lt;li id="fn:310-1"&gt;
 &lt;p&gt;Yes, I have other backups too, but they're always
-current-working-machine type backups.&amp;#160;&lt;a class="footnote-backref" href="#fnref:309-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+current-working-machine type backups.&amp;#160;&lt;a class="footnote-backref" href="#fnref:310-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:309-2"&gt;
+&lt;li id="fn:310-2"&gt;
 &lt;p&gt;Except, perhaps, for any repo whose name starts with &lt;code&gt;.&lt;/code&gt;; I seem to
 recall that GitLab can't handle that, for some bizarre reason. Perhaps
-that's fixed now?&amp;#160;&lt;a class="footnote-backref" href="#fnref:309-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+that's fixed now?&amp;#160;&lt;a class="footnote-backref" href="#fnref:310-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -527,7 +631,7 @@ clean up the code that does word counts, getting it to use the Markdown to
 plain text code that exists in &lt;a href="https://blog.davep.org/tag/blogmore/"&gt;BlogMore&lt;/a&gt;, rather than the
 regex-based Markdown-stripper it was using. The approach it landed on made
 sense to me, adding another text extractor class, but one that ignores
-fenced codeblocks&lt;sup id="fnref:303-1"&gt;&lt;a class="footnote-ref" href="#fn:303-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. So, in addition to this code (I've removed all
+fenced codeblocks&lt;sup id="fnref:304-1"&gt;&lt;a class="footnote-ref" href="#fn:304-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. So, in addition to this code (I've removed all
 docstrings and comments for the sake of including here):&lt;/p&gt;
 &lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;_AllTextExtractor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;HTMLParser&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 
@@ -621,9 +725,9 @@ It does the job. The code runs. It's just not... to my taste, I guess.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:303-1"&gt;
+&lt;li id="fn:304-1"&gt;
 &lt;p&gt;This is important for working out word counts and so read times. It
-doesn't make sense that embedded code counts towards those.&amp;#160;&lt;a class="footnote-backref" href="#fnref:303-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+doesn't make sense that embedded code counts towards those.&amp;#160;&lt;a class="footnote-backref" href="#fnref:304-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -798,7 +902,7 @@ abstract base class was the solution. Gemini decided that a protocol was the
 solution. I &lt;em&gt;think&lt;/em&gt; I'm siding with Gemini on this one because this is a
 provides/needs problem, not a "kind of" problem. Even then though, while I
 sense Gemini has the right approach, I'm not always happy with its
-implementation of it&lt;sup id="fnref:312-1"&gt;&lt;a class="footnote-ref" href="#fn:312-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and once again: it's a cleanup of something I'd
+implementation of it&lt;sup id="fnref:313-1"&gt;&lt;a class="footnote-ref" href="#fn:313-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and once again: it's a cleanup of something I'd
 sooner not be cleaning up in the first place.&lt;/p&gt;
 &lt;p&gt;So here's the thing, and this harks back to &lt;a href="https://blog.davep.org/2026/04/26/but-is-the-code-that-bad.html"&gt;wondering if the code is that
 bad&lt;/a&gt;: it isn't... but it's also
@@ -814,8 +918,8 @@ elegant.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:312-1"&gt;
-&lt;p&gt;And it feels so slow. SO. SLOW!&amp;#160;&lt;a class="footnote-backref" href="#fnref:312-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:313-1"&gt;
+&lt;p&gt;And it feels so slow. SO. SLOW!&amp;#160;&lt;a class="footnote-backref" href="#fnref:313-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1020,7 +1124,7 @@ off the same prompt, as it were, it came up with a &lt;em&gt;very&lt;/em&gt; dif
 approach. So my next job is to decide which of the two I like most.&lt;/p&gt;
 &lt;p&gt;As of the time of writing, the Gemini approach to cleaning this up results
 in the main &lt;code&gt;site.py&lt;/code&gt; file inside the new &lt;code&gt;generator&lt;/code&gt; subdirectory being 996
-lines; that's just under the 1,000 line limit I tend to set myself&lt;sup id="fnref:310-1"&gt;&lt;a class="footnote-ref" href="#fn:310-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, so
+lines; that's just under the 1,000 line limit I tend to set myself&lt;sup id="fnref:311-1"&gt;&lt;a class="footnote-ref" href="#fn:311-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, so
 close enough, but not ideal. Copilot/Claude, on the other hand, is sat at
 278 lines! While the idea of Gemini was to make &lt;code&gt;site.py&lt;/code&gt; a small
 descriptive top-to-bottom and start-to-finish description of &lt;em&gt;how&lt;/em&gt; a site is
@@ -1030,18 +1134,18 @@ intention.&lt;/p&gt;
 &lt;p&gt;Then again the Gemini version has broken the work up across 9 files, the
 Copilot/Claude version across 13. Also the Copilot/Claude version has taken
 a really fun and interesting approach to solving the problem that I'm kind
-of digging&lt;sup id="fnref:310-2"&gt;&lt;a class="footnote-ref" href="#fn:310-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+of digging&lt;sup id="fnref:311-2"&gt;&lt;a class="footnote-ref" href="#fn:311-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So now I have to decide which, if either, I'm going with.&lt;/p&gt;
 &lt;p&gt;That's probably another post.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:310-1"&gt;
+&lt;li id="fn:311-1"&gt;
 &lt;p&gt;Although in my own projects I try and keep Python files much smaller
-than that if I can help it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:310-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+than that if I can help it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:311-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:310-2"&gt;
-&lt;p&gt;Spoiler: mixins. ALL THE MIXINS!&amp;#160;&lt;a class="footnote-backref" href="#fnref:310-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:311-2"&gt;
+&lt;p&gt;Spoiler: mixins. ALL THE MIXINS!&amp;#160;&lt;a class="footnote-backref" href="#fnref:311-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1056,158 +1160,5 @@ than that if I can help it.&amp;#160;&lt;a class="footnote-backref" href="#fnref
     <category term="Python"/>
     <category term="code review"/>
     <published>2026-05-03T09:59:45+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/05/02/me-vs-claude.html</id>
-    <title>Me vs Claude</title>
-    <updated>2026-05-02T18:48:30+01:00</updated>
-    <content type="html">&lt;p&gt;After writing the &lt;a href="https://blog.davep.org/2026/05/02/it-was-such-a-simple-request.html"&gt;earlier
-post&lt;/a&gt; I had to AFK to attend
-to normal life things. When I finally sat back at my keyboard, I decided to
-write my own take on &lt;code&gt;minified_filename&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;To recap, this is what Copilot/Claude came up with first:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Compute the minified output filename for a given source filename.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Transforms the file extension: ``.css`` becomes ``.min.css`` and&lt;/span&gt;
-&lt;span class="sd"&gt;    ``.js`` becomes ``.min.js``.  For example, ``theme.js`` becomes&lt;/span&gt;
-&lt;span class="sd"&gt;    ``theme.min.js`` and ``style.css`` becomes ``style.min.css``.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Args:&lt;/span&gt;
-&lt;span class="sd"&gt;        source: Source filename ending in ``.css`` or ``.js``.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Returns:&lt;/span&gt;
-&lt;span class="sd"&gt;        The corresponding minified filename.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Raises:&lt;/span&gt;
-&lt;span class="sd"&gt;        ValueError: If *source* does not end with ``.css`` or ``.js``.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.min.css&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.min.js&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Unsupported file extension for minification: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="si"&gt;!r}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This is what it arrived at once it had self-reviewed the above:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Compute the minified output filename for a given source filename.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Transforms the file extension: ``.css`` becomes ``.min.css`` and&lt;/span&gt;
-&lt;span class="sd"&gt;    ``.js`` becomes ``.min.js``.  For example, ``theme.js`` becomes&lt;/span&gt;
-&lt;span class="sd"&gt;    ``theme.min.js`` and ``style.css`` becomes ``style.min.css``.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Args:&lt;/span&gt;
-&lt;span class="sd"&gt;        source: Source filename ending in ``.css`` or ``.js``.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Returns:&lt;/span&gt;
-&lt;span class="sd"&gt;        The corresponding minified filename.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Raises:&lt;/span&gt;
-&lt;span class="sd"&gt;        ValueError: If *source* does not end with ``.css`` or ``.js``.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;removesuffix&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.min.css&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;removesuffix&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.min.js&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Unsupported file extension for minification: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="si"&gt;!r}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The tests it wrote looked like this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;TestMinifiedFilename&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test the minified_filename utility function.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_css_extension_becomes_min_css&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that a .css extension is replaced with .min.css.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;style.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;style.min.css&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_js_extension_becomes_min_js&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that a .js extension is replaced with .min.js.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;theme.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;theme.min.js&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_hyphenated_css_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that a hyphenated CSS filename is handled correctly.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tag-cloud.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tag-cloud.min.css&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_hyphenated_js_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that a hyphenated JS filename is handled correctly.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;search.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;search.min.js&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_unsupported_extension_raises&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that an unsupported extension raises ValueError.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;pytest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;raises&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Unsupported file extension&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-            &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;style.txt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;I wasn't too keen on the obsession with just &lt;code&gt;.css&lt;/code&gt; and &lt;code&gt;.js&lt;/code&gt; files (it
-seemed unnecessary), and neither did I like the hard-coding of the resulting
-extensions, etc. It all felt too job-specific.&lt;/p&gt;
-&lt;p&gt;So my take on the code was this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Compute the minified output filename for a given source filename.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Args:&lt;/span&gt;
-&lt;span class="sd"&gt;        source: Source filename.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Returns:&lt;/span&gt;
-&lt;span class="sd"&gt;        The corresponding minified filename.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;suffix&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;with_suffix&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.min&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;suffix&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The tests being this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;TestMinifiedFilename&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test the minified_filename utility function.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-
-    &lt;span class="nd"&gt;@pytest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mark&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parametrize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-        &lt;span class="s2"&gt;&amp;quot;before,after&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="p"&gt;[&lt;/span&gt;
-            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;style.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;style.min.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;theme.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;theme.min.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;style.min.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;style.min.min.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;file&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;file&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.file&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.file&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.file.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.file.min.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-        &lt;span class="p"&gt;],&lt;/span&gt;
-    &lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_min_file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;before&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that converting a filename to the minified version has the expected effect.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;before&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;So, yes, my version does work ever so slightly differently, but I feel it's
-more generic. It shouldn't be the business of this function to decide which
-type of file can have a &lt;code&gt;.min&lt;/code&gt; slapped prior to its extension; if a caller
-asks for it, let them have it, they know what they're doing! Also, although
-it's not really necessary (because the code calling on it doesn't currently
-pass a &lt;code&gt;Path&lt;/code&gt;), it will accept either a &lt;code&gt;str&lt;/code&gt; or a &lt;code&gt;Path&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;I feel the big difference here too is the testing. Rather than one method
-after another, testing more or less the same thing with little variation, it
-makes more sense to have just the one test and then pass it lots of
-different input/output values. This is far more maintainable and also easier
-to write most of the time.&lt;/p&gt;
-&lt;p&gt;Of course, for an agent, it's probably easier for it to take a copy/paste
-approach than it is for it to "reason" about what makes for a maintainable
-test. I sense this is one of the dangers of letting an LLM do this job (and
-it's one that's often touted as being a prime job to do): good tests can be
-useful documentation if you're trying to understand a codebase.
-Badly-written tests, no matter how much coverage they offer, are going to
-slow you down.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/05/02/me-vs-claude.html"/>
-    <category term="AI"/>
-    <category term="BlogMore"/>
-    <category term="Coding"/>
-    <category term="Copilot"/>
-    <category term="GitHub"/>
-    <category term="Python"/>
-    <category term="code review"/>
-    <category term="code smell"/>
-    <category term="testing"/>
-    <published>2026-05-02T18:48:30+01:00</published>
   </entry>
 </feed>
