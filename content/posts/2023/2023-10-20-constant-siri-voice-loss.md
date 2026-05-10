@@ -3,7 +3,7 @@ title: Constant Siri voice loss
 category: Tech
 tags: Apple, iPhone, Siri
 date: 2023-10-20 13:04:00 +0100
-cover: /attachments/2023/10/20/siri-voice-loss.png
+cover: /attachments/2023/10/20/siri-voice-loss.webp
 ---
 
 This seems to have started with iOS 17, and I can't narrow down the how and
@@ -18,7 +18,7 @@ it's using an on-device much-cut-down version. If I go into the settings to
 check what voice is selected, it's the one I normally use, but it wants to
 download it again.
 
-![Downloading the voice all over again](/attachments/2023/10/20/siri-voice-loss.png)
+![Downloading the voice all over again](/attachments/2023/10/20/siri-voice-loss.webp#centre)
 
 Sure enough, once the download is complete all is good again. I've not kept
 track of when it happens -- and I think I should from now on -- but it feels

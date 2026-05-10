@@ -3,7 +3,7 @@ title: Visual Selection
 category: Coding
 tags: Coding, Plotext, PyPI, Python, biology, evolution, terminal, textual
 date: 2023-10-26 18:50:00 +0100
-cover: /attachments/2023/10/26/visual-selection-cover.png
+cover: /attachments/2023/10/26/visual-selection-cover.webp
 ---
 
 Over the last few weeks I've had a couple of sessions of working on a
@@ -68,7 +68,7 @@ it.
 
 So, that's what I did, complete with `textual-plotext` plot:
 
-![Visual Selection in action](/attachments/2023/10/26/visual-selection.png)
+![Visual Selection in action](/attachments/2023/10/26/visual-selection.webp#centre)
 
 While, 15 years on, this isn't going to convince anyone of the underlying
 point, I think it does serve a good educational purpose. It shows that you

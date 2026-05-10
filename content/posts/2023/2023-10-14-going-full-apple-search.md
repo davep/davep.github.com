@@ -3,6 +3,7 @@ title: Going full Apple search
 category: Tech
 tags: Apple
 date: 2023-10-14 08:39:00 +0100
+cover: /attachments/2023/10/14/apple-search.webp
 ---
 
 For as long as I've had a smartphone -- so ever since the [HTC
@@ -24,7 +25,7 @@ removed the Google search app from the home screens of my iPhone and my iPad
 and I'm going to force myself to use Spotlight to do all my searching, and
 see how I get on with it.
 
-![Searching with Apple](/attachments/2023/10/14/apple-search.png#centre)
+![Searching with Apple](/attachments/2023/10/14/apple-search.webp#centre)
 
 Of course, when it comes to searching for stuff on the web, it's not going
 to make a whole heap of difference; it's still going to end up searching

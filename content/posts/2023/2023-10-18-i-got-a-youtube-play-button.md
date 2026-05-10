@@ -3,7 +3,7 @@ title: I got a YouTube play button!
 category: Creative
 tags: YouTube
 date: 2023-10-18 19:07:00 +0100
-cover: /attachments/2023/10/18/IMG_3304.jpeg
+cover: /attachments/2023/10/18/IMG_3304.webp
 ---
 
 According to YouTube I joined up on 2006-09-04. I don't think that's quite
@@ -33,15 +33,15 @@ nonsense to subscribe.
 Nowhere near enough for a YouTube play button, that's for sure. Only... I
 now have a play button!
 
-![YouTube Lego Play Button](/attachments/2023/10/18/IMG_3304.jpeg#centre)
+![YouTube Lego Play Button](/attachments/2023/10/18/IMG_3304.webp#centre)
 
 I mean, sure, I have to build it myself...
 
-![YouTube Lego Play Button](/attachments/2023/10/18/IMG_3305.jpeg#centre)
+![YouTube Lego Play Button](/attachments/2023/10/18/IMG_3305.webp#centre)
 
 ...but it's something to show for all my efforts, I guess. ;-)
 
-![YouTube Lego Play Button](/attachments/2023/10/18/IMG_3306.jpeg#centre)
+![YouTube Lego Play Button](/attachments/2023/10/18/IMG_3306.webp#centre)
 
 As for how I got it: presumably anyone/everyone with a YouTube account with
 some content got the offer of goodies (I also got offered free coffee,
