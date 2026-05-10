@@ -12,6 +12,10 @@ spell    := $(run) codespell
 build:				# Build the site
 	$(blogmore) build
 
+.PHONY: lint
+lint:				# Lint the content and configuration files.
+	$(blogmore) lint
+
 .PHONY: serve
 serve:				# Locally serve the site for testing.
 	$(blogmore) serve --include-drafts
