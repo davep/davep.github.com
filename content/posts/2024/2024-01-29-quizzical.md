@@ -3,7 +3,7 @@ title: Quizzical
 category: Coding
 tags: Coding, Python, Quizzical, terminal, textual
 date: 2024-01-29 21:30:00 +0000
-cover: /attachments/2024/01/29/quizzical-banner.png
+cover: /attachments/2024/01/29/quizzical-banner.webp
 ---
 
 I feel like I'm on a bit of a roll when it comes to building applications
@@ -17,7 +17,7 @@ in 2017 and I felt it was a *perfect* candidate for a Textual-based project.
 It's a terminal-based trivia quiz game, using [the Open Trivia
 Database](https://opentdb.com/) as the source of questions.
 
-![Quizzical](/attachments/2024/01/29/quizzical.png#centre)
+![Quizzical](/attachments/2024/01/29/quizzical.webp#centre)
 
 I've just published an early version [to
 PyPI](https://pypi.org/project/quizzical/); it still needs some polish and I
@@ -28,11 +28,11 @@ The idea is pretty straightforward: you can run it up and create lots of
 different quizzes, there are various parameters you can use to create lots
 of different kinds of challenges:
 
-![Building a new quiz](/attachments/2024/01/29/new-quiz.png#centre)
+![Building a new quiz](/attachments/2024/01/29/new-quiz.webp#centre)
 
 Once you're created a quiz, you can run it and answer away:
 
-![An example question](/attachments/2024/01/29/question.png)
+![An example question](/attachments/2024/01/29/question.webp#centre)
 
 Right now the idea is that you answer by pressing either <kbd>1</kbd>,
 <kbd>2</kbd>, <kbd>3</kbd> or <kbd>4</kbd> (or just <kbd>1</kbd> or
@@ -43,7 +43,7 @@ keyboard-answering feels far more natural).
 Once the quiz is done you can review your answers and see which were right
 and which were wrong:
 
-![Viewing results](/attachments/2024/01/29/results.png#centre)
+![Viewing results](/attachments/2024/01/29/results.webp#centre)
 
 As I say: there's a bunch of other things I want to add to this (keeping
 track of scores, adding session token support to reduce the chances of
