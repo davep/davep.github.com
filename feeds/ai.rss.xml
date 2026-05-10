@@ -8,7 +8,77 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 10 May 2026 08:08:06 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 10 May 2026 08:58:54 +0000</lastBuildDate>
+    <item>
+      <title>An argument with Gemini</title>
+      <link>https://blog.davep.org/2026/05/10/an-argument-with-gemini.html</link>
+      <description>&lt;p&gt;At the moment I'm working on a linting command for
+&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;. &lt;a href="https://blog.davep.org/2026/05/09/an-unreliable-buddy.html"&gt;Having given up on Copilot/Claude
+for this&lt;/a&gt;, I've been having quite a
+bit of success with Gemini CLI. But while doing this, I've noticed some odd
+things with it. It does have this habit of cargo-culting some changes, or
+just rewriting code that doesn't need it.&lt;/p&gt;
+&lt;p&gt;For example, the tests for the new linting tool: it keeps adding &lt;code&gt;import
+pytest&lt;/code&gt; near the top of the test file &lt;em&gt;despite the fact that &lt;code&gt;pytest&lt;/code&gt;
+doesn't get used anywhere in the code&lt;/em&gt;. Every time, I'll remove it, every
+time it adds more tests, it'll add it back.&lt;/p&gt;
+&lt;p&gt;Another thing I've noticed is it seems to be obsessed with adding
+indentation to empty lines. So, if you've got a line of code indented 8
+spaces, then an empty line, then another line of code indented 8 spaces,
+&lt;em&gt;it'll add 8 spaces on that empty line&lt;/em&gt;. That sort of thing annoys the hell
+out of me&lt;sup id="fnref:307-1"&gt;&lt;a class="footnote-ref" href="#fn:307-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;But the worst thing I just ran into was this. It had written this bit of
+code:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;lint_site&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;site_config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;SiteConfig&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Convenience function to run the linter.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Args:&lt;/span&gt;
+&lt;span class="sd"&gt;        site_config: The site configuration.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Returns:&lt;/span&gt;
+&lt;span class="sd"&gt;        0 if no errors, 1 if errors were found.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;linter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Linter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;site_config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;linter&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lint&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;On the surface this seems fine: a function that hides just a little bit of
+detail while providing a simple function interface to a feature. But that
+use of a variable to essentially "discard" it the next line... nah. I
+dislike that sort of thing. The code can be just a little more elegant. So
+seeing this I edited it to be (removing the docstring for the purposes of
+this post):&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;lint_site&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;site_config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;SiteConfig&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;Linter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;site_config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lint&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Nice and tidy.&lt;/p&gt;
+&lt;p&gt;I then had Gemini work on something else in the linting code. What did I see
+towards the end of the diff? This!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A sneaky edit" src="https://blog.davep.org/attachments/2026/05/10/sneaky-edit.webp#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;Sneaky little shit!&lt;/p&gt;
+&lt;p&gt;Now, sure, the idea is you review all changes before you run with them, but
+knowing that it's likely that any given change might rewrite parts of the
+code that aren't related to the problem at hand adds a lot more overhead,
+and I wonder how often people using these tools even bother.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:307-1"&gt;
+&lt;p&gt;I've seen some IDEs do that on purpose too; I've got Emacs configured
+to strip that out on save.&amp;#160;&lt;a class="footnote-backref" href="#fnref:307-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/05/10/an-argument-with-gemini.html</guid>
+      <category>AI</category>
+      <category>Coding</category>
+      <category>Gemini</category>
+      <category>Google</category>
+      <category>Python</category>
+      <category>code review</category>
+      <pubDate>Sun, 10 May 2026 09:39:49 +0100</pubDate>
+    </item>
     <item>
       <title>An unreliable buddy</title>
       <link>https://blog.davep.org/2026/05/09/an-unreliable-buddy.html</link>
@@ -363,7 +433,7 @@ abstract base class was the solution. Gemini decided that a protocol was the
 solution. I &lt;em&gt;think&lt;/em&gt; I'm siding with Gemini on this one because this is a
 provides/needs problem, not a "kind of" problem. Even then though, while I
 sense Gemini has the right approach, I'm not always happy with its
-implementation of it&lt;sup id="fnref:314-1"&gt;&lt;a class="footnote-ref" href="#fn:314-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and once again: it's a cleanup of something I'd
+implementation of it&lt;sup id="fnref:315-1"&gt;&lt;a class="footnote-ref" href="#fn:315-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and once again: it's a cleanup of something I'd
 sooner not be cleaning up in the first place.&lt;/p&gt;
 &lt;p&gt;So here's the thing, and this harks back to &lt;a href="https://blog.davep.org/2026/04/26/but-is-the-code-that-bad.html"&gt;wondering if the code is that
 bad&lt;/a&gt;: it isn't... but it's also
@@ -379,8 +449,8 @@ elegant.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:314-1"&gt;
-&lt;p&gt;And it feels so slow. SO. SLOW!&amp;#160;&lt;a class="footnote-backref" href="#fnref:314-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:315-1"&gt;
+&lt;p&gt;And it feels so slow. SO. SLOW!&amp;#160;&lt;a class="footnote-backref" href="#fnref:315-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -517,7 +587,7 @@ off the same prompt, as it were, it came up with a &lt;em&gt;very&lt;/em&gt; dif
 approach. So my next job is to decide which of the two I like most.&lt;/p&gt;
 &lt;p&gt;As of the time of writing, the Gemini approach to cleaning this up results
 in the main &lt;code&gt;site.py&lt;/code&gt; file inside the new &lt;code&gt;generator&lt;/code&gt; subdirectory being 996
-lines; that's just under the 1,000 line limit I tend to set myself&lt;sup id="fnref:312-1"&gt;&lt;a class="footnote-ref" href="#fn:312-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, so
+lines; that's just under the 1,000 line limit I tend to set myself&lt;sup id="fnref:313-1"&gt;&lt;a class="footnote-ref" href="#fn:313-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, so
 close enough, but not ideal. Copilot/Claude, on the other hand, is sat at
 278 lines! While the idea of Gemini was to make &lt;code&gt;site.py&lt;/code&gt; a small
 descriptive top-to-bottom and start-to-finish description of &lt;em&gt;how&lt;/em&gt; a site is
@@ -527,18 +597,18 @@ intention.&lt;/p&gt;
 &lt;p&gt;Then again the Gemini version has broken the work up across 9 files, the
 Copilot/Claude version across 13. Also the Copilot/Claude version has taken
 a really fun and interesting approach to solving the problem that I'm kind
-of digging&lt;sup id="fnref:312-2"&gt;&lt;a class="footnote-ref" href="#fn:312-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+of digging&lt;sup id="fnref:313-2"&gt;&lt;a class="footnote-ref" href="#fn:313-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So now I have to decide which, if either, I'm going with.&lt;/p&gt;
 &lt;p&gt;That's probably another post.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:312-1"&gt;
+&lt;li id="fn:313-1"&gt;
 &lt;p&gt;Although in my own projects I try and keep Python files much smaller
-than that if I can help it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:312-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+than that if I can help it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:313-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:312-2"&gt;
-&lt;p&gt;Spoiler: mixins. ALL THE MIXINS!&amp;#160;&lt;a class="footnote-backref" href="#fnref:312-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:313-2"&gt;
+&lt;p&gt;Spoiler: mixins. ALL THE MIXINS!&amp;#160;&lt;a class="footnote-backref" href="#fnref:313-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -2238,55 +2308,6 @@ where an agent should shine and where it's really useful.&lt;/p&gt;
       <category>LLM</category>
       <category>coding</category>
       <pubDate>Mon, 09 Mar 2026 12:56:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Documentation generation</title>
-      <link>https://blog.davep.org/2026/03/05/documentation-generation.html</link>
-      <description>&lt;p&gt;While I've written a &lt;em&gt;lot&lt;/em&gt; of documentation in my life, it's not something I
-enjoy. I want documentation to read well, I want documentation to be useful,
-I want documentation to be accurate. I also want there to be documentation
-at all and sometimes the other parts mean it doesn't get done for FOSS
-projects&lt;sup id="fnref:240-1"&gt;&lt;a class="footnote-ref" href="#fn:240-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;When &lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;I started the experiment that is
-BlogMore&lt;/a&gt;, I very quickly &lt;a href="https://github.com/davep/blogmore/pull/100" rel="noopener noreferrer" target="_blank"&gt;hashed
-out some ideas on how it might generate some
-documentation&lt;/a&gt;, and the result
-was okay. In fact, if anything, it was a bit too much and there was a lot of
-repeated information.&lt;/p&gt;
-&lt;p&gt;So, this morning, before I sat down for the day's work, I &lt;a href="https://github.com/davep/blogmore/issues/209" rel="noopener noreferrer" target="_blank"&gt;quickly wrote an
-issue&lt;/a&gt; that would act as a
-prompt to Copilot to rewrite the documentation. This time I tried to be very
-clear about what I wanted where, but also left it to work out all the
-details.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/davep/blogmore/pull/210" rel="noopener noreferrer" target="_blank"&gt;The result&lt;/a&gt; genuinely impressed
-me. While I'll admit I haven't read it all in detail (and because of this
-have left the same warning right at the start), on the surface it looks a
-lot clearer and feels like a better journey to learning how to use BlogMore.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://blogmore.davep.dev" rel="noopener noreferrer" target="_blank"&gt;blogmore.davep.dev&lt;/a&gt; hosts the result of this.&lt;/p&gt;
-&lt;p&gt;I have a plan to work through the documentation and be sure it's all correct
-and all makes sense, but if it's as correct and as useful as I think, I
-might have to consider the idea of taking this approach more often. Writing
-down the &lt;em&gt;plan&lt;/em&gt; for the documentation and then letting it appear in the
-background while I get on with my actual day makes a lot of sense.&lt;/p&gt;
-&lt;p&gt;I fear I might be warming to these tools, a little bit. :-/&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:240-1"&gt;
-&lt;p&gt;Although I've made a point of doing it for almost every one of my
-recent &lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual&lt;/a&gt;-based projects.&amp;#160;&lt;a class="footnote-backref" href="#fnref:240-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/03/05/documentation-generation.html</guid>
-      <category>AI</category>
-      <category>Python</category>
-      <category>AI</category>
-      <category>LLM</category>
-      <category>Copilot</category>
-      <category>GitHub</category>
-      <category>BlogMore</category>
-      <pubDate>Thu, 05 Mar 2026 16:26:00 +0000</pubDate>
     </item>
   </channel>
 </rss>

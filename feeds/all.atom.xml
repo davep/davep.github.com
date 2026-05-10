@@ -2,11 +2,82 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-10T08:08:06.091092+00:00</updated>
+  <updated>2026-05-10T08:58:54.649803+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/10/an-argument-with-gemini.html</id>
+    <title>An argument with Gemini</title>
+    <updated>2026-05-10T09:39:49+01:00</updated>
+    <content type="html">&lt;p&gt;At the moment I'm working on a linting command for
+&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;. &lt;a href="https://blog.davep.org/2026/05/09/an-unreliable-buddy.html"&gt;Having given up on Copilot/Claude
+for this&lt;/a&gt;, I've been having quite a
+bit of success with Gemini CLI. But while doing this, I've noticed some odd
+things with it. It does have this habit of cargo-culting some changes, or
+just rewriting code that doesn't need it.&lt;/p&gt;
+&lt;p&gt;For example, the tests for the new linting tool: it keeps adding &lt;code&gt;import
+pytest&lt;/code&gt; near the top of the test file &lt;em&gt;despite the fact that &lt;code&gt;pytest&lt;/code&gt;
+doesn't get used anywhere in the code&lt;/em&gt;. Every time, I'll remove it, every
+time it adds more tests, it'll add it back.&lt;/p&gt;
+&lt;p&gt;Another thing I've noticed is it seems to be obsessed with adding
+indentation to empty lines. So, if you've got a line of code indented 8
+spaces, then an empty line, then another line of code indented 8 spaces,
+&lt;em&gt;it'll add 8 spaces on that empty line&lt;/em&gt;. That sort of thing annoys the hell
+out of me&lt;sup id="fnref:307-1"&gt;&lt;a class="footnote-ref" href="#fn:307-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;But the worst thing I just ran into was this. It had written this bit of
+code:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;lint_site&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;site_config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;SiteConfig&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Convenience function to run the linter.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Args:&lt;/span&gt;
+&lt;span class="sd"&gt;        site_config: The site configuration.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Returns:&lt;/span&gt;
+&lt;span class="sd"&gt;        0 if no errors, 1 if errors were found.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;linter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Linter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;site_config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;linter&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lint&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;On the surface this seems fine: a function that hides just a little bit of
+detail while providing a simple function interface to a feature. But that
+use of a variable to essentially "discard" it the next line... nah. I
+dislike that sort of thing. The code can be just a little more elegant. So
+seeing this I edited it to be (removing the docstring for the purposes of
+this post):&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;lint_site&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;site_config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;SiteConfig&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;Linter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;site_config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lint&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Nice and tidy.&lt;/p&gt;
+&lt;p&gt;I then had Gemini work on something else in the linting code. What did I see
+towards the end of the diff? This!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A sneaky edit" src="https://blog.davep.org/attachments/2026/05/10/sneaky-edit.webp#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;Sneaky little shit!&lt;/p&gt;
+&lt;p&gt;Now, sure, the idea is you review all changes before you run with them, but
+knowing that it's likely that any given change might rewrite parts of the
+code that aren't related to the problem at hand adds a lot more overhead,
+and I wonder how often people using these tools even bother.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:307-1"&gt;
+&lt;p&gt;I've seen some IDEs do that on purpose too; I've got Emacs configured
+to strip that out on save.&amp;#160;&lt;a class="footnote-backref" href="#fnref:307-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/05/10/an-argument-with-gemini.html"/>
+    <category term="AI"/>
+    <category term="Coding"/>
+    <category term="Gemini"/>
+    <category term="Google"/>
+    <category term="Python"/>
+    <category term="code review"/>
+    <published>2026-05-10T09:39:49+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/10/more-syncing-github-to-gitlab-and-codeberg.html</id>
     <title>More syncing GitHub to GitLab and Codeberg</title>
@@ -416,7 +487,7 @@ blog. But I'm going to start syncing projects to both GitLab and Codeberg. I
 see this as having two benefits: anyone who doesn't want to interact with
 GitHub can now easily fork code, and if they wish they can raise issues and
 the like too. Meanwhile, in doing this, I'll also have the added benefit of
-my code being "backed up" in at least three different locations&lt;sup id="fnref:311-1"&gt;&lt;a class="footnote-ref" href="#fn:311-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+my code being "backed up" in at least three different locations&lt;sup id="fnref:312-1"&gt;&lt;a class="footnote-ref" href="#fn:312-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;The approach I've settled on, for the moment, is based around &lt;a href="https://github.com/davep/setup-forge-sync" rel="noopener noreferrer" target="_blank"&gt;this little
 shell script&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
@@ -458,7 +529,7 @@ git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt
 &lt;span class="c1"&gt;### setup-forge-sync ends here&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;I'm going to keep all repo names the same&lt;sup id="fnref:311-2"&gt;&lt;a class="footnote-ref" href="#fn:311-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So when I use this script
+&lt;p&gt;I'm going to keep all repo names the same&lt;sup id="fnref:312-2"&gt;&lt;a class="footnote-ref" href="#fn:312-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So when I use this script
 it'll set things up so I can &lt;code&gt;git push backups&lt;/code&gt; and &lt;code&gt;main&lt;/code&gt; will then get
 pushed up to both GitLab and Codeberg. I don't feel the need to be keeping
 any WiP branches in sync or kicking about, likewise any &lt;code&gt;gh-pages&lt;/code&gt; branches.&lt;/p&gt;
@@ -471,14 +542,14 @@ developing and maintaining).&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:311-1"&gt;
+&lt;li id="fn:312-1"&gt;
 &lt;p&gt;Yes, I have other backups too, but they're always
-current-working-machine type backups.&amp;#160;&lt;a class="footnote-backref" href="#fnref:311-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+current-working-machine type backups.&amp;#160;&lt;a class="footnote-backref" href="#fnref:312-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:311-2"&gt;
+&lt;li id="fn:312-2"&gt;
 &lt;p&gt;Except, perhaps, for any repo whose name starts with &lt;code&gt;.&lt;/code&gt;; I seem to
 recall that GitLab can't handle that, for some bizarre reason. Perhaps
-that's fixed now?&amp;#160;&lt;a class="footnote-backref" href="#fnref:311-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+that's fixed now?&amp;#160;&lt;a class="footnote-backref" href="#fnref:312-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -977,7 +1048,7 @@ abstract base class was the solution. Gemini decided that a protocol was the
 solution. I &lt;em&gt;think&lt;/em&gt; I'm siding with Gemini on this one because this is a
 provides/needs problem, not a "kind of" problem. Even then though, while I
 sense Gemini has the right approach, I'm not always happy with its
-implementation of it&lt;sup id="fnref:314-1"&gt;&lt;a class="footnote-ref" href="#fn:314-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and once again: it's a cleanup of something I'd
+implementation of it&lt;sup id="fnref:315-1"&gt;&lt;a class="footnote-ref" href="#fn:315-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and once again: it's a cleanup of something I'd
 sooner not be cleaning up in the first place.&lt;/p&gt;
 &lt;p&gt;So here's the thing, and this harks back to &lt;a href="https://blog.davep.org/2026/04/26/but-is-the-code-that-bad.html"&gt;wondering if the code is that
 bad&lt;/a&gt;: it isn't... but it's also
@@ -993,8 +1064,8 @@ elegant.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:314-1"&gt;
-&lt;p&gt;And it feels so slow. SO. SLOW!&amp;#160;&lt;a class="footnote-backref" href="#fnref:314-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:315-1"&gt;
+&lt;p&gt;And it feels so slow. SO. SLOW!&amp;#160;&lt;a class="footnote-backref" href="#fnref:315-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1030,52 +1101,5 @@ clicker game going...&lt;/p&gt;
     <category term="Steam Controller"/>
     <category term="hardware"/>
     <published>2026-05-04T18:42:33+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/05/04/blogmore-v2-19-0.html</id>
-    <title>BlogMore v2.19.0</title>
-    <updated>2026-05-04T09:07:26+01:00</updated>
-    <content type="html">&lt;p&gt;While I'm messing around in the background of
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, looking at the state of the code
-and looking for opportunities to clean it up, either &lt;a href="https://blog.davep.org/2026/05/02/me-vs-claude.html"&gt;by
-hand&lt;/a&gt;, or by &lt;a href="https://blog.davep.org/2026/04/30/a-different-approach.html"&gt;pitting agent against
-agent&lt;/a&gt;, I've also been doing the odd
-little fix here and there.&lt;/p&gt;
-&lt;p&gt;I've just released &lt;a href="https://blogmore.davep.dev/changelog/#v2190" rel="noopener noreferrer" target="_blank"&gt;BlogMore
-v2.19.0&lt;/a&gt;, which has a couple of
-fixes, and also a small improvement.&lt;/p&gt;
-&lt;p&gt;The first fix is something I noticed late on last week when I was sharing
-one of the archive pages from my blog with someone. I noticed that the
-preview that appeared didn't have the default blog image, nor did it have
-any sort of description. This &lt;em&gt;should&lt;/em&gt; happen in that, on any page that
-isn't a post with a specific cover image or description, it should fall back
-to the blog's defaults. Turns out this logic was missing from things like
-the date-based archives, the category and tag archives, and a number of
-other parts of the generated output.&lt;/p&gt;
-&lt;p&gt;That's &lt;a href="https://github.com/davep/blogmore/pull/432" rel="noopener noreferrer" target="_blank"&gt;now fixed&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The second fix is to the &lt;a href="https://blog.davep.org/2026/04/25/blogmore-v2-16-0.html"&gt;recently-added&lt;/a&gt;
-backlinks feature. While reviewing the effect of something else I was
-working on, I specifically noticed that &lt;a href="https://blog.davep.org/2016/11/15/seen_by_davep_(the_return).html"&gt;this
-post&lt;/a&gt; didn't have a backlink
-section at the bottom, despite the fact that it was linked to from &lt;a href="https://blog.davep.org/2017/03/08/hello_google_pixel.html"&gt;this
-post&lt;/a&gt;. The cause seemed pretty clear:
-the fact that I had parentheses in the URL. My guess was that the regex that
-the link-finding code uses wasn't taking this sort of thing into account;
-&lt;a href="https://github.com/davep/blogmore/pull/445/changes" rel="noopener noreferrer" target="_blank"&gt;my guess was right&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The final change in this release is that the per-build cache-busting feature
-has been extended to &lt;em&gt;all&lt;/em&gt; the JavaScript files that are generated when
-building the site. Before it was mostly only applied to the main stylesheets
-and a couple of long-standing bits of JavaScript. Now it's added to the code
-that's used for &lt;a href="https://blog.davep.org/search/"&gt;search&lt;/a&gt;, the code-block support code, the
-&lt;a href="https://blog.davep.org/graph/"&gt;graph&lt;/a&gt;, etc. This means that if there are any changes in those
-files between builds and deployments of a site, there's less chance of
-unexpected behaviour that needs a "clear the cache first" fix.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/05/04/blogmore-v2-19-0.html"/>
-    <category term="Coding"/>
-    <category term="BlogMore"/>
-    <category term="Coding"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <published>2026-05-04T09:07:26+01:00</published>
   </entry>
 </feed>
