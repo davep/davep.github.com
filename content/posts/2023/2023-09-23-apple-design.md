@@ -3,6 +3,7 @@ title: Apple Design
 category: Tech
 tags: Apple, iOS, iPhone, design
 date: 2023-09-23 08:10:00+0100
+cover: /attachments/2023/09/23/top-bad.webp
 ---
 
 As someone who started out in the Android ecosystem when it came to smart
@@ -22,13 +23,13 @@ now.
 
 Except this...
 
-![Bad design](/attachments/2023/09/23/top-bad.jpeg#centre)
+![Bad design](/attachments/2023/09/23/top-bad.webp#centre)
 
 That thing where, when you're in one app, it will show the most useless link
 "back" to another app, and in doing so bump the time up and out of the way a
 little. Like, seriously, compare it to when the app link thing isn't there:
 
-![Good design](/attachments/2023/09/23/top-good.jpeg#centre)
+![Good design](/attachments/2023/09/23/top-good.webp#centre)
 
 Once you see it, you can't unsee it.
 

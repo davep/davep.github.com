@@ -3,7 +3,7 @@ title: Textual Query Sandbox
 category: Python
 tags: PyPI, Python, coding, Textual
 date: 2023-09-01 07:42:00 +0100
-cover: /attachments/2023/09/01/tqs-cover.png
+cover: /attachments/2023/09/01/tqs-cover.webp
 ---
 
 Sometimes I can have an idea for a Textual widget, library or application on
@@ -32,7 +32,7 @@ type in a query, and a way of displaying the results.
 So [`textual-query-sandbox`](https://github.com/davep/textual-query-sandbox)
 was born!
 
-![Textual Query Sandbox](/attachments/2023/09/01/tqs.png#centre)
+![Textual Query Sandbox](/attachments/2023/09/01/tqs.webp#centre)
 
 In this very first version (which was *really* quickly put together -- it
 was something like 15 minutes to write the main code and then probably 45

@@ -3,7 +3,7 @@ title: Textual Query Sandbox Update
 category: Python
 tags: PyPI, Python, coding, Textual
 date: 2023-09-10 09:22:00 +0100
-cover: /attachments/2023/09/10/tqs-1.png
+cover: /attachments/2023/09/10/tqs-1.webp
 ---
 
 Since [quickly hacking together `textual-query-sandbox` a few days
@@ -17,17 +17,17 @@ thought it might be interesting to have a small collection of playgrounds
 grounded together with a `TabbedContent`. So as of now the tool still has
 the original playground which had an emphasis on nested containers:
 
-![Playground 1](/attachments/2023/09/10/tqs-1.png#centre)
+![Playground 1](/attachments/2023/09/10/tqs-1.webp#centre)
 
 There's now a playground with an emphasis on selecting widgets within
 containers[^1]:
 
-![Playground 2](/attachments/2023/09/10/tqs-2.png#centre)
+![Playground 2](/attachments/2023/09/10/tqs-2.webp#centre)
 
 There's also now a playground that has an emphasis on pulling out widgets
 based on ID and classes:
 
-![Playground 3](/attachments/2023/09/10/tqs-3.png#centre)
+![Playground 3](/attachments/2023/09/10/tqs-3.webp#centre)
 
 The other change you will notice from the original post is the DOM tree
 shown in the bottom right corner. Note that that isn't there to show your
