@@ -8,7 +8,65 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 10 May 2026 08:58:54 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 10 May 2026 10:08:57 +0000</lastBuildDate>
+    <item>
+      <title>BlogMore v2.21.0</title>
+      <link>https://blog.davep.org/2026/05/10/blogmore-v2-21-0.html</link>
+      <description>&lt;p&gt;After noticing a broken link in a post yesterday, I got to thinking that it
+would be useful to add a linter to &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;.
+So I've released &lt;a href="https://blogmore.davep.dev/changelog/#v2210" rel="noopener noreferrer" target="_blank"&gt;v2.21.0&lt;/a&gt;
+which adds &lt;a href="https://blogmore.davep.dev/linting/" rel="noopener noreferrer" target="_blank"&gt;linting support&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A number of things are checked and the results are broken down into things
+that are errors or warnings. Errors result from any of these checks:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ensures all posts and pages have valid YAML frontmatter. If a file cannot
+  be parsed, it is reported as an error.&lt;/li&gt;
+&lt;li&gt;Scans the generated HTML for links to non-existent internal paths (other
+  posts, pages, categories, tags, archives, site features like search, or
+  files in &lt;code&gt;extras/&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Checks that all &lt;code&gt;&amp;lt;img&amp;gt;&lt;/code&gt; sources resolve to valid
+  internal paths or files in the &lt;code&gt;extras/&lt;/code&gt; directory.&lt;/li&gt;
+&lt;li&gt;Checks that the &lt;code&gt;cover&lt;/code&gt; property in a post or page frontmatter points to a
+  valid resource.&lt;/li&gt;
+&lt;li&gt;Verifies that all page slugs listed in &lt;code&gt;sidebar_pages&lt;/code&gt; actually exist.&lt;/li&gt;
+&lt;li&gt;Checks that all internal-looking URLs in the &lt;code&gt;links:&lt;/code&gt; and &lt;code&gt;socials:&lt;/code&gt;
+  configuration settings point to valid targets.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;On the other hand, the following just result in a warning:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Flags if a post is missing a &lt;code&gt;title&lt;/code&gt;, &lt;code&gt;category&lt;/code&gt;, &lt;code&gt;tags&lt;/code&gt;, or a &lt;code&gt;date&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Reports if a post's &lt;code&gt;date&lt;/code&gt; or &lt;code&gt;modified&lt;/code&gt; date is set in the future.&lt;/li&gt;
+&lt;li&gt;Notes if a post's &lt;code&gt;modified&lt;/code&gt; date is earlier than its original publication
+  &lt;code&gt;date&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Identifies if two or more posts share the exact same title.&lt;/li&gt;
+&lt;li&gt;Flags inline images missing an &lt;code&gt;alt&lt;/code&gt; attribute, or those with an
+  empty/whitespace-only &lt;code&gt;alt&lt;/code&gt; attribute.&lt;/li&gt;
+&lt;li&gt;If &lt;a href="https://blogmore.davep.dev/configuration/#clean_urls" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;clean_urls&lt;/code&gt;&lt;/a&gt; is
+  enabled, warns if internal links point explicitly to &lt;code&gt;index.html&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Reports internal links using the full &lt;code&gt;site_url&lt;/code&gt; (e.g.,
+  &lt;code&gt;https://example.com/path/&lt;/code&gt;) instead of a root-relative path (&lt;code&gt;/path/&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I feel like all of these cover most of the things that are low-cost to
+detect but have a positive impact on the state of the content of a blog.&lt;/p&gt;
+&lt;p&gt;One thing I've &lt;em&gt;not&lt;/em&gt; done is any sort of checking of external links. This
+would be costly and could possibly have unintended consequences that I don't
+want to be messing with (perhaps a tool to &lt;em&gt;export&lt;/em&gt; the list of external
+links for checking could be useful, at some point).&lt;/p&gt;
+&lt;p&gt;Having run this against this blog, I did find some things that needed
+cleaning up, mostly absolute links that could be turned into root-relative
+links (always good for making the content portable).&lt;/p&gt;
+&lt;p&gt;I'm going to make this a standard part of my &lt;em&gt;"I'm ready to publish"&lt;/em&gt; check
+for this blog, and it should also be helpful as I &lt;a href="https://blog.davep.org/2026/05/06/the-webp-migration-is-under-way.html"&gt;carry on migrating the
+images in the blog over to
+WebP&lt;/a&gt;.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/05/10/blogmore-v2-21-0.html</guid>
+      <category>Coding</category>
+      <category>BlogMore</category>
+      <category>Coding</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <pubDate>Sun, 10 May 2026 10:32:12 +0100</pubDate>
+    </item>
     <item>
       <title>More syncing GitHub to GitLab and Codeberg</title>
       <link>https://blog.davep.org/2026/05/10/more-syncing-github-to-gitlab-and-codeberg.html</link>
@@ -1072,33 +1130,6 @@ a static site generator.&amp;#160;&lt;a class="footnote-backref" href="#fnref:27
       <category>Python</category>
       <category>coding</category>
       <pubDate>Tue, 07 Apr 2026 19:12:08 +0100</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.9.0</title>
-      <link>https://blog.davep.org/2026/04/04/blogmore-v2-9-0.html</link>
-      <description>&lt;p&gt;After releasing &lt;a href="https://blog.davep.org/2026/04/04/blogmore-el-v2-6.html"&gt;&lt;code&gt;blogmore.el&lt;/code&gt; v2.6 this
-morning&lt;/a&gt;, I noticed something about the
-post: the text that was marked up with &lt;code&gt;&amp;lt;kbd&amp;gt;&lt;/code&gt; wasn't really standing out as
-keys. In blog posts, as in documentation, if I mention the name of a key, I
-like to mark it up with &lt;code&gt;&amp;lt;kbd&amp;gt;&lt;/code&gt;. Ideally, with such markup, the styling of
-the page it's being used on will make it clear that it's supposed to be read
-as a key.&lt;/p&gt;
-&lt;p&gt;I've never put any such styling into the default styles made available in
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;So here we are with &lt;a href="https://blogmore.davep.dev/changelog/#v290" rel="noopener noreferrer" target="_blank"&gt;BlogMore
-v2.9.0&lt;/a&gt;, now with a bit of
-markup, and theme support, for keys marked up with &lt;code&gt;&amp;lt;kbd&amp;gt;&lt;/code&gt;. So now,
-hopefully, if I say you should press &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;F4&lt;/kbd&gt; to make
-this blog look better, those keys should stand out a little better than they
-used to.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/04/04/blogmore-v2-9-0.html</guid>
-      <category>Coding</category>
-      <category>BlogMore</category>
-      <category>Markdown</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>coding</category>
-      <pubDate>Sat, 04 Apr 2026 19:55:04 +0100</pubDate>
     </item>
   </channel>
 </rss>
