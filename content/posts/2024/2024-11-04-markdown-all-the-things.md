@@ -3,7 +3,7 @@ title: Markdown all the things
 category: Coding
 tags: Python, Twitter, Journey, Evernote, Markdown
 date: 2024-11-04 21:00:00 +0000
-cover: /attachments/2024/11/04/bird2glass.png
+cover: /attachments/2024/11/04/bird2glass.webp
 ---
 
 Recently I've been on a bit of a *"turn stuff into Markdown files and slap
@@ -84,7 +84,7 @@ week's thought was *"why don't I also turn this into an Obsidian Vault?"*.
 
 So I did...
 
-![The graph of my Twitter Obsidian Vault](/attachments/2024/11/04/bird2glass.png)
+![The graph of my Twitter Obsidian Vault](/attachments/2024/11/04/bird2glass.webp#centre)
 
 The tool I built to do this is
 [`bird2glass`](https://github.com/davep/bird2glass). As you'll see in [the
@@ -95,12 +95,12 @@ user wants from this. Personally I'm pleased with the result.
 The main aim of the tool is to break the tweets down into a hierarchy of
 year, month and day...
 
-![Viewing a tweet](/attachments/2024/11/04/tweet-view.png)
+![Viewing a tweet](/attachments/2024/11/04/tweet-view.webp#centre)
 
 ...and also to connect them with any account that was being replied to or
 mentioned in some way...
 
-![Viewing a user](/attachments/2024/11/04/user-view.png)
+![Viewing a user](/attachments/2024/11/04/user-view.webp#centre)
 
 This user view is handy when viewing backlinks, as it gives you a list of
 all the tweets that mention that user (and, of course, if you're into
