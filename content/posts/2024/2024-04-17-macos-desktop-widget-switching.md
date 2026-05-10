@@ -3,6 +3,7 @@ title: macOS desktop widget switching
 category: Tech
 tags: macOS, fish, shell, streaming
 date: 2024-04-17 09:26:00 +0100
+cover: /attachments/2024/04/17/right-screen.webp
 ---
 
 When [desktop widgets](https://support.apple.com/en-gb/108996) first turned
@@ -11,7 +12,7 @@ use a pair of screens, the right one mostly given over to Emacs, and there
 was generally room to space there. These days that screen generally looks
 something like this:
 
-![The usual layout of my right screen](/attachments/2024/04/17/right-screen.png#centre)
+![The usual layout of my right screen](/attachments/2024/04/17/right-screen.webp#centre)
 
 Recently I've got into [streaming while I do some
 coding](https://www.youtube.com/@davep-codes/streams) and it's the
