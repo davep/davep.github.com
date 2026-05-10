@@ -3,7 +3,7 @@ title:  "Mythos: Ragnarok booked"
 category: Life
 tags: Fringe, wrestling
 date: 2023-08-15 20:06:00 +0100
-cover: /attachments/2023/08/15/IMG_7612.jpeg
+cover: /attachments/2023/08/15/IMG_7612.webp
 ---
 
 That's a third show booked! This means that, [as I
@@ -23,7 +23,7 @@ much more about it. Eventually though, after some persuasion (I mean, an
 hour or so at a show and some beers afterwards, how bad could it be
 really?), I agreed to go. I expected to find it meh.
 
-![Cast of Mythos: Ragnarok 2022](/attachments/2023/08/15/IMG_7612.jpeg#centre)
+![Cast of Mythos: Ragnarok 2022](/attachments/2023/08/15/IMG_7612.webp#centre)
 
 Holy shit was it so much fun! Like, [seriously so much
 fun](https://www.youtube.com/watch?v=37r1CqMKLzM). I'd never realised that

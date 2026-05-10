@@ -3,6 +3,7 @@ title: Admitting defeat on my website
 category: Coding
 tags: php, html, web
 date: 2023-08-11 08:44:00 +0100
+cover: /attachments/2023/08/11/davep-org.webp
 ---
 
 I've had `davep.org` since very late 1999. Initially it started as a domain
@@ -21,7 +22,7 @@ into actual HTML made sense.
 
 And it worked.
 
-![The earliest version of davep.org I can find](/attachments/2023/08/11/davep-org.png#centre)
+![The earliest version of davep.org I can find](/attachments/2023/08/11/davep-org.webp#centre)
 
 I heavily maintained the site for many years; keeping the same engine,
 tweaking the styles, adding features and content. I figure some time around

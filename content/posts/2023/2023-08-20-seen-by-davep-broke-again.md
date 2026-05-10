@@ -3,6 +3,7 @@ title: Seen by davep broke (again)
 category: Creative
 tags: blogging, photography, Twitter, Posterous, photoblog
 date: 2023-08-20 09:25:00+0000
+cover: /attachments/2023/08/20/borked-photos.webp
 ---
 
 Almost [seven years ago](/2016/11/15/seen_by_davep_(the_return).html) I took
@@ -81,7 +82,7 @@ photos](https://seenbydavep.blogspot.com/) was still getting updated.
 
 Then yesterday I noticed this:
 
-![Broken images in my photoblog](/attachments/2023/08/20/borked-photos.png)
+![Broken images in my photoblog](/attachments/2023/08/20/borked-photos.webp#centre)
 
 I don't actually quite know exactly what's going on here, and at this point
 I really don't care. My working hypothesis is this: when ifttt added the
