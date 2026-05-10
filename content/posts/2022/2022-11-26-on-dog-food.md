@@ -41,7 +41,7 @@ building something with Textual. I had, of course, already written [one
 small application with the
 library](https://github.com/Textualize/textual/blob/main/examples/five_by_five.py),
 and had plans for another (in part [it's how I ended up working
-here](https://blog.davep.org/2022/10/05/on-to-something-new-redux.html)),
+here](/2022/10/05/on-to-something-new-redux.html)),
 but I'd yet to really dive in and try and build something more involved.
 
 Giving it some thought: I wasn't entirely sure what I wanted to build
