@@ -3,7 +3,7 @@ title: Goodbye Textualize
 category: Life
 tags: Python, textual, Free Software, work
 date: 2024-03-28 06:30:00 +0000
-cover: /attachments/2024/03/28/achievement-unlocked.png
+cover: /attachments/2024/03/28/achievement-unlocked.webp
 ---
 
 While I have been [on the receiving end of redundancy once
@@ -17,13 +17,13 @@ for me and I'm one of 67% of employees being let go from a tech startup.
 
 Achievement unlocked, I guess?
 
-![!Achievement unlocked](/attachments/2024/03/28/achievement-unlocked.png#centre)
+![!Achievement unlocked](/attachments/2024/03/28/achievement-unlocked.webp#centre)
 
 To be clear: I'm not annoyed about this, I'm not even shocked about this; I
 planned for this from the off and realised and recognised the gamble I was
 taking [back in 2022](https://twitter.com/willmcgugan/status/1574118265063972864).
 
-[![Announcing being hired](/attachments/2024/03/28/textual-startup-tweet.png#centre)](https://twitter.com/willmcgugan/status/1574118265063972864)
+[![Announcing being hired](/attachments/2024/03/28/textual-startup-tweet.webp#centre)](https://twitter.com/willmcgugan/status/1574118265063972864)
 
 I am disappointed about this. Not in a "I'm disappointed in you" kind of
 way, but disappointed for all involved and what it says about how FOSS

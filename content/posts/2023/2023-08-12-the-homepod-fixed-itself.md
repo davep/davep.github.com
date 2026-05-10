@@ -3,6 +3,7 @@ title: The HomePod fixed itself
 category: Tech
 tags: Apple
 date: 2023-08-12 07:46:00 +0100
+cover: /attachments/2023/08/12/fixed-homepod.webp
 ---
 
 [A couple of weeks
@@ -24,7 +25,7 @@ So, here I am, a couple of Saturdays on, it's early morning, I've had
 breakfast and I'm having coffee and I think it's the perfect time to do
 this. I hope the Home app my on iPad and... it's sorted!
 
-![HomePod all good again](/attachments/2023/08/12/Screenshot 2023-08-12 at 07.25.44.png#centre)
+![HomePod all good again](/attachments/2023/08/12/fixed-homepod.webp#centre)
 
 So, yeah, it looks like it somehow managed to unstick itself in the end. A
 quick test of some of the issues I was seeing suggested there was still an

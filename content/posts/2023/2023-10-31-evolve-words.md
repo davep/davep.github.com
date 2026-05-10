@@ -3,7 +3,7 @@ title: Evolve Words
 category: Coding
 tags: Coding, PyPI, Python, biology, evolution, terminal, textual
 date: 2023-10-31 21:39:00 +0100
-cover: /attachments/2023/10/31/evolve-words-cover.png
+cover: /attachments/2023/10/31/evolve-words-cover.webp
 ---
 
 This follows on from my [previous post](/2023/10/26/visual-selection.html).
@@ -43,7 +43,7 @@ This version became `selection2`.
 So, having turned `selection` into a TUI application with Textual, I *had*
 to do the same with this code...
 
-![Evolve Words](/attachments/2023/10/31/evolve-words.png#centre)
+![Evolve Words](/attachments/2023/10/31/evolve-words.webp#centre)
 
 As before, because it's fun to do so, this leans heavily on the [worker
 API](https://textual.textualize.io/guide/workers/) and

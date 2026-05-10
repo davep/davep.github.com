@@ -3,6 +3,7 @@ title: "Website: Miscellaneous Stuff moved"
 category: Coding
 tags: html, web
 date: 2023-08-14 22:04:00 +0100
+cover: /attachments/2023/08/14/PCN-cover.webp
 ---
 
 This evening I've spent more time working on [the planned complete remake of
@@ -31,7 +32,7 @@ you go to the [December 21st 1983
 edition](https://archive.org/details/PersonalComputerNews/PersonalComputerNews041-21Dec1983/page/n9/mode/2up)
 and turn to around page 84, there I am!
 
-![The cover of PCN](/attachments/2023/08/14/PCN-cover.png#centre)
+![The cover of PCN](/attachments/2023/08/14/PCN-cover.webp#centre)
 
 At this point I'm almost tempted to try and get an emulator up and running
 and get the code going again. How much fun would it be to add a video to [my

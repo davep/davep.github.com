@@ -3,7 +3,7 @@ title: A map of my year in Obsidian
 category: Life
 tags: journal, Obsidian, graph
 date: 2023-09-11 20:07:00 +0100
-cover: /attachments/2023/09/11/MainGraph.png
+cover: /attachments/2023/09/11/MainGraph.webp
 ---
 
 Some time around late October or early November last year, around the time I
@@ -34,25 +34,25 @@ What would that graph look like?
 
 While it's not the end of this year yet, here's how that's shaping up:
 
-![The main graph](/attachments/2023/09/11/MainGraph.png#centre)
+![The main graph](/attachments/2023/09/11/MainGraph.webp#centre)
 
 Each of the yellow circles is a day, each of the blue ones is a tag of some
 sort. As you'd imagine, the size of the circles relates to how often that
 item is tagged. So I can see what proportion of my days so far this year
 have been tagged with being heavily involved with work:
 
-![Work](/attachments/2023/09/11/Work.png#centre)
+![Work](/attachments/2023/09/11/Work.webp#centre)
 
 Likewise, if I want to see how many days this year have involved a
 significant spot of gaming:
 
-![Gaming](/attachments/2023/09/11/Gaming.png#centre)
+![Gaming](/attachments/2023/09/11/Gaming.webp#centre)
 
 Ditto for days where I've done some coding on pet projects, or even some
 personal-time coding relating to work projects (it might be work, but it's
 also Free Software and I do like to support FOSS!)
 
-![Coding](/attachments/2023/09/11/Coding.png#centre)
+![Coding](/attachments/2023/09/11/Coding.webp#centre)
 
 I sort of have a curated set of tags I apply, but I've not made it a strict
 set; if some new situation crops up that calls for a new tag I'll use it.
@@ -64,7 +64,7 @@ so while it's not really surprising to find that Sunday doesn't dominate
 over other days, I can see which days are Sundays and perhaps wander along
 the connections and see what I get up to:
 
-![Sunday](/attachments/2023/09/11/Sunday.png#centre)
+![Sunday](/attachments/2023/09/11/Sunday.webp#centre)
 
 I don't quite know what I hope to get out of this, I don't really know if
 there's anything useful to be had here at all, but it will be interesting to

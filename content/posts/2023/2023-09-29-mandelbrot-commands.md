@@ -3,7 +3,7 @@ title: Mandelbrot Commands
 category: Python
 tags: PyPI, Python, Textual, coding, mandelbrot, textual-canvas
 date: 2023-09-29 12:42:00 +0100
-cover: /attachments/2023/09/29/mandelbrot-commands.png
+cover: /attachments/2023/09/29/mandelbrot-commands.webp
 ---
 
 I don't think I've mentioned it before on this blog, but some time back I
@@ -22,7 +22,7 @@ Textual](https://textual.textualize.io/blog/2023/09/15/textual-0370-adds-a-comma
 these days), but so far I've not used it in any of my own projects; earlier
 today I thought it could be fun to add it to `textual-mandelbrot`.
 
-![Mandelbrot commands in action](/attachments/2023/09/29/mandelbrot-commands.png#centre)
+![Mandelbrot commands in action](/attachments/2023/09/29/mandelbrot-commands.webp#centre)
 
 Most of the commands I've added are trivial and really better covered by
 (and are covered by) keystrokes, but it was a good test and a way to show

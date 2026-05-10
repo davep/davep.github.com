@@ -3,7 +3,7 @@ title: A new guitar
 category: Life
 tags: music, guitar
 date: 2023-10-20 08:39:00 +0100
-cover: /attachments/2023/10/20/IMG_3329.jpeg
+cover: /attachments/2023/10/20/IMG_3329.webp
 ---
 
 This one has been brewing for a year, more or less. Now that I commute into
@@ -40,7 +40,7 @@ Yesterday was that day.
 It didn't quite go to plan, but the outcome was that I ended up with
 something to play.
 
-![My new Höfner](/attachments/2023/10/20/IMG_3329.jpeg#centre)
+![My new Höfner](/attachments/2023/10/20/IMG_3329.webp#centre)
 
 So, on getting into the shop, and explaining what I was after and why to the
 chap in there, I tried the usual Stratocaster and Telecaster thing. Both
@@ -63,7 +63,7 @@ Long story short... it had to come home with me!
 As mentioned earlier: most of my guitar stuff is still in storage, from when
 I moved to Scotland, but I *did* find my old tin of plectrums and the tuner.
 
-![Standard guitar kit](/attachments/2023/10/20/IMG_3330.jpeg#centre)
+![Standard guitar kit](/attachments/2023/10/20/IMG_3330.webp#centre)
 
 <center markdown="1">
 *(Yes, the tin was once mine and was once full; the early 90s were a different time)*
@@ -73,7 +73,7 @@ I even found one of my old stands, that I've had since around 1991! So now
 it's set up in my living room, next to the PCVR rig, ready to go at a
 moment's notice.
 
-![On its stand, ready to go](/attachments/2023/10/20/IMG_3331.jpeg#centre)
+![On its stand, ready to go](/attachments/2023/10/20/IMG_3331.webp#centre)
 
 This is my plan now: each weekend I aim to put in at least an hour a day of
 practice, to try and get my fingers up to strength again, and to build up

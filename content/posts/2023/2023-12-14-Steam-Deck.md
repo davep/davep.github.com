@@ -3,7 +3,7 @@ title: Steam Deck
 category: Gaming
 tags: gaming, Steam, Steam Deck, hardware
 date: 2023-12-14 16:47:00 +0100
-cover: /attachments/2023/12/14/IMG_3842.jpeg
+cover: /attachments/2023/12/14/IMG_3842.webp
 ---
 
 Back in 2021, I think it was, when Value first announced the Steam Deck, I
@@ -27,7 +27,7 @@ follow; now I could get an idea if a Deck was any good and if it was for me.
 So after a bit of review-reading and review-watching, Thursday last week, I
 slapped down an order; and by Tuesday the Deck turned up.
 
-![New Deck getting going](/attachments/2023/12/14/new-deck.jpg#centre)
+![New Deck getting going](/attachments/2023/12/14/new-deck.webp#centre)
 
 The overturning of my original decision to *not* buy came down to a couple
 of things. The first was: I recognised that there were a lot of games in my
@@ -72,7 +72,7 @@ Deck and play DooM!
 So far, two days in, I'm convinced this was an excellent idea and I'm
 totally won over.
 
-![My Steam Deck and Stream Deck](/attachments/2023/12/14/IMG_3842.jpeg#centre)
+![My Steam Deck and Stream Deck](/attachments/2023/12/14/IMG_3842.webp#centre)
 
 I'm still getting a feel for what does and doesn't work best on the Deck,
 from a *"my taste in games"* point of view, but things that allow for
@@ -81,7 +81,7 @@ dipping in and having a quick blast are winners.
 [Hong Kong Massacre](https://store.steampowered.com/app/741510/The_Hong_Kong_Massacre/)
 has finally got a play, despite me owning it ever since I saw John Wick 4.
 
-![Hong Kong Massacre](/attachments/2023/12/14/hong-kong.jpg#centre)
+![Hong Kong Massacre](/attachments/2023/12/14/hong-kong.webp#centre)
 
 [DooM II](https://store.steampowered.com/app/2300/DOOM_II/) got installed
 and is working well -- I may have to slowly play my way through the whole
@@ -94,7 +94,7 @@ it's been sat there with 0 hours for way too long).
 I've also failed to resist one of the [more questionable titles from my
 younger days](https://store.steampowered.com/app/434050/Duke_Nukem_3D_20th_Anniversary_World_Tour/)...
 
-![Come get some](/attachments/2023/12/14/duke.jpg#centre)
+![Come get some](/attachments/2023/12/14/duke.webp#centre)
 
 The real surprise for me though has been a game I bought on a whim a couple
 of weeks back, which was going cheap, looked fun, seemed nice and casual and
@@ -102,7 +102,7 @@ which I installed on the PC and totally ignored (because, again, turning on
 the PC to have a quick game seems like a lot of faff):
 [Brotato](https://store.steampowered.com/app/1942280/Brotato/).
 
-![Brotato](/attachments/2023/12/14/brotato.jpg)
+![Brotato](/attachments/2023/12/14/brotato.webp#centre)
 
 This game is frantic, way over the top, kinda confusing in parts (for me)
 but accessible enough that I can actually have a ton of fun with it; and

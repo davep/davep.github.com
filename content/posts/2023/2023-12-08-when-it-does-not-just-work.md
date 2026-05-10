@@ -3,7 +3,7 @@ title: When it doesn't just work
 category: Tech
 tags: Apple, watch
 date: 2023-12-08 10:32:00 +0100
-cover: /attachments/2023/12/08/watch-face.png
+cover: /attachments/2023/12/08/watch-face.webp
 ---
 
 My journey into the Apple ecosystem has been gradual but all-consuming. I've
@@ -25,7 +25,7 @@ acts as my nighttime tracking device while the 8 charges and I sleep.
 I record walks. I record runs. I record lots of heart rate data. I pay for
 things, pretty much everything, with it. I... take it for granted really.
 
-![My main watch face](/attachments/2023/12/08/watch-face.png#centre)
+![My main watch face](/attachments/2023/12/08/watch-face.webp#centre)
 
 Yesterday though, something odd started to happen. I noticed that some
 things didn't seem to be syncing from my watch to the phone. Health-related

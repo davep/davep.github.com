@@ -3,10 +3,10 @@ title: Back to Death Stranding
 category: Gaming
 tags: Death Stranding, PS5, gaming
 date: 2024-02-05 07:45:00 +0000
-cover: /attachments/2024/02/05/IMG_4223.JPG
+cover: /attachments/2024/02/05/IMG_4223.webp
 ---
 
-![Death Stranding](/attachments/2024/02/05/IMG_4223.JPG#centre)
+![Death Stranding](/attachments/2024/02/05/IMG_4223.webp#centre)
 
 Death Stranding is easily one of my top 5 games ever. I bought the PS4
 version, on a whim, back in early 2020, to see what all the fuss was about.
