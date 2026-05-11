@@ -2,11 +2,129 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-11T08:20:16.706256+00:00</updated>
+  <updated>2026-05-11T11:34:15.948480+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/11/speeding-up-blogmore.html</id>
+    <title>Speeding up BlogMore</title>
+    <updated>2026-05-11T12:30:25+01:00</updated>
+    <content type="html">&lt;p&gt;As &lt;a href="https://blog.davep.org/2026/05/09/blogmore-v2-20-0.html"&gt;mentioned recently&lt;/a&gt;,
+&lt;a href="https://www.yakshaving.co.uk/" rel="noopener noreferrer" target="_blank"&gt;Andy&lt;/a&gt; did a nifty bit of testing of
+&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; to &lt;a href="https://www.yakshaving.co.uk/posts/blogmore-performance/" rel="noopener noreferrer" target="_blank"&gt;measure the performance hit of
+each of the optional generation
+features&lt;/a&gt;.
+Performance is something I haven't really spent much time thinking about; I
+cared more about how the result looked than I did about how quickly a site
+got generated.&lt;/p&gt;
+&lt;p&gt;I seem to remember that, early on, I did have a bit of a play with trying to
+get Copilot to tackle the idea of parallel generation of parts of the site,
+but &lt;a href="https://github.com/davep/blogmore/pull/283" rel="noopener noreferrer" target="_blank"&gt;I didn't seem to get any sort of win out of
+it&lt;/a&gt; so I closed the PR and gave
+up on the idea.&lt;/p&gt;
+&lt;p&gt;Now though, especially having added the elapsed time of each step to the
+progress report during generation, I am curious about what wins there are.
+One that came to mind right away, and I have been considering dealing with
+for a wee while, &lt;a href="https://fosstodon.org/@davep/116540338542474954" rel="noopener noreferrer" target="_blank"&gt;is the fact that every generation downloads the
+FontAwesome metadata&lt;/a&gt;.
+Caching that would be a simple win, for example.&lt;/p&gt;
+&lt;p&gt;But, if I'm going to do this, it makes sense that I stick to the spirit of
+this project and get one or more agents to tackle the problem. So I asked
+&lt;a href="https://blog.davep.org/tag/gemini/"&gt;Gemini&lt;/a&gt; CLI to look over the codebase and give me some big
+easy wins. I made clear I didn't want it to do any work yet, I just wanted
+it to report back what it could find.&lt;/p&gt;
+&lt;p&gt;The result made a lot of sense. Here's what it said:&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id="performance-optimization-recommendations-for-blogmore"&gt;Performance Optimization Recommendations for BlogMore&lt;a aria-label="Link to this heading" class="heading-anchor" href="#performance-optimization-recommendations-for-blogmore"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I have conducted a comprehensive review of the &lt;code&gt;blogmore&lt;/code&gt; codebase and
+identified several areas where measurable and significant speedups can be
+achieved, particularly for larger sites.&lt;/p&gt;
+&lt;h3 id="1-backlink-snippet-extraction-highest-impact"&gt;1. Backlink Snippet Extraction (Highest Impact)&lt;a aria-label="Link to this heading" class="heading-anchor" href="#1-backlink-snippet-extraction-highest-impact"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The most significant bottleneck is in &lt;code&gt;src/blogmore/backlinks.py&lt;/code&gt;. The
+&lt;code&gt;build_backlink_map&lt;/code&gt; function iterates through every internal link in every
+post. For each link, it calls &lt;code&gt;_extract_snippet&lt;/code&gt;, which &lt;strong&gt;re-parses the
+entire Markdown content of the source post&lt;/strong&gt; to generate a plain-text
+snippet.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The Issue:&lt;/strong&gt; If a post has 20 internal links, it is parsed 20 times just
+  for backlinks.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Win:&lt;/strong&gt; Modify the logic to insert unique markers for &lt;em&gt;all&lt;/em&gt; links in
+  a post and perform a single Markdown-to-plain-text conversion per post.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="2-redundant-markdown-parsing-for-metadata"&gt;2. Redundant Markdown Parsing for Metadata&lt;a aria-label="Link to this heading" class="heading-anchor" href="#2-redundant-markdown-parsing-for-metadata"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The &lt;code&gt;Post&lt;/code&gt; object in &lt;code&gt;src/blogmore/parser.py&lt;/code&gt; has properties like
+&lt;code&gt;description&lt;/code&gt; and &lt;code&gt;reading_time&lt;/code&gt; that are accessed frequently (on the post
+page, index pages, RSS feeds, search index, etc.).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The Issue:&lt;/strong&gt; &lt;code&gt;Post.description&lt;/code&gt; calls &lt;code&gt;extract_first_paragraph&lt;/code&gt;, and
+  &lt;code&gt;Post.reading_time&lt;/code&gt; calls &lt;code&gt;calculate_reading_time&lt;/code&gt;. Both of these
+  functions perform a &lt;strong&gt;full Markdown conversion&lt;/strong&gt; every time they are
+  called because they are not cached.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Win:&lt;/strong&gt; Use &lt;code&gt;functools.cached_property&lt;/code&gt; on these fields.
+  Additionally, these should be calculated by extracting text from the
+  &lt;code&gt;html_content&lt;/code&gt; that has already been generated during the initial parse,
+  rather than re-parsing the raw Markdown.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="3-sequential-processing"&gt;3. Sequential Processing&lt;a aria-label="Link to this heading" class="heading-anchor" href="#3-sequential-processing"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The generator currently processes everything sequentially in a single
+thread.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The Issue:&lt;/strong&gt; For a site with hundreds or thousands of posts, the initial
+  Markdown parsing and the subsequent Jinja2 rendering are strictly serial,
+  leaving multi-core CPUs mostly idle.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Win:&lt;/strong&gt; Use &lt;code&gt;multiprocessing&lt;/code&gt; (e.g., &lt;code&gt;ProcessPoolExecutor&lt;/code&gt;) to
+  parallelize the parsing of Markdown files and the rendering of HTML pages.
+  Since these tasks are CPU-bound and independent, this would scale almost
+  linearly with the number of CPU cores.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="4-asset-management-inefficiencies"&gt;4. Asset Management Inefficiencies&lt;a aria-label="Link to this heading" class="heading-anchor" href="#4-asset-management-inefficiencies"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The &lt;code&gt;AssetManager&lt;/code&gt; in &lt;code&gt;src/blogmore/generator/assets.py&lt;/code&gt; performs some
+operations that could be optimized:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;FontAwesome Metadata:&lt;/strong&gt; It downloads icon metadata from GitHub on
+  &lt;em&gt;every&lt;/em&gt; build to optimize CSS. This can be cached locally to avoid network
+  latency.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Icon Generation:&lt;/strong&gt; It regenerates favicons and Apple touch icons on
+  every build. This should be skipped if the source icon hasn't changed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="5-minor-algorithmic-improvements"&gt;5. Minor Algorithmic Improvements&lt;a aria-label="Link to this heading" class="heading-anchor" href="#5-minor-algorithmic-improvements"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Navigation Lookups:&lt;/strong&gt; In &lt;code&gt;PageGenerator.generate_post_page&lt;/code&gt;, the code
+  uses &lt;code&gt;all_posts.index(post)&lt;/code&gt; to find the current post's position for
+  prev/next links. This is an O(N) operation called N times, leading to
+  O(N^2) behavior. Pre-calculating a mapping would make this O(1).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Markdown Instance Reuse:&lt;/strong&gt; Several utility functions
+  (&lt;code&gt;markdown_to_plain_text&lt;/code&gt;, &lt;code&gt;extract_first_paragraph&lt;/code&gt;) create a fresh
+  &lt;code&gt;markdown.Markdown&lt;/code&gt; instance on every call. Reusing a single instance (and
+  calling &lt;code&gt;.reset()&lt;/code&gt;) or caching the instance creation would reduce
+  overhead.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="summary"&gt;Summary&lt;a aria-label="Link to this heading" class="heading-anchor" href="#summary"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The "Big Wins" are definitely &lt;strong&gt;optimizing backlink snippet extraction&lt;/strong&gt; and
+&lt;strong&gt;implementing parallel parsing/rendering&lt;/strong&gt;. Together, these would likely
+reduce generation time for large sites by 60-80% on modern hardware.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;At first glance they all seem pretty sensible, and I like that it seems to
+have found some really obvious big improvements, and also the little wins
+that might have a cumulative effect. I strongly suspect the parallel
+generation suggestion is again going to be a non-win (and so for now I'm
+going to pass on it), but most of the other suggestions seem doable and
+worth trying out.&lt;/p&gt;
+&lt;p&gt;I think what I will do, rather than work through them all in one PR, is
+tackle one at a time. So, over the next few days, expect to see some PRs
+turn up and get merged (hopefully), as I try and tease some speed wins out
+of the code.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/05/11/speeding-up-blogmore.html"/>
+    <category term="Coding"/>
+    <category term="AI"/>
+    <category term="BlogMore"/>
+    <category term="Coding"/>
+    <category term="Gemini"/>
+    <category term="Python"/>
+    <published>2026-05-11T12:30:25+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/11/steam-controller-is-close.html</id>
     <title>Steam Controller is close</title>
@@ -556,7 +674,7 @@ that I wouldn't get too much done.&lt;/p&gt;</content>
     <updated>2026-05-08T13:33:30+01:00</updated>
     <content type="html">&lt;p&gt;Not that I'm avidly tracking it because I'm envious of all the pictures I'm
 seeing &lt;a href="https://www.reddit.com/r/SteamController/" rel="noopener noreferrer" target="_blank"&gt;on Reddit&lt;/a&gt;, but...&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Controller is now in the UK" src="https://blog.davep.org/attachments/2026/05/08/in-the-uk.webp" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Controller is now in the UK" src="https://blog.davep.org/attachments/2026/05/08/in-the-uk.webp#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;One step closer to getting my hands on my &lt;a href="https://blog.davep.org/tag/steam-controller/"&gt;Steam
 Controller&lt;/a&gt;!&lt;/p&gt;</content>
     <link href="https://blog.davep.org/2026/05/08/steam-controller-in-the-uk.html"/>
@@ -1002,72 +1120,5 @@ doesn't make sense that embedded code counts towards those.&amp;#160;&lt;a class
     <category term="code review"/>
     <category term="code smell"/>
     <published>2026-05-05T20:30:24+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/05/05/and-then-there-were-three.html</id>
-    <title>And then there were three</title>
-    <updated>2026-05-05T12:37:53+01:00</updated>
-    <content type="html">&lt;p&gt;Given the concerns &lt;a href="https://blog.davep.org/2026/05/04/i-wouldnt-start-from-here.html"&gt;I wrote about
-yesterday&lt;/a&gt;, in regard to the
-core generation code in &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, I've been
-thinking some more about how I &lt;em&gt;would&lt;/em&gt; probably have the code look. First
-thing this morning, over breakfast and coffee, I concluded that I'd probably
-have gone with something that was a single orchestration function/method,
-into which would be composed some modular support code. Back when I &lt;a href="https://blog.davep.org/2026/05/03/a-stroppy-agent.html"&gt;started
-the process of breaking up the generator&lt;/a&gt;
-I seem to recall that Gemini &lt;em&gt;sort of&lt;/em&gt; went along those lines, but the code
-it created seemed pretty messy and the main site generation class was still
-a lot bigger than I would have liked. This is why, at the time, I went with
-Copilot/Claude's mixin-based approach; it felt a bit more hacky but the code
-felt tidier.&lt;/p&gt;
-&lt;p&gt;With this all in mind, I popped to my desk, made a branch off &lt;a href="https://github.com/davep/blogmore/pull/452" rel="noopener noreferrer" target="_blank"&gt;the current
-Gemini attempt to clean up the typing issues with the mixin
-approach&lt;/a&gt;, fired up Gemini CLI,
-and wrote it a prompt explaining what I didn't like and what I wanted it to
-do. The key points being:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I wanted a similar separation of concerns as the mixin approach was aiming
-  for.&lt;/li&gt;
-&lt;li&gt;I wanted to move away from mixins.&lt;/li&gt;
-&lt;li&gt;I wanted to favour something closer to composition.&lt;/li&gt;
-&lt;li&gt;I wanted to favour simple functions over classes where possible.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I then set it off working and left it to get on with things. Overall I think
-it took around an hour, with the need for me to approve things now and again
-(so probably could have been faster, I wasn't there to answer right away
-every time), but it got there in the end. This has &lt;a href="https://github.com/davep/blogmore/pull/453" rel="noopener noreferrer" target="_blank"&gt;resulted in a third PR
-to clean up the generator typing
-issues&lt;/a&gt;. In doing so I feel I've
-also addressed most of the unease I was feeling yesterday evening, and might
-actually have got closer to where I'd rather the code was.&lt;/p&gt;
-&lt;p&gt;Glancing over the result, I can still see things I'd want cleaned up, and
-done in a slightly different way, but overall I have a better feeling about
-this third approach. I sense this is a better place to move on from.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Three PRs" src="https://blog.davep.org/attachments/2026/05/05/three-prs.webp#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;So that's three PRs I have lined up to address &lt;a href="https://github.com/davep/blogmore/issues/447" rel="noopener noreferrer" target="_blank"&gt;the code smell that's been
-bugging me for a couple of
-days&lt;/a&gt;. One fixes it with an
-ABC; one fixes it with a protocol; and now one fixes it by reworking the
-submodularisation of the generator to use a different approach entirely. On
-the one hand, this seems like a lot of work and a lot of faff (and, as I
-said yesterday, I wouldn't start here to get where I want to be), but on the
-other hand I do kind of understand the appeal of being able to get hours of
-work done in a relatively short period of time, so you can experiment with
-the results.&lt;/p&gt;
-&lt;p&gt;Would I recommend someone work this way? No, of course not. Does it make for
-an interesting side-quest when I'm in &lt;em&gt;"it is still my hobby too"&lt;/em&gt; mode?
-Yeah, it does.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/05/05/and-then-there-were-three.html"/>
-    <category term="AI"/>
-    <category term="BlogMore"/>
-    <category term="Coding"/>
-    <category term="Copilot"/>
-    <category term="Gemini"/>
-    <category term="GitHub"/>
-    <category term="Google"/>
-    <category term="Python"/>
-    <category term="code review"/>
-    <category term="code smell"/>
-    <published>2026-05-05T12:37:53+01:00</published>
   </entry>
 </feed>
