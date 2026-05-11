@@ -9,7 +9,7 @@ cover: /attachments/2026/05/08/in-the-uk.webp
 Not that I'm avidly tracking it because I'm envious of all the pictures I'm
 seeing [on Reddit](https://www.reddit.com/r/SteamController/), but...
 
-![Controller is now in the UK](/attachments/2026/05/08/in-the-uk.webp)
+![Controller is now in the UK](/attachments/2026/05/08/in-the-uk.webp#centre)
 
 One step closer to getting my hands on my [Steam
 Controller](/tag/steam-controller/)!
