@@ -2,11 +2,96 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-11T14:40:21.875473+00:00</updated>
+  <updated>2026-05-12T08:15:01.264367+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/12/the-other-unreliable-buddy.html</id>
+    <title>The other unreliable buddy</title>
+    <updated>2026-05-12T08:20:25+01:00</updated>
+    <content type="html">&lt;p&gt;Having had &lt;a href="https://blog.davep.org/2026/05/09/an-unreliable-buddy.html"&gt;Copilot crash out the other
+day&lt;/a&gt;, while working on the
+&lt;a href="https://blogmore.davep.dev/linting/" rel="noopener noreferrer" target="_blank"&gt;linter&lt;/a&gt; for
+&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, I decided to lean into &lt;a href="https://geminicli.com/" rel="noopener noreferrer" target="_blank"&gt;Gemini
+CLI&lt;/a&gt; a little more and see how that got on.&lt;/p&gt;
+&lt;p&gt;When I first tried it out, &lt;a href="https://blog.davep.org/2026/05/05/and-then-there-were-three.html"&gt;a week
+back&lt;/a&gt;, I found it worked fairly
+well but could be rather slow at times. On the whole though, I found it easy
+enough to work with; the results weren't too bad, even if it could &lt;a href="https://blog.davep.org/2026/05/03/a-stroppy-agent.html"&gt;throw
+out some mildly annoying code at times&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Yesterday evening though, because of the failure of Copilot, I decided to go
+just with Gemini and work on the &lt;a href="https://blog.davep.org/2026/05/11/speeding-up-blogmore.html"&gt;problem of speeding up
+BlogMore&lt;/a&gt;. This worked really well. I
+found that it followed instructions well&lt;sup id="fnref:317-1"&gt;&lt;a class="footnote-ref" href="#fn:317-1"&gt;1&lt;/a&gt;&lt;/sup&gt; when given them, and also did a
+good job of applying what it was told, constantly, without needing to be
+told again. I actually found I had a bit of a flow going (in the minimal way
+that you can get any sort of flow going when you're not hand-coding).&lt;/p&gt;
+&lt;p&gt;Using it, I tackled all the main bottlenecks in BlogMore and got things
+working a lot faster (at this point it's generating a site in about 1/4 of
+the time it used to take). By the time that work was done, I wanted to do
+some last tidying up.&lt;/p&gt;
+&lt;p&gt;This was where it suddenly got unreliable. I asked it a simple question, not
+even tasking it with something to do, and it went into "&lt;em&gt;Thinking...&lt;/em&gt;" mode
+and never came back out of it. I seem to remember I gave it 10 minutes and
+then cancelled the request.&lt;/p&gt;
+&lt;p&gt;After that I tried again with a different question, having quit the program
+and started it again with &lt;code&gt;--resume&lt;/code&gt;. This time I asked it a different
+question and the same thing happened. I hit cancel again and then, a moment
+later, &lt;em&gt;finally&lt;/em&gt; got an answer to the previous question.&lt;/p&gt;
+&lt;p&gt;From this point onwards I could barely ever get a reply out of it. I even
+tried quitting and starting up again without &lt;code&gt;--resume&lt;/code&gt;, only for the same
+result.&lt;/p&gt;
+&lt;p&gt;A quick search turns up reports similar to this issue on Reddit, Google's
+support forums and &lt;a href="https://github.com/google-gemini/gemini-cli/issues/25520" rel="noopener noreferrer" target="_blank"&gt;on
+GitHub&lt;/a&gt;. It looks
+like I'm not alone in running into this.&lt;/p&gt;
+&lt;p&gt;This here is one of the things that concerns me about the idea of ever
+adopting agents as the primary tool for getting code written: the
+unreliability of their availability, and so the resulting inconsistency of
+the output. It feels like any perceived win in terms of getting the code
+written is going to be lost in the frustration of either waiting and trying
+again when it just gives up playing along, or in running from one agent to
+another, hoping you find the one that is capable of working with you at that
+given moment.&lt;/p&gt;
+&lt;p&gt;Meanwhile folk talk like it's &lt;em&gt;the&lt;/em&gt; solution to the problem of software
+development. It's especially concerning when those folk are in "engineering
+leadership" or a position with a similar name. When they talk like this they
+are either displaying a lack of foresight, or betraying a lack of care for
+the craft they are supposed to represent (amongst &lt;a href="https://en.wikipedia.org/wiki/Peter_principle" rel="noopener noreferrer" target="_blank"&gt;other
+reasons&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;It's very timely that &lt;a href="https://fosstodon.org/@robpike@hachyderm.io/116557976043815089" rel="noopener noreferrer" target="_blank"&gt;this
+post&lt;/a&gt; from
+&lt;a href="https://en.wikipedia.org/wiki/Rob_Pike" rel="noopener noreferrer" target="_blank"&gt;Rob Pike&lt;/a&gt; popped up in my feed this
+morning:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Although trained in physics, I worked in the computing industry with pride
+and purpose for over 40 years. And now I can do nothing but sit back and
+watch it destroy itself for no valid reason beyond hubris (if I'm being
+charitable).&lt;/p&gt;
+&lt;p&gt;Ineffable sadness watching something I once loved deliberately lose its
+soul.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Yup.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:317-1"&gt;
+&lt;p&gt;Albeit I sense it pays little to no attention to &lt;code&gt;AGENTS.md&lt;/code&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:317-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/05/12/the-other-unreliable-buddy.html"/>
+    <category term="AI"/>
+    <category term="AI"/>
+    <category term="Coding"/>
+    <category term="Gemini"/>
+    <category term="Google"/>
+    <category term="leadership"/>
+    <category term="quote"/>
+    <published>2026-05-12T08:20:25+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/11/steam-controller-is-here.html</id>
     <title>Steam Controller is here</title>
@@ -987,41 +1072,5 @@ long history, is a risky endeavour without a guaranteed payoff.&lt;/p&gt;</conte
     <category term="FOSS"/>
     <category term="Codeberg"/>
     <published>2026-05-06T18:22:29+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/05/06/steam-controller-is-packaged.html</id>
-    <title>Steam Controller is packaged</title>
-    <updated>2026-05-06T08:32:29+01:00</updated>
-    <content type="html">&lt;p&gt;After a day of no movement, I wake up to see this:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Steam controller is packaged" src="https://blog.davep.org/attachments/2026/05/06/packaged.webp#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;One step closer to getting my hands on it!&lt;/p&gt;
-&lt;p&gt;I'm oddly kind of invested in getting my hands on this. A regret I have is
-that I never bought &lt;a href="https://en.wikipedia.org/wiki/Steam_Controller_(1st_generation)" rel="noopener noreferrer" target="_blank"&gt;one of the
-originals&lt;/a&gt;.
-Back in the day I did buy (and still own) a &lt;a href="https://en.wikipedia.org/wiki/Steam_Link" rel="noopener noreferrer" target="_blank"&gt;Steam
-Link&lt;/a&gt; and it served me well for a
-while, 4 homes ago. The 1st gen controller would have been ideal with that
-but somehow I just never got round to grabbing one.&lt;/p&gt;
-&lt;p&gt;And, sure, while I have Xbox and Sony controllers kicking around (I
-especially like my Death Stranding 2 DualSense controller), there's
-something very appealing about a controller that feels the way the Steam
-Deck does; I find it a really pleasant gaming experience in the hand.&lt;/p&gt;
-&lt;p&gt;So, this time, I'm not missing out.&lt;/p&gt;
-&lt;p&gt;My primary intended use at the moment is to pair it with my &lt;a href="https://blog.davep.org/tag/steam-deck/"&gt;Steam
-Deck&lt;/a&gt; and use it as my "Steam Console", plugged into the
-TV while I game from the sofa. Eventually I hope to be pairing it with a
-&lt;a href="https://store.steampowered.com/hardware/steammachine" rel="noopener noreferrer" target="_blank"&gt;Steam Machine&lt;/a&gt;, of
-course.&lt;/p&gt;
-&lt;p&gt;Meanwhile, since moving last year, I've not set up my Windows gaming machine
-yet. It's a bit bulky to have in the current living room setup, but not
-impossible to set up in the office. Perhaps... perhaps I should actually dig
-out the Steam Link again and set it up with that!&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/05/06/steam-controller-is-packaged.html"/>
-    <category term="Gaming"/>
-    <category term="Steam"/>
-    <category term="Steam Controller"/>
-    <category term="Steam Link"/>
-    <category term="hardware"/>
-    <published>2026-05-06T08:32:29+01:00</published>
   </entry>
 </feed>
