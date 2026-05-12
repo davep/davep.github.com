@@ -66,7 +66,7 @@ the craft they are supposed to represent (amongst [other
 reasons](https://en.wikipedia.org/wiki/Peter_principle)).
 
 It's very timely that [this
-post](https://fosstodon.org/@robpike@hachyderm.io/116557976043815089) from
+post](https://hachyderm.io/@robpike/116557975987213548) from
 [Rob Pike](https://en.wikipedia.org/wiki/Rob_Pike) popped up in my feed this
 morning:
 
