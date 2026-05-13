@@ -2,11 +2,38 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-13T13:27:24.049855+00:00</updated>
+  <updated>2026-05-13T18:15:28.820070+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/13/stopping-an-accidental-push.html</id>
+    <title>Stopping an accidental push</title>
+    <updated>2026-05-13T19:04:49+01:00</updated>
+    <content type="html">&lt;p&gt;After starting to make use of &lt;a href="https://blog.davep.org/2026/05/10/more-syncing-github-to-gitlab-and-codeberg.html"&gt;the GitLab/Codeberg sync
+approach&lt;/a&gt; for
+various repositories, I found that my muscle memory in
+&lt;a href="https://magit.vc/" rel="noopener noreferrer" target="_blank"&gt;Magit&lt;/a&gt; was getting the better of me and, on occasion,
+I'd push a new branch to &lt;code&gt;backups&lt;/code&gt; when I wanted &lt;code&gt;origin&lt;/code&gt;. I sensed there
+had to be a way round that.&lt;/p&gt;
+&lt;p&gt;Here's what I settled on:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;advice-add&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;magit-list-remotes&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:filter-return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;remotes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;delete&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;backups&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;remotes&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now I never see &lt;code&gt;backups&lt;/code&gt; in Magit and now I can keep using my muscle memory
+(rather than actually reading what is in front of me, it seems).&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/05/13/stopping-an-accidental-push.html"/>
+    <category term="Emacs"/>
+    <category term="Emacs"/>
+    <category term="Emacs Lisp"/>
+    <category term="Magit"/>
+    <category term="backups"/>
+    <category term="git"/>
+    <published>2026-05-13T19:04:49+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/13/blogmore-v2-22-0.html</id>
     <title>BlogMore v2.22.0</title>
@@ -204,7 +231,7 @@ out some mildly annoying code at times&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Yesterday evening though, because of the failure of Copilot, I decided to go
 just with Gemini and work on the &lt;a href="https://blog.davep.org/2026/05/11/speeding-up-blogmore.html"&gt;problem of speeding up
 BlogMore&lt;/a&gt;. This worked really well. I
-found that it followed instructions well&lt;sup id="fnref:319-1"&gt;&lt;a class="footnote-ref" href="#fn:319-1"&gt;1&lt;/a&gt;&lt;/sup&gt; when given them, and also did a
+found that it followed instructions well&lt;sup id="fnref:320-1"&gt;&lt;a class="footnote-ref" href="#fn:320-1"&gt;1&lt;/a&gt;&lt;/sup&gt; when given them, and also did a
 good job of applying what it was told, constantly, without needing to be
 told again. I actually found I had a bit of a flow going (in the minimal way
 that you can get any sort of flow going when you're not hand-coding).&lt;/p&gt;
@@ -257,8 +284,8 @@ soul.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:319-1"&gt;
-&lt;p&gt;Albeit I sense it pays little to no attention to &lt;code&gt;AGENTS.md&lt;/code&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:319-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:320-1"&gt;
+&lt;p&gt;Albeit I sense it pays little to no attention to &lt;code&gt;AGENTS.md&lt;/code&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:320-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -547,7 +574,7 @@ time it adds more tests, it'll add it back.&lt;/p&gt;
 indentation to empty lines. So, if you've got a line of code indented 8
 spaces, then an empty line, then another line of code indented 8 spaces,
 &lt;em&gt;it'll add 8 spaces on that empty line&lt;/em&gt;. That sort of thing annoys the hell
-out of me&lt;sup id="fnref:311-1"&gt;&lt;a class="footnote-ref" href="#fn:311-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+out of me&lt;sup id="fnref:312-1"&gt;&lt;a class="footnote-ref" href="#fn:312-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;But the worst thing I just ran into was this. It had written this bit of
 code:&lt;/p&gt;
 &lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;lint_site&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;site_config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;SiteConfig&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -585,9 +612,9 @@ and I wonder how often people using these tools even bother.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:311-1"&gt;
+&lt;li id="fn:312-1"&gt;
 &lt;p&gt;I've seen some IDEs do that on purpose too; I've got Emacs configured
-to strip that out on save.&amp;#160;&lt;a class="footnote-backref" href="#fnref:311-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+to strip that out on save.&amp;#160;&lt;a class="footnote-backref" href="#fnref:312-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1009,7 +1036,7 @@ blog. But I'm going to start syncing projects to both GitLab and Codeberg. I
 see this as having two benefits: anyone who doesn't want to interact with
 GitHub can now easily fork code, and if they wish they can raise issues and
 the like too. Meanwhile, in doing this, I'll also have the added benefit of
-my code being "backed up" in at least three different locations&lt;sup id="fnref:316-1"&gt;&lt;a class="footnote-ref" href="#fn:316-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+my code being "backed up" in at least three different locations&lt;sup id="fnref:317-1"&gt;&lt;a class="footnote-ref" href="#fn:317-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;The approach I've settled on, for the moment, is based around &lt;a href="https://github.com/davep/setup-forge-sync" rel="noopener noreferrer" target="_blank"&gt;this little
 shell script&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
@@ -1051,7 +1078,7 @@ git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt
 &lt;span class="c1"&gt;### setup-forge-sync ends here&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;I'm going to keep all repo names the same&lt;sup id="fnref:316-2"&gt;&lt;a class="footnote-ref" href="#fn:316-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So when I use this script
+&lt;p&gt;I'm going to keep all repo names the same&lt;sup id="fnref:317-2"&gt;&lt;a class="footnote-ref" href="#fn:317-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So when I use this script
 it'll set things up so I can &lt;code&gt;git push backups&lt;/code&gt; and &lt;code&gt;main&lt;/code&gt; will then get
 pushed up to both GitLab and Codeberg. I don't feel the need to be keeping
 any WiP branches in sync or kicking about, likewise any &lt;code&gt;gh-pages&lt;/code&gt; branches.&lt;/p&gt;
@@ -1064,14 +1091,14 @@ developing and maintaining).&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:316-1"&gt;
+&lt;li id="fn:317-1"&gt;
 &lt;p&gt;Yes, I have other backups too, but they're always
-current-working-machine type backups.&amp;#160;&lt;a class="footnote-backref" href="#fnref:316-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+current-working-machine type backups.&amp;#160;&lt;a class="footnote-backref" href="#fnref:317-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:316-2"&gt;
+&lt;li id="fn:317-2"&gt;
 &lt;p&gt;Except, perhaps, for any repo whose name starts with &lt;code&gt;.&lt;/code&gt;; I seem to
 recall that GitLab can't handle that, for some bizarre reason. Perhaps
-that's fixed now?&amp;#160;&lt;a class="footnote-backref" href="#fnref:316-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+that's fixed now?&amp;#160;&lt;a class="footnote-backref" href="#fnref:317-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1134,26 +1161,5 @@ there) that styling hint.&lt;/p&gt;
     <category term="blogmore.el"/>
     <category term="coding"/>
     <published>2026-05-07T09:05:10+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/05/06/steam-controller-is-shipped.html</id>
-    <title>Steam Controller is shipped</title>
-    <updated>2026-05-06T21:04:00+01:00</updated>
-    <content type="html">&lt;p&gt;Well, that was pretty quick. This morning &lt;a href="https://blog.davep.org/2026/05/06/steam-controller-is-packaged.html"&gt;it was in the packaged
-state&lt;/a&gt; and, checking just
-now:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Steam Controller is shipped" src="https://blog.davep.org/attachments/2026/05/06/shipped.webp#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;When I've &lt;a href="https://blog.davep.org/2023/12/14/Steam-Deck.html"&gt;bought hardware from Valve before&lt;/a&gt;,
-I'm pretty sure it's taken around 3 days to get here, coming from the
-Netherlands. I can see this is shipping from there too, so I'm going to
-guess about the same amount of time.&lt;/p&gt;
-&lt;p&gt;So, some time early next week at the latest, perhaps?&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/05/06/steam-controller-is-shipped.html"/>
-    <category term="Gaming"/>
-    <category term="Steam"/>
-    <category term="Steam Controller"/>
-    <category term="Steam Link"/>
-    <category term="hardware"/>
-    <published>2026-05-06T21:04:00+01:00</published>
   </entry>
 </feed>

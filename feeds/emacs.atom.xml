@@ -2,11 +2,38 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-13T13:27:24.070686+00:00</updated>
+  <updated>2026-05-13T18:15:28.822304+00:00</updated>
   <link href="https://blog.davep.org/feeds/emacs.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Emacs" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/13/stopping-an-accidental-push.html</id>
+    <title>Stopping an accidental push</title>
+    <updated>2026-05-13T19:04:49+01:00</updated>
+    <content type="html">&lt;p&gt;After starting to make use of &lt;a href="https://blog.davep.org/2026/05/10/more-syncing-github-to-gitlab-and-codeberg.html"&gt;the GitLab/Codeberg sync
+approach&lt;/a&gt; for
+various repositories, I found that my muscle memory in
+&lt;a href="https://magit.vc/" rel="noopener noreferrer" target="_blank"&gt;Magit&lt;/a&gt; was getting the better of me and, on occasion,
+I'd push a new branch to &lt;code&gt;backups&lt;/code&gt; when I wanted &lt;code&gt;origin&lt;/code&gt;. I sensed there
+had to be a way round that.&lt;/p&gt;
+&lt;p&gt;Here's what I settled on:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;advice-add&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;magit-list-remotes&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:filter-return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;remotes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;delete&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;backups&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;remotes&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now I never see &lt;code&gt;backups&lt;/code&gt; in Magit and now I can keep using my muscle memory
+(rather than actually reading what is in front of me, it seems).&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/05/13/stopping-an-accidental-push.html"/>
+    <category term="Emacs"/>
+    <category term="Emacs"/>
+    <category term="Emacs Lisp"/>
+    <category term="Magit"/>
+    <category term="backups"/>
+    <category term="git"/>
+    <published>2026-05-13T19:04:49+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/09/make-phony-el-v1-4-0.html</id>
     <title>make-phony.el v1.4.0</title>
@@ -1134,110 +1161,5 @@ up&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:284-1" title=
     <category term="coding"/>
     <category term="EIEIO"/>
     <published>2026-04-05T20:04:44+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/04/04/blogmore-el-v2-7.html</id>
-    <title>blogmore.el v2.7</title>
-    <updated>2026-04-04T19:24:39+01:00</updated>
-    <content type="html">&lt;p&gt;There's no question that the
-&lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;experiment&lt;/a&gt; that is
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; has resulted in me blogging more.
-Although my previous setup wasn't exactly all friction, there's something
-about "owning" most of the tools and really knowing how they work, and being
-able to quickly modify them so they work "just so", that makes me more
-inclined to quickly write something up.&lt;/p&gt;
-&lt;p&gt;I can see this if I look at the &lt;a href="https://blog.davep.org/archive/"&gt;numbers in the archive for this
-blog&lt;/a&gt;. In &lt;a href="https://blog.davep.org/2026/03/"&gt;March alone&lt;/a&gt; I wrote 43 posts; that's more
-than I wrote in any whole year, other than &lt;a href="https://blog.davep.org/2023/"&gt;2023&lt;/a&gt;. While I suspect
-this will start to calm down as work on BlogMore and
-&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; settles down, I sense
-I'll be writing a bit more often for some time to come.&lt;/p&gt;
-&lt;p&gt;Because of this I decided to do a little bit of housekeeping on the &lt;a href="https://github.com/davep/davep.github.com/tree/main/content/posts" rel="noopener noreferrer" target="_blank"&gt;posts
-directory&lt;/a&gt;
-in the blog's &lt;a href="https://github.com/davep/davep.github.com" rel="noopener noreferrer" target="_blank"&gt;source
-repository&lt;/a&gt;. Originally I had the
-Markdown source for every post all in one directory. Then last month &lt;a href="https://github.com/davep/davep.github.com/pull/59" rel="noopener noreferrer" target="_blank"&gt;I
-broke those down by
-year&lt;/a&gt;. Then earlier
-today, seeing how this year is going, &lt;a href="https://github.com/davep/davep.github.com/pull/137" rel="noopener noreferrer" target="_blank"&gt;I decided to break 2026 down by
-month&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Then I realised I had a problem in &lt;code&gt;blogmore.el&lt;/code&gt;. It assumed that the
-Markdown file for a new post (&lt;code&gt;blogmore-new&lt;/code&gt;) would always be created in a
-subdirectory named after the year, underneath the defined posts directory.
-Until today that was the case&lt;sup id="fnref:254-1"&gt;&lt;a class="footnote-ref" href="#fn:254-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, but now &lt;em&gt;I&lt;/em&gt; wanted it to work
-differently.&lt;/p&gt;
-&lt;p&gt;So this is why I'm making a second release in one day: &lt;a href="https://github.com/davep/blogmore.el/pull/45" rel="noopener noreferrer" target="_blank"&gt;I added the ability
-to configure the subdirectory where a new post is
-created&lt;/a&gt;. I've changed the
-default now so that it assumes the user wants the subdirectory to be
-&lt;code&gt;YYYY/MM/DD&lt;/code&gt; (because more granular feels like the right default). In my
-case I don't want that, I just want &lt;code&gt;YYYY/MM&lt;/code&gt;, but now I can configure that.
-The value that is set is a function that returns the name of the
-subdirectory, so in the case of my blog I have it as:&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format-time-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%Y/%m/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;On the other hand, for my &lt;a href="https://seen-by.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;photoblog&lt;/a&gt; I want the
-full date as a subdirectory so I can leave it as the default. The whole
-&lt;code&gt;use-package&lt;/code&gt; for &lt;code&gt;blogmore&lt;/code&gt; now looks like:&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;use-package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:ensure&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:defer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:vc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;:url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://github.com/davep/blogmore.el&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:rev&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:newest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:init&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;add-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;blogmore-new-post-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;&lt;/span&gt;&lt;span class="nv"&gt;end-it&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-work-on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blog.davep.org&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:custom&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-blogs&lt;/span&gt;
-&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blog.davep.org&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="c1"&gt;;; Root directory for posts.&lt;/span&gt;
-&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~/write/davep.github.com/content/posts/&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="c1"&gt;;; Subdirectory for new posts, relative to the root.&lt;/span&gt;
-&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format-time-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%Y/%m/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;seen-by.davep.dev&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="c1"&gt;;; Root directory for posts.&lt;/span&gt;
-&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~/write/seen-by/content/posts/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:bind&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; b&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Technically this is a breaking change because it bumps &lt;a href="https://github.com/davep/blogmore.el/blob/b80743391eedeb507c5b743c1af531701a2f858a/blogmore.el#L48-L86" rel="noopener noreferrer" target="_blank"&gt;the meaning of each
-"position" in the values within
-&lt;code&gt;blogmore-blogs&lt;/code&gt;&lt;/a&gt;.
-However, in my case, because I was only ever defining the blog name and the
-top-level directory for the posts (both mandatory), this didn't break
-anything; I also strongly suspect nobody else is using this so I very much
-doubt I'm messing with someone else's setup&lt;sup id="fnref:254-2"&gt;&lt;a class="footnote-ref" href="#fn:254-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. If I have I apologise; do
-let me know.&lt;/p&gt;
-&lt;p&gt;Anyway, all of this goes to explain why the heck I made two releases of the
-same package back to back in the same day. This is what happens when &lt;a href="https://www.metoffice.gov.uk/about-us/news-and-media/media-centre/weather-and-climate-news/2026/amber-wind-warning-for-easter" rel="noopener noreferrer" target="_blank"&gt;my
-namesake is having fun
-outside&lt;/a&gt;
-and so I just want to sit on the sofa, hack on some code, and watch the
-chaos in the garden.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:254-1"&gt;
-&lt;p&gt;For my blog, which again shows that &lt;code&gt;blogmore.el&lt;/code&gt; started as a quick
-hack for getting work done on my blog, but I also want to make it as
-configurable as possible.&amp;#160;&lt;a class="footnote-backref" href="#fnref:254-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:254-2"&gt;
-&lt;p&gt;Even if someone else &lt;em&gt;is&lt;/em&gt; using this I would suspect they hadn't
-configured anything more than I have.&amp;#160;&lt;a class="footnote-backref" href="#fnref:254-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/04/04/blogmore-el-v2-7.html"/>
-    <category term="Emacs"/>
-    <category term="BlogMore"/>
-    <category term="Emacs"/>
-    <category term="Emacs Lisp"/>
-    <category term="Lisp"/>
-    <category term="blogmore.el"/>
-    <category term="coding"/>
-    <category term="transient"/>
-    <published>2026-04-04T19:24:39+01:00</published>
   </entry>
 </feed>
