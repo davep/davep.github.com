@@ -8,7 +8,71 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 13 May 2026 08:36:05 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 May 2026 13:27:24 +0000</lastBuildDate>
+    <item>
+      <title>BlogMore v2.22.0</title>
+      <link>https://blog.davep.org/2026/05/13/blogmore-v2-22-0.html</link>
+      <description>&lt;p&gt;As mentioned &lt;a href="https://blog.davep.org/2026/05/11/speeding-up-blogmore.html"&gt;a couple of days ago&lt;/a&gt;,
+I've been toying with finding areas of improvement in respect to &lt;a href="https://www.yakshaving.co.uk/posts/blogmore-performance/" rel="noopener noreferrer" target="_blank"&gt;the
+performance of
+BlogMore&lt;/a&gt;. Until
+now, &lt;a href="https://wiki.c2.com/?PrematureOptimization" rel="noopener noreferrer" target="_blank"&gt;for good reasons&lt;/a&gt;, I've
+not really paid any attention to how fast (or slow) BlogMore is when it
+comes to generating my blog. While it's never been blindingly fast, it's
+always been fast enough and I was more keen on &lt;a href="https://wiki.c2.com/?MakeItWorkMakeItRightMakeItFast" rel="noopener noreferrer" target="_blank"&gt;making it work
+right&lt;/a&gt;. So for a good
+while the focus has been on well-formed output, stuff that keeps the
+crawlers happy, that sort of thing.&lt;/p&gt;
+&lt;p&gt;But now that I'm in a place where new features aren't really so necessary,
+it does feel like a good point to find any easy wins in speeding up the
+code. I think it's gone well.&lt;/p&gt;
+&lt;p&gt;BlogMore &lt;a href="https://blogmore.davep.dev/changelog/#v2220" rel="noopener noreferrer" target="_blank"&gt;v2.22.0&lt;/a&gt; contains
+quite a few internal changes that speed up some core parts of site
+generation. Many of the things identified by Gemini, back when I first
+kicked this process off, have been done. The amount of Markdown-&amp;gt;HTML
+conversion work has been vastly reduced, which has had a pretty big impact
+on all sorts of things. There's also caching of the FontAwesome metadata&lt;sup id="fnref:293-1"&gt;&lt;a class="footnote-ref" href="#fn:293-1"&gt;1&lt;/a&gt;&lt;/sup&gt;
+which should save a fair bit of time on slower connections. I did avoid the
+whole business of parallel processing as I dabbled with this near the start
+of the project and I could not wrangle a win out of that at all; given how
+much of a win I've had with these changes, I doubt that would change (it
+could conceivably make things worse).&lt;/p&gt;
+&lt;p&gt;So, how much faster is it? Roughly, based on my tests, a site generates in
+about 1/4 of the time it did before. On my M2 Mac Mini my blog builds in
+under 3 seconds; with v2.21.0 it took around 13 seconds. In my case that's
+with all the optional features of BlogMore turned on.&lt;/p&gt;
+&lt;p&gt;Naturally this work has touched on a &lt;em&gt;lot&lt;/em&gt; of internals of the code, and
+made significant changes to the generation pipelines of lots of different
+pages and features. I've done my absolute best to compare&lt;sup id="fnref:293-2"&gt;&lt;a class="footnote-ref" href="#fn:293-2"&gt;2&lt;/a&gt;&lt;/sup&gt; the output of
+v2.21.0 and v2.22.0 and I can't see any significant differences&lt;sup id="fnref:293-3"&gt;&lt;a class="footnote-ref" href="#fn:293-3"&gt;3&lt;/a&gt;&lt;/sup&gt;. When
+trying out v2.22.0 I would suggest paying just a little extra attention to
+the result, to be sure you're happy that nothing has changed.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:293-1"&gt;
+&lt;p&gt;It lives in &lt;code&gt;~/.cache/blogmore&lt;/code&gt; on Unix and Unix-like systems, or
+&lt;code&gt;%LOCALAPPDATA%\blogmore\cache&lt;/code&gt; on DOS/VMS-influenced systems.&amp;#160;&lt;a class="footnote-backref" href="#fnref:293-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:293-2"&gt;
+&lt;p&gt;Lots of &lt;code&gt;diff -rq&lt;/code&gt; and then diffing an assorted sample of files that
+showed differences to inspect what was actually different.&amp;#160;&lt;a class="footnote-backref" href="#fnref:293-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:293-3"&gt;
+&lt;p&gt;Actually, there's a small difference in the context shown in
+backlinks, but this was a deliberate change and a very small cosmetic
+enhancement.&amp;#160;&lt;a class="footnote-backref" href="#fnref:293-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/05/13/blogmore-v2-22-0.html</guid>
+      <category>Coding</category>
+      <category>BlogMore</category>
+      <category>Coding</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <pubDate>Wed, 13 May 2026 13:53:04 +0100</pubDate>
+    </item>
     <item>
       <title>Speeding up BlogMore</title>
       <link>https://blog.davep.org/2026/05/11/speeding-up-blogmore.html</link>
@@ -424,7 +488,7 @@ blog. But I'm going to start syncing projects to both GitLab and Codeberg. I
 see this as having two benefits: anyone who doesn't want to interact with
 GitHub can now easily fork code, and if they wish they can raise issues and
 the like too. Meanwhile, in doing this, I'll also have the added benefit of
-my code being "backed up" in at least three different locations&lt;sup id="fnref:315-1"&gt;&lt;a class="footnote-ref" href="#fn:315-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+my code being "backed up" in at least three different locations&lt;sup id="fnref:316-1"&gt;&lt;a class="footnote-ref" href="#fn:316-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;The approach I've settled on, for the moment, is based around &lt;a href="https://github.com/davep/setup-forge-sync" rel="noopener noreferrer" target="_blank"&gt;this little
 shell script&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
@@ -466,7 +530,7 @@ git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt
 &lt;span class="c1"&gt;### setup-forge-sync ends here&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;I'm going to keep all repo names the same&lt;sup id="fnref:315-2"&gt;&lt;a class="footnote-ref" href="#fn:315-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So when I use this script
+&lt;p&gt;I'm going to keep all repo names the same&lt;sup id="fnref:316-2"&gt;&lt;a class="footnote-ref" href="#fn:316-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So when I use this script
 it'll set things up so I can &lt;code&gt;git push backups&lt;/code&gt; and &lt;code&gt;main&lt;/code&gt; will then get
 pushed up to both GitLab and Codeberg. I don't feel the need to be keeping
 any WiP branches in sync or kicking about, likewise any &lt;code&gt;gh-pages&lt;/code&gt; branches.&lt;/p&gt;
@@ -479,14 +543,14 @@ developing and maintaining).&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:315-1"&gt;
+&lt;li id="fn:316-1"&gt;
 &lt;p&gt;Yes, I have other backups too, but they're always
-current-working-machine type backups.&amp;#160;&lt;a class="footnote-backref" href="#fnref:315-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+current-working-machine type backups.&amp;#160;&lt;a class="footnote-backref" href="#fnref:316-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:315-2"&gt;
+&lt;li id="fn:316-2"&gt;
 &lt;p&gt;Except, perhaps, for any repo whose name starts with &lt;code&gt;.&lt;/code&gt;; I seem to
 recall that GitLab can't handle that, for some bizarre reason. Perhaps
-that's fixed now?&amp;#160;&lt;a class="footnote-backref" href="#fnref:315-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+that's fixed now?&amp;#160;&lt;a class="footnote-backref" href="#fnref:316-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1117,84 +1181,6 @@ allowing extra entries to be declared via the configuration file.&amp;#160;&lt;a
       <category>Python</category>
       <category>coding</category>
       <pubDate>Fri, 10 Apr 2026 08:44:21 +0100</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.11.0</title>
-      <link>https://blog.davep.org/2026/04/09/blogmore-v2-11-0.html</link>
-      <description>&lt;p&gt;After adding the streak display to the stats &lt;a href="https://blog.davep.org/2026/04/07/blogmore-v2-10-0.html"&gt;a couple of days
-back&lt;/a&gt;, I got a little more obsessed with
-knowing what sort of runs of days of posting to the blog I had. I even said
-in that post:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;It almost makes me want to do a whole-blog-lifetime version of it, or
-perhaps some sort of more calendar-oriented version of the archive.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Despite saying that I fancied the idea of that calendar-type view, first off
-I got to thinking it would be interesting to see a table of my 10 longest
-streaks. So &lt;a href="https://github.com/davep/blogmore/pull/369" rel="noopener noreferrer" target="_blank"&gt;that got added&lt;/a&gt; and
-can now be found in the &lt;a href="https://blog.davep.org/stats/"&gt;stats page&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="A table of my 10 longest streaks" src="https://blog.davep.org/attachments/2026/04/09/streak-table.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Having added that, I kept thinking about the whole-blog visual view of
-"here's the whole time of the blog, and here are the days you posted". I did
-think it might be interesting to use the same style and layout as the streak
-display -- perhaps something that would look like &lt;a href="https://blog.davep.org/attachments/2023/10/01/contributions.webp"&gt;my whole contribution
-history on GitHub&lt;/a&gt; that I wrote
-about &lt;a href="https://blog.davep.org/2023/10/01/all-green-on-github.html"&gt;back in 2023&lt;/a&gt; -- but the
-problem with that is it's tricky to make it work well on all display types.
-I needed something that would collapse better on smaller displays.&lt;/p&gt;
-&lt;p&gt;So I decided that &lt;a href="https://github.com/davep/blogmore/issues/372" rel="noopener noreferrer" target="_blank"&gt;a more conventional calendar
-display&lt;/a&gt; might work better.
-While &lt;a href="https://github.com/davep/blogmore/pull/373" rel="noopener noreferrer" target="_blank"&gt;it took a bit of work to get it to really land as I
-wanted&lt;/a&gt;, it turned out pretty
-much how I wanted.&lt;/p&gt;
-&lt;p&gt;So now there is a &lt;a href="https://blogmore.davep.dev/configuration/#with_calendar" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;with_calendar&lt;/code&gt; configuration
-option&lt;/a&gt; that, if
-set to &lt;code&gt;true&lt;/code&gt;, will add a calendar link at the top of the site. By default
-it looks like this:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The default calendar view" src="https://blog.davep.org/attachments/2026/04/09/calendar-backward.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;If it looks a little unconventional at first glance, that's because it is. I
-wanted something that started with the most recent month in which there's a
-post, and which then worked backwards. This way I can see things as a proper
-history. But I can also see that this might seem odd to some people. Given
-this, I've also added a
-&lt;a href="https://blogmore.davep.dev/configuration/#forward_calendar" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;forward_calendar&lt;/code&gt;&lt;/a&gt;
-configuration option that can be used (when set to &lt;code&gt;true&lt;/code&gt;), to flip the
-calendar into a more normal flow.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The alternative calendar view" src="https://blog.davep.org/attachments/2026/04/09/calendar-forward.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;As you might expect, the calendar links to other parts of the site: clicking
-on a day with a post takes you to the archive for that day, clicking on a
-month name where there are posts in a month takes you to the archive for
-that month, and the same again for a year title.&lt;/p&gt;
-&lt;p&gt;I'm pretty pleased with the result. In testing it seems nicely responsive to
-different display types and I'm also finding it to be yet another
-interesting way to discover older posts (and get a sense of when I was
-encouraged to post going back over the last 11 years of this particular
-blog&lt;sup id="fnref:282-1"&gt;&lt;a class="footnote-ref" href="#fn:282-1"&gt;1&lt;/a&gt;&lt;/sup&gt;).&lt;/p&gt;
-&lt;p&gt;One final little feature I've added is a small enhancement to the read time
-that can appear on each post. While it's long since been possible &lt;a href="https://blogmore.davep.dev/configuration/#with_read_time" rel="noopener noreferrer" target="_blank"&gt;to decide
-if you want it there or
-not&lt;/a&gt;, the
-calculation itself has been hard-wired to the assumption that 200 wpm is the
-reading speed of the reader. I've now added
-&lt;a href="https://blogmore.davep.dev/configuration/#read_time_wpm" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;read_time_wpm&lt;/code&gt;&lt;/a&gt;
-as a configuration option so you can set it to suit your own taste.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:282-1"&gt;
-&lt;p&gt;I have other, much older, blogs out there on the net. One day I might
-merge them with this one and back-fill the whole thing.&amp;#160;&lt;a class="footnote-backref" href="#fnref:282-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/04/09/blogmore-v2-11-0.html</guid>
-      <category>Coding</category>
-      <category>BlogMore</category>
-      <category>Markdown</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>coding</category>
-      <pubDate>Thu, 09 Apr 2026 08:42:34 +0100</pubDate>
     </item>
   </channel>
 </rss>
