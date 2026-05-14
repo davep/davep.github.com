@@ -2,11 +2,69 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-14T08:10:51.167386+00:00</updated>
+  <updated>2026-05-14T19:25:35.178996+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/14/blogmore-v2-23-0.html</id>
+    <title>BlogMore v2.23.0</title>
+    <updated>2026-05-14T20:23:45+01:00</updated>
+    <content type="html">&lt;p&gt;I wasn't quite planning on making a new release of BlogMore so soon after
+&lt;a href="https://blog.davep.org/2026/05/13/blogmore-v2-22-0.html"&gt;the previous version&lt;/a&gt;, but I had a
+couple of ideas that I wanted to add, and then also got a nifty request too;
+so here we are: we have
+&lt;a href="https://blogmore.davep.dev/changelog/#v2230" rel="noopener noreferrer" target="_blank"&gt;v2.23.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The first couple of changes relate to the cache. In the previous release I
+added a cache of the FontAwesome metadata, which in turn means that a cache
+directory is being created. I felt it would be fair and useful to provide a
+command that both lets the user know where the cache lives, and to also
+remove it. So now BlogMore has &lt;a href="https://blogmore.davep.dev/command_line/#cache-command" rel="noopener noreferrer" target="_blank"&gt;a &lt;code&gt;cache&lt;/code&gt;
+command&lt;/a&gt; with two
+sub-commands:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;location&lt;/code&gt;: tells you where the cache directory is located&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;clear&lt;/code&gt;: removes the cache directory&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Also, now that we have a cache directory, it makes sense to use it a bit
+more to squeeze even more time out of the build process. So starting with
+this release, per content directory, &lt;a href="https://blogmore.davep.dev/metadata_and_sidebar/#what-gets-generated" rel="noopener noreferrer" target="_blank"&gt;the various icons that are created for
+the
+site&lt;/a&gt;
+are cached. This means that if the source image doesn't change, for each
+subsequent build there's no conversion and resize for every variation. This
+saves a good fraction of a second, making the build of my blog feel
+noticeably quicker.&lt;/p&gt;
+&lt;p&gt;Finally, earlier today, &lt;a href="https://www.yakshaving.co.uk/" rel="noopener noreferrer" target="_blank"&gt;Andy&lt;/a&gt; asked if it
+would be possible to have the BlogMore &lt;code&gt;serve&lt;/code&gt; mode auto-reload any page
+being viewed in a browser, when the site is regenerated. It was something
+I'd considered myself a couple of times so that was a good reason to finally
+look into it. Not knowing how this could be achieved&lt;sup id="fnref:294-1"&gt;&lt;a class="footnote-ref" href="#fn:294-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I prompted
+&lt;a href="https://blog.davep.org/tag/gemini/"&gt;Gemini&lt;/a&gt; for an idea, stressing I wanted a solution that
+didn't disturb a generated site; it &lt;a href="https://github.com/davep/blogmore/issues/486" rel="noopener noreferrer" target="_blank"&gt;came up with a convincing
+solution&lt;/a&gt;. I let it run at it
+and, &lt;a href="https://github.com/davep/blogmore/pull/487" rel="noopener noreferrer" target="_blank"&gt;along with a few changes of my
+own&lt;/a&gt;, it seems to be working a
+treat.&lt;/p&gt;
+&lt;p&gt;This, of course, now makes me want to squeeze even more time out of the
+build process.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:294-1"&gt;
+&lt;p&gt;Web development has never been my primary area of knowledge.&amp;#160;&lt;a class="footnote-backref" href="#fnref:294-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/05/14/blogmore-v2-23-0.html"/>
+    <category term="Coding"/>
+    <category term="BlogMore"/>
+    <category term="Coding"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <published>2026-05-14T20:23:45+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/13/blogmore-v2-22-0.html</id>
     <title>BlogMore v2.22.0</title>
@@ -30,7 +88,7 @@ quite a few internal changes that speed up some core parts of site
 generation. Many of the things identified by Gemini, back when I first
 kicked this process off, have been done. The amount of Markdown-&amp;gt;HTML
 conversion work has been vastly reduced, which has had a pretty big impact
-on all sorts of things. There's also caching of the FontAwesome metadata&lt;sup id="fnref:294-1"&gt;&lt;a class="footnote-ref" href="#fn:294-1"&gt;1&lt;/a&gt;&lt;/sup&gt;
+on all sorts of things. There's also caching of the FontAwesome metadata&lt;sup id="fnref:295-1"&gt;&lt;a class="footnote-ref" href="#fn:295-1"&gt;1&lt;/a&gt;&lt;/sup&gt;
 which should save a fair bit of time on slower connections. I did avoid the
 whole business of parallel processing as I dabbled with this near the start
 of the project and I could not wrangle a win out of that at all; given how
@@ -42,25 +100,25 @@ under 3 seconds; with v2.21.0 it took around 13 seconds. In my case that's
 with all the optional features of BlogMore turned on.&lt;/p&gt;
 &lt;p&gt;Naturally this work has touched on a &lt;em&gt;lot&lt;/em&gt; of internals of the code, and
 made significant changes to the generation pipelines of lots of different
-pages and features. I've done my absolute best to compare&lt;sup id="fnref:294-2"&gt;&lt;a class="footnote-ref" href="#fn:294-2"&gt;2&lt;/a&gt;&lt;/sup&gt; the output of
-v2.21.0 and v2.22.0 and I can't see any significant differences&lt;sup id="fnref:294-3"&gt;&lt;a class="footnote-ref" href="#fn:294-3"&gt;3&lt;/a&gt;&lt;/sup&gt;. When
+pages and features. I've done my absolute best to compare&lt;sup id="fnref:295-2"&gt;&lt;a class="footnote-ref" href="#fn:295-2"&gt;2&lt;/a&gt;&lt;/sup&gt; the output of
+v2.21.0 and v2.22.0 and I can't see any significant differences&lt;sup id="fnref:295-3"&gt;&lt;a class="footnote-ref" href="#fn:295-3"&gt;3&lt;/a&gt;&lt;/sup&gt;. When
 trying out v2.22.0 I would suggest paying just a little extra attention to
 the result, to be sure you're happy that nothing has changed.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:294-1"&gt;
+&lt;li id="fn:295-1"&gt;
 &lt;p&gt;It lives in &lt;code&gt;~/.cache/blogmore&lt;/code&gt; on Unix and Unix-like systems, or
-&lt;code&gt;%LOCALAPPDATA%\blogmore\cache&lt;/code&gt; on DOS/VMS-influenced systems.&amp;#160;&lt;a class="footnote-backref" href="#fnref:294-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;code&gt;%LOCALAPPDATA%\blogmore\cache&lt;/code&gt; on DOS/VMS-influenced systems.&amp;#160;&lt;a class="footnote-backref" href="#fnref:295-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:294-2"&gt;
+&lt;li id="fn:295-2"&gt;
 &lt;p&gt;Lots of &lt;code&gt;diff -rq&lt;/code&gt; and then diffing an assorted sample of files that
-showed differences to inspect what was actually different.&amp;#160;&lt;a class="footnote-backref" href="#fnref:294-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+showed differences to inspect what was actually different.&amp;#160;&lt;a class="footnote-backref" href="#fnref:295-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:294-3"&gt;
+&lt;li id="fn:295-3"&gt;
 &lt;p&gt;Actually, there's a small difference in the context shown in
 backlinks, but this was a deliberate change and a very small cosmetic
-enhancement.&amp;#160;&lt;a class="footnote-backref" href="#fnref:294-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+enhancement.&amp;#160;&lt;a class="footnote-backref" href="#fnref:295-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -493,7 +551,7 @@ blog. But I'm going to start syncing projects to both GitLab and Codeberg. I
 see this as having two benefits: anyone who doesn't want to interact with
 GitHub can now easily fork code, and if they wish they can raise issues and
 the like too. Meanwhile, in doing this, I'll also have the added benefit of
-my code being "backed up" in at least three different locations&lt;sup id="fnref:318-1"&gt;&lt;a class="footnote-ref" href="#fn:318-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+my code being "backed up" in at least three different locations&lt;sup id="fnref:319-1"&gt;&lt;a class="footnote-ref" href="#fn:319-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;The approach I've settled on, for the moment, is based around &lt;a href="https://github.com/davep/setup-forge-sync" rel="noopener noreferrer" target="_blank"&gt;this little
 shell script&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
@@ -535,7 +593,7 @@ git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt
 &lt;span class="c1"&gt;### setup-forge-sync ends here&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;I'm going to keep all repo names the same&lt;sup id="fnref:318-2"&gt;&lt;a class="footnote-ref" href="#fn:318-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So when I use this script
+&lt;p&gt;I'm going to keep all repo names the same&lt;sup id="fnref:319-2"&gt;&lt;a class="footnote-ref" href="#fn:319-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So when I use this script
 it'll set things up so I can &lt;code&gt;git push backups&lt;/code&gt; and &lt;code&gt;main&lt;/code&gt; will then get
 pushed up to both GitLab and Codeberg. I don't feel the need to be keeping
 any WiP branches in sync or kicking about, likewise any &lt;code&gt;gh-pages&lt;/code&gt; branches.&lt;/p&gt;
@@ -548,14 +606,14 @@ developing and maintaining).&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:318-1"&gt;
+&lt;li id="fn:319-1"&gt;
 &lt;p&gt;Yes, I have other backups too, but they're always
-current-working-machine type backups.&amp;#160;&lt;a class="footnote-backref" href="#fnref:318-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+current-working-machine type backups.&amp;#160;&lt;a class="footnote-backref" href="#fnref:319-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:318-2"&gt;
+&lt;li id="fn:319-2"&gt;
 &lt;p&gt;Except, perhaps, for any repo whose name starts with &lt;code&gt;.&lt;/code&gt;; I seem to
 recall that GitLab can't handle that, for some bizarre reason. Perhaps
-that's fixed now?&amp;#160;&lt;a class="footnote-backref" href="#fnref:318-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+that's fixed now?&amp;#160;&lt;a class="footnote-backref" href="#fnref:319-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1144,60 +1202,5 @@ actually generating any files.&lt;/p&gt;</content>
     <category term="journal"/>
     <category term="obs2nlm"/>
     <published>2026-04-10T19:59:11+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/04/10/blogmore-v2-12-0.html</id>
-    <title>BlogMore v2.12.0</title>
-    <updated>2026-04-10T08:44:21+01:00</updated>
-    <content type="html">&lt;p&gt;Since &lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;kicking off building
-BlogMore&lt;/a&gt; and &lt;a href="https://blog.davep.org/2026/02/19/a-new-engine.html"&gt;swapping this blog
-over to using it&lt;/a&gt; I've been playing with the
-Google Search Console. It's something I've not used in decades, but felt it
-was time to dip back in again and understand how it works these days.&lt;/p&gt;
-&lt;p&gt;There are two motivations for this: the first is that, when it comes to my
-day job, I have cause to interact with people who &lt;em&gt;do&lt;/em&gt; use the search
-console a lot, and so it's worth understanding what they work with and why
-it matters to them. The second reason is it's a reasonable measure of how
-good a site BlogMore generates.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Page index inclusion progress" src="https://blog.davep.org/attachments/2026/04/10/indexing-progress.png#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;So far the results have been pretty good, &lt;em&gt;and&lt;/em&gt; the console has helped me
-find oddities and things that need tidying up.&lt;/p&gt;
-&lt;p&gt;So &lt;a href="https://blogmore.davep.dev/changelog/#v2120" rel="noopener noreferrer" target="_blank"&gt;this release of BlogMore&lt;/a&gt;
-includes a couple of changes that stem from looking at the latest updates in
-the console.&lt;/p&gt;
-&lt;p&gt;The first is that I've cleaned up how the &lt;code&gt;sitemap.xml&lt;/code&gt; gets generated. I
-noticed that if I had any HTML inside my &lt;a href="https://blogmore.davep.dev/setting_up_your_blog/#the-extras-directory" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;extras&lt;/code&gt;
-directory&lt;/a&gt;
-it was turning up in the sitemap; something I didn't intend and didn't want.
-So that's now fixed: only pages generated by BlogMore will appear in
-&lt;code&gt;sitemap.xml&lt;/code&gt;&lt;sup id="fnref:252-1"&gt;&lt;a class="footnote-ref" href="#fn:252-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;The second is that the stats page, despite being in the sitemap, had a
-&lt;code&gt;noindex&lt;/code&gt; header for some reason. That's now been fixed. The only generated
-page I've intentionally set up so that it isn't indexed is the search page.&lt;/p&gt;
-&lt;p&gt;Finally, there's one change unrelated to the above: I realised that if you
-have
-&lt;a href="https://blogmore.davep.dev/configuration/#with_read_time" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;with_read_time&lt;/code&gt;&lt;/a&gt;
-set to &lt;code&gt;false&lt;/code&gt;, the reading time stats still appeared on the stats page;
-that seems unnecessary and unwanted on a site that doesn't show reading
-times. So, as of v2.12.0, that section of the stats won't show if reading
-times are turned off.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:252-1"&gt;
-&lt;p&gt;Now I think about it, I suppose there might be occasion where someone
-wants extra HTML to appear in the sitemap. I might consider the idea of
-allowing extra entries to be declared via the configuration file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:252-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/04/10/blogmore-v2-12-0.html"/>
-    <category term="Coding"/>
-    <category term="BlogMore"/>
-    <category term="Markdown"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="coding"/>
-    <published>2026-04-10T08:44:21+01:00</published>
   </entry>
 </feed>
