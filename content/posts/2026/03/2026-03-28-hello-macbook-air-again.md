@@ -3,7 +3,7 @@ title: Hello MacBook Air (again)
 date: 2026-03-28 10:30:09+0000
 category: Tech
 tags: Apple, Mac, MacBook, MacBook Air, hardware, macOS
-cover: /attachments/2026/03/28/macbook-air.jpeg
+cover: /attachments/2026/03/28/macbook-air.webp
 ---
 
 As I [mentioned yesterday](/2026/03/27/macbook-air-m5.html) I decided it was
@@ -11,7 +11,7 @@ time to update my portable/sofa hacking setup and treat myself to a nice new
 MacBook Air. It's here (well, I picked it up yesterday evening after
 dinner).
 
-![MacBook Air M5](/attachments/2026/03/28/macbook-air.jpeg#centre)
+![MacBook Air M5](/attachments/2026/03/28/macbook-air.webp#centre)
 
 So far I'm *very* pleased with the choice. It's light but feels sturdy. The
 screen is very pleasing to read. The keyboard is really nice to type on

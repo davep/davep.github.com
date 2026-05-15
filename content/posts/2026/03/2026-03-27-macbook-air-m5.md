@@ -3,7 +3,7 @@ title: MacBook Air M5
 date: 2026-03-27 14:12:21+0000
 category: Tech
 tags: Apple, Mac, MacBook, MacBook Air, hardware, macOS
-cover: /attachments/2026/03/27/macbook-air.png
+cover: /attachments/2026/03/27/macbook-air.webp
 ---
 
 It's just over a month shy of being 10 years since [I bought my first
@@ -42,7 +42,7 @@ really good too, but the entry-level storage seemed a bit stingy these days
 and once you bump up to the next level, while still stuck with the same
 memory, well the price starts to get dangerously close to...
 
-![The MacBook Air M5](/attachments/2026/03/27/macbook-air.png#centre)
+![The MacBook Air M5](/attachments/2026/03/27/macbook-air.webp#centre)
 
 So, yeah, as of today, I've kind of come full circle; a decade on from that
 MacBook Air purchase I have a new sofa hacking machine coming in the shape

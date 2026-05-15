@@ -3,7 +3,7 @@ title: blogmore.el v2.6
 date: 2026-04-04 11:48:21+0100
 category: Emacs
 tags: BlogMore, Emacs, Emacs Lisp, Lisp, blogmore.el, coding, transient
-cover: /attachments/2026/04/04/transient-cover.png
+cover: /attachments/2026/04/04/transient-cover.webp
 ---
 
 Like most people, I imagine, I first ran into
@@ -113,17 +113,17 @@ a single key to run `blogmore`.
 Now, when I'm working on a blog post, I can just hit <kbd>F12</kbd>
 <kbd>b</kbd> and I get a neat menu:
 
-![BlogMore with all commands available](/attachments/2026/04/04/transient-all.png#centre)
+![BlogMore with all commands available](/attachments/2026/04/04/transient-all.webp#centre)
 
 Better still, because of how `transient` works, I can ensure that only
 applicable commands are available, while still showing them all. So if I've
 not even got a blog selected yet:
 
-![With no commands available](/attachments/2026/04/04/transient-none.png#centre)
+![With no commands available](/attachments/2026/04/04/transient-none.webp#centre)
 
 Or with a blog selected but not actually working on a post yet:
 
-![With some commands available](/attachments/2026/04/04/transient-some.png#centre)
+![With some commands available](/attachments/2026/04/04/transient-some.webp#centre)
 
 So far I'm really liking this approach, and I'm tempted to lean into
 transient more with some of my packages now. While on the surface it does

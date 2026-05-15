@@ -3,7 +3,7 @@ title: blogmore.el v4.0
 date: 2026-04-06 17:04:16+0100
 category: Emacs
 tags: BlogMore, Emacs, Emacs Lisp, Lisp, blogmore.el, coding
-cover: /attachments/2026/04/06/remove-tag.png
+cover: /attachments/2026/04/06/remove-tag.webp
 ---
 
 Despite having bumped it from 2.x to 3.x
@@ -83,7 +83,7 @@ the "public API" of the package.
 Not all the changes are "promoted internals". I've also added a
 `blogmore-remove-tag` command (and also added it to the transient menu).
 
-![Removing a tag](/attachments/2026/04/06/remove-tag.png#centre)
+![Removing a tag](/attachments/2026/04/06/remove-tag.webp#centre)
 
 I've also changed the way that `blogmore-add-tag` works so that, now, if
 it's called from the transient, it immediately goes back to the tag input

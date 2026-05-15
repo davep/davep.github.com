@@ -3,7 +3,7 @@ title: When your model leaves you
 category: AI
 tags: Python, AI, LLM, Copilot, GitHub, BlogMore, coding
 date: 2026-03-17 10:00:00 +0000
-cover: /attachments/2026/03/17/copilot-models.png
+cover: /attachments/2026/03/17/copilot-models.webp
 ---
 
 Yesterday evening, after dinner, but just before [loading up a game released
@@ -86,7 +86,7 @@ some, if not all, of the models I was used to seeing, had come back.
 As of this morning, as of time of writing, it's all looking back to how it
 was.
 
-![All the models back](/attachments/2026/03/17/copilot-models.png)
+![All the models back](/attachments/2026/03/17/copilot-models.webp#centre)
 
 All of which is a great reminder, and something useful in the experiment:
 what *does* happen when some third party takes away the models you're using

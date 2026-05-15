@@ -3,7 +3,7 @@ title: blogmore.el v1.7
 date: 2026-03-21 08:41:23+0000
 category: Emacs
 tags: Emacs, Emacs Lisp, Lisp, blogmore.el, coding
-cover: /attachments/2026/03/21/insert-link.png
+cover: /attachments/2026/03/21/insert-link.webp
 ---
 
 Yes, the last time I mentioned
@@ -45,7 +45,7 @@ cross-link posts in my blog as much as possible so having something that
 lets me do that and stay inside Emacs really speeds things up. So now I just
 run that command, I get speedy picker to find the post:
 
-![Picking a post to link](/attachments/2026/03/21/insert-link.png)
+![Picking a post to link](/attachments/2026/03/21/insert-link.webp#centre)
 
 and the result is some Markdown inserted with the cursor between the two
 `[]` ready for me to write the text:
