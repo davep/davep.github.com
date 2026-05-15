@@ -3,7 +3,7 @@ title: A Norton Guide collection
 category: Coding
 tags: Norton Guide, history
 date: 2025-12-12 17:00:00 +0000
-cover: /attachments/2025/12/12/norton-guides.png
+cover: /attachments/2025/12/12/norton-guides.webp
 ---
 
 As I've mentioned a [few times on this blog](/tag/norton-guide/), I've
@@ -53,7 +53,7 @@ page](https://github.com/davep/norton-guides/wiki) that lists all the guides
 I have that I could possibly publish, showing what I know about the
 copyright/licence of each one and what the publishing state is.
 
-![Snapshot of the site](/attachments/2025/12/12/norton-guides.png)
+![Snapshot of the site](/attachments/2025/12/12/norton-guides.webp#centre)
 
 So with this, I'm putting out a call for help: if you remember the days of
 Norton Guide help files, if you have Norton Guide help files I don't have,
