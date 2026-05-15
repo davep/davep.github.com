@@ -3,10 +3,10 @@ title: An eager fix
 category: AI
 tags: AI, Coding, Copilot, GitHub, LLM, coding
 date: 2026-03-09 12:56:00 +0000
-cover: /attachments/2026/03/09/cover-eager.png
+cover: /attachments/2026/03/09/cover-eager.webp
 ---
 
-![An eager fix](/attachments/2026/03/09/changes.png#centre)
+![An eager fix](/attachments/2026/03/09/changes.webp#centre)
 
 Yesterday, [while looking at starting to post to my photoblog
 again](/2026/03/09/seen-by-me-revived.html), I noticed I'd missed a trick
@@ -37,7 +37,7 @@ then submitted the PR *including the script and all of the changes after
 running it!* It's like it was super eager to do the fix so went ahead and
 just did it.
 
-![The resulting PR](/attachments/2026/03/09/cover-eager.png#centre)
+![The resulting PR](/attachments/2026/03/09/cover-eager.webp#centre)
 
 This, for me, highlights a trick/approach I'm still not fully mindful of:
 where I might once have written some throwaway code to do a job, run the

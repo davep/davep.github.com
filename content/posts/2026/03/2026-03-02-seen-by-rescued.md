@@ -3,10 +3,10 @@ title: Seen by davep rescued
 category: Creative
 tags: blogging, photography, BlogMore, Twitter, Posterous, photoblog
 date: 2026-03-02 17:18:00+0000
-cover: /attachments/2026/03/02/final-message.jpeg
+cover: /attachments/2026/03/02/final-message.webp
 ---
 
-![Final Message](/attachments/2026/03/02/final-message.jpeg#centre)
+![Final Message](/attachments/2026/03/02/final-message.webp#centre)
 
 Since mid-2023 [my photoblog has been
 broken](/2023/08/20/seen-by-davep-broke-again.html). As I mentioned at the

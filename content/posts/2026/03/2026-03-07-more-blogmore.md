@@ -3,7 +3,7 @@ title: More BlogMore
 category: Coding
 tags: AI, BlogMore, Coding, Copilot, LLM, Python
 date: 2026-03-07 11:06:00 +0000
-cover: /attachments/2026/03/07/archive.png
+cover: /attachments/2026/03/07/archive.webp
 ---
 
 I've just released v1.7.0 of [BlogMore](https://blogmore.davep.dev/), my
@@ -18,7 +18,7 @@ that the information was still available, but it also had the unfortunate
 effect of pushing the actual post content way down the screen, sometimes off
 the bottom of the screen.
 
-![The expanded view](/attachments/2026/03/07/mobile-expanded.png#centre)
+![The expanded view](/attachments/2026/03/07/mobile-expanded.webp#centre)
 
 Not great.
 
@@ -33,7 +33,7 @@ what I wanted, it mostly managed to one-shot the problem.
 Now, when I visit the site on my phone, I see a lot less "admin" stuff at
 the start.
 
-![The collapsed view](/attachments/2026/03/07/mobile-collapsed.png#centre)
+![The collapsed view](/attachments/2026/03/07/mobile-collapsed.webp#centre)
 
 As a reader I can still toggle the "sidebar" information into view and out
 of the way again, but the important thing is I can get into the post itself
@@ -45,7 +45,7 @@ displays; a tool to make use of any "dead" space on the right hand side of
 the page. This gives a table of contents of years and months so the reader
 can skip around the archives faster.
 
-![The archive table of contents](/attachments/2026/03/07/archive.png#centre)
+![The archive table of contents](/attachments/2026/03/07/archive.webp#centre)
 
 There have been some under-the-hood changes too. One was an effort to
 [reduce the repeated boilerplate that I noticed was creeping into the
