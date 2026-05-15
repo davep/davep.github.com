@@ -3,10 +3,10 @@ title: Original Seen by davep rescued
 category: Creative
 tags: blogging, photography, BlogMore, posterous, photoblog
 date: 2026-03-03 09:30:00+0000
-cover: /attachments/2026/03/03/still-alive.jpeg
+cover: /attachments/2026/03/03/still-alive.webp
 ---
 
-![Still Alive](/attachments/2026/03/03/still-alive.jpeg#centre)
+![Still Alive](/attachments/2026/03/03/still-alive.webp#centre)
 
 At the end of [yesterday's post](/2026/03/02/seen-by-rescued.html) I said I
 might see if I can rescue the original photoblog from its [backup on

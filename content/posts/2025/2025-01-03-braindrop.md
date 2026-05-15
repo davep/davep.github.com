@@ -3,10 +3,10 @@ title: Braindrop
 category: Coding
 tags: Braindrop, Coding, PyPI, Python, Raindrop, terminal, textual
 date: 2025-01-03 16:24:00 +0000
-cover: /attachments/2025/01/03/braindrop-social-banner.png
+cover: /attachments/2025/01/03/braindrop-social-banner.webp
 ---
 
-![Braindrop](/attachments/2025/01/03/braindrop-social-banner.png)
+![Braindrop](/attachments/2025/01/03/braindrop-social-banner.webp#centre)
 
 A touch over a year ago I did the initial work on an application called
 [Tinboard](https://github.com/davep/tinboard), a terminal-based client for
@@ -36,14 +36,14 @@ with the framework over the prior six months or so.
 Given all this, over the past couple of weeks I've been spending a few hours
 a day doing some for-pleasure coding and v0.1.0 of Braindrop is the result.
 
-![Main display](/attachments/2025/01/03/braindrop-main.png)
+![Main display](/attachments/2025/01/03/braindrop-main.webp#centre)
 
 As much as possible I've tried to keep the look and feel similar to that of
 Tinboard, while also doing my best to avoid some of the *"ah, I wish I
 hadn't done it this way"* design decisions I'd made. As of the time of
 writing I'm very pleased with the result.
 
-![The edit dialog](/attachments/2025/01/03/braindrop-edit.png)
+![The edit dialog](/attachments/2025/01/03/braindrop-edit.webp#centre)
 
 One thing I did want to do is ensure that the application was as
 keyboard-friendly as possible, while also still allowing use of the mouse.
@@ -55,23 +55,23 @@ help system I built into Tinboard, while adopting the documentation standard
 that Textual had settled on (which, coincidentally, was kind of similar to
 what I did in Tinboard to start with).
 
-![The help dialog](/attachments/2025/01/03/braindrop-help.png)
+![The help dialog](/attachments/2025/01/03/braindrop-help.webp#centre)
 
 As with Tinboard, I've also made sure to make full use of the command
 palette, with every action that makes sense having a keyboard hotkey as well
 as a command in the palette. I also took things a little further and made
 sure that the hotkeys are shown in the command palette for easier discovery.
 
-![The command palette](/attachments/2025/01/03/braindrop-command-palette.png)
+![The command palette](/attachments/2025/01/03/braindrop-command-palette.webp#centre)
 
 I've also made sure that Textual's new theme system is available for easy
 use; so out goes dark/light mode toggling and in comes a collection of
 different themes. Here's a wee selection as an example:
 
-![Example theme 1](/attachments/2025/01/03/braindrop-theme-1.png)
-![Example theme 2](/attachments/2025/01/03/braindrop-theme-2.png)
-![Example theme 3](/attachments/2025/01/03/braindrop-theme-3.png)
-![Example theme 4](/attachments/2025/01/03/braindrop-theme-4.png)
+![Example theme 1](/attachments/2025/01/03/braindrop-theme-1.webp#centre)
+![Example theme 2](/attachments/2025/01/03/braindrop-theme-2.webp#centre)
+![Example theme 3](/attachments/2025/01/03/braindrop-theme-3.webp#centre)
+![Example theme 4](/attachments/2025/01/03/braindrop-theme-4.webp#centre)
 
 That's a small selection of the themes, with more to explore.
 

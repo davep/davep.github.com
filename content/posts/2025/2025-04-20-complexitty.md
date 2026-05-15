@@ -3,10 +3,10 @@ title: Complexitty
 category: Coding
 tags: Complexitty, PyPI, Python, mandelbrot, terminal, textual, textual-canvas
 date: 2025-04-20 09:30:00 +0100
-cover: /attachments/2025/04/20/complexitty-social-banner.png
+cover: /attachments/2025/04/20/complexitty-social-banner.webp
 ---
 
-[![Complexitty](/attachments/2025/04/20/complexitty-social-banner.png)](https://complexitty.davep.dev/)
+[![Complexitty](/attachments/2025/04/20/complexitty-social-banner.webp#centre)](https://complexitty.davep.dev/)
 
 Much like [Norton Guide readers](https://www.davep.org/norton-guides/) or
 the [5x5
@@ -42,7 +42,7 @@ off a fresh stand-alone application.
 
 [Complexitty](https://complexitty.davep.dev/) is the result.
 
-![Complexitty on startup](/attachments/2025/04/20/complexitty.png)
+![Complexitty on startup](/attachments/2025/04/20/complexitty.webp#centre)
 
 Right now the application has all the same features as the `mandelexp`
 application that came with `textual-mandelbrot`, plus a couple more. Also
@@ -52,17 +52,17 @@ together for all my own terminal-based Python applications. As time goes on
 [I'll add more
 features](https://github.com/davep/complexitty/issues?q=is%3Aissue%20label%3ATODO%20label%3AEnhancement).
 
-![Zoomed in with Complexitty](/attachments/2025/04/20/complexitty-red.png)
+![Zoomed in with Complexitty](/attachments/2025/04/20/complexitty-red.webp#centre)
 
 As with most of my recent TUI-based projects, the application is built with
 comprehensive help for commands and key bindings.
 
-![The help screen](/attachments/2025/04/20/complexitty-help.png)
+![The help screen](/attachments/2025/04/20/complexitty-help.webp#centre)
 
 and there's also a command palette that helps you discover (and run)
 commands and their keyboard bindings.
 
-![The command palette](/attachments/2025/04/20/complexitty-commands.png)
+![The command palette](/attachments/2025/04/20/complexitty-commands.webp#centre)
 
 Complexitty is licensed GPL-3.0 and available [via
 GitHub](https://github.com/davep/complexitty) and also [via

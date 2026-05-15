@@ -3,10 +3,10 @@ title: Seen by davep revived
 category: Creative
 tags: blogging, photography, BlogMore, posterous, photoblog, AI, LLM, Copilot
 date: 2026-03-09 09:00:00+0000
-cover: /attachments/2026/03/09/a-different-glen.jpeg
+cover: /attachments/2026/03/09/a-different-glen.webp
 ---
 
-![A different glen](/attachments/2026/03/09/a-different-glen.jpeg#centre)
+![A different glen](/attachments/2026/03/09/a-different-glen.webp#centre)
 
 Following on from the [rescue of my
 photoblog](/2026/03/02/seen-by-rescued.html), followed by the [rescue of the

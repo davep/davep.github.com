@@ -3,7 +3,7 @@ title: Documenting textual-fspicker (plus a TIL)
 category: Coding
 tags: Python, textual, documentation, GitHub, mkdocs, mkdocstrings, gh-pages
 date: 2025-02-28 11:45:00 +0000
-cover: /attachments/2025/02/28/good.png
+cover: /attachments/2025/02/28/good.webp
 ---
 
 I've just made a wee update to
@@ -78,11 +78,11 @@ alignment issues, and also whole bits of text just not appearing at all.
 
 Here's an example of what I was seeing locally:
 
-![Good layout](/attachments/2025/02/28/good.png)
+![Good layout](/attachments/2025/02/28/good.webp#centre)
 
 and here's what I was seeing being served up from GitHub Pages:
 
-![Bad layout](/attachments/2025/02/28/bad.png)
+![Bad layout](/attachments/2025/02/28/bad.webp#centre)
 
 As you can see, in the "bad" version the `func` label is missing from the
 header, and the `Parameters` and `Returns` tables look quite messy.
@@ -96,7 +96,7 @@ was there (and with fine permissions). If I looked in the remote branch, it
 was there too. Thinking it could be some odd browser problem I even tried to
 grab the file back from the command line and it came back 404 as well.
 
-![Testing from the command line](/attachments/2025/02/28/http-grab.png)
+![Testing from the command line](/attachments/2025/02/28/http-grab.webp#centre)
 
 At this point it was getting kind of late so I decided I must have screwed
 up somehow but I should leave it for the evening and head to bed. Before
