@@ -27,7 +27,7 @@ frictionless (yet), it feels like it will work. So here's the plan:
 - Take photo
 - Manipulate photo[^1]
 - In Apple Photos add a description to the image
-- Export WEBP file to a `Photoblog Inbox` folder in iCloud Drive
+- Export JPEG file to a `Photoblog Inbox` folder in iCloud Drive
 - Later, when I'm at my desk, [import the image into the
   photoblog](https://github.com/davep/seen-by/blob/main/impimg.py)
 - Publish the updated blog
