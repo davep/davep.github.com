@@ -3,7 +3,7 @@ title: blogmore.el v2.0
 date: 2026-03-29 20:50:41+0100
 category: Emacs
 tags: BlogMore, Coding, Emacs, Emacs Lisp, Lisp, blogmore.el
-cover: /attachments/2026/03/29/customize-blogmore.png
+cover: /attachments/2026/03/29/customize-blogmore.webp
 ---
 
 After [kicking off `blogmore.el`](/2026/03/19/some-blogmore-elisp.html), and
@@ -24,7 +24,7 @@ active blog can be quickly changed.
 
 All of this can be configured using Emacs' customize feature.
 
-![Customize blogmore](/attachments/2026/03/29/customize-blogmore.png#centre)
+![Customize blogmore](/attachments/2026/03/29/customize-blogmore.webp#centre)
 
 This has all changed since v1.x, where most of the customize options have
 now been renamed to include `-default-` in their name. The idea here is that
@@ -35,7 +35,7 @@ For any given blog you wish to work with, you configure a name (for your own
 reference) and the path to the posts. Optionally you can also set lots of
 other values too.
 
-![Customize the blog](/attachments/2026/03/29/customize-blogs.png#centre)
+![Customize the blog](/attachments/2026/03/29/customize-blogs.webp#centre)
 
 If a value is left on `Default`, then the corresponding default setting will
 be used; if it's set, then that value is used for that specific blog.

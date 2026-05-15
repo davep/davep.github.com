@@ -3,7 +3,7 @@ title: blogmore.el v1.4
 category: Emacs
 tags: Emacs, Emacs Lisp, Lisp, blogmore.el, coding
 date: 2026-03-20 08:46:59 +0000
-cover: /attachments/2026/03/20/string-split.png
+cover: /attachments/2026/03/20/string-split.webp
 ---
 
 Following on from [yesterday's post](/2026/03/19/some-blogmore-elisp.html),
@@ -23,7 +23,7 @@ to make good use of
 I got there in the end, though, when I bothered to RTFM with a quick `C-h f
 string-split RET`.
 
-![Documentation for string-split](/attachments/2026/03/20/string-split.png#centre)
+![Documentation for string-split](/attachments/2026/03/20/string-split.webp#centre)
 
 So now I have the following commands in Emacs when I get the urge to do
 something blog-related:

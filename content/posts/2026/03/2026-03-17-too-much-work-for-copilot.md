@@ -3,7 +3,7 @@ title: Too much work for Copilot?
 category: AI
 tags: Python, AI, LLM, Copilot, GitHub, BlogMore
 date: 2026-03-17 14:27:00 +0000
-cover: /attachments/2026/03/17/too-many-requests.png
+cover: /attachments/2026/03/17/too-many-requests.webp
 ---
 
 I don't know if it's just that GitHub Copilot is having a bad time at the
@@ -28,13 +28,13 @@ So [I asked it to fix
 it](https://github.com/davep/blogmore/pull/307#issuecomment-4074343536). It
 went off, worked on the issue, and then suddenly...
 
-![Denied](/attachments/2026/03/17/too-many-requests.png#centre)
+![Denied](/attachments/2026/03/17/too-many-requests.webp#centre)
 
 This surprised me. After the past few weeks I've had sessions where I've
 requested it do things way more frequently than this morning. I'm also
 nowhere near out of premium requests either:
 
-![Number of requests left](/attachments/2026/03/17/requests-left.png#centre)
+![Number of requests left](/attachments/2026/03/17/requests-left.webp#centre)
 
 While the error, as shown, might be valid and might be down to my actions,
 it's massively unhelpful and doesn't really explain what I did to cause this

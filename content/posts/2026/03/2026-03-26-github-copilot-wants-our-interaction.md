@@ -3,7 +3,7 @@ title: GitHub Copilot wants our interaction data
 date: 2026-03-26 08:42:37+0000
 category: AI
 tags: AI, Coding, Copilot, Free Software, GitHub
-cover: /attachments/2026/03/26/thumbs-down.png
+cover: /attachments/2026/03/26/thumbs-down.webp
 modified: 2026-03-26 10:17:43+0000
 ---
 
@@ -28,7 +28,7 @@ why some would be cynical about this change, given the tone of some of the
 questions and answers in that FAQ. I'll hand it to them: they're pretty
 candid and honest with the FAQs, but kinda yikes too.
 
-![A bad time in the FAQ](/attachments/2026/03/26/thumbs-down.png#centre)
+![A bad time in the FAQ](/attachments/2026/03/26/thumbs-down.webp#centre)
 
 Here's the key thing I'm curious about, and which I'll be thinking about and
 watching for movement on in the next few days: all the talk here seems to be

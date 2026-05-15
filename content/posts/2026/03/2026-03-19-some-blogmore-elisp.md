@@ -3,7 +3,7 @@ title: Some BlogMore Elisp
 category: Emacs
 tags: BlogMore, Coding, Emacs, Emacs Lisp, Lisp, blogmore.el
 date: 2026-03-19 15:10:28 +0000
-cover: /attachments/2026/03/19/blogmore-edit.png
+cover: /attachments/2026/03/19/blogmore-edit.webp
 ---
 
 It's been a moment since I last wrote any Emacs Lisp code, at least anything
@@ -22,7 +22,7 @@ nothing clever, it simply adds `blogmore-new` and `blogmore-edit`; the
 former starts a new post with the bare minimum frontmatter filled in, the
 latter lets me quickly pick an existing post and go edit it.
 
-![blogmore-edit in action](/attachments/2026/03/19/blogmore-edit.png#centre)
+![blogmore-edit in action](/attachments/2026/03/19/blogmore-edit.webp#centre)
 
 As time goes on I might expand on this. For example: it might be useful to
 have a command that updates the `date` frontmatter; perhaps another to add a
