@@ -3,12 +3,12 @@ title: Solidarity, Empathy, and Patience -- thinking about code reviews
 category: Coding
 tags: work, code review, leadership, Death Stranding
 date: 2026-02-04 13:50:00 +0000
-cover: /attachments/2026/02/04/chiral.jpeg
+cover: /attachments/2026/02/04/chiral.webp
 ---
 
 ## So I saw this video...
 
-![A chiral crystal](/attachments/2026/02/04/chiral.jpeg#centre)
+![A chiral crystal](/attachments/2026/02/04/chiral.webp#centre)
 
 Death Stranding, along with its sequel, is my absolute favourite video game
 ever, and probably one of my favourite pieces of fiction ever too; I've
@@ -65,7 +65,7 @@ solidarity, empathy and patience I want to think about more.
 
 ## Solidarity
 
-![In the mountains](/attachments/2026/02/04/mountains.jpeg)
+![In the mountains](/attachments/2026/02/04/mountains.webp#centre)
 
 This, for me, is all about where you position yourself when you approach
 reviewing code. I sense things only work well if you view the codebase as
@@ -95,7 +95,7 @@ offer to pair up to work on the solution.
 
 ## Empathy
 
-![Sam and Fragile](/attachments/2026/02/04/Sam-and-Fragile.jpeg)
+![Sam and Fragile](/attachments/2026/02/04/Sam-and-Fragile.webp#centre)
 
 As someone who has written a lot of code, and so written a lot of bugs and
 made a lot of bad design choices, I feel empathy is the easiest of the three
@@ -122,7 +122,7 @@ benefits.
 
 ## Patience
 
-![Arriving at the plate gate](/attachments/2026/02/04/Plate-Gate.jpeg)
+![Arriving at the plate gate](/attachments/2026/02/04/Plate-Gate.webp#centre)
 
 The patience aspect of this view of reviews, for me, covers a few things.
 There's the patience that should be applied when reading over the code;
@@ -150,7 +150,7 @@ intuition for what's right for the project.
 
 ## This is not (entirely) a post about code reviews
 
-![Near the wind farm](/attachments/2026/02/04/Wind-Farm.jpeg)
+![Near the wind farm](/attachments/2026/02/04/Wind-Farm.webp#centre)
 
 The thing with code reviews, or any other team activities, is they don't
 exist in a vacuum. They take on the taste and smell of the culture in which
