@@ -2,11 +2,108 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-16T08:49:28.172130+00:00</updated>
+  <updated>2026-05-16T14:54:06.906746+00:00</updated>
   <link href="https://blog.davep.org/feeds/ai.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "AI" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/16/gemini-cli-vs-github-copilot-the-result.html</id>
+    <title>Gemini CLI vs GitHub Copilot (the result)</title>
+    <updated>2026-05-16T15:00:23+01:00</updated>
+    <content type="html">&lt;p&gt;Following on from &lt;a href="https://blog.davep.org/2026/05/16/gemini-cli-vs-github-copilot-redux.html"&gt;this morning's initial
+experiment&lt;/a&gt;, I think
+I'm settling on a winner. Rather than be annoying and have you scroll to the
+bottom to find out: it's Gemini CLI. Here's how I found the process played
+out, and why I'm settling for one over the other.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id="gemini-cli"&gt;Gemini CLI&lt;a aria-label="Link to this heading" class="heading-anchor" href="#gemini-cli"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Initially this was an absolute mess. After letting it initially work on the
+problem, the resulting code didn't even really run. The first go, and the
+three follow-up prompt/result cycles that followed, all resulted in code
+that had runtime errors. I'm pretty sure it didn't even bother to try and do
+any adequate testing. This is odd given I've generally seen it do an okay
+job when it comes to writing and running tests.&lt;/p&gt;
+&lt;p&gt;Once I had the code in a stable state, with all type checking, linting and
+testing passing, it still didn't work. No matter how I tried to use the new
+facility it just didn't make a difference. No images were optimised. In the
+end I dived into the code, with the help of its attempt at debugging (it
+added &lt;code&gt;print&lt;/code&gt; calls to try and get to the bottom of things -- how very
+human!), diagnosed what I thought was the issue (it was looking in the wrong
+location for the files to optimise), told it my hypothesis and let it check
+if I was right. It concluded I was and fixed the problem.&lt;/p&gt;
+&lt;p&gt;Since then I've had a working implementation of &lt;a href="https://github.com/davep/blogmore/issues/490" rel="noopener noreferrer" target="_blank"&gt;the initial
+plan&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Once that was in place it's been a pretty smooth journey. I've asked it
+questions about the implementation, had my concerns set to rest, had some
+concerns addressed and fixed, improved some things here and there, added new
+features, etc.&lt;/p&gt;
+&lt;p&gt;All of this has left me with 18% of my daily quota used up. While I think
+this is the highest I've ever got while using Gemini CLI, it still feels
+like I got a lot of things done for not a lot of quota use.&lt;/p&gt;
+&lt;h2 id="github-copilot"&gt;GitHub Copilot&lt;a aria-label="Link to this heading" class="heading-anchor" href="#github-copilot"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Initially I thought this had managed to one-shot the problem. Once it had
+finished its initial work the code ran without incident and produced all the
+optimised files. Or so I thought. Doing a little more testing, though, it
+became clear it was only optimising a subset of the images &lt;em&gt;and&lt;/em&gt; it didn't
+seem to be producing the actual HTML to use the images.&lt;/p&gt;
+&lt;p&gt;On top of this it didn't even follow the full plan that was laid out in the
+issue it was assigned. For example: once I'd got it doing the main part of
+the work, it became apparent that it had pretty much ignored the whole idea
+of using a cache to speed this process up. I had to remind it to do this.&lt;/p&gt;
+&lt;p&gt;At one point I switched from the in-PR web interaction with Copilot, and
+used the local CLI instead. When I ran that up it warned me that I was
+already 50% of the way through some sort of rate limit and this wouldn't
+reset for another 3 hours. I think I was about 40 minutes into letting it
+try and do the work at this point.&lt;/p&gt;
+&lt;p&gt;After a bit more testing and follow-up prompts, I got to a point where I had
+something that looked like it was working; albeit in a slightly different
+way from how Gemini CLI did it (the Copilot approach was writing the
+optimised images out to the &lt;code&gt;extras&lt;/code&gt; directory, mixing them in with my own
+images; Gemini opted for having a separate directory for optimised images
+within the &lt;code&gt;static&lt;/code&gt; hierarchy).&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;At this point I will admit to &lt;em&gt;not&lt;/em&gt; having carefully reviewed the code of
+either agent; that's a job still to do. But while Gemini got off to a very
+rocky start, with a bit of guidance it seemed to arrive at an implementation
+I'm happy with, and one that seems to be working as intended. While it
+didn't anticipate all the edge cases, when I asked about them it easily
+found and implemented solutions for them. Moreover, the fact that I could do
+all of this and confidently know the "cost" made a huge difference. Copilot
+seems to generally approach this like a quota or rate limit should be a
+lovely surprise that will destroy your flow; Gemini has it there and in
+front of you, all the time.&lt;/p&gt;
+&lt;p&gt;As for the general idea that I'm working on: I &lt;em&gt;think&lt;/em&gt; I'm going to
+implement it. Weirdly I'm slightly nervous about building the blog such that
+it won't be using the images &lt;strong&gt;I&lt;/strong&gt; created, but I also recognise that that's
+a little irrational. Meanwhile I'm very curious about the impact this might
+have &lt;a href="https://blog.davep.org/2026/04/16/i-should-use-webp.html"&gt;on the PageSpeed measurement&lt;/a&gt; of
+the blog. While it's far from horrific, image size optimisation and size
+declaration seem to be fairly high on the things that are impacting the
+performance score (currently sat at 89 for the front page of the blog, as I
+type this).&lt;/p&gt;
+&lt;p&gt;The other thing that gives me pause for thought about merging this in, and
+then subsequently using it, is that I've &lt;em&gt;just&lt;/em&gt; &lt;a href="https://blog.davep.org/2026/05/15/converted-to-webp.html"&gt;finished migrating all
+images to webp&lt;/a&gt;, and so saving a lot of
+space in the built version of the blog. Generating all the responsive sizes
+of the images eats that up again. With this feature off, the built version
+of the blog stands at about 84MB; with it on, this rises to 133MB. That
+extra 49MB more than eats up the 24MB saving I made earlier.&lt;/p&gt;
+&lt;p&gt;On the other hand: storage is a thing for GitHub to worry about, what I'm
+worrying about here, and aiming to improve, is the reader's experience.&lt;/p&gt;
+&lt;p&gt;I'm going to sit on this for a short while and play around with it, at least
+until I get impatient and say "what the hell" and run with it.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/05/16/gemini-cli-vs-github-copilot-the-result.html"/>
+    <category term="AI"/>
+    <category term="BlogMore"/>
+    <category term="Coding"/>
+    <category term="Copilot"/>
+    <category term="Gemini"/>
+    <category term="GitHub"/>
+    <category term="Google"/>
+    <category term="Python"/>
+    <published>2026-05-16T15:00:23+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/16/gemini-cli-vs-github-copilot-redux.html</id>
     <title>Gemini CLI vs GitHub Copilot (redux)</title>
@@ -2207,120 +2304,5 @@ When I get a bit more time I'm going to flesh this out.&lt;/p&gt;</content>
     <category term="history"/>
     <category term="NGMCP"/>
     <published>2026-04-11T21:01:03+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/03/26/github-copilot-wants-our-interaction.html</id>
-    <title>GitHub Copilot wants our interaction data</title>
-    <updated>2026-03-26T08:42:37+00:00</updated>
-    <content type="html">&lt;p&gt;I guess it was inevitable&lt;sup id="fnref:202-1"&gt;&lt;a class="footnote-ref" href="#fn:202-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, but yesterday GitHub
-&lt;a href="https://github.blog/news-insights/company-news/updates-to-github-copilot-interaction-data-usage-policy/" rel="noopener noreferrer" target="_blank"&gt;announced&lt;/a&gt;
-a new opt-out approach to learning from people's interactions with
-&lt;a href="https://blog.davep.org/tag/copilot/"&gt;Copilot&lt;/a&gt;. I don't have anything novel or insightful to say
-on this switch, and I'm sure folk with better-informed opinions have already
-rushed out posts and articles about this, but I did want to jot down just
-how curious I am to see this roll out.&lt;/p&gt;
-&lt;p&gt;For starters: for me this feels like one of those things that will get a lot
-of backlash, and in a day or so GitHub will say they're pausing rolling this
-out while they reevaluate this approach&lt;sup id="fnref:202-2"&gt;&lt;a class="footnote-ref" href="#fn:202-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. Then, eventually, they roll it
-out anyway after a "period of consultation with the community". That sort of
-thing.&lt;/p&gt;
-&lt;p&gt;I've not read further this morning, but before going to bed last night it
-wasn't a happy time in the comments section of &lt;a href="https://github.com/orgs/community/discussions/188488" rel="noopener noreferrer" target="_blank"&gt;the
-FAQ&lt;/a&gt;. I can also see
-why some would be cynical about this change, given the tone of some of the
-questions and answers in that FAQ. I'll hand it to them: they're pretty
-candid and honest with the FAQs, but kinda yikes too.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="A bad time in the FAQ" src="https://blog.davep.org/attachments/2026/03/26/thumbs-down.webp#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Here's the key thing I'm curious about, and which I'll be thinking about and
-watching for movement on in the next few days: all the talk here seems to be
-about protecting the privacy of the proprietary code of businesses&lt;sup id="fnref:202-3"&gt;&lt;a class="footnote-ref" href="#fn:202-3"&gt;3&lt;/a&gt;&lt;/sup&gt;.
-That... is understandable, from a business point of view, from a commercial
-adoption point of view, from a &lt;em&gt;"we want all software engineering
-departments to use Copilot"&lt;/em&gt; point of view. But how the heck are they
-&lt;em&gt;really&lt;/em&gt; going to manage that?&lt;/p&gt;
-&lt;p&gt;In the comments in the FAQ &lt;a href="https://github.com/orgs/community/discussions/188488#discussioncomment-16317873" rel="noopener noreferrer" target="_blank"&gt;this explanation stood
-out&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;We do not train on the contents from any paid organization’s repos,
-regardless of whether a user is working in that repo with a Copilot Free,
-Pro, or Pro+ subscription. If a user’s GitHub account is a member of or
-outside collaborator with a paid organization, we exclude their
-interaction data from model training.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This seems somewhat unclear to me. Let's walk this one through for a moment:
-&lt;a href="https://github.com/davep" rel="noopener noreferrer" target="_blank"&gt;my GitHub account&lt;/a&gt; &lt;em&gt;is&lt;/em&gt; a member of a "paid
-organisation". My account is also my account, for my personal code, I've had
-it &lt;a href="https://blog.davep.org/2023/10/01/all-green-on-github.html"&gt;a long time&lt;/a&gt; and it's filled with
-a lot of FOSS repos and I keep adding more. So which scenario is the right
-one here?&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Because I'm currently a member of at least one "paid organisation" I'm
-   always opted-out of this training no matter how the opt in/out setting is
-   set and no matter what code I work on?&lt;/li&gt;
-&lt;li&gt;Because I'm currently a member of at least one "paid organisation" I
-   &lt;em&gt;can&lt;/em&gt; opt in when working on code that is from a repository which is
-   mine, but I'm opted out when I'm working on code from a repository
-   belonging to the paid organisation?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;I think it reads like it's #1. But then that seems rather odd to me because,
-if I go and look at my settings right now, I can elect to opt in/out of this
-training system. If the correct reading is #1 why not just disable that
-setting altogether and say below it that I'm opted-out because I'm part of a
-paid organisation?&lt;/p&gt;
-&lt;p&gt;Which sort of suggests we should perhaps read it as #2? If that, that raises
-all sorts of questions. How would Copilot know I'm working on code from such
-a repository? Sure, it's not impossible to infer if I am working within the
-context of a given repository, doing some fun stuff to work out the origin
-and so on, but it feels messy. It also feels like a scenario that could end
-up being incredibly leaky. It really would not be difficult to run into a
-scenario where I'm working on some &lt;a href="https://www.gnu.org/philosophy/categories.html" rel="noopener noreferrer" target="_blank"&gt;non-Free
-code&lt;/a&gt; but in an environment
-where the licence isn't clear, or where it appears that the licence&lt;sup id="fnref:202-4"&gt;&lt;a class="footnote-ref" href="#fn:202-4"&gt;4&lt;/a&gt;&lt;/sup&gt;
-would permit such training.&lt;/p&gt;
-&lt;div class="admonition admonition-note"&gt;
-&lt;div class="admonition-title"&gt;ℹ️ Note&lt;/div&gt;
-&lt;div class="admonition-content"&gt;
-&lt;p&gt;Editing to add: there is even &lt;a href="https://github.com/orgs/community/discussions/188488#discussioncomment-16316523" rel="noopener noreferrer" target="_blank"&gt;a
-comment&lt;/a&gt;
-where it is acknowledged that someone could be working in such a way that
-it's impossible to know the provenance of the code: &lt;em&gt;"Copilot ... can even
-work when you are not connected to any repo."&lt;/em&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Or... perhaps there's a #3, or a #4, or so on, that I've not even considered
-yet. The fact that software engineering departments suddenly have to start
-thinking about this issue (yes, I know, it's been a background issue for a
-while but this really drags it out into the open) is going to make for a few
-interesting weeks, assuming people care about where their code ends up.&lt;/p&gt;
-&lt;p&gt;Who knows. Perhaps, in some strange way, this &lt;em&gt;is&lt;/em&gt; how all software ends up
-being &lt;a href="https://www.gnu.org/philosophy/free-sw.html" rel="noopener noreferrer" target="_blank"&gt;Free&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:202-1"&gt;
-&lt;p&gt;And I think a bit of me is surprised that they weren't just doing it
-anyway.&amp;#160;&lt;a class="footnote-backref" href="#fnref:202-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:202-2"&gt;
-&lt;p&gt;This isn't a prediction, I'm just saying it feels like that sort of
-announcement.&amp;#160;&lt;a class="footnote-backref" href="#fnref:202-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:202-3"&gt;
-&lt;p&gt;It's not that simple, but to save getting into the deep detail...&amp;#160;&lt;a class="footnote-backref" href="#fnref:202-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:202-4"&gt;
-&lt;p&gt;I'm using licence here as shorthand for a lot of things to consider
-relating to who should have access to the code and how.&amp;#160;&lt;a class="footnote-backref" href="#fnref:202-4" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/03/26/github-copilot-wants-our-interaction.html"/>
-    <category term="AI"/>
-    <category term="AI"/>
-    <category term="Coding"/>
-    <category term="Copilot"/>
-    <category term="Free Software"/>
-    <category term="GitHub"/>
-    <published>2026-03-26T08:42:37+00:00</published>
   </entry>
 </feed>
