@@ -2,11 +2,98 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-18T17:43:57.092731+00:00</updated>
+  <updated>2026-05-18T18:44:02.036077+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/18/blogmore-v2-24-0.html</id>
+    <title>BlogMore v2.24.0</title>
+    <updated>2026-05-18T18:59:06+01:00</updated>
+    <content type="html">&lt;p&gt;Quite a few weeks ago now -- I think it was around the time I started work
+on &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; and got the new
+&lt;a href="https://blog.davep.org/2026/03/28/hello-macbook-air-again.html"&gt;MacBook Air&lt;/a&gt; -- I remember
+sitting in a cafe in Edinburgh and via Mastodon having a conversation with
+&lt;a href="https://mastodon.me.uk/@andyc" rel="noopener noreferrer" target="_blank"&gt;Andy&lt;/a&gt; about tweaking better results out of
+&lt;a href="https://pagespeed.web.dev/" rel="noopener noreferrer" target="_blank"&gt;PageSpeed Insights&lt;/a&gt;. I seem to remember him
+correctly observing that one of the big hits on the performance score was
+the size of images, and also the format, and that some SSG engines would go
+to the trouble of converting to the likes of WebP and/or generating
+different sizes that are appropriate to different screens, that sort of
+thing.&lt;/p&gt;
+&lt;p&gt;I can't quite remember where we left it, but I think it was considered more
+work than was worth worrying about, and perhaps &lt;a href="https://blog.davep.org/2026/04/16/i-should-use-webp.html"&gt;swapping all images on our
+blogs to WebP&lt;/a&gt; would solve most of the
+issues.&lt;/p&gt;
+&lt;p&gt;For a couple of different reasons, late last week, &lt;a href="https://blog.davep.org/2026/05/16/gemini-cli-vs-github-copilot-redux.html"&gt;I decided it was time to
+play with the problem&lt;/a&gt;.
+For some reason I've been pretty cautious with &lt;a href="https://github.com/davep/blogmore/pull/492" rel="noopener noreferrer" target="_blank"&gt;this
+PR&lt;/a&gt;. I planned it out last
+Friday night, kicked off work on it on Saturday morning, and have then been
+tinkering and changing it and testing it and iterating over it all weekend.
+Something about the nature of the change made me want to go very slowly with
+this. I think it was an unease about messing with the images that would get
+served, the nature of the new tags that would get emitted, the fact that
+there would be even more HTML tinkering going on, the possible complexity of
+maintaining the cache... lots of things to consider and this is supposed to
+be a nice, simple, unfussy site generator.&lt;/p&gt;
+&lt;p&gt;Anyway, I've just released
+&lt;a href="https://blogmore.davep.dev/changelog/#v2240" rel="noopener noreferrer" target="_blank"&gt;v2.24.0&lt;/a&gt; with this feature
+added. It's off by default, and is turned on by &lt;a href="https://blogmore.davep.dev/configuration/#optimise_images" rel="noopener noreferrer" target="_blank"&gt;setting
+&lt;code&gt;optimise_images&lt;/code&gt;&lt;/a&gt;
+to &lt;code&gt;true&lt;/code&gt;. Then, when you build your blog, each PNG, JPEG or WebP image will
+be converted into one or more WebP images stored below
+&lt;code&gt;static/images/optimised&lt;/code&gt;. How many are made for each image will depend on
+how &lt;a href="https://blogmore.davep.dev/configuration/#image_widths" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;image_widths&lt;/code&gt;&lt;/a&gt;
+is set. The physical size of each image (and how the image looks) can be
+affected by
+&lt;a href="https://blogmore.davep.dev/configuration/#image_quality" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;image_quality&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This does have two very obvious effects:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It will result in your generated site being quite a bit bigger, if you
+   have lots of images.&lt;/li&gt;
+&lt;li&gt;It will result in the build time taking much longer.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The first issue is something I can't do anything about; it is what it is.
+The second issue, however, is something that can be dealt with. Given I've
+&lt;a href="https://blog.davep.org/2026/05/13/blogmore-v2-22-0.html"&gt;just made a release that speeds up build
+times&lt;/a&gt;, this would be a huge step
+backwards. So with this in mind, as the optimised images are created, a
+cache of them is also created in BlogMore's &lt;a href="https://blogmore.davep.dev/command_line/#cache-command" rel="noopener noreferrer" target="_blank"&gt;cache
+directory&lt;/a&gt;. This,
+again, does mean that more space is taken on your local storage to build
+your site, but it also means that repeated builds will remain fast.&lt;/p&gt;
+&lt;p&gt;If you run into problems or need space back, don't forget you can &lt;a href="https://blogmore.davep.dev/command_line/#clear" rel="noopener noreferrer" target="_blank"&gt;easily
+clear the cache&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So what's the result of all of this? Is it worth the effort? Well, to be
+sure, before I upgraded the version of BlogMore that I build this site with,
+I measured its performance.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Built with BlogMore v2.23.0" height="204" loading="lazy" src="https://blog.davep.org/attachments/2026/05/18/before.webp#centre" width="906" /&gt;&lt;/p&gt;
+&lt;p&gt;After upgrading and rebuilding, here is how the same home page measures up.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Built with BlogMore v2.24.0" height="212" loading="lazy" src="https://blog.davep.org/attachments/2026/05/18/after.webp#centre" width="906" /&gt;&lt;/p&gt;
+&lt;p&gt;I was genuinely surprised by the difference. The settings I used were:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;optimise_images&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;span class="nt"&gt;image_quality&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;95&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and, of course, almost all the images on this site &lt;a href="https://blog.davep.org/2026/05/15/converted-to-webp.html"&gt;are now WebP
+anyway&lt;/a&gt;. I think I was expecting it to
+have a small impact, but even having those WebP images turned into stepped
+sizes seems to have a very measurable effect.&lt;/p&gt;
+&lt;p&gt;I'm going to be keeping a close eye on how this works for the next few days.
+As I say, I've tested this as much as possible and gone over the code as
+carefully as time has allowed. If this feature does break something I hadn't
+anticipated I can always just turn it off again anyway. Meanwhile though,
+the improvement on mobile does seem genuinely worth it.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/05/18/blogmore-v2-24-0.html"/>
+    <category term="Coding"/>
+    <category term="BlogMore"/>
+    <category term="Coding"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <published>2026-05-18T18:59:06+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/15/braindrop-v1-1-0.html</id>
     <title>Braindrop v1.1.0</title>
@@ -101,7 +188,7 @@ noticeably quicker.&lt;/p&gt;
 would be possible to have the BlogMore &lt;code&gt;serve&lt;/code&gt; mode auto-reload any page
 being viewed in a browser, when the site is regenerated. It was something
 I'd considered myself a couple of times so that was a good reason to finally
-look into it. Not knowing how this could be achieved&lt;sup id="fnref:295-1"&gt;&lt;a class="footnote-ref" href="#fn:295-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I prompted
+look into it. Not knowing how this could be achieved&lt;sup id="fnref:296-1"&gt;&lt;a class="footnote-ref" href="#fn:296-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I prompted
 &lt;a href="https://blog.davep.org/tag/gemini/"&gt;Gemini&lt;/a&gt; for an idea, stressing I wanted a solution that
 didn't disturb a generated site; it &lt;a href="https://github.com/davep/blogmore/issues/486" rel="noopener noreferrer" target="_blank"&gt;came up with a convincing
 solution&lt;/a&gt;. I let it run at it
@@ -113,8 +200,8 @@ build process.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:295-1"&gt;
-&lt;p&gt;Web development has never been my primary area of knowledge.&amp;#160;&lt;a class="footnote-backref" href="#fnref:295-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:296-1"&gt;
+&lt;p&gt;Web development has never been my primary area of knowledge.&amp;#160;&lt;a class="footnote-backref" href="#fnref:296-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -149,7 +236,7 @@ quite a few internal changes that speed up some core parts of site
 generation. Many of the things identified by Gemini, back when I first
 kicked this process off, have been done. The amount of Markdown-&amp;gt;HTML
 conversion work has been vastly reduced, which has had a pretty big impact
-on all sorts of things. There's also caching of the FontAwesome metadata&lt;sup id="fnref:296-1"&gt;&lt;a class="footnote-ref" href="#fn:296-1"&gt;1&lt;/a&gt;&lt;/sup&gt;
+on all sorts of things. There's also caching of the FontAwesome metadata&lt;sup id="fnref:297-1"&gt;&lt;a class="footnote-ref" href="#fn:297-1"&gt;1&lt;/a&gt;&lt;/sup&gt;
 which should save a fair bit of time on slower connections. I did avoid the
 whole business of parallel processing as I dabbled with this near the start
 of the project and I could not wrangle a win out of that at all; given how
@@ -161,25 +248,25 @@ under 3 seconds; with v2.21.0 it took around 13 seconds. In my case that's
 with all the optional features of BlogMore turned on.&lt;/p&gt;
 &lt;p&gt;Naturally this work has touched on a &lt;em&gt;lot&lt;/em&gt; of internals of the code, and
 made significant changes to the generation pipelines of lots of different
-pages and features. I've done my absolute best to compare&lt;sup id="fnref:296-2"&gt;&lt;a class="footnote-ref" href="#fn:296-2"&gt;2&lt;/a&gt;&lt;/sup&gt; the output of
-v2.21.0 and v2.22.0 and I can't see any significant differences&lt;sup id="fnref:296-3"&gt;&lt;a class="footnote-ref" href="#fn:296-3"&gt;3&lt;/a&gt;&lt;/sup&gt;. When
+pages and features. I've done my absolute best to compare&lt;sup id="fnref:297-2"&gt;&lt;a class="footnote-ref" href="#fn:297-2"&gt;2&lt;/a&gt;&lt;/sup&gt; the output of
+v2.21.0 and v2.22.0 and I can't see any significant differences&lt;sup id="fnref:297-3"&gt;&lt;a class="footnote-ref" href="#fn:297-3"&gt;3&lt;/a&gt;&lt;/sup&gt;. When
 trying out v2.22.0 I would suggest paying just a little extra attention to
 the result, to be sure you're happy that nothing has changed.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:296-1"&gt;
+&lt;li id="fn:297-1"&gt;
 &lt;p&gt;It lives in &lt;code&gt;~/.cache/blogmore&lt;/code&gt; on Unix and Unix-like systems, or
-&lt;code&gt;%LOCALAPPDATA%\blogmore\cache&lt;/code&gt; on DOS/VMS-influenced systems.&amp;#160;&lt;a class="footnote-backref" href="#fnref:296-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;code&gt;%LOCALAPPDATA%\blogmore\cache&lt;/code&gt; on DOS/VMS-influenced systems.&amp;#160;&lt;a class="footnote-backref" href="#fnref:297-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:296-2"&gt;
+&lt;li id="fn:297-2"&gt;
 &lt;p&gt;Lots of &lt;code&gt;diff -rq&lt;/code&gt; and then diffing an assorted sample of files that
-showed differences to inspect what was actually different.&amp;#160;&lt;a class="footnote-backref" href="#fnref:296-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+showed differences to inspect what was actually different.&amp;#160;&lt;a class="footnote-backref" href="#fnref:297-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:296-3"&gt;
+&lt;li id="fn:297-3"&gt;
 &lt;p&gt;Actually, there's a small difference in the context shown in
 backlinks, but this was a deliberate change and a very small cosmetic
-enhancement.&amp;#160;&lt;a class="footnote-backref" href="#fnref:296-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+enhancement.&amp;#160;&lt;a class="footnote-backref" href="#fnref:297-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -612,7 +699,7 @@ blog. But I'm going to start syncing projects to both GitLab and Codeberg. I
 see this as having two benefits: anyone who doesn't want to interact with
 GitHub can now easily fork code, and if they wish they can raise issues and
 the like too. Meanwhile, in doing this, I'll also have the added benefit of
-my code being "backed up" in at least three different locations&lt;sup id="fnref:325-1"&gt;&lt;a class="footnote-ref" href="#fn:325-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+my code being "backed up" in at least three different locations&lt;sup id="fnref:326-1"&gt;&lt;a class="footnote-ref" href="#fn:326-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;The approach I've settled on, for the moment, is based around &lt;a href="https://github.com/davep/setup-forge-sync" rel="noopener noreferrer" target="_blank"&gt;this little
 shell script&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
@@ -654,7 +741,7 @@ git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt
 &lt;span class="c1"&gt;### setup-forge-sync ends here&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;I'm going to keep all repo names the same&lt;sup id="fnref:325-2"&gt;&lt;a class="footnote-ref" href="#fn:325-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So when I use this script
+&lt;p&gt;I'm going to keep all repo names the same&lt;sup id="fnref:326-2"&gt;&lt;a class="footnote-ref" href="#fn:326-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So when I use this script
 it'll set things up so I can &lt;code&gt;git push backups&lt;/code&gt; and &lt;code&gt;main&lt;/code&gt; will then get
 pushed up to both GitLab and Codeberg. I don't feel the need to be keeping
 any WiP branches in sync or kicking about, likewise any &lt;code&gt;gh-pages&lt;/code&gt; branches.&lt;/p&gt;
@@ -667,14 +754,14 @@ developing and maintaining).&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:325-1"&gt;
+&lt;li id="fn:326-1"&gt;
 &lt;p&gt;Yes, I have other backups too, but they're always
-current-working-machine type backups.&amp;#160;&lt;a class="footnote-backref" href="#fnref:325-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+current-working-machine type backups.&amp;#160;&lt;a class="footnote-backref" href="#fnref:326-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:325-2"&gt;
+&lt;li id="fn:326-2"&gt;
 &lt;p&gt;Except, perhaps, for any repo whose name starts with &lt;code&gt;.&lt;/code&gt;; I seem to
 recall that GitLab can't handle that, for some bizarre reason. Perhaps
-that's fixed now?&amp;#160;&lt;a class="footnote-backref" href="#fnref:325-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+that's fixed now?&amp;#160;&lt;a class="footnote-backref" href="#fnref:326-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1171,53 +1258,5 @@ perform the installation. For GNU/Linux or macOS or similar:&lt;/p&gt;
     <category term="terminal"/>
     <category term="textual"/>
     <published>2026-04-15T08:28:47+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/04/11/blogmore-v2-13-0.html</id>
-    <title>BlogMore v2.13.0</title>
-    <updated>2026-04-11T11:32:28+01:00</updated>
-    <content type="html">&lt;p&gt;Following on from &lt;a href="https://blog.davep.org/2026/04/10/blogmore-v2-12-0.html"&gt;yesterday's release of
-BlogMore&lt;/a&gt;, I've been looking at some more
-information in the Google Search Console, which helped me uncover a couple
-more bugs in relation to URL generation.&lt;/p&gt;
-&lt;p&gt;This time I noticed a couple of issues, both related to the &lt;a href="https://blogmore.davep.dev/configuration/#clean_urls" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;clean_urls&lt;/code&gt;
-setting&lt;/a&gt;. The first
-was that, in the &lt;a href="https://blog.davep.org/2026/04/09/blogmore-v2-11-0.html"&gt;recently added calendar
-page&lt;/a&gt;, all of the URLs for the links into
-the date-based archive weren't taking &lt;code&gt;clean_urls&lt;/code&gt; into account. That's now
-fixed.&lt;/p&gt;
-&lt;p&gt;The second problem was the &lt;code&gt;canonical&lt;/code&gt; &lt;code&gt;&amp;lt;link&amp;gt;&lt;/code&gt; tag in the headers of the
-various archive pages (categories, tags, date-based): none of the URLs used
-in the tag were being cleaned up if &lt;code&gt;clean_urls&lt;/code&gt; was &lt;code&gt;true&lt;/code&gt;. That's now also
-fixed.&lt;/p&gt;
-&lt;p&gt;The main "problem" those two issues were causing was Google was seeing the
-sitemap for my blog declare one URL, but discovering different versions of
-the URL elsewhere; the main offending part here being the canonical URL
-declaration that disagreed with the sitemap.&lt;/p&gt;
-&lt;p&gt;To the best of my understanding the above fixes should clean a lot of that
-up.&lt;/p&gt;
-&lt;p&gt;Also in this new release is a small new feature. After cleaning up the
-sitemap generation in v2.12.0 I got to thinking that, perhaps, there would
-be occasions where a user &lt;em&gt;would&lt;/em&gt; want to be able to add extra items to the
-sitemap. With this in mind I've added the &lt;a href="https://blogmore.davep.dev/configuration/#sitemap_extras" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;sitemap_extras&lt;/code&gt; configuration
-property&lt;/a&gt;. With
-this you can declare extra URLs to drop into the sitemap, if one is being
-generated.&lt;/p&gt;
-&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;sitemap_extras&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;/some/path/&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;/some/file.html&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;I don't think I have a use for this right now, I'm not sure I'll ever have a
-use for it, but it feels like a low-cost feature to add that could be useful
-to someone at some point.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/04/11/blogmore-v2-13-0.html"/>
-    <category term="Coding"/>
-    <category term="BlogMore"/>
-    <category term="Markdown"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="coding"/>
-    <published>2026-04-11T11:32:28+01:00</published>
   </entry>
 </feed>
