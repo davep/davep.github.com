@@ -2,7 +2,7 @@
 title: Goodbye Gemini CLI
 date: 2026-05-20 08:58:35+0100
 category: AI
-tags: Coding, Gemini, Google, AntiGravity
+tags: Coding, Gemini, Google, Antigravity
 cover: /attachments/2026/05/20/goodbye-cli.webp
 ---
 
@@ -11,7 +11,7 @@ change to [BlogMore](https://blogmore.davep.dev/), and I see this:
 
 ![Goodbye Gemini CLI](/attachments/2026/05/20/goodbye-cli.webp#centre)
 
-I've yet to actually look at AntiGravity, so I know pretty much nothing
+I've yet to actually look at Antigravity, so I know pretty much nothing
 about it at this point. After a brief glance [at the link that was
 given](https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/)
 it *seems* like it's a positive change, perhaps. Honestly, I'm not sure. But
