@@ -2,7 +2,7 @@
 title: Reviewing the cost of BlogMore
 date: 2026-05-21 16:51:18+0100
 category: AI
-tags: AI, Business, Copilot, GitHub, LLM
+tags: AI, BlogMore, Business, Copilot, GitHub, LLM
 ---
 
 Now that we're near the end of the free or cheap [GitHub
