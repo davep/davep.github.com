@@ -64,11 +64,7 @@ mentioned [@Virgin_TrainsEC](https://twitter.com/Virgin_TrainsEC) so they
 could have a chance to see and respond (they didn't this time), my adorable
 girlfriend did a bit of checking in the background and did a little retweet:
 
-<center>
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">For goodness sake, sort this out <a href="https://twitter.com/DavidHorne">@DavidHorne</a> <a href="https://twitter.com/AliWatson23">@AliWatson23</a> <a href="https://t.co/JibgmfZwjD">https://t.co/JibgmfZwjD</a> - 8 weeks, 11 blogs, no progress! <a href="https://t.co/iUTCApBnC7">https://t.co/iUTCApBnC7</a></p>&mdash; Jo (@0rangelic) <a href="https://twitter.com/0rangelic/status/762933732982591488">August 9, 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js"
-charset="utf-8"></script>
-</center>
 
 I was sceptical that this would have any effect. I'd been promised a call or
 something from the "MD's Office" by the customer support people over a week
@@ -84,27 +80,17 @@ link *was* provided) it was heartening to see *something* happening.
 
 I did point this out to David:
 
-<center>
 <blockquote class="twitter-tweet" data-partner="tweetdeck"><p lang="en" dir="ltr"><a href="https://twitter.com/DavidHorne">@DavidHorne</a> <a href="https://twitter.com/0rangelic">@0rangelic</a> You&#39;ll find all the details on the linked blog post (and previous 10). Plus in <a href="https://twitter.com/Virgin_TrainsEC">@Virgin_TrainsEC</a> systems (hopefully).</p>&mdash; Dave Pearson (@davepdotorg) <a href="https://twitter.com/davepdotorg/status/762949242126295040">August 9, 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-</center>
 
 and also point out that if the details weren't in their system, that might
 be a brilliant illustration of the cause of the issues:
 
-<center>
 <blockquote class="twitter-tweet" data-partner="tweetdeck"><p lang="en" dir="ltr"><a href="https://twitter.com/DavidHorne">@DavidHorne</a> <a href="https://twitter.com/0rangelic">@0rangelic</a> <a href="https://twitter.com/Virgin_TrainsEC">@Virgin_TrainsEC</a> If not, there&#39;s the real problem. ;-)</p>&mdash; Dave Pearson (@davepdotorg) <a href="https://twitter.com/davepdotorg/status/762949341417967616">August 9, 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-</center>
 
 I didn't hear much more until around 18:30 when, all credit to him, David
 did check that I'd had someone contact me:
 
-<center>
 <blockquote class="twitter-tweet" data-partner="tweetdeck"><p lang="en" dir="ltr"><a href="https://twitter.com/DavidHorne">@DavidHorne</a> Not from your office, as far as I&#39;m aware of (which was promised for last week but never happened), if that&#39;s what you mean.</p>&mdash; Dave Pearson (@davepdotorg) <a href="https://twitter.com/davepdotorg/status/763065373306609664">August 9, 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js"
-charset="utf-8"></script>
-</center>
 
 At that point he asked me for some contact details (again, a slightly
 frustrating indication of an organisation that doesn't have joined-up

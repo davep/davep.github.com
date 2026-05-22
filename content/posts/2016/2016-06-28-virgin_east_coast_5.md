@@ -43,11 +43,7 @@ After posting yesterday's post I did the usual thing of tweeting it and,
 obviously, mentioned [@Virgin_TrainsEC](https://twitter.com/Virgin_TrainsEC)
 in the tweet.
 
-<center>
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Good 10 days into the <a href="https://twitter.com/Virgin_TrainsEC">@Virgin_TrainsEC</a> support saga and there’s no end in sight: <a href="https://t.co/ZfV0lR4DQL">https://t.co/ZfV0lR4DQL</a></p>&mdash; Dave Pearson (@davepdotorg) <a href="https://twitter.com/davepdotorg/status/747362449876197377">June 27, 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js"
-charset="utf-8"></script>
-</center>
 
 This lead to a little exchange on twitter where I mentioned that the main
 reason I was trying to switch to Virgin's own system, rather than use
