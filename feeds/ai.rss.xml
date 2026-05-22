@@ -8,7 +8,283 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 21 May 2026 15:54:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 09:41:53 +0000</lastBuildDate>
+    <item>
+      <title>Reviewing token usage</title>
+      <link>https://blog.davep.org/2026/05/22/reviewing-token-usage.html</link>
+      <description>&lt;p&gt;As I've written about a few times in the last week or so, the journey with
+AI-based coding tools has hit an interesting time when it comes to prices,
+quotas, usage, availability and all that. Having come into all of this via a
+place where it was a flat fee, and where I didn't really need to think about
+input tokens and output tokens and so on, I'm pretty ignorant of what that
+all means in terms of scale. If I'm looking at a new tool and I see prices
+and/or quotas for in/out tokens, it means nothing to me. I can't relate to
+it. I've never had to care about it.&lt;/p&gt;
+&lt;p&gt;While using &lt;a href="https://blog.davep.org/tag/gemini/"&gt;Gemini CLI&lt;/a&gt; to &lt;a href="https://github.com/davep/blogmore/pull/513" rel="noopener noreferrer" target="_blank"&gt;quickly make a
+change&lt;/a&gt; to
+&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; this morning, I was reminded that at
+the end of a session it &lt;em&gt;does&lt;/em&gt; tell me this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Session usage" height="141" loading="lazy" src="https://blog.davep.org/attachments/2026/05/22/session-usage.webp#centre" width="649" /&gt;&lt;/p&gt;
+&lt;p&gt;Seeing that got me thinking: is there a way to get the total usage for all
+of my sessions, or at least the sessions that have still been retained (I'm
+guessing they expire after a wee while)? After a little bit of searching I
+found &lt;a href="https://ccusage.com/" rel="noopener noreferrer" target="_blank"&gt;ccusage&lt;/a&gt;. That looked exactly like the sort of
+thing I was after.&lt;/p&gt;
+&lt;p&gt;Now, this is only going to be good for Gemini (it says it supports Copilot
+too, but it seems to be failing to find any Copilot sessions), but it should
+give me a feel for what my token usage looks like.&lt;/p&gt;
+&lt;p&gt;I work on BlogMore on two different machines: the &lt;a href="https://blog.davep.org/2026/03/28/hello-macbook-air-again.html"&gt;MacBook
+Air&lt;/a&gt; and also a Mac Mini I have in
+my office. Here's all of the available token usage data I can get out of the
+Air:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left;"&gt;Date&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Input&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Output&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Cache Read&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Total Tokens&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Cost (USD)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-04-29&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;235,238&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;20,282&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;773,642&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,032,608&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.23&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-01&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;315,001&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;3,181&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;447,556&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;768,532&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.20&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-02&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;2,621,628&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;52,290&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;18,260,597&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;20,955,447&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$2.44&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-03&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;3,627,846&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;30,538&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;11,819,279&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;15,509,213&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$5.74&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-04&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;869,829&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;49,163&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;2,721,074&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;3,656,649&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.77&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-09&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;2,287,760&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;50,081&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;9,973,764&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;12,327,819&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$1.84&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-10&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,019,550&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;34,556&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;8,061,897&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;9,125,838&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$1.05&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-11&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,112,123&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;35,610&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;10,523,348&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;11,689,576&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$1.24&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-13&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,506,513&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;41,802&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;7,561,168&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;9,124,651&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$2.88&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-15&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;123,161&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;3,155&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;587,248&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;716,813&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.11&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-16&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;111,334&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;14,836&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;519,161&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;646,275&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.13&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-17&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;940,485&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;36,171&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;7,682,314&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;8,706,034&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$1.41&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-18&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;67,033&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,357&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;205,921&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;275,707&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.05&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-21&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;60,904&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,182&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;119,055&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;184,117&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.05&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;14,898,405&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;374,204&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;79,256,024&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;94,719,279&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;$18.13&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;And also the same for the Mac Mini (which gets used less frequently for this
+sort of thing):&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left;"&gt;Date&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Input&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Output&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Cache Read&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Total Tokens&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Cost (USD)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-04&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;212,178&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;31,631&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;2,128,074&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;2,389,927&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.36&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-05&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,108,903&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;31,997&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;6,222,868&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;7,374,732&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$1.13&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-08&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;30,899&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,194&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;64,074&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;98,146&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.03&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-11&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,339,333&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;27,399&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;8,074,904&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;9,459,253&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$1.21&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-12&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;952,057&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;53,023&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;12,751,539&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;13,838,943&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$1.52&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-18&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;166,875&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;4,774&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;651,417&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;827,746&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.22&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-19&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;449,087&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;23,976&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;3,236,324&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;3,721,558&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.54&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-22&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;335,151&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;10,012&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,919,815&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;2,272,553&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.32&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;4,594,483&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;184,006&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;35,049,015&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;39,982,858&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;$5.33&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;In both cases I've removed a couple of columns to make the tables fit
+better. The first was the model name (varying between
+&lt;code&gt;gemini-3-flash-preview&lt;/code&gt; and &lt;code&gt;gemini-3.1-pro-preview&lt;/code&gt;), the second was
+&lt;em&gt;Cache Create&lt;/em&gt; (which was always 0 all the way down).&lt;/p&gt;
+&lt;p&gt;From what I can see, it would appear that these two tables do cover my
+increasing use of Gemini CLI for doing work on BlogMore (the first intensive
+use being &lt;a href="https://blog.davep.org/2026/05/05/and-then-there-were-three.html"&gt;being back around the 5th of this
+month&lt;/a&gt;, if I recall correctly).
+So this would seem to be a reasonably informative way to view things.&lt;/p&gt;
+&lt;p&gt;All of which is to say, over a roughly three week period, while getting
+things done, I've used getting on for 20,000,000 input tokens, and around
+600,000 output tokens (presumably I do also need to be keeping the
+114,300,000 cache read tokens in mind too). With this in mind I might now be
+able to make more sense of the pricing I see for various tools.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/05/22/reviewing-token-usage.html</guid>
+      <category>AI</category>
+      <category>AI</category>
+      <category>BlogMore</category>
+      <category>Business</category>
+      <category>Coding</category>
+      <category>FOSS</category>
+      <category>Free Software</category>
+      <category>Gemini</category>
+      <category>LLM</category>
+      <pubDate>Fri, 22 May 2026 09:19:37 +0100</pubDate>
+    </item>
     <item>
       <title>Reviewing the cost of BlogMore</title>
       <link>https://blog.davep.org/2026/05/21/reviewing-the-cost-of-blogmore.html</link>
@@ -90,7 +366,7 @@ recall anything that seemed like harder work).&lt;/p&gt;
 &lt;p&gt;Who knows what the real costs will be come June.&lt;/p&gt;
 &lt;p&gt;Now, technically, the actual cost under the new regime could or should be
 $156, because it would be 4 lots of the $39.00/month plan, which would
-better cover that use&lt;sup id="fnref:336-1"&gt;&lt;a class="footnote-ref" href="#fn:336-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Again though, that's assuming the actual cost of
+better cover that use&lt;sup id="fnref:337-1"&gt;&lt;a class="footnote-ref" href="#fn:337-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Again though, that's assuming the actual cost of
 using whatever models remains pretty stable. It also assumes that I'd want
 to spend that much each month, and that I would be correctly anticipating
 that I'd need that much.&lt;/p&gt;
@@ -106,7 +382,7 @@ something like &lt;a href="https://cursor.com/" rel="noopener noreferrer" target
 $20/month. Which all sounds fine, but what happens when those fleeing GitHub
 Copilot or Gemini CLI/&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt; head over to
 something like Cursor? Is it sensible to expect the pricing to stay the
-same&lt;sup id="fnref:336-2"&gt;&lt;a class="footnote-ref" href="#fn:336-2"&gt;2&lt;/a&gt;&lt;/sup&gt;?&lt;/p&gt;
+same&lt;sup id="fnref:337-2"&gt;&lt;a class="footnote-ref" href="#fn:337-2"&gt;2&lt;/a&gt;&lt;/sup&gt;?&lt;/p&gt;
 &lt;p&gt;I guess, at this point, I'm just mulling over the same issue time and again,
 but from different angles. It does seem clear to me, though, that in less
 than 4 months, in my experiment of &lt;em&gt;"what happens if I use agents to develop
@@ -115,15 +391,15 @@ reasonable to pretty much unjustifiable from a price point of view.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:336-1"&gt;
+&lt;li id="fn:337-1"&gt;
 &lt;p&gt;As I understand it, the $39 gets you &lt;em&gt;almost twice&lt;/em&gt; that value in "AI
 credits", so the &lt;a href="https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals#how-do-ai-credits-work" rel="noopener noreferrer" target="_blank"&gt;base allotment plus the flex
 allotment&lt;/a&gt;
-would cover what I've used.&amp;#160;&lt;a class="footnote-backref" href="#fnref:336-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+would cover what I've used.&amp;#160;&lt;a class="footnote-backref" href="#fnref:337-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:336-2"&gt;
+&lt;li id="fn:337-2"&gt;
 &lt;p&gt;That's not even the main reason &lt;a href="https://www.theguardian.com/technology/2026/apr/21/spacex-cursor-ai-startup" rel="noopener noreferrer" target="_blank"&gt;to be concerned about a switch to
-Cursor&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:336-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+Cursor&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:337-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -152,7 +428,7 @@ I use too.&lt;/p&gt;
 &lt;p&gt;For a while now, as part of a &lt;a href="https://one.google.com/" rel="noopener noreferrer" target="_blank"&gt;Google One&lt;/a&gt;
 subscription I keep, I've had a &lt;em&gt;Gemini AI Pro&lt;/em&gt; subscription. I've generally
 found this useful, mainly using the Gemini app on my &lt;a href="https://blog.davep.org/tag/iphone/"&gt;iPhone&lt;/a&gt;
-to research things&lt;sup id="fnref:299-1"&gt;&lt;a class="footnote-ref" href="#fn:299-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and also commonly using the web application to help
+to research things&lt;sup id="fnref:300-1"&gt;&lt;a class="footnote-ref" href="#fn:300-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and also commonly using the web application to help
 proofread blog posts, and sometimes explore coding problems. Another way I
 use it is via &lt;a href="https://blog.davep.org/tag/notebooklm/"&gt;NotebookLM&lt;/a&gt;. The subscription has meant
 that I can do all of this without ever having to worry about hitting any
@@ -229,10 +505,10 @@ recommendation be made.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:299-1"&gt;
+&lt;li id="fn:300-1"&gt;
 &lt;p&gt;In the past six months I've found it's generally a far better method
 of finding things than simply using a search engine; no ads, cited
-sources, results that are easy to revisit, etc.&amp;#160;&lt;a class="footnote-backref" href="#fnref:299-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+sources, results that are easy to revisit, etc.&amp;#160;&lt;a class="footnote-backref" href="#fnref:300-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -333,7 +609,7 @@ up via the main application did seem to have done that job.&lt;/p&gt;
 &lt;p&gt;After this though, it kind of went a little downhill. The first thing I
 noticed was the set of models available was rather different from Gemini
 CLI. I mean, okay, that's fair, I guess you expect things like that to
-change, but in my inexperienced&lt;sup id="fnref:329-1"&gt;&lt;a class="footnote-ref" href="#fn:329-1"&gt;1&lt;/a&gt;&lt;/sup&gt; view of what these agentic tools offer,
+change, but in my inexperienced&lt;sup id="fnref:330-1"&gt;&lt;a class="footnote-ref" href="#fn:330-1"&gt;1&lt;/a&gt;&lt;/sup&gt; view of what these agentic tools offer,
 it looked like all the options were a little more... pricey, perhaps?&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Gemini CLI vs Antigravity CLI" height="264" loading="lazy" src="https://blog.davep.org/attachments/2026/05/20/old-vs-new.webp#centre" width="711" /&gt;&lt;/p&gt;
 &lt;p&gt;Still, I'm sure that sensible defaults are chosen out of the box, so it
@@ -398,13 +674,13 @@ them harder to try and make this adventure pay off.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:329-1"&gt;
+&lt;li id="fn:330-1"&gt;
 &lt;p&gt;I say "inexperienced", but perhaps I'm being unfair to myself here.
 While I'm not 100%, all in, fully-steeped in agentic lore, and even
 though I've not been living this stuff full time for the past year or
 so, I do feel I'm a good representation of someone with a long
 background in the software development industry who is coming to these
-tools with reasonable expectations.&amp;#160;&lt;a class="footnote-backref" href="#fnref:329-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+tools with reasonable expectations.&amp;#160;&lt;a class="footnote-backref" href="#fnref:330-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -538,7 +814,7 @@ capable of working with Clipper and writing code (probably made easier by
 the fact that the office in question wasn't a "Clipper shop"). But when it
 came to actually getting on with a job, he'd been unable to get it done
 (and, apparently, had felt unable to ask anyone around him for help, which
-probably says a lot about that office and the industry at the time&lt;sup id="fnref:343-1"&gt;&lt;a class="footnote-ref" href="#fn:343-1"&gt;1&lt;/a&gt;&lt;/sup&gt;).&lt;/p&gt;
+probably says a lot about that office and the industry at the time&lt;sup id="fnref:344-1"&gt;&lt;a class="footnote-ref" href="#fn:344-1"&gt;1&lt;/a&gt;&lt;/sup&gt;).&lt;/p&gt;
 &lt;p&gt;I bring this up because I was reminded of this story when I was tinkering
 with &lt;a href="https://blog.davep.org/tag/gemini/"&gt;Gemini&lt;/a&gt; last night. While working on the &lt;a href="https://github.com/davep/blogmore/pull/492" rel="noopener noreferrer" target="_blank"&gt;optimised
 images PR&lt;/a&gt;, towards the end of
@@ -575,8 +851,8 @@ this to be lazy, dangerous and harmful thinking.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:343-1"&gt;
-&lt;p&gt;Because of course we're so much better as an industry these days.&amp;#160;&lt;a class="footnote-backref" href="#fnref:343-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:344-1"&gt;
+&lt;p&gt;Because of course we're so much better as an industry these days.&amp;#160;&lt;a class="footnote-backref" href="#fnref:344-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -829,7 +1105,7 @@ really. My use of Copilot is sporadic, and as BlogMore has started to settle
 down and reach a state approaching feature-saturation the need to do heavy
 work on it has reduced. I did use it a fair bit last month, but that was
 more in tinkering and experimenting mode rather than full development
-mode&lt;sup id="fnref:314-1"&gt;&lt;a class="footnote-ref" href="#fn:314-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, so it's probably a good measure.&lt;/p&gt;
+mode&lt;sup id="fnref:315-1"&gt;&lt;a class="footnote-ref" href="#fn:315-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, so it's probably a good measure.&lt;/p&gt;
 &lt;p&gt;Checking the details on GitHub, it looks like I used a touch under 1/3 of my
 premium requests.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="A table of my premium requests for April 2026" height="723" loading="lazy" src="https://blog.davep.org/attachments/2026/05/13/requests-table.webp#centre" width="683" /&gt;&lt;/p&gt;
@@ -853,7 +1129,7 @@ ask for it to be &lt;strong&gt;emailed to you as a CSV&lt;/strong&gt;!&lt;/p&gt;
 &lt;p&gt;Even that part isn't super reliable. When I tried it last night it took a
 wee while to turn up, and that was after about 10 attempts where I got an
 error message saying it couldn't generate the report. This morning I tried
-again and I've yet to see the email, 30 minutes later&lt;sup id="fnref:314-2"&gt;&lt;a class="footnote-ref" href="#fn:314-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+again and I've yet to see the email, 30 minutes later&lt;sup id="fnref:315-2"&gt;&lt;a class="footnote-ref" href="#fn:315-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Having done that you click through to another page/app where you have to
 upload the CSV, to GitHub, that GitHub just sent you in an email. Brilliant.
 It then gives you the good news.&lt;/p&gt;
@@ -864,7 +1140,7 @@ under the new approach to billing?&lt;/p&gt;
 $39/month with them I would save money!&lt;/p&gt;
 &lt;p&gt;I guess I should take comfort that I'm not &lt;a href="https://www.reddit.com/r/GithubCopilot/comments/1tbfkui/ill_just_leave_this_here/" rel="noopener noreferrer" target="_blank"&gt;that one Reddit user whose $39
 April would really have cost them almost
-$6,000&lt;/a&gt;&lt;sup id="fnref:314-3"&gt;&lt;a class="footnote-ref" href="#fn:314-3"&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+$6,000&lt;/a&gt;&lt;sup id="fnref:315-3"&gt;&lt;a class="footnote-ref" href="#fn:315-3"&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Watching this journey has been wild. The free Pro as a taster to get me onto
 $10/month I can go with, that's fair enough. For the longest time I never
 even paid it any attention. But watching GitHub give it to so many people,
@@ -900,17 +1176,17 @@ widely applied.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:314-1"&gt;
+&lt;li id="fn:315-1"&gt;
 &lt;p&gt;Is my recollection. I should probably &lt;a href="https://blogmore.davep.dev/changelog/" rel="noopener noreferrer" target="_blank"&gt;review the
 ChangeLog&lt;/a&gt; and see what I
-actually did add in April.&amp;#160;&lt;a class="footnote-backref" href="#fnref:314-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+actually did add in April.&amp;#160;&lt;a class="footnote-backref" href="#fnref:315-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:314-2"&gt;
-&lt;p&gt;Yes I checked spam.&amp;#160;&lt;a class="footnote-backref" href="#fnref:314-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:315-2"&gt;
+&lt;p&gt;Yes I checked spam.&amp;#160;&lt;a class="footnote-backref" href="#fnref:315-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:314-3"&gt;
+&lt;li id="fn:315-3"&gt;
 &lt;p&gt;In part because yikes, but also in part because at least I'm not the
-reason this is happening, unlike them.&amp;#160;&lt;a class="footnote-backref" href="#fnref:314-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+reason this is happening, unlike them.&amp;#160;&lt;a class="footnote-backref" href="#fnref:315-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -938,7 +1214,7 @@ out some mildly annoying code at times&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Yesterday evening though, because of the failure of Copilot, I decided to go
 just with Gemini and work on the &lt;a href="https://blog.davep.org/2026/05/11/speeding-up-blogmore.html"&gt;problem of speeding up
 BlogMore&lt;/a&gt;. This worked really well. I
-found that it followed instructions well&lt;sup id="fnref:337-1"&gt;&lt;a class="footnote-ref" href="#fn:337-1"&gt;1&lt;/a&gt;&lt;/sup&gt; when given them, and also did a
+found that it followed instructions well&lt;sup id="fnref:338-1"&gt;&lt;a class="footnote-ref" href="#fn:338-1"&gt;1&lt;/a&gt;&lt;/sup&gt; when given them, and also did a
 good job of applying what it was told, constantly, without needing to be
 told again. I actually found I had a bit of a flow going (in the minimal way
 that you can get any sort of flow going when you're not hand-coding).&lt;/p&gt;
@@ -991,8 +1267,8 @@ soul.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:337-1"&gt;
-&lt;p&gt;Albeit I sense it pays little to no attention to &lt;code&gt;AGENTS.md&lt;/code&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:337-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:338-1"&gt;
+&lt;p&gt;Albeit I sense it pays little to no attention to &lt;code&gt;AGENTS.md&lt;/code&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:338-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1023,7 +1299,7 @@ time it adds more tests, it'll add it back.&lt;/p&gt;
 indentation to empty lines. So, if you've got a line of code indented 8
 spaces, then an empty line, then another line of code indented 8 spaces,
 &lt;em&gt;it'll add 8 spaces on that empty line&lt;/em&gt;. That sort of thing annoys the hell
-out of me&lt;sup id="fnref:325-1"&gt;&lt;a class="footnote-ref" href="#fn:325-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+out of me&lt;sup id="fnref:326-1"&gt;&lt;a class="footnote-ref" href="#fn:326-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;But the worst thing I just ran into was this. It had written this bit of
 code:&lt;/p&gt;
 &lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;lint_site&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;site_config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;SiteConfig&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -1061,9 +1337,9 @@ and I wonder how often people using these tools even bother.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:325-1"&gt;
+&lt;li id="fn:326-1"&gt;
 &lt;p&gt;I've seen some IDEs do that on purpose too; I've got Emacs configured
-to strip that out on save.&amp;#160;&lt;a class="footnote-backref" href="#fnref:325-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+to strip that out on save.&amp;#160;&lt;a class="footnote-backref" href="#fnref:326-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1085,7 +1361,7 @@ internal link. This got me thinking: perhaps I should add some sort of
 linting tool to &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;? I figured this
 should be doable using much of the existing code: pretty much work out the
 list of internal links, run through all pages and posts, see what links get
-generated, look for internal links&lt;sup id="fnref:300-1"&gt;&lt;a class="footnote-ref" href="#fn:300-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and see if they're all amongst those
+generated, look for internal links&lt;sup id="fnref:301-1"&gt;&lt;a class="footnote-ref" href="#fn:301-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and see if they're all amongst those
 that are expected.&lt;/p&gt;
 &lt;p&gt;Later on in the day &lt;a href="https://github.com/davep/blogmore/issues/465" rel="noopener noreferrer" target="_blank"&gt;I prompted Copilot to have a
 go&lt;/a&gt;. Now, sure, I didn't tell
@@ -1106,7 +1382,7 @@ rather than understand the general case of what was going on and address
 that.&lt;/p&gt;
 &lt;p&gt;Eventually, probably too late really, I gave up trying to nudge it in the
 right direction and, instead, decided it was time to be more explicit about
-how it should handle this&lt;sup id="fnref:300-2"&gt;&lt;a class="footnote-ref" href="#fn:300-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. The first thing that bothered me was that it
+how it should handle this&lt;sup id="fnref:301-2"&gt;&lt;a class="footnote-ref" href="#fn:301-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. The first thing that bothered me was that it
 seemed to ignore the configuration object. Where BlogMore has a method of
 loading the configuration into an object, which can be passed around the
 code, but with the linter it loaded it up, pulled it all apart, and then
@@ -1137,7 +1413,7 @@ pretty generous). I threw more or less the same initial prompt at it, but
 this time I stressed that I really wanted it to use the existing engine
 where possible. It managed to pretty much one-shot the problem in about 9
 minutes and used up just 2% of &lt;a href="https://geminicli.com/docs/resources/quota-and-pricing/" rel="noopener noreferrer" target="_blank"&gt;my daily
-quota&lt;/a&gt;&lt;sup id="fnref:300-3"&gt;&lt;a class="footnote-ref" href="#fn:300-3"&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+quota&lt;/a&gt;&lt;sup id="fnref:301-3"&gt;&lt;a class="footnote-ref" href="#fn:301-3"&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;I've done a little more tidying up since, and I still need to properly
 review &lt;a href="https://github.com/davep/blogmore/pull/467" rel="noopener noreferrer" target="_blank"&gt;the result&lt;/a&gt;, but from
 what I can see of the initial results it's found all of the issues I wanted
@@ -1148,21 +1424,21 @@ buddy you can rely on makes for a pretty unreliable group of buddies.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:300-1"&gt;
+&lt;li id="fn:301-1"&gt;
 &lt;p&gt;This process could, of course, work for external links too, but I'm
 not really too keen on having a tool that visits every single external
-link to see if it's still there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:300-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+link to see if it's still there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:301-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:300-2"&gt;
+&lt;li id="fn:301-2"&gt;
 &lt;p&gt;Which is mostly fine; I'm doing this as an experiment in what it's
 capable of, and also I was sofa-hacking while having a conversation
-about naming Easter eggs in Minecraft.&amp;#160;&lt;a class="footnote-backref" href="#fnref:300-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+about naming Easter eggs in Minecraft.&amp;#160;&lt;a class="footnote-backref" href="#fnref:301-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:300-3"&gt;
+&lt;li id="fn:301-3"&gt;
 &lt;p&gt;Imagine that too! Imagine knowing exactly how much of your quota
 you've used at any given moment! Presumably GitHub don't show you where
 you are in respect to the rate limits on top of your monthly quota
-because grinding to a halt with no warning is more... fun?&amp;#160;&lt;a class="footnote-backref" href="#fnref:300-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+because grinding to a halt with no warning is more... fun?&amp;#160;&lt;a class="footnote-backref" href="#fnref:301-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1188,7 +1464,7 @@ clean up the code that does word counts, getting it to use the Markdown to
 plain text code that exists in &lt;a href="https://blog.davep.org/tag/blogmore/"&gt;BlogMore&lt;/a&gt;, rather than the
 regex-based Markdown-stripper it was using. The approach it landed on made
 sense to me, adding another text extractor class, but one that ignores
-fenced codeblocks&lt;sup id="fnref:320-1"&gt;&lt;a class="footnote-ref" href="#fn:320-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. So, in addition to this code (I've removed all
+fenced codeblocks&lt;sup id="fnref:321-1"&gt;&lt;a class="footnote-ref" href="#fn:321-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. So, in addition to this code (I've removed all
 docstrings and comments for the sake of including here):&lt;/p&gt;
 &lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;_AllTextExtractor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;HTMLParser&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 
@@ -1282,9 +1558,9 @@ It does the job. The code runs. It's just not... to my taste, I guess.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:320-1"&gt;
+&lt;li id="fn:321-1"&gt;
 &lt;p&gt;This is important for working out word counts and so read times. It
-doesn't make sense that embedded code counts towards those.&amp;#160;&lt;a class="footnote-backref" href="#fnref:320-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+doesn't make sense that embedded code counts towards those.&amp;#160;&lt;a class="footnote-backref" href="#fnref:321-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1430,7 +1706,7 @@ abstract base class was the solution. Gemini decided that a protocol was the
 solution. I &lt;em&gt;think&lt;/em&gt; I'm siding with Gemini on this one because this is a
 provides/needs problem, not a "kind of" problem. Even then though, while I
 sense Gemini has the right approach, I'm not always happy with its
-implementation of it&lt;sup id="fnref:340-1"&gt;&lt;a class="footnote-ref" href="#fn:340-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and once again: it's a cleanup of something I'd
+implementation of it&lt;sup id="fnref:341-1"&gt;&lt;a class="footnote-ref" href="#fn:341-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and once again: it's a cleanup of something I'd
 sooner not be cleaning up in the first place.&lt;/p&gt;
 &lt;p&gt;So here's the thing, and this harks back to &lt;a href="https://blog.davep.org/2026/04/26/but-is-the-code-that-bad.html"&gt;wondering if the code is that
 bad&lt;/a&gt;: it isn't... but it's also
@@ -1446,8 +1722,8 @@ elegant.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:340-1"&gt;
-&lt;p&gt;And it feels so slow. SO. SLOW!&amp;#160;&lt;a class="footnote-backref" href="#fnref:340-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:341-1"&gt;
+&lt;p&gt;And it feels so slow. SO. SLOW!&amp;#160;&lt;a class="footnote-backref" href="#fnref:341-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1584,7 +1860,7 @@ off the same prompt, as it were, it came up with a &lt;em&gt;very&lt;/em&gt; dif
 approach. So my next job is to decide which of the two I like most.&lt;/p&gt;
 &lt;p&gt;As of the time of writing, the Gemini approach to cleaning this up results
 in the main &lt;code&gt;site.py&lt;/code&gt; file inside the new &lt;code&gt;generator&lt;/code&gt; subdirectory being 996
-lines; that's just under the 1,000 line limit I tend to set myself&lt;sup id="fnref:333-1"&gt;&lt;a class="footnote-ref" href="#fn:333-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, so
+lines; that's just under the 1,000 line limit I tend to set myself&lt;sup id="fnref:334-1"&gt;&lt;a class="footnote-ref" href="#fn:334-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, so
 close enough, but not ideal. Copilot/Claude, on the other hand, is sat at
 278 lines! While the idea of Gemini was to make &lt;code&gt;site.py&lt;/code&gt; a small
 descriptive top-to-bottom and start-to-finish description of &lt;em&gt;how&lt;/em&gt; a site is
@@ -1594,18 +1870,18 @@ intention.&lt;/p&gt;
 &lt;p&gt;Then again the Gemini version has broken the work up across 9 files, the
 Copilot/Claude version across 13. Also the Copilot/Claude version has taken
 a really fun and interesting approach to solving the problem that I'm kind
-of digging&lt;sup id="fnref:333-2"&gt;&lt;a class="footnote-ref" href="#fn:333-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+of digging&lt;sup id="fnref:334-2"&gt;&lt;a class="footnote-ref" href="#fn:334-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So now I have to decide which, if either, I'm going with.&lt;/p&gt;
 &lt;p&gt;That's probably another post.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:333-1"&gt;
+&lt;li id="fn:334-1"&gt;
 &lt;p&gt;Although in my own projects I try and keep Python files much smaller
-than that if I can help it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:333-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+than that if I can help it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:334-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:333-2"&gt;
-&lt;p&gt;Spoiler: mixins. ALL THE MIXINS!&amp;#160;&lt;a class="footnote-backref" href="#fnref:333-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:334-2"&gt;
+&lt;p&gt;Spoiler: mixins. ALL THE MIXINS!&amp;#160;&lt;a class="footnote-backref" href="#fnref:334-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1620,158 +1896,6 @@ than that if I can help it.&amp;#160;&lt;a class="footnote-backref" href="#fnref
       <category>Python</category>
       <category>code review</category>
       <pubDate>Sun, 03 May 2026 09:59:45 +0100</pubDate>
-    </item>
-    <item>
-      <title>Me vs Claude</title>
-      <link>https://blog.davep.org/2026/05/02/me-vs-claude.html</link>
-      <description>&lt;p&gt;After writing the &lt;a href="https://blog.davep.org/2026/05/02/it-was-such-a-simple-request.html"&gt;earlier
-post&lt;/a&gt; I had to AFK to attend
-to normal life things. When I finally sat back at my keyboard, I decided to
-write my own take on &lt;code&gt;minified_filename&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;To recap, this is what Copilot/Claude came up with first:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Compute the minified output filename for a given source filename.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Transforms the file extension: ``.css`` becomes ``.min.css`` and&lt;/span&gt;
-&lt;span class="sd"&gt;    ``.js`` becomes ``.min.js``.  For example, ``theme.js`` becomes&lt;/span&gt;
-&lt;span class="sd"&gt;    ``theme.min.js`` and ``style.css`` becomes ``style.min.css``.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Args:&lt;/span&gt;
-&lt;span class="sd"&gt;        source: Source filename ending in ``.css`` or ``.js``.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Returns:&lt;/span&gt;
-&lt;span class="sd"&gt;        The corresponding minified filename.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Raises:&lt;/span&gt;
-&lt;span class="sd"&gt;        ValueError: If *source* does not end with ``.css`` or ``.js``.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.min.css&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.min.js&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Unsupported file extension for minification: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="si"&gt;!r}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This is what it arrived at once it had self-reviewed the above:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Compute the minified output filename for a given source filename.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Transforms the file extension: ``.css`` becomes ``.min.css`` and&lt;/span&gt;
-&lt;span class="sd"&gt;    ``.js`` becomes ``.min.js``.  For example, ``theme.js`` becomes&lt;/span&gt;
-&lt;span class="sd"&gt;    ``theme.min.js`` and ``style.css`` becomes ``style.min.css``.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Args:&lt;/span&gt;
-&lt;span class="sd"&gt;        source: Source filename ending in ``.css`` or ``.js``.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Returns:&lt;/span&gt;
-&lt;span class="sd"&gt;        The corresponding minified filename.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Raises:&lt;/span&gt;
-&lt;span class="sd"&gt;        ValueError: If *source* does not end with ``.css`` or ``.js``.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;removesuffix&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.min.css&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;removesuffix&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.min.js&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Unsupported file extension for minification: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="si"&gt;!r}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The tests it wrote looked like this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;TestMinifiedFilename&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test the minified_filename utility function.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_css_extension_becomes_min_css&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that a .css extension is replaced with .min.css.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;style.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;style.min.css&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_js_extension_becomes_min_js&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that a .js extension is replaced with .min.js.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;theme.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;theme.min.js&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_hyphenated_css_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that a hyphenated CSS filename is handled correctly.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tag-cloud.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tag-cloud.min.css&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_hyphenated_js_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that a hyphenated JS filename is handled correctly.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;search.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;search.min.js&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_unsupported_extension_raises&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that an unsupported extension raises ValueError.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;pytest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;raises&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Unsupported file extension&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-            &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;style.txt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;I wasn't too keen on the obsession with just &lt;code&gt;.css&lt;/code&gt; and &lt;code&gt;.js&lt;/code&gt; files (it
-seemed unnecessary), and neither did I like the hard-coding of the resulting
-extensions, etc. It all felt too job-specific.&lt;/p&gt;
-&lt;p&gt;So my take on the code was this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Compute the minified output filename for a given source filename.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Args:&lt;/span&gt;
-&lt;span class="sd"&gt;        source: Source filename.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Returns:&lt;/span&gt;
-&lt;span class="sd"&gt;        The corresponding minified filename.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;suffix&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;with_suffix&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.min&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;suffix&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The tests being this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;TestMinifiedFilename&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test the minified_filename utility function.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-
-    &lt;span class="nd"&gt;@pytest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mark&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parametrize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-        &lt;span class="s2"&gt;&amp;quot;before,after&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="p"&gt;[&lt;/span&gt;
-            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;style.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;style.min.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;theme.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;theme.min.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;style.min.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;style.min.min.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;file&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;file&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.file&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.file&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.file.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.file.min.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-        &lt;span class="p"&gt;],&lt;/span&gt;
-    &lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_min_file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;before&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Test that converting a filename to the minified version has the expected effect.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;minified_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;before&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;So, yes, my version does work ever so slightly differently, but I feel it's
-more generic. It shouldn't be the business of this function to decide which
-type of file can have a &lt;code&gt;.min&lt;/code&gt; slapped prior to its extension; if a caller
-asks for it, let them have it, they know what they're doing! Also, although
-it's not really necessary (because the code calling on it doesn't currently
-pass a &lt;code&gt;Path&lt;/code&gt;), it will accept either a &lt;code&gt;str&lt;/code&gt; or a &lt;code&gt;Path&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;I feel the big difference here too is the testing. Rather than one method
-after another, testing more or less the same thing with little variation, it
-makes more sense to have just the one test and then pass it lots of
-different input/output values. This is far more maintainable and also easier
-to write most of the time.&lt;/p&gt;
-&lt;p&gt;Of course, for an agent, it's probably easier for it to take a copy/paste
-approach than it is for it to "reason" about what makes for a maintainable
-test. I sense this is one of the dangers of letting an LLM do this job (and
-it's one that's often touted as being a prime job to do): good tests can be
-useful documentation if you're trying to understand a codebase.
-Badly-written tests, no matter how much coverage they offer, are going to
-slow you down.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/05/02/me-vs-claude.html</guid>
-      <category>AI</category>
-      <category>BlogMore</category>
-      <category>Coding</category>
-      <category>Copilot</category>
-      <category>GitHub</category>
-      <category>Python</category>
-      <category>code review</category>
-      <category>code smell</category>
-      <category>testing</category>
-      <pubDate>Sat, 02 May 2026 18:48:30 +0100</pubDate>
     </item>
   </channel>
 </rss>

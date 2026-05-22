@@ -8,7 +8,283 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 21 May 2026 15:54:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 09:41:53 +0000</lastBuildDate>
+    <item>
+      <title>Reviewing token usage</title>
+      <link>https://blog.davep.org/2026/05/22/reviewing-token-usage.html</link>
+      <description>&lt;p&gt;As I've written about a few times in the last week or so, the journey with
+AI-based coding tools has hit an interesting time when it comes to prices,
+quotas, usage, availability and all that. Having come into all of this via a
+place where it was a flat fee, and where I didn't really need to think about
+input tokens and output tokens and so on, I'm pretty ignorant of what that
+all means in terms of scale. If I'm looking at a new tool and I see prices
+and/or quotas for in/out tokens, it means nothing to me. I can't relate to
+it. I've never had to care about it.&lt;/p&gt;
+&lt;p&gt;While using &lt;a href="https://blog.davep.org/tag/gemini/"&gt;Gemini CLI&lt;/a&gt; to &lt;a href="https://github.com/davep/blogmore/pull/513" rel="noopener noreferrer" target="_blank"&gt;quickly make a
+change&lt;/a&gt; to
+&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; this morning, I was reminded that at
+the end of a session it &lt;em&gt;does&lt;/em&gt; tell me this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Session usage" height="141" loading="lazy" src="https://blog.davep.org/attachments/2026/05/22/session-usage.webp#centre" width="649" /&gt;&lt;/p&gt;
+&lt;p&gt;Seeing that got me thinking: is there a way to get the total usage for all
+of my sessions, or at least the sessions that have still been retained (I'm
+guessing they expire after a wee while)? After a little bit of searching I
+found &lt;a href="https://ccusage.com/" rel="noopener noreferrer" target="_blank"&gt;ccusage&lt;/a&gt;. That looked exactly like the sort of
+thing I was after.&lt;/p&gt;
+&lt;p&gt;Now, this is only going to be good for Gemini (it says it supports Copilot
+too, but it seems to be failing to find any Copilot sessions), but it should
+give me a feel for what my token usage looks like.&lt;/p&gt;
+&lt;p&gt;I work on BlogMore on two different machines: the &lt;a href="https://blog.davep.org/2026/03/28/hello-macbook-air-again.html"&gt;MacBook
+Air&lt;/a&gt; and also a Mac Mini I have in
+my office. Here's all of the available token usage data I can get out of the
+Air:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left;"&gt;Date&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Input&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Output&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Cache Read&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Total Tokens&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Cost (USD)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-04-29&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;235,238&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;20,282&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;773,642&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,032,608&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.23&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-01&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;315,001&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;3,181&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;447,556&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;768,532&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.20&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-02&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;2,621,628&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;52,290&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;18,260,597&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;20,955,447&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$2.44&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-03&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;3,627,846&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;30,538&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;11,819,279&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;15,509,213&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$5.74&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-04&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;869,829&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;49,163&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;2,721,074&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;3,656,649&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.77&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-09&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;2,287,760&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;50,081&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;9,973,764&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;12,327,819&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$1.84&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-10&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,019,550&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;34,556&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;8,061,897&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;9,125,838&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$1.05&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-11&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,112,123&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;35,610&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;10,523,348&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;11,689,576&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$1.24&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-13&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,506,513&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;41,802&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;7,561,168&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;9,124,651&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$2.88&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-15&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;123,161&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;3,155&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;587,248&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;716,813&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.11&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-16&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;111,334&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;14,836&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;519,161&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;646,275&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.13&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-17&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;940,485&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;36,171&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;7,682,314&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;8,706,034&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$1.41&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-18&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;67,033&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,357&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;205,921&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;275,707&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.05&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-21&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;60,904&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,182&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;119,055&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;184,117&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.05&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;14,898,405&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;374,204&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;79,256,024&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;94,719,279&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;$18.13&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;And also the same for the Mac Mini (which gets used less frequently for this
+sort of thing):&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left;"&gt;Date&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Input&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Output&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Cache Read&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Total Tokens&lt;/th&gt;
+&lt;th style="text-align: right;"&gt;Cost (USD)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-04&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;212,178&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;31,631&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;2,128,074&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;2,389,927&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.36&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-05&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,108,903&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;31,997&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;6,222,868&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;7,374,732&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$1.13&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-08&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;30,899&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,194&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;64,074&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;98,146&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.03&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-11&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,339,333&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;27,399&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;8,074,904&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;9,459,253&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$1.21&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-12&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;952,057&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;53,023&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;12,751,539&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;13,838,943&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$1.52&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-18&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;166,875&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;4,774&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;651,417&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;827,746&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.22&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-19&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;449,087&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;23,976&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;3,236,324&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;3,721,558&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.54&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;2026-05-22&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;335,151&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;10,012&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;1,919,815&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;2,272,553&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;$0.32&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left;"&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;4,594,483&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;184,006&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;35,049,015&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;39,982,858&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: right;"&gt;&lt;strong&gt;$5.33&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;In both cases I've removed a couple of columns to make the tables fit
+better. The first was the model name (varying between
+&lt;code&gt;gemini-3-flash-preview&lt;/code&gt; and &lt;code&gt;gemini-3.1-pro-preview&lt;/code&gt;), the second was
+&lt;em&gt;Cache Create&lt;/em&gt; (which was always 0 all the way down).&lt;/p&gt;
+&lt;p&gt;From what I can see, it would appear that these two tables do cover my
+increasing use of Gemini CLI for doing work on BlogMore (the first intensive
+use being &lt;a href="https://blog.davep.org/2026/05/05/and-then-there-were-three.html"&gt;being back around the 5th of this
+month&lt;/a&gt;, if I recall correctly).
+So this would seem to be a reasonably informative way to view things.&lt;/p&gt;
+&lt;p&gt;All of which is to say, over a roughly three week period, while getting
+things done, I've used getting on for 20,000,000 input tokens, and around
+600,000 output tokens (presumably I do also need to be keeping the
+114,300,000 cache read tokens in mind too). With this in mind I might now be
+able to make more sense of the pricing I see for various tools.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/05/22/reviewing-token-usage.html</guid>
+      <category>AI</category>
+      <category>AI</category>
+      <category>BlogMore</category>
+      <category>Business</category>
+      <category>Coding</category>
+      <category>FOSS</category>
+      <category>Free Software</category>
+      <category>Gemini</category>
+      <category>LLM</category>
+      <pubDate>Fri, 22 May 2026 09:19:37 +0100</pubDate>
+    </item>
     <item>
       <title>Reviewing the cost of BlogMore</title>
       <link>https://blog.davep.org/2026/05/21/reviewing-the-cost-of-blogmore.html</link>
@@ -90,7 +366,7 @@ recall anything that seemed like harder work).&lt;/p&gt;
 &lt;p&gt;Who knows what the real costs will be come June.&lt;/p&gt;
 &lt;p&gt;Now, technically, the actual cost under the new regime could or should be
 $156, because it would be 4 lots of the $39.00/month plan, which would
-better cover that use&lt;sup id="fnref:336-1"&gt;&lt;a class="footnote-ref" href="#fn:336-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Again though, that's assuming the actual cost of
+better cover that use&lt;sup id="fnref:337-1"&gt;&lt;a class="footnote-ref" href="#fn:337-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Again though, that's assuming the actual cost of
 using whatever models remains pretty stable. It also assumes that I'd want
 to spend that much each month, and that I would be correctly anticipating
 that I'd need that much.&lt;/p&gt;
@@ -106,7 +382,7 @@ something like &lt;a href="https://cursor.com/" rel="noopener noreferrer" target
 $20/month. Which all sounds fine, but what happens when those fleeing GitHub
 Copilot or Gemini CLI/&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt; head over to
 something like Cursor? Is it sensible to expect the pricing to stay the
-same&lt;sup id="fnref:336-2"&gt;&lt;a class="footnote-ref" href="#fn:336-2"&gt;2&lt;/a&gt;&lt;/sup&gt;?&lt;/p&gt;
+same&lt;sup id="fnref:337-2"&gt;&lt;a class="footnote-ref" href="#fn:337-2"&gt;2&lt;/a&gt;&lt;/sup&gt;?&lt;/p&gt;
 &lt;p&gt;I guess, at this point, I'm just mulling over the same issue time and again,
 but from different angles. It does seem clear to me, though, that in less
 than 4 months, in my experiment of &lt;em&gt;"what happens if I use agents to develop
@@ -115,15 +391,15 @@ reasonable to pretty much unjustifiable from a price point of view.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:336-1"&gt;
+&lt;li id="fn:337-1"&gt;
 &lt;p&gt;As I understand it, the $39 gets you &lt;em&gt;almost twice&lt;/em&gt; that value in "AI
 credits", so the &lt;a href="https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals#how-do-ai-credits-work" rel="noopener noreferrer" target="_blank"&gt;base allotment plus the flex
 allotment&lt;/a&gt;
-would cover what I've used.&amp;#160;&lt;a class="footnote-backref" href="#fnref:336-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+would cover what I've used.&amp;#160;&lt;a class="footnote-backref" href="#fnref:337-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:336-2"&gt;
+&lt;li id="fn:337-2"&gt;
 &lt;p&gt;That's not even the main reason &lt;a href="https://www.theguardian.com/technology/2026/apr/21/spacex-cursor-ai-startup" rel="noopener noreferrer" target="_blank"&gt;to be concerned about a switch to
-Cursor&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:336-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+Cursor&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:337-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -152,7 +428,7 @@ I use too.&lt;/p&gt;
 &lt;p&gt;For a while now, as part of a &lt;a href="https://one.google.com/" rel="noopener noreferrer" target="_blank"&gt;Google One&lt;/a&gt;
 subscription I keep, I've had a &lt;em&gt;Gemini AI Pro&lt;/em&gt; subscription. I've generally
 found this useful, mainly using the Gemini app on my &lt;a href="https://blog.davep.org/tag/iphone/"&gt;iPhone&lt;/a&gt;
-to research things&lt;sup id="fnref:299-1"&gt;&lt;a class="footnote-ref" href="#fn:299-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and also commonly using the web application to help
+to research things&lt;sup id="fnref:300-1"&gt;&lt;a class="footnote-ref" href="#fn:300-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and also commonly using the web application to help
 proofread blog posts, and sometimes explore coding problems. Another way I
 use it is via &lt;a href="https://blog.davep.org/tag/notebooklm/"&gt;NotebookLM&lt;/a&gt;. The subscription has meant
 that I can do all of this without ever having to worry about hitting any
@@ -229,10 +505,10 @@ recommendation be made.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:299-1"&gt;
+&lt;li id="fn:300-1"&gt;
 &lt;p&gt;In the past six months I've found it's generally a far better method
 of finding things than simply using a search engine; no ads, cited
-sources, results that are easy to revisit, etc.&amp;#160;&lt;a class="footnote-backref" href="#fnref:299-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+sources, results that are easy to revisit, etc.&amp;#160;&lt;a class="footnote-backref" href="#fnref:300-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -308,7 +584,7 @@ three CSS files:
 turned on). While this separation of concerns sits well with me, while it
 feels like the elegant way of doing things, there is the issue that it
 requires 3 trips back to the server to get base styling for any given
-page&lt;sup id="fnref:330-1"&gt;&lt;a class="footnote-ref" href="#fn:330-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+page&lt;sup id="fnref:331-1"&gt;&lt;a class="footnote-ref" href="#fn:331-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So with this new version, if you set
 &lt;a href="https://blogmore.davep.dev/configuration/#bundle_css" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;bundle_css&lt;/code&gt;&lt;/a&gt; to
 &lt;code&gt;true&lt;/code&gt;, those three files are included and delivered as a single
@@ -347,10 +623,10 @@ instructions&lt;/a&gt; and give it a go.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:330-1"&gt;
+&lt;li id="fn:331-1"&gt;
 &lt;p&gt;Yes, of course the client-side cache makes this moot after the first
 page is loaded. All of this is about making that first load faster, and
-so appeasing the PageSpeed Insights gods.&amp;#160;&lt;a class="footnote-backref" href="#fnref:330-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+so appeasing the PageSpeed Insights gods.&amp;#160;&lt;a class="footnote-backref" href="#fnref:331-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -407,7 +683,7 @@ up via the main application did seem to have done that job.&lt;/p&gt;
 &lt;p&gt;After this though, it kind of went a little downhill. The first thing I
 noticed was the set of models available was rather different from Gemini
 CLI. I mean, okay, that's fair, I guess you expect things like that to
-change, but in my inexperienced&lt;sup id="fnref:329-1"&gt;&lt;a class="footnote-ref" href="#fn:329-1"&gt;1&lt;/a&gt;&lt;/sup&gt; view of what these agentic tools offer,
+change, but in my inexperienced&lt;sup id="fnref:330-1"&gt;&lt;a class="footnote-ref" href="#fn:330-1"&gt;1&lt;/a&gt;&lt;/sup&gt; view of what these agentic tools offer,
 it looked like all the options were a little more... pricey, perhaps?&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Gemini CLI vs Antigravity CLI" height="264" loading="lazy" src="https://blog.davep.org/attachments/2026/05/20/old-vs-new.webp#centre" width="711" /&gt;&lt;/p&gt;
 &lt;p&gt;Still, I'm sure that sensible defaults are chosen out of the box, so it
@@ -472,13 +748,13 @@ them harder to try and make this adventure pay off.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:329-1"&gt;
+&lt;li id="fn:330-1"&gt;
 &lt;p&gt;I say "inexperienced", but perhaps I'm being unfair to myself here.
 While I'm not 100%, all in, fully-steeped in agentic lore, and even
 though I've not been living this stuff full time for the past year or
 so, I do feel I'm a good representation of someone with a long
 background in the software development industry who is coming to these
-tools with reasonable expectations.&amp;#160;&lt;a class="footnote-backref" href="#fnref:329-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+tools with reasonable expectations.&amp;#160;&lt;a class="footnote-backref" href="#fnref:330-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -764,7 +1040,7 @@ capable of working with Clipper and writing code (probably made easier by
 the fact that the office in question wasn't a "Clipper shop"). But when it
 came to actually getting on with a job, he'd been unable to get it done
 (and, apparently, had felt unable to ask anyone around him for help, which
-probably says a lot about that office and the industry at the time&lt;sup id="fnref:343-1"&gt;&lt;a class="footnote-ref" href="#fn:343-1"&gt;1&lt;/a&gt;&lt;/sup&gt;).&lt;/p&gt;
+probably says a lot about that office and the industry at the time&lt;sup id="fnref:344-1"&gt;&lt;a class="footnote-ref" href="#fn:344-1"&gt;1&lt;/a&gt;&lt;/sup&gt;).&lt;/p&gt;
 &lt;p&gt;I bring this up because I was reminded of this story when I was tinkering
 with &lt;a href="https://blog.davep.org/tag/gemini/"&gt;Gemini&lt;/a&gt; last night. While working on the &lt;a href="https://github.com/davep/blogmore/pull/492" rel="noopener noreferrer" target="_blank"&gt;optimised
 images PR&lt;/a&gt;, towards the end of
@@ -801,8 +1077,8 @@ this to be lazy, dangerous and harmful thinking.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:343-1"&gt;
-&lt;p&gt;Because of course we're so much better as an industry these days.&amp;#160;&lt;a class="footnote-backref" href="#fnref:343-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:344-1"&gt;
+&lt;p&gt;Because of course we're so much better as an industry these days.&amp;#160;&lt;a class="footnote-backref" href="#fnref:344-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1240,39 +1516,6 @@ rinse, repeat...&amp;#160;&lt;a class="footnote-backref" href="#fnref:293-1" tit
       <category>Gemini</category>
       <category>Google</category>
       <pubDate>Thu, 14 May 2026 08:25:23 +0100</pubDate>
-    </item>
-    <item>
-      <title>When Gemini CLI gets stuck</title>
-      <link>https://blog.davep.org/2026/05/13/when-gemini-cli-gets-stuck.html</link>
-      <description>&lt;p&gt;Another evening, and &lt;a href="https://blog.davep.org/2026/05/12/the-other-unreliable-buddy.html"&gt;another period of Gemini CLI getting stuck
-thinking&lt;/a&gt;. So this time I
-thought I'd try something: cancel it while it was thinking and change the
-model.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Gemini Thinking..." height="342" loading="lazy" src="https://blog.davep.org/attachments/2026/05/13/thinking.webp#centre" width="702" /&gt;&lt;/p&gt;
-&lt;p&gt;I was working &lt;a href="https://github.com/davep/blogmore/pull/483" rel="noopener noreferrer" target="_blank"&gt;on something new for
-BlogMore&lt;/a&gt; and, sure enough,
-after a wee while, we got stuck in &lt;em&gt;"Thinking..."&lt;/em&gt; mode. So I hit
-&lt;kbd&gt;Escape&lt;/kbd&gt; and asked to pick a different model. I chose to pick
-manually, and went with &lt;code&gt;gemini-3.1-pro-preview&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Picking the model" height="302" loading="lazy" src="https://blog.davep.org/attachments/2026/05/13/pick-the-model.webp#centre" width="616" /&gt;&lt;/p&gt;
-&lt;p&gt;I then literally asked that it carry on where it left off...&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Carry on" height="246" loading="lazy" src="https://blog.davep.org/attachments/2026/05/13/select-model.webp#centre" width="536" /&gt;&lt;/p&gt;
-&lt;p&gt;...and it did! It worked. No more sitting around thinking for ages.&lt;/p&gt;
-&lt;p&gt;Watching the quota after doing this, it looks like the model I was using ate
-quota faster, but that was worth it given I've never come close to hitting
-full quota with Gemini CLI.&lt;/p&gt;
-&lt;p&gt;Once the immediate job was done, I went back to auto and it worked for a
-bit, only to get stuck thinking again. I repeated this process and it did
-the trick a second time. From now on I'm going to use this approach.&lt;/p&gt;
-&lt;p&gt;It does, again, highlight how unreliable these tools are, but at least I've
-found a workaround that works for now.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/05/13/when-gemini-cli-gets-stuck.html</guid>
-      <category>AI</category>
-      <category>AI</category>
-      <category>Coding</category>
-      <category>Gemini</category>
-      <category>Google</category>
-      <pubDate>Wed, 13 May 2026 20:27:54 +0100</pubDate>
     </item>
   </channel>
 </rss>
