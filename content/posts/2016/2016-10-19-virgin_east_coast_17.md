@@ -38,21 +38,13 @@ Nope. Can't send him a DM any more. Guess I got unfollowed.
 
 So I've tried tweeting him instead:
 
-<center>
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Dear <a href="https://twitter.com/DavidHorne">@DavidHorne</a>, I seem to no longer be able to contact the <a href="https://twitter.com/Virgin_TrainsEC">@Virgin_TrainsEC</a> customer relations manager (your idea originally). What next?</p>&mdash; Dave Pearson (@davepdotorg) <a href="https://twitter.com/davepdotorg/status/788687898111516672">October 19, 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js"
-charset="utf-8"></script>
-</center>
 
 This did get a reply
 from [@Virgin_TrainsEC](https://twitter.com/Virgin_TrainsEC) and I let them
 know what I was after. They say they've sent him an email too now:
 
-<center>
 <blockquote class="twitter-tweet" data-partner="tweetdeck"><p lang="en" dir="ltr"><a href="https://twitter.com/davepdotorg">@davepdotorg</a> <a href="https://twitter.com/DavidHorne">@DavidHorne</a> I have just sent an email Mike and asked for him or one of the team to contact you asap. ^SH</p>&mdash; Virgin Trains EC (@Virgin_TrainsEC) <a href="https://twitter.com/Virgin_TrainsEC/status/788691702265552896">October 19, 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js"
-charset="utf-8"></script>
-</center>
 
 Really, this is a silly mess again. My query is simple and straightforward.
 I'm simply chasing up two promises that were made by Mike, on behalf of
