@@ -77,7 +77,7 @@ better. The first was the model name (varying between
 
 From what I can see, it would appear that these two tables do cover my
 increasing use of Gemini CLI for doing work on BlogMore (the first intensive
-use being [being back around the 5th of this
+use being [back around the 5th of this
 month](/2026/05/05/and-then-there-were-three.html), if I recall correctly).
 So this would seem to be a reasonably informative way to view things.
 
