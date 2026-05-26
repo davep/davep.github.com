@@ -2,7 +2,7 @@
 title: Let down by Openreach and EE
 date: 2026-05-26 17:07:38+0100
 category: Life
-tags: Broadband, EE, Openreach
+tags: BT, Broadband, EE, Openreach
 cover: /attachments/2026/05/26/i-can-haz-fibre.webp
 ---
 
