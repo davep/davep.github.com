@@ -2,11 +2,81 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-26T16:09:33.974947+00:00</updated>
+  <updated>2026-05-26T19:56:39.230807+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/26/blogmore-v2-30-0.html</id>
+    <title>BlogMore v2.30.0</title>
+    <updated>2026-05-26T20:54:21+01:00</updated>
+    <content type="html">&lt;p&gt;BlogMore has been bumped to
+&lt;a href="https://blogmore.davep.dev/changelog/#v2300" rel="noopener noreferrer" target="_blank"&gt;v2.30.0&lt;/a&gt;. This release is
+pretty heavy on new features, but it does also include one small
+accessibility tweak too. While looking through some of the neutral feedback
+from &lt;a href="https://pagespeed.web.dev/" rel="noopener noreferrer" target="_blank"&gt;PageSpeed Insights&lt;/a&gt; I noticed it mentioned
+that in some cases I had a category and a tag linked on the same page, where
+the text of the link was the same. That's pretty common on my blog. For many
+of the categories (especially things like &lt;a href="https://blog.davep.org/category/ai/"&gt;AI&lt;/a&gt;,
+&lt;a href="https://blog.davep.org/category/coding/"&gt;Coding&lt;/a&gt;, &lt;a href="https://blog.davep.org/category/emacs/"&gt;Emacs&lt;/a&gt;,
+&lt;a href="https://blog.davep.org/category/python/"&gt;Python&lt;/a&gt;, etc.) I'll also have a corresponding tag. The
+idea is that categories are essentially sub-blogs within the blog, whereas
+tags characterise a post.&lt;/p&gt;
+&lt;p&gt;Given that the same text for different purposes doesn't give much context
+from an accessibility point of view I've added appropriate &lt;code&gt;aria-label&lt;/code&gt;
+attributes to differentiate these links.&lt;/p&gt;
+&lt;p&gt;Now for the new features.&lt;/p&gt;
+&lt;p&gt;The first is another &lt;em&gt;"discover other posts"&lt;/em&gt; type feature, that might
+encourage a reader to venture further into a blog. While BlogMore does
+support backlinks (&lt;a href="https://blog.davep.org/2026/04/25/blogmore-v2-16-0.html"&gt;as was added back in
+v2.16.0&lt;/a&gt;), I have been thinking that a
+"related posts" feature would be interesting to add. So now it's added. This
+is enabled with the
+&lt;a href="https://blogmore.davep.dev/configuration/#with_related" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;with_related&lt;/code&gt;&lt;/a&gt;
+configuration option (or the
+&lt;a href="https://blogmore.davep.dev/command_line/#-with-related" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;--with-related&lt;/code&gt;&lt;/a&gt;
+command line switch) and provides control over how many related posts are
+shown; the default is three.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Example related posts" height="152" loading="lazy" src="https://blog.davep.org/attachments/2026/05/26/related-posts.webp#centre" width="512" /&gt;&lt;/p&gt;
+&lt;p&gt;Because calculating the best related posts, for every post, will cost in
+time and memory, &lt;a href="https://blogmore.davep.dev/configuration/#related_prune_vocab_size" rel="noopener noreferrer" target="_blank"&gt;some control over how "accurate" the hits are is
+given&lt;/a&gt;.
+You're also &lt;a href="https://blogmore.davep.dev/configuration/#related_title" rel="noopener noreferrer" target="_blank"&gt;not stuck with "Related Posts" as the
+title&lt;/a&gt; either.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Using a different title" height="115" loading="lazy" src="https://blog.davep.org/attachments/2026/05/26/related-title.webp#centre" width="512" /&gt;&lt;/p&gt;
+&lt;p&gt;The rest of the new features are more admin-based and are all commands on
+the &lt;a href="https://blogmore.davep.dev/command_line/" rel="noopener noreferrer" target="_blank"&gt;BlogMore command line&lt;/a&gt;. The
+first is the &lt;a href="https://blogmore.davep.dev/command_line/#drafts-command" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;drafts&lt;/code&gt;
+command&lt;/a&gt; which
+simply lists the filename of all the posts that are in a draft state.&lt;/p&gt;
+&lt;p&gt;The second new command is &lt;a href="https://blogmore.davep.dev/command_line/#dump" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;links
+dump&lt;/code&gt;&lt;/a&gt;. This is a utility
+command for dumping a CSV list of all the external links that can be found
+in your posts, along with the filename of the post the link was found in.
+This could be useful for all sorts of things; for example writing your own
+external link statistics tool, or perhaps writing your own external link
+checker.&lt;/p&gt;
+&lt;p&gt;Talking of external link checkers: I've also added &lt;a href="https://blogmore.davep.dev/command_line/#check" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;links
+check&lt;/code&gt;&lt;/a&gt;. This is a bit
+experimental, but is intended to be a simple checker of all the external
+links, seeing if they're still out there. By default, when run, it'll check
+every link it finds and, if there's a problem with it, it'll report the
+issue. There's a &lt;code&gt;--verbose&lt;/code&gt; mode as well if you want feedback on all the
+links that are working.&lt;/p&gt;
+&lt;p&gt;It seems like every time I think I'm done adding &lt;em&gt;features&lt;/em&gt;, something else
+is either suggested or pops into my head. I feel like I'm near the end of
+adding stuff now and &lt;em&gt;should&lt;/em&gt; be getting back to refining the code.&lt;/p&gt;
+&lt;p&gt;I'm fairly sure I've said that before.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/05/26/blogmore-v2-30-0.html"/>
+    <category term="Coding"/>
+    <category term="BlogMore"/>
+    <category term="Coding"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="a11y"/>
+    <published>2026-05-26T20:54:21+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/26/let-down-by-openreach-and-ee.html</id>
     <title>Let down by Openreach and EE</title>
@@ -75,7 +145,7 @@ their own system, that the order had been cancelled and they too had failed
 to email me, message me, call me, something, to let me know I'd be wasting
 my time clearing half my day to receive them and have the work take place.&lt;/p&gt;
 &lt;p&gt;So: pretty shitty service all round.&lt;/p&gt;
-&lt;p&gt;The main explanation I've been given is something to do with a "CBT"&lt;sup id="fnref:338-1"&gt;&lt;a class="footnote-ref" href="#fn:338-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, or
+&lt;p&gt;The main explanation I've been given is something to do with a "CBT"&lt;sup id="fnref:339-1"&gt;&lt;a class="footnote-ref" href="#fn:339-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, or
 something related. This means that it's just not possible to deliver fibre
 to my address. This is after:&lt;/p&gt;
 &lt;ul&gt;
@@ -144,13 +214,14 @@ swap mobile provider. ;-)&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:338-1"&gt;
-&lt;p&gt;Stop it. You know who you are.&amp;#160;&lt;a class="footnote-backref" href="#fnref:338-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:339-1"&gt;
+&lt;p&gt;Stop it. You know who you are.&amp;#160;&lt;a class="footnote-backref" href="#fnref:339-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
     <link href="https://blog.davep.org/2026/05/26/let-down-by-openreach-and-ee.html"/>
     <category term="Life"/>
+    <category term="BT"/>
     <category term="Broadband"/>
     <category term="EE"/>
     <category term="Openreach"/>
@@ -246,7 +317,7 @@ time I was happy to call it an evening on this round of modifications, it had
 reset and I was green across the board again.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="All done" height="1122" loading="lazy" src="https://blog.davep.org/attachments/2026/05/25/after-done.webp#centre" width="1149" /&gt;&lt;/p&gt;
 &lt;p&gt;Now &lt;em&gt;this&lt;/em&gt; I can work with!&lt;/p&gt;
-&lt;p&gt;I don't really know what's changed&lt;sup id="fnref:337-1"&gt;&lt;a class="footnote-ref" href="#fn:337-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, or why. I think I saw something the
+&lt;p&gt;I don't really know what's changed&lt;sup id="fnref:338-1"&gt;&lt;a class="footnote-ref" href="#fn:338-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, or why. I think I saw something the
 other day about quotas being tripled, but this seems even more generous (at
 least in terms of the reset window). I guess I'm going to have to go digging
 to see if I can find what the story is.&lt;/p&gt;
@@ -256,10 +327,10 @@ moment (which is, of course, the ongoing theme of what I'm documenting here)
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:337-1"&gt;
+&lt;li id="fn:338-1"&gt;
 &lt;p&gt;Although I did notice it went with &lt;code&gt;Gemini 3.5 Flash (Medium)&lt;/code&gt; on
 startup and I let it go with that; last time it was &lt;code&gt;Gemini 3.5 Flash
-(High)&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:337-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+(High)&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:338-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -378,7 +449,7 @@ one is set) when there is no &lt;code&gt;cover&lt;/code&gt;.&lt;/p&gt;</content>
     <content type="html">&lt;p&gt;While I know the subject really fires some people, ad blockers are something
 I've never really paid too much attention to. Back in the early days of the
 web, the &lt;em&gt;really&lt;/em&gt; early days, I used to run with full-on JavaScript
-blocking&lt;sup id="fnref:344-1"&gt;&lt;a class="footnote-ref" href="#fn:344-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The web changed and I accepted it.&lt;/p&gt;
+blocking&lt;sup id="fnref:345-1"&gt;&lt;a class="footnote-ref" href="#fn:345-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The web changed and I accepted it.&lt;/p&gt;
 &lt;p&gt;More recently, as I've become a full-time Safari user in the last couple of
 years, I've been running with &lt;a href="http://kablock.com/" rel="noopener noreferrer" target="_blank"&gt;Ka-Block!&lt;/a&gt; installed.
 It's been fine. I've never really noticed it. I &lt;em&gt;think&lt;/em&gt; it blocked some
@@ -410,9 +481,9 @@ this sort of tool.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:344-1"&gt;
+&lt;li id="fn:345-1"&gt;
 &lt;p&gt;I just know someone is reading that and thinking &lt;em&gt;"pfft, JavaScript
-came along late into the web you noob"&lt;/em&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:344-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+came along late into the web you noob"&lt;/em&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:345-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -860,7 +931,7 @@ recall anything that seemed like harder work).&lt;/p&gt;
 &lt;p&gt;Who knows what the real costs will be come June.&lt;/p&gt;
 &lt;p&gt;Now, technically, the actual cost under the new regime could or should be
 $156, because it would be 4 lots of the $39.00/month plan, which would
-better cover that use&lt;sup id="fnref:346-1"&gt;&lt;a class="footnote-ref" href="#fn:346-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Again though, that's assuming the actual cost of
+better cover that use&lt;sup id="fnref:347-1"&gt;&lt;a class="footnote-ref" href="#fn:347-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Again though, that's assuming the actual cost of
 using whatever models remains pretty stable. It also assumes that I'd want
 to spend that much each month, and that I would be correctly anticipating
 that I'd need that much.&lt;/p&gt;
@@ -876,7 +947,7 @@ something like &lt;a href="https://cursor.com/" rel="noopener noreferrer" target
 $20/month. Which all sounds fine, but what happens when those fleeing GitHub
 Copilot or Gemini CLI/&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt; head over to
 something like Cursor? Is it sensible to expect the pricing to stay the
-same&lt;sup id="fnref:346-2"&gt;&lt;a class="footnote-ref" href="#fn:346-2"&gt;2&lt;/a&gt;&lt;/sup&gt;?&lt;/p&gt;
+same&lt;sup id="fnref:347-2"&gt;&lt;a class="footnote-ref" href="#fn:347-2"&gt;2&lt;/a&gt;&lt;/sup&gt;?&lt;/p&gt;
 &lt;p&gt;I guess, at this point, I'm just mulling over the same issue time and again,
 but from different angles. It does seem clear to me, though, that in less
 than 4 months, in my experiment of &lt;em&gt;"what happens if I use agents to develop
@@ -885,15 +956,15 @@ reasonable to pretty much unjustifiable from a price point of view.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:346-1"&gt;
+&lt;li id="fn:347-1"&gt;
 &lt;p&gt;As I understand it, the $39 gets you &lt;em&gt;almost twice&lt;/em&gt; that value in "AI
 credits", so the &lt;a href="https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals#how-do-ai-credits-work" rel="noopener noreferrer" target="_blank"&gt;base allotment plus the flex
 allotment&lt;/a&gt;
-would cover what I've used.&amp;#160;&lt;a class="footnote-backref" href="#fnref:346-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+would cover what I've used.&amp;#160;&lt;a class="footnote-backref" href="#fnref:347-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:346-2"&gt;
+&lt;li id="fn:347-2"&gt;
 &lt;p&gt;That's not even the main reason &lt;a href="https://www.theguardian.com/technology/2026/apr/21/spacex-cursor-ai-startup" rel="noopener noreferrer" target="_blank"&gt;to be concerned about a switch to
-Cursor&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:346-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+Cursor&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:347-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1081,7 +1152,7 @@ three CSS files:
 turned on). While this separation of concerns sits well with me, while it
 feels like the elegant way of doing things, there is the issue that it
 requires 3 trips back to the server to get base styling for any given
-page&lt;sup id="fnref:335-1"&gt;&lt;a class="footnote-ref" href="#fn:335-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+page&lt;sup id="fnref:336-1"&gt;&lt;a class="footnote-ref" href="#fn:336-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So with this new version, if you set
 &lt;a href="https://blogmore.davep.dev/configuration/#bundle_css" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;bundle_css&lt;/code&gt;&lt;/a&gt; to
 &lt;code&gt;true&lt;/code&gt;, those three files are included and delivered as a single
@@ -1120,10 +1191,10 @@ instructions&lt;/a&gt; and give it a go.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:335-1"&gt;
+&lt;li id="fn:336-1"&gt;
 &lt;p&gt;Yes, of course the client-side cache makes this moot after the first
 page is loaded. All of this is about making that first load faster, and
-so appeasing the PageSpeed Insights gods.&amp;#160;&lt;a class="footnote-backref" href="#fnref:335-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+so appeasing the PageSpeed Insights gods.&amp;#160;&lt;a class="footnote-backref" href="#fnref:336-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1181,7 +1252,7 @@ up via the main application did seem to have done that job.&lt;/p&gt;
 &lt;p&gt;After this though, it kind of went a little downhill. The first thing I
 noticed was the set of models available was rather different from Gemini
 CLI. I mean, okay, that's fair, I guess you expect things like that to
-change, but in my inexperienced&lt;sup id="fnref:334-1"&gt;&lt;a class="footnote-ref" href="#fn:334-1"&gt;1&lt;/a&gt;&lt;/sup&gt; view of what these agentic tools offer,
+change, but in my inexperienced&lt;sup id="fnref:335-1"&gt;&lt;a class="footnote-ref" href="#fn:335-1"&gt;1&lt;/a&gt;&lt;/sup&gt; view of what these agentic tools offer,
 it looked like all the options were a little more... pricey, perhaps?&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Gemini CLI vs Antigravity CLI" height="264" loading="lazy" src="https://blog.davep.org/attachments/2026/05/20/old-vs-new.webp#centre" width="711" /&gt;&lt;/p&gt;
 &lt;p&gt;Still, I'm sure that sensible defaults are chosen out of the box, so it
@@ -1246,13 +1317,13 @@ them harder to try and make this adventure pay off.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:334-1"&gt;
+&lt;li id="fn:335-1"&gt;
 &lt;p&gt;I say "inexperienced", but perhaps I'm being unfair to myself here.
 While I'm not 100%, all in, fully-steeped in agentic lore, and even
 though I've not been living this stuff full time for the past year or
 so, I do feel I'm a good representation of someone with a long
 background in the software development industry who is coming to these
-tools with reasonable expectations.&amp;#160;&lt;a class="footnote-backref" href="#fnref:334-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+tools with reasonable expectations.&amp;#160;&lt;a class="footnote-backref" href="#fnref:335-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1453,62 +1524,5 @@ the improvement on mobile does seem genuinely worth it.&lt;/p&gt;</content>
     <category term="PyPI"/>
     <category term="Python"/>
     <published>2026-05-18T18:59:06+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/05/18/the-highs-and-the-lows.html</id>
-    <title>The highs and the lows</title>
-    <updated>2026-05-18T08:34:29+01:00</updated>
-    <content type="html">&lt;p&gt;Over the weekend I read a comment, I think it was on Hacker News, where
-someone said they were having fun building things using AI. This was in
-response to someone saying that using AI took the fun out of programming. In
-their reply, the person qualified their answer with something along the
-lines of &lt;em&gt;"the highs are higher and the lows are lower"&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;I think I agree.&lt;/p&gt;
-&lt;p&gt;My first ever exposure to any sort of computer was a Sinclair ZX80 that my
-maths teacher brought into school. After a class he plugged it in and let me
-and a friend take a look. To this day I still remember looking in the
-manual, looking at the tutorial, and at some point typing...&lt;/p&gt;
-&lt;p&gt;&lt;img alt="PRINT 1+1" height="107" loading="lazy" src="https://blog.davep.org/attachments/2026/05/18/one-plus-one.webp#centre" width="237" /&gt;&lt;/p&gt;
-&lt;p&gt;When I hit &lt;kbd&gt;NEW LINE&lt;/kbd&gt; and a &lt;code&gt;2&lt;/code&gt; appeared on the screen I was
-thrilled, I was hooked. I'd typed something that &lt;strong&gt;appeared on a TV screen&lt;/strong&gt;
-and then I did something that &lt;strong&gt;made the answer appear on the TV screen&lt;/strong&gt;.
-This felt like magic.&lt;/p&gt;
-&lt;p&gt;I've been hooked on writing code ever since.&lt;/p&gt;
-&lt;p&gt;In that time the highs have been high, and the lows have been low, but I
-think it's fair to say that I've been doing this for long enough (it's now
-45 or 46 years since I typed that first instruction) that things have
-settled down. I still get a thrill when writing code, and I still get fed up
-with it from time to time, but the distance between the two isn't what it
-once was.&lt;/p&gt;
-&lt;p&gt;Which brings me back to the comment I read: I think I can safely say that,
-while properly experimenting with agents, while building
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; to test this approach out, I have
-been through a period of higher highs and lower lows when it comes to how I
-feel about the code and the project itself. When I &lt;a href="https://blog.davep.org/2026/02/20/five-days-with-copilot.html"&gt;kicked off
-development&lt;/a&gt; it was genuinely
-thrilling to have gone from an empty repository to a comprehensively-working
-initial version in just a matter of hours. Likewise it was thrilling to have
-gone from nothing to &lt;a href="https://blog.davep.org/2026/02/19/a-new-engine.html"&gt;rebuilding this blog with the
-tool&lt;/a&gt; in just a few days. It would be a lie
-to suggest that it wasn't fun and exciting to see the result.&lt;/p&gt;
-&lt;p&gt;But, as I wrote back then, I was also very mindful of how empty the process
-felt at times, how I missed the whole "flow state" connection to building
-out the application. There have also been many moments along the way, which
-I've documented at times on this blog, where I've felt the project was
-getting stuck down a dead-end with respect to how the code was going.&lt;/p&gt;
-&lt;p&gt;And then there's all the times Copilot and/or Gemini CLI just plain stopped
-getting stuff done.&lt;/p&gt;
-&lt;p&gt;Given this -- given the highs especially -- I can see why some people get
-totally hooked, go all in, get consumed by the illusion of how powerful
-these tools are. I can see why they'd buy into and embrace the mindset that
-trots out the AI-equivalent of the crypto-hype &lt;em&gt;"stay poor"&lt;/em&gt; retort to those
-who display any level of scepticism.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/05/18/the-highs-and-the-lows.html"/>
-    <category term="AI"/>
-    <category term="AI"/>
-    <category term="Coding"/>
-    <category term="Hacker News"/>
-    <category term="history"/>
-    <published>2026-05-18T08:34:29+01:00</published>
   </entry>
 </feed>

@@ -2,11 +2,81 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-26T16:09:33.986769+00:00</updated>
+  <updated>2026-05-26T19:56:39.233077+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/26/blogmore-v2-30-0.html</id>
+    <title>BlogMore v2.30.0</title>
+    <updated>2026-05-26T20:54:21+01:00</updated>
+    <content type="html">&lt;p&gt;BlogMore has been bumped to
+&lt;a href="https://blogmore.davep.dev/changelog/#v2300" rel="noopener noreferrer" target="_blank"&gt;v2.30.0&lt;/a&gt;. This release is
+pretty heavy on new features, but it does also include one small
+accessibility tweak too. While looking through some of the neutral feedback
+from &lt;a href="https://pagespeed.web.dev/" rel="noopener noreferrer" target="_blank"&gt;PageSpeed Insights&lt;/a&gt; I noticed it mentioned
+that in some cases I had a category and a tag linked on the same page, where
+the text of the link was the same. That's pretty common on my blog. For many
+of the categories (especially things like &lt;a href="https://blog.davep.org/category/ai/"&gt;AI&lt;/a&gt;,
+&lt;a href="https://blog.davep.org/category/coding/"&gt;Coding&lt;/a&gt;, &lt;a href="https://blog.davep.org/category/emacs/"&gt;Emacs&lt;/a&gt;,
+&lt;a href="https://blog.davep.org/category/python/"&gt;Python&lt;/a&gt;, etc.) I'll also have a corresponding tag. The
+idea is that categories are essentially sub-blogs within the blog, whereas
+tags characterise a post.&lt;/p&gt;
+&lt;p&gt;Given that the same text for different purposes doesn't give much context
+from an accessibility point of view I've added appropriate &lt;code&gt;aria-label&lt;/code&gt;
+attributes to differentiate these links.&lt;/p&gt;
+&lt;p&gt;Now for the new features.&lt;/p&gt;
+&lt;p&gt;The first is another &lt;em&gt;"discover other posts"&lt;/em&gt; type feature, that might
+encourage a reader to venture further into a blog. While BlogMore does
+support backlinks (&lt;a href="https://blog.davep.org/2026/04/25/blogmore-v2-16-0.html"&gt;as was added back in
+v2.16.0&lt;/a&gt;), I have been thinking that a
+"related posts" feature would be interesting to add. So now it's added. This
+is enabled with the
+&lt;a href="https://blogmore.davep.dev/configuration/#with_related" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;with_related&lt;/code&gt;&lt;/a&gt;
+configuration option (or the
+&lt;a href="https://blogmore.davep.dev/command_line/#-with-related" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;--with-related&lt;/code&gt;&lt;/a&gt;
+command line switch) and provides control over how many related posts are
+shown; the default is three.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Example related posts" height="152" loading="lazy" src="https://blog.davep.org/attachments/2026/05/26/related-posts.webp#centre" width="512" /&gt;&lt;/p&gt;
+&lt;p&gt;Because calculating the best related posts, for every post, will cost in
+time and memory, &lt;a href="https://blogmore.davep.dev/configuration/#related_prune_vocab_size" rel="noopener noreferrer" target="_blank"&gt;some control over how "accurate" the hits are is
+given&lt;/a&gt;.
+You're also &lt;a href="https://blogmore.davep.dev/configuration/#related_title" rel="noopener noreferrer" target="_blank"&gt;not stuck with "Related Posts" as the
+title&lt;/a&gt; either.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Using a different title" height="115" loading="lazy" src="https://blog.davep.org/attachments/2026/05/26/related-title.webp#centre" width="512" /&gt;&lt;/p&gt;
+&lt;p&gt;The rest of the new features are more admin-based and are all commands on
+the &lt;a href="https://blogmore.davep.dev/command_line/" rel="noopener noreferrer" target="_blank"&gt;BlogMore command line&lt;/a&gt;. The
+first is the &lt;a href="https://blogmore.davep.dev/command_line/#drafts-command" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;drafts&lt;/code&gt;
+command&lt;/a&gt; which
+simply lists the filename of all the posts that are in a draft state.&lt;/p&gt;
+&lt;p&gt;The second new command is &lt;a href="https://blogmore.davep.dev/command_line/#dump" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;links
+dump&lt;/code&gt;&lt;/a&gt;. This is a utility
+command for dumping a CSV list of all the external links that can be found
+in your posts, along with the filename of the post the link was found in.
+This could be useful for all sorts of things; for example writing your own
+external link statistics tool, or perhaps writing your own external link
+checker.&lt;/p&gt;
+&lt;p&gt;Talking of external link checkers: I've also added &lt;a href="https://blogmore.davep.dev/command_line/#check" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;links
+check&lt;/code&gt;&lt;/a&gt;. This is a bit
+experimental, but is intended to be a simple checker of all the external
+links, seeing if they're still out there. By default, when run, it'll check
+every link it finds and, if there's a problem with it, it'll report the
+issue. There's a &lt;code&gt;--verbose&lt;/code&gt; mode as well if you want feedback on all the
+links that are working.&lt;/p&gt;
+&lt;p&gt;It seems like every time I think I'm done adding &lt;em&gt;features&lt;/em&gt;, something else
+is either suggested or pops into my head. I feel like I'm near the end of
+adding stuff now and &lt;em&gt;should&lt;/em&gt; be getting back to refining the code.&lt;/p&gt;
+&lt;p&gt;I'm fairly sure I've said that before.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/05/26/blogmore-v2-30-0.html"/>
+    <category term="Coding"/>
+    <category term="BlogMore"/>
+    <category term="Coding"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="a11y"/>
+    <published>2026-05-26T20:54:21+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/25/blogmore-v2-29-0.html</id>
     <title>BlogMore v2.29.0</title>
@@ -185,7 +255,7 @@ three CSS files:
 turned on). While this separation of concerns sits well with me, while it
 feels like the elegant way of doing things, there is the issue that it
 requires 3 trips back to the server to get base styling for any given
-page&lt;sup id="fnref:335-1"&gt;&lt;a class="footnote-ref" href="#fn:335-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+page&lt;sup id="fnref:336-1"&gt;&lt;a class="footnote-ref" href="#fn:336-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So with this new version, if you set
 &lt;a href="https://blogmore.davep.dev/configuration/#bundle_css" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;bundle_css&lt;/code&gt;&lt;/a&gt; to
 &lt;code&gt;true&lt;/code&gt;, those three files are included and delivered as a single
@@ -224,10 +294,10 @@ instructions&lt;/a&gt; and give it a go.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:335-1"&gt;
+&lt;li id="fn:336-1"&gt;
 &lt;p&gt;Yes, of course the client-side cache makes this moot after the first
 page is loaded. All of this is about making that first load faster, and
-so appeasing the PageSpeed Insights gods.&amp;#160;&lt;a class="footnote-backref" href="#fnref:335-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+so appeasing the PageSpeed Insights gods.&amp;#160;&lt;a class="footnote-backref" href="#fnref:336-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -968,7 +1038,7 @@ blog. But I'm going to start syncing projects to both GitLab and Codeberg. I
 see this as having two benefits: anyone who doesn't want to interact with
 GitHub can now easily fork code, and if they wish they can raise issues and
 the like too. Meanwhile, in doing this, I'll also have the added benefit of
-my code being "backed up" in at least three different locations&lt;sup id="fnref:341-1"&gt;&lt;a class="footnote-ref" href="#fn:341-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+my code being "backed up" in at least three different locations&lt;sup id="fnref:342-1"&gt;&lt;a class="footnote-ref" href="#fn:342-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;The approach I've settled on, for the moment, is based around &lt;a href="https://github.com/davep/setup-forge-sync" rel="noopener noreferrer" target="_blank"&gt;this little
 shell script&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
@@ -1010,7 +1080,7 @@ git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt
 &lt;span class="c1"&gt;### setup-forge-sync ends here&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;I'm going to keep all repo names the same&lt;sup id="fnref:341-2"&gt;&lt;a class="footnote-ref" href="#fn:341-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So when I use this script
+&lt;p&gt;I'm going to keep all repo names the same&lt;sup id="fnref:342-2"&gt;&lt;a class="footnote-ref" href="#fn:342-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. So when I use this script
 it'll set things up so I can &lt;code&gt;git push backups&lt;/code&gt; and &lt;code&gt;main&lt;/code&gt; will then get
 pushed up to both GitLab and Codeberg. I don't feel the need to be keeping
 any WiP branches in sync or kicking about, likewise any &lt;code&gt;gh-pages&lt;/code&gt; branches.&lt;/p&gt;
@@ -1023,14 +1093,14 @@ developing and maintaining).&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:341-1"&gt;
+&lt;li id="fn:342-1"&gt;
 &lt;p&gt;Yes, I have other backups too, but they're always
-current-working-machine type backups.&amp;#160;&lt;a class="footnote-backref" href="#fnref:341-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+current-working-machine type backups.&amp;#160;&lt;a class="footnote-backref" href="#fnref:342-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:341-2"&gt;
+&lt;li id="fn:342-2"&gt;
 &lt;p&gt;Except, perhaps, for any repo whose name starts with &lt;code&gt;.&lt;/code&gt;; I seem to
 recall that GitLab can't handle that, for some bizarre reason. Perhaps
-that's fixed now?&amp;#160;&lt;a class="footnote-backref" href="#fnref:341-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+that's fixed now?&amp;#160;&lt;a class="footnote-backref" href="#fnref:342-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1157,69 +1227,5 @@ unexpected behaviour that needs a "clear the cache first" fix.&lt;/p&gt;</conten
     <category term="PyPI"/>
     <category term="Python"/>
     <published>2026-05-04T09:07:26+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/04/29/on-github.html</id>
-    <title>On GitHub</title>
-    <updated>2026-04-29T08:30:23+01:00</updated>
-    <content type="html">&lt;p&gt;It seems that dunking on &lt;a href="https://github.com/" rel="noopener noreferrer" target="_blank"&gt;GitHub&lt;/a&gt; is the flavour of the
-day. At the moment most of the social/news type things I tend to read are
-filled with &lt;a href="https://mitchellh.com/writing/ghostty-leaving-github" rel="noopener noreferrer" target="_blank"&gt;the Ghostty
-news&lt;/a&gt;, as well as a
-small revival of posts and links to blog posts about &lt;a href="https://github.com/outages/github-outages" rel="noopener noreferrer" target="_blank"&gt;all the recent
-outages&lt;/a&gt;. It's understandable. It
-does seem that something has shifted with GitHub in the last few months.
-While it hasn't been the site I used to enjoy for quite some time now, it
-just seems to be getting worse at the moment.&lt;/p&gt;
-&lt;p&gt;It's even pissing off &lt;a href="https://www.reddit.com/r/GithubCopilot/comments/1sxge4u/github_copilot_is_moving_to_usagebased_billing/" rel="noopener noreferrer" target="_blank"&gt;the loyal AI enthusiasts with the Copilot
-changes&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;As I read all of this I find myself mostly nodding along. For the most part
-I'm &lt;em&gt;not&lt;/em&gt; finding that GitHub is getting in the way and stopping me from
-doing the things I want to do, and for the most part it &lt;em&gt;does&lt;/em&gt; act as a
-vital tool that lets me get work done, and also lets me enjoy my
-&lt;a href="https://blog.davep.org/2023/08/14/website-misc-stuff-moved.html"&gt;longest-enjoyed hobby&lt;/a&gt;. On the
-other hand I couldn't help but sigh and think &lt;em&gt;"yeah, I get why this is the
-time that people are done"&lt;/em&gt; when I opened up the PR page for this blog, just
-now, and saw this:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="A warning about my PRs" height="113" loading="lazy" src="https://blog.davep.org/attachments/2026/04/29/github-search.webp#centre" width="558" /&gt;&lt;/p&gt;
-&lt;p&gt;It does get me thinking about my relationship with GitHub, and how long I've
-been using it. As &lt;a href="https://blog.davep.org/2023/10/01/all-green-on-github.html"&gt;I've written
-before&lt;/a&gt;, I created my account back in
-2008; I was &lt;a href="https://api.github.com/users/davep" rel="noopener noreferrer" target="_blank"&gt;within the first 30,000
-users&lt;/a&gt;. While my use of it was only very
-occasional for quite a long time, for the last decade I've been constantly
-interacting with it. It is somewhere I visit constantly, not just to do work
-on my own projects, but to read what other people are doing. One of the
-first things I do every morning, when I sit down at my desk, is open my
-GitHub dashboard page and have a scroll through the feed to see what people
-I follow have been up to.&lt;/p&gt;
-&lt;p&gt;It's generally been the most fulfilling feed I've read.&lt;/p&gt;
-&lt;p&gt;But I'm also getting that feeling I got when I hung on to my Twitter account
-far longer than I really should have; not just because of the general vibe
-of &lt;em&gt;"it's falling apart"&lt;/em&gt;, but also &lt;a href="https://github.com/drop-ice/dear-github-2.0" rel="noopener noreferrer" target="_blank"&gt;other types of questionable
-behaviour&lt;/a&gt;. The degrading
-performance, the troubling business relationships, the over-emphasis on all
-things AI... it adds up.&lt;/p&gt;
-&lt;p&gt;There is a sense that some time ago was the time to move elsewhere as my
-sociable forge (probably around the time that Microsoft took over), and that
-not having done that, now is the second best time. But the effort of making
-that move &lt;a href="https://github.com/davep?tab=repositories&amp;amp;type=source" rel="noopener noreferrer" target="_blank"&gt;is
-non-trivial&lt;/a&gt; and,
-quite frankly, I'd want to see where folk start to land, if they started to
-move away in any numbers at all. For me the real utility of GitHub isn't the
-&lt;em&gt;"it's somewhere to store my shit"&lt;/em&gt; thing, it's the socially coding thing.&lt;/p&gt;
-&lt;p&gt;Then there's the follow-up problem: if some other forge was to become the
-next flavour of the decade, it too would probably end up suffering the same
-fate as GitHub.&lt;/p&gt;
-&lt;p&gt;Perhaps now is the time for me to start looking into options for
-collaborative code forges that &lt;a href="https://forgefed.org/" rel="noopener noreferrer" target="_blank"&gt;offer the same sort of
-solution&lt;/a&gt; that Mastodon does for Twitter-like
-nattering.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/04/29/on-github.html"/>
-    <category term="Coding"/>
-    <category term="Coding"/>
-    <category term="FOSS"/>
-    <category term="GitHub"/>
-    <published>2026-04-29T08:30:23+01:00</published>
   </entry>
 </feed>
