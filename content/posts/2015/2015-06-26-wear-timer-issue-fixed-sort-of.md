@@ -6,10 +6,10 @@ date: 2015-06-26 12:02:31+0100
 cover: /attachments/2015/06/26/Timer Running on Watch.webp
 ---
 
-Following on from
-[yesterday's problem with the Android Wear timer](http://127.0.0.1:4000/2015/06/25/did-google-just-break-wear-timers.html)
-I think I now have a solution. It came up
-[while chatting with Mike McLoughlin about the issue](https://plus.google.com/+DavePearson/posts/RZujypG7EyF).
+Following on from [yesterday's problem with the Android Wear
+timer](/2015/06/25/did-google-just-break-wear-timers.html) I think I now
+have a solution. It came up [while chatting with Mike McLoughlin about the
+issue](https://plus.google.com/+DavePearson/posts/RZujypG7EyF).
 
 I got to thinking that this problem felt like one that I've seen a number of
 times before with Google stuff. One thing that's rather common (in many cases
