@@ -1,7 +1,7 @@
 ---
 title: My first proper BT broadband outage
 category: Tech
-tags: Broadband, BT, Communication
+tags: BT, Broadband, Communication, Openreach
 date: 2015-11-18 11:25:29+0000
 cover: /attachments/2015/11/18/browser-status.webp
 ---
