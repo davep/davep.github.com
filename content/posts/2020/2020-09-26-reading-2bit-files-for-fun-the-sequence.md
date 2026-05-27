@@ -5,7 +5,7 @@ tags: Bioinformatics, Coding
 date: 2020-09-26 15:57:00+0100
 ---
 
-# Introduction
+## Introduction
 
 This post will cover the most important content of a 2bit file: the actual
 sequence data itself. In [the first
@@ -38,7 +38,7 @@ sequence data is stored like this:
 
 Breaking the above down:
 
-# N blocks
+## N blocks
 
 As mentioned in passing in the first post: technically it's necessary to
 encode 5 different characters for the bases in the sequences. As well as the
@@ -48,7 +48,7 @@ file format solves this by having an array of block positions and sizes
 where any data in the actual DNA itself should be ignored and an `N` used in
 its place.
 
-# Mask blocks
+## Mask blocks
 
 This is where my ignorance of bioinformatics shows, and where it's made very
 obvious that I'm a software developer who likes to muck about with data and
@@ -57,7 +57,7 @@ actually not sure what purpose mask blocks serve in a 2bit file, but they
 *do* affect the output. If a base falls within a mask block the value that
 is output should be a lower-case letter, rather then upper-case.
 
-# The DNA data
+## The DNA data
 
 So this is the fun bit, where the real data is stored. This should be viewed
 as a sequence of bytes, each of which contains 4 bases (except for the last
