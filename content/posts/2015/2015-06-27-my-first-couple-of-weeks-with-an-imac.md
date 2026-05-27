@@ -34,7 +34,7 @@ experiences. It's not a review. It's not even really intended as a judgement
 of the machine and the operating system. It's nothing more than a collection
 of notes of what I found and my reaction to what I found.
 
-# The keyboard
+## The keyboard
 
 The first strong reaction I had to the machine was regarding the keyboard. I
 thought I was going to hate it. I've had the misfortune of using various
@@ -76,7 +76,7 @@ feel very unfriendly to programmers and also to writers in general.
 This, of course, is my bias and muscle memory from PCs showing. I'm still not
 convinced that that bias and muscle memory is wrong.
 
-# The mouse
+## The mouse
 
 When I first started with it I hated the mouse. I should be fair and point out
 that, overall, I hate mice anyway. For a good 20 years I've thrown away every
@@ -98,7 +98,7 @@ This is the first mouse that has stayed on my desktop. I'm surprised.
 By the way, whoever thought that the "natural" scroll option, which is on by
 default, was "natural", is barking mad.
 
-# The GUI
+## The GUI
 
 One of the main intended uses for this machine is the Unix shell, working
 inside the terminal. Given that the actual UI of the OS doesn't matter so
@@ -127,7 +127,7 @@ I'm doing) or inside Google Chrome. In other words the general experience is
 one that carries over most of the main operating systems I've used on
 desktop machines.
 
-# Installing software
+## Installing software
 
 For an operating system that prides itself on being simple to use and easy
 to understand, and especially one whose bigger fans sell as being simple to
@@ -156,7 +156,7 @@ sort of world we lived in back when Windows 3.1 was a new thing. This came as
 and still is a massive surprise to me: OS X is as sophisticated as a fancy
 shell that ran on top of MS DOS when it comes to software management.
 
-# Doing the right thing, except when not
+## Doing the right thing, except when not
 
 While I'm on the subject of the famous great design of the Mac... what's up
 with the business of seeing the time format? The system preferences seem
@@ -177,7 +177,7 @@ display. Apple, meanwhile, seem to provide a great method of letting you
 set your date and time formats "just so" and then they seem to just go right
 ahead and ignore your preference in the one place you'll see it the most.
 
-# If you have a Mac, you have software I wrote on it (I think)
+## If you have a Mac, you have software I wrote on it (I think)
 
 From what I could tell every Mac has a copy of GNU emacs installed, out of the
 box. That actually kind of impressed me. Sure, it's a rather out of date
@@ -196,7 +196,7 @@ code that I originally wrote, pre-installed.
 
 Yeah, I know, shitty claim to fame. I'll take it anyway. ;)
 
-# Overall initial impression
+## Overall initial impression
 
 Overall my initial impression is a good one. The Apple iMac seems to make for
 a pretty good Unix workstation. The keyboard layout could do with some work
