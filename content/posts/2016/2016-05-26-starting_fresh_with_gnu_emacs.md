@@ -1,7 +1,7 @@
 ---
 title: Starting fresh with GNU emacs
 category: Emacs
-tags: Emacs
+tags: Emacs, Emacs Lisp, Lisp
 date: 2016-05-26 12:28:48+0100
 ---
 
