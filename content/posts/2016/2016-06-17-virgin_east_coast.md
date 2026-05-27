@@ -50,7 +50,7 @@ the address doesn't
 but can be useful to filter things and keep track of who's selling on your
 contact details.
 
-So I registered as davep.org+virgin@gmail.com. The website accepted it
+So I registered as `davep.org+virgin@gmail.com`. The website accepted it
 just fine.
 
 The next job was to install their wallet app. According to the website this

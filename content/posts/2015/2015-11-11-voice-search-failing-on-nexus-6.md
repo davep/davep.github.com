@@ -15,11 +15,10 @@ quickly look something up and my phone was to hand, I spoke to it and got this:
 
 Brilliant.
 
-I've been here before. I had [exactly this sort of problem with my Xperia Z
-at one point](https://plus.google.com/+DavePearson/posts/fP9kdADZPQ9).
-The problem appeared to go away eventually (actually, it sort of came and
-went a few times over a matter of weeks, if I recall correctly), although I
-never really got to the bottom of the cause.
+I've been here before. I had exactly this sort of problem with my Xperia Z
+at one point. The problem appeared to go away eventually (actually, it sort
+of came and went a few times over a matter of weeks, if I recall correctly),
+although I never really got to the bottom of the cause.
 
 I've tried rebooting the phone and that hasn't helped at all. While it's more
 of a vague annoyance than anything else (like I say above, my Android Wear

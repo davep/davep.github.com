@@ -61,7 +61,7 @@ This approach was, however, being rendered moot by other events.
 
 Backing up again to yesterday: after I'd tweeted about the blog post, and
 mentioned [@Virgin_TrainsEC](https://twitter.com/Virgin_TrainsEC) so they
-could have a chance to see and respond (they didn't this time), my adorable
+could have a chance to see and respond (they didn't this time), my
 girlfriend did a bit of checking in the background and did a little retweet:
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">For goodness sake, sort this out <a href="https://twitter.com/DavidHorne">@DavidHorne</a> <a href="https://twitter.com/AliWatson23">@AliWatson23</a> <a href="https://t.co/JibgmfZwjD">https://t.co/JibgmfZwjD</a> - 8 weeks, 11 blogs, no progress! <a href="https://t.co/iUTCApBnC7">https://t.co/iUTCApBnC7</a></p>&mdash; Jo (@0rangelic) <a href="https://twitter.com/0rangelic/status/762933732982591488">August 9, 2016</a></blockquote>
