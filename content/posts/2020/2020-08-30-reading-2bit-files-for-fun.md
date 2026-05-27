@@ -5,7 +5,7 @@ tags: Bioinformatics, Coding
 date: 2020-08-30 15:20:00+0100
 ---
 
-# Introduction
+## Introduction
 
 I've written a bit before about the value of having simple but interesting
 "problems", that you know the solution to, as [a way of exercising yourself
@@ -46,7 +46,7 @@ simply me taking what I've learnt and writing it down. Perhaps someone else
 will benefit one day, but the purpose is to simply enjoy cementing it in my
 own mind and to enjoy the process of putting it all in writing.
 
-# What is a "2bit file"?
+## What is a "2bit file"?
 
 So what's this new "problem" I've added to my list? It's code to read
 sequence data from [2bit format
@@ -85,7 +85,7 @@ to be able to store 5 different characters. But 5 isn't going to go into 2
 bits... Damn! Well, it's okay, 2bit has a solution to that too, and I'll
 cover that later on.
 
-# How is a 2bit file formatted?
+## How is a 2bit file formatted?
 
 As you can see from [the format information available
 online](https://genome.ucsc.edu/FAQ/FAQformat.html#format7), a 2bit file is
@@ -98,7 +98,7 @@ a binary file format that is split into 3 key parts:
 In this first post I'll cover the details of the header. Subsequent posts
 will cover the index and the actual sequence data records.
 
-## The header
+### The header
 
 The header of a 2bit file is fixed in size and contains some key
 information. It can be broken down as follows:
@@ -118,7 +118,7 @@ get a version other than `0`. The sequence count is, as you'd guess, the
 number of sequences that are held within the file -- this is important when
 loading in the index of the file (more on that in the next post).
 
-## The signature, big and little endianness, and byte swapping
+### The signature, big and little endianness, and byte swapping
 
 The header mentioned above comprises of 4 32-bit word values. The very first
 word is important to how you read the rest of the file. This is the
