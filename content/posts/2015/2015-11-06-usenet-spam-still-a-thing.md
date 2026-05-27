@@ -1,7 +1,7 @@
 ---
 title: Usenet spam, still a thing
 category: Tech
-tags: Clipper, Xbase, Spam
+tags: Clipper, Spam, Xbase, usenet
 date: 2015-11-06 13:28:17+0000
 cover: /attachments/2015/11/06/xsharp-spam.webp
 ---

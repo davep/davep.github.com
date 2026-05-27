@@ -2,7 +2,7 @@
 title: obfusurl.el v2.2
 date: 2026-04-01 10:13:57+0100
 category: Emacs
-tags: Emacs, Emacs Lisp, Lisp, coding, obfusurl.el
+tags: Emacs, Emacs Lisp, Lisp, coding, obfusurl.el, usenet
 ---
 
 This bit of [Emacs Lisp](/tag/emacs-lisp/) absolutely comes from a more

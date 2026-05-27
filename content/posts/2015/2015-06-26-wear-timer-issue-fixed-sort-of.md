@@ -8,8 +8,8 @@ cover: /attachments/2015/06/26/timer-running-on-watch.webp
 
 Following on from [yesterday's problem with the Android Wear
 timer](/2015/06/25/did-google-just-break-wear-timers.html) I think I now
-have a solution. It came up [while chatting with Mike McLoughlin about the
-issue](https://plus.google.com/+DavePearson/posts/RZujypG7EyF).
+have a solution. It came up while chatting with Mike McLoughlin about the
+issue (on Google+) .
 
 I got to thinking that this problem felt like one that I've seen a number of
 times before with Google stuff. One thing that's rather common (in many cases

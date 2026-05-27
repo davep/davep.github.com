@@ -8,8 +8,8 @@ date: 2015-06-18 14:53:00+0100
 Hello, world.
 
 So I've decided that it's time I had a blog again. An actual blog. Not a set
-of posts on [Google+](https://plus.google.com/+DavePearson/posts) or a
-torrent of 140-character thoughts on twitter but an actual blog.
+of posts on [Google+](https://en.wikipedia.org/wiki/Google%2B) or a torrent
+of 140-character thoughts on twitter but an actual blog.
 
 Part of the reason for this is that there's a couple of personal coding projects
 I want to have a go at over the next few months and writing about them as I
