@@ -20,7 +20,7 @@ Here's what my Emacs looks like:
 
 Key elements for me are as follows:
 
-# Light background
+## Light background
 
 Something I've never really got on with when it comes to code editing is
 dark themes and dark backgrounds. I find it too much of an eye strain.
@@ -28,7 +28,7 @@ Oddly, I tend to prefer dark themes everywhere else, but not when it comes
 to working in Emacs. The theme I use is [the built-in adwaita
 theme](https://github.com/davep/.emacs.d/blob/b9a3df42f0708eabc31a6176d69a67bbdf31a087/init.d/init-style.el#L12-L13).
 
-# Less boring mode line
+## Less boring mode line
 
 I make use of [powerline](https://github.com/milkypostman/powerline) to
 [make the mode line a bit less
@@ -39,7 +39,7 @@ shell.
 
 ![Shell prompt](/attachments/2020/01/11/shell-prompt.webp#centre)
 
-# Full screen
+## Full screen
 
 I always run Emacs as a full-screen application, then splitting it into
 different tiled windows using its own internal window handling. This is
@@ -51,7 +51,7 @@ then use [a little wrapper around `emacsclient`](https://github.com/davep/e)
 to open files (both locally and remotely) from the command line in that
 Emacs session.
 
-# Comfortable eshell when I need it
+## Comfortable eshell when I need it
 
 Although I say above that I generally don't use `eshell`, preferring to use
 a full-featured terminal application, in combination with

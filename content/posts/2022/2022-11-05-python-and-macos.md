@@ -5,7 +5,7 @@ tags: Python, macOS, coding
 date: 2022-11-05 08:49:00 +0000
 ---
 
-# Introduction
+## Introduction
 
 On Twitter, a few weeks back, [@itsBexli asked me how I go about setting up
 Python for development on
@@ -40,7 +40,7 @@ user.
 
 So... with that admin aside...
 
-# The Problem
+## The Problem
 
 When I first got back into writing Python it was on macOS and, really early
 on, I ran into all the usual issues: virtual environments breaking because
@@ -50,7 +50,7 @@ etc... Simply put, an occasional, annoying, non-show-stopping breaking of my
 development environment which would distract me when I'd sat down to just
 hack on some code, not do system admin!
 
-# My Solution
+## My Solution
 
 For me, what's worked for me without a problem over the past few years, in
 short, is this:
@@ -63,25 +63,25 @@ short, is this:
 4. Manage everything with [`pyenv`](https://github.com/pyenv/); which I do
    install from Homebrew.
 
-# The Detail
+## The Detail
 
 As mentioned earlier, what I'm writing here assumes that virtual
 environments are being managed with `pipenv` (something I still do for
 personal projects, for now, but this may change soon). Your choices and
 mileage may vary, etc... This is what works well for me.
 
-## The "one time" items
+### The "one time" items
 
 These are the items that need initially installing into a new macOS machine:
 
-### Homebrew
+#### Homebrew
 
 Unless it comes from the Mac App Store, I try and install everything via
 [Homebrew](https://brew.sh/). It's really handy for keeping track of what
 I've got installed, for recreating a development environment in general, and
 for keeping things up to date.
 
-### pyenv
+#### pyenv
 
 With Homebrew installed the next step for me is to install `pyenv`. Doing so
 is as easy as:
@@ -121,7 +121,7 @@ pyenv install --list | fgrep "  3.9"
 This is handy if I want to check what the very latest release of a specific
 version of Python is.
 
-### The "Global" Python
+#### The "Global" Python
 
 When I'm done with the above I then tend to use `pyenv` to set my "global"
 Python. This is the version I want to get when I run `python` and I'm not
@@ -133,7 +133,7 @@ pyenv global 3.10.7
 
 Of course, you'd swap the version for whatever works for you.
 
-### When Stuff Breaks
+#### When Stuff Breaks
 
 It seems more rare these days, but on occasion I've had it such that some
 update somewhere still causes my environment to break. Now though I find
@@ -145,7 +145,7 @@ pyenv rehash
 
 and everything is good again.
 
-## Setting Up A Repo
+### Setting Up A Repo
 
 With all of the stuff above being mostly a one-off (or at least something I
 do once when I set up a new machine -- which isn't often), the real "work"
