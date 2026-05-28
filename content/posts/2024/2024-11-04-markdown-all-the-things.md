@@ -26,7 +26,7 @@ chore.
 
 I'd been using an application called [Journey](https://journey.cloud). It's
 a great app, does the job well, but was also suffering from the creep of
-"AI" (I've had a few apps ion my arsenal that don't need it, acquire a
+"AI" (I've had a few apps in my arsenal that don't need it, acquire a
 useless "AI" feature). This privacy-problematic change of direction,
 combined with the realisation that I didn't *need* to write about my day,
 every day, any more, made me decide it was time to stop and cancel the
