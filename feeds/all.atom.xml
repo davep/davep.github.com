@@ -2,11 +2,69 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-05-28T14:19:50.623312+00:00</updated>
+  <updated>2026-05-29T13:16:29.535515+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/05/29/blogmore-v2-33-0.html</id>
+    <title>BlogMore v2.33.0</title>
+    <updated>2026-05-29T14:14:10+01:00</updated>
+    <content type="html">&lt;p&gt;I've released &lt;a href="https://blogmore.davep.dev/changelog/#v2330" rel="noopener noreferrer" target="_blank"&gt;v2.33.0&lt;/a&gt; of
+&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, which extends the &lt;a href="https://blog.davep.org/stats/"&gt;stats
+page&lt;/a&gt; some more, and also adds a tool so a user can do all sorts of
+fun things with the raw data of their posts.&lt;/p&gt;
+&lt;p&gt;The addition to the stats page is a list of years along with the top five
+words that characterise the &lt;a href="https://blog.davep.org/stats/#focus-by-year"&gt;focused subject for those
+years&lt;/a&gt;. This is done using
+&lt;a href="https://en.wikipedia.org/wiki/Tf–idf" rel="noopener noreferrer" target="_blank"&gt;TF-IDF&lt;/a&gt;. While the results for my
+blog don't come as a surprise, I am pleased to see that it does turn out
+pretty much how I would have expected:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Blogging focus per year" height="542" loading="lazy" src="https://blog.davep.org/attachments/2026/05/29/focus.webp#centre" width="777" /&gt;&lt;/p&gt;
+&lt;p&gt;This feels like another fun way to learn something about the post history
+for your own blog.&lt;/p&gt;
+&lt;p&gt;Which got me thinking: there's probably any number of other niche and
+bizarre things that could be done with the content of a blog to gain some
+insight as to its history, and I really shouldn't just keep adding more and
+more things to the stats page. But what if I wanted a way to run some code
+over all the posts? Wouldn't it be useful if I could get all of the parsed
+post data in JSON format so I can play with it?&lt;/p&gt;
+&lt;p&gt;With that idea in mind, &lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;I added the &lt;code&gt;dump&lt;/code&gt;
+command&lt;/a&gt;. When run,
+it will print to &lt;code&gt;stdout&lt;/code&gt; a full dump of all of your posts, as JSON, so you
+can then write your own nifty tool to read it back in and do any number of
+interesting checks, tests, reformats or manipulations. For example, if I
+wanted to use &lt;a href="https://jqlang.org/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;jq&lt;/code&gt;&lt;/a&gt; to pull out the metadata for this
+particular post I could:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;blogmore&lt;span class="w"&gt; &lt;/span&gt;dump&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.[] | select(.id == &amp;quot;posts/2026/05/2026-05-29-blogmore-v2-33-0.md&amp;quot;) | .metadata&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;which gives me this result:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;BlogMore v2.33.0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2026-05-29 14:14:10+0100&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;category&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Coding&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;BlogMore, Coding, PyPI, Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;cover&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/attachments/2026/05/29/focus.webp&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I can see this being pretty useful to
+&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; at some point, if I
+want to add some better querying tools or similar (not that I'd want to run
+a &lt;code&gt;dump&lt;/code&gt; every time, it does require that a full parse and render has to
+happen).&lt;/p&gt;
+&lt;p&gt;Hopefully this will be useful to someone else. I know I'll be toying with it
+to find out other things about my posting history.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/05/29/blogmore-v2-33-0.html"/>
+    <category term="Coding"/>
+    <category term="BlogMore"/>
+    <category term="Coding"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <published>2026-05-29T14:14:10+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/28/blogmore-v2-32-0.html</id>
     <title>BlogMore v2.32.0</title>
@@ -1444,36 +1502,5 @@ other products...&lt;/p&gt;</content>
     <category term="Google"/>
     <category term="Antigravity"/>
     <published>2026-05-20T08:58:35+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/05/19/next-gh-pr-el-v1-0-0.html</id>
-    <title>next-gh-pr.el v1.0.0</title>
-    <updated>2026-05-19T16:43:33+01:00</updated>
-    <content type="html">&lt;p&gt;Pretty much every project that I actively maintain on my &lt;a href="https://github.com/davep" rel="noopener noreferrer" target="_blank"&gt;GitHub
-account&lt;/a&gt; has a change log of some description. For
-a long time now, whenever I add a new entry to the log, I'll include a link
-to the PR that implements that change. Inevitably, this results in me adding
-the ChangeLog entry, creating the PR, then doing a follow-up change and
-commit now that I know the PR number, which allows me to add the link.&lt;/p&gt;
-&lt;p&gt;So I've created &lt;a href="https://github.com/davep/next-gh-pr.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;next-gh-pr.el&lt;/code&gt;&lt;/a&gt; to
-save me just a little time and let me be just a little more lazy. Inside it
-I've currently got a &lt;code&gt;next-gh-pr-insert-markdown-link&lt;/code&gt; command which, when
-run, as you might imagine, inserts a link to the next likely PR URL as
-Markdown.&lt;/p&gt;
-&lt;p&gt;Working out the next URL is simple enough: get the latest issue and PR
-number, take whichever is the highest, and add 1. There is the wrinkle that
-discussions also cause this number to bump, and getting the latest
-discussion number is a little extra faff that I can't be bothered with right
-now, but my projects very seldom have discussions taking place anyway.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/05/19/next-gh-pr-el-v1-0-0.html"/>
-    <category term="Emacs"/>
-    <category term="Emacs"/>
-    <category term="Emacs Lisp"/>
-    <category term="GitHub"/>
-    <category term="Lisp"/>
-    <category term="coding"/>
-    <category term="git"/>
-    <category term="next-gh-pr.el"/>
-    <published>2026-05-19T16:43:33+01:00</published>
   </entry>
 </feed>
