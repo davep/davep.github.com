@@ -51,7 +51,7 @@ repeat questions, etc), but this felt like a good spot to make a v0.1.0
 available if anyone else wanted to have a play.
 
 Anyway, if this sounds like your sort of thing, it can be installed with
-`pip` or (ideally) `pipx` [from PyPi](https://pypi.org/project/quizzical/).
+`pip` or (ideally) `pipx` [from PyPI](https://pypi.org/project/quizzical/).
 The [source is available over on
 GitHub](https://github.com/davep/quizzical).
 

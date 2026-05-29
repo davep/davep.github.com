@@ -37,7 +37,7 @@ was born!
 In this very first version (which was *really* quickly put together -- it
 was something like 15 minutes to write the main code and then probably 45
 minutes tweaking styles, adding all the admin stuff to allow [deployment to
-PyPi](https://pypi.org/project/textual-query-sandbox/) and writing the
+PyPI](https://pypi.org/project/textual-query-sandbox/) and writing the
 README) there's an [`Input`](https://textual.textualize.io/widgets/input/),
 a display of a group of nested containers with different IDs and classes,
 and then a [`Pretty`](https://textual.textualize.io/widgets/pretty/) widget

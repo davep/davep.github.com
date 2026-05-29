@@ -100,7 +100,7 @@ it installed; just make it a development dependency.
 
 The source can be found [over on
 GitHub](https://github.com/davep/textual-dominfo) and the package is, as
-mentioned above, [over on PyPi](https://github.com/davep/textual-dominfo).
+mentioned above, [over on PyPI](https://github.com/davep/textual-dominfo).
 
 [^1]: ObPedant: Containers are widgets, but it's often helpful to make a
     distinction between widgets that exist just to control the layout of the

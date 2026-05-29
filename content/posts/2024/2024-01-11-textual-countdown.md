@@ -30,7 +30,7 @@ question in a quiz; something like that.
 
 Anyway, if this sounds like it's something useful for your Textual
 applications, [it's now available from
-PyPi](https://pypi.org/project/textual-countdown/) and, of course, the
+PyPI](https://pypi.org/project/textual-countdown/) and, of course, the
 source is over [on GitHub](https://github.com/davep/textual-countdown).
 
 [//]: # (2024-01-11-textual-countdown.md ends here)

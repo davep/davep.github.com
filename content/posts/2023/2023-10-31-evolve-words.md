@@ -51,7 +51,7 @@ API](https://textual.textualize.io/guide/workers/) and
 
 If you want to check out the app itself there's [a GitHub
 repo](https://github.com/davep/evolve-words) and it can also be
-installed [from PyPi](https://pypi.org/project/evolve-words/) using
+installed [from PyPI](https://pypi.org/project/evolve-words/) using
 `pipx`.
 
 [//]: # (2023-10-31-evolve-words.md ends here)

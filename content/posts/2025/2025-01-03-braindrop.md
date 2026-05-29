@@ -93,7 +93,7 @@ go](https://github.com/Textualize/textual/pulls/davep).
 Anyway; that's v0.1.0 out in the wild. I'm pleased with how it's turned out
 and there's more to come. It's licensed GPL-3.0 and available [via
 GitHub](https://github.com/davep/braindrop) and also [via
-PyPi](https://pypi.org/project/braindrop/). If you have an environment that
+PyPI](https://pypi.org/project/braindrop/). If you have an environment that
 has `pipx` installed you should be able to get up and going with:
 
 ```sh
