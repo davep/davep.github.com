@@ -27,7 +27,14 @@ publish:			# Publish the site to GitHub
 .PHONY: spellcheck
 spellcheck:
 	$(spell) content/
-
+	@find content/ -name "*.md" -print0 | while IFS= read -r -d '' file; do \
+		errors=$$(aspell --mode=markdown --lang=en_GB --dont-run-together -p ./.ignore_spelling list < "$$file"); \
+		if [ -n "$$errors" ]; then \
+			echo "=== $$file ==="; \
+			echo "$$errors" | sort -u; \
+			echo ""; \
+		fi; \
+	done
 .PHONY: oldimages
 oldimages:			# List dates where I've not updated the images in the attachments folder.
 	cd content/extras/attachments && find -E ./ -iregex '.*\.(png|jpg|jpeg)$$' | cut -d'/' -f2,3,4 | sort -u
