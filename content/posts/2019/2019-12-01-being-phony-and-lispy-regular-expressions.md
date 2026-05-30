@@ -17,7 +17,7 @@ a variation on an approach I read a while
 back](https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html)).
 
 In most cases the targets aren't real targets. That's to say, they don't
-build the thing they're called. They are [phony
+build the thing they're called. They are [PHONY
 targets](https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html).
 So, as makes sense, I make a point of marking them all as such. I follow the
 convention that has the `.PHONY` marker appear on the line before the

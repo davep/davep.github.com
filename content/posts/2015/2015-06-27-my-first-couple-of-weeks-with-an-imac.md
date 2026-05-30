@@ -64,7 +64,7 @@ thing, here on the UK version of the keyboard, there's no # key. At least,
 there's no simple, comfortable, direct access to the # key. Any time I want
 to type a # I have to shift my left hand to find the (I think it's called
 the) option key and hit 3. Shift 3 is £. And it gets even worse. This setup
-doesn't work at all in GNU emacs so I then have to put the keyboard in
+doesn't work at all in GNU Emacs so I then have to put the keyboard in
 Australian mode so I can use shift-3 to get a #.
 
 Why there isn't a proper # key is beyond me.
@@ -122,7 +122,7 @@ the (incorrect) impression that the whole GUI is really single tasking.
 
 On the whole though most of this doesn't matter too much to me. Large parts
 of what I'm doing is in the terminal window, with other parts of it being
-in my editors of choice (either SublimeText or GNU emacs, depending on what
+in my editors of choice (either SublimeText or GNU Emacs, depending on what
 I'm doing) or inside Google Chrome. In other words the general experience is
 one that carries over most of the main operating systems I've used on
 desktop machines.
@@ -137,12 +137,12 @@ business of installing software seems very confusing and very scrappy.
 So far I've found a few different ways of installing software and none of it
 makes a whole lot of sense to me without going and searching about it and
 reading up on it. Sometimes I download an app and all I need to do is drag
-it into the Applications folder. Other times I get a zip which I have to open
-and then... it can go a couple of different ways. Sometimes I get a 'dmg' and
-when I open that up I get a window where I have to drag one icon onto another
-icon in that window to do the install. Sometimes I get something like the last
-one I mention but instead I have to double-click on an icon that's in the
-window.
+it into the Applications folder. Other times I get a zip which I have to
+open and then... it can go a couple of different ways. Sometimes I get a
+`dmg` and when I open that up I get a window where I have to drag one icon
+onto another icon in that window to do the install. Sometimes I get
+something like the last one I mention but instead I have to double-click on
+an icon that's in the window.
 
 There might even be other options I've had to follow. I forget now.
 
@@ -179,14 +179,14 @@ ahead and ignore your preference in the one place you'll see it the most.
 
 ## If you have a Mac, you have software I wrote on it (I think)
 
-From what I could tell every Mac has a copy of GNU emacs installed, out of the
+From what I could tell every Mac has a copy of GNU Emacs installed, out of the
 box. That actually kind of impressed me. Sure, it's a rather out of date
-version of GNU emacs, but it's a copy of GNU emacs and that's all that matters.
+version of GNU Emacs, but it's a copy of GNU Emacs and that's all that matters.
 
-![It's a GNU emacs!](/attachments/2015/06/27/emacs.webp#centre)
+![It's a GNU Emacs!](/attachments/2015/06/27/emacs.webp#centre)
 
 That fact actually means something rather interesting, to me. See, there's
-two small packages that are part of GNU emacs that I originally wrote. One is
+two small packages that are part of GNU Emacs that I originally wrote. One is
 called 5x5, the other quickurl.
 
 ![My rubbish claim to fame](/attachments/2015/06/27/claim-to-fame.webp#centre)

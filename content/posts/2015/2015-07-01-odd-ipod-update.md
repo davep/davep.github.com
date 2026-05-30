@@ -27,10 +27,10 @@ had other ideas:
 ![When is 8.4 not 8.4, iTunes?](/attachments/2015/07/01/via-itunes-update.webp#centre)
 
 The following morning iTunes kept insisting that it needed to do the update
-so, even though the iPod was obviously up to date, I let it do it anyway. After
-it'd gone through the update process again it still insisted that the iPod
-was running 8.3 rather than 8.4. Until, that is, I unplgged it and plugged it
-back in again.
+so, even though the iPod was obviously up to date, I let it do it anyway.
+After it'd gone through the update process again it still insisted that the
+iPod was running 8.3 rather than 8.4. Until, that is, I unplugged it and
+plugged it back in again.
 
 ![When is 8.4 not 8.4, iTunes?](/attachments/2015/07/01/so-which-is-it.webp#centre)
 

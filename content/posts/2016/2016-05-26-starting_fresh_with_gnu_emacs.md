@@ -6,33 +6,33 @@ date: 2016-05-26 12:28:48+0100
 ---
 
 As I've mentioned elsewhere on this blog, over the past few years, my
-use of GNU emacs has lapsed somewhat. There was a time when it was my
+use of GNU Emacs has lapsed somewhat. There was a time when it was my
 only editor (except for the odd dips into vim to do some quick
 editing) and, back when I used to use GNU Linux as a desktop machine a
-lot, I'd have an emacs session up and running pretty much non-stop (it
+lot, I'd have an Emacs session up and running pretty much non-stop (it
 was one of the reasons I wrote
 [uptimes.el](https://github.com/davep/uptimes.el)).
 
 In more recent times I've been working more on Windows and often
 inside Visual Studio. Even for my own "for fun" programming, I've
-mostly being doing things that didn't involve emacs much. In fact,
+mostly being doing things that didn't involve Emacs much. In fact,
 most of my recent "for fun" coding has been done using
 [Sublime Text](https://www.sublimetext.com/) because it was powerful,
 cross-platform and also had great support for
 [the language I code in a lot when it comes to personal amusement projects](http://wiki.secondlife.com/wiki/LSL_Portal).
 
-During that time I've wanted to get back into emacs. Quite a bit seems
+During that time I've wanted to get back into Emacs. Quite a bit seems
 to have changed since I was last a very avid user and this also meant
 wanting and needing to catch up.
 
 The first thing I needed to do was finally get around to killing off
 my old `~/.emacs` file. This has followed me around since I first got
-into emacs on OS/2 back in the mid 1990s. The file started out with a
+into Emacs on OS/2 back in the mid 1990s. The file started out with a
 few `setq` expressions to tweak some settings and just kept growing
 and growing. It'd got to a point where there was old stuff in there
 that I had no use for and sometimes even no idea what it was
 for. Heck, to give some idea of how old the file was: there were items
-in there that handled running emacs on MS-DOS!
+in there that handled running Emacs on MS-DOS!
 
 So, a couple of weeks back, I dumped it. Dumped the whole lot. The
 plan then was to recreate it with as little hands-on coding as
@@ -112,7 +112,7 @@ total 40
 ```
 
 Another thing I'm trying to do is dump all the old third party code I
-had locally and, instead, use emacs' own package manager
+had locally and, instead, use Emacs' own package manager
 now. Currently this is also working well for me given that I'm using
 both [ELPA](https://elpa.gnu.org/) and [MELPA](https://melpa.org/#/).
 
@@ -121,13 +121,13 @@ to slowly work through the various files I was carting around and
 deciding if I need them or not (like, I'm fairly sure I won't be
 needing a `cobol-mode` any time soon -- that can go).
 
-On top of all of this, on top of starting with a "clean slate" emacs,
+On top of all of this, on top of starting with a "clean slate" Emacs,
 I've also started keeping track of what I do on GitHub. I've got a
 private repo for my `~/.emacs.d/` that I can now easily sync between
 my various machines.
 
 One final thing that I'm starting to try and do is actually make full
-use of emacs again. One example is that I'm writing this blog post in
+use of Emacs again. One example is that I'm writing this blog post in
 it. Until now I've been using SublimeText with
 [a Jekyll package to compose and manage things](https://packagecontrol.io/packages/Jekyll)
 but, this time around I'm giving [hyde](https://melpa.org/#/hyde) and
