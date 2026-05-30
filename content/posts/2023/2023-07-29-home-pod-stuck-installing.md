@@ -26,7 +26,7 @@ questions and performs most commands (most of the commands I give it are to
 add stuff to my Reminders).
 
 On occasion if I ask it questions about other devices in the apartment
-(*"hey siri, what's the temperature in the bedroom?"*) it'll do the
+(*"hey Siri, what's the temperature in the bedroom?"*) it'll do the
 *"working on it"* thing and then give up saying the thing wasn't responding.
 That seems to be about the worst of it.
 
