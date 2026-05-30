@@ -20,7 +20,7 @@ BEGIN {
 # Process the body of the file once we are past the front matter
 inside_front_matter == 0 {
     # If we find a starting blockquote tag, turn the flag on and skip the line
-    if ($0 ~ /<blockquote>/) {
+    if ($0 ~ /<blockquote.*>/) {
         inside_blockquote = 1
         next
     }
