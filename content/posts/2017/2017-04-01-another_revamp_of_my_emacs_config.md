@@ -6,14 +6,14 @@ date: 2017-04-01 10:02:18+0100
 ---
 
 Just under a year ago I decided to
-[totally rewrite my GNU emacs config](/2016/05/26/starting_fresh_with_gnu_emacs.html).
+[totally rewrite my GNU Emacs config](/2016/05/26/starting_fresh_with_gnu_emacs.html).
 As I wrote at the time, it'd been following me around all sorts of machines
 since the early 1990s, starting life on an OS/2 Warp machine and travelling
 via MS-DOS, GNU/Linux, Windows and, these days, macOS.
 
 The changes I made last year have served me really well, but there were two
 related issues with it that bothered me a little: the fact that I was
-maintaining a local library of elisp code in the repository and, worse
+maintaining a local library of Elisp code in the repository and, worse
 still, I was storing the packages I'd installed from Elpa and Melpa in the
 repository as well.
 
@@ -24,7 +24,7 @@ in my `.emacs.d` repo that was already held in package archives.
 
 The solution I saw was in two parts:
 
-1. Get some of my code, that might be useful to others, into melpa.
+1. Get some of my code, that might be useful to others, into Melpa.
 2. Somehow sort my own package archive for my personal code.
 
 <p></p>
@@ -37,8 +37,8 @@ submitted
 [`services.el`](https://github.com/davep/services.el),
 [`thinks.el`](https://github.com/davep/thinks.el) and
 [`uptimes.el`](https://github.com/davep/uptimes.el). This was a really
-helpful process in that it allowed me to brush up on my elisp and Emacs
-knowledge. It's a good 15+ years since I last wrote any significant elisp
+helpful process in that it allowed me to brush up on my Elisp and Emacs
+knowledge. It's a good 15+ years since I last wrote any significant Elisp
 code and things have moved on a little in that time.
 
 Having done that I'd managed to move a handful of my own packages out of my

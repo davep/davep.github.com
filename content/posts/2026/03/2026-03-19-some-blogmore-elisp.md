@@ -34,7 +34,7 @@ keep it so that it's easy to configure, so it's only ever going to stay
 amongst my list of personal packages.
 
 Which reminds me... this is the first personal package I've not bothered to
-add to [delpa](https://blog.davep.org/delpa/). That approach to managing my
+add to [Delpa](https://blog.davep.org/delpa/). That approach to managing my
 own packages made a ton of sense at the time, but Emacs has moved on since
 then. Thanks to `use-package` and `:vc` I can easily pull `blogmore.el` into
 any of my environments with a simple declaration in my
@@ -45,7 +45,7 @@ any of my environments with a simple declaration in my
   :vc (:url "https://github.com/davep/blogmore.el" :rev :newest))
 ```
 
-Given how simple and clean that is I'm minded to "retire" delpa and use this
+Given how simple and clean that is I'm minded to "retire" Delpa and use this
 approach for all of my personal packages.
 
 [^1]: Note to self: did I make [BlogMore](https://blogmore.davep.dev/)

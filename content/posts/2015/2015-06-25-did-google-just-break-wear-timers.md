@@ -49,7 +49,7 @@ itself that could be done to change this, and I've tried restarting the
 watch on the off chance that something went a bit odd.
 
 It turns out too that I'm not alone. I
-[found a thread on reddit where others have the same problem](https://www.reddit.com/r/AndroidWear/comments/3b3cu8/i_cant_set_a_timer_via_voice/).
+[found a thread on Reddit where others have the same problem](https://www.reddit.com/r/AndroidWear/comments/3b3cu8/i_cant_set_a_timer_via_voice/).
 
 What really bugs me about this is that this is very Google. I've run into this
 sort of thing so many times before, be it on Android, ChromeOS or in their

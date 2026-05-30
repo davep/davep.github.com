@@ -15,7 +15,7 @@ I wasn't really very hopeful about it, if I'm honest. If I couldn't get a
 reply from him via the channels I'd normally used what hope was there that
 I'd get a reply this way?
 
-The following day was mostly spent traveling but my phone was on and always
+The following day was mostly spent travelling but my phone was on and always
 to hand. I never received any call. However, late in the day I did get an
 email! This was the first direct contact, that replied to an attempt to
 contact him on the current issue, I'd had from the Customer Relations

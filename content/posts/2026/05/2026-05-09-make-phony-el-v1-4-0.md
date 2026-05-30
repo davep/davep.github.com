@@ -8,7 +8,7 @@ tags: Emacs, Emacs Lisp, Lisp, coding, make-phony.el
 I've done a small update to
 [`make-phony.el`](https://github.com/davep/make-phony.el), my little
 [Emacs](/tag/emacs/) package that lets me be lazy when adding `.PHONY` to
-mark a target as a [phony
+mark a target as a [PHONY
 target](https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html)
 in a Makefile.
 

@@ -4,6 +4,8 @@ BEGIN {
     # Start with the assumption that we are looking at the front matter
     inside_front_matter = 1
     front_matter_boundary_count = 0
+    # Track whether we are currently inside a HTML blockquote
+    inside_blockquote = 0
 }
 
 # Track and count YAML/TOML front matter boundaries
@@ -17,10 +19,28 @@ BEGIN {
 
 # Process the body of the file once we are past the front matter
 inside_front_matter == 0 {
+    # If we find a starting blockquote tag, turn the flag on and skip the line
+    if ($0 ~ /<blockquote>/) {
+        inside_blockquote = 1
+        next
+    }
+
+    # If we find an ending blockquote tag, turn the flag off and skip the line
+    if ($0 ~ /<\/blockquote>/) {
+        inside_blockquote = 0
+        next
+    }
+
+    # If we are currently inside a blockquote, skip printing
+    if (inside_blockquote == 1) {
+        next
+    }
+
     # If the line contains the tracking comment, skip it
     if ($0 ~ /\[\/\/\]:/) {
         next
     }
+
     # Otherwise, print the clean line for Aspell
     print $0
 }

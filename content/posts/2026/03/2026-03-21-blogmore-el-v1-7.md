@@ -12,7 +12,7 @@ v1.4](/2026/03/20/blogmore-el-v1-4.html) and now it's up to v1.7. So I
 tinkered a little with it last night, okay?
 
 Anyway, the changes and additions keep happening as I have more fun writing
-some [elisp](/tag/emacs-lisp) again. Since the last post about the package
+some [Elisp](/tag/emacs-lisp) again. Since the last post about the package
 I've:
 
 - Added a command to refresh the `date` frontmatter property

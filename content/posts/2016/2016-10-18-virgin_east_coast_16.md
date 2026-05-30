@@ -15,7 +15,7 @@ only [when the MD got involved](/2016/08/10/virgin_east_coast_12.html) that
 things actually started to happen) has turned into more of the same: broken
 promises and lack of actual results.
 
-Only, this time, I'm not dealing with some call center. This time I'm
+Only, this time, I'm not dealing with some call centre. This time I'm
 dealing with the office of [David Horne](https://twitter.com/DavidHorne).
 
 Since I last wrote I've emailed Mike Ross three times. The first time was to

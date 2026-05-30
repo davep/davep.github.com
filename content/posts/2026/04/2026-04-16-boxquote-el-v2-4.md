@@ -78,7 +78,7 @@ Or figuring out where a particular command is and how to get at it:
 
 While I seldom have use for this package these days (mainly because I don't
 write on Usenet or in mailing lists any more) I did keep carrying it around
-(always pulling it down [from melpa](https://melpa.org/#/boxquote)) and had
+(always pulling it down [from Melpa](https://melpa.org/#/boxquote)) and had
 all the various commands bound to some key combination.
 
 ```elisp

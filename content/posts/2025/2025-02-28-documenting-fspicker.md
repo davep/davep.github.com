@@ -1,7 +1,7 @@
 ---
 title: Documenting textual-fspicker (plus a TIL)
 category: Coding
-tags: Python, textual, documentation, GitHub, mkdocs, mkdocstrings, gh-pages
+tags: Python, textual, documentation, GitHub, MkDocs, mkdocstrings, gh-pages
 date: 2025-02-28 11:45:00 +0000
 cover: /attachments/2025/02/28/good.webp
 ---
@@ -26,7 +26,7 @@ wanted to improve at some point.
 Given I'm still on a bit of a coding spree in my spare time, I finally
 decided to get round to using the amazing
 [mkdocstrings](https://mkdocstrings.github.io), in conjunction with
-[mkdocs](https://www.mkdocs.org), to [get some better documentation up an
+[MkDocs](https://www.mkdocs.org), to [get some better documentation up an
 running](https://textual-fspicker.davep.dev/).
 
 The approach I decided to take with the documentation was to [have a page
