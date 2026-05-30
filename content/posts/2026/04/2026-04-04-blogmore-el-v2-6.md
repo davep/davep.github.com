@@ -8,7 +8,7 @@ cover: /attachments/2026/04/04/transient-cover.webp
 
 Like most people, I imagine, I first ran into
 [transient](https://www.gnu.org/software/emacs/manual/html_mono/transient.html)
-when first using [magit](https://magit.vc/). I took to it pretty quickly and
+when first using [Magit](https://magit.vc/). I took to it pretty quickly and
 it's always made sense to me as a user interface. But... I've never used it
 for any code I've ever written.
 
