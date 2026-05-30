@@ -8,7 +8,7 @@ cover: /attachments/2023/08/20/borked-photos.webp
 
 Almost [seven years ago](/2016/11/15/seen_by_davep_(the_return).html) I took
 up maintaining an ad-hoc photoblog again. I say again because I'd had one
-once before. I'd kicked that off back in the late 200xs, with my little HTC
+once before. I'd kicked that off back in the late 2000s, with my little HTC
 Magic, and hosted it on
 [Posterous](https://en.wikipedia.org/wiki/Posterous). Eventually Posterous
 was shut down, mostly because the company (or at least the team behind it))
@@ -33,7 +33,7 @@ web](https://en.wikipedia.org/wiki/Mashup_(web_application_hybrid))!
 So the plan became this:
 
 - Every post would be a tweet, posted to Twitter with a `#photoblog` tag.
-- I'd use [ifttt](https://ifttt.com/) to keep an eye on my tweets and when
+- I'd use [IFTTT](https://ifttt.com/) to keep an eye on my tweets and when
   it saw one with that tag it would extract the image, make a post to
   Blogger, drop a copy into Google Drive, and do a couple of other things
   too.
@@ -46,7 +46,7 @@ was going for (that was the point of the blog; it was all about the messing
 with the image), tweet it, and Web 2.0 magic would happen.
 
 Then the odd issue started to crop up. At one point Twitter made changes to
-how images were stored, or something, and the ifttt recipe broke for a wee
+how images were stored, or something, and the IFTTT recipe broke for a wee
 while; then they changed the way that public posts could be seen (long
 before the Musk-era bullshit) and that broke things again, and so on. I
 forget the details but at every point I was able to nurse it back to life
@@ -60,7 +60,7 @@ got to a point where I could not find a way to make it work any more). So
 that's when I decided to cut Twitter out altogether.
 
 This had actually started a little earlier than that, when the whole API
-fiasco kicked off. When that came in ifttt had to remove Twitter things from
+fiasco kicked off. When that came in IFTTT had to remove Twitter things from
 its free tier; I was on the free tier. I was on the free tier only because I
 didn't need anything the paid service offered. If Twitter had been "normal"
 and this change had been made I'd have happily paid -- I don't mind paying
@@ -85,7 +85,7 @@ Then yesterday I noticed this:
 ![Broken images in my photoblog](/attachments/2023/08/20/borked-photos.webp#centre)
 
 I don't actually quite know exactly what's going on here, and at this point
-I really don't care. My working hypothesis is this: when ifttt added the
+I really don't care. My working hypothesis is this: when IFTTT added the
 images to the Blogger posts, it was doing so in a way that it was using the
 image hosted by Twitter. Because of this, either due to some change in the
 Twitter API, or perhaps because I've locked down my Twitter account, the
@@ -105,7 +105,7 @@ but I have other things to do.
 Another option would of course be to create a fresh blog using my own tools;
 that would be simple enough. I have the images, they're all set with the
 right date and time, recreating things would be fairly trivial (post titles
-a slight problem but I could work around that); a tool like mkdocs or
+a slight problem but I could work around that); a tool like MkDocs or
 Pelican plus some Python code to recreate the posts from the images would be
 a fun couple of hours mucking about. But... I have a lot of posts on Blogger
 and all the URLs are stable and still there many years later.
