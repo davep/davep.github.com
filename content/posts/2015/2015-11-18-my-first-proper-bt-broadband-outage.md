@@ -17,7 +17,7 @@ most part this hasn't actually been a bad decision. This week though I suffered
 my first proper outage with them and it was rather frustrating.
 
 It kicked off at around 2015-11-16 21:00. I noticed that Google Drive (in
-Chrome) was complaining that it was offline. I then noticed that gmail and
+Chrome) was complaining that it was offline. I then noticed that Gmail and
 a couple of other tabs in Chrome were complaining about the same thing. I
 did a couple of local network checks and found nothing, checked the router and
 it was connected and reporting just fine, so then I rebooted the router and

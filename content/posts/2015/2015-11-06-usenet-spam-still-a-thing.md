@@ -12,9 +12,9 @@ This just turned up in email a little earlier:
 
 What's of particular interest is the email address this was sent to. It was
 one that I only ever (to my knowledge) used for posts to Usenet. While my
-gmail spam folder is filled with emails to that and other addresses I used
-for Usenet over the years this is the first bit of "proper" spam I've had
-to it in a long time.
+Gmail spam folder is filled with emails to that and other addresses I used
+for Usenet over the years this is the first bit of "proper" spam I've had to
+it in a long time.
 
 It's significant that it's some sort of [Xbase](https://en.wikipedia.org/wiki/XBase)-related
 thing too. I think the Usenet group I posted to more than any other will have
