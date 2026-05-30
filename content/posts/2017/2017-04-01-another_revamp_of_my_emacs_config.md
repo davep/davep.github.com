@@ -14,11 +14,11 @@ via MS-DOS, GNU/Linux, Windows and, these days, macOS.
 The changes I made last year have served me really well, but there were two
 related issues with it that bothered me a little: the fact that I was
 maintaining a local library of elisp code in the repository and, worse
-still, I was storing the packages I'd installed from elpa and melpa in the
+still, I was storing the packages I'd installed from Elpa and Melpa in the
 repository as well.
 
 While this did mean it was pretty easy for me to start up a new installation
-of emacs on a machine -- all I had to do was clone the repo and run up emacs
+of Emacs on a machine -- all I had to do was clone the repo and run up Emacs
 -- I wasn't happy with the duplication involved. I didn't like holding code
 in my `.emacs.d` repo that was already held in package archives.
 
@@ -37,7 +37,7 @@ submitted
 [`services.el`](https://github.com/davep/services.el),
 [`thinks.el`](https://github.com/davep/thinks.el) and
 [`uptimes.el`](https://github.com/davep/uptimes.el). This was a really
-helpful process in that it allowed me to brush up on my elisp and emacs
+helpful process in that it allowed me to brush up on my elisp and Emacs
 knowledge. It's a good 15+ years since I last wrote any significant elisp
 code and things have moved on a little in that time.
 
@@ -71,9 +71,9 @@ keep the package archive in its own repo (which I would have done anyway)
 and then make the whole repo the source for a GitHub Pages site. A quick
 test later and... it worked!
 
-So, by this point, I'd farmed some of my code off to melpa, and now had the
-rest of it in "delpa" (which I'd called my personal archive). I could now
-use the emacs package management system to install third party packages and
+So, by this point, I'd farmed some of my code off to Melpa, and now had the
+rest of it in "Delpa" (which I'd called my personal archive). I could now
+use the Emacs package management system to install third party packages and
 also my own.
 
 But I was still left with one issue: I was still holding the installed
@@ -91,14 +91,14 @@ by [@jwiegley](https://github.com/jwiegley). This was the bit I was missing.
 With `use-package` I would be able to declare which packages I needed, how
 they'd be installed and, most important of all, it could be set to handle
 the fact that the package wasn't even installed. If a package is requested
-and there is no local install `use-package` is smart enough to get the emacs
+and there is no local install `use-package` is smart enough to get the Emacs
 package system to install it.
 
 So, given that, all I need to do was [create a startup file that would
 declare the packages I use](https://github.com/davep/.emacs.d/blob/1fa67c2895f345098057654f6acb3b57a77f1194/startup/davep-packages.el) and
 I'd have a setup that should, once I'd cloned `.emacs.d`, self-install.
 
-Except... yeah, one more issue. `use-package` isn't part of GNU emacs yet so
+Except... yeah, one more issue. `use-package` isn't part of GNU Emacs yet so
 I'd need a method of getting it to auto-install so it could then handle
 everything else. As it was that was as easy as adding this to the start of
 my [`init.el`](https://github.com/davep/.emacs.d/blob/master/init.el).
@@ -120,14 +120,14 @@ my [`init.el`](https://github.com/davep/.emacs.d/blob/master/init.el).
 
 With that in place I was able to nuke all my config on a machine, clone a
 fresh copy of `.emacs.d` (having now ceased tracking and storing the
-installed packages in that repo), run up emacs, wait a few moments and then
+installed packages in that repo), run up Emacs, wait a few moments and then
 find that everything was installed and ready to use.
 
 Perfect!
 
 My [`.emacs.d`](https://github.com/davep/.emacs.d) is now a lot smaller than
 it was before and, I think, even easier to maintain. Right now I think I'm
-very close to the ideal emacs config that I wanted to create when I did the
+very close to the ideal Emacs config that I wanted to create when I did the
 complete rewrite a year ago.
 
 [//]: # (2017-04-01-another_revamp_of_my_emacs_config.md ends here)

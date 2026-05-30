@@ -1,7 +1,7 @@
 ---
 title: Catching up
 category: Meta
-tags: Mac, Apple, jekyll
+tags: Mac, Apple, Jekyll
 date: 2023-07-02 08:00:00 +0100
 ---
 
@@ -24,7 +24,7 @@ The second reason, which is probably the dafter one, is that a bit earlier
 this year I finally upgraded my desktop setup from the 2019 Intel MacBook
 Pro I was using to a recently-released M2Pro Mac Mini (and *what* an
 upgrade!). How this plays into blogging being even more quiet is... I needed
-to set up jekyll again, and I'd forgotten how I got it running in the first
+to set up Jekyll again, and I'd forgotten how I got it running in the first
 place, so I kept putting off getting it going, and...
 
 Well, this morning, I sat down with coffee, grepped the `history` on my

@@ -7,8 +7,8 @@ cover: /attachments/2015/06/18/GmailContextWin.webp
 ---
 
 For a long time now Chrome has been my web browser of choice. It has, to some
-degree, become my "other emacs" (ignoring for a moment that my use of GNU
-emacs has sort of lapsed the last few years). By that I mean that it's a
+degree, become my "other Emacs" (ignoring for a moment that my use of GNU
+Emacs has sort of lapsed the last few years). By that I mean that it's a
 portable environment that serves me well on many operating systems and, for
 one of my machines, actually *is* the operating system. I really appreciate how
 Chrome's sync lets me feel right at home no matter which machine I'm on.
