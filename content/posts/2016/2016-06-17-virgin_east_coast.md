@@ -115,22 +115,24 @@ registered with and hence my confusion.
 
 The reply? This:
 
-> I can confirm Virgin Trains East Coast has two Mobile Application, the
-> Virgin Trains East Coast App and the Virgin Trains East Coast Live App.
->
-> When you purchase an eligible Virgin Trains East Coast ticket on the
-> website you will be offered the option of having your ticket delivered to
-> your mobile device as an m-ticket.
->
-> To use the app, simply sign in with your Virgin Trains East Coast login
-> details, and the app will synch with your online account. If you haven’t
-> registered that device before, it will ask you to name your device. That
-> name will then be shown in your account and when buying tickets, so you
-> can choose which device to send your tickets to.
->
-> Thank you for contacting the Virgin Trains East Coast web support team,
-> should you require any further assistance please don’t hesitate to contact
-> us on 03457 225 111.
+<blockquote markdown="1">
+I can confirm Virgin Trains East Coast has two Mobile Application, the
+Virgin Trains East Coast App and the Virgin Trains East Coast Live App.
+
+When you purchase an eligible Virgin Trains East Coast ticket on the website
+you will be offered the option of having your ticket delivered to your
+mobile device as an m-ticket.
+
+To use the app, simply sign in with your Virgin Trains East Coast login
+details, and the app will synch with your online account. If you haven’t
+registered that device before, it will ask you to name your device. That
+name will then be shown in your account and when buying tickets, so you can
+choose which device to send your tickets to.
+
+Thank you for contacting the Virgin Trains East Coast web support team,
+should you require any further assistance please don’t hesitate to contact
+us on 03457 225 111.
+</blockquote>
 
 I... erm.... what? I'm still unsure what this was really telling me. The
 words made sense, it seemed to be filled with facts, but none of this seemed

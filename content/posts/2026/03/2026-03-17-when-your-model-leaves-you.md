@@ -40,18 +40,20 @@ Klendathu, I packed away my controller and headset and opened GitHub again
 to see where Copilot was at. [It wasn't
 good](https://github.com/davep/blogmore/pull/304#issuecomment-4069988954):
 
-> @davep The model `claude-sonnet-4.6` is not available for your account.
-> This can happen if the model was disabled by your organization's policy or
-> if your Copilot plan doesn't include access to it.
->
-> You can try again without specifying a model (just `@copilot`) to use the
-> default, or choose a different model from the model picker.
->
-> If you want to contact GitHub about this error, please mention the
-> following identifier so they can better serve you:
-> `79b81d32-e26a-4898-bd41-4bba088d08f6`
->
-> <!-- copilot-coding-agent-error: model-not-available -->
+<blockquote markdown="1">
+@davep The model `claude-sonnet-4.6` is not available for your account.
+This can happen if the model was disabled by your organization's policy or
+if your Copilot plan doesn't include access to it.
+
+You can try again without specifying a model (just `@copilot`) to use the
+default, or choose a different model from the model picker.
+
+If you want to contact GitHub about this error, please mention the
+following identifier so they can better serve you:
+`79b81d32-e26a-4898-bd41-4bba088d08f6`
+
+&lt;!-- copilot-coding-agent-error: model-not-available --&gt;
+</blockquote>
 
 Wait... what? I've been using this for weeks now, as best as I can tell I've
 generally been making all the changes and improvements using Claude Sonnet

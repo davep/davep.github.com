@@ -10,10 +10,12 @@ bothering to read this blog will recall
 that, [last week](/2016/10/24/virgin_east_coast_18.html), the Customer
 Relations Manager at Virgin East Coast said:
 
-> If you can leave this with me I will certainly be in contact early next
-> week to try and get this resolved once and for all. In the meantime I will
-> pop a further couple of tickets in the post for you, just so you have them
-> incase you need to travel urgently.
+<blockquote>
+If you can leave this with me I will certainly be in contact early next week
+to try and get this resolved once and for all. In the meantime I will pop a
+further couple of tickets in the post for you, just so you have them incase
+you need to travel urgently.
+</blockquote>
 
 That email was received last Thursday evening. It's now the following
 Thursday. Personally I'd take "certainly", in the above, to mean that

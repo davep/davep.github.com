@@ -14,10 +14,10 @@ web server.
 A year or so later I finally did a proper revamp of my website and finally
 settled on `www.davep.org` as the place to point people to. I *think*, when
 I made that move, that's when I decided to write my own website engine in
-php. It was fun. It worked. I didn't want to code backend stuff (I don't
+PHP. It was fun. It worked. I didn't want to code backend stuff (I don't
 think the backend vs frontend distinction was even a thing we were talking
 about then) so hacking it together in an unholy mix of ruby to generate
-various static files that live in the filesystem and then php to turn them
+various static files that live in the filesystem and then PHP to turn them
 into actual HTML made sense.
 
 And it worked.
@@ -31,13 +31,13 @@ and then in the last 5 or 6 years I've pretty much neglected it.
 
 The neglect shows.
 
-Meanwhile... php has changed. Quite a lot. It's one of those languages I
+Meanwhile... PHP has changed. Quite a lot. It's one of those languages I
 used back in the day and pay no attention to. Then earlier this week I
 noticed that there must have been an update on the host and huge parts of my
 site broke, lots of content missing, pretty much useless and dead in the
 water.
 
-I did briefly think about breaking out the latest and greatest php locally,
+I did briefly think about breaking out the latest and greatest PHP locally,
 setting things up to investigate what's going on, and seeing if I could
 breathe some more life into it; but really what's the point?
 

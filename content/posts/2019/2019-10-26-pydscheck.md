@@ -58,8 +58,8 @@ Eventually, it bugged me enough that I decided I was going to write a little
 tool to find all such instances in my code and report them. My first
 approach was to think "I could just do this with some regexp magic", [which
 was really a bad idea](http://regex.info/blog/2006-09-15/247). Then I
-though, I know, I should use this as an excuse to to play with [Python's ast
-library](https://docs.python.org/3/library/ast.html).
+though, I know, I should use this as an excuse to to play with [Python's
+`ast` library](https://docs.python.org/3/library/ast.html).
 
 That worked really well! I had [the first version of the
 code](https://github.com/davep/pydscheck/blob/dc5052002690b1f898ccd68f815cdedbe9172b74/pydscheck)

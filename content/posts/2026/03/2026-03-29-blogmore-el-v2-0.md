@@ -22,11 +22,11 @@ paths are formatted, and so on.
 To handle this I've also added the `blogmore-work-on` command so that the
 active blog can be quickly changed.
 
-All of this can be configured using Emacs' customize feature.
+All of this can be configured using Emacs' `customize` feature.
 
-![Customize blogmore](/attachments/2026/03/29/customize-blogmore.webp#centre)
+![Customise blogmore](/attachments/2026/03/29/customize-blogmore.webp#centre)
 
-This has all changed since v1.x, where most of the customize options have
+This has all changed since v1.x, where most of the `customize` options have
 now been renamed to include `-default-` in their name. The idea here is that
 what was *the* value for a setting previously is now the default value if a
 given blog hasn't had that setting defined.
@@ -35,7 +35,7 @@ For any given blog you wish to work with, you configure a name (for your own
 reference) and the path to the posts. Optionally you can also set lots of
 other values too.
 
-![Customize the blog](/attachments/2026/03/29/customize-blogs.webp#centre)
+![Customise the blog](/attachments/2026/03/29/customize-blogs.webp#centre)
 
 If a value is left on `Default`, then the corresponding default setting will
 be used; if it's set, then that value is used for that specific blog.

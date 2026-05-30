@@ -76,7 +76,7 @@ It works a treat too.
 All of which is a long-winded way of saying I now have a `print`-debug-level
 DOM inspector tool for when I'm building applications with Textual:
 
-![textual-dominfo in action](/attachments/2024/01/15/textual-dominfo.webp#centre)
+![The tool in action](/attachments/2024/01/15/textual-dominfo.webp#centre)
 
 If this sounds handy to you, you can grab the code too. Install it into your
 development environment with `pip`:

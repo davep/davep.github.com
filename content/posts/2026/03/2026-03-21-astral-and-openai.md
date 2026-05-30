@@ -10,14 +10,14 @@ of purchasing Astral](https://openai.com/index/openai-to-acquire-astral/).
 When I first saw this my initial reaction was pretty much "woah", followed
 by getting on with what I was doing.
 
-Until, that is, I opened up the socials. On Mastodon, Reddit, BSky, Threads,
-etc... anywhere I followed any Python-based content, I was seeing very firm
-opinions posted. Plenty of folk either talking like it was the end of their
-tooling as they know it, or proudly boasting that they'd avoided `uv` and
-`ruff` (and lately `ty` too I guess -- not that I've really tried that yet
-myself) because they'd predicted this evil outcome from the start and they
-were untainted by this but look at all you idiots who fell for this long
-play!
+Until, that is, I opened up the socials. On Mastodon, Reddit, Bluesky,
+Threads, etc... anywhere I followed any Python-based content, I was seeing
+very firm opinions posted. Plenty of folk either talking like it was the end
+of their tooling as they know it, or proudly boasting that they'd avoided
+`uv` and `ruff` (and lately `ty` too I guess -- not that I've really tried
+that yet myself) because they'd predicted this evil outcome from the start
+and they were untainted by this but look at all you idiots who fell for this
+long play!
 
 Okay, I exaggerate slightly, but there were some pretty strong opinions
 kicking around, especially in the (often fairly smug) *"I stayed pure and

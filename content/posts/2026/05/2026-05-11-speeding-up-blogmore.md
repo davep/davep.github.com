@@ -35,8 +35,7 @@ it to report back what it could find.
 
 The result made a lot of sense. Here's what it said:
 
----
-
+<blockquote markdown="1">
 ## Performance Optimization Recommendations for BlogMore
 
 I have conducted a comprehensive review of the `blogmore` codebase and
@@ -113,7 +112,7 @@ The "Big Wins" are definitely **optimizing backlink snippet extraction** and
 **implementing parallel parsing/rendering**. Together, these would likely
 reduce generation time for large sites by 60-80% on modern hardware.
 
----
+</blockquote>
 
 At first glance they all seem pretty sensible, and I like that it seems to
 have found some really obvious big improvements, and also the little wins
