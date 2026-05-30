@@ -4,7 +4,6 @@ run      := uv run
 sync     := uv sync
 python   := $(run) python
 blogmore := $(run) blogmore
-spell    := $(run) codespell
 
 ##############################################################################
 # Manage the site.
@@ -26,7 +25,6 @@ publish:			# Publish the site to GitHub
 
 .PHONY: spellcheck
 spellcheck:
-	$(spell) content/
 	@find content/ -name "*.md" -print0 | while IFS= read -r -d '' file; do \
 		errors=$$(bin/clean_markdown "$$file" | aspell --mode=markdown --lang=en_GB -p ./.ignore_spelling list); \
 		if [ -n "$$errors" ]; then \
