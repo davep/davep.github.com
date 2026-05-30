@@ -32,7 +32,7 @@ echo "----------------------------------------"
 
 # 3. Find markdown files inside the specified target directory
 find "$TARGET_DIR" -name "*.md" -print0 | while IFS= read -r -d '' file; do
-    errors=$("$CLEANER_SCRIPT" "$file" | aspell --mode=markdown --lang=en_GB -p "$IGNORE_FILE" list)
+    errors=$("$CLEANER_SCRIPT" "$file" | aspell --mode=markdown --lang=en_GB --run-together -p "$IGNORE_FILE" list)
 
     if [ -n "$errors" ]; then
         echo "=== $file ==="
