@@ -41,7 +41,7 @@ Frustratingly, none of this is the case in the Windows version. While the
 key combination is different there, the menu option is available and stays
 available.
 
-The version of Evernote I have (on my iMac and my Macbook) is 6.9.2. The
+The version of Evernote I have (on my iMac and my MacBook) is 6.9.2. The
 version number on Windows is 6.4.2 (after checking for updates -- I'm going
 to guess that the Mac and Windows version numbers don't match on purpose).
 

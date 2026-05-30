@@ -1,0 +1,28 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+    # Start with the assumption that we are looking at the front matter
+    inside_front_matter = 1
+    front_matter_boundary_count = 0
+}
+
+# Track and count YAML/TOML front matter boundaries
+/^---$/ {
+    front_matter_boundary_count++
+    if (front_matter_boundary_count == 2) {
+        inside_front_matter = 0
+        next
+    }
+}
+
+# Process the body of the file once we are past the front matter
+inside_front_matter == 0 {
+    # If the line contains the tracking comment, skip it
+    if ($0 ~ /\[\/\/\]:/) {
+        next
+    }
+    # Otherwise, print the clean line for Aspell
+    print $0
+}
+
+# clean_markdown ends here

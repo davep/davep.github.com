@@ -122,7 +122,7 @@ Python, so I'm sure I've annoyed almost everyone. Job done I guess. ;-)
 
 If you want to check out the app itself there's [a GitHub
 repo](https://github.com/davep/visual-selection) and it can also be
-installed [from PyPi](https://pypi.org/project/visual-selection/) using
+installed [from PyPI](https://pypi.org/project/visual-selection/) using
 `pipx`.
 
 Expect it to be my tinker project of choice for a wee while; there's a

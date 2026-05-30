@@ -93,7 +93,7 @@ A little later on Friday this happened (Android twitter):
 
 ![A follow from someone involved in Labour](/attachments/2015/09/07/follow-android.webp#centre)
 
-Same follow as seen from Tweetdeck:
+Same follow as seen from TweetDeck:
 
 ![A follow from someone involved in Labour](/attachments/2015/09/07/follow-tweetdeck.webp#centre)
 

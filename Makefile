@@ -4,7 +4,6 @@ run      := uv run
 sync     := uv sync
 python   := $(run) python
 blogmore := $(run) blogmore
-spell    := $(run) codespell
 
 ##############################################################################
 # Manage the site.
@@ -26,7 +25,7 @@ publish:			# Publish the site to GitHub
 
 .PHONY: spellcheck
 spellcheck:
-	$(spell) content/
+	bin/spellcheck content/
 
 .PHONY: oldimages
 oldimages:			# List dates where I've not updated the images in the attachments folder.

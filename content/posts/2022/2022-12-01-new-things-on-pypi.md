@@ -1,5 +1,5 @@
 ---
-title: New Things On PyPi
+title: New Things On PyPI
 category: Python
 tags: PyPI, Python, Second Life, Textual, coding
 date: 2022-12-01 22:13:00 +0000
@@ -18,7 +18,7 @@ with my day, I do have a very fond spot for Edinburgh and it's nice to be in
 there most days of the week.
 
 Part of the fallout from the new job has been that, in the last couple of
-weeks, I've thrown some more stuff up on PyPi. This comes about as part of a
+weeks, I've thrown some more stuff up on PyPI. This comes about as part of a
 bit of [a dog-fooding campaign we're on at the
 moment](/2022/11/26/on-dog-food.html). While they have been, and will
 continue to be, mentioned on the Textualize blog, I thought I'd give a brief
@@ -85,7 +85,7 @@ And... yeah, I don't know why, but I remembered
 [`qrencode.el`](https://github.com/davep/qrencode.el) and so
 `textual-qrcode` was born!
 
-![The most useless Textal widget yet](/attachments/2022/12/01/textual-qrcode.webp#centre)
+![The most useless Textual widget yet](/attachments/2022/12/01/textual-qrcode.webp#centre)
 
 I think the most amusing part about this is that I did it in full knowledge
 that it would be useless; the idea being it would be a daft way of showing
@@ -98,7 +98,7 @@ here](https://pypi.org/project/textual-qrcode/).
 
 ## FivePyFive
 
-While I was on a roll putting stuff up on PyPi, I also decided to tweak up
+While I was on a roll putting stuff up on PyPI, I also decided to tweak up
 my Textual-based 5x5 and throw that up too. This was my first app built with
 Textual, initially written before I'd even spoken to Will about the position
 here. At one point I even did [a version in
@@ -129,7 +129,7 @@ You can find it [over here](https://pypi.org/project/fivepyfive/).
 ## PISpy
 
 Finally... for this week anyway, is a tool I've called PISpy. It's designed
-as a simple terminal client for looking up package information on PyPi. As
+as a simple terminal client for looking up package information on PyPI. As
 of right now it's pretty straightforward, but I'd like to add more to it
 over time. Here's an example of it in action:
 
@@ -140,8 +140,8 @@ frameborder="0" allow="accelerometer; autoplay; clipboard-write;
 encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-One small wrinkle with publishing it to PyPi was the fact that, once I'd
-chosen the name, I checked that it hadn't been used on PyPi (it hadn't) but
+One small wrinkle with publishing it to PyPI was the fact that, once I'd
+chosen the name, I checked that it hadn't been used on PyPI (it hadn't) but
 when it came to publishing the package it got rejected because the name was
 too similar to another package! I don't know which, it wouldn't say, but
 that was a problem. So in the end the published name ended up having to be

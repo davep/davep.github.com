@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Configuration
+IGNORE_FILE="./.ignore_spelling"
+CLEANER_SCRIPT="bin/clean_markdown"
+
+# 1. Strict check: Ensure the directory argument is present
+if [ -z "$1" ]; then
+    echo "Error: No target directory specified." >&2
+    echo "Usage: $0 <directory>" >&2
+    exit 1
+fi
+
+TARGET_DIR="$1"
+
+# 2. Safety check: Ensure the target directory actually exists
+if [ ! -d "$TARGET_DIR" ]; then
+    echo "Error: Directory '$TARGET_DIR' does not exist." >&2
+    exit 1
+fi
+
+# Ensure our cleaner script dependency exists
+if [ ! -x "$CLEANER_SCRIPT" ]; then
+    echo "Error: $CLEANER_SCRIPT not found or not executable." >&2
+    exit 1
+fi
+
+echo "Scanning for spelling errors in: $TARGET_DIR"
+echo "----------------------------------------"
+
+# 3. Find markdown files inside the specified target directory
+find "$TARGET_DIR" -name "*.md" -print0 | while IFS= read -r -d '' file; do
+    errors=$("$CLEANER_SCRIPT" "$file" | aspell --mode=markdown --lang=en_GB -p "$IGNORE_FILE" list)
+
+    if [ -n "$errors" ]; then
+        echo "=== $file ==="
+        echo "$errors" | sort -u
+        echo ""
+    fi
+done
+
+### spellcheck ends here
