@@ -35,7 +35,7 @@ with that situation.
 While I am enjoying the benefits of the tickets I was provided as
 compensation from the earlier troubles (and also very much appreciating
 Mike's reserving of seats for me when I need them -- I do find that booked
-seats take a lot of stress out of traveling) I'd really love to get to the
+seats take a lot of stress out of travelling) I'd really love to get to the
 bottom of the problem with the Ticket Wallet app.
 
 Frustratingly and amusingly I suspect I'll finally get an answer around the
