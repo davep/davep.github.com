@@ -1,5 +1,5 @@
 ---
-title: I now own a Macbook
+title: I now own a MacBook
 category: Tech
 tags: Apple, Mac, MacBook Air, Unix, hardware, iMac
 date: 2016-04-28 20:07:10+0100
@@ -21,18 +21,18 @@ small (no more than 12" or so), be capable of doing things locally, and would
 also need a pretty good battery life (while the trains I travel on do provide
 sockets they seem to provide no power as often as they do).
 
-I did start to think about going with some sort of Macbook but, every time I
+I did start to think about going with some sort of MacBook but, every time I
 looked at them, I ended up deciding they were too expensive.
 
 Until yesterday. Yesterday I found that the local computer store had the
-13" Macbook Air on sale -- £150 off the usual price plus another £50 off if
+13" MacBook Air on sale -- £150 off the usual price plus another £50 off if
 I got there and bought it before 5pm.
 
 So I had to go and look.
 
 Having looked I came away with one.
 
-![My new Macbook, on the train](/attachments/2016/04/28/macbook-air.webp#centre)
+![My new MacBook, on the train](/attachments/2016/04/28/macbook-air.webp#centre)
 
 So far I'm very pleased with it. While the one I have is the lower spec
 version (just 128GB of SSD and 4GB of memory) it seems to work well for my
@@ -41,7 +41,7 @@ needs.
 As for what my needs are? I want to be able to work on web projects locally,
 hack on JavaScript and HTML, that sort of thing. As well as that I want to
 be able to run Git and, when I do have a net connection, sync to GitHub
-and browse the web, do email, faff around on reddit, etc.
+and browse the web, do email, faff around on Reddit, etc.
 
 For this it's perfect. I'm finding it more than fast enough for what I want
 (I'd even go so far as to say that it's faster than the iMac). The keyboard is
