@@ -7,14 +7,14 @@ cover: /attachments/2016/11/03/MacbookKB.webp
 ---
 
 Over the past couple or so
-weeks [my Macbook air](/2016/04/28/i-now-own-a-macbook.html) has started to
+weeks [my MacBook air](/2016/04/28/i-now-own-a-macbook.html) has started to
 develop a minor, but irritating, hardware problem. Simply put, the left
 shift key fails now and again. I can press it and it does nothing. It's
 irritating because it messes with the flow of typing (especially when
 writing code) and the key also feels like it's sticking or clicking in a way
 that's different from all the other keys.
 
-![Macbook Keyboard](/attachments/2016/11/03/MacbookKB.webp#centre)
+![MacBook Keyboard](/attachments/2016/11/03/MacbookKB.webp#centre)
 
 Given that I pass through Edinburgh on a pretty regular basis I thought I'd
 drop in and have a quick chat with someone about it. While I didn't expect a
@@ -50,7 +50,7 @@ city. So I had to say thanks but no thanks.
 
 So now it looks like I have to make an appointment for some point in the
 future and make a special trip into Edinburgh just so someone can check out
-a sticky key on my Macbook.
+a sticky key on my MacBook.
 
 Remind me again how the nice thing with Apple gear is that it "just
 works"...
