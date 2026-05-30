@@ -8,7 +8,84 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 29 May 2026 13:16:29 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 30 May 2026 10:31:11 +0000</lastBuildDate>
+    <item>
+      <title>Tidying and spelling</title>
+      <link>https://blog.davep.org/2026/05/30/tidying-and-spelling.html</link>
+      <description>&lt;p&gt;Since kicking off the work on &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; and
+&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt;, I've absolutely found
+that I've reduced the friction involved when it comes to writing a quick (or
+not so quick) blog post. I've also found that I want to go back and tidy up
+lots of my old posts. Over the past few weeks I've gone and cleaned up the
+size and positioning of images; &lt;a href="https://blog.davep.org/2026/05/15/converted-to-webp.html"&gt;converted most images to WebP
+format&lt;/a&gt;; cleaned and consolidated the
+tags used; hunted down and fixed broken internal links; and a few other
+things besides.&lt;/p&gt;
+&lt;p&gt;Another thing I want to do is go back and hunt down, and clean up, typos and
+spelling mistakes, and the like. While I'm careful to try and not make any
+errors when typing out a post, and while I've always made a point of reading
+my posts back to try and catch problems, I've not always been successful.
+Sometimes I'm just blind to the errors, sometimes I'm just rushing. There's
+over a decade of mistakes on this blog.&lt;/p&gt;
+&lt;p&gt;So, with this in mind, I've added a &lt;a href="https://github.com/davep/davep.github.com/tree/main/bin" rel="noopener noreferrer" target="_blank"&gt;couple of little
+tools&lt;/a&gt; to the
+&lt;a href="https://github.com/davep/davep.github.com" rel="noopener noreferrer" target="_blank"&gt;build environment for this blog&lt;/a&gt;
+to help me go back and catch problems that might need addressing.&lt;/p&gt;
+&lt;p&gt;The main tool is &lt;a href="https://github.com/davep/davep.github.com/blob/main/bin/spellcheck" rel="noopener noreferrer" target="_blank"&gt;a script for running &lt;code&gt;aspell&lt;/code&gt; over all the Markdown and
+building a list of
+errors&lt;/a&gt;.
+This shows the names of the Markdown files that have errors, and lists the
+unknown words for them. For example:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;=== content/posts/2019/2019-11-04-my-pylint-shame.md ===
+flycheck
+prepending
+whitespace
+
+=== content/posts/2020/2020-08-23-the-pep-8-hill-i-will-die-on.md ===
+parens
+whitespace
+
+=== content/posts/2020/2020-06-22-swift-til-1.md ===
+backticks
+
+=== content/posts/2020/2020-06-14-my-journey-to-the-dark-side-is-complete.md ===
+Macbook
+Macbooks
+scrollbars
+
+=== content/posts/2020/2020-01-19-dnote-el.md ===
+dnote
+Dnote
+
+=== content/posts/2020/2020-01-11-where-i-live-and-work.md ===
+adwaita
+eshell
+powerline
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This alone makes it nice and easy to go back and clean up some obvious
+issues. A problem I ran into though was that I was getting a lot of false
+reports for things in the front matter of the files (especially parts of the
+&lt;code&gt;cover:&lt;/code&gt; file name) and also in the end-of-file comments I like to use. So,
+with a little help from Gemini (because it's a moment since I last wrote any
+&lt;code&gt;awk&lt;/code&gt; in anger), I wrote &lt;a href="https://github.com/davep/davep.github.com/blob/main/bin/clean_markdown" rel="noopener noreferrer" target="_blank"&gt;a filter to "clean" the Markdown
+content&lt;/a&gt;
+before running it through &lt;code&gt;aspell&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Already, using this setup, I've caught a few things that deserved cleaning
+up, and because there will be a lot of words that are correct but particular
+to this blog and what I write about, &lt;a href="https://github.com/davep/davep.github.com/blob/main/.ignore_spelling" rel="noopener noreferrer" target="_blank"&gt;I'm also building up a local ignore
+list&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While this setup isn't going to make the content of this blog error-free, it
+should give me everything I need to go back and slowly improve some of the
+older text, and to harmonise some of the spellings of some technical terms.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/05/30/tidying-and-spelling.html</guid>
+      <category>Meta</category>
+      <category>Blogging</category>
+      <category>aspell</category>
+      <category>awk</category>
+      <category>writing</category>
+      <pubDate>Sat, 30 May 2026 11:29:42 +0100</pubDate>
+    </item>
     <item>
       <title>BlogMore v2.33.0</title>
       <link>https://blog.davep.org/2026/05/29/blogmore-v2-33-0.html</link>
@@ -275,7 +352,7 @@ their own system, that the order had been cancelled and they too had failed
 to email me, message me, call me, something, to let me know I'd be wasting
 my time clearing half my day to receive them and have the work take place.&lt;/p&gt;
 &lt;p&gt;So: pretty shitty service all round.&lt;/p&gt;
-&lt;p&gt;The main explanation I've been given is something to do with a "CBT"&lt;sup id="fnref:340-1"&gt;&lt;a class="footnote-ref" href="#fn:340-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, or
+&lt;p&gt;The main explanation I've been given is something to do with a "CBT"&lt;sup id="fnref:341-1"&gt;&lt;a class="footnote-ref" href="#fn:341-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, or
 something related. This means that it's just not possible to deliver fibre
 to my address. This is after:&lt;/p&gt;
 &lt;ul&gt;
@@ -344,8 +421,8 @@ swap mobile provider. ;-)&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:340-1"&gt;
-&lt;p&gt;Stop it. You know who you are.&amp;#160;&lt;a class="footnote-backref" href="#fnref:340-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:341-1"&gt;
+&lt;p&gt;Stop it. You know who you are.&amp;#160;&lt;a class="footnote-backref" href="#fnref:341-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -445,7 +522,7 @@ time I was happy to call it an evening on this round of modifications, it had
 reset and I was green across the board again.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="All done" height="1122" loading="lazy" src="https://blog.davep.org/attachments/2026/05/25/after-done.webp#centre" width="1149" /&gt;&lt;/p&gt;
 &lt;p&gt;Now &lt;em&gt;this&lt;/em&gt; I can work with!&lt;/p&gt;
-&lt;p&gt;I don't really know what's changed&lt;sup id="fnref:339-1"&gt;&lt;a class="footnote-ref" href="#fn:339-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, or why. I think I saw something the
+&lt;p&gt;I don't really know what's changed&lt;sup id="fnref:340-1"&gt;&lt;a class="footnote-ref" href="#fn:340-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, or why. I think I saw something the
 other day about quotas being tripled, but this seems even more generous (at
 least in terms of the reset window). I guess I'm going to have to go digging
 to see if I can find what the story is.&lt;/p&gt;
@@ -455,10 +532,10 @@ moment (which is, of course, the ongoing theme of what I'm documenting here)
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:339-1"&gt;
+&lt;li id="fn:340-1"&gt;
 &lt;p&gt;Although I did notice it went with &lt;code&gt;Gemini 3.5 Flash (Medium)&lt;/code&gt; on
 startup and I let it go with that; last time it was &lt;code&gt;Gemini 3.5 Flash
-(High)&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:339-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+(High)&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:340-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -573,7 +650,7 @@ one is set) when there is no &lt;code&gt;cover&lt;/code&gt;.&lt;/p&gt;</descript
       <description>&lt;p&gt;While I know the subject really fires some people, ad blockers are something
 I've never really paid too much attention to. Back in the early days of the
 web, the &lt;em&gt;really&lt;/em&gt; early days, I used to run with full-on JavaScript
-blocking&lt;sup id="fnref:346-1"&gt;&lt;a class="footnote-ref" href="#fn:346-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The web changed and I accepted it.&lt;/p&gt;
+blocking&lt;sup id="fnref:347-1"&gt;&lt;a class="footnote-ref" href="#fn:347-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The web changed and I accepted it.&lt;/p&gt;
 &lt;p&gt;More recently, as I've become a full-time Safari user in the last couple of
 years, I've been running with &lt;a href="http://kablock.com/" rel="noopener noreferrer" target="_blank"&gt;Ka-Block!&lt;/a&gt; installed.
 It's been fine. I've never really noticed it. I &lt;em&gt;think&lt;/em&gt; it blocked some
@@ -605,9 +682,9 @@ this sort of tool.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:346-1"&gt;
+&lt;li id="fn:347-1"&gt;
 &lt;p&gt;I just know someone is reading that and thinking &lt;em&gt;"pfft, JavaScript
-came along late into the web you noob"&lt;/em&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:346-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+came along late into the web you noob"&lt;/em&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:347-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1051,7 +1128,7 @@ recall anything that seemed like harder work).&lt;/p&gt;
 &lt;p&gt;Who knows what the real costs will be come June.&lt;/p&gt;
 &lt;p&gt;Now, technically, the actual cost under the new regime could or should be
 $156, because it would be 4 lots of the $39.00/month plan, which would
-better cover that use&lt;sup id="fnref:348-1"&gt;&lt;a class="footnote-ref" href="#fn:348-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Again though, that's assuming the actual cost of
+better cover that use&lt;sup id="fnref:349-1"&gt;&lt;a class="footnote-ref" href="#fn:349-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Again though, that's assuming the actual cost of
 using whatever models remains pretty stable. It also assumes that I'd want
 to spend that much each month, and that I would be correctly anticipating
 that I'd need that much.&lt;/p&gt;
@@ -1067,7 +1144,7 @@ something like &lt;a href="https://cursor.com/" rel="noopener noreferrer" target
 $20/month. Which all sounds fine, but what happens when those fleeing GitHub
 Copilot or Gemini CLI/&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt; head over to
 something like Cursor? Is it sensible to expect the pricing to stay the
-same&lt;sup id="fnref:348-2"&gt;&lt;a class="footnote-ref" href="#fn:348-2"&gt;2&lt;/a&gt;&lt;/sup&gt;?&lt;/p&gt;
+same&lt;sup id="fnref:349-2"&gt;&lt;a class="footnote-ref" href="#fn:349-2"&gt;2&lt;/a&gt;&lt;/sup&gt;?&lt;/p&gt;
 &lt;p&gt;I guess, at this point, I'm just mulling over the same issue time and again,
 but from different angles. It does seem clear to me, though, that in less
 than 4 months, in my experiment of &lt;em&gt;"what happens if I use agents to develop
@@ -1076,15 +1153,15 @@ reasonable to pretty much unjustifiable from a price point of view.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:348-1"&gt;
+&lt;li id="fn:349-1"&gt;
 &lt;p&gt;As I understand it, the $39 gets you &lt;em&gt;almost twice&lt;/em&gt; that value in "AI
 credits", so the &lt;a href="https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals#how-do-ai-credits-work" rel="noopener noreferrer" target="_blank"&gt;base allotment plus the flex
 allotment&lt;/a&gt;
-would cover what I've used.&amp;#160;&lt;a class="footnote-backref" href="#fnref:348-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+would cover what I've used.&amp;#160;&lt;a class="footnote-backref" href="#fnref:349-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:348-2"&gt;
+&lt;li id="fn:349-2"&gt;
 &lt;p&gt;That's not even the main reason &lt;a href="https://www.theguardian.com/technology/2026/apr/21/spacex-cursor-ai-startup" rel="noopener noreferrer" target="_blank"&gt;to be concerned about a switch to
-Cursor&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:348-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+Cursor&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:349-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1269,7 +1346,7 @@ three CSS files:
 turned on). While this separation of concerns sits well with me, while it
 feels like the elegant way of doing things, there is the issue that it
 requires 3 trips back to the server to get base styling for any given
-page&lt;sup id="fnref:337-1"&gt;&lt;a class="footnote-ref" href="#fn:337-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+page&lt;sup id="fnref:338-1"&gt;&lt;a class="footnote-ref" href="#fn:338-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So with this new version, if you set
 &lt;a href="https://blogmore.davep.dev/configuration/#bundle_css" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;bundle_css&lt;/code&gt;&lt;/a&gt; to
 &lt;code&gt;true&lt;/code&gt;, those three files are included and delivered as a single
@@ -1308,10 +1385,10 @@ instructions&lt;/a&gt; and give it a go.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:337-1"&gt;
+&lt;li id="fn:338-1"&gt;
 &lt;p&gt;Yes, of course the client-side cache makes this moot after the first
 page is loaded. All of this is about making that first load faster, and
-so appeasing the PageSpeed Insights gods.&amp;#160;&lt;a class="footnote-backref" href="#fnref:337-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+so appeasing the PageSpeed Insights gods.&amp;#160;&lt;a class="footnote-backref" href="#fnref:338-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1368,7 +1445,7 @@ up via the main application did seem to have done that job.&lt;/p&gt;
 &lt;p&gt;After this though, it kind of went a little downhill. The first thing I
 noticed was the set of models available was rather different from Gemini
 CLI. I mean, okay, that's fair, I guess you expect things like that to
-change, but in my inexperienced&lt;sup id="fnref:336-1"&gt;&lt;a class="footnote-ref" href="#fn:336-1"&gt;1&lt;/a&gt;&lt;/sup&gt; view of what these agentic tools offer,
+change, but in my inexperienced&lt;sup id="fnref:337-1"&gt;&lt;a class="footnote-ref" href="#fn:337-1"&gt;1&lt;/a&gt;&lt;/sup&gt; view of what these agentic tools offer,
 it looked like all the options were a little more... pricey, perhaps?&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Gemini CLI vs Antigravity CLI" height="264" loading="lazy" src="https://blog.davep.org/attachments/2026/05/20/old-vs-new.webp#centre" width="711" /&gt;&lt;/p&gt;
 &lt;p&gt;Still, I'm sure that sensible defaults are chosen out of the box, so it
@@ -1433,13 +1510,13 @@ them harder to try and make this adventure pay off.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:336-1"&gt;
+&lt;li id="fn:337-1"&gt;
 &lt;p&gt;I say "inexperienced", but perhaps I'm being unfair to myself here.
 While I'm not 100%, all in, fully-steeped in agentic lore, and even
 though I've not been living this stuff full time for the past year or
 so, I do feel I'm a good representation of someone with a long
 background in the software development industry who is coming to these
-tools with reasonable expectations.&amp;#160;&lt;a class="footnote-backref" href="#fnref:336-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+tools with reasonable expectations.&amp;#160;&lt;a class="footnote-backref" href="#fnref:337-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1450,40 +1527,6 @@ tools with reasonable expectations.&amp;#160;&lt;a class="footnote-backref" href
       <category>Google</category>
       <category>Antigravity</category>
       <pubDate>Wed, 20 May 2026 17:04:26 +0100</pubDate>
-    </item>
-    <item>
-      <title>Goodbye Gemini CLI</title>
-      <link>https://blog.davep.org/2026/05/20/goodbye-gemini-cli.html</link>
-      <description>&lt;p&gt;I just sat down at my desk and fired up Gemini CLI to get it to make a
-change to &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, and I see this:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Goodbye Gemini CLI" height="740" loading="lazy" src="https://blog.davep.org/attachments/2026/05/20/goodbye-cli.webp#centre" width="900" /&gt;&lt;/p&gt;
-&lt;p&gt;I've yet to actually look at Antigravity, so I know pretty much nothing
-about it at this point. After a brief glance &lt;a href="https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/" rel="noopener noreferrer" target="_blank"&gt;at the link that was
-given&lt;/a&gt;
-it &lt;em&gt;seems&lt;/em&gt; like it's a positive change, perhaps. Honestly, I'm not sure. But
-that's kind of moot, I don't really have a choice. Within a month Gemini CLI
-is going to stop working anyway.&lt;/p&gt;
-&lt;p&gt;This is yet another reminder that, while plenty of folk are pushing these
-tools as &lt;em&gt;the&lt;/em&gt; answer to the "problem" of software development, they're not
-really stable tools, it's not really a stable market, and, to some degree,
-if you fully rely on these tools, you're constantly at the mercy of the
-whims of some other company.&lt;/p&gt;
-&lt;p&gt;I'm glad I have a project where I'm forcing reliance on them as an
-experiment, so I can see and experience this first-hand, but I'd be very
-concerned for someone who's fully bought into them.&lt;/p&gt;
-&lt;p&gt;Perhaps there's a market here for a "Killed by AI" website, much like
-&lt;a href="https://killedbygoogle.com/" rel="noopener noreferrer" target="_blank"&gt;Killed by Google&lt;/a&gt;?&lt;/p&gt;
-&lt;p&gt;Or, maybe I'm being unfair here; it could be that this is more akin to
-Google solving the chat problem by constantly moving people from one chat
-application to another, while also having chat abilities in all sorts of
-other products...&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/05/20/goodbye-gemini-cli.html</guid>
-      <category>AI</category>
-      <category>Coding</category>
-      <category>Gemini</category>
-      <category>Google</category>
-      <category>Antigravity</category>
-      <pubDate>Wed, 20 May 2026 08:58:35 +0100</pubDate>
     </item>
   </channel>
 </rss>
