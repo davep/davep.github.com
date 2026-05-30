@@ -10,7 +10,7 @@ It's no surprise that I spend a lot of time in Emacs. Especially when I'm
 developing software, either for work or for personal fun, most of my time is
 time spent in Emacs. While I do obviously flit over to Chrome, and mostly do
 my CLI stuff in [iTerm2](https://iterm2.com/) (I really like
-[eshell](https://www.gnu.org/software/emacs/manual/html_mono/eshell.html)
+[Eshell](https://www.gnu.org/software/emacs/manual/html_mono/eshell.html)
 but it just can't replace a good terminal for me), I spend a lot of time
 looking at Emacs.
 
@@ -51,11 +51,11 @@ then use [a little wrapper around `emacsclient`](https://github.com/davep/e)
 to open files (both locally and remotely) from the command line in that
 Emacs session.
 
-## Comfortable eshell when I need it
+## Comfortable Eshell when I need it
 
 Although I say above that I generally don't use `eshell`, preferring to use
 a full-featured terminal application, in combination with
-[fish](https://fishshell.com/), I do sometimes dip into eshell for quick
+[fish](https://fishshell.com/), I do sometimes dip into Eshell for quick
 things. So of course I have that configured to feel comfortable too.
 
 ![Eshell prompt](/attachments/2020/01/11/eshell-prompt.webp#centre)
