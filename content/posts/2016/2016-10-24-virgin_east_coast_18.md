@@ -23,15 +23,17 @@ Manager since the previous month.
 
 Here's what he said (quoted in full):
 
-> My sincere apologies for the silence, I have been away and it was remiss
-> of my not to advise my regular contacts, of my colleagues details.
->
-> If you can leave this with me I will certainly be in contact early next
-> week to try and get this resolved once and for all. In the meantime I will
-> pop a further couple of tickets in the post for you, just so you have them
-> incase you need to travel urgently.
->
-> My apologies again David, and I look forward to chatting early next week.
+<blockquote markdown="1">
+My sincere apologies for the silence, I have been away and it was remiss of
+my not to advise my regular contacts, of my colleagues details.
+
+If you can leave this with me I will certainly be in contact early next week
+to try and get this resolved once and for all. In the meantime I will pop a
+further couple of tickets in the post for you, just so you have them incase
+you need to travel urgently.
+
+My apologies again David, and I look forward to chatting early next week.
+</blockquote>
 
 I am, of course, a little skeptical of this at the moment. A few times
 before I've been told they'll be in contact "early next week", or something

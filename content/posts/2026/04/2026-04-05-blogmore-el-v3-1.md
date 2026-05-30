@@ -46,7 +46,7 @@ From now on I'm using
 create a class that holds all of the data for a given blog. This, I believe,
 makes the code easier to read and should also make it more resilient to the
 addition of any new properties. Also thanks to [how such classes can work
-with the customize
+with the `customize`
 system](https://www.gnu.org/software/emacs/manual/html_node/eieio/Customizing.html)
 the `customize` experience remains pretty much the same too.
 

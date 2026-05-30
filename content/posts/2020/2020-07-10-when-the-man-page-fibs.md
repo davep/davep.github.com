@@ -53,10 +53,12 @@ Try `file --help' for more information.
 So I go back and look at the `man` page again and then I notice it isn't in
 the list of switches in the synopsis.
 
-> SYNOPSIS  
->     file [-bcdDhiIkLnNprsvz] [--extension] [--mime-encoding] [--mime-type] [-f namefile] [-m magicfiles] [-P name=value] [-M magicfiles] file  
->     file -C [-m magicfiles]  
->     file [--help]  
+```
+SYNOPSIS
+    file [-bcdDhiIkLnNprsvz] [--extension] [--mime-encoding] [--mime-type] [-f namefile] [-m magicfiles] [-P name=value] [-M magicfiles] file
+    file -C [-m magicfiles]
+    file [--help]
+```
 
 I then did the obvious tests. Did I have `file` aliased in some way? No. Was
 some other thing that works and acts like `file` in my path? No. Was I

@@ -41,11 +41,13 @@ departments to use Copilot"* point of view. But how the heck are they
 In the comments in the FAQ [this explanation stood
 out](https://github.com/orgs/community/discussions/188488#discussioncomment-16317873):
 
-> We do not train on the contents from any paid organization’s repos,
-> regardless of whether a user is working in that repo with a Copilot Free,
-> Pro, or Pro+ subscription. If a user’s GitHub account is a member of or
-> outside collaborator with a paid organization, we exclude their
-> interaction data from model training.
+<blockquote>
+We do not train on the contents from any paid organization’s repos,
+regardless of whether a user is working in that repo with a Copilot Free,
+Pro, or Pro+ subscription. If a user’s GitHub account is a member of or
+outside collaborator with a paid organization, we exclude their interaction
+data from model training.
+</blockquote>
 
 This seems somewhat unclear to me. Let's walk this one through for a moment:
 [my GitHub account](https://github.com/davep) *is* a member of a "paid
