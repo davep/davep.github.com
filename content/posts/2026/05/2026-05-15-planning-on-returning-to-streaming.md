@@ -10,8 +10,8 @@ would [stream while playing
 games](https://www.youtube.com/@DavePearson/streams) on my [PS5](/tag/ps5/).
 Before that I went through a period of streaming while playing games on my
 [VR gaming setup](/2022/05/28/my-vr-recording-setup.html), often mucking
-about in things like [Cyube
-VR](https://www.youtube.com/playlist?list=PLUY2FpMDyORDC_smOMzoyfM0SC5BeaE-U)
+about in things like
+[cyubeVR](https://www.youtube.com/playlist?list=PLUY2FpMDyORDC_smOMzoyfM0SC5BeaE-U)
 and [Gunman Contracts](https://www.youtube.com/watch?v=_stY10y2_Q0). It was
 a fun time and I got the chance to make some fun acquaintances online. All
 of this was made possible by the fact that I had a really nice, fast fibre
