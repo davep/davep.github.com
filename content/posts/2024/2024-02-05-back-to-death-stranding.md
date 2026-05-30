@@ -64,8 +64,8 @@ all of the extra things in the Director's Cut, including the extra story
 I hope, eventually, [the playlist I
 started](https://www.youtube.com/watch?v=5-irn7AcJ7g&list=PLUY2FpMDyORCBUB0_pmQ5hKu1WTJnAVGI)
 will have the full story plus lots more fun and building and exploring in
-it. Hopefully I'll be done just in time for the release of DS2! (and
-[GTA6](https://www.youtube.com/watch?v=QdBZY2fkU-0), it's going to be a busy
-year for gaming next year!)
+it. Hopefully I'll be done just in time for the release of Death Stranding
+2! (and [GTA6](https://www.youtube.com/watch?v=QdBZY2fkU-0), it's going to
+be a busy year for gaming next year!)
 
 [//]: # (2024-02-05-back-to-death-stranding.md ends here)
