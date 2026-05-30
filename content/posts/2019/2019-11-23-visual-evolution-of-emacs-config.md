@@ -25,7 +25,7 @@ scratch. As mentioned above, the start of this [is detailed in an older
 post](/2016/05/26/starting_fresh_with_gnu_emacs.html). Another big round of
 changes [happened round a year
 later](/2017/04/01/another_revamp_of_my_emacs_config.html) -- which included
-the birth of [delpa](http://blog.davep.org/delpa/) to manage my personal
+the birth of [Delpa](http://blog.davep.org/delpa/) to manage my personal
 packages. A couple or so months later there was [one last big round of
 changes](/2017/07/13/more_revamping_of_my_emacs_config.html), mostly killing
 off my enthusiastic embracing of
