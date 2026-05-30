@@ -28,7 +28,7 @@ publish:			# Publish the site to GitHub
 spellcheck:
 	$(spell) content/
 	@find content/ -name "*.md" -print0 | while IFS= read -r -d '' file; do \
-		errors=$$(aspell --mode=markdown --lang=en_GB --dont-run-together -p ./.ignore_spelling list < "$$file"); \
+		errors=$$(aspell --mode=markdown --lang=en_GB -p ./.ignore_spelling list < "$$file"); \
 		if [ -n "$$errors" ]; then \
 			echo "=== $$file ==="; \
 			echo "$$errors" | sort -u; \
