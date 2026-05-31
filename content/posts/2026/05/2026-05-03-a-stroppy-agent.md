@@ -26,8 +26,8 @@ So, yesterday evening, I decided to experiment by asking [Gemini
 CLI](/tag/gemini/) to look over the code and tell me what it thinks. The
 prompt was:
 
-> Quite a bit of work has been done on @src/blogmore/generator.py to try and
-> reduce duplication of effort and boilerplate. I wonder if we can do a
+> Quite a bit of work has been done on `@src/blogmore/generator.py` to try
+> and reduce duplication of effort and boilerplate. I wonder if we can do a
 > little more? Please take a look over the code there and see if there is
 > any more repetitive code that can be cleaned up, to make the codebase more
 > maintainable.

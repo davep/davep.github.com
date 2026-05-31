@@ -47,7 +47,7 @@ wrong way round. I suspect that this might be down to the fact that I need
 to restart applications so they take up the new mapping (a reboot of the machine
 might be in order here).
 * The keyboard has no marked insert toggle key. There is one, it's the 0 on
-the numeric keyboard if you have (also missing, but with a mapping) numlock
+the numeric keyboard if you have (also missing, but with a mapping) Num Lock
 turned off.
 * Alt and Win are the wrong way round. The Cmd key acts as the Win key and it
 is in the same position as Alt is normally in. I'm actually adapting to this

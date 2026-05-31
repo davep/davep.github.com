@@ -37,7 +37,7 @@ The other was `x-hacker.org` which, digging a wee bit more, seems to have
 been a copy of what was on clipx.net.
 
 So I had an idea: having [recently polished up my replacement for
-ng2html](/2025/03/24/ng2web.html), why not use that to build my own site
+`ng2html`](/2025/03/24/ng2web.html), why not use that to build my own site
 that publishes the guides I have? So I set about it.
 
 There's one wrinkle to this though. While the other sites seemed to just

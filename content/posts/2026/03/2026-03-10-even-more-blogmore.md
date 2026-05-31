@@ -60,8 +60,8 @@ helped run Newton's Astronomical Society in the early 2000s -- so the
 preparation for this was a little daunting to start with.
 
 While doing this, not wanting to break a long streak of never having used
-PowerPoint, I discovered and gave [sli.dev](https://sli.dev) a go. Writing a
-single Markdown file to power the talk was exactly my kind of approach. I
+PowerPoint, I discovered and gave [`sli.dev`](https://sli.dev) a go. Writing
+a single Markdown file to power the talk was exactly my kind of approach. I
 don't have any experience with any other such tools, but if you're ever
 looking for something like this I recommend giving it a try.
 
