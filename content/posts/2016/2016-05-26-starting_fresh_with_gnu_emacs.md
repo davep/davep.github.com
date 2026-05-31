@@ -130,9 +130,9 @@ One final thing that I'm starting to try and do is actually make full
 use of Emacs again. One example is that I'm writing this blog post in
 it. Until now I've been using SublimeText with
 [a Jekyll package to compose and manage things](https://packagecontrol.io/packages/Jekyll)
-but, this time around I'm giving [hyde](https://melpa.org/#/hyde) and
+but, this time around I'm giving [Hyde](https://melpa.org/#/hyde) and
 [markdown-mode](https://melpa.org/#/markdown-mode) a go. So far
-they're working out pretty well too (albeit hyde was a bit odd to set
+they're working out pretty well too (albeit Hyde was a bit odd to set
 up and isn't 100% making sense to me yet).
 
 [//]: # (2016-05-26-starting_fresh_with_gnu_emacs.md ends here)

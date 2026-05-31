@@ -42,7 +42,7 @@ find -E ./ -iregex '.*\.(png|jpg|jpeg)$' | cut -d'/' -f2,3,4 | sort -u
 ```
 
 With this I get a handy list of dates of posts that still have unconverted
-png or jpeg files.
+PNG or JPEG files.
 
 Of course, for a wee while, this will not get to an empty list because I
 want to make sure some of the more recent posts still have their older
