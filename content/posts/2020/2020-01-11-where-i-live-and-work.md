@@ -25,7 +25,7 @@ Key elements for me are as follows:
 Something I've never really got on with when it comes to code editing is
 dark themes and dark backgrounds. I find it too much of an eye strain.
 Oddly, I tend to prefer dark themes everywhere else, but not when it comes
-to working in Emacs. The theme I use is [the built-in adwaita
+to working in Emacs. The theme I use is [the built-in Adwaita
 theme](https://github.com/davep/.emacs.d/blob/b9a3df42f0708eabc31a6176d69a67bbdf31a087/init.d/init-style.el#L12-L13).
 
 ## Less boring mode line

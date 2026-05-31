@@ -27,7 +27,7 @@ desire came [`nukneval.el`](https://github.com/davep/nukneval.el).
 The original version of this has been sat around since 2002 or so, perhaps a
 little earlier, and has served me well every time I've been messing with a
 new package. While I suspect there is (now, perhaps was then too?) a better
-way of doing things, the approach used in nukneval helped me learn some
+way of doing things, the approach used in `nukneval` helped me learn some
 things and served me well (and still does). Now it's muscle-memory to run
 it.
 
