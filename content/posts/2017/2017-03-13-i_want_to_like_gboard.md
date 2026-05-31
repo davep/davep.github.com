@@ -8,7 +8,7 @@ cover: /attachments/2017/03/13/dict.webp
 
 I want to like Gboard. On paper it looks really rather good. It's a keyboard
 from Google, it ties in with your account, it syncs things, it has clever
-searching for emoji and gifs and the like... what's not to like?
+searching for emoji and GIFs and the like... what's not to like?
 
 Problem is, I've been a user of SwiftKey since around 2011 (I think it was).
 I'm very used to how SwiftKey works and it also contains a lot of handy
@@ -41,7 +41,7 @@ things that make me miss the comfortable home that is SwiftKey.
 
 Don't get me wrong, it does have some very handy and cleaver features too.
 The searching for emoji -- including showing them up as word completions --
-is rather clever. The gif-search thing is all kinds of fun too (mostly used
+is rather clever. The GIF-search thing is all kinds of fun too (mostly used
 to annoy the hell out
 of [my son on twitter](https://twitter.com/VolcanicArts)).
 
@@ -79,7 +79,7 @@ something as simple as cloud-sync the predictions and learn from how I type
 frankly stupid.
 
 I guess I'm going to have to keep Gboard as a backup keyboard for those
-times when I need to find the perfect gif.
+times when I need to find the perfect GIF.
 
 ![Google WTF](http://i.imgur.com/0mw1I8e.gif#centre)
 

@@ -187,7 +187,7 @@ version of GNU Emacs, but it's a copy of GNU Emacs and that's all that matters.
 
 That fact actually means something rather interesting, to me. See, there's
 two small packages that are part of GNU Emacs that I originally wrote. One is
-called 5x5, the other quickurl.
+called `5x5`, the other `quickurl`.
 
 ![My rubbish claim to fame](/attachments/2015/06/27/claim-to-fame.webp#centre)
 

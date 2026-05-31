@@ -36,11 +36,13 @@ possibly suffering a wee bit from being [an XY
 problem](https://xyproblem.info/), the immediate answer was
 clear:
 
-> <tt>BadIdentifier: 'test.udp_json_client-input' is an invalid id; identifiers must
+<blockquote markdown="1">
+<tt>BadIdentifier: 'test.udp_json_client-input' is an invalid id; identifiers must
 contain only letters, numbers, underscores, or hyphens, and must not begin with
 a number.</tt>
->
-> ????????????????? a dot isn't allowed?
+
+????????????????? a dot isn't allowed?
+</blockquote>
 
 Like I say: it lacks context and detail, and the number of question marks
 doesn't really clarify much, but the core question that seems to be at play
@@ -98,10 +100,12 @@ them to restate the question, and give some more background.
 
 The reply is:
 
-> the objective is to put a string like test.udp_json_client-input as the
-> label of a tab, which previously just used the ID property. from skimming
-> release notes, is it better to explicitly set the label, and then assign
-> something compliant for the ID separately?
+<blockquote>
+the objective is to put a string like test.udp_json_client-input as the
+label of a tab, which previously just used the ID property. from skimming
+release notes, is it better to explicitly set the label, and then assign
+something compliant for the ID separately?
+</blockquote>
 
 Wait... what? I thought we were talking about valid widget IDs, now we're
 talking about tabs and labels? Do we mean `TabbeContent` and the labels of a
@@ -109,12 +113,14 @@ talking about tabs and labels? Do we mean `TabbeContent` and the labels of a
 this person's thought process so I can offer the help they're after and this
 follows:
 
-> okay @davep, you have a real bug. --content-tab- prefix is not ephemeral.
-> if I create a tab and grab .id, that prefix comes with it, so if you save
-> it for later and try to set .active, assigning .active doesn't agree that
-> there is a tab --content-tab-thing
->
-> so I need to de-mangle the name manually before assigning .active I guess?
+<blockquote markdown="1">
+okay @davep, you have a real bug. --content-tab- prefix is not ephemeral. if
+I create a tab and grab .id, that prefix comes with it, so if you save it
+for later and try to set .active, assigning .active doesn't agree that there
+is a tab --content-tab-thing
+
+so I need to de-mangle the name manually before assigning .active I guess?
+</blockquote>
 
 Wut? Like... wut? Okay, we do seem to be talking about `TabbedContent`, I
 recognise the values being mentioned here; we did some work [late on last

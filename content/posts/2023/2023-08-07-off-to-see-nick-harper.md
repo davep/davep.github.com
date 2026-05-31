@@ -26,7 +26,7 @@ But this year I'm going to try my best.
 
 This evening I've booked a ticket for an artist I've been a fan of since the
 1990s: [Nick Harper](https://en.wikipedia.org/wiki/Nick_Harper). I saw Nick
-quite a few times in the 200xs (see the image above, I *think* 2009 might be
+quite a few times in the 2000s (see the image above, I *think* 2009 might be
 the last time I saw him!) and then my going to gigs tailed off somewhat
 (again, life stuff). So seeing that he's playing here for a few days was
 something I could not ignore.
