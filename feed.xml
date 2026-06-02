@@ -8,7 +8,352 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 02 Jun 2026 07:28:13 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jun 2026 16:04:44 +0000</lastBuildDate>
+    <item>
+      <title>Recreating my blog stats</title>
+      <link>https://blog.davep.org/2026/06/02/recreating-my-blog-stats.html</link>
+      <description>&lt;h2 id="introduction"&gt;Introduction&lt;a aria-label="Link to this heading" class="heading-anchor" href="#introduction"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Having &lt;a href="https://blog.davep.org/2026/05/29/blogmore-v2-33-0.html"&gt;recently added the &lt;code&gt;dump&lt;/code&gt; command to
+BlogMore&lt;/a&gt; I've been thinking I should try
+and learn a little more about &lt;a href="https://jqlang.org/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;jq&lt;/code&gt;&lt;/a&gt;. It's one of those
+tools that's been on my radar for ages, which I've used on very rare
+occasions to get something done quickly, but which I've never really used in
+anger.&lt;/p&gt;
+&lt;p&gt;So I thought it might be fun to see about recreating some of the stats from
+the &lt;a href="https://blog.davep.org/stats/"&gt;stats page&lt;/a&gt; using &lt;code&gt;jq&lt;/code&gt; alone. Well, I say "alone", I mean
+&lt;em&gt;"from the JSON data that is produced by &lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;the BlogMore &lt;code&gt;dump&lt;/code&gt;
+command&lt;/a&gt;"&lt;/em&gt;, and of
+course that makes it easier given it dumps some of the key calculated
+values. In other words I won't be using &lt;code&gt;jq&lt;/code&gt; to calculate the word count, or
+reading time, or GFI, etc.&lt;/p&gt;
+&lt;h2 id="post-count"&gt;Post count&lt;a aria-label="Link to this heading" class="heading-anchor" href="#post-count"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To start with, working out the number of posts in my blog is simple enough:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;. | length&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mi"&gt;371&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="category-count"&gt;Category count&lt;a aria-label="Link to this heading" class="heading-anchor" href="#category-count"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Getting the list of categories would be:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .safe_category] | unique&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ai&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;coding&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;creative&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;emacs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gaming&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;life&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;meta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;music&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tech&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;til&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and so getting the count of them is simple enough:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .safe_category] | unique | length&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mi"&gt;11&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="tags-count"&gt;Tags count&lt;a aria-label="Link to this heading" class="heading-anchor" href="#tags-count"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Getting the count of tags takes a little more work, as &lt;a href="https://blogmore.davep.dev/command_line/#output-properties" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;safe_tags&lt;/code&gt; is a
+list too&lt;/a&gt;, so I
+start out with a list of lists, which I need to flatten first.&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .safe_tags] | flatten | unique | length&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mi"&gt;224&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This, right away, is an interesting finding. In my &lt;a href="https://blog.davep.org/stats/"&gt;stats page&lt;/a&gt;, as
+of the time of writing, the number of tags is reported as 243, but here I'm
+getting 224. Given I'm using the &lt;code&gt;safe_tags&lt;/code&gt; property, which ensures all
+similar tags end up with the same value (so &lt;code&gt;Hello World&lt;/code&gt;, &lt;code&gt;hello world&lt;/code&gt;,
+and all variations, become &lt;code&gt;hello-world&lt;/code&gt;), that would suggest the stats page
+&lt;em&gt;isn't&lt;/em&gt; taking that into account. That's &lt;a href="https://github.com/davep/blogmore/issues/580" rel="noopener noreferrer" target="_blank"&gt;an issue to
+address&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="a-datetime-interlude"&gt;A date/time interlude&lt;a aria-label="Link to this heading" class="heading-anchor" href="#a-datetime-interlude"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Here's where things get a little interesting for a moment. In the output of
+the &lt;code&gt;dump&lt;/code&gt; command from &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, the dates
+of the posts are given in &lt;a href="https://en.wikipedia.org/wiki/ISO_8601" rel="noopener noreferrer" target="_blank"&gt;ISO 8601
+format&lt;/a&gt;; specifically the date and
+time with offset format. From what I can tell, while &lt;code&gt;jq&lt;/code&gt; does have some
+date/time parsing support, it can't handle that format specifically.&lt;/p&gt;
+&lt;p&gt;This means that if I try:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.[0] .date | fromdate&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I just get:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq: error (at &amp;lt;stdin&amp;gt;:27293): date &amp;quot;2015-06-18T14:53:00+01:00&amp;quot; does not match format &amp;quot;%Y-%m-%dT%H:%M:%SZ&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;After some searching around it seems the only approach I can really take is
+to drop the timezone offset and pretend every time is a &lt;code&gt;Z&lt;/code&gt; time:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.[0] .date[:19] + &amp;quot;Z&amp;quot; | fromdate&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mi"&gt;1434639180&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;From here I can then get a fully-parsed list of date/time values using &lt;code&gt;gmtime&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.[0] .date[:19] + &amp;quot;Z&amp;quot; | fromdate | gmtime&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;2015&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;53&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;168&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This isn't ideal for what I'd like to do, it's going to skew some of the
+values related to time, but it's close enough for experimenting.&lt;/p&gt;
+&lt;h2 id="posts-per-year"&gt;Posts per year&lt;a aria-label="Link to this heading" class="heading-anchor" href="#posts-per-year"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Now that I have a way of breaking the posting time into a workable array of
+values, getting the number of posts per year becomes:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[:19] + &amp;quot;Z&amp;quot; | fromdate | gmtime[0]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;2015: 32
+2016: 26
+2017: 7
+2018: 1
+2019: 15
+2020: 23
+2022: 11
+2023: 49
+2024: 19
+2025: 11
+2026: 177
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Although, to be fair to &lt;code&gt;jq&lt;/code&gt;, that's kind of long-winded when I could just
+pull the year itself out of the posting time:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[:4]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="posts-by-month"&gt;Posts by month&lt;a aria-label="Link to this heading" class="heading-anchor" href="#posts-by-month"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;At this point getting the posts by month of year seems obvious too:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[5:7]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;01: 14
+02: 12
+03: 53
+04: 57
+05: 76
+06: 33
+07: 25
+08: 25
+09: 13
+10: 29
+11: 19
+12: 15
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="posts-by-weekday"&gt;Posts by weekday&lt;a aria-label="Link to this heading" class="heading-anchor" href="#posts-by-weekday"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For this, I need to go back to the more involved version of the posting date
+handling query, where I use &lt;a href="https://jqlang.org/manual/#dates" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;gmtime&lt;/code&gt;&lt;/a&gt; to
+break down the time. It turns out that the penultimate value is the day of
+the week as a number. So, while it's not quite as readable in that I don't
+have day names, I can get the values:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[:19] + &amp;quot;Z&amp;quot; | fromdate | gmtime[-2]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;0: 48
+1: 54
+2: 51
+3: 48
+4: 56
+5: 56
+6: 58
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In this case Sunday is the first day (the &lt;code&gt;0&lt;/code&gt; day here).&lt;/p&gt;
+&lt;h2 id="posts-by-hour"&gt;Posts by hour&lt;a aria-label="Link to this heading" class="heading-anchor" href="#posts-by-hour"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Getting the posts by the hour is really just a variation on the
+date-chopping query used for the posts by year and the posts by month; it's
+all there in the string version of the date.&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[11:13]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;00: 1
+06: 1
+07: 6
+08: 51
+09: 35
+10: 32
+11: 25
+12: 14
+13: 22
+14: 24
+15: 25
+16: 24
+17: 18
+18: 9
+19: 23
+20: 33
+21: 21
+22: 6
+23: 1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="first-and-last-posting-dates"&gt;First and last posting dates&lt;a aria-label="Link to this heading" class="heading-anchor" href="#first-and-last-posting-dates"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Getting the date of the first and latest post seems nice and easy:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[0:10]] | {first: min, last: max}&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;first&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2015-06-18&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;last&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2026-06-01&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Although, from what I can tell, &lt;code&gt;jq&lt;/code&gt; doesn't have anything that makes date
+arithmetic easy so working out the elapsed time between the two isn't so
+straightforward. It can be done, but it's not as easy as it might be with a
+bit of Python code, for example. The best I could come up with was:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[ .[] | .date[:19] + &amp;quot;Z&amp;quot; | fromdate ] | ((max - min) / (365.25 * 24 * 60 * 60))&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mf"&gt;10.95438841990519&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;For an approximate value of "year", &lt;a href="https://en.wikipedia.org/wiki/Leap_year" rel="noopener noreferrer" target="_blank"&gt;of
+course&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="word-counts"&gt;Word counts&lt;a aria-label="Link to this heading" class="heading-anchor" href="#word-counts"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;From here on in many of the stats that can be pulled out from the JSON, with
+&lt;code&gt;jq&lt;/code&gt;, become easier to handle. Each post has a &lt;code&gt;word_count&lt;/code&gt; property, so I
+only need to do this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .word_count] | {least: min, most: max, average: (add / length)}&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;least&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;most&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2792&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;average&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;475.0700808625337&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="reading-times"&gt;Reading times&lt;a aria-label="Link to this heading" class="heading-anchor" href="#reading-times"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A post's reading time can be accessed by &lt;code&gt;reading_time&lt;/code&gt;, so it's as easy to
+handle as the word counts:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .reading_time] | {least: min, most: max, average: (add / length)}&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;least&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;most&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;average&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;1.8921832884097034&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="gunning-fog-index"&gt;Gunning fog index&lt;a aria-label="Link to this heading" class="heading-anchor" href="#gunning-fog-index"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The Gunning fog index is available as the &lt;code&gt;gfi&lt;/code&gt; property so there's no work
+to do to figure it out. It is, however, a floating point value and I want
+counts in each integer "bucket". That can be done with
+&lt;a href="https://jqlang.org/manual/#math" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;round&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .gfi | round] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;3: 1
+4: 2
+5: 3
+6: 7
+7: 30
+8: 46
+9: 67
+10: 70
+11: 75
+12: 35
+13: 18
+14: 11
+15: 1
+16: 3
+17: 2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;As for working out the mean, median and mode... while I worked out the above
+queries by reading the docs, experimenting, and using Gemini on occasion to
+either help me understand an error message or to explain why an approach
+works the way it did, I'm going to have to leave this one 100% to Gemini.
+Here's its approach to using &lt;code&gt;jq&lt;/code&gt; to work out those averages:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+&lt;span class="s1"&gt;  [ .[] | .gfi | select(. != null) ] as $raw_gfi&lt;/span&gt;
+&lt;span class="s1"&gt;  | [ $raw_gfi[] | round ] as $rounded_gfi&lt;/span&gt;
+&lt;span class="s1"&gt;  | ($raw_gfi | length) as $count&lt;/span&gt;
+
+&lt;span class="s1"&gt;  # 1. Mean Calculation&lt;/span&gt;
+&lt;span class="s1"&gt;  | (($raw_gfi | add) / $count) as $mean&lt;/span&gt;
+
+&lt;span class="s1"&gt;  # 2. Median Calculation&lt;/span&gt;
+&lt;span class="s1"&gt;  | ($raw_gfi | sort) as $sorted_gfi&lt;/span&gt;
+&lt;span class="s1"&gt;  | (if $count % 2 == 1 then&lt;/span&gt;
+&lt;span class="s1"&gt;       $sorted_gfi[($count - 1) / 2]&lt;/span&gt;
+&lt;span class="s1"&gt;     else&lt;/span&gt;
+&lt;span class="s1"&gt;       ($sorted_gfi[($count / 2) - 1] + $sorted_gfi[$count / 2]) / 2&lt;/span&gt;
+&lt;span class="s1"&gt;     end) as $median&lt;/span&gt;
+
+&lt;span class="s1"&gt;  # 3. Mode Calculation (using the rounded values)&lt;/span&gt;
+&lt;span class="s1"&gt;  | [ $rounded_gfi&lt;/span&gt;
+&lt;span class="s1"&gt;      | group_by(.)&lt;/span&gt;
+&lt;span class="s1"&gt;      | map({gfi: .[0], frequency: length})&lt;/span&gt;
+&lt;span class="s1"&gt;      | sort_by(.frequency)&lt;/span&gt;
+&lt;span class="s1"&gt;      | reverse&lt;/span&gt;
+&lt;span class="s1"&gt;      | .[]&lt;/span&gt;
+&lt;span class="s1"&gt;    ] as $frequencies&lt;/span&gt;
+&lt;span class="s1"&gt;  | [ $frequencies[] | select(.frequency == $frequencies[0].frequency) | .gfi ] as $modes&lt;/span&gt;
+
+&lt;span class="s1"&gt;  # Final Object Assembly&lt;/span&gt;
+&lt;span class="s1"&gt;  | {&lt;/span&gt;
+&lt;span class="s1"&gt;      count: $count,&lt;/span&gt;
+&lt;span class="s1"&gt;      mean: $mean,&lt;/span&gt;
+&lt;span class="s1"&gt;      median: $median,&lt;/span&gt;
+&lt;span class="s1"&gt;      mode: $modes&lt;/span&gt;
+&lt;span class="s1"&gt;    }&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;count&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;371&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;mean&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;9.908842231503396&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;median&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;9.979198312236287&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;mode&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;As of the time of writing: that's bang on what I get in the stats. Honestly
+though, by this point, I think I'd be reaching for Python or something
+similar to do this sort of work. For sure, I can't say if this is a good
+&lt;code&gt;jq&lt;/code&gt; query, if it's in any way idiomatic, or even if it's error-free. The
+numbers match what BlogMore says though.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a aria-label="Link to this heading" class="heading-anchor" href="#conclusion"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This has been a useful exercise in getting to know a little more about &lt;code&gt;jq&lt;/code&gt;,
+and I can see myself reaching for it to do quick little jobs now that I've
+finally taken some time to dive into it. As it turns out, it's also been a
+useful little audit of the content of the stats page because I've even found
+a bug that needs addressing; so that's a bonus.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/02/recreating-my-blog-stats.html</guid>
+      <category>Tech</category>
+      <category>BlogMore</category>
+      <category>Blogging</category>
+      <category>jq</category>
+      <category>JSON</category>
+      <pubDate>Tue, 02 Jun 2026 17:01:42 +0100</pubDate>
+    </item>
     <item>
       <title>New GitHub Copilot billing is popular</title>
       <link>https://blog.davep.org/2026/06/01/new-github-copilot-billing-is-popular.html</link>
@@ -224,8 +569,10 @@ easily ask the question.&lt;/p&gt;</description>
       <category>Coding</category>
       <category>BlogMore</category>
       <category>Coding</category>
+      <category>JSON</category>
       <category>PyPI</category>
       <category>Python</category>
+      <category>jq</category>
       <pubDate>Sun, 31 May 2026 10:59:18 +0100</pubDate>
     </item>
     <item>
@@ -358,8 +705,10 @@ to find out other things about my posting history.&lt;/p&gt;</description>
       <category>Coding</category>
       <category>BlogMore</category>
       <category>Coding</category>
+      <category>JSON</category>
       <category>PyPI</category>
       <category>Python</category>
+      <category>jq</category>
       <pubDate>Fri, 29 May 2026 14:14:10 +0100</pubDate>
     </item>
     <item>
@@ -989,282 +1338,6 @@ place.&lt;/p&gt;</description>
       <category>Python</category>
       <category>web</category>
       <pubDate>Fri, 22 May 2026 17:01:02 +0100</pubDate>
-    </item>
-    <item>
-      <title>Reviewing token usage</title>
-      <link>https://blog.davep.org/2026/05/22/reviewing-token-usage.html</link>
-      <description>&lt;p&gt;As I've written about a few times in the last week or so, the journey with
-AI-based coding tools has hit an interesting time when it comes to prices,
-quotas, usage, availability and all that. Having come into all of this via a
-place where it was a flat fee, and where I didn't really need to think about
-input tokens and output tokens and so on, I'm pretty ignorant of what that
-all means in terms of scale. If I'm looking at a new tool and I see prices
-and/or quotas for in/out tokens, it means nothing to me. I can't relate to
-it. I've never had to care about it.&lt;/p&gt;
-&lt;p&gt;While using &lt;a href="https://blog.davep.org/tag/gemini/"&gt;Gemini CLI&lt;/a&gt; to &lt;a href="https://github.com/davep/blogmore/pull/513" rel="noopener noreferrer" target="_blank"&gt;quickly make a
-change&lt;/a&gt; to
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; this morning, I was reminded that at
-the end of a session it &lt;em&gt;does&lt;/em&gt; tell me this:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Session usage" height="141" loading="lazy" src="https://blog.davep.org/attachments/2026/05/22/session-usage.webp#centre" width="649" /&gt;&lt;/p&gt;
-&lt;p&gt;Seeing that got me thinking: is there a way to get the total usage for all
-of my sessions, or at least the sessions that have still been retained (I'm
-guessing they expire after a wee while)? After a little bit of searching I
-found &lt;a href="https://ccusage.com/" rel="noopener noreferrer" target="_blank"&gt;ccusage&lt;/a&gt;. That looked exactly like the sort of
-thing I was after.&lt;/p&gt;
-&lt;p&gt;Now, this is only going to be good for Gemini (it says it supports Copilot
-too, but it seems to be failing to find any Copilot sessions), but it should
-give me a feel for what my token usage looks like.&lt;/p&gt;
-&lt;p&gt;I work on BlogMore on two different machines: the &lt;a href="https://blog.davep.org/2026/03/28/hello-macbook-air-again.html"&gt;MacBook
-Air&lt;/a&gt; and also a Mac Mini I have in
-my office. Here's all of the available token usage data I can get out of the
-Air:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style="text-align: left;"&gt;Date&lt;/th&gt;
-&lt;th style="text-align: right;"&gt;Input&lt;/th&gt;
-&lt;th style="text-align: right;"&gt;Output&lt;/th&gt;
-&lt;th style="text-align: right;"&gt;Cache Read&lt;/th&gt;
-&lt;th style="text-align: right;"&gt;Total Tokens&lt;/th&gt;
-&lt;th style="text-align: right;"&gt;Cost (USD)&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-04-29&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;235,238&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;20,282&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;773,642&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;1,032,608&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$0.23&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-01&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;315,001&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;3,181&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;447,556&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;768,532&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$0.20&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-02&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;2,621,628&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;52,290&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;18,260,597&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;20,955,447&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$2.44&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-03&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;3,627,846&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;30,538&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;11,819,279&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;15,509,213&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$5.74&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-04&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;869,829&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;49,163&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;2,721,074&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;3,656,649&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$0.77&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-09&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;2,287,760&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;50,081&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;9,973,764&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;12,327,819&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$1.84&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-10&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;1,019,550&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;34,556&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;8,061,897&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;9,125,838&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$1.05&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-11&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;1,112,123&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;35,610&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;10,523,348&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;11,689,576&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$1.24&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-13&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;1,506,513&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;41,802&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;7,561,168&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;9,124,651&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$2.88&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-15&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;123,161&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;3,155&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;587,248&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;716,813&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$0.11&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-16&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;111,334&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;14,836&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;519,161&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;646,275&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$0.13&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-17&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;940,485&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;36,171&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;7,682,314&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;8,706,034&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$1.41&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-18&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;67,033&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;1,357&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;205,921&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;275,707&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$0.05&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-21&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;60,904&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;1,182&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;119,055&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;184,117&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$0.05&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;&lt;strong&gt;14,898,405&lt;/strong&gt;&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;&lt;strong&gt;374,204&lt;/strong&gt;&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;&lt;strong&gt;79,256,024&lt;/strong&gt;&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;&lt;strong&gt;94,719,279&lt;/strong&gt;&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;&lt;strong&gt;$18.13&lt;/strong&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;And also the same for the Mac Mini (which gets used less frequently for this
-sort of thing):&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style="text-align: left;"&gt;Date&lt;/th&gt;
-&lt;th style="text-align: right;"&gt;Input&lt;/th&gt;
-&lt;th style="text-align: right;"&gt;Output&lt;/th&gt;
-&lt;th style="text-align: right;"&gt;Cache Read&lt;/th&gt;
-&lt;th style="text-align: right;"&gt;Total Tokens&lt;/th&gt;
-&lt;th style="text-align: right;"&gt;Cost (USD)&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-04&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;212,178&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;31,631&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;2,128,074&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;2,389,927&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$0.36&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-05&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;1,108,903&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;31,997&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;6,222,868&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;7,374,732&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$1.13&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-08&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;30,899&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;1,194&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;64,074&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;98,146&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$0.03&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-11&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;1,339,333&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;27,399&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;8,074,904&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;9,459,253&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$1.21&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-12&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;952,057&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;53,023&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;12,751,539&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;13,838,943&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$1.52&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-18&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;166,875&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;4,774&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;651,417&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;827,746&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$0.22&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-19&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;449,087&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;23,976&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;3,236,324&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;3,721,558&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$0.54&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;2026-05-22&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;335,151&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;10,012&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;1,919,815&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;2,272,553&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;$0.32&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="text-align: left;"&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;&lt;strong&gt;4,594,483&lt;/strong&gt;&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;&lt;strong&gt;184,006&lt;/strong&gt;&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;&lt;strong&gt;35,049,015&lt;/strong&gt;&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;&lt;strong&gt;39,982,858&lt;/strong&gt;&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;&lt;strong&gt;$5.33&lt;/strong&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;In both cases I've removed a couple of columns to make the tables fit
-better. The first was the model name (varying between
-&lt;code&gt;gemini-3-flash-preview&lt;/code&gt; and &lt;code&gt;gemini-3.1-pro-preview&lt;/code&gt;), the second was
-&lt;em&gt;Cache Create&lt;/em&gt; (which was always 0 all the way down).&lt;/p&gt;
-&lt;p&gt;From what I can see, it would appear that these two tables do cover my
-increasing use of Gemini CLI for doing work on BlogMore (the first intensive
-use being &lt;a href="https://blog.davep.org/2026/05/05/and-then-there-were-three.html"&gt;back around the 5th of this
-month&lt;/a&gt;, if I recall correctly).
-So this would seem to be a reasonably informative way to view things.&lt;/p&gt;
-&lt;p&gt;All of which is to say, over a roughly three week period, while getting
-things done, I've used getting on for 20,000,000 input tokens, and around
-600,000 output tokens (presumably I do also need to be keeping the
-114,300,000 cache read tokens in mind too). With this in mind I might now be
-able to make more sense of the pricing I see for various tools.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/05/22/reviewing-token-usage.html</guid>
-      <category>AI</category>
-      <category>AI</category>
-      <category>BlogMore</category>
-      <category>Business</category>
-      <category>Coding</category>
-      <category>FOSS</category>
-      <category>Free Software</category>
-      <category>Gemini</category>
-      <category>LLM</category>
-      <pubDate>Fri, 22 May 2026 09:19:37 +0100</pubDate>
     </item>
   </channel>
 </rss>

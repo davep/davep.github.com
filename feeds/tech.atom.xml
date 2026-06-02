@@ -2,11 +2,357 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-06-02T07:28:13.832338+00:00</updated>
+  <updated>2026-06-02T16:04:44.401675+00:00</updated>
   <link href="https://blog.davep.org/feeds/tech.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Tech" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/06/02/recreating-my-blog-stats.html</id>
+    <title>Recreating my blog stats</title>
+    <updated>2026-06-02T17:01:42+01:00</updated>
+    <content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;a aria-label="Link to this heading" class="heading-anchor" href="#introduction"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Having &lt;a href="https://blog.davep.org/2026/05/29/blogmore-v2-33-0.html"&gt;recently added the &lt;code&gt;dump&lt;/code&gt; command to
+BlogMore&lt;/a&gt; I've been thinking I should try
+and learn a little more about &lt;a href="https://jqlang.org/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;jq&lt;/code&gt;&lt;/a&gt;. It's one of those
+tools that's been on my radar for ages, which I've used on very rare
+occasions to get something done quickly, but which I've never really used in
+anger.&lt;/p&gt;
+&lt;p&gt;So I thought it might be fun to see about recreating some of the stats from
+the &lt;a href="https://blog.davep.org/stats/"&gt;stats page&lt;/a&gt; using &lt;code&gt;jq&lt;/code&gt; alone. Well, I say "alone", I mean
+&lt;em&gt;"from the JSON data that is produced by &lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;the BlogMore &lt;code&gt;dump&lt;/code&gt;
+command&lt;/a&gt;"&lt;/em&gt;, and of
+course that makes it easier given it dumps some of the key calculated
+values. In other words I won't be using &lt;code&gt;jq&lt;/code&gt; to calculate the word count, or
+reading time, or GFI, etc.&lt;/p&gt;
+&lt;h2 id="post-count"&gt;Post count&lt;a aria-label="Link to this heading" class="heading-anchor" href="#post-count"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To start with, working out the number of posts in my blog is simple enough:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;. | length&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mi"&gt;371&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="category-count"&gt;Category count&lt;a aria-label="Link to this heading" class="heading-anchor" href="#category-count"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Getting the list of categories would be:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .safe_category] | unique&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ai&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;coding&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;creative&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;emacs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gaming&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;life&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;meta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;music&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tech&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;til&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and so getting the count of them is simple enough:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .safe_category] | unique | length&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mi"&gt;11&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="tags-count"&gt;Tags count&lt;a aria-label="Link to this heading" class="heading-anchor" href="#tags-count"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Getting the count of tags takes a little more work, as &lt;a href="https://blogmore.davep.dev/command_line/#output-properties" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;safe_tags&lt;/code&gt; is a
+list too&lt;/a&gt;, so I
+start out with a list of lists, which I need to flatten first.&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .safe_tags] | flatten | unique | length&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mi"&gt;224&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This, right away, is an interesting finding. In my &lt;a href="https://blog.davep.org/stats/"&gt;stats page&lt;/a&gt;, as
+of the time of writing, the number of tags is reported as 243, but here I'm
+getting 224. Given I'm using the &lt;code&gt;safe_tags&lt;/code&gt; property, which ensures all
+similar tags end up with the same value (so &lt;code&gt;Hello World&lt;/code&gt;, &lt;code&gt;hello world&lt;/code&gt;,
+and all variations, become &lt;code&gt;hello-world&lt;/code&gt;), that would suggest the stats page
+&lt;em&gt;isn't&lt;/em&gt; taking that into account. That's &lt;a href="https://github.com/davep/blogmore/issues/580" rel="noopener noreferrer" target="_blank"&gt;an issue to
+address&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="a-datetime-interlude"&gt;A date/time interlude&lt;a aria-label="Link to this heading" class="heading-anchor" href="#a-datetime-interlude"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Here's where things get a little interesting for a moment. In the output of
+the &lt;code&gt;dump&lt;/code&gt; command from &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, the dates
+of the posts are given in &lt;a href="https://en.wikipedia.org/wiki/ISO_8601" rel="noopener noreferrer" target="_blank"&gt;ISO 8601
+format&lt;/a&gt;; specifically the date and
+time with offset format. From what I can tell, while &lt;code&gt;jq&lt;/code&gt; does have some
+date/time parsing support, it can't handle that format specifically.&lt;/p&gt;
+&lt;p&gt;This means that if I try:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.[0] .date | fromdate&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I just get:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq: error (at &amp;lt;stdin&amp;gt;:27293): date &amp;quot;2015-06-18T14:53:00+01:00&amp;quot; does not match format &amp;quot;%Y-%m-%dT%H:%M:%SZ&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;After some searching around it seems the only approach I can really take is
+to drop the timezone offset and pretend every time is a &lt;code&gt;Z&lt;/code&gt; time:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.[0] .date[:19] + &amp;quot;Z&amp;quot; | fromdate&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mi"&gt;1434639180&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;From here I can then get a fully-parsed list of date/time values using &lt;code&gt;gmtime&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.[0] .date[:19] + &amp;quot;Z&amp;quot; | fromdate | gmtime&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;2015&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;53&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;168&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This isn't ideal for what I'd like to do, it's going to skew some of the
+values related to time, but it's close enough for experimenting.&lt;/p&gt;
+&lt;h2 id="posts-per-year"&gt;Posts per year&lt;a aria-label="Link to this heading" class="heading-anchor" href="#posts-per-year"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Now that I have a way of breaking the posting time into a workable array of
+values, getting the number of posts per year becomes:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[:19] + &amp;quot;Z&amp;quot; | fromdate | gmtime[0]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;2015: 32
+2016: 26
+2017: 7
+2018: 1
+2019: 15
+2020: 23
+2022: 11
+2023: 49
+2024: 19
+2025: 11
+2026: 177
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Although, to be fair to &lt;code&gt;jq&lt;/code&gt;, that's kind of long-winded when I could just
+pull the year itself out of the posting time:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[:4]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="posts-by-month"&gt;Posts by month&lt;a aria-label="Link to this heading" class="heading-anchor" href="#posts-by-month"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;At this point getting the posts by month of year seems obvious too:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[5:7]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;01: 14
+02: 12
+03: 53
+04: 57
+05: 76
+06: 33
+07: 25
+08: 25
+09: 13
+10: 29
+11: 19
+12: 15
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="posts-by-weekday"&gt;Posts by weekday&lt;a aria-label="Link to this heading" class="heading-anchor" href="#posts-by-weekday"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For this, I need to go back to the more involved version of the posting date
+handling query, where I use &lt;a href="https://jqlang.org/manual/#dates" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;gmtime&lt;/code&gt;&lt;/a&gt; to
+break down the time. It turns out that the penultimate value is the day of
+the week as a number. So, while it's not quite as readable in that I don't
+have day names, I can get the values:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[:19] + &amp;quot;Z&amp;quot; | fromdate | gmtime[-2]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;0: 48
+1: 54
+2: 51
+3: 48
+4: 56
+5: 56
+6: 58
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In this case Sunday is the first day (the &lt;code&gt;0&lt;/code&gt; day here).&lt;/p&gt;
+&lt;h2 id="posts-by-hour"&gt;Posts by hour&lt;a aria-label="Link to this heading" class="heading-anchor" href="#posts-by-hour"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Getting the posts by the hour is really just a variation on the
+date-chopping query used for the posts by year and the posts by month; it's
+all there in the string version of the date.&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[11:13]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;00: 1
+06: 1
+07: 6
+08: 51
+09: 35
+10: 32
+11: 25
+12: 14
+13: 22
+14: 24
+15: 25
+16: 24
+17: 18
+18: 9
+19: 23
+20: 33
+21: 21
+22: 6
+23: 1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="first-and-last-posting-dates"&gt;First and last posting dates&lt;a aria-label="Link to this heading" class="heading-anchor" href="#first-and-last-posting-dates"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Getting the date of the first and latest post seems nice and easy:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[0:10]] | {first: min, last: max}&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;first&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2015-06-18&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;last&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2026-06-01&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Although, from what I can tell, &lt;code&gt;jq&lt;/code&gt; doesn't have anything that makes date
+arithmetic easy so working out the elapsed time between the two isn't so
+straightforward. It can be done, but it's not as easy as it might be with a
+bit of Python code, for example. The best I could come up with was:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[ .[] | .date[:19] + &amp;quot;Z&amp;quot; | fromdate ] | ((max - min) / (365.25 * 24 * 60 * 60))&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mf"&gt;10.95438841990519&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;For an approximate value of "year", &lt;a href="https://en.wikipedia.org/wiki/Leap_year" rel="noopener noreferrer" target="_blank"&gt;of
+course&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="word-counts"&gt;Word counts&lt;a aria-label="Link to this heading" class="heading-anchor" href="#word-counts"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;From here on in many of the stats that can be pulled out from the JSON, with
+&lt;code&gt;jq&lt;/code&gt;, become easier to handle. Each post has a &lt;code&gt;word_count&lt;/code&gt; property, so I
+only need to do this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .word_count] | {least: min, most: max, average: (add / length)}&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;least&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;most&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2792&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;average&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;475.0700808625337&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="reading-times"&gt;Reading times&lt;a aria-label="Link to this heading" class="heading-anchor" href="#reading-times"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A post's reading time can be accessed by &lt;code&gt;reading_time&lt;/code&gt;, so it's as easy to
+handle as the word counts:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .reading_time] | {least: min, most: max, average: (add / length)}&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;least&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;most&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;average&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;1.8921832884097034&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="gunning-fog-index"&gt;Gunning fog index&lt;a aria-label="Link to this heading" class="heading-anchor" href="#gunning-fog-index"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The Gunning fog index is available as the &lt;code&gt;gfi&lt;/code&gt; property so there's no work
+to do to figure it out. It is, however, a floating point value and I want
+counts in each integer "bucket". That can be done with
+&lt;a href="https://jqlang.org/manual/#math" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;round&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .gfi | round] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;3: 1
+4: 2
+5: 3
+6: 7
+7: 30
+8: 46
+9: 67
+10: 70
+11: 75
+12: 35
+13: 18
+14: 11
+15: 1
+16: 3
+17: 2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;As for working out the mean, median and mode... while I worked out the above
+queries by reading the docs, experimenting, and using Gemini on occasion to
+either help me understand an error message or to explain why an approach
+works the way it did, I'm going to have to leave this one 100% to Gemini.
+Here's its approach to using &lt;code&gt;jq&lt;/code&gt; to work out those averages:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+&lt;span class="s1"&gt;  [ .[] | .gfi | select(. != null) ] as $raw_gfi&lt;/span&gt;
+&lt;span class="s1"&gt;  | [ $raw_gfi[] | round ] as $rounded_gfi&lt;/span&gt;
+&lt;span class="s1"&gt;  | ($raw_gfi | length) as $count&lt;/span&gt;
+
+&lt;span class="s1"&gt;  # 1. Mean Calculation&lt;/span&gt;
+&lt;span class="s1"&gt;  | (($raw_gfi | add) / $count) as $mean&lt;/span&gt;
+
+&lt;span class="s1"&gt;  # 2. Median Calculation&lt;/span&gt;
+&lt;span class="s1"&gt;  | ($raw_gfi | sort) as $sorted_gfi&lt;/span&gt;
+&lt;span class="s1"&gt;  | (if $count % 2 == 1 then&lt;/span&gt;
+&lt;span class="s1"&gt;       $sorted_gfi[($count - 1) / 2]&lt;/span&gt;
+&lt;span class="s1"&gt;     else&lt;/span&gt;
+&lt;span class="s1"&gt;       ($sorted_gfi[($count / 2) - 1] + $sorted_gfi[$count / 2]) / 2&lt;/span&gt;
+&lt;span class="s1"&gt;     end) as $median&lt;/span&gt;
+
+&lt;span class="s1"&gt;  # 3. Mode Calculation (using the rounded values)&lt;/span&gt;
+&lt;span class="s1"&gt;  | [ $rounded_gfi&lt;/span&gt;
+&lt;span class="s1"&gt;      | group_by(.)&lt;/span&gt;
+&lt;span class="s1"&gt;      | map({gfi: .[0], frequency: length})&lt;/span&gt;
+&lt;span class="s1"&gt;      | sort_by(.frequency)&lt;/span&gt;
+&lt;span class="s1"&gt;      | reverse&lt;/span&gt;
+&lt;span class="s1"&gt;      | .[]&lt;/span&gt;
+&lt;span class="s1"&gt;    ] as $frequencies&lt;/span&gt;
+&lt;span class="s1"&gt;  | [ $frequencies[] | select(.frequency == $frequencies[0].frequency) | .gfi ] as $modes&lt;/span&gt;
+
+&lt;span class="s1"&gt;  # Final Object Assembly&lt;/span&gt;
+&lt;span class="s1"&gt;  | {&lt;/span&gt;
+&lt;span class="s1"&gt;      count: $count,&lt;/span&gt;
+&lt;span class="s1"&gt;      mean: $mean,&lt;/span&gt;
+&lt;span class="s1"&gt;      median: $median,&lt;/span&gt;
+&lt;span class="s1"&gt;      mode: $modes&lt;/span&gt;
+&lt;span class="s1"&gt;    }&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;count&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;371&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;mean&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;9.908842231503396&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;median&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;9.979198312236287&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;mode&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;As of the time of writing: that's bang on what I get in the stats. Honestly
+though, by this point, I think I'd be reaching for Python or something
+similar to do this sort of work. For sure, I can't say if this is a good
+&lt;code&gt;jq&lt;/code&gt; query, if it's in any way idiomatic, or even if it's error-free. The
+numbers match what BlogMore says though.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a aria-label="Link to this heading" class="heading-anchor" href="#conclusion"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This has been a useful exercise in getting to know a little more about &lt;code&gt;jq&lt;/code&gt;,
+and I can see myself reaching for it to do quick little jobs now that I've
+finally taken some time to dive into it. As it turns out, it's also been a
+useful little audit of the content of the stats page because I've even found
+a bug that needs addressing; so that's a bonus.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/06/02/recreating-my-blog-stats.html"/>
+    <category term="Tech"/>
+    <category term="BlogMore"/>
+    <category term="Blogging"/>
+    <category term="jq"/>
+    <category term="JSON"/>
+    <published>2026-06-02T17:01:42+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/05/23/wipr.html</id>
     <title>Wipr</title>
@@ -921,119 +1267,5 @@ together.&lt;/p&gt;
     <category term="YouTube"/>
     <category term="hardware"/>
     <published>2022-05-28T17:01:00+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2019/10/23/why-i-really-like-fish-abbreviations.html</id>
-    <title>Why I really like fish abbreviations</title>
-    <updated>2019-10-23T00:18:00+01:00</updated>
-    <content type="html">&lt;p&gt;&lt;em&gt;I'm filing this as a TIL because, while it wasn't T, I did L it very
-recently and it was a new trick that impacted on around 25 years if prior
-working practice.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;I think it must have been around 1991 when I first encountered
-&lt;a href="https://en.wikipedia.org/wiki/4DOS" rel="noopener noreferrer" target="_blank"&gt;4DOS&lt;/a&gt;. While I'd used the odd Unix
-shell here and there previously, it'd only been in passing. It was 4DOS that
-first introduced me to the power of aliases on the command line. Many of the
-aliases I set up and used in 4DOS still remain with me to this day, on
-GNU/Linux and macOS, in some form or another.&lt;/p&gt;
-&lt;p&gt;I'm sure I don't need to tell anyone reading this why aliases and cool and
-handy and pretty much vital if you do lots of work on the command line.&lt;/p&gt;
-&lt;p&gt;And then, a couple or so weeks ago, as a very recent convert to
-&lt;a href="https://fishshell.com/" rel="noopener noreferrer" target="_blank"&gt;fish&lt;/a&gt;, I discovered the
-&lt;a href="https://fishshell.com/docs/current/commands.html#abbr" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;abbr&lt;/code&gt;&lt;/a&gt; command. At
-first glance it didn't seem to make much sense. It was like
-&lt;a href="https://fishshell.com/docs/current/commands.html#alias" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;alias&lt;/code&gt;&lt;/a&gt;, only it
-expanded what you typed rather than acted as a command in its own right.&lt;/p&gt;
-&lt;p&gt;I did a bit of digging and some of it started to make sense. One thing that
-really won me over -- and while it's something that doesn't directly impact
-on me -- was the argument that it allows for a far more transparent command
-history; especially if you're likely to use a transcript of a shell session
-in a place where people might not know or have access to your aliases.&lt;/p&gt;
-&lt;p&gt;Imagine being in a position where you have loads of handy and cool aliases,
-but you also need to record what you've done so other people can follow your
-work (does it show that I sit amongst people who maintain lab notebooks?);
-it seems like it would be a bit of a bother needing to record all of the
-aliases in your own work environment up front. Without that information few
-people will be able to make sense of the recorded commands, with that
-information they'd still need to double-check what each command does.&lt;/p&gt;
-&lt;p&gt;So imagine an alias that, when used, expands in place. Then you'd get all of
-the benefit of aliases while also having a full and readable record of what
-you &lt;em&gt;actually&lt;/em&gt; did.&lt;/p&gt;
-&lt;p&gt;Seems neat!&lt;/p&gt;
-&lt;p&gt;Here's a silly example. For a long time I've carried around an alias called
-&lt;code&gt;greedy&lt;/code&gt; that runs something like this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;du&lt;span class="w"&gt; &lt;/span&gt;-hs&lt;span class="w"&gt; &lt;/span&gt;*&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sort&lt;span class="w"&gt; &lt;/span&gt;-rh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;It's pretty straightforward: I'm using &lt;code&gt;du&lt;/code&gt; to get a sense of which
-directories are using what space, and then using &lt;code&gt;sort&lt;/code&gt; to make a
-worst-to-best-offender list out of it. So I could use an alias:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;alias&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;greedy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;du -hs * | sort -rh&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The only downside to this is that, any time I run it, if I were to record
-the shell session and make it available for someone else to read, they'd
-just see:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;~/develop$&lt;span class="w"&gt; &lt;/span&gt;greedy
-&lt;span class="m"&gt;1&lt;/span&gt;.1G&lt;span class="w"&gt;    &lt;/span&gt;JavaScript
-824M&lt;span class="w"&gt;    &lt;/span&gt;C
-699M&lt;span class="w"&gt;    &lt;/span&gt;rust
-&lt;span class="w"&gt; &lt;/span&gt;93M&lt;span class="w"&gt;    &lt;/span&gt;python
-&lt;span class="w"&gt; &lt;/span&gt;33M&lt;span class="w"&gt;    &lt;/span&gt;fonts
-&lt;span class="w"&gt; &lt;/span&gt;33M&lt;span class="w"&gt;    &lt;/span&gt;elisp
-&lt;span class="m"&gt;3&lt;/span&gt;.4M&lt;span class="w"&gt;    &lt;/span&gt;zsh
-&lt;span class="m"&gt;3&lt;/span&gt;.0M&lt;span class="w"&gt;    &lt;/span&gt;misc
-&lt;span class="m"&gt;1&lt;/span&gt;.1M&lt;span class="w"&gt;    &lt;/span&gt;bash
-840K&lt;span class="w"&gt;    &lt;/span&gt;ocaml
-428K&lt;span class="w"&gt;    &lt;/span&gt;C++
-316K&lt;span class="w"&gt;    &lt;/span&gt;lisp
-172K&lt;span class="w"&gt;    &lt;/span&gt;Swift
-152K&lt;span class="w"&gt;    &lt;/span&gt;git
-132K&lt;span class="w"&gt;    &lt;/span&gt;ruby
-&lt;span class="w"&gt; &lt;/span&gt;28K&lt;span class="w"&gt;    &lt;/span&gt;ObjC
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Now, with an abbreviation rather than an alias, I'd type &lt;code&gt;greedy&lt;/code&gt; but as
-soon as I hit &lt;code&gt;Enter&lt;/code&gt; it'd get expanded to something anyone could read and
-follow:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;~/develop$&lt;span class="w"&gt; &lt;/span&gt;du&lt;span class="w"&gt; &lt;/span&gt;-hs&lt;span class="w"&gt; &lt;/span&gt;*&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sort&lt;span class="w"&gt; &lt;/span&gt;-rh
-&lt;span class="m"&gt;1&lt;/span&gt;.1G&lt;span class="w"&gt;    &lt;/span&gt;JavaScript
-824M&lt;span class="w"&gt;    &lt;/span&gt;C
-699M&lt;span class="w"&gt;    &lt;/span&gt;rust
-&lt;span class="w"&gt; &lt;/span&gt;93M&lt;span class="w"&gt;    &lt;/span&gt;python
-&lt;span class="w"&gt; &lt;/span&gt;33M&lt;span class="w"&gt;    &lt;/span&gt;fonts
-&lt;span class="w"&gt; &lt;/span&gt;33M&lt;span class="w"&gt;    &lt;/span&gt;elisp
-&lt;span class="m"&gt;3&lt;/span&gt;.4M&lt;span class="w"&gt;    &lt;/span&gt;zsh
-&lt;span class="m"&gt;3&lt;/span&gt;.0M&lt;span class="w"&gt;    &lt;/span&gt;misc
-&lt;span class="m"&gt;1&lt;/span&gt;.1M&lt;span class="w"&gt;    &lt;/span&gt;bash
-840K&lt;span class="w"&gt;    &lt;/span&gt;ocaml
-428K&lt;span class="w"&gt;    &lt;/span&gt;C++
-316K&lt;span class="w"&gt;    &lt;/span&gt;lisp
-172K&lt;span class="w"&gt;    &lt;/span&gt;Swift
-152K&lt;span class="w"&gt;    &lt;/span&gt;git
-132K&lt;span class="w"&gt;    &lt;/span&gt;ruby
-&lt;span class="w"&gt; &lt;/span&gt;28K&lt;span class="w"&gt;    &lt;/span&gt;ObjC
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This is far from the only benefit of abbreviations; for most people it
-probably isn't one of the most important ones, but I find it neat and
-compelling and this alone drove me to rework almost all of my aliases as
-abbreviations.&lt;/p&gt;
-&lt;p&gt;Having done that, I get other benefits too. For example, fish (like other
-shells) has good support for argument completion for well-known commands.
-The problem is, if you alias such a command, you don't get that completion.
-With an abbreviation though you do! All you need to do is type the
-abbreviation, hit &lt;code&gt;space&lt;/code&gt; and it'll expand to the underlying command and
-then the full range of completion can happen.&lt;/p&gt;
-&lt;p&gt;There's also one last reason why I like abbreviations over aliases, and it's
-kind of a silly one, but in a good way. It's actually fun to see what you
-type magically expand as you do things, it makes you look like you can type
-even faster than you normally can! ;-)&lt;/p&gt;
-&lt;p&gt;PS: If you've never tried &lt;code&gt;fish&lt;/code&gt; before and you're curious, it's easy to
-&lt;a href="https://rootnroll.com/d/fish-shell/" rel="noopener noreferrer" target="_blank"&gt;try in your browser&lt;/a&gt;.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2019/10/23/why-i-really-like-fish-abbreviations.html"/>
-    <category term="Tech"/>
-    <category term="fish"/>
-    <category term="shell"/>
-    <published>2019-10-23T00:18:00+01:00</published>
   </entry>
 </feed>
