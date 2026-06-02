@@ -6,7 +6,7 @@ date: 2019-11-17 11:36:00+0000
 ---
 
 By coincidence, in a couple of different places over the last couple of
-weeks, the subject of *"how do I progress in leaning to program?"* has
+weeks, the subject of *"how do I progress in learning to program?"* has
 cropped up. For me, I think the approaches and solutions tend to be the same
 for when I want to get my head around a new language: read good examples of
 idiomatic code, read other related materials, find a problem you care about
