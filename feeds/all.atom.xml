@@ -2,11 +2,54 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-06-02T16:04:44.396079+00:00</updated>
+  <updated>2026-06-03T07:49:08.905595+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/06/03/blogmore-v2-37-0.html</id>
+    <title>BlogMore v2.37.0</title>
+    <updated>2026-06-03T08:30:11+01:00</updated>
+    <content type="html">&lt;p&gt;I've just released &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
+&lt;a href="https://blogmore.davep.dev/changelog/#v2370" rel="noopener noreferrer" target="_blank"&gt;v2.37.0&lt;/a&gt;. This is a small
+update that fixes a bug and also improves the way that warnings and errors
+are emitted.&lt;/p&gt;
+&lt;p&gt;The bugfix comes from &lt;a href="https://blog.davep.org/2026/06/02/recreating-my-blog-stats.html"&gt;yesterday's
+post&lt;/a&gt; where I noticed that the
+&lt;a href="https://blog.davep.org/stats/"&gt;stats page&lt;/a&gt; was misreporting the number of tags on the blog. The
+cause of the problem was that, within reason, a single tag can be
+represented in a number of different ways. In the &lt;code&gt;tags&lt;/code&gt; frontmatter you
+could write any of &lt;code&gt;Python Coding&lt;/code&gt;, &lt;code&gt;Python coding&lt;/code&gt;, &lt;code&gt;python coding&lt;/code&gt;,
+&lt;code&gt;Python-Coding&lt;/code&gt;, etc and they would all be seen as the tag &lt;code&gt;python-coding&lt;/code&gt;.
+This gives some useful flexibility and also ensures that the actual tag is
+URL-safe.&lt;/p&gt;
+&lt;p&gt;The problem was that the stats page was counting the list of unique tags, as
+they were typed into posts, rather than the unique list of &lt;em&gt;"made safe"&lt;/em&gt;
+tags. So &lt;a href="https://github.com/davep/blogmore/pull/582/changes" rel="noopener noreferrer" target="_blank"&gt;that is now fixed, along with categories
+too&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The other main change in this release is that warnings and errors that might
+get printed during post parsing and other operations are now printed to
+&lt;a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_error_(stderr)" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;stderr&lt;/code&gt;&lt;/a&gt;.
+Until now everything was simply printed to
+&lt;a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_output_(stdout)" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;stdout&lt;/code&gt;&lt;/a&gt;,
+which was fine until I introduced the &lt;a href="https://blogmore.davep.dev/command_line/#dump" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;links
+dump&lt;/code&gt;&lt;/a&gt; and &lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;main
+&lt;code&gt;dump&lt;/code&gt;&lt;/a&gt;
+&lt;a href="https://blogmore.davep.dev/command_line/" rel="noopener noreferrer" target="_blank"&gt;commands&lt;/a&gt;. With the addition of
+those commands, you're far more likely to want to redirect the output to a
+file. So if there's some sort of warning when parsing a post, &lt;em&gt;that&lt;/em&gt; would
+get dropped into the middle of the JSON output (if using &lt;code&gt;dump&lt;/code&gt;), resulting
+in a JSON file that can't be parsed.&lt;/p&gt;
+&lt;p&gt;Now all warnings and errors will go to &lt;code&gt;stderr&lt;/code&gt;.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/06/03/blogmore-v2-37-0.html"/>
+    <category term="Coding"/>
+    <category term="BlogMore"/>
+    <category term="Coding"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <published>2026-06-03T08:30:11+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/06/02/recreating-my-blog-stats.html</id>
     <title>Recreating my blog stats</title>
@@ -1316,45 +1359,5 @@ This is a useful learning exercise for me.&lt;/p&gt;</content>
     <category term="microformats"/>
     <category term="web"/>
     <published>2026-05-23T10:28:56+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/05/22/blogmore-v2-26-0.html</id>
-    <title>BlogMore v2.26.0</title>
-    <updated>2026-05-22T17:01:02+01:00</updated>
-    <content type="html">&lt;p&gt;The &lt;a href="https://blog.davep.org/2026/05/20/blogmore-v2-25-0.html"&gt;previous release of BlogMore&lt;/a&gt; had
-some work that improved the HTML, ensuring that &lt;a href="https://validator.w3.org" rel="noopener noreferrer" target="_blank"&gt;the HTML
-validator&lt;/a&gt; was happy with the generated code.
-Yesterday evening I ran it over more of the pages, and found a couple more
-things that made sense to address.&lt;/p&gt;
-&lt;p&gt;So &lt;a href="https://blogmore.davep.dev/changelog/#v2260" rel="noopener noreferrer" target="_blank"&gt;v2.26.0&lt;/a&gt; takes this a
-little further and tries to clean more things up. Changes include:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The comment email invitation box is now created with a &lt;code&gt;div&lt;/code&gt; rather than a
-  &lt;code&gt;section&lt;/code&gt;, resolving a validation error about there being no &lt;code&gt;h2&lt;/code&gt; or
-  similar inside the &lt;code&gt;section&lt;/code&gt; (because we don't need any kind of heading in
-  there).&lt;/li&gt;
-&lt;li&gt;Cleaned up an error relating to the misuse of an &lt;code&gt;aria-label&lt;/code&gt; in the &lt;a href="https://blog.davep.org/graph/"&gt;graph
-  page&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Cleaned up an error relating to the misuse of an &lt;code&gt;aria-label&lt;/code&gt; in the &lt;a href="https://blog.davep.org/stats/"&gt;stats
-  page&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Removed the &lt;code&gt;h2&lt;/code&gt; elements from the sidebar, making them into &lt;code&gt;div&lt;/code&gt;s with
-  the same style. This leaves headings as something that will only appear in
-  the main body of any page or post.&lt;/li&gt;
-&lt;li&gt;Added some heading-demoting to the rendering of posts so that the heading
-  structure of any given post is retained when it's part of any of the
-  archive-style pages (date archives, category archives, tag archives, etc).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;While not all of the above were being reported as validation errors, all of
-them should result in HTML that better fits what I'd want in the first
-place.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/05/22/blogmore-v2-26-0.html"/>
-    <category term="Coding"/>
-    <category term="BlogMore"/>
-    <category term="Coding"/>
-    <category term="HTML"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="web"/>
-    <published>2026-05-22T17:01:02+01:00</published>
   </entry>
 </feed>

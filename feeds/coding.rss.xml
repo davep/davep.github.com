@@ -8,7 +8,49 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 02 Jun 2026 16:04:44 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jun 2026 07:49:08 +0000</lastBuildDate>
+    <item>
+      <title>BlogMore v2.37.0</title>
+      <link>https://blog.davep.org/2026/06/03/blogmore-v2-37-0.html</link>
+      <description>&lt;p&gt;I've just released &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
+&lt;a href="https://blogmore.davep.dev/changelog/#v2370" rel="noopener noreferrer" target="_blank"&gt;v2.37.0&lt;/a&gt;. This is a small
+update that fixes a bug and also improves the way that warnings and errors
+are emitted.&lt;/p&gt;
+&lt;p&gt;The bugfix comes from &lt;a href="https://blog.davep.org/2026/06/02/recreating-my-blog-stats.html"&gt;yesterday's
+post&lt;/a&gt; where I noticed that the
+&lt;a href="https://blog.davep.org/stats/"&gt;stats page&lt;/a&gt; was misreporting the number of tags on the blog. The
+cause of the problem was that, within reason, a single tag can be
+represented in a number of different ways. In the &lt;code&gt;tags&lt;/code&gt; frontmatter you
+could write any of &lt;code&gt;Python Coding&lt;/code&gt;, &lt;code&gt;Python coding&lt;/code&gt;, &lt;code&gt;python coding&lt;/code&gt;,
+&lt;code&gt;Python-Coding&lt;/code&gt;, etc and they would all be seen as the tag &lt;code&gt;python-coding&lt;/code&gt;.
+This gives some useful flexibility and also ensures that the actual tag is
+URL-safe.&lt;/p&gt;
+&lt;p&gt;The problem was that the stats page was counting the list of unique tags, as
+they were typed into posts, rather than the unique list of &lt;em&gt;"made safe"&lt;/em&gt;
+tags. So &lt;a href="https://github.com/davep/blogmore/pull/582/changes" rel="noopener noreferrer" target="_blank"&gt;that is now fixed, along with categories
+too&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The other main change in this release is that warnings and errors that might
+get printed during post parsing and other operations are now printed to
+&lt;a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_error_(stderr)" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;stderr&lt;/code&gt;&lt;/a&gt;.
+Until now everything was simply printed to
+&lt;a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_output_(stdout)" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;stdout&lt;/code&gt;&lt;/a&gt;,
+which was fine until I introduced the &lt;a href="https://blogmore.davep.dev/command_line/#dump" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;links
+dump&lt;/code&gt;&lt;/a&gt; and &lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;main
+&lt;code&gt;dump&lt;/code&gt;&lt;/a&gt;
+&lt;a href="https://blogmore.davep.dev/command_line/" rel="noopener noreferrer" target="_blank"&gt;commands&lt;/a&gt;. With the addition of
+those commands, you're far more likely to want to redirect the output to a
+file. So if there's some sort of warning when parsing a post, &lt;em&gt;that&lt;/em&gt; would
+get dropped into the middle of the JSON output (if using &lt;code&gt;dump&lt;/code&gt;), resulting
+in a JSON file that can't be parsed.&lt;/p&gt;
+&lt;p&gt;Now all warnings and errors will go to &lt;code&gt;stderr&lt;/code&gt;.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/03/blogmore-v2-37-0.html</guid>
+      <category>Coding</category>
+      <category>BlogMore</category>
+      <category>Coding</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <pubDate>Wed, 03 Jun 2026 08:30:11 +0100</pubDate>
+    </item>
     <item>
       <title>BlogMore v2.36.0</title>
       <link>https://blog.davep.org/2026/06/01/blogmore-v2-36-0.html</link>
@@ -1064,80 +1106,6 @@ WebP&lt;/a&gt;.&lt;/p&gt;</description>
       <category>PyPI</category>
       <category>Python</category>
       <pubDate>Sun, 10 May 2026 10:32:12 +0100</pubDate>
-    </item>
-    <item>
-      <title>More syncing GitHub to GitLab and Codeberg</title>
-      <link>https://blog.davep.org/2026/05/10/more-syncing-github-to-gitlab-and-codeberg.html</link>
-      <description>&lt;p&gt;Following on from &lt;a href="https://blog.davep.org/2026/05/08/syncing-github-to-gitlab-and-codeberg.html"&gt;my first post about
-this&lt;/a&gt;, I've tweaked
-&lt;a href="https://github.com/davep/setup-forge-sync" rel="noopener noreferrer" target="_blank"&gt;the script I'm using to backup a repo to GitLab and
-Codeberg&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Check if the current directory is a Git repository&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;!&lt;span class="w"&gt; &lt;/span&gt;git&lt;span class="w"&gt; &lt;/span&gt;rev-parse&lt;span class="w"&gt; &lt;/span&gt;--is-inside-work-tree&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;/dev/null&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Error: This directory is not a Git repository.&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
-&lt;span class="k"&gt;fi&lt;/span&gt;
-
-&lt;span class="nv"&gt;REPO_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
-
-&lt;span class="c1"&gt;# If no repository name was provided, try to get it from the origin remote&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-z&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$REPO_NAME&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;ORIGIN_URL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt;get-url&lt;span class="w"&gt; &lt;/span&gt;origin&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;/dev/null&lt;span class="k"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-n&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$ORIGIN_URL&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nv"&gt;REPO_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;basename&lt;span class="w"&gt; &lt;/span&gt;-s&lt;span class="w"&gt; &lt;/span&gt;.git&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$ORIGIN_URL&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Error: No repository name provided and no &amp;#39;origin&amp;#39; remote found.&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Usage: &lt;/span&gt;&lt;span class="nv"&gt;$0&lt;/span&gt;&lt;span class="s2"&gt; &amp;lt;repo-name&amp;gt;&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;fi&lt;/span&gt;
-&lt;span class="k"&gt;fi&lt;/span&gt;
-
-&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Configuring multi-forge backup sync for: &lt;/span&gt;&lt;span class="nv"&gt;$REPO_NAME&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Set up the remote called backups. Anchor it to Codeberg.&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt;remove&lt;span class="w"&gt; &lt;/span&gt;backups&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;/dev/null&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;backups&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ssh://git@codeberg.org/davep/&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;REPO_NAME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.git&amp;quot;&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Set up the push URLs.&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt;set-url&lt;span class="w"&gt; &lt;/span&gt;--push&lt;span class="w"&gt; &lt;/span&gt;backups&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ssh://git@codeberg.org/davep/&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;REPO_NAME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.git&amp;quot;&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt;set-url&lt;span class="w"&gt; &lt;/span&gt;--add&lt;span class="w"&gt; &lt;/span&gt;--push&lt;span class="w"&gt; &lt;/span&gt;backups&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;git@gitlab.com:davep/&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;REPO_NAME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.git&amp;quot;&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Only ever backup main.&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;config&lt;span class="w"&gt; &lt;/span&gt;remote.backups.push&lt;span class="w"&gt; &lt;/span&gt;refs/heads/main:refs/heads/main
-
-&lt;span class="c1"&gt;# Also backup all tags.&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;config&lt;span class="w"&gt; &lt;/span&gt;--add&lt;span class="w"&gt; &lt;/span&gt;remote.backups.push&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;refs/tags/*:refs/tags/*&amp;#39;&lt;/span&gt;
-
-&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;----------------------------------------------------&amp;quot;&lt;/span&gt;
-&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Backups configured:&amp;quot;&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;remote&lt;span class="w"&gt; &lt;/span&gt;-v
-&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;----------------------------------------------------&amp;quot;&lt;/span&gt;
-&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;To perform the initial sync, run: git push backups&amp;quot;&lt;/span&gt;
-
-&lt;span class="c1"&gt;### setup-forge-sync ends here&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The changes from last time include:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The repo name now defaults to whatever is used for GitHub, so I don't have
-  to copy/paste it or type it out.&lt;/li&gt;
-&lt;li&gt;It now backs up all the tags too.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I've been running with this for a couple of days now and it's proving really
-useful. Well, when &lt;a href="https://blog.davep.org/tag/codeberg/"&gt;Codeberg&lt;/a&gt; is available to push anything
-to...&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/05/10/more-syncing-github-to-gitlab-and-codeberg.html</guid>
-      <category>Coding</category>
-      <category>Codeberg</category>
-      <category>Coding</category>
-      <category>FOSS</category>
-      <category>GitHub</category>
-      <category>GitLab</category>
-      <category>backups</category>
-      <category>git</category>
-      <pubDate>Sun, 10 May 2026 08:58:21 +0100</pubDate>
     </item>
   </channel>
 </rss>
