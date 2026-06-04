@@ -1,5 +1,6 @@
 ---
 title: About
+show_toc: false
 ---
 
 ## About the site
