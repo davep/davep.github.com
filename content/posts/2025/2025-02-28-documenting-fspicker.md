@@ -4,6 +4,7 @@ category: Coding
 tags: Python, textual, documentation, GitHub, MkDocs, mkdocstrings, gh-pages
 date: 2025-02-28 11:45:00 +0000
 cover: /attachments/2025/02/28/good.webp
+show_toc: false
 ---
 
 I've just made a wee update to
