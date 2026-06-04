@@ -1,5 +1,6 @@
 ---
 title: AI
+show_toc: false
 ---
 
 ## Use of AI
