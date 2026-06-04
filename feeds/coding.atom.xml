@@ -2,11 +2,90 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-06-03T07:49:08.913146+00:00</updated>
+  <updated>2026-06-04T12:27:36.828403+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/06/04/blogmore-v2-38-0.html</id>
+    <title>BlogMore v2.38.0</title>
+    <updated>2026-06-04T13:21:38+01:00</updated>
+    <content type="html">&lt;p&gt;&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; has been bumped to
+&lt;a href="https://blogmore.davep.dev/changelog/#v2380" rel="noopener noreferrer" target="_blank"&gt;v2.38.0&lt;/a&gt;. This release
+includes a small cosmetic change to the &lt;a href="https://blog.davep.org/stats/"&gt;stats page&lt;/a&gt;, and also adds
+a fairly big cosmetic feature with some comprehensive control.&lt;/p&gt;
+&lt;p&gt;First, the change to the stats page: here I've changed the formatting of
+numbers a little so that numbers that are in the thousands or higher get
+better formatting. So rather than a count of something being &lt;code&gt;1234&lt;/code&gt; it'll
+now display as &lt;code&gt;1,234&lt;/code&gt;. Hardly a groundbreaking change, but something I'd
+omitted some time ago and yesterday evening it came to mind. This should
+make the stats page just a little easier on the eye.&lt;/p&gt;
+&lt;p&gt;The second change is a reasonably big one, with some extra configuration
+file and frontmatter additions.&lt;/p&gt;
+&lt;p&gt;BlogMore has long supported auto-generation of a table of contents in the
+body of a post by including a &lt;code&gt;[TOC]&lt;/code&gt; shortcut. Generally I'm not a fan of
+using this approach, but I can see the utility. Yesterday evening I added a
+new approach to showing a table of contents that means you don't need to
+have the list of links within the post.&lt;/p&gt;
+&lt;p&gt;Starting with this version, if a page or post has one or more headings in
+it, a table of contents will appear in the "dead space" on the right-hand
+side of the page, like this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ToC to the right" height="636" loading="lazy" src="https://blog.davep.org/attachments/2026/06/04/toc.webp#centre" width="966" /&gt;&lt;/p&gt;
+&lt;p&gt;This follows the same kind of style as is used for the year and month index
+in the &lt;a href="https://blog.davep.org/archives/"&gt;archives page&lt;/a&gt;. However, whereas in the archives the
+index just disappears (by design) if you're on a smaller screen, this new
+table of contents will switch to being inline in the page or post, in a form
+that is collapsed:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Collapsed inline ToC" height="391" loading="lazy" src="https://blog.davep.org/attachments/2026/06/04/toc-inline-collapsed.webp#centre" width="572" /&gt;&lt;/p&gt;
+&lt;p&gt;If the user clicks on it, it expands:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Expanded inline ToC" height="629" loading="lazy" src="https://blog.davep.org/attachments/2026/06/04/toc-inline-expanded.webp#centre" width="569" /&gt;&lt;/p&gt;
+&lt;p&gt;Given that this is a fairly big cosmetic change that could affect many pages
+and posts on a blog, I've built in as much control as makes sense. This new
+ToC approach is on by default, but can be turned off. First off, there is &lt;a href="https://blogmore.davep.dev/configuration/#show_toc" rel="noopener noreferrer" target="_blank"&gt;a
+&lt;code&gt;show_toc&lt;/code&gt; configuration file
+setting&lt;/a&gt; which controls
+if the feature should be on or off, by default, site-wide. It is set to
+&lt;code&gt;true&lt;/code&gt; by default.&lt;/p&gt;
+&lt;p&gt;Because there might be times where you want to control this at the page or
+post level, there is also &lt;a href="https://blogmore.davep.dev/writing_a_post/#show_toc" rel="noopener noreferrer" target="_blank"&gt;a &lt;code&gt;show_toc&lt;/code&gt; frontmatter
+property&lt;/a&gt; too. This
+&lt;em&gt;always&lt;/em&gt; overrides the global setting in the configuration file.&lt;/p&gt;
+&lt;p&gt;On top of this, I can imagine that someone&lt;sup id="fnref:376-1"&gt;&lt;a class="footnote-ref" href="#fn:376-1"&gt;1&lt;/a&gt;&lt;/sup&gt; might also want to have the
+right-side floating ToC, but never have the inline ToC showing on smaller
+displays. With this in mind I've also added a &lt;code&gt;show_toc_inline&lt;/code&gt;
+&lt;a href="https://blogmore.davep.dev/configuration/#show_toc_inline" rel="noopener noreferrer" target="_blank"&gt;configuration
+option&lt;/a&gt; and
+&lt;a href="https://blogmore.davep.dev/writing_a_post/#show_toc_inline" rel="noopener noreferrer" target="_blank"&gt;frontmatter
+property&lt;/a&gt;. These
+just control if the inline version of the ToC will ever be shown. To be
+clear: if the ToC is disabled (either site-wide or via a specific page or
+post's frontmatter), this inline-specific setting is ignored -- the ToC will
+never show. But if &lt;code&gt;show_toc&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt; then &lt;code&gt;show_toc_inline&lt;/code&gt; controls if
+the inline ToC ever appears on smaller displays.&lt;/p&gt;
+&lt;p&gt;I fear I might have made it sound more complicated than it is. Apologies if
+that's the case. I'm confident that someone needing this level of control
+will make sense of it easily enough.&lt;/p&gt;
+&lt;p&gt;Also, just to be clear: the &lt;code&gt;[TOC]&lt;/code&gt; shortcut is totally unaffected by any of
+this. If you have &lt;code&gt;[TOC]&lt;/code&gt; in your post, that version of the table of
+contents will &lt;em&gt;always&lt;/em&gt; be generated. I didn't think it made sense to
+override that explicit markup choice.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:376-1"&gt;
+&lt;p&gt;Me, I'm thinking it might be me.&amp;#160;&lt;a class="footnote-backref" href="#fnref:376-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/06/04/blogmore-v2-38-0.html"/>
+    <category term="Coding"/>
+    <category term="BlogMore"/>
+    <category term="Coding"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <published>2026-06-04T13:21:38+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/06/03/blogmore-v2-37-0.html</id>
     <title>BlogMore v2.37.0</title>
@@ -1065,64 +1144,5 @@ of the code.&lt;/p&gt;</content>
     <category term="Gemini"/>
     <category term="Python"/>
     <published>2026-05-11T12:30:25+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/05/10/blogmore-v2-21-0.html</id>
-    <title>BlogMore v2.21.0</title>
-    <updated>2026-05-10T10:32:12+01:00</updated>
-    <content type="html">&lt;p&gt;After noticing a broken link in a post yesterday, I got to thinking that it
-would be useful to add a linter to &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;.
-So I've released &lt;a href="https://blogmore.davep.dev/changelog/#v2210" rel="noopener noreferrer" target="_blank"&gt;v2.21.0&lt;/a&gt;
-which adds &lt;a href="https://blogmore.davep.dev/linting/" rel="noopener noreferrer" target="_blank"&gt;linting support&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;A number of things are checked and the results are broken down into things
-that are errors or warnings. Errors result from any of these checks:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Ensures all posts and pages have valid YAML frontmatter. If a file cannot
-  be parsed, it is reported as an error.&lt;/li&gt;
-&lt;li&gt;Scans the generated HTML for links to non-existent internal paths (other
-  posts, pages, categories, tags, archives, site features like search, or
-  files in &lt;code&gt;extras/&lt;/code&gt;).&lt;/li&gt;
-&lt;li&gt;Checks that all &lt;code&gt;&amp;lt;img&amp;gt;&lt;/code&gt; sources resolve to valid
-  internal paths or files in the &lt;code&gt;extras/&lt;/code&gt; directory.&lt;/li&gt;
-&lt;li&gt;Checks that the &lt;code&gt;cover&lt;/code&gt; property in a post or page frontmatter points to a
-  valid resource.&lt;/li&gt;
-&lt;li&gt;Verifies that all page slugs listed in &lt;code&gt;sidebar_pages&lt;/code&gt; actually exist.&lt;/li&gt;
-&lt;li&gt;Checks that all internal-looking URLs in the &lt;code&gt;links:&lt;/code&gt; and &lt;code&gt;socials:&lt;/code&gt;
-  configuration settings point to valid targets.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;On the other hand, the following just result in a warning:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Flags if a post is missing a &lt;code&gt;title&lt;/code&gt;, &lt;code&gt;category&lt;/code&gt;, &lt;code&gt;tags&lt;/code&gt;, or a &lt;code&gt;date&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Reports if a post's &lt;code&gt;date&lt;/code&gt; or &lt;code&gt;modified&lt;/code&gt; date is set in the future.&lt;/li&gt;
-&lt;li&gt;Notes if a post's &lt;code&gt;modified&lt;/code&gt; date is earlier than its original publication
-  &lt;code&gt;date&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Identifies if two or more posts share the exact same title.&lt;/li&gt;
-&lt;li&gt;Flags inline images missing an &lt;code&gt;alt&lt;/code&gt; attribute, or those with an
-  empty/whitespace-only &lt;code&gt;alt&lt;/code&gt; attribute.&lt;/li&gt;
-&lt;li&gt;If &lt;a href="https://blogmore.davep.dev/configuration/#clean_urls" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;clean_urls&lt;/code&gt;&lt;/a&gt; is
-  enabled, warns if internal links point explicitly to &lt;code&gt;index.html&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Reports internal links using the full &lt;code&gt;site_url&lt;/code&gt; (e.g.,
-  &lt;code&gt;https://example.com/path/&lt;/code&gt;) instead of a root-relative path (&lt;code&gt;/path/&lt;/code&gt;).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I feel like all of these cover most of the things that are low-cost to
-detect but have a positive impact on the state of the content of a blog.&lt;/p&gt;
-&lt;p&gt;One thing I've &lt;em&gt;not&lt;/em&gt; done is any sort of checking of external links. This
-would be costly and could possibly have unintended consequences that I don't
-want to be messing with (perhaps a tool to &lt;em&gt;export&lt;/em&gt; the list of external
-links for checking could be useful, at some point).&lt;/p&gt;
-&lt;p&gt;Having run this against this blog, I did find some things that needed
-cleaning up, mostly absolute links that could be turned into root-relative
-links (always good for making the content portable).&lt;/p&gt;
-&lt;p&gt;I'm going to make this a standard part of my &lt;em&gt;"I'm ready to publish"&lt;/em&gt; check
-for this blog, and it should also be helpful as I &lt;a href="https://blog.davep.org/2026/05/06/the-webp-migration-is-under-way.html"&gt;carry on migrating the
-images in the blog over to
-WebP&lt;/a&gt;.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/05/10/blogmore-v2-21-0.html"/>
-    <category term="Coding"/>
-    <category term="BlogMore"/>
-    <category term="Coding"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <published>2026-05-10T10:32:12+01:00</published>
   </entry>
 </feed>
