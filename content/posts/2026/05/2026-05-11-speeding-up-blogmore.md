@@ -3,6 +3,7 @@ title: Speeding up BlogMore
 date: 2026-05-11 12:30:25+0100
 category: Coding
 tags: AI, BlogMore, Coding, Gemini, Python
+show_toc: false
 ---
 
 As [mentioned recently](/2026/05/09/blogmore-v2-20-0.html),
