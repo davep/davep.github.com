@@ -2,11 +2,94 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-06-04T14:41:48.604562+00:00</updated>
+  <updated>2026-06-05T08:16:54.450396+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/06/05/blogmore-v2-39-0.html</id>
+    <title>BlogMore v2.39.0</title>
+    <updated>2026-06-05T08:36:57+01:00</updated>
+    <content type="html">&lt;p&gt;&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
+&lt;a href="https://blogmore.davep.dev/changelog/#v2390" rel="noopener noreferrer" target="_blank"&gt;v2.39.0&lt;/a&gt; has a couple of
+changes, one more or less cosmetic, the other a new feature that I probably
+should have added right near the start of the project.&lt;/p&gt;
+&lt;p&gt;First, the cosmetic: in pages and posts, when you use headings (&lt;code&gt;#&lt;/code&gt;, &lt;code&gt;##&lt;/code&gt;,
+etc.), a &lt;code&gt;¶&lt;/code&gt; is added to the end of each heading, along with some
+show-on-mouse-hover styling, to make it easy to grab the anchor of a
+particular section of a page&lt;sup id="fnref:377-1"&gt;&lt;a class="footnote-ref" href="#fn:377-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. A problem I'd noticed with this recently
+is that the &lt;code&gt;¶&lt;/code&gt; shows up in the &lt;a href="https://blog.davep.org/search/"&gt;search&lt;/a&gt; text, and also in the
+content of all the feeds. While not a problem as such, it felt untidy.&lt;/p&gt;
+&lt;p&gt;So, with this release that particular &lt;code&gt;¶&lt;/code&gt; character is stripped from the
+search index and from the feeds.&lt;/p&gt;
+&lt;p&gt;The second change is a facility that should be useful if you have legacy
+URLs that you really must have land on an actual page or post: redirection
+support.&lt;/p&gt;
+&lt;p&gt;This facility is provided by &lt;a href="https://blogmore.davep.dev/writing_a_post/#redirect_from" rel="noopener noreferrer" target="_blank"&gt;a new &lt;code&gt;redirect_from&lt;/code&gt; frontmatter
+property&lt;/a&gt;. From
+now on, a page or a post can declare which URLs should be redirected to it.
+So, if you have a post that, &lt;a href="https://blogmore.davep.dev/configuration/#post_path" rel="noopener noreferrer" target="_blank"&gt;given your current post location
+setup&lt;/a&gt;, would land at
+&lt;code&gt;/2006/06/06/hello-world/&lt;/code&gt;, but in some other incarnation of your blog lived
+at &lt;code&gt;/posts/2006-06-06-hello-world.html&lt;/code&gt;, you can now set this in the
+frontmatter:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;redirect_from&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;/posts/2006-06-06-hello-world.html&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and the old URL will be redirected to the new one. This is achieved by
+simply creating a very minimal HTML file at the old location, which contains
+a redirection. The content of the file will end up looking something like
+this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="html"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;meta&lt;/span&gt; &lt;span class="na"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Redirecting...&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;link&lt;/span&gt; &lt;span class="na"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;canonical&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://example.com/2006/06/06/hello-world/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;meta&lt;/span&gt; &lt;span class="na"&gt;http-equiv&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;refresh&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0; url=/2006/06/06/hello-world/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Redirecting to &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/2006/06/06/hello-world/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;/2006/06/06/hello-world/&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;...&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If a blog has migrated between locations and/or generation tools over the
+years, and there are a number of different legacy URLs out there still
+pointing to a post you really want to keep readable to all, you can also
+redirect from multiple URLs:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;redirect_from&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;/posts/2006-06-06-hello-world.html&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;/posts/2006/06/06/hello-world.html&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;/my/really/old/blog/structure/hello-world-06-06-06.html&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;While all of this would have been possible anyway, by creating the
+appropriate file, with the appropriate content, in &lt;a href="https://blogmore.davep.dev/setting_up_your_blog/#the-extras-directory" rel="noopener noreferrer" target="_blank"&gt;the &lt;code&gt;extras&lt;/code&gt;
+directory&lt;/a&gt;,
+this approach helps automate the process and also means that the redirection
+information lives with the page or post being redirected to.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:377-1"&gt;
+&lt;p&gt;The &lt;a href="https://blog.davep.org/2026/06/04/blogmore-v2-38-0.html"&gt;recently-added floating ToC&lt;/a&gt;
+is another way to do this now too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:377-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/06/05/blogmore-v2-39-0.html"/>
+    <category term="Coding"/>
+    <category term="BlogMore"/>
+    <category term="Coding"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="RSS"/>
+    <category term="SEO"/>
+    <category term="atom"/>
+    <published>2026-06-05T08:36:57+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/06/04/blogmore-v2-38-0.html</id>
     <title>BlogMore v2.38.0</title>
@@ -566,6 +649,7 @@ one is set) when there is no &lt;code&gt;cover&lt;/code&gt;.&lt;/p&gt;</content>
     <category term="JSON-LD"/>
     <category term="PyPI"/>
     <category term="Python"/>
+    <category term="SEO"/>
     <category term="microformats"/>
     <category term="web"/>
     <published>2026-05-24T09:03:29+01:00</published>
@@ -600,6 +684,7 @@ This is a useful learning exercise for me.&lt;/p&gt;</content>
     <category term="JSON-LD"/>
     <category term="PyPI"/>
     <category term="Python"/>
+    <category term="SEO"/>
     <category term="microformats"/>
     <category term="web"/>
     <published>2026-05-23T10:28:56+01:00</published>
@@ -1026,123 +1111,5 @@ enhancement.&amp;#160;&lt;a class="footnote-backref" href="#fnref:299-3" title="
     <category term="PyPI"/>
     <category term="Python"/>
     <published>2026-05-13T13:53:04+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/05/11/speeding-up-blogmore.html</id>
-    <title>Speeding up BlogMore</title>
-    <updated>2026-05-11T12:30:25+01:00</updated>
-    <content type="html">&lt;p&gt;As &lt;a href="https://blog.davep.org/2026/05/09/blogmore-v2-20-0.html"&gt;mentioned recently&lt;/a&gt;,
-&lt;a href="https://www.yakshaving.co.uk/" rel="noopener noreferrer" target="_blank"&gt;Andy&lt;/a&gt; did a nifty bit of testing of
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; to &lt;a href="https://www.yakshaving.co.uk/posts/blogmore-performance/" rel="noopener noreferrer" target="_blank"&gt;measure the performance hit of
-each of the optional generation
-features&lt;/a&gt;.
-Performance is something I haven't really spent much time thinking about; I
-cared more about how the result looked than I did about how quickly a site
-got generated.&lt;/p&gt;
-&lt;p&gt;I seem to remember that, early on, I did have a bit of a play with trying to
-get Copilot to tackle the idea of parallel generation of parts of the site,
-but &lt;a href="https://github.com/davep/blogmore/pull/283" rel="noopener noreferrer" target="_blank"&gt;I didn't seem to get any sort of win out of
-it&lt;/a&gt; so I closed the PR and gave
-up on the idea.&lt;/p&gt;
-&lt;p&gt;Now though, especially having added the elapsed time of each step to the
-progress report during generation, I am curious about what wins there are.
-One that came to mind right away, and I have been considering dealing with
-for a wee while, &lt;a href="https://fosstodon.org/@davep/116540338542474954" rel="noopener noreferrer" target="_blank"&gt;is the fact that every generation downloads the
-FontAwesome metadata&lt;/a&gt;.
-Caching that would be a simple win, for example.&lt;/p&gt;
-&lt;p&gt;But, if I'm going to do this, it makes sense that I stick to the spirit of
-this project and get one or more agents to tackle the problem. So I asked
-&lt;a href="https://blog.davep.org/tag/gemini/"&gt;Gemini&lt;/a&gt; CLI to look over the codebase and give me some big
-easy wins. I made clear I didn't want it to do any work yet, I just wanted
-it to report back what it could find.&lt;/p&gt;
-&lt;p&gt;The result made a lot of sense. Here's what it said:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;h2 id="performance-optimization-recommendations-for-blogmore"&gt;Performance Optimization Recommendations for BlogMore&lt;a aria-label="Link to this heading" class="heading-anchor" href="#performance-optimization-recommendations-for-blogmore"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I have conducted a comprehensive review of the &lt;code&gt;blogmore&lt;/code&gt; codebase and
-identified several areas where measurable and significant speedups can be
-achieved, particularly for larger sites.&lt;/p&gt;
-&lt;h3 id="1-backlink-snippet-extraction-highest-impact"&gt;1. Backlink Snippet Extraction (Highest Impact)&lt;a aria-label="Link to this heading" class="heading-anchor" href="#1-backlink-snippet-extraction-highest-impact"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The most significant bottleneck is in &lt;code&gt;src/blogmore/backlinks.py&lt;/code&gt;. The
-&lt;code&gt;build_backlink_map&lt;/code&gt; function iterates through every internal link in every
-post. For each link, it calls &lt;code&gt;_extract_snippet&lt;/code&gt;, which &lt;strong&gt;re-parses the
-entire Markdown content of the source post&lt;/strong&gt; to generate a plain-text
-snippet.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The Issue:&lt;/strong&gt; If a post has 20 internal links, it is parsed 20 times just
-  for backlinks.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The Win:&lt;/strong&gt; Modify the logic to insert unique markers for &lt;em&gt;all&lt;/em&gt; links in
-  a post and perform a single Markdown-to-plain-text conversion per post.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="2-redundant-markdown-parsing-for-metadata"&gt;2. Redundant Markdown Parsing for Metadata&lt;a aria-label="Link to this heading" class="heading-anchor" href="#2-redundant-markdown-parsing-for-metadata"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The &lt;code&gt;Post&lt;/code&gt; object in &lt;code&gt;src/blogmore/parser.py&lt;/code&gt; has properties like
-&lt;code&gt;description&lt;/code&gt; and &lt;code&gt;reading_time&lt;/code&gt; that are accessed frequently (on the post
-page, index pages, RSS feeds, search index, etc.).&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The Issue:&lt;/strong&gt; &lt;code&gt;Post.description&lt;/code&gt; calls &lt;code&gt;extract_first_paragraph&lt;/code&gt;, and
-  &lt;code&gt;Post.reading_time&lt;/code&gt; calls &lt;code&gt;calculate_reading_time&lt;/code&gt;. Both of these
-  functions perform a &lt;strong&gt;full Markdown conversion&lt;/strong&gt; every time they are
-  called because they are not cached.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The Win:&lt;/strong&gt; Use &lt;code&gt;functools.cached_property&lt;/code&gt; on these fields.
-  Additionally, these should be calculated by extracting text from the
-  &lt;code&gt;html_content&lt;/code&gt; that has already been generated during the initial parse,
-  rather than re-parsing the raw Markdown.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="3-sequential-processing"&gt;3. Sequential Processing&lt;a aria-label="Link to this heading" class="heading-anchor" href="#3-sequential-processing"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The generator currently processes everything sequentially in a single
-thread.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The Issue:&lt;/strong&gt; For a site with hundreds or thousands of posts, the initial
-  Markdown parsing and the subsequent Jinja2 rendering are strictly serial,
-  leaving multi-core CPUs mostly idle.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The Win:&lt;/strong&gt; Use &lt;code&gt;multiprocessing&lt;/code&gt; (e.g., &lt;code&gt;ProcessPoolExecutor&lt;/code&gt;) to
-  parallelize the parsing of Markdown files and the rendering of HTML pages.
-  Since these tasks are CPU-bound and independent, this would scale almost
-  linearly with the number of CPU cores.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="4-asset-management-inefficiencies"&gt;4. Asset Management Inefficiencies&lt;a aria-label="Link to this heading" class="heading-anchor" href="#4-asset-management-inefficiencies"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The &lt;code&gt;AssetManager&lt;/code&gt; in &lt;code&gt;src/blogmore/generator/assets.py&lt;/code&gt; performs some
-operations that could be optimized:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;FontAwesome Metadata:&lt;/strong&gt; It downloads icon metadata from GitHub on
-  &lt;em&gt;every&lt;/em&gt; build to optimize CSS. This can be cached locally to avoid network
-  latency.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Icon Generation:&lt;/strong&gt; It regenerates favicons and Apple touch icons on
-  every build. This should be skipped if the source icon hasn't changed.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="5-minor-algorithmic-improvements"&gt;5. Minor Algorithmic Improvements&lt;a aria-label="Link to this heading" class="heading-anchor" href="#5-minor-algorithmic-improvements"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Navigation Lookups:&lt;/strong&gt; In &lt;code&gt;PageGenerator.generate_post_page&lt;/code&gt;, the code
-  uses &lt;code&gt;all_posts.index(post)&lt;/code&gt; to find the current post's position for
-  prev/next links. This is an O(N) operation called N times, leading to
-  O(N^2) behavior. Pre-calculating a mapping would make this O(1).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Markdown Instance Reuse:&lt;/strong&gt; Several utility functions
-  (&lt;code&gt;markdown_to_plain_text&lt;/code&gt;, &lt;code&gt;extract_first_paragraph&lt;/code&gt;) create a fresh
-  &lt;code&gt;markdown.Markdown&lt;/code&gt; instance on every call. Reusing a single instance (and
-  calling &lt;code&gt;.reset()&lt;/code&gt;) or caching the instance creation would reduce
-  overhead.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="summary"&gt;Summary&lt;a aria-label="Link to this heading" class="heading-anchor" href="#summary"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The "Big Wins" are definitely &lt;strong&gt;optimizing backlink snippet extraction&lt;/strong&gt; and
-&lt;strong&gt;implementing parallel parsing/rendering&lt;/strong&gt;. Together, these would likely
-reduce generation time for large sites by 60-80% on modern hardware.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;At first glance they all seem pretty sensible, and I like that it seems to
-have found some really obvious big improvements, and also the little wins
-that might have a cumulative effect. I strongly suspect the parallel
-generation suggestion is again going to be a non-win (and so for now I'm
-going to pass on it), but most of the other suggestions seem doable and
-worth trying out.&lt;/p&gt;
-&lt;p&gt;I think what I will do, rather than work through them all in one PR, is
-tackle one at a time. So, over the next few days, expect to see some PRs
-turn up and get merged (hopefully), as I try and tease some speed wins out
-of the code.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/05/11/speeding-up-blogmore.html"/>
-    <category term="Coding"/>
-    <category term="AI"/>
-    <category term="BlogMore"/>
-    <category term="Coding"/>
-    <category term="Gemini"/>
-    <category term="Python"/>
-    <published>2026-05-11T12:30:25+01:00</published>
   </entry>
 </feed>

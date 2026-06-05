@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-06-04T14:41:48.616469+00:00</updated>
+  <updated>2026-06-05T08:16:54.453838+00:00</updated>
   <link href="https://blog.davep.org/feeds/tech.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
@@ -11,7 +11,7 @@
     <id>https://blog.davep.org/2026/06/02/recreating-my-blog-stats.html</id>
     <title>Recreating my blog stats</title>
     <updated>2026-06-02T17:01:42+01:00</updated>
-    <content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;a aria-label="Link to this heading" class="heading-anchor" href="#introduction"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+    <content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Having &lt;a href="https://blog.davep.org/2026/05/29/blogmore-v2-33-0.html"&gt;recently added the &lt;code&gt;dump&lt;/code&gt; command to
 BlogMore&lt;/a&gt; I've been thinking I should try
 and learn a little more about &lt;a href="https://jqlang.org/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;jq&lt;/code&gt;&lt;/a&gt;. It's one of those
@@ -25,7 +25,7 @@ command&lt;/a&gt;"&lt;/em&gt;, and of
 course that makes it easier given it dumps some of the key calculated
 values. In other words I won't be using &lt;code&gt;jq&lt;/code&gt; to calculate the word count, or
 reading time, or GFI, etc.&lt;/p&gt;
-&lt;h2 id="post-count"&gt;Post count&lt;a aria-label="Link to this heading" class="heading-anchor" href="#post-count"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="post-count"&gt;Post count&lt;/h2&gt;
 &lt;p&gt;To start with, working out the number of posts in my blog is simple enough:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;. | length&amp;#39;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -33,7 +33,7 @@ reading time, or GFI, etc.&lt;/p&gt;
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mi"&gt;371&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id="category-count"&gt;Category count&lt;a aria-label="Link to this heading" class="heading-anchor" href="#category-count"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="category-count"&gt;Category count&lt;/h2&gt;
 &lt;p&gt;Getting the list of categories would be:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .safe_category] | unique&amp;#39;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -60,7 +60,7 @@ reading time, or GFI, etc.&lt;/p&gt;
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mi"&gt;11&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id="tags-count"&gt;Tags count&lt;a aria-label="Link to this heading" class="heading-anchor" href="#tags-count"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="tags-count"&gt;Tags count&lt;/h2&gt;
 &lt;p&gt;Getting the count of tags takes a little more work, as &lt;a href="https://blogmore.davep.dev/command_line/#output-properties" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;safe_tags&lt;/code&gt; is a
 list too&lt;/a&gt;, so I
 start out with a list of lists, which I need to flatten first.&lt;/p&gt;
@@ -77,7 +77,7 @@ similar tags end up with the same value (so &lt;code&gt;Hello World&lt;/code&gt;
 and all variations, become &lt;code&gt;hello-world&lt;/code&gt;), that would suggest the stats page
 &lt;em&gt;isn't&lt;/em&gt; taking that into account. That's &lt;a href="https://github.com/davep/blogmore/issues/580" rel="noopener noreferrer" target="_blank"&gt;an issue to
 address&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="a-datetime-interlude"&gt;A date/time interlude&lt;a aria-label="Link to this heading" class="heading-anchor" href="#a-datetime-interlude"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="a-datetime-interlude"&gt;A date/time interlude&lt;/h2&gt;
 &lt;p&gt;Here's where things get a little interesting for a moment. In the output of
 the &lt;code&gt;dump&lt;/code&gt; command from &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, the dates
 of the posts are given in &lt;a href="https://en.wikipedia.org/wiki/ISO_8601" rel="noopener noreferrer" target="_blank"&gt;ISO 8601
@@ -118,7 +118,7 @@ to drop the timezone offset and pretend every time is a &lt;code&gt;Z&lt;/code&g
 
 &lt;p&gt;This isn't ideal for what I'd like to do, it's going to skew some of the
 values related to time, but it's close enough for experimenting.&lt;/p&gt;
-&lt;h2 id="posts-per-year"&gt;Posts per year&lt;a aria-label="Link to this heading" class="heading-anchor" href="#posts-per-year"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="posts-per-year"&gt;Posts per year&lt;/h2&gt;
 &lt;p&gt;Now that I have a way of breaking the posting time into a workable array of
 values, getting the number of posts per year becomes:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[:19] + &amp;quot;Z&amp;quot; | fromdate | gmtime[0]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
@@ -142,7 +142,7 @@ pull the year itself out of the posting time:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[:4]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id="posts-by-month"&gt;Posts by month&lt;a aria-label="Link to this heading" class="heading-anchor" href="#posts-by-month"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="posts-by-month"&gt;Posts by month&lt;/h2&gt;
 &lt;p&gt;At this point getting the posts by month of year seems obvious too:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[5:7]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -161,7 +161,7 @@ pull the year itself out of the posting time:&lt;/p&gt;
 12: 15
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id="posts-by-weekday"&gt;Posts by weekday&lt;a aria-label="Link to this heading" class="heading-anchor" href="#posts-by-weekday"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="posts-by-weekday"&gt;Posts by weekday&lt;/h2&gt;
 &lt;p&gt;For this, I need to go back to the more involved version of the posting date
 handling query, where I use &lt;a href="https://jqlang.org/manual/#dates" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;gmtime&lt;/code&gt;&lt;/a&gt; to
 break down the time. It turns out that the penultimate value is the day of
@@ -180,7 +180,7 @@ have day names, I can get the values:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;In this case Sunday is the first day (the &lt;code&gt;0&lt;/code&gt; day here).&lt;/p&gt;
-&lt;h2 id="posts-by-hour"&gt;Posts by hour&lt;a aria-label="Link to this heading" class="heading-anchor" href="#posts-by-hour"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="posts-by-hour"&gt;Posts by hour&lt;/h2&gt;
 &lt;p&gt;Getting the posts by the hour is really just a variation on the
 date-chopping query used for the posts by year and the posts by month; it's
 all there in the string version of the date.&lt;/p&gt;
@@ -208,7 +208,7 @@ all there in the string version of the date.&lt;/p&gt;
 23: 1
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id="first-and-last-posting-dates"&gt;First and last posting dates&lt;a aria-label="Link to this heading" class="heading-anchor" href="#first-and-last-posting-dates"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="first-and-last-posting-dates"&gt;First and last posting dates&lt;/h2&gt;
 &lt;p&gt;Getting the date of the first and latest post seems nice and easy:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[0:10]] | {first: min, last: max}&amp;#39;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -231,7 +231,7 @@ bit of Python code, for example. The best I could come up with was:&lt;/p&gt;
 
 &lt;p&gt;For an approximate value of "year", &lt;a href="https://en.wikipedia.org/wiki/Leap_year" rel="noopener noreferrer" target="_blank"&gt;of
 course&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="word-counts"&gt;Word counts&lt;a aria-label="Link to this heading" class="heading-anchor" href="#word-counts"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="word-counts"&gt;Word counts&lt;/h2&gt;
 &lt;p&gt;From here on in many of the stats that can be pulled out from the JSON, with
 &lt;code&gt;jq&lt;/code&gt;, become easier to handle. Each post has a &lt;code&gt;word_count&lt;/code&gt; property, so I
 only need to do this:&lt;/p&gt;
@@ -245,7 +245,7 @@ only need to do this:&lt;/p&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id="reading-times"&gt;Reading times&lt;a aria-label="Link to this heading" class="heading-anchor" href="#reading-times"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="reading-times"&gt;Reading times&lt;/h2&gt;
 &lt;p&gt;A post's reading time can be accessed by &lt;code&gt;reading_time&lt;/code&gt;, so it's as easy to
 handle as the word counts:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .reading_time] | {least: min, most: max, average: (add / length)}&amp;#39;&lt;/span&gt;
@@ -258,7 +258,7 @@ handle as the word counts:&lt;/p&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id="gunning-fog-index"&gt;Gunning fog index&lt;a aria-label="Link to this heading" class="heading-anchor" href="#gunning-fog-index"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="gunning-fog-index"&gt;Gunning fog index&lt;/h2&gt;
 &lt;p&gt;The Gunning fog index is available as the &lt;code&gt;gfi&lt;/code&gt; property so there's no work
 to do to figure it out. It is, however, a floating point value and I want
 counts in each integer "bucket". That can be done with
@@ -339,7 +339,7 @@ though, by this point, I think I'd be reaching for Python or something
 similar to do this sort of work. For sure, I can't say if this is a good
 &lt;code&gt;jq&lt;/code&gt; query, if it's in any way idiomatic, or even if it's error-free. The
 numbers match what BlogMore says though.&lt;/p&gt;
-&lt;h2 id="conclusion"&gt;Conclusion&lt;a aria-label="Link to this heading" class="heading-anchor" href="#conclusion"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;This has been a useful exercise in getting to know a little more about &lt;code&gt;jq&lt;/code&gt;,
 and I can see myself reaching for it to do quick little jobs now that I've
 finally taken some time to dive into it. As it turns out, it's also been a
@@ -1143,7 +1143,7 @@ work pal".&lt;/p&gt;</content>
     <id>https://blog.davep.org/2022/05/28/my-vr-recording-setup.html</id>
     <title>My VR recording setup</title>
     <updated>2022-05-28T17:01:00+01:00</updated>
-    <content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;a aria-label="Link to this heading" class="heading-anchor" href="#introduction"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+    <content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;For well over a year now I've been recording my VR gameplay &lt;a href="https://www.youtube.com/user/daveporg" rel="noopener noreferrer" target="_blank"&gt;and uploading
 it to YouTube&lt;/a&gt;. Less as a "content
 creation" thing, more as a nice record of games I've played and, on
@@ -1162,7 +1162,7 @@ the same time I might mention stuff that's just an obvious default.&lt;/p&gt;
 for my own fun and benefit and might also help me in the future should I
 want to apply some of this again, and if it helps someone else that's a
 lovely bonus.&lt;/p&gt;
-&lt;h2 id="the-hardware"&gt;The Hardware&lt;a aria-label="Link to this heading" class="heading-anchor" href="#the-hardware"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="the-hardware"&gt;The Hardware&lt;/h2&gt;
 &lt;p&gt;While it's not exactly the point of this post, I guess it's worth mentioning
 the hardware I use as of the time of writing. Given this is about PCVR, I of
 course have a PC which is running Windows. The machine information within
@@ -1187,7 +1187,7 @@ be that running the microphone cable up your trousers and shirt makes life a
 ton easier. As a bonus I have the USB cable for the headset running around
 the headset's strap and connected to it at the back and then running down my
 back.&lt;/p&gt;
-&lt;h2 id="obs-studio"&gt;OBS Studio&lt;a aria-label="Link to this heading" class="heading-anchor" href="#obs-studio"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="obs-studio"&gt;OBS Studio&lt;/h2&gt;
 &lt;p&gt;The core software used is &lt;a href="https://obsproject.com/" rel="noopener noreferrer" target="_blank"&gt;OBS Studio&lt;/a&gt;. This has
 got to be one of the best bits of free software I've ever used, in terms of
 interface and what it delivers.&lt;/p&gt;
@@ -1203,7 +1203,7 @@ expecting much to come of it. So what I note here are the things that feel
 like they're important, and only the things that relate to recording PCVR,
 not streaming it (that might end up being a different blog post).&lt;/p&gt;
 &lt;p&gt;That said, here are things I seem to remember as being key:&lt;/p&gt;
-&lt;h3 id="output-settings"&gt;Output Settings&lt;a aria-label="Link to this heading" class="heading-anchor" href="#output-settings"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="output-settings"&gt;Output Settings&lt;/h3&gt;
 &lt;p&gt;The items in the output pane in settings that I have and which might be
 important are:&lt;/p&gt;
 &lt;ul&gt;
@@ -1222,11 +1222,11 @@ that's a small price to pay.&lt;/p&gt;
 &lt;p&gt;I can say that at least once I've had to hard-reboot my machine when a game
 and SteamVR and the like all got upset. I likely saved 45 minutes or more of
 footage thanks to &lt;code&gt;mkv&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id="video-settings"&gt;Video Settings&lt;a aria-label="Link to this heading" class="heading-anchor" href="#video-settings"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="video-settings"&gt;Video Settings&lt;/h2&gt;
 &lt;p&gt;Nothing really special in here, I simply have both the base and output
 resolutions set to the desktop resolution. This &lt;em&gt;might&lt;/em&gt; be something for me
 to tinker with in the future, but so far I've not run into any problems.&lt;/p&gt;
-&lt;h2 id="vr-capture"&gt;VR Capture&lt;a aria-label="Link to this heading" class="heading-anchor" href="#vr-capture"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="vr-capture"&gt;VR Capture&lt;/h2&gt;
 &lt;p&gt;Now, of course, all of the above is great and fine and all but there's the
 issue of how you capture the VR gameplay. I approach this a couple of
 different ways. The first is I use the &lt;a href="https://github.com/baffler/OBS-OpenVR-Input-Plugin" rel="noopener noreferrer" target="_blank"&gt;OpenVR Capture plugin for
@@ -1247,7 +1247,7 @@ desktop. In that case I use a &lt;code&gt;Game Capture&lt;/code&gt; source and s
 that specific window. I could of course just get it to capture the focused
 window or something like that but I prefer to know that it's only grabbing
 what I want it to grab.&lt;/p&gt;
-&lt;h2 id="conclusion"&gt;Conclusion&lt;a aria-label="Link to this heading" class="heading-anchor" href="#conclusion"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;That's pretty much it I think. There's not a lot to it, although on occasion
 a lot can go wrong. Mostly it's a wonder any of it works. I mean, think
 about it, I have a computer with two screens strapped to my face, with two

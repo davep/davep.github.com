@@ -2,11 +2,94 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-06-04T14:41:48.597728+00:00</updated>
+  <updated>2026-06-05T08:16:54.445823+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/06/05/blogmore-v2-39-0.html</id>
+    <title>BlogMore v2.39.0</title>
+    <updated>2026-06-05T08:36:57+01:00</updated>
+    <content type="html">&lt;p&gt;&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
+&lt;a href="https://blogmore.davep.dev/changelog/#v2390" rel="noopener noreferrer" target="_blank"&gt;v2.39.0&lt;/a&gt; has a couple of
+changes, one more or less cosmetic, the other a new feature that I probably
+should have added right near the start of the project.&lt;/p&gt;
+&lt;p&gt;First, the cosmetic: in pages and posts, when you use headings (&lt;code&gt;#&lt;/code&gt;, &lt;code&gt;##&lt;/code&gt;,
+etc.), a &lt;code&gt;¶&lt;/code&gt; is added to the end of each heading, along with some
+show-on-mouse-hover styling, to make it easy to grab the anchor of a
+particular section of a page&lt;sup id="fnref:377-1"&gt;&lt;a class="footnote-ref" href="#fn:377-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. A problem I'd noticed with this recently
+is that the &lt;code&gt;¶&lt;/code&gt; shows up in the &lt;a href="https://blog.davep.org/search/"&gt;search&lt;/a&gt; text, and also in the
+content of all the feeds. While not a problem as such, it felt untidy.&lt;/p&gt;
+&lt;p&gt;So, with this release that particular &lt;code&gt;¶&lt;/code&gt; character is stripped from the
+search index and from the feeds.&lt;/p&gt;
+&lt;p&gt;The second change is a facility that should be useful if you have legacy
+URLs that you really must have land on an actual page or post: redirection
+support.&lt;/p&gt;
+&lt;p&gt;This facility is provided by &lt;a href="https://blogmore.davep.dev/writing_a_post/#redirect_from" rel="noopener noreferrer" target="_blank"&gt;a new &lt;code&gt;redirect_from&lt;/code&gt; frontmatter
+property&lt;/a&gt;. From
+now on, a page or a post can declare which URLs should be redirected to it.
+So, if you have a post that, &lt;a href="https://blogmore.davep.dev/configuration/#post_path" rel="noopener noreferrer" target="_blank"&gt;given your current post location
+setup&lt;/a&gt;, would land at
+&lt;code&gt;/2006/06/06/hello-world/&lt;/code&gt;, but in some other incarnation of your blog lived
+at &lt;code&gt;/posts/2006-06-06-hello-world.html&lt;/code&gt;, you can now set this in the
+frontmatter:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;redirect_from&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;/posts/2006-06-06-hello-world.html&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and the old URL will be redirected to the new one. This is achieved by
+simply creating a very minimal HTML file at the old location, which contains
+a redirection. The content of the file will end up looking something like
+this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="html"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;meta&lt;/span&gt; &lt;span class="na"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Redirecting...&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;link&lt;/span&gt; &lt;span class="na"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;canonical&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://example.com/2006/06/06/hello-world/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;meta&lt;/span&gt; &lt;span class="na"&gt;http-equiv&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;refresh&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0; url=/2006/06/06/hello-world/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Redirecting to &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/2006/06/06/hello-world/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;/2006/06/06/hello-world/&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;...&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If a blog has migrated between locations and/or generation tools over the
+years, and there are a number of different legacy URLs out there still
+pointing to a post you really want to keep readable to all, you can also
+redirect from multiple URLs:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;redirect_from&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;/posts/2006-06-06-hello-world.html&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;/posts/2006/06/06/hello-world.html&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;/my/really/old/blog/structure/hello-world-06-06-06.html&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;While all of this would have been possible anyway, by creating the
+appropriate file, with the appropriate content, in &lt;a href="https://blogmore.davep.dev/setting_up_your_blog/#the-extras-directory" rel="noopener noreferrer" target="_blank"&gt;the &lt;code&gt;extras&lt;/code&gt;
+directory&lt;/a&gt;,
+this approach helps automate the process and also means that the redirection
+information lives with the page or post being redirected to.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:377-1"&gt;
+&lt;p&gt;The &lt;a href="https://blog.davep.org/2026/06/04/blogmore-v2-38-0.html"&gt;recently-added floating ToC&lt;/a&gt;
+is another way to do this now too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:377-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/06/05/blogmore-v2-39-0.html"/>
+    <category term="Coding"/>
+    <category term="BlogMore"/>
+    <category term="Coding"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="RSS"/>
+    <category term="SEO"/>
+    <category term="atom"/>
+    <published>2026-06-05T08:36:57+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/06/04/blogmore-v2-38-0.html</id>
     <title>BlogMore v2.38.0</title>
@@ -133,7 +216,7 @@ in a JSON file that can't be parsed.&lt;/p&gt;
     <id>https://blog.davep.org/2026/06/02/recreating-my-blog-stats.html</id>
     <title>Recreating my blog stats</title>
     <updated>2026-06-02T17:01:42+01:00</updated>
-    <content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;a aria-label="Link to this heading" class="heading-anchor" href="#introduction"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+    <content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Having &lt;a href="https://blog.davep.org/2026/05/29/blogmore-v2-33-0.html"&gt;recently added the &lt;code&gt;dump&lt;/code&gt; command to
 BlogMore&lt;/a&gt; I've been thinking I should try
 and learn a little more about &lt;a href="https://jqlang.org/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;jq&lt;/code&gt;&lt;/a&gt;. It's one of those
@@ -147,7 +230,7 @@ command&lt;/a&gt;"&lt;/em&gt;, and of
 course that makes it easier given it dumps some of the key calculated
 values. In other words I won't be using &lt;code&gt;jq&lt;/code&gt; to calculate the word count, or
 reading time, or GFI, etc.&lt;/p&gt;
-&lt;h2 id="post-count"&gt;Post count&lt;a aria-label="Link to this heading" class="heading-anchor" href="#post-count"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="post-count"&gt;Post count&lt;/h2&gt;
 &lt;p&gt;To start with, working out the number of posts in my blog is simple enough:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;. | length&amp;#39;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -155,7 +238,7 @@ reading time, or GFI, etc.&lt;/p&gt;
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mi"&gt;371&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id="category-count"&gt;Category count&lt;a aria-label="Link to this heading" class="heading-anchor" href="#category-count"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="category-count"&gt;Category count&lt;/h2&gt;
 &lt;p&gt;Getting the list of categories would be:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .safe_category] | unique&amp;#39;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -182,7 +265,7 @@ reading time, or GFI, etc.&lt;/p&gt;
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mi"&gt;11&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id="tags-count"&gt;Tags count&lt;a aria-label="Link to this heading" class="heading-anchor" href="#tags-count"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="tags-count"&gt;Tags count&lt;/h2&gt;
 &lt;p&gt;Getting the count of tags takes a little more work, as &lt;a href="https://blogmore.davep.dev/command_line/#output-properties" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;safe_tags&lt;/code&gt; is a
 list too&lt;/a&gt;, so I
 start out with a list of lists, which I need to flatten first.&lt;/p&gt;
@@ -199,7 +282,7 @@ similar tags end up with the same value (so &lt;code&gt;Hello World&lt;/code&gt;
 and all variations, become &lt;code&gt;hello-world&lt;/code&gt;), that would suggest the stats page
 &lt;em&gt;isn't&lt;/em&gt; taking that into account. That's &lt;a href="https://github.com/davep/blogmore/issues/580" rel="noopener noreferrer" target="_blank"&gt;an issue to
 address&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="a-datetime-interlude"&gt;A date/time interlude&lt;a aria-label="Link to this heading" class="heading-anchor" href="#a-datetime-interlude"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="a-datetime-interlude"&gt;A date/time interlude&lt;/h2&gt;
 &lt;p&gt;Here's where things get a little interesting for a moment. In the output of
 the &lt;code&gt;dump&lt;/code&gt; command from &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, the dates
 of the posts are given in &lt;a href="https://en.wikipedia.org/wiki/ISO_8601" rel="noopener noreferrer" target="_blank"&gt;ISO 8601
@@ -240,7 +323,7 @@ to drop the timezone offset and pretend every time is a &lt;code&gt;Z&lt;/code&g
 
 &lt;p&gt;This isn't ideal for what I'd like to do, it's going to skew some of the
 values related to time, but it's close enough for experimenting.&lt;/p&gt;
-&lt;h2 id="posts-per-year"&gt;Posts per year&lt;a aria-label="Link to this heading" class="heading-anchor" href="#posts-per-year"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="posts-per-year"&gt;Posts per year&lt;/h2&gt;
 &lt;p&gt;Now that I have a way of breaking the posting time into a workable array of
 values, getting the number of posts per year becomes:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[:19] + &amp;quot;Z&amp;quot; | fromdate | gmtime[0]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
@@ -264,7 +347,7 @@ pull the year itself out of the posting time:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[:4]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id="posts-by-month"&gt;Posts by month&lt;a aria-label="Link to this heading" class="heading-anchor" href="#posts-by-month"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="posts-by-month"&gt;Posts by month&lt;/h2&gt;
 &lt;p&gt;At this point getting the posts by month of year seems obvious too:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[5:7]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -283,7 +366,7 @@ pull the year itself out of the posting time:&lt;/p&gt;
 12: 15
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id="posts-by-weekday"&gt;Posts by weekday&lt;a aria-label="Link to this heading" class="heading-anchor" href="#posts-by-weekday"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="posts-by-weekday"&gt;Posts by weekday&lt;/h2&gt;
 &lt;p&gt;For this, I need to go back to the more involved version of the posting date
 handling query, where I use &lt;a href="https://jqlang.org/manual/#dates" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;gmtime&lt;/code&gt;&lt;/a&gt; to
 break down the time. It turns out that the penultimate value is the day of
@@ -302,7 +385,7 @@ have day names, I can get the values:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;In this case Sunday is the first day (the &lt;code&gt;0&lt;/code&gt; day here).&lt;/p&gt;
-&lt;h2 id="posts-by-hour"&gt;Posts by hour&lt;a aria-label="Link to this heading" class="heading-anchor" href="#posts-by-hour"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="posts-by-hour"&gt;Posts by hour&lt;/h2&gt;
 &lt;p&gt;Getting the posts by the hour is really just a variation on the
 date-chopping query used for the posts by year and the posts by month; it's
 all there in the string version of the date.&lt;/p&gt;
@@ -330,7 +413,7 @@ all there in the string version of the date.&lt;/p&gt;
 23: 1
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id="first-and-last-posting-dates"&gt;First and last posting dates&lt;a aria-label="Link to this heading" class="heading-anchor" href="#first-and-last-posting-dates"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="first-and-last-posting-dates"&gt;First and last posting dates&lt;/h2&gt;
 &lt;p&gt;Getting the date of the first and latest post seems nice and easy:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[0:10]] | {first: min, last: max}&amp;#39;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -353,7 +436,7 @@ bit of Python code, for example. The best I could come up with was:&lt;/p&gt;
 
 &lt;p&gt;For an approximate value of "year", &lt;a href="https://en.wikipedia.org/wiki/Leap_year" rel="noopener noreferrer" target="_blank"&gt;of
 course&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="word-counts"&gt;Word counts&lt;a aria-label="Link to this heading" class="heading-anchor" href="#word-counts"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="word-counts"&gt;Word counts&lt;/h2&gt;
 &lt;p&gt;From here on in many of the stats that can be pulled out from the JSON, with
 &lt;code&gt;jq&lt;/code&gt;, become easier to handle. Each post has a &lt;code&gt;word_count&lt;/code&gt; property, so I
 only need to do this:&lt;/p&gt;
@@ -367,7 +450,7 @@ only need to do this:&lt;/p&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id="reading-times"&gt;Reading times&lt;a aria-label="Link to this heading" class="heading-anchor" href="#reading-times"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="reading-times"&gt;Reading times&lt;/h2&gt;
 &lt;p&gt;A post's reading time can be accessed by &lt;code&gt;reading_time&lt;/code&gt;, so it's as easy to
 handle as the word counts:&lt;/p&gt;
 &lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .reading_time] | {least: min, most: max, average: (add / length)}&amp;#39;&lt;/span&gt;
@@ -380,7 +463,7 @@ handle as the word counts:&lt;/p&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id="gunning-fog-index"&gt;Gunning fog index&lt;a aria-label="Link to this heading" class="heading-anchor" href="#gunning-fog-index"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="gunning-fog-index"&gt;Gunning fog index&lt;/h2&gt;
 &lt;p&gt;The Gunning fog index is available as the &lt;code&gt;gfi&lt;/code&gt; property so there's no work
 to do to figure it out. It is, however, a floating point value and I want
 counts in each integer "bucket". That can be done with
@@ -461,7 +544,7 @@ though, by this point, I think I'd be reaching for Python or something
 similar to do this sort of work. For sure, I can't say if this is a good
 &lt;code&gt;jq&lt;/code&gt; query, if it's in any way idiomatic, or even if it's error-free. The
 numbers match what BlogMore says though.&lt;/p&gt;
-&lt;h2 id="conclusion"&gt;Conclusion&lt;a aria-label="Link to this heading" class="heading-anchor" href="#conclusion"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;This has been a useful exercise in getting to know a little more about &lt;code&gt;jq&lt;/code&gt;,
 and I can see myself reaching for it to do quick little jobs now that I've
 finally taken some time to dive into it. As it turns out, it's also been a
@@ -1345,64 +1428,9 @@ one is set) when there is no &lt;code&gt;cover&lt;/code&gt;.&lt;/p&gt;</content>
     <category term="JSON-LD"/>
     <category term="PyPI"/>
     <category term="Python"/>
+    <category term="SEO"/>
     <category term="microformats"/>
     <category term="web"/>
     <published>2026-05-24T09:03:29+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/05/23/wipr.html</id>
-    <title>Wipr</title>
-    <updated>2026-05-23T20:29:17+01:00</updated>
-    <content type="html">&lt;p&gt;While I know the subject really fires some people, ad blockers are something
-I've never really paid too much attention to. Back in the early days of the
-web, the &lt;em&gt;really&lt;/em&gt; early days, I used to run with full-on JavaScript
-blocking&lt;sup id="fnref:349-1"&gt;&lt;a class="footnote-ref" href="#fn:349-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The web changed and I accepted it.&lt;/p&gt;
-&lt;p&gt;More recently, as I've become a full-time Safari user in the last couple of
-years, I've been running with &lt;a href="http://kablock.com/" rel="noopener noreferrer" target="_blank"&gt;Ka-Block!&lt;/a&gt; installed.
-It's been fine. I've never really noticed it. I &lt;em&gt;think&lt;/em&gt; it blocked some
-stuff, but not other stuff. I've never really noticed if it was getting
-updated or not; I just wasn't paying attention.&lt;/p&gt;
-&lt;p&gt;Then, this morning, &lt;a href="https://mastodon.social/@miskolin/116622382892637246" rel="noopener noreferrer" target="_blank"&gt;I saw this post in the
-Fediverse&lt;/a&gt; and for
-some reason it caught my eye. I followed the link, did a bit of searching,
-asked Misko about his experiences with the app, and saved a bookmark.&lt;/p&gt;
-&lt;p&gt;Now, this evening, I've thrown down my fiver and I'm running with &lt;a href="https://kaylees.site/wipr2.html" rel="noopener noreferrer" target="_blank"&gt;Wipr
-2&lt;/a&gt; installed, both on my
-&lt;a href="https://blog.davep.org/2026/03/28/hello-macbook-air-again.html"&gt;Air&lt;/a&gt; and my iPhone. When I'm next
-on either of my Minis, or on my iPad, I'll throw it on there too.&lt;/p&gt;
-&lt;p&gt;The installation process was straightforward, albeit one where you need to
-enable four extensions rather than just the one.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Wipr installed" height="424" loading="lazy" src="https://blog.davep.org/attachments/2026/05/23/wipr.webp#centre" width="440" /&gt;&lt;/p&gt;
-&lt;p&gt;As well as that, you then need to enable it in the app itself and you're
-good to go. I've since tried visiting a couple of locations that I know
-still showed adverts or consent pop-ups and... clean. So clean!&lt;/p&gt;
-&lt;p&gt;My expectation for tools like this is that they end up breaking some site in
-a way you least expect, so I'll be very aware of that for a while. That
-said, if I do run into a problem, not only is it easy enough to turn
-blocking off just for that one site, there's a very clear route to reporting
-problems too.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Encouragement to report a problem" height="1364" loading="lazy" src="https://blog.davep.org/attachments/2026/05/23/wipr-problem.webp#centre" width="1302" /&gt;&lt;/p&gt;
-&lt;p&gt;Mostly, though, I hope I can go back to paying this app no attention
-whatsoever. If I can, I imagine that's high praise and a job well done for
-this sort of tool.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:349-1"&gt;
-&lt;p&gt;I just know someone is reading that and thinking &lt;em&gt;"pfft, JavaScript
-came along late into the web you noob"&lt;/em&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:349-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/05/23/wipr.html"/>
-    <category term="Tech"/>
-    <category term="Ad Blocker"/>
-    <category term="Mac"/>
-    <category term="Safari"/>
-    <category term="iOS"/>
-    <category term="iPhone"/>
-    <category term="macOS"/>
-    <category term="software"/>
-    <published>2026-05-23T20:29:17+01:00</published>
   </entry>
 </feed>
