@@ -8,7 +8,34 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 05 Jun 2026 08:16:54 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jun 2026 19:03:13 +0000</lastBuildDate>
+    <item>
+      <title>blogmore.el v4.6.0</title>
+      <link>https://blog.davep.org/2026/06/05/blogmore-el-v4-6-0.html</link>
+      <description>&lt;p&gt;After &lt;a href="https://blog.davep.org/2026/06/04/blogmore-v2-38-0.html"&gt;adding floating and inline tables of contents in
+BlogMore&lt;/a&gt; the other day, it was time to
+update &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; to include
+commands to toggle the related frontmatter.&lt;/p&gt;
+&lt;p&gt;So, with the release of &lt;a href="https://github.com/davep/blogmore.el/releases/tag/v4.6.0" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;
+v4.6.0&lt;/a&gt;, two new
+commands are now available:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;blogmore-toggle-show-toc&lt;/code&gt; toggles the &lt;code&gt;show_toc&lt;/code&gt; frontmatter property.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;blogmore-toggle-show-toc-inline&lt;/code&gt; toggles the &lt;code&gt;show_toc_inline&lt;/code&gt;
+  frontmatter property.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Both have also been added to the transient menu so they're easy to discover
+and use.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/05/blogmore-el-v4-6-0.html</guid>
+      <category>Emacs</category>
+      <category>BlogMore</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>blogmore.el</category>
+      <category>coding</category>
+      <pubDate>Fri, 05 Jun 2026 20:01:30 +0100</pubDate>
+    </item>
     <item>
       <title>next-gh-pr.el v1.0.0</title>
       <link>https://blog.davep.org/2026/05/19/next-gh-pr-el-v1-0-0.html</link>
@@ -919,103 +946,6 @@ be quickly and easily closed.&lt;/p&gt;
       <category>expando.el</category>
       <category>defmacro</category>
       <pubDate>Mon, 06 Apr 2026 20:43:29 +0100</pubDate>
-    </item>
-    <item>
-      <title>blogmore.el v4.0</title>
-      <link>https://blog.davep.org/2026/04/06/blogmore-el-v4-0.html</link>
-      <description>&lt;p&gt;Despite having bumped it from 2.x to 3.x
-&lt;a href="https://blog.davep.org/2026/04/05/blogmore-el-v3-1.html"&gt;yesterday&lt;/a&gt;, I'm calling
-&lt;a href="https://github.com/davep/blogmore.el/releases/tag/v4.0" rel="noopener noreferrer" target="_blank"&gt;v4.0&lt;/a&gt; on
-&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; today. There's a good
-reason for this though. While tinkering with some of the configuration
-yesterday, and also answering a configuration question last night, I
-realised that it made sense to make some of the internals into public
-utility functions.&lt;/p&gt;
-&lt;p&gt;Now, sure, &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; doesn't really have &lt;em&gt;internals&lt;/em&gt; in
-the private function sense, but I've always liked the approach that a
-&lt;code&gt;package--&lt;/code&gt; prefix communicates &lt;em&gt;"internal, might go away"&lt;/em&gt; vs &lt;code&gt;package-&lt;/code&gt;
-which tells me &lt;em&gt;"this is a stable part of the API of this package"&lt;/em&gt;. With
-this in mind I've always tried to write my code using this convention. I did
-this with &lt;code&gt;blogmore.el&lt;/code&gt; too and a &lt;em&gt;lot&lt;/em&gt; of the code had the &lt;code&gt;blogmore--&lt;/code&gt;
-prefix.&lt;/p&gt;
-&lt;p&gt;There's plenty of code in there that someone might want to make use of, if
-they wanted to add their own commands, or do fun things with the
-configuration. So with this in mind I've "promoted" a bunch of code to being
-"public" and, in that case, I feel this deserves another major version
-bump&lt;sup id="fnref:273-1"&gt;&lt;a class="footnote-ref" href="#fn:273-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;Things that are now part of the "public" interface include:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;blogmore-clean-time-string&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;blogmore-get-frontmatter&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;blogmore-remove-frontmatter&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;blogmore-set-frontmatter&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;blogmore-slug&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;blogmore-toggle-frontmatter&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;blogmore-with-post&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Each one is documented via its docstring (just a quick
-&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;h&lt;/kbd&gt; &lt;kbd&gt;f&lt;/kbd&gt; &lt;code&gt;function-name&lt;/code&gt; &lt;kbd&gt;RET&lt;/kbd&gt;
-away) and hopefully is pretty self-explanatory.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;blogmore-with-post&lt;/code&gt; is especially handy as it provides a quick and easy way
-of pulling information from a post file. So something like this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-with-post&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~/write/davep.github.com/content/posts/2026/04/2026-04-05-blogmore-el-v3-1.md&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list&lt;/span&gt;
-&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-get-frontmatter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-get-frontmatter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;resulting in:&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore.el v3.1&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;2026-04-05 20:04:44+0100&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Meaning that this snippet from &lt;a href="https://blog.davep.org/2026/04/05/blogmore-el-v3-1.html"&gt;yesterday's
-post&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;with-temp-buffer&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;insert-file-contents-literally&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;parse-iso8601-time-string&lt;/span&gt;
-&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--clean-time-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--get-frontmatter-property&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;becomes:&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-with-post&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;parse-iso8601-time-string&lt;/span&gt;
-&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-clean-time-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-get-frontmatter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Not massively different, but it reads better and now all the calls are to
-the "public API" of the package.&lt;/p&gt;
-&lt;p&gt;Not all the changes are "promoted internals". I've also added a
-&lt;code&gt;blogmore-remove-tag&lt;/code&gt; command (and also added it to the transient menu).&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Removing a tag" height="970" loading="lazy" src="https://blog.davep.org/attachments/2026/04/06/remove-tag.webp#centre" width="1000" /&gt;&lt;/p&gt;
-&lt;p&gt;I've also changed the way that &lt;code&gt;blogmore-add-tag&lt;/code&gt; works so that, now, if
-it's called from the transient, it immediately goes back to the tag input
-prompt, allowing for another tag to be immediately selected (you can quit
-out of this with &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;g&lt;/kbd&gt;). Removal of a tag works in a
-similar way, making things a lot quicker.&lt;/p&gt;
-&lt;p&gt;I've also added some extra tests too, which makes it even easier for me to
-make future changes with confidence. The more I work with it the more I
-appreciate that
-&lt;a href="https://www.gnu.org/software/emacs/manual/html_mono/ert.html" rel="noopener noreferrer" target="_blank"&gt;ERT&lt;/a&gt; is
-available.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:273-1"&gt;
-&lt;p&gt;Ordinarily it shouldn't matter as the public interface isn't changing,
-but some of the "internal" functions had been mentioned as options for
-configuration.&amp;#160;&lt;a class="footnote-backref" href="#fnref:273-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/04/06/blogmore-el-v4-0.html</guid>
-      <category>Emacs</category>
-      <category>BlogMore</category>
-      <category>Emacs</category>
-      <category>Emacs Lisp</category>
-      <category>Lisp</category>
-      <category>blogmore.el</category>
-      <category>coding</category>
-      <pubDate>Mon, 06 Apr 2026 17:04:16 +0100</pubDate>
     </item>
   </channel>
 </rss>
