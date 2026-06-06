@@ -4,6 +4,7 @@ category: Emacs
 tags: Emacs, Lisp, Emacs Lisp
 date: 2020-06-07 16:48:00+0100
 cover: /attachments/2020/06/07/emacs.webp
+series: ~/.emacs.d
 ---
 
 When I started with this version of the blog on Hashnode[^1], my plan was to

@@ -3,6 +3,7 @@ title: More revamping of my Emacs config
 category: Emacs
 tags: Emacs, Lisp, coding, Emacs Lisp
 date: 2017-07-13 15:25:29+0100
+series: ~/.emacs.d
 ---
 
 I've been pretty quiet on here since I last wrote about how I'd done a
