@@ -4,6 +4,7 @@ date: 2026-05-05 08:33:37+0100
 category: Gaming
 tags: Steam, Steam Controller, hardware
 cover: /attachments/2026/05/05/ordered.webp
+series: Buying the Steam Controller
 ---
 
 After dropping one in my basket at 18:00 (UTC+01:00) yesterday, [it took

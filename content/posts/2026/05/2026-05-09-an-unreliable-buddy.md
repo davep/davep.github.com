@@ -4,6 +4,7 @@ date: 2026-05-09 19:14:23+0100
 category: AI
 tags: BlogMore, Coding, Copilot, Gemini, GitHub, Google, Python, code review, code smell
 cover: /attachments/2026/05/09/rate-limit.webp
+series: Agentic Afterthoughts
 ---
 
 At some point this morning I was looking for something on this blog and

@@ -5,6 +5,7 @@ category: AI
 tags: AI, Coding, Copilot, Free Software, GitHub
 cover: /attachments/2026/03/26/thumbs-down.webp
 modified: 2026-03-26 10:17:43+0000
+series: The Great GitHub Copilot Meltdown of 2026
 ---
 
 I guess it was inevitable[^1], but yesterday GitHub

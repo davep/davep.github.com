@@ -4,6 +4,7 @@ date: 2026-05-13 08:31:27+0100
 category: AI
 tags: AI, Business, Copilot, GitHub
 cover: /attachments/2026/05/13/the-new-price.webp
+series: The Great GitHub Copilot Meltdown of 2026
 ---
 
 Well, it's here: GitHub's tool to let you see how much better off you're

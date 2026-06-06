@@ -3,6 +3,7 @@ title: Virgin East Coast 2
 category: Life
 tags: travel, Virgin
 date: 2016-06-18 10:23:01+0100
+series: The Virgin East Coast Saga
 ---
 
 This morning I called back on

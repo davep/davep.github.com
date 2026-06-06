@@ -3,6 +3,7 @@ title: Reviewing the cost of BlogMore
 date: 2026-05-21 16:51:18+0100
 category: AI
 tags: AI, BlogMore, Business, Coding, Copilot, FOSS, Free Software, GitHub, LLM
+series: The Great GitHub Copilot Meltdown of 2026
 ---
 
 Now that we're near the end of the free or cheap [GitHub

@@ -4,6 +4,7 @@ date: 2026-05-01 17:04:26+0100
 category: AI
 tags: BlogMore, Coding, Copilot, Gemini, GitHub, Google, Python, code review, testing
 cover: /attachments/2026/05/01/pytest-running.webp
+series: Agentic Afterthoughts
 ---
 
 In a post [yesterday](/2026/04/30/a-different-approach.html) I finished off

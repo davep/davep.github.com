@@ -4,6 +4,7 @@ date: 2026-06-01 17:03:08+0100
 category: AI
 tags: AI, Business, Copilot, GitHub
 cover: /attachments/2026/06/01/half-after-one-request.webp
+series: The Great GitHub Copilot Meltdown of 2026
 ---
 
 So today is the day, today is when [GitHub Copilot](/tag/copilot/) [swaps to

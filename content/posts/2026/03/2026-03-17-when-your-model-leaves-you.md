@@ -4,6 +4,7 @@ category: AI
 tags: Python, AI, LLM, Copilot, GitHub, BlogMore, coding
 date: 2026-03-17 10:00:00 +0000
 cover: /attachments/2026/03/17/copilot-models.webp
+series: Agentic Afterthoughts
 ---
 
 Yesterday evening, after dinner, but just before [loading up a game released

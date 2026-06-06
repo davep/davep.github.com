@@ -3,6 +3,7 @@ title: Documentation generation
 category: AI
 tags: Python, AI, LLM, Copilot, GitHub, BlogMore
 date: 2026-03-05 16:26:00 +0000
+series: Agentic Afterthoughts
 ---
 
 While I've written a *lot* of documentation in my life, it's not something I

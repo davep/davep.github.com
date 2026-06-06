@@ -3,6 +3,7 @@ title: Virgin East Coast 7
 category: Life
 tags: travel, Virgin
 date: 2016-07-08 15:26:00+0100
+series: The Virgin East Coast Saga
 ---
 
 Little update on the Virgin East Coast Ticket Wallet app saga. After

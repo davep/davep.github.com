@@ -4,6 +4,7 @@ date: 2026-05-03 09:59:45+0100
 category: AI
 tags: BlogMore, Coding, Copilot, Gemini, GitHub, Google, Python, code review
 cover: /attachments/2026/05/03/better-naming.webp
+series: Agentic Afterthoughts
 ---
 
 One of the things I noticed when I started on the [BlogMore

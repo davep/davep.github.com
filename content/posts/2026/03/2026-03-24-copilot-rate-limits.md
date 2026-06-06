@@ -3,6 +3,7 @@ title: Copilot rate limits
 date: 2026-03-24 12:01:08+0000
 category: AI
 tags: AI, LLM, Copilot, GitHub, BlogMore
+series: The Great GitHub Copilot Meltdown of 2026
 ---
 
 Last night, while [tinkering

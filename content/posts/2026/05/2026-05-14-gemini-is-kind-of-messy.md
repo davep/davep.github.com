@@ -3,6 +3,7 @@ title: Gemini is kind of messy
 date: 2026-05-14 08:25:23+0100
 category: AI
 tags: AI, Coding, Gemini, Google
+series: Agentic Afterthoughts
 ---
 
 As I've mentioned a few times recently, I'm using Google's [Gemini

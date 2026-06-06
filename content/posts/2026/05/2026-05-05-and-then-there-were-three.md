@@ -4,6 +4,7 @@ date: 2026-05-05 12:37:53+0100
 category: AI
 tags: BlogMore, Coding, Copilot, Gemini, GitHub, Google, Python, code review, code smell
 cover: /attachments/2026/05/05/three-prs.webp
+series: Agentic Afterthoughts
 ---
 
 Given the concerns [I wrote about

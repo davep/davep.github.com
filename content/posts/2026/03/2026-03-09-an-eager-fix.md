@@ -4,6 +4,7 @@ category: AI
 tags: AI, Coding, Copilot, GitHub, LLM, coding
 date: 2026-03-09 12:56:00 +0000
 cover: /attachments/2026/03/09/cover-eager.webp
+series: Agentic Afterthoughts
 ---
 
 ![An eager fix](/attachments/2026/03/09/changes.webp#centre)

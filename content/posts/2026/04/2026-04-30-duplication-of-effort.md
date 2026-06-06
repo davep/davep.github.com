@@ -4,6 +4,7 @@ date: 2026-04-30 08:20:11+0100
 category: AI
 tags: BlogMore, Coding, Copilot, Gemini, GitHub, Google, Python, code review, code smell
 cover: /attachments/2026/04/30/review-diff.webp
+series: Agentic Afterthoughts
 ---
 
 While I don't, for a moment, think that the work on

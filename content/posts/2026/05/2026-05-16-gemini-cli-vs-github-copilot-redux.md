@@ -3,6 +3,7 @@ title: Gemini CLI vs GitHub Copilot (redux)
 date: 2026-05-16 09:30:23+0100
 category: AI
 tags: BlogMore, Coding, Copilot, Gemini, GitHub, Google, Python
+series: Agentic Afterthoughts
 ---
 
 Given I'm [almost certainly](/2026/05/13/the-copilot-bait-and-switch.html)

@@ -3,6 +3,7 @@ title: A second attempt to learn Swift
 category: Coding
 tags: Swift, Apple, coding
 date: 2020-06-21 14:48:00+0100
+series: Swift TIL
 ---
 
 It's five years ago this month that I bought myself my first macOS (then OS

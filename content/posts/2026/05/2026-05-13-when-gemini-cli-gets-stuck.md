@@ -4,6 +4,7 @@ date: 2026-05-13 20:27:54+0100
 category: AI
 tags: AI, Coding, Gemini, Google
 cover: /attachments/2026/05/13/thinking.webp
+series: Agentic Afterthoughts
 ---
 
 Another evening, and [another period of Gemini CLI getting stuck

@@ -4,6 +4,7 @@ category: Life
 tags: travel, Virgin
 date: 2016-06-17 21:13:18+0100
 cover: /attachments/2016/06/17/login-fail.webp
+series: The Virgin East Coast Saga
 ---
 
 This year has seen me travelling up and down the east coast of England (and

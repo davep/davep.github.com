@@ -4,6 +4,7 @@ date: 2026-05-11 15:25:57+0100
 category: Gaming
 tags: Steam, Steam Controller, hardware
 cover: /attachments/2026/05/11/controller-boxed.webp
+series: Buying the Steam Controller
 ---
 
 It has arrived!

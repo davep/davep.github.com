@@ -4,6 +4,7 @@ date: 2026-05-11 09:15:17+0100
 category: Gaming
 tags: Steam, Steam Controller, hardware
 cover: /attachments/2026/05/11/ready-for-delivery.webp
+series: Buying the Steam Controller
 ---
 
 Looks like my [Steam Controller](/tag/steam-controller/) is close! Very

@@ -4,6 +4,7 @@ date: 2026-05-06 21:04:00+0100
 category: Gaming
 tags: Steam, Steam Controller, Steam Link, hardware
 cover: /attachments/2026/05/06/shipped.webp
+series: Buying the Steam Controller
 ---
 
 Well, that was pretty quick. This morning [it was in the packaged
