@@ -3,6 +3,7 @@ title: Brute force and ignorance
 category: AI
 tags: Python, AI, LLM, Copilot, GitHub, BlogMore, coding
 date: 2026-02-27 09:45:00 +0000
+series: Agentic Afterthoughts
 ---
 
 My [experiment with coding with an

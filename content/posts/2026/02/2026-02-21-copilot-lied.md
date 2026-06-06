@@ -3,6 +3,7 @@ title: Copilot lied
 category: AI
 tags: Python, AI, LLM, Copilot, GitHub, BlogMore
 date: 2026-02-21 14:47:00 +0000
+series: Agentic Afterthoughts
 ---
 
 This morning, with [my experiment with

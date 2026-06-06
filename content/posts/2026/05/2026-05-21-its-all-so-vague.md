@@ -4,6 +4,7 @@ date: 2026-05-21 13:07:54+0100
 category: AI
 tags: Business, Gemini, Google, LLM, NotebookLM
 cover: /attachments/2026/05/21/usage-limits.webp
+series: Agentic Afterthoughts
 ---
 
 The recent changes to pricing and usage, in relation to [AI](/tag/ai/),

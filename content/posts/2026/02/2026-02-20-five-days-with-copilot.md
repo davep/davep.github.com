@@ -3,6 +3,7 @@ title: Five days with Copilot
 category: AI
 tags: Python, AI, LLM, Copilot, GitHub, BlogMore, coding
 date: 2026-02-20 15:46:00 +0000
+series: Agentic Afterthoughts
 ---
 
 ## Another itch to scratch

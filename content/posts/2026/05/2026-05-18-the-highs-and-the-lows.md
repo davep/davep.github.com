@@ -4,6 +4,7 @@ date: 2026-05-18 08:34:29+0100
 category: AI
 tags: AI, Coding, Hacker News, history
 cover: /attachments/2026/05/18/one-plus-one.webp
+series: Agentic Afterthoughts
 ---
 
 Over the weekend I read a comment, I think it was on Hacker News, where

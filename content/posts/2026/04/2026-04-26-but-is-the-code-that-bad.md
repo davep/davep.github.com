@@ -3,6 +3,7 @@ title: But is the code that bad?
 date: 2026-04-26 09:29:49+0100
 category: AI
 tags: AI, Coding, Copilot, Gemini, Google, Python, code review
+series: Agentic Afterthoughts
 ---
 
 There is, obviously and understandably, a *lot* of conversation online about

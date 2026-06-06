@@ -4,6 +4,7 @@ date: 2026-05-10 09:39:49+0100
 category: AI
 tags: Coding, Gemini, Google, Python, code review
 cover: /attachments/2026/05/10/sneaky-edit.webp
+series: Agentic Afterthoughts
 ---
 
 At the moment I'm working on a linting command for

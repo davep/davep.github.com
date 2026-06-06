@@ -3,6 +3,7 @@ title: The other unreliable buddy
 date: 2026-05-12 08:20:25+0100
 category: AI
 tags: AI, Coding, Gemini, Google, leadership, quote
+series: Agentic Afterthoughts
 ---
 
 Having had [Copilot crash out the other

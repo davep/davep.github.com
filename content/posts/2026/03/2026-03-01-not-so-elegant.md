@@ -3,6 +3,7 @@ title: Not so elegant
 category: AI
 tags: AI, Coding, Copilot, LLM, Python, code review
 date: 2026-03-01 11:33:00 +0000
+series: Agentic Afterthoughts
 ---
 
 One thing I've been noticing with [my current experiment with GitHub

@@ -4,6 +4,7 @@ category: AI
 tags: Python, AI, LLM, Copilot, GitHub, BlogMore
 date: 2026-03-17 14:27:00 +0000
 cover: /attachments/2026/03/17/too-many-requests.webp
+series: Agentic Afterthoughts
 ---
 
 I don't know if it's just that GitHub Copilot is having a bad time at the
