@@ -4,6 +4,7 @@ date: 2026-05-22 09:19:37+0100
 category: AI
 tags: AI, BlogMore, Business, Coding, FOSS, Free Software, Gemini, LLM
 cover: /attachments/2026/05/22/session-usage.webp
+series: Agentic Afterthoughts
 ---
 
 As I've written about a few times in the last week or so, the journey with
