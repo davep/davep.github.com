@@ -4,6 +4,7 @@ date: 2026-05-16 19:48:28+0100
 category: Gaming
 tags: Steam, Steam Controller, hardware
 cover: /attachments/2026/05/16/steam-controller.webp
+series: Buying the Steam Controller
 ---
 
 Well, this week didn't *quite* go according to plan, so I didn't get to test

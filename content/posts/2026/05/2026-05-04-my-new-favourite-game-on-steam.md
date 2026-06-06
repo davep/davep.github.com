@@ -3,6 +3,7 @@ title: My new favourite game on Steam
 date: 2026-05-04 18:42:33+0100
 category: Gaming
 tags: Steam, Steam Controller, hardware
+series: Buying the Steam Controller
 ---
 
 So the new [Steam Controller](/tag/steam-controller/) is released. I kind of
