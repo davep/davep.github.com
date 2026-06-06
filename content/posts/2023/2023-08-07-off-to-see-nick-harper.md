@@ -4,6 +4,7 @@ category: Music
 tags: Music, Gig, Fringe, Nick Harper
 date: 2023-08-07 21:56:00 +0100
 cover: /attachments/2023/08/07/2009-05-08-19-14-07.webp
+series: Edinburgh Fringe 2023
 ---
 
 ![Poster from likely the last time I saw Nick](/attachments/2023/08/07/2009-05-08-19-14-07.webp#centre)

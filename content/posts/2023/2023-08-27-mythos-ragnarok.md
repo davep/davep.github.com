@@ -4,6 +4,7 @@ category: Life
 tags: Fringe, wrestling, movie
 date: 2023-08-27 10:55:00 +0100
 cover: /attachments/2023/08/27/IMG_2834.webp
+series: Edinburgh Fringe 2023
 ---
 
 And I'm done! While it did only turn out to be one a week, [I pulled it
