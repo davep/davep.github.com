@@ -3,6 +3,7 @@ title: Virgin East Coast 19
 category: Life
 tags: travel, Virgin
 date: 2016-10-27 11:21:19+0100
+series: The Virgin East Coast Saga
 ---
 
 I think I need to rethink the meaning of the word "certainly". Anyone still

@@ -3,6 +3,7 @@ title: Virgin East Coast 17
 category: Life
 tags: travel, Virgin
 date: 2016-10-19 11:28:25+0100
+series: The Virgin East Coast Saga
 ---
 
 The Virgin East Coast Trains saga gets more and more odd. Following on from

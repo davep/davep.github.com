@@ -4,6 +4,7 @@ category: Life
 tags: travel, Virgin
 date: 2016-06-20 10:33:19+0100
 cover: /attachments/2016/06/20/sign-in.webp
+series: The Virgin East Coast Saga
 ---
 
 Another update to the saga of trying to get the Virgin East Coast Ticket

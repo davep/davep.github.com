@@ -4,6 +4,7 @@ category: Life
 tags: travel, Virgin
 date: 2016-09-29 13:12:19+0100
 cover: /attachments/2016/09/29/no-login.webp
+series: The Virgin East Coast Saga
 ---
 
 It's now a week [since I last wrote an

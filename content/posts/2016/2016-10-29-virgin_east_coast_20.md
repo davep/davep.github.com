@@ -3,6 +3,7 @@ title: Virgin East Coast 20
 category: Life
 tags: travel, Virgin
 date: 2016-10-29 16:53:00+0100
+series: The Virgin East Coast Saga
 ---
 
 After my [last post](/2016/10/27/virgin_east_coast_19.html) I sent off an

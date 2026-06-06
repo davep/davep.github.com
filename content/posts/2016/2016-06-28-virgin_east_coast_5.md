@@ -3,6 +3,7 @@ title: Virgin East Coast 5
 category: Life
 tags: travel, Virgin
 date: 2016-06-28 14:46:36+0100
+series: The Virgin East Coast Saga
 ---
 
 Quick update on where things are at with the attempt to get help with the

@@ -3,6 +3,7 @@ title: Virgin East Coast 13
 category: Life
 tags: travel, Virgin
 date: 2016-09-02 09:54:21+0100
+series: The Virgin East Coast Saga
 ---
 
 It's

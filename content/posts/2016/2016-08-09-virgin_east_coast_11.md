@@ -3,6 +3,7 @@ title: Virgin East Coast 11
 category: Life
 tags: travel, Virgin
 date: 2016-08-09 08:19:46+0100
+series: The Virgin East Coast Saga
 ---
 
 It's now another Tuesday morning. It's the Tuesday morning
