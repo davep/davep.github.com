@@ -3,6 +3,7 @@ title: Reading 2bit files (for fun)
 category: Coding
 tags: Bioinformatics, Coding
 date: 2020-08-30 15:20:00+0100
+series: Reading 2bit files (for fun)
 ---
 
 ## Introduction
