@@ -8,7 +8,89 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 05 Jun 2026 19:03:13 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 06 Jun 2026 09:47:35 +0000</lastBuildDate>
+    <item>
+      <title>BlogMore v2.40.0</title>
+      <link>https://blog.davep.org/2026/06/06/blogmore-v2-40-0.html</link>
+      <description>&lt;p&gt;I've just released &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
+&lt;a href="https://blogmore.davep.dev/changelog/#v2400" rel="noopener noreferrer" target="_blank"&gt;v2.40.0&lt;/a&gt;. This version
+contains just one new feature: &lt;a href="https://blogmore.davep.dev/writing_a_post/#series" rel="noopener noreferrer" target="_blank"&gt;post series
+support&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It's hardly a novel feature, plenty of blog engines support this sort of
+thing; I felt it was high time I added it to BlogMore too. The idea is
+simple: while &lt;a href="https://blog.davep.org/categories/"&gt;categories&lt;/a&gt; provide a method of having
+"sub-blogs" within a blog (they also provide their own feeds), and while
+&lt;a href="https://blog.davep.org/tags/"&gt;tags&lt;/a&gt; let you group together posts that touch on related subjects,
+a &lt;a href="https://blog.davep.org/series/"&gt;series&lt;/a&gt; will let you stitch together a collection of posts as
+directly relating to each other.&lt;/p&gt;
+&lt;p&gt;Adding a post to a series is as simple as adding a &lt;code&gt;series&lt;/code&gt; to the
+frontmatter of a post.&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Five days with Copilot&lt;/span&gt;
+&lt;span class="nt"&gt;category&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;AI&lt;/span&gt;
+&lt;span class="nt"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Python, AI, LLM, Copilot, GitHub, BlogMore, coding&lt;/span&gt;
+&lt;span class="nt"&gt;date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;2026-02-20 15:46:00 +0000&lt;/span&gt;
+&lt;span class="nt"&gt;series&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Agentic Afterthoughts&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;With this done, when a reader is viewing an individual post that is within a
+series, some new navigation appears at the top and bottom of the post that
+lets them know about the series, and also offers them easy navigation to the
+previous and next posts.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Series navigation" height="284" loading="lazy" src="https://blog.davep.org/attachments/2026/06/06/post-navigation.webp#centre" width="640" /&gt;&lt;/p&gt;
+&lt;p&gt;Also, if the reader were to click on the series title, it will take them to
+an archive page for that series, where the posts are presented in the usual
+pagination format, but where they're also presented in series order. To be
+clear: series order is &lt;em&gt;always&lt;/em&gt; chronological order.&lt;/p&gt;
+&lt;p&gt;To help encourage further post discovery, if one or more series are
+available, a new &lt;code&gt;Series&lt;/code&gt; link appears at the top of the blog. This links to
+an index of every series available.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="My blog's series index" height="541" loading="lazy" src="https://blog.davep.org/attachments/2026/06/06/series-index.webp#centre" width="640" /&gt;&lt;/p&gt;
+&lt;p&gt;Sorted in alphabetical order, the list also shows how many posts are in each
+series and, if &lt;a href="https://blogmore.davep.dev/configuration/#with_read_time" rel="noopener noreferrer" target="_blank"&gt;reading time is turned
+on&lt;/a&gt;, the total
+reading time will be shown.&lt;/p&gt;
+&lt;p&gt;Worth noting is the fact that a post doesn't have to be restricted to just
+one series. If you need a post to be in two or more series, you can provide
+the series as a list:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;My post that crosses the streams&lt;/span&gt;
+&lt;span class="nt"&gt;category&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Testing&lt;/span&gt;
+&lt;span class="nt"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;BlogMore, Series, Test&lt;/span&gt;
+&lt;span class="nt"&gt;date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;2022-02-22 22:22:22 +2200&lt;/span&gt;
+&lt;span class="nt"&gt;series&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Experiments with blogging&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Eating my own dog food&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Testing thing&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The post will then show navigation for every one of those series, and the
+post will be in each series' archive page.&lt;/p&gt;
+&lt;p&gt;Having added this, I've also updated the output of &lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;the &lt;code&gt;dump&lt;/code&gt;
+command&lt;/a&gt; so that
+&lt;code&gt;series&lt;/code&gt; (the series list as provided in the frontmatter), &lt;code&gt;safe_series&lt;/code&gt;
+(the series list in their URL-friendly slug forms) and &lt;code&gt;series_pair&lt;/code&gt; (a list
+of series title and slug pairs) properties are available.&lt;/p&gt;
+&lt;p&gt;As of the time of writing this, I have noticed one issue. The
+&lt;a href="https://blogmore.davep.dev/linting/" rel="noopener noreferrer" target="_blank"&gt;linter&lt;/a&gt; isn't currently aware of the
+URLs that are created as part of the series facility. So if you have a page
+or post that &lt;a href="https://blog.davep.org/series/"&gt;links to the index&lt;/a&gt;, or &lt;a href="https://blog.davep.org/series/the-virgin-east-coast-saga/"&gt;links to a particular
+series&lt;/a&gt;, there will be errors:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;blogmore lint
+Linting site in content...
+ERROR: posts/2026/06/2026-06-06-blogmore-v2-40-0.md: Link points to non-existent internal path: /series/ (resolved to /series/)
+ERROR: posts/2026/06/2026-06-06-blogmore-v2-40-0.md: Link points to non-existent internal path: /series/ (resolved to /series/)
+ERROR: posts/2026/06/2026-06-06-blogmore-v2-40-0.md: Link points to non-existent internal path: /series/the-virgin-east-coast-saga/ (resolved to /series/the-virgin-east-coast-saga/)
+Linting complete: 377 post(s), 4 page(s), 3 error(s), 0 warning(s) [0.45s].
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This should be a straightforward fix which I'll make in a follow-up release.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/06/blogmore-v2-40-0.html</guid>
+      <category>Coding</category>
+      <category>BlogMore</category>
+      <category>Coding</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <pubDate>Sat, 06 Jun 2026 10:45:58 +0100</pubDate>
+    </item>
     <item>
       <title>blogmore.el v4.6.0</title>
       <link>https://blog.davep.org/2026/06/05/blogmore-el-v4-6-0.html</link>
@@ -1359,41 +1441,6 @@ UK, today.&lt;/p&gt;
       <category>Scotland</category>
       <category>weather</category>
       <pubDate>Mon, 25 May 2026 15:06:56 +0100</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.29.0</title>
-      <link>https://blog.davep.org/2026/05/25/blogmore-v2-29-0.html</link>
-      <description>&lt;p&gt;A quick update to &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; that stems from a
-couple of accessibility concerns raised when using &lt;a href="https://pagespeed.web.dev/" rel="noopener noreferrer" target="_blank"&gt;PageSpeed
-Insights&lt;/a&gt;. While the accessibility score on
-pages generated by BlogMore is pretty excellent (96/100), a couple of things
-were highlighted that seemed worth tackling in some way.&lt;/p&gt;
-&lt;p&gt;The first was that the title bar of code blocks is rather low in contrast,
-especially the name of the language. This was a deliberate choice on my
-part; when I'd prompted &lt;a href="https://blog.davep.org/tag/copilot/"&gt;Copilot&lt;/a&gt; to do this work some time
-back I'd expressly asked it to make the text "subtle". While I could have
-undone that, I do like how it looks and would like to retain it if possible.
-So, as an experiment, I've used
-&lt;a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-contrast" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;prefers-contrast&lt;/code&gt;&lt;/a&gt;
-as a signal that I shouldn't do that. So now there's a bit of extra CSS
-under &lt;code&gt;prefers-contrast: more&lt;/code&gt; which just uses the normal text colour for
-those headers.&lt;/p&gt;
-&lt;p&gt;I imagine this &lt;em&gt;won't&lt;/em&gt; boost the score on PageSpeed Insights -- presumably
-it won't simulate that being used -- but I would hope it's an improvement
-for those who do need the extra contrast.&lt;/p&gt;
-&lt;p&gt;The other issue that was flagged up was the lack of an underline on the
-email address link in the comment-via-email invitation box (the optional
-feature I &lt;a href="https://blog.davep.org/2026/04/27/blogmore-v2-17-0.html"&gt;added back in v2.17.0&lt;/a&gt;). That
-one was an easy fix. There was no reason to avoid an underline on the link,
-so I added one.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/05/25/blogmore-v2-29-0.html</guid>
-      <category>Coding</category>
-      <category>BlogMore</category>
-      <category>Coding</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>a11y</category>
-      <pubDate>Mon, 25 May 2026 08:29:56 +0100</pubDate>
     </item>
   </channel>
 </rss>

@@ -8,7 +8,89 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 05 Jun 2026 19:03:13 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 06 Jun 2026 09:47:35 +0000</lastBuildDate>
+    <item>
+      <title>BlogMore v2.40.0</title>
+      <link>https://blog.davep.org/2026/06/06/blogmore-v2-40-0.html</link>
+      <description>&lt;p&gt;I've just released &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
+&lt;a href="https://blogmore.davep.dev/changelog/#v2400" rel="noopener noreferrer" target="_blank"&gt;v2.40.0&lt;/a&gt;. This version
+contains just one new feature: &lt;a href="https://blogmore.davep.dev/writing_a_post/#series" rel="noopener noreferrer" target="_blank"&gt;post series
+support&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It's hardly a novel feature, plenty of blog engines support this sort of
+thing; I felt it was high time I added it to BlogMore too. The idea is
+simple: while &lt;a href="https://blog.davep.org/categories/"&gt;categories&lt;/a&gt; provide a method of having
+"sub-blogs" within a blog (they also provide their own feeds), and while
+&lt;a href="https://blog.davep.org/tags/"&gt;tags&lt;/a&gt; let you group together posts that touch on related subjects,
+a &lt;a href="https://blog.davep.org/series/"&gt;series&lt;/a&gt; will let you stitch together a collection of posts as
+directly relating to each other.&lt;/p&gt;
+&lt;p&gt;Adding a post to a series is as simple as adding a &lt;code&gt;series&lt;/code&gt; to the
+frontmatter of a post.&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Five days with Copilot&lt;/span&gt;
+&lt;span class="nt"&gt;category&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;AI&lt;/span&gt;
+&lt;span class="nt"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Python, AI, LLM, Copilot, GitHub, BlogMore, coding&lt;/span&gt;
+&lt;span class="nt"&gt;date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;2026-02-20 15:46:00 +0000&lt;/span&gt;
+&lt;span class="nt"&gt;series&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Agentic Afterthoughts&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;With this done, when a reader is viewing an individual post that is within a
+series, some new navigation appears at the top and bottom of the post that
+lets them know about the series, and also offers them easy navigation to the
+previous and next posts.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Series navigation" height="284" loading="lazy" src="https://blog.davep.org/attachments/2026/06/06/post-navigation.webp#centre" width="640" /&gt;&lt;/p&gt;
+&lt;p&gt;Also, if the reader were to click on the series title, it will take them to
+an archive page for that series, where the posts are presented in the usual
+pagination format, but where they're also presented in series order. To be
+clear: series order is &lt;em&gt;always&lt;/em&gt; chronological order.&lt;/p&gt;
+&lt;p&gt;To help encourage further post discovery, if one or more series are
+available, a new &lt;code&gt;Series&lt;/code&gt; link appears at the top of the blog. This links to
+an index of every series available.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="My blog's series index" height="541" loading="lazy" src="https://blog.davep.org/attachments/2026/06/06/series-index.webp#centre" width="640" /&gt;&lt;/p&gt;
+&lt;p&gt;Sorted in alphabetical order, the list also shows how many posts are in each
+series and, if &lt;a href="https://blogmore.davep.dev/configuration/#with_read_time" rel="noopener noreferrer" target="_blank"&gt;reading time is turned
+on&lt;/a&gt;, the total
+reading time will be shown.&lt;/p&gt;
+&lt;p&gt;Worth noting is the fact that a post doesn't have to be restricted to just
+one series. If you need a post to be in two or more series, you can provide
+the series as a list:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;My post that crosses the streams&lt;/span&gt;
+&lt;span class="nt"&gt;category&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Testing&lt;/span&gt;
+&lt;span class="nt"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;BlogMore, Series, Test&lt;/span&gt;
+&lt;span class="nt"&gt;date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;2022-02-22 22:22:22 +2200&lt;/span&gt;
+&lt;span class="nt"&gt;series&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Experiments with blogging&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Eating my own dog food&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Testing thing&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The post will then show navigation for every one of those series, and the
+post will be in each series' archive page.&lt;/p&gt;
+&lt;p&gt;Having added this, I've also updated the output of &lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;the &lt;code&gt;dump&lt;/code&gt;
+command&lt;/a&gt; so that
+&lt;code&gt;series&lt;/code&gt; (the series list as provided in the frontmatter), &lt;code&gt;safe_series&lt;/code&gt;
+(the series list in their URL-friendly slug forms) and &lt;code&gt;series_pair&lt;/code&gt; (a list
+of series title and slug pairs) properties are available.&lt;/p&gt;
+&lt;p&gt;As of the time of writing this, I have noticed one issue. The
+&lt;a href="https://blogmore.davep.dev/linting/" rel="noopener noreferrer" target="_blank"&gt;linter&lt;/a&gt; isn't currently aware of the
+URLs that are created as part of the series facility. So if you have a page
+or post that &lt;a href="https://blog.davep.org/series/"&gt;links to the index&lt;/a&gt;, or &lt;a href="https://blog.davep.org/series/the-virgin-east-coast-saga/"&gt;links to a particular
+series&lt;/a&gt;, there will be errors:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;blogmore lint
+Linting site in content...
+ERROR: posts/2026/06/2026-06-06-blogmore-v2-40-0.md: Link points to non-existent internal path: /series/ (resolved to /series/)
+ERROR: posts/2026/06/2026-06-06-blogmore-v2-40-0.md: Link points to non-existent internal path: /series/ (resolved to /series/)
+ERROR: posts/2026/06/2026-06-06-blogmore-v2-40-0.md: Link points to non-existent internal path: /series/the-virgin-east-coast-saga/ (resolved to /series/the-virgin-east-coast-saga/)
+Linting complete: 377 post(s), 4 page(s), 3 error(s), 0 warning(s) [0.45s].
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This should be a straightforward fix which I'll make in a follow-up release.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/06/blogmore-v2-40-0.html</guid>
+      <category>Coding</category>
+      <category>BlogMore</category>
+      <category>Coding</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <pubDate>Sat, 06 Jun 2026 10:45:58 +0100</pubDate>
+    </item>
     <item>
       <title>BlogMore v2.39.0</title>
       <link>https://blog.davep.org/2026/06/05/blogmore-v2-39-0.html</link>
@@ -1029,70 +1111,6 @@ build process.&lt;/p&gt;
       <category>PyPI</category>
       <category>Python</category>
       <pubDate>Thu, 14 May 2026 20:23:45 +0100</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.22.0</title>
-      <link>https://blog.davep.org/2026/05/13/blogmore-v2-22-0.html</link>
-      <description>&lt;p&gt;As mentioned &lt;a href="https://blog.davep.org/2026/05/11/speeding-up-blogmore.html"&gt;a couple of days ago&lt;/a&gt;,
-I've been toying with finding areas of improvement in respect to &lt;a href="https://www.yakshaving.co.uk/posts/blogmore-performance/" rel="noopener noreferrer" target="_blank"&gt;the
-performance of
-BlogMore&lt;/a&gt;. Until
-now, &lt;a href="https://wiki.c2.com/?PrematureOptimization" rel="noopener noreferrer" target="_blank"&gt;for good reasons&lt;/a&gt;, I've
-not really paid any attention to how fast (or slow) BlogMore is when it
-comes to generating my blog. While it's never been blindingly fast, it's
-always been fast enough and I was more keen on &lt;a href="https://wiki.c2.com/?MakeItWorkMakeItRightMakeItFast" rel="noopener noreferrer" target="_blank"&gt;making it work
-right&lt;/a&gt;. So for a good
-while the focus has been on well-formed output, stuff that keeps the
-crawlers happy, that sort of thing.&lt;/p&gt;
-&lt;p&gt;But now that I'm in a place where new features aren't really so necessary,
-it does feel like a good point to find any easy wins in speeding up the
-code. I think it's gone well.&lt;/p&gt;
-&lt;p&gt;BlogMore &lt;a href="https://blogmore.davep.dev/changelog/#v2220" rel="noopener noreferrer" target="_blank"&gt;v2.22.0&lt;/a&gt; contains
-quite a few internal changes that speed up some core parts of site
-generation. Many of the things identified by Gemini, back when I first
-kicked this process off, have been done. The amount of Markdown-&amp;gt;HTML
-conversion work has been vastly reduced, which has had a pretty big impact
-on all sorts of things. There's also caching of the FontAwesome metadata&lt;sup id="fnref:299-1"&gt;&lt;a class="footnote-ref" href="#fn:299-1"&gt;1&lt;/a&gt;&lt;/sup&gt;
-which should save a fair bit of time on slower connections. I did avoid the
-whole business of parallel processing as I dabbled with this near the start
-of the project and I could not wrangle a win out of that at all; given how
-much of a win I've had with these changes, I doubt that would change (it
-could conceivably make things worse).&lt;/p&gt;
-&lt;p&gt;So, how much faster is it? Roughly, based on my tests, a site generates in
-about 1/4 of the time it did before. On my M2 Mac Mini my blog builds in
-under 3 seconds; with v2.21.0 it took around 13 seconds. In my case that's
-with all the optional features of BlogMore turned on.&lt;/p&gt;
-&lt;p&gt;Naturally this work has touched on a &lt;em&gt;lot&lt;/em&gt; of internals of the code, and
-made significant changes to the generation pipelines of lots of different
-pages and features. I've done my absolute best to compare&lt;sup id="fnref:299-2"&gt;&lt;a class="footnote-ref" href="#fn:299-2"&gt;2&lt;/a&gt;&lt;/sup&gt; the output of
-v2.21.0 and v2.22.0 and I can't see any significant differences&lt;sup id="fnref:299-3"&gt;&lt;a class="footnote-ref" href="#fn:299-3"&gt;3&lt;/a&gt;&lt;/sup&gt;. When
-trying out v2.22.0 I would suggest paying just a little extra attention to
-the result, to be sure you're happy that nothing has changed.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:299-1"&gt;
-&lt;p&gt;It lives in &lt;code&gt;~/.cache/blogmore&lt;/code&gt; on Unix and Unix-like systems, or
-&lt;code&gt;%LOCALAPPDATA%\blogmore\cache&lt;/code&gt; on DOS/VMS-influenced systems.&amp;#160;&lt;a class="footnote-backref" href="#fnref:299-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:299-2"&gt;
-&lt;p&gt;Lots of &lt;code&gt;diff -rq&lt;/code&gt; and then diffing an assorted sample of files that
-showed differences to inspect what was actually different.&amp;#160;&lt;a class="footnote-backref" href="#fnref:299-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:299-3"&gt;
-&lt;p&gt;Actually, there's a small difference in the context shown in
-backlinks, but this was a deliberate change and a very small cosmetic
-enhancement.&amp;#160;&lt;a class="footnote-backref" href="#fnref:299-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/05/13/blogmore-v2-22-0.html</guid>
-      <category>Coding</category>
-      <category>BlogMore</category>
-      <category>Coding</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <pubDate>Wed, 13 May 2026 13:53:04 +0100</pubDate>
     </item>
   </channel>
 </rss>
