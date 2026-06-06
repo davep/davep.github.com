@@ -57,4 +57,12 @@ realclean: 		# Clean the venv and build directories
 help:				# Display this help
 	@grep -Eh "^[a-z]+:.+# " $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.+# "}; {printf "%-20s %s\n", $$1, $$2}'
 
+##############################################################################
+# Housekeeping tasks.
+.PHONY: housekeeping
+housekeeping:			# Perform some git housekeeping
+	git fsck
+	git gc --aggressive
+	git remote update --prune
+
 ### Makefile ends here
