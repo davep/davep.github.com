@@ -4,6 +4,7 @@ category: Emacs
 tags: Emacs
 date: 2020-06-14 20:00:00+0100
 cover: /attachments/2020/06/14/emacs.webp
+series: ~/.emacs.d
 ---
 
 Ever since the whole business of "light mode" and "dark mode" really kicked
