@@ -8,7 +8,87 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 06 Jun 2026 19:56:29 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 07 Jun 2026 08:55:11 +0000</lastBuildDate>
+    <item>
+      <title>BlogMore v2.41.0</title>
+      <link>https://blog.davep.org/2026/06/07/blogmore-v2-41-0.html</link>
+      <description>&lt;p&gt;It's probably bad news if I have a Saturday afternoon and evening spare, a
+fully-charged laptop and a comfy sofa. It seems that when that happens,
+something like &lt;a href="https://blogmore.davep.dev/changelog/#v2410" rel="noopener noreferrer" target="_blank"&gt;BlogMore
+v2.41.0&lt;/a&gt; happens. This is a
+release where I've added two features that could be generally useful, but
+which I'm unlikely to use in my own blogs.&lt;/p&gt;
+&lt;p&gt;The first, which to be fair is one I &lt;em&gt;might&lt;/em&gt; use (I've used it in
+documentation plenty of times over the years), is optional
+&lt;a href="https://mermaid.ai/open-source/" rel="noopener noreferrer" target="_blank"&gt;Mermaid&lt;/a&gt; support. This is off by default,
+so has no overhead if you don't turn it on. It is turned on &lt;a href="https://blogmore.davep.dev/configuration/#with_mermaid" rel="noopener noreferrer" target="_blank"&gt;by setting
+&lt;code&gt;with_mermaid&lt;/code&gt; to
+&lt;code&gt;true&lt;/code&gt;&lt;/a&gt;. Even with
+this enabled, the Mermaid third-party scripts only get included on pages
+that include a Mermaid diagram, reducing the overhead.&lt;/p&gt;
+&lt;p&gt;To include a Mermaid diagram you &lt;a href="https://blogmore.davep.dev/writing_a_post/#diagrams-mermaid" rel="noopener noreferrer" target="_blank"&gt;use a fenced codeblock with &lt;code&gt;mermaid&lt;/code&gt; as
+the language
+identifier&lt;/a&gt;.
+For example:&lt;/p&gt;
+&lt;div class="highlight" data-lang="markdown"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="sb"&gt;```mermaid&lt;/span&gt;
+&lt;span class="s"&gt;graph TD&lt;/span&gt;
+&lt;span class="s"&gt;    A[Start] --&amp;gt; B[Process]&lt;/span&gt;
+&lt;span class="s"&gt;    B --&amp;gt; C{Decision}&lt;/span&gt;
+&lt;span class="s"&gt;    C --&amp;gt;|Yes| D[Success]&lt;/span&gt;
+&lt;span class="s"&gt;    C --&amp;gt;|No| E[Fail]&lt;/span&gt;
+&lt;span class="sb"&gt;```&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If Mermaid is enabled the resulting page will show this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Example Mermaid diagram" height="512" loading="lazy" src="https://blog.davep.org/attachments/2026/06/07/mermaid.webp#centre" width="301" /&gt;&lt;/p&gt;
+&lt;p&gt;There are, of course, all sorts of diagrams that can be used and I'm not
+going to go into them here, or in the &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore
+docs&lt;/a&gt;; Mermaid is well known enough and
+well-documented enough that anyone turning this on is likely to know what
+they're doing, or where to go to find out what to do.&lt;/p&gt;
+&lt;p&gt;The second new feature, which I am almost certainly &lt;em&gt;never&lt;/em&gt; going to need to
+use on my blog, is &lt;a href="https://blogmore.davep.dev/writing_a_post/#latex-math-rendering" rel="noopener noreferrer" target="_blank"&gt;LaTeX-style maths
+support&lt;/a&gt;.
+As with Mermaid, this is off by default and has no overhead if not used.
+Even when &lt;a href="https://blogmore.davep.dev/configuration/#with_maths" rel="noopener noreferrer" target="_blank"&gt;turned on with the &lt;code&gt;with_maths&lt;/code&gt;
+setting&lt;/a&gt;, the external
+scripts will only be pulled into pages that include maths markup.&lt;/p&gt;
+&lt;p&gt;Two providers of rendering engines are supported and this &lt;a href="https://blogmore.davep.dev/configuration/#maths_provider" rel="noopener noreferrer" target="_blank"&gt;can be configured
+with the &lt;code&gt;maths_provider&lt;/code&gt;
+setting&lt;/a&gt;. The
+available options are &lt;a href="https://katex.org/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;katex&lt;/code&gt;&lt;/a&gt; (which is also the
+default) and &lt;a href="https://www.mathjax.org/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;mathjax&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To use either, when turned on, you use the usual &lt;code&gt;$&lt;/code&gt; or &lt;code&gt;$$&lt;/code&gt; convention for
+LaTeX-maths-in-Markdown:&lt;/p&gt;
+&lt;div class="highlight" data-lang="markdown"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;You can make some fun images using:
+
+$$
+z&lt;span class="ge"&gt;_{n+1} = z_&lt;/span&gt;n^2 + c
+$$
+
+We can say $z_{n+1} = z_n^2 + c$ inline too.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The result of the above will be something like:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Maths markup in action" height="246" loading="lazy" src="https://blog.davep.org/attachments/2026/06/07/maths.webp#centre" width="640" /&gt;&lt;/p&gt;
+&lt;p&gt;Note that some care has been taken to ensure that ordinary use of a &lt;code&gt;$&lt;/code&gt;, in
+currency values for example, is left unaffected. This can't be guaranteed in
+every possible case, so keep this in mind when turning on &lt;code&gt;with_maths&lt;/code&gt;. From
+what I have read this is a common issue when using such markup.&lt;/p&gt;
+&lt;p&gt;Both these features were fun to add, with me planning out the implementation
+with &lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt;, and having a back and forth a couple
+of times to address issues and get it all working "just so". I'm especially
+pleased with the fact that it's done in a way where there is no overhead,
+even when either feature is enabled, if a page isn't showing a diagram or
+maths markup.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/07/blogmore-v2-41-0.html</guid>
+      <category>Coding</category>
+      <category>BlogMore</category>
+      <category>Coding</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <pubDate>Sun, 07 Jun 2026 09:53:01 +0100</pubDate>
+    </item>
     <item>
       <title>BlogMore v2.40.1</title>
       <link>https://blog.davep.org/2026/06/06/blogmore-v2-40-1.html</link>
@@ -1394,55 +1474,6 @@ to in the good old days.&lt;/p&gt;</description>
       <category>Google</category>
       <category>Antigravity</category>
       <pubDate>Tue, 26 May 2026 10:01:05 +0100</pubDate>
-    </item>
-    <item>
-      <title>Something changed with Antigravity</title>
-      <link>https://blog.davep.org/2026/05/25/something-changed-with-antigravity.html</link>
-      <description>&lt;p&gt;Something has changed with &lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt; since &lt;a href="https://blog.davep.org/2026/05/20/the-gemini-bait-and-switch.html"&gt;I first
-tried it out the other day&lt;/a&gt;.
-While looking at &lt;a href="https://github.com/davep/blogmore/issues/534" rel="noopener noreferrer" target="_blank"&gt;adding a related posts
-feature&lt;/a&gt; to
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, I thought I'd give it another try
-out (having gone back to using &lt;a href="https://blog.davep.org/tag/gemini/"&gt;Gemini CLI&lt;/a&gt; while I still
-could).&lt;/p&gt;
-&lt;p&gt;That first (and last) time I tried it, while on whatever model it decided
-for me out of the box, it chewed through most of the quota, with a 5 hour
-reset, in very little time at all. It was obvious that I'd never get
-anything of significance done in a good session.&lt;/p&gt;
-&lt;p&gt;This evening has been quite different. It wrote a &lt;a href="https://github.com/davep/blogmore/pull/538" rel="noopener noreferrer" target="_blank"&gt;very comprehensive
-change&lt;/a&gt;, doing quite a lot of
-work, and left me with a lot of quota and a short reset time once done.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="After most of the work" height="1116" loading="lazy" src="https://blog.davep.org/attachments/2026/05/25/after-most-work.webp#centre" width="1152" /&gt;&lt;/p&gt;
-&lt;p&gt;A bit more testing and tweaking of the documentation followed, with me
-setting it off on a couple of bug hunts (which it found and fixed). By the
-time I was happy to call it an evening on this round of modifications, it had
-reset and I was green across the board again.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="All done" height="1122" loading="lazy" src="https://blog.davep.org/attachments/2026/05/25/after-done.webp#centre" width="1149" /&gt;&lt;/p&gt;
-&lt;p&gt;Now &lt;em&gt;this&lt;/em&gt; I can work with!&lt;/p&gt;
-&lt;p&gt;I don't really know what's changed&lt;sup id="fnref:341-1"&gt;&lt;a class="footnote-ref" href="#fn:341-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, or why. I think I saw something the
-other day about quotas being tripled, but this seems even more generous (at
-least in terms of the reset window). I guess I'm going to have to go digging
-to see if I can find what the story is.&lt;/p&gt;
-&lt;p&gt;I'm not getting my hopes up -- what can be given can be taken away at any
-moment (which is, of course, the ongoing theme of what I'm documenting here)
--- but this does soften the landing somewhat.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:341-1"&gt;
-&lt;p&gt;Although I did notice it went with &lt;code&gt;Gemini 3.5 Flash (Medium)&lt;/code&gt; on
-startup and I let it go with that; last time it was &lt;code&gt;Gemini 3.5 Flash
-(High)&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:341-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/05/25/something-changed-with-antigravity.html</guid>
-      <category>AI</category>
-      <category>Coding</category>
-      <category>Gemini</category>
-      <category>Google</category>
-      <category>Antigravity</category>
-      <pubDate>Mon, 25 May 2026 20:24:38 +0100</pubDate>
     </item>
   </channel>
 </rss>
