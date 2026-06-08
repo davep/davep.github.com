@@ -31,6 +31,22 @@ spellcheck:
 oldimages:			# List dates where I've not updated the images in the attachments folder.
 	cd content/extras/attachments && find -E ./ -iregex '.*\.(png|jpg|jpeg)$$' | cut -d'/' -f2,3,4 | sort -u
 
+.PHONY: posts
+posts:				# Dump posts as JSON
+	@$(blogmore) dump posts
+
+.PHONY: categories
+categories:			# Dump categories as JSON
+	@$(blogmore) dump categories
+
+.PHONY: tags
+tags:				# Dump tags as JSON
+	@$(blogmore) dump tags
+
+.PHONY: series
+series:				# Dump series as JSON
+	@$(blogmore) dump series
+
 ##############################################################################
 # Utility.
 .PHONY: setup
