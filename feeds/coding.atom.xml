@@ -2,11 +2,91 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-06-07T18:14:52.307289+00:00</updated>
+  <updated>2026-06-08T14:32:02.708240+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/06/08/blogmore-v2-42-0.html</id>
+    <title>BlogMore v2.42.0</title>
+    <updated>2026-06-08T15:30:07+01:00</updated>
+    <content type="html">&lt;p&gt;I've released &lt;a href="https://blogmore.davep.dev/changelog/#v2420" rel="noopener noreferrer" target="_blank"&gt;BlogMore
+v2.42.0&lt;/a&gt;. This version is all
+about changes to &lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;the &lt;code&gt;dump&lt;/code&gt;
+command&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;When I &lt;a href="https://blog.davep.org/2026/05/26/blogmore-v2-30-0.html"&gt;first added it&lt;/a&gt; it simply dumped
+all of the data available about posts within a blog, meaning &lt;a href="https://blog.davep.org/2026/06/02/recreating-my-blog-stats.html"&gt;it was
+possible to do all sorts of things with the
+data&lt;/a&gt; outside of BlogMore itself.
+Having done this, and used the result to good effect (and also having seen
+at least one person also make use of it), I got to thinking that I should
+probably expose some other data that's going to be helpful.&lt;/p&gt;
+&lt;p&gt;Given that &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; needs to
+dive into things like available categories and tags, and given that I'd also
+like to add support there for the &lt;a href="https://blog.davep.org/2026/06/06/blogmore-v2-40-0.html"&gt;recently-added &lt;code&gt;series&lt;/code&gt;
+support&lt;/a&gt;, I realised that dumping those
+values as JSON would also be helpful.&lt;/p&gt;
+&lt;p&gt;So this release extends the &lt;code&gt;dump&lt;/code&gt; command, adding a set of sub-commands:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;posts&lt;/code&gt;: dumps the data about all posts in the blog (this is the default
+  if you just run &lt;code&gt;blogmore dump&lt;/code&gt;, so keeping the command
+  backward-compatible).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;categories&lt;/code&gt;: dumps all categories as slug/title pairs.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tags&lt;/code&gt;: dumps all tags as slug/title pairs.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;series&lt;/code&gt;: dumps all series as slug/title pairs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example, getting all categories from this blog:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;blogmore&lt;span class="w"&gt; &lt;/span&gt;dump&lt;span class="w"&gt; &lt;/span&gt;categories
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ai&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;AI&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;coding&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Coding&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;creative&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Creative&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;emacs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Emacs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gaming&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Gaming&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;life&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Life&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;meta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Meta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;music&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Music&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tech&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Tech&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;til&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;TIL&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or all the available series right now:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;blogmore&lt;span class="w"&gt; &lt;/span&gt;dump&lt;span class="w"&gt; &lt;/span&gt;series
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;agentic-afterthoughts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Agentic Afterthoughts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;buying-the-steam-controller&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Buying the Steam Controller&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;edinburgh-fringe-2023&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Edinburgh Fringe 2023&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;reading-2bit-files-for-fun&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Reading 2bit files (for fun)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;swift-til&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Swift TIL&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;the-great-github-copilot-meltdown-of-2026&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;The Great GitHub Copilot Meltdown of 2026&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;the-virgin-east-coast-saga&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;The Virgin East Coast Saga&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;emacs-d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;~/.emacs.d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;While this data &lt;em&gt;could&lt;/em&gt; have been gathered from the content of the dump of
+posts, this approach makes it far easier to work with and more accessible;
+simply put, it means there's less work for the user to do if they just want
+all the tags (for example). With this, and with a little bit of caching in
+the code (because this does require parsing all the posts every time), I
+think it will make for a better approach to category, tag and (when I add
+it) series completion while writing a post.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/06/08/blogmore-v2-42-0.html"/>
+    <category term="Coding"/>
+    <category term="BlogMore"/>
+    <category term="Coding"/>
+    <category term="JSON"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <published>2026-06-08T15:30:07+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/06/07/blogmore-v2-41-0.html</id>
     <title>BlogMore v2.41.0</title>
@@ -201,7 +281,7 @@ should have added right near the start of the project.&lt;/p&gt;
 &lt;p&gt;First, the cosmetic: in pages and posts, when you use headings (&lt;code&gt;#&lt;/code&gt;, &lt;code&gt;##&lt;/code&gt;,
 etc.), a &lt;code&gt;¶&lt;/code&gt; is added to the end of each heading, along with some
 show-on-mouse-hover styling, to make it easy to grab the anchor of a
-particular section of a page&lt;sup id="fnref:379-1"&gt;&lt;a class="footnote-ref" href="#fn:379-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. A problem I'd noticed with this recently
+particular section of a page&lt;sup id="fnref:380-1"&gt;&lt;a class="footnote-ref" href="#fn:380-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. A problem I'd noticed with this recently
 is that the &lt;code&gt;¶&lt;/code&gt; shows up in the &lt;a href="https://blog.davep.org/search/"&gt;search&lt;/a&gt; text, and also in the
 content of all the feeds. While not a problem as such, it felt untidy.&lt;/p&gt;
 &lt;p&gt;So, with this release that particular &lt;code&gt;¶&lt;/code&gt; character is stripped from the
@@ -256,9 +336,9 @@ information lives with the page or post being redirected to.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:379-1"&gt;
+&lt;li id="fn:380-1"&gt;
 &lt;p&gt;The &lt;a href="https://blog.davep.org/2026/06/04/blogmore-v2-38-0.html"&gt;recently-added floating ToC&lt;/a&gt;
-is another way to do this now too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:379-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+is another way to do this now too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:380-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -317,7 +397,7 @@ if the feature should be on or off, by default, site-wide. It is set to
 post level, there is also &lt;a href="https://blogmore.davep.dev/writing_a_post/#show_toc" rel="noopener noreferrer" target="_blank"&gt;a &lt;code&gt;show_toc&lt;/code&gt; frontmatter
 property&lt;/a&gt; too. This
 &lt;em&gt;always&lt;/em&gt; overrides the global setting in the configuration file.&lt;/p&gt;
-&lt;p&gt;On top of this, I can imagine that someone&lt;sup id="fnref:377-1"&gt;&lt;a class="footnote-ref" href="#fn:377-1"&gt;1&lt;/a&gt;&lt;/sup&gt; might also want to have the
+&lt;p&gt;On top of this, I can imagine that someone&lt;sup id="fnref:378-1"&gt;&lt;a class="footnote-ref" href="#fn:378-1"&gt;1&lt;/a&gt;&lt;/sup&gt; might also want to have the
 right-side floating ToC, but never have the inline ToC showing on smaller
 displays. With this in mind I've also added a &lt;code&gt;show_toc_inline&lt;/code&gt;
 &lt;a href="https://blogmore.davep.dev/configuration/#show_toc_inline" rel="noopener noreferrer" target="_blank"&gt;configuration
@@ -339,8 +419,8 @@ override that explicit markup choice.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:377-1"&gt;
-&lt;p&gt;Me, I'm thinking it might be me.&amp;#160;&lt;a class="footnote-backref" href="#fnref:377-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:378-1"&gt;
+&lt;p&gt;Me, I'm thinking it might be me.&amp;#160;&lt;a class="footnote-backref" href="#fnref:378-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1023,92 +1103,5 @@ relax the pin.&lt;/p&gt;
     <category term="terminal"/>
     <category term="textual"/>
     <published>2026-05-19T08:20:03+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/05/18/blogmore-v2-24-0.html</id>
-    <title>BlogMore v2.24.0</title>
-    <updated>2026-05-18T18:59:06+01:00</updated>
-    <content type="html">&lt;p&gt;Quite a few weeks ago now -- I think it was around the time I started work
-on &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; and got the new
-&lt;a href="https://blog.davep.org/2026/03/28/hello-macbook-air-again.html"&gt;MacBook Air&lt;/a&gt; -- I remember
-sitting in a cafe in Edinburgh and via Mastodon having a conversation with
-&lt;a href="https://mastodon.me.uk/@andyc" rel="noopener noreferrer" target="_blank"&gt;Andy&lt;/a&gt; about tweaking better results out of
-&lt;a href="https://pagespeed.web.dev/" rel="noopener noreferrer" target="_blank"&gt;PageSpeed Insights&lt;/a&gt;. I seem to remember him
-correctly observing that one of the big hits on the performance score was
-the size of images, and also the format, and that some SSG engines would go
-to the trouble of converting to the likes of WebP and/or generating
-different sizes that are appropriate to different screens, that sort of
-thing.&lt;/p&gt;
-&lt;p&gt;I can't quite remember where we left it, but I think it was considered more
-work than was worth worrying about, and perhaps &lt;a href="https://blog.davep.org/2026/04/16/i-should-use-webp.html"&gt;swapping all images on our
-blogs to WebP&lt;/a&gt; would solve most of the
-issues.&lt;/p&gt;
-&lt;p&gt;For a couple of different reasons, late last week, &lt;a href="https://blog.davep.org/2026/05/16/gemini-cli-vs-github-copilot-redux.html"&gt;I decided it was time to
-play with the problem&lt;/a&gt;.
-For some reason I've been pretty cautious with &lt;a href="https://github.com/davep/blogmore/pull/492" rel="noopener noreferrer" target="_blank"&gt;this
-PR&lt;/a&gt;. I planned it out last
-Friday night, kicked off work on it on Saturday morning, and have then been
-tinkering and changing it and testing it and iterating over it all weekend.
-Something about the nature of the change made me want to go very slowly with
-this. I think it was an unease about messing with the images that would get
-served, the nature of the new tags that would get emitted, the fact that
-there would be even more HTML tinkering going on, the possible complexity of
-maintaining the cache... lots of things to consider and this is supposed to
-be a nice, simple, unfussy site generator.&lt;/p&gt;
-&lt;p&gt;Anyway, I've just released
-&lt;a href="https://blogmore.davep.dev/changelog/#v2240" rel="noopener noreferrer" target="_blank"&gt;v2.24.0&lt;/a&gt; with this feature
-added. It's off by default, and is turned on by &lt;a href="https://blogmore.davep.dev/configuration/#optimise_images" rel="noopener noreferrer" target="_blank"&gt;setting
-&lt;code&gt;optimise_images&lt;/code&gt;&lt;/a&gt;
-to &lt;code&gt;true&lt;/code&gt;. Then, when you build your blog, each PNG, JPEG or WebP image will
-be converted into one or more WebP images stored below
-&lt;code&gt;static/images/optimised&lt;/code&gt;. How many are made for each image will depend on
-how &lt;a href="https://blogmore.davep.dev/configuration/#image_widths" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;image_widths&lt;/code&gt;&lt;/a&gt;
-is set. The physical size of each image (and how the image looks) can be
-affected by
-&lt;a href="https://blogmore.davep.dev/configuration/#image_quality" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;image_quality&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This does have two very obvious effects:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;It will result in your generated site being quite a bit bigger, if you
-   have lots of images.&lt;/li&gt;
-&lt;li&gt;It will result in the build time taking much longer.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The first issue is something I can't do anything about; it is what it is.
-The second issue, however, is something that can be dealt with. Given I've
-&lt;a href="https://blog.davep.org/2026/05/13/blogmore-v2-22-0.html"&gt;just made a release that speeds up build
-times&lt;/a&gt;, this would be a huge step
-backwards. So with this in mind, as the optimised images are created, a
-cache of them is also created in BlogMore's &lt;a href="https://blogmore.davep.dev/command_line/#cache-command" rel="noopener noreferrer" target="_blank"&gt;cache
-directory&lt;/a&gt;. This,
-again, does mean that more space is taken on your local storage to build
-your site, but it also means that repeated builds will remain fast.&lt;/p&gt;
-&lt;p&gt;If you run into problems or need space back, don't forget you can &lt;a href="https://blogmore.davep.dev/command_line/#clear" rel="noopener noreferrer" target="_blank"&gt;easily
-clear the cache&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;So what's the result of all of this? Is it worth the effort? Well, to be
-sure, before I upgraded the version of BlogMore that I build this site with,
-I measured its performance.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Built with BlogMore v2.23.0" height="204" loading="lazy" src="https://blog.davep.org/attachments/2026/05/18/before.webp#centre" width="906" /&gt;&lt;/p&gt;
-&lt;p&gt;After upgrading and rebuilding, here is how the same home page measures up.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Built with BlogMore v2.24.0" height="212" loading="lazy" src="https://blog.davep.org/attachments/2026/05/18/after.webp#centre" width="906" /&gt;&lt;/p&gt;
-&lt;p&gt;I was genuinely surprised by the difference. The settings I used were:&lt;/p&gt;
-&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;optimise_images&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
-&lt;span class="nt"&gt;image_quality&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;95&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;and, of course, almost all the images on this site &lt;a href="https://blog.davep.org/2026/05/15/converted-to-webp.html"&gt;are now WebP
-anyway&lt;/a&gt;. I think I was expecting it to
-have a small impact, but even having those WebP images turned into stepped
-sizes seems to have a very measurable effect.&lt;/p&gt;
-&lt;p&gt;I'm going to be keeping a close eye on how this works for the next few days.
-As I say, I've tested this as much as possible and gone over the code as
-carefully as time has allowed. If this feature does break something I hadn't
-anticipated I can always just turn it off again anyway. Meanwhile though,
-the improvement on mobile does seem genuinely worth it.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/05/18/blogmore-v2-24-0.html"/>
-    <category term="Coding"/>
-    <category term="BlogMore"/>
-    <category term="Coding"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <published>2026-05-18T18:59:06+01:00</published>
   </entry>
 </feed>
