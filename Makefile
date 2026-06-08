@@ -12,11 +12,11 @@ build:				# Build the site
 	$(blogmore) build
 
 .PHONY: lint
-lint:				# Lint the content and configuration files.
+lint:				# Lint the content and configuration files
 	$(blogmore) lint
 
 .PHONY: serve
-serve:				# Locally serve the site for testing.
+serve:				# Locally serve the site for testing
 	$(blogmore) serve --include-drafts
 
 .PHONY: publish
@@ -24,17 +24,33 @@ publish:			# Publish the site to GitHub
 	$(blogmore) publish
 
 .PHONY: spellcheck
-spellcheck:
+spellcheck:			# Spellcheck the posts and pages
 	bin/spellcheck content/
 
 .PHONY: oldimages
-oldimages:			# List dates where I've not updated the images in the attachments folder.
+oldimages:			# List dates where I've not updated the images in the attachments folder
 	cd content/extras/attachments && find -E ./ -iregex '.*\.(png|jpg|jpeg)$$' | cut -d'/' -f2,3,4 | sort -u
+
+.PHONY: posts
+posts:				# Dump posts as JSON
+	@$(blogmore) dump posts
+
+.PHONY: categories
+categories:			# Dump categories as JSON
+	@$(blogmore) dump categories
+
+.PHONY: tags
+tags:				# Dump tags as JSON
+	@$(blogmore) dump tags
+
+.PHONY: series
+series:			# Dump series as JSON
+	@$(blogmore) dump series
 
 ##############################################################################
 # Utility.
 .PHONY: setup
-setup:				# Set up the environment.
+setup:				# Set up the environment
 	$(sync)
 
 .PHONY: update
