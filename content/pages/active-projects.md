@@ -1,5 +1,5 @@
 ---
-title: Active projects
+title: Active Projects
 ---
 
 ## Introduction
@@ -40,12 +40,28 @@ application for working with bookmark data stored in
 [Complexitty](https://complexitty.davep.dev/) is a terminal-based TUI for
 playing with and exploring Mandelbrot sets.
 
+## DHV
+
+![DHV](/attachments/active-projects/dhv-social-banner.webp#centre)
+
+[DHV](https://dhv.davep.dev/) is a terminal-based Python code exploration
+TUI, designed to let you type in, load up, and edit Python code, and see
+what the resulting [abstract syntax
+tree](https://docs.python.org/3/library/ast.html) and
+[bytecode](https://docs.python.org/3/library/dis.html) looks like.
+
 ## Hike
 
 ![Hike](/attachments/active-projects/hike-social-banner.webp#centre)
 
 [Hike](https://hike.davep.dev/) is a terminal-based TUI browser for Markdown
 files.
+
+## obs2nlm
+
+[obs2nlm](https://obs2nlm.davep.dev/) is a command line tool for turning
+[Obsidian](https://obsidian.md/) vaults into sources for
+[NotebookLM](https://notebooklm.google/).
 
 ## OldNews
 
