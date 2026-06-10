@@ -71,4 +71,15 @@ files.
 [TheOldReader](https://www.theoldreader.com/en/). It's one of my
 daily-drivers when it comes to reading RSS-based feeds.
 
+## Peplum
+
+![Peplum](/attachments/active-projects/peplum-social-banner.webp#centre)
+
+[Peplum](https://peplum.davep.dev/) is a terminal-based lookup manager TUI
+for [Python Enhancement Proposals](https://peps.python.org/). It provides
+the ability to browse, filter and search the metadata for all the PEPs
+available via the [PEP API](https://peps.python.org/api/).
+
+
+
 [//]: # (active-projects.md ends here)
