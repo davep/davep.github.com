@@ -8,7 +8,108 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 09 Jun 2026 07:45:01 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2026 09:25:10 +0000</lastBuildDate>
+    <item>
+      <title>blogmore.el v5.0.0</title>
+      <link>https://blog.davep.org/2026/06/10/blogmore-el-v5-0-0.html</link>
+      <description>&lt;p&gt;When I released &lt;a href="https://blog.davep.org/2026/06/09/blogmore-el-v4-7-0.html"&gt;&lt;code&gt;blogmore.el&lt;/code&gt; v4.7.0&lt;/a&gt;
+yesterday I finished off by saying that it was my intention, at some point,
+to rework the frontmatter-handling code so that it did proper YAML parsing.
+As often happens with these sorts of things, "some point" ended up being
+that evening.&lt;/p&gt;
+&lt;p&gt;I've rewritten everything to do with handling properties in the frontmatter
+so that it now uses &lt;a href="https://github.com/zkry/yaml.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;yaml.el&lt;/code&gt;&lt;/a&gt;. This has a
+number of knock-on effects. The first and most obvious effect is that
+anything that is a list/array in the frontmatter is actually properly
+treated as a list. A good example here is &lt;code&gt;tags&lt;/code&gt;. Now you can have your tags
+look like:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p p-Indicator"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;BlogMore&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Emacs&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Emacs&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;Lisp&amp;quot;&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Lisp&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore.el&amp;quot;&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;coding&lt;/span&gt;&lt;span class="p p-Indicator"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;or:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;BlogMore&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Emacs&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Emacs Lisp&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Lisp&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;blogmore.el&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;coding&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and &lt;code&gt;blogmore.el&lt;/code&gt; will still handle things fine. The same holds for &lt;code&gt;series&lt;/code&gt;
+too.&lt;/p&gt;
+&lt;p&gt;It should be noted, however, that because I'm now using actual YAML
+serialisation code, most other forms of a list will all end up being
+transformed into this kind:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p p-Indicator"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;BlogMore&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Emacs&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Emacs&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;Lisp&amp;quot;&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Lisp&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore.el&amp;quot;&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;coding&lt;/span&gt;&lt;span class="p p-Indicator"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;So if you have a bare list:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;BlogMore, Emacs, &amp;quot;Emacs Lisp&amp;quot;, Lisp, &amp;quot;blogmore.el&amp;quot;, coding&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and you make an edit to the tags via &lt;code&gt;blogmore.el&lt;/code&gt;, it will end up as the
+version enclosed in &lt;code&gt;[]&lt;/code&gt;. &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; itself
+supports all three versions so this works fine.&lt;/p&gt;
+&lt;p&gt;There is a breaking change here too, which in part explains the reason I
+bumped the version to 5.0.0: because &lt;code&gt;series&lt;/code&gt; can now be treated as a list
+I've removed the &lt;code&gt;blogmore-set-series&lt;/code&gt; command and instead replaced it with
+&lt;code&gt;blogmore-add-series&lt;/code&gt; and &lt;code&gt;blogmore-remove-series&lt;/code&gt;. Both can of course be
+found in the transient menu.&lt;/p&gt;
+&lt;p&gt;Another big change in this release is the way that existing values are
+loaded up from your blog. Previously, when you went to add a category, tag
+or series, &lt;code&gt;blogmore.el&lt;/code&gt; would use
+&lt;a href="https://github.com/burntsushi/ripgrep" rel="noopener noreferrer" target="_blank"&gt;ripgrep&lt;/a&gt; (or a combination of &lt;code&gt;find&lt;/code&gt;
+and &lt;code&gt;grep&lt;/code&gt; if &lt;code&gt;rg&lt;/code&gt; wasn't available) to pull out values to help populate a
+completion list. This worked fine as long as a) the frontmatter property was
+all on one line and b) the body of a post didn't contain something that
+looked like a frontmatter property. With this release of &lt;code&gt;blogmore.el&lt;/code&gt; I've
+dropped this approach in favour of calling &lt;code&gt;blogmore&lt;/code&gt; itself and using the
+&lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;dump command&lt;/a&gt; to get
+the actual lists of categories, tags and series.&lt;/p&gt;
+&lt;p&gt;This does mean that BlogMore needs to be installed in a location where
+&lt;code&gt;blogmore.el&lt;/code&gt; can see it, and to help with this I've added a new &lt;code&gt;defcustom&lt;/code&gt;
+called &lt;code&gt;blogmore-command&lt;/code&gt;. By default this is set to call whatever version
+of &lt;code&gt;blogmore&lt;/code&gt; can be found in your &lt;code&gt;exec-path&lt;/code&gt;; if this results in
+unexpected behaviour you can set &lt;code&gt;blogmore-command&lt;/code&gt; to point to a specific
+copy of &lt;code&gt;blogmore&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;There is, however, a small downside to this beneficial&lt;sup id="fnref:375-1"&gt;&lt;a class="footnote-ref" href="#fn:375-1"&gt;1&lt;/a&gt;&lt;/sup&gt; approach: calling
+on &lt;code&gt;blogmore&lt;/code&gt; and parsing all posts to get the values is generally going to
+be slower. With this in mind I've built in a cache for these values. The
+first time you load up the categories, tags or series, the values are held
+on to so that subsequent prompts are instantaneous (meaning there is no
+further call to &lt;code&gt;blogmore&lt;/code&gt;). To ensure this doesn't confuse things, when you
+switch blog (&lt;code&gt;blogmore-work-on&lt;/code&gt;) the caches are cleared. In the unlikely
+event that there is a problem with this approach, I've also added a
+&lt;code&gt;blogmore-clear-caches&lt;/code&gt; command to force the clearing of the caches.&lt;/p&gt;
+&lt;p&gt;There are some other small QoL changes under the hood and also to the
+interface. I've moved some things around in the transient menu, and also
+ensured that a couple of options are better-disabled depending on the
+context.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The current menu" height="227" loading="lazy" src="https://blog.davep.org/attachments/2026/06/10/blogmore-menu.webp#centre" width="619" /&gt;&lt;/p&gt;
+&lt;p&gt;All of this makes the package even more robust. Something that started as a
+quick hack &lt;a href="https://blog.davep.org/2026/03/19/some-blogmore-elisp.html"&gt;back in March&lt;/a&gt; has turned
+into a tool I heavily lean on. Hopefully, for anyone who might happen to use
+BlogMore &lt;em&gt;and&lt;/em&gt; GNU Emacs, it'll be a useful daily-driver for them too.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:375-1"&gt;
+&lt;p&gt;The benefits being: only values in frontmatter appear, inconsistent
+casing is cleaned up, etc.&amp;#160;&lt;a class="footnote-backref" href="#fnref:375-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/10/blogmore-el-v5-0-0.html</guid>
+      <category>Emacs</category>
+      <category>BlogMore</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>blogmore.el</category>
+      <category>coding</category>
+      <pubDate>Wed, 10 Jun 2026 10:22:12 +0100</pubDate>
+    </item>
     <item>
       <title>blogmore.el v4.7.0</title>
       <link>https://blog.davep.org/2026/06/09/blogmore-el-v4-7-0.html</link>
@@ -881,39 +982,6 @@ too&lt;/a&gt;.&lt;/p&gt;</description>
       <category>coding</category>
       <category>fasta.el</category>
       <pubDate>Wed, 08 Apr 2026 11:25:43 +0100</pubDate>
-    </item>
-    <item>
-      <title>quiz.el v1.6</title>
-      <link>https://blog.davep.org/2026/04/07/quiz-el-v1-6.html</link>
-      <description>&lt;p&gt;A quick little refresh of one of my old packages, this time
-&lt;a href="https://github.com/davep/quiz.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;quiz.el&lt;/code&gt;&lt;/a&gt;. This is a nice little
-distraction when you're working in &lt;a href="https://blog.davep.org/category/emacs/"&gt;Emacs&lt;/a&gt;, letting you
-spin up a quick trivia quiz in a buffer.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Quiz in action" height="774" loading="lazy" src="https://blog.davep.org/attachments/2026/04/07/quiz.webp#centre" width="720" /&gt;&lt;/p&gt;
-&lt;p&gt;It's backed by the &lt;a href="https://opentdb.com/" rel="noopener noreferrer" target="_blank"&gt;Open Trivia Database&lt;/a&gt;, so there's
-a good few subjects, questions, and levels of difficulty to play with.&lt;/p&gt;
-&lt;p&gt;The only changes I've made to it in this release are the usual clean-ups of
-the &lt;a href="https://blog.davep.org/2022/08/23/i-must-be-getting-old.html"&gt;deprecated uses of &lt;code&gt;setf&lt;/code&gt;&lt;/a&gt;,
-plus I've added &lt;kbd&gt;q&lt;/kbd&gt; as a binding to the quiz window to quickly quit
-the quiz.&lt;/p&gt;
-&lt;p&gt;I might have to come back and revisit it soon, as it looks like the default
-face choices could probably do with a rethink, and I can see at the moment
-that the attempt at a window-wide "header" for each question isn't working
-any longer. For comparison, here's how the package looked when running back
-when I first wrote it back in 2017:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="How it originally looked" height="838" loading="lazy" src="https://blog.davep.org/attachments/2026/04/07/original-quiz.webp#centre" width="777" /&gt;&lt;/p&gt;
-&lt;p&gt;Leaving aside the fact that I was &lt;a href="https://blog.davep.org/2020/06/14/my-journey-to-the-dark-side-is-complete.html"&gt;still running a very light Emacs
-then&lt;/a&gt;, those
-question headers are displaying differently, with the background colour no
-longer spanning the width of the window. I'd like to understand why.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/04/07/quiz-el-v1-6.html</guid>
-      <category>Emacs</category>
-      <category>Emacs</category>
-      <category>Emacs Lisp</category>
-      <category>Lisp</category>
-      <category>coding</category>
-      <category>quiz.el</category>
-      <pubDate>Tue, 07 Apr 2026 09:18:23 +0100</pubDate>
     </item>
   </channel>
 </rss>

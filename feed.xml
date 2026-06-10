@@ -8,7 +8,108 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 09 Jun 2026 07:45:01 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2026 09:25:10 +0000</lastBuildDate>
+    <item>
+      <title>blogmore.el v5.0.0</title>
+      <link>https://blog.davep.org/2026/06/10/blogmore-el-v5-0-0.html</link>
+      <description>&lt;p&gt;When I released &lt;a href="https://blog.davep.org/2026/06/09/blogmore-el-v4-7-0.html"&gt;&lt;code&gt;blogmore.el&lt;/code&gt; v4.7.0&lt;/a&gt;
+yesterday I finished off by saying that it was my intention, at some point,
+to rework the frontmatter-handling code so that it did proper YAML parsing.
+As often happens with these sorts of things, "some point" ended up being
+that evening.&lt;/p&gt;
+&lt;p&gt;I've rewritten everything to do with handling properties in the frontmatter
+so that it now uses &lt;a href="https://github.com/zkry/yaml.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;yaml.el&lt;/code&gt;&lt;/a&gt;. This has a
+number of knock-on effects. The first and most obvious effect is that
+anything that is a list/array in the frontmatter is actually properly
+treated as a list. A good example here is &lt;code&gt;tags&lt;/code&gt;. Now you can have your tags
+look like:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p p-Indicator"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;BlogMore&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Emacs&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Emacs&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;Lisp&amp;quot;&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Lisp&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore.el&amp;quot;&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;coding&lt;/span&gt;&lt;span class="p p-Indicator"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;or:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;BlogMore&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Emacs&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Emacs Lisp&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Lisp&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;blogmore.el&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;coding&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and &lt;code&gt;blogmore.el&lt;/code&gt; will still handle things fine. The same holds for &lt;code&gt;series&lt;/code&gt;
+too.&lt;/p&gt;
+&lt;p&gt;It should be noted, however, that because I'm now using actual YAML
+serialisation code, most other forms of a list will all end up being
+transformed into this kind:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p p-Indicator"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;BlogMore&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Emacs&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Emacs&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;Lisp&amp;quot;&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Lisp&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore.el&amp;quot;&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;coding&lt;/span&gt;&lt;span class="p p-Indicator"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;So if you have a bare list:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;BlogMore, Emacs, &amp;quot;Emacs Lisp&amp;quot;, Lisp, &amp;quot;blogmore.el&amp;quot;, coding&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and you make an edit to the tags via &lt;code&gt;blogmore.el&lt;/code&gt;, it will end up as the
+version enclosed in &lt;code&gt;[]&lt;/code&gt;. &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; itself
+supports all three versions so this works fine.&lt;/p&gt;
+&lt;p&gt;There is a breaking change here too, which in part explains the reason I
+bumped the version to 5.0.0: because &lt;code&gt;series&lt;/code&gt; can now be treated as a list
+I've removed the &lt;code&gt;blogmore-set-series&lt;/code&gt; command and instead replaced it with
+&lt;code&gt;blogmore-add-series&lt;/code&gt; and &lt;code&gt;blogmore-remove-series&lt;/code&gt;. Both can of course be
+found in the transient menu.&lt;/p&gt;
+&lt;p&gt;Another big change in this release is the way that existing values are
+loaded up from your blog. Previously, when you went to add a category, tag
+or series, &lt;code&gt;blogmore.el&lt;/code&gt; would use
+&lt;a href="https://github.com/burntsushi/ripgrep" rel="noopener noreferrer" target="_blank"&gt;ripgrep&lt;/a&gt; (or a combination of &lt;code&gt;find&lt;/code&gt;
+and &lt;code&gt;grep&lt;/code&gt; if &lt;code&gt;rg&lt;/code&gt; wasn't available) to pull out values to help populate a
+completion list. This worked fine as long as a) the frontmatter property was
+all on one line and b) the body of a post didn't contain something that
+looked like a frontmatter property. With this release of &lt;code&gt;blogmore.el&lt;/code&gt; I've
+dropped this approach in favour of calling &lt;code&gt;blogmore&lt;/code&gt; itself and using the
+&lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;dump command&lt;/a&gt; to get
+the actual lists of categories, tags and series.&lt;/p&gt;
+&lt;p&gt;This does mean that BlogMore needs to be installed in a location where
+&lt;code&gt;blogmore.el&lt;/code&gt; can see it, and to help with this I've added a new &lt;code&gt;defcustom&lt;/code&gt;
+called &lt;code&gt;blogmore-command&lt;/code&gt;. By default this is set to call whatever version
+of &lt;code&gt;blogmore&lt;/code&gt; can be found in your &lt;code&gt;exec-path&lt;/code&gt;; if this results in
+unexpected behaviour you can set &lt;code&gt;blogmore-command&lt;/code&gt; to point to a specific
+copy of &lt;code&gt;blogmore&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;There is, however, a small downside to this beneficial&lt;sup id="fnref:375-1"&gt;&lt;a class="footnote-ref" href="#fn:375-1"&gt;1&lt;/a&gt;&lt;/sup&gt; approach: calling
+on &lt;code&gt;blogmore&lt;/code&gt; and parsing all posts to get the values is generally going to
+be slower. With this in mind I've built in a cache for these values. The
+first time you load up the categories, tags or series, the values are held
+on to so that subsequent prompts are instantaneous (meaning there is no
+further call to &lt;code&gt;blogmore&lt;/code&gt;). To ensure this doesn't confuse things, when you
+switch blog (&lt;code&gt;blogmore-work-on&lt;/code&gt;) the caches are cleared. In the unlikely
+event that there is a problem with this approach, I've also added a
+&lt;code&gt;blogmore-clear-caches&lt;/code&gt; command to force the clearing of the caches.&lt;/p&gt;
+&lt;p&gt;There are some other small QoL changes under the hood and also to the
+interface. I've moved some things around in the transient menu, and also
+ensured that a couple of options are better-disabled depending on the
+context.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The current menu" height="227" loading="lazy" src="https://blog.davep.org/attachments/2026/06/10/blogmore-menu.webp#centre" width="619" /&gt;&lt;/p&gt;
+&lt;p&gt;All of this makes the package even more robust. Something that started as a
+quick hack &lt;a href="https://blog.davep.org/2026/03/19/some-blogmore-elisp.html"&gt;back in March&lt;/a&gt; has turned
+into a tool I heavily lean on. Hopefully, for anyone who might happen to use
+BlogMore &lt;em&gt;and&lt;/em&gt; GNU Emacs, it'll be a useful daily-driver for them too.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:375-1"&gt;
+&lt;p&gt;The benefits being: only values in frontmatter appear, inconsistent
+casing is cleaned up, etc.&amp;#160;&lt;a class="footnote-backref" href="#fnref:375-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/10/blogmore-el-v5-0-0.html</guid>
+      <category>Emacs</category>
+      <category>BlogMore</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>blogmore.el</category>
+      <category>coding</category>
+      <pubDate>Wed, 10 Jun 2026 10:22:12 +0100</pubDate>
+    </item>
     <item>
       <title>blogmore.el v4.7.0</title>
       <link>https://blog.davep.org/2026/06/09/blogmore-el-v4-7-0.html</link>
@@ -141,7 +242,7 @@ things that Tyneside had to offer too.&lt;/p&gt;
 &lt;a href="https://en.wikipedia.org/wiki/Stottie_cake" rel="noopener noreferrer" target="_blank"&gt;stottie&lt;/a&gt;. This became my go-to
 food, especially in my second and third years, when I was no longer in
 halls.&lt;/p&gt;
-&lt;p&gt;I left Newcastle in 1989 and never went back&lt;sup id="fnref:378-1"&gt;&lt;a class="footnote-ref" href="#fn:378-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and sadly, have never had
+&lt;p&gt;I left Newcastle in 1989 and never went back&lt;sup id="fnref:379-1"&gt;&lt;a class="footnote-ref" href="#fn:379-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and sadly, have never had
 a stottie since. While I'm sure I could have found some niche place in the
 various places I've lived since, they're not a thing you find normally in
 Hampshire, Lincolnshire or Midlothian.&lt;/p&gt;
@@ -181,7 +282,7 @@ halves and getting it ready for the oven.&lt;/p&gt;
 the size and thickness I remember (and which you see in plenty of photos
 online), but I was somewhat hesitant when it came to flattening it out. I
 was concerned I'd made it too thin at this point anyway and it wouldn't rise
-much. I was wrong. Next time&lt;sup id="fnref:378-2"&gt;&lt;a class="footnote-ref" href="#fn:378-2"&gt;2&lt;/a&gt;&lt;/sup&gt; I think I'll flatten it a lot more.&lt;/p&gt;
+much. I was wrong. Next time&lt;sup id="fnref:379-2"&gt;&lt;a class="footnote-ref" href="#fn:379-2"&gt;2&lt;/a&gt;&lt;/sup&gt; I think I'll flatten it a lot more.&lt;/p&gt;
 &lt;p&gt;Anyway, I threw both proto-stotties into the oven and about 20 minutes later
 I had something that was passable!&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Stottie number one" height="1536" loading="lazy" src="https://blog.davep.org/attachments/2026/06/07/out-of-the-oven-1.webp#centre" width="2048" /&gt;&lt;/p&gt;
@@ -203,12 +304,12 @@ confidence to have another go at some point.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:378-1"&gt;
+&lt;li id="fn:379-1"&gt;
 &lt;p&gt;I've travelled through plenty of times, but it's been 37 years, and
-counting, since I was last in toon.&amp;#160;&lt;a class="footnote-backref" href="#fnref:378-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+counting, since I was last in toon.&amp;#160;&lt;a class="footnote-backref" href="#fnref:379-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:378-2"&gt;
-&lt;p&gt;There 100% will be a next time.&amp;#160;&lt;a class="footnote-backref" href="#fnref:378-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:379-2"&gt;
+&lt;p&gt;There 100% will be a next time.&amp;#160;&lt;a class="footnote-backref" href="#fnref:379-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -439,7 +540,7 @@ should have added right near the start of the project.&lt;/p&gt;
 &lt;p&gt;First, the cosmetic: in pages and posts, when you use headings (&lt;code&gt;#&lt;/code&gt;, &lt;code&gt;##&lt;/code&gt;,
 etc.), a &lt;code&gt;¶&lt;/code&gt; is added to the end of each heading, along with some
 show-on-mouse-hover styling, to make it easy to grab the anchor of a
-particular section of a page&lt;sup id="fnref:381-1"&gt;&lt;a class="footnote-ref" href="#fn:381-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. A problem I'd noticed with this recently
+particular section of a page&lt;sup id="fnref:382-1"&gt;&lt;a class="footnote-ref" href="#fn:382-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. A problem I'd noticed with this recently
 is that the &lt;code&gt;¶&lt;/code&gt; shows up in the &lt;a href="https://blog.davep.org/search/"&gt;search&lt;/a&gt; text, and also in the
 content of all the feeds. While not a problem as such, it felt untidy.&lt;/p&gt;
 &lt;p&gt;So, with this release that particular &lt;code&gt;¶&lt;/code&gt; character is stripped from the
@@ -494,9 +595,9 @@ information lives with the page or post being redirected to.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:381-1"&gt;
+&lt;li id="fn:382-1"&gt;
 &lt;p&gt;The &lt;a href="https://blog.davep.org/2026/06/04/blogmore-v2-38-0.html"&gt;recently-added floating ToC&lt;/a&gt;
-is another way to do this now too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:381-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+is another way to do this now too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:382-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -554,7 +655,7 @@ if the feature should be on or off, by default, site-wide. It is set to
 post level, there is also &lt;a href="https://blogmore.davep.dev/writing_a_post/#show_toc" rel="noopener noreferrer" target="_blank"&gt;a &lt;code&gt;show_toc&lt;/code&gt; frontmatter
 property&lt;/a&gt; too. This
 &lt;em&gt;always&lt;/em&gt; overrides the global setting in the configuration file.&lt;/p&gt;
-&lt;p&gt;On top of this, I can imagine that someone&lt;sup id="fnref:379-1"&gt;&lt;a class="footnote-ref" href="#fn:379-1"&gt;1&lt;/a&gt;&lt;/sup&gt; might also want to have the
+&lt;p&gt;On top of this, I can imagine that someone&lt;sup id="fnref:380-1"&gt;&lt;a class="footnote-ref" href="#fn:380-1"&gt;1&lt;/a&gt;&lt;/sup&gt; might also want to have the
 right-side floating ToC, but never have the inline ToC showing on smaller
 displays. With this in mind I've also added a &lt;code&gt;show_toc_inline&lt;/code&gt;
 &lt;a href="https://blogmore.davep.dev/configuration/#show_toc_inline" rel="noopener noreferrer" target="_blank"&gt;configuration
@@ -576,8 +677,8 @@ override that explicit markup choice.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:379-1"&gt;
-&lt;p&gt;Me, I'm thinking it might be me.&amp;#160;&lt;a class="footnote-backref" href="#fnref:379-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:380-1"&gt;
+&lt;p&gt;Me, I'm thinking it might be me.&amp;#160;&lt;a class="footnote-backref" href="#fnref:380-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1368,43 +1469,6 @@ to&lt;/a&gt;.&lt;/p&gt;</description>
       <category>PyPI</category>
       <category>Python</category>
       <pubDate>Thu, 28 May 2026 15:00:56 +0100</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.31.0</title>
-      <link>https://blog.davep.org/2026/05/27/blogmore-v2-31-0.html</link>
-      <description>&lt;p&gt;A quick update to &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, with a small
-&lt;a href="https://blog.davep.org/tag/a11y/"&gt;accessibility&lt;/a&gt; improvement, and also a whole new set of data
-for the &lt;a href="https://blog.davep.org/graph/"&gt;graph&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The accessibility update follows on from a change &lt;a href="https://blog.davep.org/2026/05/26/blogmore-v2-30-0.html"&gt;published
-yesterday&lt;/a&gt;. In that release I did a
-little bit of work to disambiguate links to categories and tags that had the
-same link text; this time I've given the same &lt;code&gt;aria-label&lt;/code&gt; treatment to the
-post dates where they link to the year, month, and day archives. While we're
-never really going to get ambiguous year links (unless there are also links
-in the body of a post that are four digit numbers), it's highly likely we're
-going to get the occasional month and day that are ambiguous.&lt;/p&gt;
-&lt;p&gt;So now those links make it clear, with &lt;code&gt;aria-label&lt;/code&gt;, what's being linked to.&lt;/p&gt;
-&lt;p&gt;The other main change in
-&lt;a href="https://blogmore.davep.dev/changelog/#v2310" rel="noopener noreferrer" target="_blank"&gt;v2.31.0&lt;/a&gt; comes from a thought
-I had last night about the new "related posts" feature I added yesterday.
-Currently the &lt;a href="https://blog.davep.org/graph/"&gt;graph&lt;/a&gt; shows the relationships the posts have based
-around their common categories and tags:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The graph based on links" height="604" loading="lazy" src="https://blog.davep.org/attachments/2026/05/27/links.webp#centre" width="578" /&gt;&lt;/p&gt;
-&lt;p&gt;But now I've got this code that can work out how posts might be related
-based on their text content. What might that look like? It might be cool to
-be able to switch the graph view between the two sets of data, if the blog
-owner is building with related posts turned on.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The graph based on related posts" height="603" loading="lazy" src="https://blog.davep.org/attachments/2026/05/27/related.webp#centre" width="563" /&gt;&lt;/p&gt;
-&lt;p&gt;While I'm not sure it really &lt;em&gt;tells&lt;/em&gt; me anything, I like that I have yet
-another method of (re)discovering posts.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/05/27/blogmore-v2-31-0.html</guid>
-      <category>Coding</category>
-      <category>BlogMore</category>
-      <category>Coding</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>a11y</category>
-      <pubDate>Wed, 27 May 2026 14:44:31 +0100</pubDate>
     </item>
   </channel>
 </rss>
