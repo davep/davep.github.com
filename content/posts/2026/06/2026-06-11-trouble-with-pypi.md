@@ -3,7 +3,7 @@ title: "Trouble with PyPI"
 date: "2026-06-11 16:26:06+0100"
 category: Python
 tags: [PyPI, Python]
-cover: "/attachments/2026/06/11/pypi-50.webp"
+cover: "/attachments/2026/06/11/pypi-500.webp"
 ---
 
 I had quite the adventure with PyPI this morning, and I don't think it's
