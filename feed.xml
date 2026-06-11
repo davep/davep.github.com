@@ -8,7 +8,106 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 11 Jun 2026 10:00:05 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jun 2026 15:37:48 +0000</lastBuildDate>
+    <item>
+      <title>Trouble with PyPI</title>
+      <link>https://blog.davep.org/2026/06/11/trouble-with-pypi.html</link>
+      <description>&lt;p&gt;I had quite the adventure with PyPI this morning, and I don't think it's
+over yet. It started out with the release of &lt;a href="https://blog.davep.org/2026/06/11/blogmore-v2-43-0.html"&gt;BlogMore
+v2.43.0&lt;/a&gt;. I did my usual thing of doing
+&lt;a href="https://test.pypi.org/project/blogmore/" rel="noopener noreferrer" target="_blank"&gt;a test release&lt;/a&gt; to &lt;a href="https://test.pypi.org/" rel="noopener noreferrer" target="_blank"&gt;the test
+version of PyPI&lt;/a&gt;, and then did a &lt;a href="https://pypi.org/project/blogmore/" rel="noopener noreferrer" target="_blank"&gt;production
+release&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As normally happens, I then went on to &lt;a href="https://github.com/davep/blogmore/releases/tag/v2.43.0" rel="noopener noreferrer" target="_blank"&gt;tag the release on
+GitHub&lt;/a&gt;, followed by
+writing the blog post to announce the new version. While doing this, despite
+the fact that it wasn't necessary given the nature of the change, I decided
+to update BlogMore &lt;a href="https://github.com/davep/davep.github.com" rel="noopener noreferrer" target="_blank"&gt;in my blog's
+repository&lt;/a&gt;. That's when things
+started to look odd.&lt;/p&gt;
+&lt;p&gt;I did the usual &lt;a href="https://github.com/davep/davep.github.com/blob/main/Makefile" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;make
+update&lt;/code&gt;&lt;/a&gt; but
+nothing new appeared. Now, it's not unheard of that I do this and no new
+version of BlogMore appears. Often I do it a couple more times and it's
+fine. So I kept trying every minute or two and still nothing. So I checked
+back on PyPI. Sure enough, a search showed that it had updated:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="PyPI search" height="350" loading="lazy" src="https://blog.davep.org/attachments/2026/06/11/pypi-search.webp#centre" width="812" /&gt;&lt;/p&gt;
+&lt;p&gt;(The 16 minutes being about the time since I'd made the release), but when I
+clicked through it was showing the last version from a couple of days ago.
+Even when I looked at the &lt;a href="https://pypi.org/project/blogmore/#history" rel="noopener noreferrer" target="_blank"&gt;release
+history&lt;/a&gt; it was saying the
+latest version was the previous version:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The apparent latest release" height="193" loading="lazy" src="https://blog.davep.org/attachments/2026/06/11/release-history.webp#centre" width="545" /&gt;&lt;/p&gt;
+&lt;p&gt;Odd.&lt;/p&gt;
+&lt;p&gt;At this point, depending on how I searched and where I went, I'd either see
+that my latest upload wasn't available, or I'd get a 500 error.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="PyPI 500 error" height="626" loading="lazy" src="https://blog.davep.org/attachments/2026/06/11/pypi-500.webp#centre" width="640" /&gt;&lt;/p&gt;
+&lt;p&gt;Clicking through to &lt;a href="https://status.python.org/" rel="noopener noreferrer" target="_blank"&gt;the status page&lt;/a&gt; showed no
+errors. Clicking through to &lt;a href="https://x.com/PythonStatus" rel="noopener noreferrer" target="_blank"&gt;the Twitter account that was
+suggested&lt;/a&gt; showed nothing at all.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="PyPI status on Twitter" height="518" loading="lazy" src="https://blog.davep.org/attachments/2026/06/11/pypi-twitter.webp#centre" width="512" /&gt;&lt;/p&gt;
+&lt;p&gt;Leaving aside the whole issue of having an account on Twitter these days
+anyway, I felt it wasn't that useful to point people at a resource that
+seems to have never been updated, &lt;a href="https://github.com/pypi/warehouse/issues/20145" rel="noopener noreferrer" target="_blank"&gt;so I did raise an issue about
+that&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Digging around the status page at some point, despite the fact that the main
+display was green all the way, I did see a rise in &lt;em&gt;"PyPI CDN Edge Errors"&lt;/em&gt;.
+I'm not a web guy, I'm not an infrastructure guy, so I'm not really sure
+what this would mean, but it sounds like it's not a good thing.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="CDN edge errors" height="205" loading="lazy" src="https://blog.davep.org/attachments/2026/06/11/pypi-edge-errors.webp#centre" width="560" /&gt;&lt;/p&gt;
+&lt;p&gt;Opening the graph to look longer term, it did seem today was a spike, with
+another spike quite some time ago.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="More CDN edge errors" height="200" loading="lazy" src="https://blog.davep.org/attachments/2026/06/11/pypi-more-edge-errors.webp#centre" width="553" /&gt;&lt;/p&gt;
+&lt;p&gt;At this point I left it a while, not announcing the new version of
+&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;. I came back some time later and,
+finally, I could see 2.43.0 was showing! Also, this seemed to coincide with
+the above graph calming down again.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A calm CDN" height="201" loading="lazy" src="https://blog.davep.org/attachments/2026/06/11/pypi-cdn-calm.webp#centre" width="562" /&gt;&lt;/p&gt;
+&lt;p&gt;Seeing this I went to upgrade BlogMore in my blog's repo/venv and this time
+it all worked.&lt;/p&gt;
+&lt;p&gt;Yay!&lt;/p&gt;
+&lt;p&gt;At that point I left it alone and went about my work day. However, I don't
+think whatever is going on is over. Despite the fact that it was showing
+BlogMore as being v2.43.0 earlier today, once things were settled, I just
+checked again as I started to write this and:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Old BlogMore again" height="413" loading="lazy" src="https://blog.davep.org/attachments/2026/06/11/pypi-old-blogmore.webp#centre" width="640" /&gt;&lt;/p&gt;
+&lt;p&gt;The search index on PyPI shows it as having been updated about 8 hours ago
+(as I write this), but the page itself shows that the latest version is from
+2 days ago. At least installing it gives me 2.43.0:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;blogmore
+Using&lt;span class="w"&gt; &lt;/span&gt;CPython&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.13.1
+Creating&lt;span class="w"&gt; &lt;/span&gt;virtual&lt;span class="w"&gt; &lt;/span&gt;environment&lt;span class="w"&gt; &lt;/span&gt;at:&lt;span class="w"&gt; &lt;/span&gt;.venv
+Resolved&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;packages&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;325ms
+Installed&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;packages&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;41ms
+&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;.43.0
+&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;feedgen&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.0.0
+&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;jinja2&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.1.6
+&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;lxml&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;6&lt;/span&gt;.1.1
+&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;markdown&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.10.2
+&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;markupsafe&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.0.3
+&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;minify-html&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.18.1
+&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;pillow&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;12&lt;/span&gt;.2.0
+&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;pygments&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;.20.0
+&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;python-dateutil&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;.9.0.post0
+&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;python-frontmatter&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.3.0
+&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;pyyaml&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;6&lt;/span&gt;.0.3
+&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;rcssmin&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.2.2
+&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;rjsmin&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.2.5
+&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;six&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.17.0
+&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;watchdog&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;6&lt;/span&gt;.0.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Also: &lt;a href="https://github.com/davep/pispy" rel="noopener noreferrer" target="_blank"&gt;PISpy&lt;/a&gt; sees 2.43.0 as the latest
+version too (something it wasn't seeing during the height of the issues this
+morning).&lt;/p&gt;
+&lt;p&gt;It's all kind of confusing though.&lt;/p&gt;
+&lt;p&gt;Guess it's time for me to read up on CDN edge errors or something...&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/11/trouble-with-pypi.html</guid>
+      <category>Python</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <pubDate>Thu, 11 Jun 2026 16:26:06 +0100</pubDate>
+    </item>
     <item>
       <title>BlogMore v2.43.0</title>
       <link>https://blog.davep.org/2026/06/11/blogmore-v2-43-0.html</link>
@@ -1432,65 +1531,6 @@ older text, and to harmonise some of the spellings of some technical terms.&lt;/
       <category>awk</category>
       <category>writing</category>
       <pubDate>Sat, 30 May 2026 11:29:42 +0100</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.33.0</title>
-      <link>https://blog.davep.org/2026/05/29/blogmore-v2-33-0.html</link>
-      <description>&lt;p&gt;I've released &lt;a href="https://blogmore.davep.dev/changelog/#v2330" rel="noopener noreferrer" target="_blank"&gt;v2.33.0&lt;/a&gt; of
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, which extends the &lt;a href="https://blog.davep.org/stats/"&gt;stats
-page&lt;/a&gt; some more, and also adds a tool so a user can do all sorts of
-fun things with the raw data of their posts.&lt;/p&gt;
-&lt;p&gt;The addition to the stats page is a list of years along with the top five
-words that characterise the &lt;a href="https://blog.davep.org/stats/#focus-by-year"&gt;focused subject for those
-years&lt;/a&gt;. This is done using
-&lt;a href="https://en.wikipedia.org/wiki/Tf–idf" rel="noopener noreferrer" target="_blank"&gt;TF-IDF&lt;/a&gt;. While the results for my
-blog don't come as a surprise, I am pleased to see that it does turn out
-pretty much how I would have expected:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Blogging focus per year" height="542" loading="lazy" src="https://blog.davep.org/attachments/2026/05/29/focus.webp#centre" width="777" /&gt;&lt;/p&gt;
-&lt;p&gt;This feels like another fun way to learn something about the post history
-for your own blog.&lt;/p&gt;
-&lt;p&gt;Which got me thinking: there's probably any number of other niche and
-bizarre things that could be done with the content of a blog to gain some
-insight as to its history, and I really shouldn't just keep adding more and
-more things to the stats page. But what if I wanted a way to run some code
-over all the posts? Wouldn't it be useful if I could get all of the parsed
-post data in JSON format so I can play with it?&lt;/p&gt;
-&lt;p&gt;With that idea in mind, &lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;I added the &lt;code&gt;dump&lt;/code&gt;
-command&lt;/a&gt;. When run,
-it will print to &lt;code&gt;stdout&lt;/code&gt; a full dump of all of your posts, as JSON, so you
-can then write your own nifty tool to read it back in and do any number of
-interesting checks, tests, reformats or manipulations. For example, if I
-wanted to use &lt;a href="https://jqlang.org/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;jq&lt;/code&gt;&lt;/a&gt; to pull out the metadata for this
-particular post I could:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;blogmore&lt;span class="w"&gt; &lt;/span&gt;dump&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.[] | select(.id == &amp;quot;posts/2026/05/2026-05-29-blogmore-v2-33-0.md&amp;quot;) | .metadata&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;which gives me this result:&lt;/p&gt;
-&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;BlogMore v2.33.0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2026-05-29 14:14:10+0100&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;category&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Coding&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;BlogMore, Coding, PyPI, Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;cover&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/attachments/2026/05/29/focus.webp&amp;quot;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;I can see this being pretty useful to
-&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; at some point, if I
-want to add some better querying tools or similar (not that I'd want to run
-a &lt;code&gt;dump&lt;/code&gt; every time, it does require that a full parse and render has to
-happen).&lt;/p&gt;
-&lt;p&gt;Hopefully this will be useful to someone else. I know I'll be toying with it
-to find out other things about my posting history.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/05/29/blogmore-v2-33-0.html</guid>
-      <category>Coding</category>
-      <category>BlogMore</category>
-      <category>Coding</category>
-      <category>JSON</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>jq</category>
-      <pubDate>Fri, 29 May 2026 14:14:10 +0100</pubDate>
     </item>
   </channel>
 </rss>
