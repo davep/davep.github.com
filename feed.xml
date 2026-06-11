@@ -8,7 +8,57 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 11 Jun 2026 15:45:52 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jun 2026 18:07:52 +0000</lastBuildDate>
+    <item>
+      <title>blogmore.el v5.1.0</title>
+      <link>https://blog.davep.org/2026/06/11/blogmore-el-v5-1-0.html</link>
+      <description>&lt;p&gt;A quick little update to
+&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; to fix a couple of
+issues introduced by the new YAML-parsing approach to reading frontmatter;
+both pretty much stemming from how falsy values are handled.&lt;/p&gt;
+&lt;p&gt;Simply put, both boolean &lt;code&gt;false&lt;/code&gt; values, and also empty values (something
+that could commonly happen with &lt;code&gt;tags&lt;/code&gt; and &lt;code&gt;series&lt;/code&gt;) would end up showing up
+in the frontmatter as &lt;code&gt;null&lt;/code&gt;. This release handles that situation.&lt;/p&gt;
+&lt;p&gt;Also, under the hood, I cleaned up some repeated boilerplate related to how
+the cached dump calls to &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; took place.
+The code for categories, tags and series data was almost exactly the same,
+save for the actual name of the thing being dumped. So I turned it all into
+a macro:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defmacro&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--cache-dump&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;dump-name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Generate a function to get DUMP-NAME from BlogMore, with caching.&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;cache-name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore--current-%s-cache&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;dump-name&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;getter-name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore--current-%s&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;dump-name&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;progn&lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;defvar&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;cache-name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;nil&lt;/span&gt;
+&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Cache for the list of %s from existing posts.&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;dump-name&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;getter-name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Get a list of %s from existing posts.&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;dump-name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;cache-name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;setq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;cache-name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--list-of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;symbol-name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;dump-name&lt;/span&gt;&lt;span class="p"&gt;))))))))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and now the &lt;code&gt;defvar&lt;/code&gt; that creates the variable that holds the cache, and the
+&lt;code&gt;defun&lt;/code&gt; that creates the getter function for the data, are reduced to this
+for all three collections of values:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--cache-dump&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;categories&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--cache-dump&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--cache-dump&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;series&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Sure, I probably could have done all of this in a single global, a central
+getter function, and a &lt;a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Hash-Tables.html" rel="noopener noreferrer" target="_blank"&gt;hash
+table&lt;/a&gt;,
+but the macro approach feels so much more elegant, and more... lispy.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/11/blogmore-el-v5-1-0.html</guid>
+      <category>Emacs</category>
+      <category>BlogMore</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>blogmore.el</category>
+      <category>coding</category>
+      <category>defmacro</category>
+      <pubDate>Thu, 11 Jun 2026 19:06:24 +0100</pubDate>
+    </item>
     <item>
       <title>Trouble with PyPI</title>
       <link>https://blog.davep.org/2026/06/11/trouble-with-pypi.html</link>
@@ -1454,83 +1504,6 @@ easily ask the question.&lt;/p&gt;</description>
       <category>Python</category>
       <category>jq</category>
       <pubDate>Sun, 31 May 2026 10:59:18 +0100</pubDate>
-    </item>
-    <item>
-      <title>Tidying and spelling</title>
-      <link>https://blog.davep.org/2026/05/30/tidying-and-spelling.html</link>
-      <description>&lt;p&gt;Since kicking off the work on &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; and
-&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt;, I've absolutely found
-that I've reduced the friction involved when it comes to writing a quick (or
-not so quick) blog post. I've also found that I want to go back and tidy up
-lots of my old posts. Over the past few weeks I've gone and cleaned up the
-size and positioning of images; &lt;a href="https://blog.davep.org/2026/05/15/converted-to-webp.html"&gt;converted most images to WebP
-format&lt;/a&gt;; cleaned and consolidated the
-tags used; hunted down and fixed broken internal links; and a few other
-things besides.&lt;/p&gt;
-&lt;p&gt;Another thing I want to do is go back and hunt down, and clean up, typos and
-spelling mistakes, and the like. While I'm careful to try and not make any
-errors when typing out a post, and while I've always made a point of reading
-my posts back to try and catch problems, I've not always been successful.
-Sometimes I'm just blind to the errors, sometimes I'm just rushing. There's
-over a decade of mistakes on this blog.&lt;/p&gt;
-&lt;p&gt;So, with this in mind, I've added a &lt;a href="https://github.com/davep/davep.github.com/tree/main/bin" rel="noopener noreferrer" target="_blank"&gt;couple of little
-tools&lt;/a&gt; to the
-&lt;a href="https://github.com/davep/davep.github.com" rel="noopener noreferrer" target="_blank"&gt;build environment for this blog&lt;/a&gt;
-to help me go back and catch problems that might need addressing.&lt;/p&gt;
-&lt;p&gt;The main tool is &lt;a href="https://github.com/davep/davep.github.com/blob/main/bin/spellcheck" rel="noopener noreferrer" target="_blank"&gt;a script for running &lt;code&gt;aspell&lt;/code&gt; over all the Markdown and
-building a list of
-errors&lt;/a&gt;.
-This shows the names of the Markdown files that have errors, and lists the
-unknown words for them. For example:&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;=== content/posts/2019/2019-11-04-my-pylint-shame.md ===
-flycheck
-prepending
-whitespace
-
-=== content/posts/2020/2020-08-23-the-pep-8-hill-i-will-die-on.md ===
-parens
-whitespace
-
-=== content/posts/2020/2020-06-22-swift-til-1.md ===
-backticks
-
-=== content/posts/2020/2020-06-14-my-journey-to-the-dark-side-is-complete.md ===
-Macbook
-Macbooks
-scrollbars
-
-=== content/posts/2020/2020-01-19-dnote-el.md ===
-dnote
-Dnote
-
-=== content/posts/2020/2020-01-11-where-i-live-and-work.md ===
-adwaita
-eshell
-powerline
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This alone makes it nice and easy to go back and clean up some obvious
-issues. A problem I ran into though was that I was getting a lot of false
-reports for things in the front matter of the files (especially parts of the
-&lt;code&gt;cover:&lt;/code&gt; file name) and also in the end-of-file comments I like to use. So,
-with a little help from Gemini (because it's a moment since I last wrote any
-&lt;code&gt;awk&lt;/code&gt; in anger), I wrote &lt;a href="https://github.com/davep/davep.github.com/blob/main/bin/clean_markdown" rel="noopener noreferrer" target="_blank"&gt;a filter to "clean" the Markdown
-content&lt;/a&gt;
-before running it through &lt;code&gt;aspell&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Already, using this setup, I've caught a few things that deserved cleaning
-up, and because there will be a lot of words that are correct but particular
-to this blog and what I write about, &lt;a href="https://github.com/davep/davep.github.com/blob/main/.ignore_spelling" rel="noopener noreferrer" target="_blank"&gt;I'm also building up a local ignore
-list&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;While this setup isn't going to make the content of this blog error-free, it
-should give me everything I need to go back and slowly improve some of the
-older text, and to harmonise some of the spellings of some technical terms.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/05/30/tidying-and-spelling.html</guid>
-      <category>Meta</category>
-      <category>Blogging</category>
-      <category>aspell</category>
-      <category>awk</category>
-      <category>writing</category>
-      <pubDate>Sat, 30 May 2026 11:29:42 +0100</pubDate>
     </item>
   </channel>
 </rss>

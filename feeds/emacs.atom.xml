@@ -2,11 +2,62 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-06-11T15:45:52.097508+00:00</updated>
+  <updated>2026-06-11T18:07:52.927593+00:00</updated>
   <link href="https://blog.davep.org/feeds/emacs.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Emacs" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/06/11/blogmore-el-v5-1-0.html</id>
+    <title>blogmore.el v5.1.0</title>
+    <updated>2026-06-11T19:06:24+01:00</updated>
+    <content type="html">&lt;p&gt;A quick little update to
+&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; to fix a couple of
+issues introduced by the new YAML-parsing approach to reading frontmatter;
+both pretty much stemming from how falsy values are handled.&lt;/p&gt;
+&lt;p&gt;Simply put, both boolean &lt;code&gt;false&lt;/code&gt; values, and also empty values (something
+that could commonly happen with &lt;code&gt;tags&lt;/code&gt; and &lt;code&gt;series&lt;/code&gt;) would end up showing up
+in the frontmatter as &lt;code&gt;null&lt;/code&gt;. This release handles that situation.&lt;/p&gt;
+&lt;p&gt;Also, under the hood, I cleaned up some repeated boilerplate related to how
+the cached dump calls to &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; took place.
+The code for categories, tags and series data was almost exactly the same,
+save for the actual name of the thing being dumped. So I turned it all into
+a macro:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defmacro&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore--cache-dump&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;dump-name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Generate a function to get DUMP-NAME from BlogMore, with caching.&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;cache-name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore--current-%s-cache&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;dump-name&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;getter-name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore--current-%s&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;dump-name&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;progn&lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;defvar&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;cache-name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;nil&lt;/span&gt;
+&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Cache for the list of %s from existing posts.&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;dump-name&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;getter-name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Get a list of %s from existing posts.&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;dump-name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;cache-name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;setq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;cache-name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--list-of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;symbol-name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;dump-name&lt;/span&gt;&lt;span class="p"&gt;))))))))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and now the &lt;code&gt;defvar&lt;/code&gt; that creates the variable that holds the cache, and the
+&lt;code&gt;defun&lt;/code&gt; that creates the getter function for the data, are reduced to this
+for all three collections of values:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--cache-dump&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;categories&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--cache-dump&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore--cache-dump&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;series&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Sure, I probably could have done all of this in a single global, a central
+getter function, and a &lt;a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Hash-Tables.html" rel="noopener noreferrer" target="_blank"&gt;hash
+table&lt;/a&gt;,
+but the macro approach feels so much more elegant, and more... lispy.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/06/11/blogmore-el-v5-1-0.html"/>
+    <category term="Emacs"/>
+    <category term="BlogMore"/>
+    <category term="Emacs"/>
+    <category term="Emacs Lisp"/>
+    <category term="Lisp"/>
+    <category term="blogmore.el"/>
+    <category term="coding"/>
+    <category term="defmacro"/>
+    <published>2026-06-11T19:06:24+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/06/10/blogmore-el-v5-0-0.html</id>
     <title>blogmore.el v5.0.0</title>
@@ -964,41 +1015,5 @@ done the trick.&lt;/p&gt;</content>
     <category term="coding"/>
     <category term="quiz.el"/>
     <published>2026-04-08T16:54:38+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/04/08/fasta-el-v1-1.html</id>
-    <title>fasta.el v1.1</title>
-    <updated>2026-04-08T11:25:43+01:00</updated>
-    <content type="html">&lt;p&gt;Today's &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt; package tidy-up is of a package I
-first wrote &lt;a href="https://blog.davep.org/2017/12/12/on_to_something_new.html"&gt;a couple of employers
-ago&lt;/a&gt;. While working on code I often
-found myself viewing &lt;a href="https://en.wikipedia.org/wiki/FASTA_format" rel="noopener noreferrer" target="_blank"&gt;FASTA
-files&lt;/a&gt; in an Emacs buffer and so
-I thought it would be fun to use this as a reason to knock up a simple mode
-for highlighting them.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/davep/fasta.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;fasta.el&lt;/code&gt;&lt;/a&gt; was the result.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="An example FASTA file" height="662" loading="lazy" src="https://blog.davep.org/attachments/2026/04/08/fasta.webp#centre" width="678" /&gt;&lt;/p&gt;
-&lt;p&gt;While I doubt it was or is of much use to others, it helped me better
-understand simple font-locking in Emacs Lisp, and also made some buffers
-look a little less boring when I was messing with test data.&lt;/p&gt;
-&lt;p&gt;As for this update: it's the usual stuff of cleaning up &lt;a href="https://blog.davep.org/2022/08/23/i-must-be-getting-old.html"&gt;deprecated uses of
-&lt;code&gt;setf&lt;/code&gt;&lt;/a&gt;, mostly.&lt;/p&gt;
-&lt;p&gt;If &lt;a href="https://blog.davep.org/tag/bioinformatics/"&gt;bioinformatics&lt;/a&gt;-related Emacs Lisp code written by
-a non-bioinformatician is your thing, you might also find
-&lt;a href="https://github.com/davep/2bit.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;2bit.el&lt;/code&gt;&lt;/a&gt; of interest too. Much like
-&lt;code&gt;fasta.el&lt;/code&gt; it too probably doesn't have a practical use, but it sure was fun
-to write and taught me a few things along the way; it also &lt;a href="https://www.youtube.com/watch?v=OimlNumAKWo" rel="noopener noreferrer" target="_blank"&gt;sort of goes
-hand-in-hand with &lt;code&gt;fasta.el&lt;/code&gt;
-too&lt;/a&gt;.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/04/08/fasta-el-v1-1.html"/>
-    <category term="Emacs"/>
-    <category term="Bioinformatics"/>
-    <category term="Emacs"/>
-    <category term="Emacs Lisp"/>
-    <category term="Lisp"/>
-    <category term="biology"/>
-    <category term="coding"/>
-    <category term="fasta.el"/>
-    <published>2026-04-08T11:25:43+01:00</published>
   </entry>
 </feed>
