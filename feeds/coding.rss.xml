@@ -8,7 +8,65 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Jun 2026 19:49:08 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jun 2026 10:00:05 +0000</lastBuildDate>
+    <item>
+      <title>BlogMore v2.43.0</title>
+      <link>https://blog.davep.org/2026/06/11/blogmore-v2-43-0.html</link>
+      <description>&lt;p&gt;After &lt;a href="https://blog.davep.org/2026/06/07/blogmore-v2-41-0.html"&gt;recently adding Mermaid and maths support to
+BlogMore&lt;/a&gt;, I got to thinking that it now
+has connections with a handful of third-party resources. While almost all of
+them are optional (only &lt;a href="https://fontawesome.com/" rel="noopener noreferrer" target="_blank"&gt;FontAwesome&lt;/a&gt; comes close
+to being a hard requirement), it does mean that there are resources the user
+doesn't directly supply or control, and for which the URLs are hard-coded in
+the source for &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I wasn't keen on this. While it's my intention to keep an eye on things and,
+periodically, check on those libraries and see if they need an update, &lt;a href="https://github.com/davep/blogmore/issues/605" rel="noopener noreferrer" target="_blank"&gt;I
+felt it was important that the user could override them on their
+own&lt;/a&gt;, without waiting on me.&lt;/p&gt;
+&lt;p&gt;So &lt;a href="https://blogmore.davep.dev/changelog/#v2430" rel="noopener noreferrer" target="_blank"&gt;v2.43.0&lt;/a&gt; adds &lt;a href="https://blogmore.davep.dev/configuration/#third_party" rel="noopener noreferrer" target="_blank"&gt;a
+&lt;code&gt;third_party&lt;/code&gt;
+section&lt;/a&gt; to the
+configuration file to give full control over these resources. The full
+version of it looks like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;third_party&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;mermaid&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;script_url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;katex&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;css_url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;js_url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;mathjax&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;js_url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;fontawesome&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;metadata_url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.7.2/metadata/icons.json&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;webfonts_base&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/webfonts&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;css_url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;woff2_url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/webfonts/fa-brands-400.woff2&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;force_graph&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;js_url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://unpkg.com/force-graph&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Of course, it's not an all-or-nothing setting; you can just set one of the
+values. So if you wanted to override the &lt;code&gt;force_graph&lt;/code&gt; value it's enough to
+do:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;third_party&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;force_graph&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;js_url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://unpkg.com/force-graph&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Hopefully this adds some useful flexibility. As well as giving the option to
+use a different version of a resource, it also allows you to host your own
+copy and refer to that instead. Heck, it would even allow totally replacing
+a library with a different one that has the same API, should you ever find
+yourself in that situation.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/11/blogmore-v2-43-0.html</guid>
+      <category>Coding</category>
+      <category>BlogMore</category>
+      <category>Coding</category>
+      <category>JSON</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <pubDate>Thu, 11 Jun 2026 08:27:45 +0100</pubDate>
+    </item>
     <item>
       <title>BlogMore v2.42.0</title>
       <link>https://blog.davep.org/2026/06/08/blogmore-v2-42-0.html</link>
@@ -278,7 +336,7 @@ should have added right near the start of the project.&lt;/p&gt;
 &lt;p&gt;First, the cosmetic: in pages and posts, when you use headings (&lt;code&gt;#&lt;/code&gt;, &lt;code&gt;##&lt;/code&gt;,
 etc.), a &lt;code&gt;¶&lt;/code&gt; is added to the end of each heading, along with some
 show-on-mouse-hover styling, to make it easy to grab the anchor of a
-particular section of a page&lt;sup id="fnref:383-1"&gt;&lt;a class="footnote-ref" href="#fn:383-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. A problem I'd noticed with this recently
+particular section of a page&lt;sup id="fnref:384-1"&gt;&lt;a class="footnote-ref" href="#fn:384-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. A problem I'd noticed with this recently
 is that the &lt;code&gt;¶&lt;/code&gt; shows up in the &lt;a href="https://blog.davep.org/search/"&gt;search&lt;/a&gt; text, and also in the
 content of all the feeds. While not a problem as such, it felt untidy.&lt;/p&gt;
 &lt;p&gt;So, with this release that particular &lt;code&gt;¶&lt;/code&gt; character is stripped from the
@@ -333,9 +391,9 @@ information lives with the page or post being redirected to.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:383-1"&gt;
+&lt;li id="fn:384-1"&gt;
 &lt;p&gt;The &lt;a href="https://blog.davep.org/2026/06/04/blogmore-v2-38-0.html"&gt;recently-added floating ToC&lt;/a&gt;
-is another way to do this now too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:383-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+is another way to do this now too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:384-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -393,7 +451,7 @@ if the feature should be on or off, by default, site-wide. It is set to
 post level, there is also &lt;a href="https://blogmore.davep.dev/writing_a_post/#show_toc" rel="noopener noreferrer" target="_blank"&gt;a &lt;code&gt;show_toc&lt;/code&gt; frontmatter
 property&lt;/a&gt; too. This
 &lt;em&gt;always&lt;/em&gt; overrides the global setting in the configuration file.&lt;/p&gt;
-&lt;p&gt;On top of this, I can imagine that someone&lt;sup id="fnref:381-1"&gt;&lt;a class="footnote-ref" href="#fn:381-1"&gt;1&lt;/a&gt;&lt;/sup&gt; might also want to have the
+&lt;p&gt;On top of this, I can imagine that someone&lt;sup id="fnref:382-1"&gt;&lt;a class="footnote-ref" href="#fn:382-1"&gt;1&lt;/a&gt;&lt;/sup&gt; might also want to have the
 right-side floating ToC, but never have the inline ToC showing on smaller
 displays. With this in mind I've also added a &lt;code&gt;show_toc_inline&lt;/code&gt;
 &lt;a href="https://blogmore.davep.dev/configuration/#show_toc_inline" rel="noopener noreferrer" target="_blank"&gt;configuration
@@ -415,8 +473,8 @@ override that explicit markup choice.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:381-1"&gt;
-&lt;p&gt;Me, I'm thinking it might be me.&amp;#160;&lt;a class="footnote-backref" href="#fnref:381-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:382-1"&gt;
+&lt;p&gt;Me, I'm thinking it might be me.&amp;#160;&lt;a class="footnote-backref" href="#fnref:382-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1049,42 +1107,6 @@ so appeasing the PageSpeed Insights gods.&amp;#160;&lt;a class="footnote-backref
       <category>PyPI</category>
       <category>Python</category>
       <pubDate>Wed, 20 May 2026 19:34:38 +0100</pubDate>
-    </item>
-    <item>
-      <title>OldNews v1.4.2</title>
-      <link>https://blog.davep.org/2026/05/19/oldnews-v1-4-2.html</link>
-      <description>&lt;p&gt;&lt;img alt="OldNews" height="640" loading="lazy" src="https://blog.davep.org/attachments/2026/02/11/oldnews-social-banner.webp#centre" width="1280" /&gt;&lt;/p&gt;
-&lt;p&gt;I've made a minor bump to &lt;a href="https://oldnews.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;OldNews&lt;/a&gt;, my
-terminal-based client for &lt;a href="https://theoldreader.com" rel="noopener noreferrer" target="_blank"&gt;TheOldReader&lt;/a&gt;. There's
-no significant change in this release, but it does change the dependency on
-&lt;a href="https://github.com/kreuzberg-dev/html-to-markdown" rel="noopener noreferrer" target="_blank"&gt;html-to-markdown&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Since I &lt;a href="https://blog.davep.org/2026/02/11/oldnews.html"&gt;initially released the application&lt;/a&gt;, this
-library seems to have been through a couple of significant changes, and not
-every breaking change seems to have resulted in &lt;a href="https://semver.org/" rel="noopener noreferrer" target="_blank"&gt;a major version
-bump&lt;/a&gt;. OldNews doesn't pin this dependency to a major
-version (I try not to, only ever setting lower-bounds for dependencies where
-possible), so it's fair that a change there can break things. I also think
-it's fair to hope that minor version changes won't cause trouble.&lt;/p&gt;
-&lt;p&gt;Recently, I've seen the library update with a minor version change and it's
-flat-out caused runtime errors, either because the API has changed, or
-because of an error being thrown by legitimate use of the API.&lt;/p&gt;
-&lt;p&gt;Most recently, such an error happened, and was fixed by the time I noticed
-it, but the release that was made &lt;a href="https://pypi.org/project/html-to-markdown/" rel="noopener noreferrer" target="_blank"&gt;never made it up to
-PyPI&lt;/a&gt;. This left OldNews stuck
-not working. Because of this I had to pin the library to an earlier version.&lt;/p&gt;
-&lt;p&gt;It's now been updated again and PyPI is correct, so I think it's safe to
-relax the pin.&lt;/p&gt;
-&lt;p&gt;Fingers crossed...&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/05/19/oldnews-v1-4-2.html</guid>
-      <category>Coding</category>
-      <category>Markdown</category>
-      <category>OldNews</category>
-      <category>Python</category>
-      <category>RSS</category>
-      <category>atom</category>
-      <category>terminal</category>
-      <category>textual</category>
-      <pubDate>Tue, 19 May 2026 08:20:03 +0100</pubDate>
     </item>
   </channel>
 </rss>
