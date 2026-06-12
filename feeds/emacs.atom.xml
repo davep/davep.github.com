@@ -2,11 +2,46 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-06-11T18:07:52.927593+00:00</updated>
+  <updated>2026-06-12T07:42:51.723941+00:00</updated>
   <link href="https://blog.davep.org/feeds/emacs.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Emacs" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/06/12/blogmore-el-v5-2-0.html</id>
+    <title>blogmore.el v5.2.0</title>
+    <updated>2026-06-12T08:31:15+01:00</updated>
+    <content type="html">&lt;p&gt;Another quick update to
+&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt;, again to fix an issue
+I've run into with the new frontmatter-handling code. This time it's to
+address an actual crash that could happen if a property was available but
+empty. For example, if a post had frontmatter that looked like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore.el&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;v5.2.0&amp;quot;&lt;/span&gt;
+&lt;span class="nt"&gt;date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;2026-06-12&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;08:31:15+0100&amp;quot;&lt;/span&gt;
+&lt;span class="nt"&gt;category&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Emacs&lt;/span&gt;
+&lt;span class="nt"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And I then went to use &lt;code&gt;blogmore-add-tag&lt;/code&gt;, I'd get a crash saying:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Wrong type argument: sequencep, :null
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The reason being that &lt;code&gt;tags&lt;/code&gt; was being parsed with a value of &lt;code&gt;:null&lt;/code&gt;,
+rather than (as before) having a value of &lt;code&gt;nil&lt;/code&gt; (which of course meant I had
+a nice empty list to do things with). It was an easy enough fix.&lt;/p&gt;
+&lt;p&gt;At this point I think I've managed to shake out any serious issues with the
+proper YAML-parsing approach to frontmatter, as I've used it to write a
+handful of posts now.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/06/12/blogmore-el-v5-2-0.html"/>
+    <category term="Emacs"/>
+    <category term="BlogMore"/>
+    <category term="Emacs"/>
+    <category term="Emacs Lisp"/>
+    <category term="Lisp"/>
+    <category term="blogmore.el"/>
+    <category term="coding"/>
+    <published>2026-06-12T08:31:15+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/06/11/blogmore-el-v5-1-0.html</id>
     <title>blogmore.el v5.1.0</title>
@@ -975,45 +1010,5 @@ come.&lt;/p&gt;</content>
     <category term="coding"/>
     <category term="wordcloud.el"/>
     <published>2026-04-14T08:47:39+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/04/08/quiz-el-v1-7.html</id>
-    <title>quiz.el v1.7</title>
-    <updated>2026-04-08T16:54:38+01:00</updated>
-    <content type="html">&lt;p&gt;I &lt;a href="https://blog.davep.org/2026/04/07/quiz-el-v1-6.html"&gt;wondered yesterday&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;...those question headers are displaying differently, with the background
-colour no longer spanning the width of the window. I'd like to understand
-why.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Turns out it was pretty straightforward:&lt;/p&gt;
-&lt;div class="highlight" data-lang="diff"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;diff --git a/quiz.el b/quiz.el&lt;/span&gt;
-&lt;span class="gh"&gt;index 2dbe45d..c1ba255 100644&lt;/span&gt;
-&lt;span class="gd"&gt;--- a/quiz.el&lt;/span&gt;
-&lt;span class="gi"&gt;+++ b/quiz.el&lt;/span&gt;
-&lt;span class="gu"&gt;@@ -40,7 +40,8 @@&lt;/span&gt;
-&lt;span class="w"&gt; &lt;/span&gt;(defface quiz-question-number-face
-&lt;span class="w"&gt; &lt;/span&gt;  &amp;#39;((t :height 1.3
-&lt;span class="w"&gt; &lt;/span&gt;       :background &amp;quot;black&amp;quot;
-&lt;span class="gd"&gt;-       :foreground &amp;quot;white&amp;quot;))&lt;/span&gt;
-&lt;span class="gi"&gt;+       :foreground &amp;quot;white&amp;quot;&lt;/span&gt;
-&lt;span class="gi"&gt;+       :extend t))&lt;/span&gt;
-&lt;span class="w"&gt; &lt;/span&gt;  &amp;quot;Face for the question number.&amp;quot;
-&lt;span class="w"&gt; &lt;/span&gt;  :group &amp;#39;quiz)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;and so v1.7 has happened.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Quiz with reinstated header look" height="746" loading="lazy" src="https://blog.davep.org/attachments/2026/04/08/updated-quiz.webp#centre" width="923" /&gt;&lt;/p&gt;
-&lt;p&gt;It looks like, perhaps, at some point in the past, &lt;code&gt;:extend&lt;/code&gt; was &lt;code&gt;t&lt;/code&gt; by
-default, but it no longer is? Either way, explicitly setting it to &lt;code&gt;t&lt;/code&gt; has
-done the trick.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/04/08/quiz-el-v1-7.html"/>
-    <category term="Emacs"/>
-    <category term="Emacs"/>
-    <category term="Emacs Lisp"/>
-    <category term="Lisp"/>
-    <category term="coding"/>
-    <category term="quiz.el"/>
-    <published>2026-04-08T16:54:38+01:00</published>
   </entry>
 </feed>

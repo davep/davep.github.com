@@ -8,7 +8,41 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 11 Jun 2026 18:07:52 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 12 Jun 2026 07:42:51 +0000</lastBuildDate>
+    <item>
+      <title>blogmore.el v5.2.0</title>
+      <link>https://blog.davep.org/2026/06/12/blogmore-el-v5-2-0.html</link>
+      <description>&lt;p&gt;Another quick update to
+&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt;, again to fix an issue
+I've run into with the new frontmatter-handling code. This time it's to
+address an actual crash that could happen if a property was available but
+empty. For example, if a post had frontmatter that looked like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blogmore.el&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;v5.2.0&amp;quot;&lt;/span&gt;
+&lt;span class="nt"&gt;date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;2026-06-12&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;08:31:15+0100&amp;quot;&lt;/span&gt;
+&lt;span class="nt"&gt;category&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Emacs&lt;/span&gt;
+&lt;span class="nt"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And I then went to use &lt;code&gt;blogmore-add-tag&lt;/code&gt;, I'd get a crash saying:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Wrong type argument: sequencep, :null
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The reason being that &lt;code&gt;tags&lt;/code&gt; was being parsed with a value of &lt;code&gt;:null&lt;/code&gt;,
+rather than (as before) having a value of &lt;code&gt;nil&lt;/code&gt; (which of course meant I had
+a nice empty list to do things with). It was an easy enough fix.&lt;/p&gt;
+&lt;p&gt;At this point I think I've managed to shake out any serious issues with the
+proper YAML-parsing approach to frontmatter, as I've used it to write a
+handful of posts now.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/12/blogmore-el-v5-2-0.html</guid>
+      <category>Emacs</category>
+      <category>BlogMore</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>blogmore.el</category>
+      <category>coding</category>
+      <pubDate>Fri, 12 Jun 2026 08:31:15 +0100</pubDate>
+    </item>
     <item>
       <title>blogmore.el v5.1.0</title>
       <link>https://blog.davep.org/2026/06/11/blogmore-el-v5-1-0.html</link>
@@ -1423,87 +1457,6 @@ opening a fresh Emacs buffer and kicking off some new Markdown.&lt;/p&gt;</descr
       <category>blogmore.el</category>
       <category>writing</category>
       <pubDate>Sun, 31 May 2026 15:26:46 +0100</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.34.0</title>
-      <link>https://blog.davep.org/2026/05/31/blogmore-v2-34-0.html</link>
-      <description>&lt;p&gt;I've released &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
-&lt;a href="https://blogmore.davep.dev/changelog/#v2340" rel="noopener noreferrer" target="_blank"&gt;v2.34.0&lt;/a&gt;. This is a small
-update to make some changes to the
-&lt;a href="https://blog.davep.org/2026/05/29/blogmore-v2-33-0.html"&gt;newly-added&lt;/a&gt; &lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;dump&lt;/code&gt;
-command&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The first change is a small fix to the &lt;code&gt;url_path&lt;/code&gt; property, which wasn't
-being populated; now it is.&lt;/p&gt;
-&lt;p&gt;The second change adds two new properties to the output which relate to
-links that can be found inside posts: &lt;code&gt;internal_links&lt;/code&gt; and &lt;code&gt;external_links&lt;/code&gt;.
-As the names suggest, the first gives you a list of all the internal links
-that can be found in a given post, with the values given being the same
-format as the &lt;code&gt;id&lt;/code&gt; used for every post in the dump. For example:&lt;/p&gt;
-&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;quot;internal_links&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;posts/2026/05/2026-05-20-blogmore-v2-25-0.md&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;posts/2026/05/2026-05-22-blogmore-v2-26-0.md&amp;quot;&lt;/span&gt;
-&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This should give everything needed to write tools that do things similar to
-the &lt;a href="https://blogmore.davep.dev/configuration/#with_backlinks" rel="noopener noreferrer" target="_blank"&gt;back-links
-system&lt;/a&gt; in
-BlogMore itself.&lt;/p&gt;
-&lt;p&gt;The list of external links is, obviously, a list of all the links in the
-post that are external to the blog. It looks like this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;quot;external_links&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://blogmore.davep.dev/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://validator.w3.org&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://json-ld.org/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://microformats.org/wiki/microformats2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://microformats.org/wiki/rel-me&amp;quot;&lt;/span&gt;
-&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;There is, of course, some overlap with the &lt;a href="https://blogmore.davep.dev/command_line/#dump" rel="noopener noreferrer" target="_blank"&gt;link dumping
-command&lt;/a&gt;, but given that the
-information is available it seemed to make sense to provide it here; it also
-means that it's available in a more structured form.&lt;/p&gt;
-&lt;p&gt;Also providing this sort of information in the JSON output means there's a
-lot of flexibility when it comes to analysing all the posts in my blog. For
-example, I can now easily satisfy my curiosity if I want to know exactly
-which posts in my blog have no links whatsoever.&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;blogmore&lt;span class="w"&gt; &lt;/span&gt;dump&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.[] | select((.internal_links | length) == 0 and (.external_links | length) == 0) | .id&amp;#39;&lt;/span&gt;
-
-posts/2015/2015-06-18-a-mild-chrome-annoyance.md
-posts/2015/2015-06-23-and-now-for-some-ios.md
-posts/2015/2015-07-01-odd-ipod-update.md
-posts/2015/2015-08-03-best-update-ever.md
-posts/2015/2015-09-04-unknown-promo.md
-posts/2015/2015-10-19-microsoft-accounts.md
-posts/2015/2015-11-11-voice-search-failing-on-nexus-6.md
-posts/2015/2015-11-12-i-miss-until-next-alarm.md
-posts/2016/2016-04-28-i-now-own-a-macbook.md
-posts/2017/2017-12-12-on_to_something_new.md
-posts/2020/2020-06-24-swift-til-3.md
-posts/2020/2020-06-26-switch-til-5.md
-posts/2020/2020-06-28-swift-til-7.md
-posts/2020/2020-07-05-swift-til-10.md
-posts/2022/2022-06-03-failed-successfully.md
-posts/2023/2023-07-21-encouragement-i-guess.md
-posts/2023/2023-07-29-home-pod-stuck-installing.md
-posts/2023/2023-10-20-constant-siri-voice-loss.md
-posts/2026/05/2026-05-04-my-new-favourite-game-on-steam.md
-posts/2026/05/2026-05-11-steam-controller-is-close.md
-posts/2026/05/2026-05-25-this-is-not-fun.md
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Sure, I don't know what I'd do with this information, but at least I can
-easily ask the question.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/05/31/blogmore-v2-34-0.html</guid>
-      <category>Coding</category>
-      <category>BlogMore</category>
-      <category>Coding</category>
-      <category>JSON</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>jq</category>
-      <pubDate>Sun, 31 May 2026 10:59:18 +0100</pubDate>
     </item>
   </channel>
 </rss>
