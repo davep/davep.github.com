@@ -8,7 +8,71 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 12 Jun 2026 13:07:58 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 12 Jun 2026 18:35:48 +0000</lastBuildDate>
+    <item>
+      <title>Simplifying my mode line</title>
+      <link>https://blog.davep.org/2026/06/12/simplifying-my-mode-line.html</link>
+      <description>&lt;p&gt;Every so often I get the urge to change how Emacs looks. Ever since I
+finally &lt;a href="https://blog.davep.org/2020/06/14/my-journey-to-the-dark-side-is-complete.html"&gt;fell to the dark
+side&lt;/a&gt;, my Emacs
+has stayed looking pretty much the same. I like how it looks, but I do keep
+having this urge to find a darker theme, and to also make things just a wee
+bit more minimal.&lt;/p&gt;
+&lt;p&gt;At one point I was very much about, and in favour of, having as much
+information as possible in &lt;a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Mode-Line.html" rel="noopener noreferrer" target="_blank"&gt;the mode
+line&lt;/a&gt;.
+Eventually I realised I didn't use that much and tried to declutter
+somewhat, mostly cleaning up minor mode information with
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/use-package/Diminish.html" rel="noopener noreferrer" target="_blank"&gt;diminish&lt;/a&gt;.
+Even then though, I had this feeling that there was still more information
+in the mode line than I really needed.&lt;/p&gt;
+&lt;p&gt;So, just now, as an experiment, I've decided to start fairly clean. I've
+dropped &lt;a href="https://github.com/milkypostman/powerline" rel="noopener noreferrer" target="_blank"&gt;powerline&lt;/a&gt; and instead
+decided to have a play with
+&lt;a href="https://github.com/emacsmirror/mood-line" rel="noopener noreferrer" target="_blank"&gt;mood-line&lt;/a&gt;. Rather than use one
+of its pre-configured formats, I've had a go at rolling my own:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;setq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;mood-line-format&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mood-line-defformat&lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="nb"&gt;:left&lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="nv"&gt;mood-line-segment-buffer-status&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;mood-line-segment-buffer-name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot; : &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mood-line-segment-major-mode&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="nb"&gt;:right&lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="nv"&gt;mood-line-segment-vc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;  &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mood-line-segment-cursor-position&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;So far I'm really pleased with the result.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="My GNU Emacs" height="1716" loading="lazy" src="https://blog.davep.org/attachments/2026/06/12/mood-line-emacs.webp#centre" width="1818" /&gt;&lt;/p&gt;
+&lt;p&gt;For any given buffer the mode line display is now:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The status of the buffer&lt;/li&gt;
+&lt;li&gt;The name of the buffer&lt;/li&gt;
+&lt;li&gt;The major mode of the buffer&lt;/li&gt;
+&lt;li&gt;The git status for what I'm working on&lt;/li&gt;
+&lt;li&gt;The cursor position&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Honestly, I'm struggling to think of anything else I really need to see.
+Sure, I can imagine there's the odd minor mode I might need to know about,
+but generally I either have them enabled all the time anyway, or it's
+something so obvious that I know when it's not enabled.&lt;/p&gt;
+&lt;p&gt;I'm going to run with this for a while now and see how I feel. I can sense
+that I might want to tweak a couple of things (at the moment the left-hand
+side will move when I change the unsaved status of the buffer; on the right
+there's nothing that tells me that this file I'm editing right now is new to
+the repo and not part of it yet), but this basic configuration feels clean
+and right.&lt;/p&gt;
+&lt;p&gt;Meanwhile... the search for &lt;a href="https://emacsthemes.com/" rel="noopener noreferrer" target="_blank"&gt;a theme&lt;/a&gt; that is
+darker and I actually prefer over &lt;a href="https://github.com/purcell/color-theme-sanityinc-tomorrow" rel="noopener noreferrer" target="_blank"&gt;the sanityinc-tomorrow
+themes&lt;/a&gt;
+continues. I fear this is going to be a lot harder.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/12/simplifying-my-mode-line.html</guid>
+      <category>Emacs</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <pubDate>Fri, 12 Jun 2026 19:06:26 +0100</pubDate>
+    </item>
     <item>
       <title>blogmore.el v5.2.0</title>
       <link>https://blog.davep.org/2026/06/12/blogmore-el-v5-2-0.html</link>
@@ -960,38 +1024,6 @@ can be an amusement from time to time.&lt;/p&gt;</description>
       <category>coding</category>
       <category>slstats.el</category>
       <pubDate>Wed, 15 Apr 2026 15:52:55 +0100</pubDate>
-    </item>
-    <item>
-      <title>wordcloud.el v1.4</title>
-      <link>https://blog.davep.org/2026/04/14/wordcloud-el-v1-4.html</link>
-      <description>&lt;p&gt;I &lt;em&gt;think&lt;/em&gt; I'm mostly caught up with the collection of &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs
-Lisp&lt;/a&gt; packages &lt;a href="https://blog.davep.org/2022/08/23/i-must-be-getting-old.html"&gt;that need updating and
-tidying&lt;/a&gt;, which means yesterday
-evening's clean-up should be one of the last (although I would like to
-revisit a couple and actually improve and extend them at some point).&lt;/p&gt;
-&lt;p&gt;As for what I cleaned up yesterday:
-&lt;a href="https://github.com/davep/wordcloud.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;wordcloud.el&lt;/code&gt;&lt;/a&gt;. This is a package
-that, when run in a buffer, will count the frequency of words in that buffer
-and show the results in a fresh window, complete with the "word cloud"
-differing-font-size effect.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Word cloud in action" height="704" loading="lazy" src="https://blog.davep.org/attachments/2026/04/14/wordcloud.webp#centre" width="818" /&gt;&lt;/p&gt;
-&lt;p&gt;This package is about 10 years old at this point, and I'm struggling to
-remember &lt;em&gt;why&lt;/em&gt; I wrote it now. I know I was doing something -- either
-writing something or reviewing it -- and the frequency of some words was
-important. I also remember this doing the job just fine and solving the
-problem I needed to solve.&lt;/p&gt;
-&lt;p&gt;Since then it's just sat around in my personal library of stuff I've written
-in Emacs Lisp, not really used. I imagine that's where it's going back to,
-but at least it's cleaned up and should be functional for a long time to
-come.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/04/14/wordcloud-el-v1-4.html</guid>
-      <category>Emacs</category>
-      <category>Emacs</category>
-      <category>Emacs Lisp</category>
-      <category>Lisp</category>
-      <category>coding</category>
-      <category>wordcloud.el</category>
-      <pubDate>Tue, 14 Apr 2026 08:47:39 +0100</pubDate>
     </item>
   </channel>
 </rss>

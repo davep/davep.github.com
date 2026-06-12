@@ -2,17 +2,82 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-06-12T13:07:58.520098+00:00</updated>
+  <updated>2026-06-12T18:35:48.576891+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
   <entry>
+    <id>https://blog.davep.org/2026/06/12/simplifying-my-mode-line.html</id>
+    <title>Simplifying my mode line</title>
+    <updated>2026-06-12T19:06:26+01:00</updated>
+    <content type="html">&lt;p&gt;Every so often I get the urge to change how Emacs looks. Ever since I
+finally &lt;a href="https://blog.davep.org/2020/06/14/my-journey-to-the-dark-side-is-complete.html"&gt;fell to the dark
+side&lt;/a&gt;, my Emacs
+has stayed looking pretty much the same. I like how it looks, but I do keep
+having this urge to find a darker theme, and to also make things just a wee
+bit more minimal.&lt;/p&gt;
+&lt;p&gt;At one point I was very much about, and in favour of, having as much
+information as possible in &lt;a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Mode-Line.html" rel="noopener noreferrer" target="_blank"&gt;the mode
+line&lt;/a&gt;.
+Eventually I realised I didn't use that much and tried to declutter
+somewhat, mostly cleaning up minor mode information with
+&lt;a href="https://www.gnu.org/software/emacs/manual/html_node/use-package/Diminish.html" rel="noopener noreferrer" target="_blank"&gt;diminish&lt;/a&gt;.
+Even then though, I had this feeling that there was still more information
+in the mode line than I really needed.&lt;/p&gt;
+&lt;p&gt;So, just now, as an experiment, I've decided to start fairly clean. I've
+dropped &lt;a href="https://github.com/milkypostman/powerline" rel="noopener noreferrer" target="_blank"&gt;powerline&lt;/a&gt; and instead
+decided to have a play with
+&lt;a href="https://github.com/emacsmirror/mood-line" rel="noopener noreferrer" target="_blank"&gt;mood-line&lt;/a&gt;. Rather than use one
+of its pre-configured formats, I've had a go at rolling my own:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;setq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;mood-line-format&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mood-line-defformat&lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="nb"&gt;:left&lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="nv"&gt;mood-line-segment-buffer-status&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;mood-line-segment-buffer-name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot; : &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mood-line-segment-major-mode&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="nb"&gt;:right&lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="nv"&gt;mood-line-segment-vc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;  &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mood-line-segment-cursor-position&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;So far I'm really pleased with the result.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="My GNU Emacs" height="1716" loading="lazy" src="https://blog.davep.org/attachments/2026/06/12/mood-line-emacs.webp#centre" width="1818" /&gt;&lt;/p&gt;
+&lt;p&gt;For any given buffer the mode line display is now:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The status of the buffer&lt;/li&gt;
+&lt;li&gt;The name of the buffer&lt;/li&gt;
+&lt;li&gt;The major mode of the buffer&lt;/li&gt;
+&lt;li&gt;The git status for what I'm working on&lt;/li&gt;
+&lt;li&gt;The cursor position&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Honestly, I'm struggling to think of anything else I really need to see.
+Sure, I can imagine there's the odd minor mode I might need to know about,
+but generally I either have them enabled all the time anyway, or it's
+something so obvious that I know when it's not enabled.&lt;/p&gt;
+&lt;p&gt;I'm going to run with this for a while now and see how I feel. I can sense
+that I might want to tweak a couple of things (at the moment the left-hand
+side will move when I change the unsaved status of the buffer; on the right
+there's nothing that tells me that this file I'm editing right now is new to
+the repo and not part of it yet), but this basic configuration feels clean
+and right.&lt;/p&gt;
+&lt;p&gt;Meanwhile... the search for &lt;a href="https://emacsthemes.com/" rel="noopener noreferrer" target="_blank"&gt;a theme&lt;/a&gt; that is
+darker and I actually prefer over &lt;a href="https://github.com/purcell/color-theme-sanityinc-tomorrow" rel="noopener noreferrer" target="_blank"&gt;the sanityinc-tomorrow
+themes&lt;/a&gt;
+continues. I fear this is going to be a lot harder.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/06/12/simplifying-my-mode-line.html"/>
+    <category term="Emacs"/>
+    <category term="Emacs"/>
+    <category term="Emacs Lisp"/>
+    <category term="Lisp"/>
+    <published>2026-06-12T19:06:26+01:00</published>
+  </entry>
+  <entry>
     <id>https://blog.davep.org/2026/06/12/cake-and-beers-i-guess.html</id>
     <title>Cake and beers, I guess</title>
     <updated>2026-06-12T13:27:16+01:00</updated>
     <content type="html">&lt;p&gt;&lt;img alt="u/davepearson" height="243" loading="lazy" src="https://blog.davep.org/attachments/2026/06/12/davep-reddit-half.webp#centre" width="190" /&gt;&lt;/p&gt;
-&lt;p&gt;Damn. Oh damn. My Reddit account is now old enough to buy beer&lt;sup id="fnref:385-1"&gt;&lt;a class="footnote-ref" href="#fn:385-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. O_o&lt;/p&gt;
+&lt;p&gt;Damn. Oh damn. My Reddit account is now old enough to buy beer&lt;sup id="fnref:386-1"&gt;&lt;a class="footnote-ref" href="#fn:386-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. O_o&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Happy cake day to me" height="88" loading="lazy" src="https://blog.davep.org/attachments/2026/06/12/cake-day.webp#centre" width="291" /&gt;&lt;/p&gt;
 &lt;p&gt;While I probably have accounts somewhere that are older than this, that's
 still a pretty long time to have held an account somewhere &lt;em&gt;and still be
@@ -39,7 +104,7 @@ third-party clients, I stopped using the site for a while. These days I have
 got back into the habit of reading it again. While I do occasionally check
 in on a handful of &lt;a href="https://join-lemmy.org/" rel="noopener noreferrer" target="_blank"&gt;Lemmy subscriptions&lt;/a&gt;, and do
 keep thinking I should probably look into
-&lt;a href="https://lobste.rs/" rel="noopener noreferrer" target="_blank"&gt;lobste.rs&lt;/a&gt;&lt;sup id="fnref:385-2"&gt;&lt;a class="footnote-ref" href="#fn:385-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, it's hard to break the habit of opening
+&lt;a href="https://lobste.rs/" rel="noopener noreferrer" target="_blank"&gt;lobste.rs&lt;/a&gt;&lt;sup id="fnref:386-2"&gt;&lt;a class="footnote-ref" href="#fn:386-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, it's hard to break the habit of opening
 the Reddit app and scrolling for a wee while. I've yet to finally and fully
 replace it.&lt;/p&gt;
 &lt;p&gt;I should go look at some of my other longer-serving accounts on websites and
@@ -47,12 +112,12 @@ services and see exactly which is my oldest one.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:385-1"&gt;
-&lt;p&gt;Legally. In the UK.&amp;#160;&lt;a class="footnote-backref" href="#fnref:385-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:386-1"&gt;
+&lt;p&gt;Legally. In the UK.&amp;#160;&lt;a class="footnote-backref" href="#fnref:386-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:385-2"&gt;
+&lt;li id="fn:386-2"&gt;
 &lt;p&gt;If you are reading this, do use lobste.rs, and fancy throwing me an
-invite, I'd appreciate it!&amp;#160;&lt;a class="footnote-backref" href="#fnref:385-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+invite, I'd appreciate it!&amp;#160;&lt;a class="footnote-backref" href="#fnref:386-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -544,7 +609,7 @@ things that Tyneside had to offer too.&lt;/p&gt;
 &lt;a href="https://en.wikipedia.org/wiki/Stottie_cake" rel="noopener noreferrer" target="_blank"&gt;stottie&lt;/a&gt;. This became my go-to
 food, especially in my second and third years, when I was no longer in
 halls.&lt;/p&gt;
-&lt;p&gt;I left Newcastle in 1989 and never went back&lt;sup id="fnref:381-1"&gt;&lt;a class="footnote-ref" href="#fn:381-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and sadly, have never had
+&lt;p&gt;I left Newcastle in 1989 and never went back&lt;sup id="fnref:382-1"&gt;&lt;a class="footnote-ref" href="#fn:382-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and sadly, have never had
 a stottie since. While I'm sure I could have found some niche place in the
 various places I've lived since, they're not a thing you find normally in
 Hampshire, Lincolnshire or Midlothian.&lt;/p&gt;
@@ -584,7 +649,7 @@ halves and getting it ready for the oven.&lt;/p&gt;
 the size and thickness I remember (and which you see in plenty of photos
 online), but I was somewhat hesitant when it came to flattening it out. I
 was concerned I'd made it too thin at this point anyway and it wouldn't rise
-much. I was wrong. Next time&lt;sup id="fnref:381-2"&gt;&lt;a class="footnote-ref" href="#fn:381-2"&gt;2&lt;/a&gt;&lt;/sup&gt; I think I'll flatten it a lot more.&lt;/p&gt;
+much. I was wrong. Next time&lt;sup id="fnref:382-2"&gt;&lt;a class="footnote-ref" href="#fn:382-2"&gt;2&lt;/a&gt;&lt;/sup&gt; I think I'll flatten it a lot more.&lt;/p&gt;
 &lt;p&gt;Anyway, I threw both proto-stotties into the oven and about 20 minutes later
 I had something that was passable!&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Stottie number one" height="1536" loading="lazy" src="https://blog.davep.org/attachments/2026/06/07/out-of-the-oven-1.webp#centre" width="2048" /&gt;&lt;/p&gt;
@@ -606,12 +671,12 @@ confidence to have another go at some point.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:381-1"&gt;
+&lt;li id="fn:382-1"&gt;
 &lt;p&gt;I've travelled through plenty of times, but it's been 37 years, and
-counting, since I was last in toon.&amp;#160;&lt;a class="footnote-backref" href="#fnref:381-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+counting, since I was last in toon.&amp;#160;&lt;a class="footnote-backref" href="#fnref:382-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:381-2"&gt;
-&lt;p&gt;There 100% will be a next time.&amp;#160;&lt;a class="footnote-backref" href="#fnref:381-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:382-2"&gt;
+&lt;p&gt;There 100% will be a next time.&amp;#160;&lt;a class="footnote-backref" href="#fnref:382-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -847,7 +912,7 @@ should have added right near the start of the project.&lt;/p&gt;
 &lt;p&gt;First, the cosmetic: in pages and posts, when you use headings (&lt;code&gt;#&lt;/code&gt;, &lt;code&gt;##&lt;/code&gt;,
 etc.), a &lt;code&gt;¶&lt;/code&gt; is added to the end of each heading, along with some
 show-on-mouse-hover styling, to make it easy to grab the anchor of a
-particular section of a page&lt;sup id="fnref:384-1"&gt;&lt;a class="footnote-ref" href="#fn:384-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. A problem I'd noticed with this recently
+particular section of a page&lt;sup id="fnref:385-1"&gt;&lt;a class="footnote-ref" href="#fn:385-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. A problem I'd noticed with this recently
 is that the &lt;code&gt;¶&lt;/code&gt; shows up in the &lt;a href="https://blog.davep.org/search/"&gt;search&lt;/a&gt; text, and also in the
 content of all the feeds. While not a problem as such, it felt untidy.&lt;/p&gt;
 &lt;p&gt;So, with this release that particular &lt;code&gt;¶&lt;/code&gt; character is stripped from the
@@ -902,9 +967,9 @@ information lives with the page or post being redirected to.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:384-1"&gt;
+&lt;li id="fn:385-1"&gt;
 &lt;p&gt;The &lt;a href="https://blog.davep.org/2026/06/04/blogmore-v2-38-0.html"&gt;recently-added floating ToC&lt;/a&gt;
-is another way to do this now too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:384-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+is another way to do this now too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:385-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -963,7 +1028,7 @@ if the feature should be on or off, by default, site-wide. It is set to
 post level, there is also &lt;a href="https://blogmore.davep.dev/writing_a_post/#show_toc" rel="noopener noreferrer" target="_blank"&gt;a &lt;code&gt;show_toc&lt;/code&gt; frontmatter
 property&lt;/a&gt; too. This
 &lt;em&gt;always&lt;/em&gt; overrides the global setting in the configuration file.&lt;/p&gt;
-&lt;p&gt;On top of this, I can imagine that someone&lt;sup id="fnref:382-1"&gt;&lt;a class="footnote-ref" href="#fn:382-1"&gt;1&lt;/a&gt;&lt;/sup&gt; might also want to have the
+&lt;p&gt;On top of this, I can imagine that someone&lt;sup id="fnref:383-1"&gt;&lt;a class="footnote-ref" href="#fn:383-1"&gt;1&lt;/a&gt;&lt;/sup&gt; might also want to have the
 right-side floating ToC, but never have the inline ToC showing on smaller
 displays. With this in mind I've also added a &lt;code&gt;show_toc_inline&lt;/code&gt;
 &lt;a href="https://blogmore.davep.dev/configuration/#show_toc_inline" rel="noopener noreferrer" target="_blank"&gt;configuration
@@ -985,8 +1050,8 @@ override that explicit markup choice.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:382-1"&gt;
-&lt;p&gt;Me, I'm thinking it might be me.&amp;#160;&lt;a class="footnote-backref" href="#fnref:382-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:383-1"&gt;
+&lt;p&gt;Me, I'm thinking it might be me.&amp;#160;&lt;a class="footnote-backref" href="#fnref:383-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1463,41 +1528,5 @@ appearing on those pages. That's now fixed.&lt;/p&gt;</content>
     <category term="PyPI"/>
     <category term="Python"/>
     <published>2026-06-01T08:42:40+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/05/31/blogmore-v2-35-0.html</id>
-    <title>BlogMore v2.35.0</title>
-    <updated>2026-05-31T16:40:49+01:00</updated>
-    <content type="html">&lt;p&gt;Well, I wasn't expecting to release a new version of
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; quite so soon, given I made a
-release earlier today. But &lt;a href="https://github.com/davep/blogmore/issues/572" rel="noopener noreferrer" target="_blank"&gt;an issue came
-in&lt;/a&gt; that the Bluesky icon
-wasn't showing in the socials section on someone's blog, despite the fact
-that the docs suggested it should work.&lt;/p&gt;
-&lt;p&gt;Sure enough, &lt;a href="https://blog.cpjobling.net/" rel="noopener noreferrer" target="_blank"&gt;the icon wasn't there&lt;/a&gt; despite
-the docs giving Bluesky as an example that should work. A quick check, and
-the reason for the problem was clear: &lt;a href="https://github.com/davep/blogmore/pull/573/changes" rel="noopener noreferrer" target="_blank"&gt;the code was using a version of
-FontAwesome that didn't have that
-icon&lt;/a&gt;. An easy fix.&lt;/p&gt;
-&lt;p&gt;It's interesting to note that Copilot/Claude (which is what did this work
-originally) produced one thing in the code, and then made an unsupportable
-claim in the documentation. Furthermore, it &lt;em&gt;didn't&lt;/em&gt; construct the tests to
-at least match the documentation's claims. None of this is a surprise, of
-course, but it is a good illustration of the fact that agent-based coding is
-just fancy auto-complete with no real ability to maintain a coherent view of
-the whole project.&lt;/p&gt;
-&lt;p&gt;Anyway, &lt;a href="https://blogmore.davep.dev/changelog/#v2350" rel="noopener noreferrer" target="_blank"&gt;v2.35.0&lt;/a&gt; is now
-available and I too can have a &lt;a href="https://bsky.app/profile/davep.org" rel="noopener noreferrer" target="_blank"&gt;Bluesky
-link&lt;/a&gt; in my socials. Oddly, I hadn't
-thought to add it before now.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/05/31/blogmore-v2-35-0.html"/>
-    <category term="Coding"/>
-    <category term="AI"/>
-    <category term="BlogMore"/>
-    <category term="Coding"/>
-    <category term="Copilot"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <published>2026-05-31T16:40:49+01:00</published>
   </entry>
 </feed>
