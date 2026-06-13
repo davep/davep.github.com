@@ -1,8 +1,9 @@
 ---
-title: Virgin East Coast 21
+title: "Virgin East Coast 21"
 category: Life
-tags: travel, Virgin
-date: 2016-11-03 13:00:25+0000
+tags: "travel, Virgin"
+date: "2016-11-03 13:00:25+0000"
+series: ["The Virgin East Coast Saga"]
 ---
 
 Yesterday I got the call about the Virgin East Coast Ticket Wallet app that
