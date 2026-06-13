@@ -1,8 +1,9 @@
 ---
-title: Planning on returning to streaming
-date: 2026-05-15 08:38:53+0100
+title: "Planning on returning to streaming"
+date: "2026-05-15 08:38:53+0100"
 category: Gaming
-tags: Broadband, PCVR, PS5, VR, gaming, streaming
+tags: "Broadband, PCVR, PS5, VR, gaming, streaming"
+series: ["Trying to get full fibre from EE"]
 ---
 
 For the past few years, pretty much every evening for a couple of hours, I
