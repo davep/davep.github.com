@@ -1,9 +1,10 @@
 ---
-title: Let down by Openreach and EE
-date: 2026-05-26 17:07:38+0100
+title: "Let down by Openreach and EE"
+date: "2026-05-26 17:07:38+0100"
 category: Life
-tags: BT, Broadband, EE, Openreach
-cover: /attachments/2026/05/26/i-can-haz-fibre.webp
+tags: "BT, Broadband, EE, Openreach"
+cover: "/attachments/2026/05/26/i-can-haz-fibre.webp"
+series: ["Trying to get full fibre from EE"]
 ---
 
 Despite the fact that I am not, in any way, superstitious, I kind of have
