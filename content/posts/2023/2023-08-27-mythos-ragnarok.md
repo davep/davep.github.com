@@ -49,10 +49,6 @@ a high-energy play performed by stunt people.
 
 It's amazing.
 
-<center>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/VltdZJNLV68?si=bvN4UrdzyoLgFCUg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</center>
-
 As I write this there's one last show, I believe, tonight; so the chances of
 anyone reading this and getting to see it are very remote. But if they're
 back next year, and you're reading this near then and wondering about Fringe
