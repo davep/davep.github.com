@@ -1,9 +1,9 @@
 ---
-title: Visual evolution of ~/.emacs.d
+title: "Visual evolution of ~/.emacs.d"
 category: Emacs
-tags: Emacs, Lisp, Emacs Lisp
-date: 2019-11-23 14:42:00+0000
-series: ~/.emacs.d
+tags: [Emacs, "Emacs Lisp", Lisp, Video, YouTube]
+date: "2019-11-23 14:42:00+0000"
+series: "~/.emacs.d"
 ---
 
 As detailed in a blog post I wrote [back in
