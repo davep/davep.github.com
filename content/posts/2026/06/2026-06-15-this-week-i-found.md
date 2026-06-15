@@ -3,6 +3,7 @@ title: "This week I found..."
 date: "2026-06-15 08:29:08+0100"
 category: Meta
 tags: [Bookmarks, Raindrop]
+series: ["Recently I found..."]
 ---
 
 It's the best part of two years now [since I dropped Pinboard in favour of
