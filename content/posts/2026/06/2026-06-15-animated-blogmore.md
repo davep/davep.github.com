@@ -8,7 +8,7 @@ tags: [BlogMore, Video, YouTube]
 A little animation of the first few months of the work on
 [BlogMore](https://blogmore.davep.dev/):
 
-<center>
+<div style="text-align: center;">
   <iframe
     width="560"
     height="315"
@@ -19,7 +19,7 @@ A little animation of the first few months of the work on
     referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
-</center>
+</div>
 
 [The video](https://www.youtube.com/watch?v=M03iPvWKNBQ) covers the whole
 period of building BlogMore, from the start until today. This means that it
