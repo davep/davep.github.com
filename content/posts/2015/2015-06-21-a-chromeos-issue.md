@@ -46,9 +46,9 @@ powerwash on the way (of course) and this seems to have done the trick. I'm
 no longer seeing any problems. The switch to stable even had the problem
 showing. Here's a video of stable downloading:
 
-<center>
+<div style="text-align: center;">
 <iframe width="480" height="270" src="https://www.youtube.com/embed/dKURvastEAA" frameborder="0" allowfullscreen></iframe>
-</center>
+</div>
 
 That's pretty much the sort of thing I was seeing all over the place, and it
 appeared to be getting worse as time went on.

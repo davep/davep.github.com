@@ -29,9 +29,9 @@ new member numbers. It's all about the numbers -- all about the money.
 
 But then I saw [this video](https://www.youtube.com/watch?v=RYNPzJgV8TI):
 
-<center>
+<div style="text-align: center;">
 <iframe width="480" height="270" src="https://www.youtube.com/embed/RYNPzJgV8TI" frameborder="0" allowfullscreen></iframe>
-</center>
+</div>
 
 and got to thinking that perhaps, just perhaps, some change for the better
 is actually happening inside Labour. Perhaps I should give the organisation

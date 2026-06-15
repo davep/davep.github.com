@@ -29,9 +29,9 @@ Running it again after that got me back to where I started. I tried the while
 process again and, sure enough, trying to resize the window made it disappear.
 I can make it happen every single time:
 
-<center>
+<div style="text-align: center;">
 <iframe width="480" height="360" src="https://www.youtube.com/embed/id9Gb8SDYrg" frameborder="0" allowfullscreen></iframe>
-</center>
+</div>
 
 So it looks like another fine example of the Apple "it just works" thing.
 For "doesn't always just work" values of "just works".
