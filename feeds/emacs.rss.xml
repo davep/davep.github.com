@@ -8,7 +8,64 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 15 Jun 2026 17:30:49 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 15 Jun 2026 18:49:17 +0000</lastBuildDate>
+    <item>
+      <title>More mode line tweaking</title>
+      <link>https://blog.davep.org/2026/06/15/more-mode-line-tweaking.html</link>
+      <description>&lt;p&gt;The &lt;a href="https://blog.davep.org/2026/06/12/simplifying-my-mode-line.html"&gt;simplification of my mode
+line&lt;/a&gt; is sticking, in that I like
+how it's turned out and I find it more useful to have it this simple. But I
+did notice something was missing: I'm a pretty constant but pretty casual
+user of &lt;a href="https://github.com/bbatsov/projectile" rel="noopener noreferrer" target="_blank"&gt;projectile&lt;/a&gt;. I know it's a
+package that offers a wealth of tools, yet mostly I just use it as a project
+bookmark system. For this, though, it works well.&lt;/p&gt;
+&lt;p&gt;Given this, having a quick and easy way to check that I'm in the project I
+think I'm in is a good idea. While I also have
+&lt;a href="https://github.com/jaypei/emacs-neotree" rel="noopener noreferrer" target="_blank"&gt;neotree&lt;/a&gt; open all the time, which
+gives a fairly obvious clue, my eyes keep flitting down to the mode line.&lt;/p&gt;
+&lt;p&gt;The change I made the other day, deliberately, left the project off. I think
+this was a simplification too far. So now it's back.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Slightly updated mode line" height="1660" loading="lazy" src="https://blog.davep.org/attachments/2026/06/15/mode-line-update.webp#centre" width="2070" /&gt;&lt;/p&gt;
+&lt;p&gt;The core of &lt;a href="https://github.com/davep/.emacs.d/blob/944e88b18df1147597e0f7be117887bf51c37a77/init.d/packages.d/melpa/mood-line.el" rel="noopener noreferrer" target="_blank"&gt;my mode line
+configuration&lt;/a&gt;
+now looks like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;setq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;mood-line-format&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mood-line-defformat&lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="nb"&gt;:left&lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;
+&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mood-line-segment-buffer-status&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;propertize&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mood-line--get-glyph&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:buffer-modified&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;face&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;my/mood-line-good-status&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s"&gt;&amp;quot; &amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mood-line-segment-buffer-name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;my/mood-line-segment-project&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s"&gt;&amp;quot; &amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mood-line-segment-major-mode&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="nb"&gt;:right&lt;/span&gt;
+&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;my/mood-line-segment-vc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s"&gt;&amp;quot; &amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;propertize&lt;/span&gt;
+&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mood-line-segment-cursor-position&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;face&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;my/mood-line-cursor-position&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;A little busier than it started out, but still pretty clean. I do keep
+wondering about the cursor position. In most buffers I have line numbers
+showing to the left anyway, and it's rare (but not unknown) that I need to
+know what column I'm in. I'm very tempted to remove the cursor position
+altogether, then the right-hand side would just be the &lt;code&gt;vc&lt;/code&gt; information, at
+which point it might make sense to also move the project name over to the
+right, given that the project and the repository information generally go
+hand-in-hand.&lt;/p&gt;
+&lt;p&gt;I'll stick with this for now, but I can see this happening soon.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/15/more-mode-line-tweaking.html</guid>
+      <category>Emacs</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <pubDate>Mon, 15 Jun 2026 19:47:15 +0100</pubDate>
+    </item>
     <item>
       <title>blogmore.el v5.3.0</title>
       <link>https://blog.davep.org/2026/06/14/blogmore-el-v5-3-0.html</link>
@@ -49,7 +106,7 @@ none have ever stuck. When trying them I've run into various issues:&lt;/p&gt;
 &lt;li&gt;Too many other things I use in Emacs didn't get themed&lt;/li&gt;
 &lt;li&gt;It looked like there was going to be too much work to do to really theme
   things well&lt;/li&gt;
-&lt;li&gt;It caused Emacs to crash&lt;sup id="fnref:402-1"&gt;&lt;a class="footnote-ref" href="#fn:402-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;It caused Emacs to crash&lt;sup id="fnref:403-1"&gt;&lt;a class="footnote-ref" href="#fn:403-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;However, yesterday evening, after &lt;a href="https://blog.davep.org/2026/06/12/simplifying-my-mode-line.html"&gt;making an effort to simplify my mode
 line&lt;/a&gt;, I was determined to find a
@@ -101,9 +158,9 @@ doesn't quite blend how I'd like.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:402-1"&gt;
+&lt;li id="fn:403-1"&gt;
 &lt;p&gt;Seriously, just the once, but that happened. I took that as a sign
-from the Lisp gods that I was doing something sinful.&amp;#160;&lt;a class="footnote-backref" href="#fnref:402-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+from the Lisp gods that I was doing something sinful.&amp;#160;&lt;a class="footnote-backref" href="#fnref:403-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -948,41 +1005,6 @@ former looks far more readable and feels more maintainable than the latter.&lt;/
       <category>blogmore.el</category>
       <category>coding</category>
       <pubDate>Tue, 21 Apr 2026 19:27:26 +0100</pubDate>
-    </item>
-    <item>
-      <title>blogmore.el v4.1</title>
-      <link>https://blog.davep.org/2026/04/17/blogmore-el-v4-1.html</link>
-      <description>&lt;p&gt;Following on from &lt;a href="https://blog.davep.org/2026/04/16/i-should-use-webp.html"&gt;yesterday's experiment with
-webp&lt;/a&gt; I got to thinking that it might be
-handy to add a wee command to
-&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; that can quickly swap
-an image's extension from whatever it is to &lt;code&gt;webp&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;So &lt;a href="https://github.com/davep/blogmore.el/releases/tag/v4.1" rel="noopener noreferrer" target="_blank"&gt;v4.1&lt;/a&gt; has
-happened. The new command is simple enough, called
-&lt;code&gt;blogmore-webpify-image-at-point&lt;/code&gt;; it just looks to see if there's a
-Markdown image on the current line and, if there is, replaces the file's
-extension with &lt;code&gt;webp&lt;/code&gt; no matter what it was before.&lt;/p&gt;
-&lt;p&gt;If/when I decide to convert all the &lt;code&gt;png&lt;/code&gt; files in the blog to &lt;code&gt;webp&lt;/code&gt; I'll
-obviously use something very batch-oriented, but for now I'm still
-experimenting, so going back and quickly changing the odd image here and
-there is a nicely cautious approach.&lt;/p&gt;
-&lt;p&gt;I have, of course, added the command to the transient menu that is brought
-up by the &lt;code&gt;blogmore&lt;/code&gt; command.&lt;/p&gt;
-&lt;p&gt;One other small change in v4.1 is that a newly created post is saved right
-away. This doesn't make a huge difference, but it does mean I start out with
-a saved post that will be seen by &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
-when generating the site.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/04/17/blogmore-el-v4-1.html</guid>
-      <category>Emacs</category>
-      <category>BlogMore</category>
-      <category>Emacs</category>
-      <category>Emacs Lisp</category>
-      <category>Lisp</category>
-      <category>blogmore.el</category>
-      <category>coding</category>
-      <category>web</category>
-      <category>webp</category>
-      <pubDate>Fri, 17 Apr 2026 10:25:37 +0100</pubDate>
     </item>
   </channel>
 </rss>
