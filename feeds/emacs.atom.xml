@@ -2,11 +2,94 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-06-15T18:49:17.271795+00:00</updated>
+  <updated>2026-06-16T15:21:52.572899+00:00</updated>
   <link href="https://blog.davep.org/feeds/emacs.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Emacs" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/06/16/become-el-v1-4-0.html</id>
+    <title>become.el v1.4.0</title>
+    <updated>2026-06-16T16:19:59+01:00</updated>
+    <content type="html">&lt;p&gt;In the last month or so, as I've mentioned a few times before, I've been
+trying to tidy up some of my older personal &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt;
+packages. I &lt;em&gt;thought&lt;/em&gt; I'd updated all the ones I commonly use, but it turns
+out I hadn't. Somehow I'd missed
+&lt;a href="https://github.com/davep/become.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;become.el&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is another one of those packages whose content started out as ad-hoc
+commands, added to the &lt;code&gt;~/.emacs&lt;/code&gt; that first started to emerge as I got to
+know Emacs on OS/2 and then GNU/Linux back in the mid-1990s. I think it was
+back in 2016&lt;sup id="fnref:401-1"&gt;&lt;a class="footnote-ref" href="#fn:401-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, when I did &lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;a big revamp of my Emacs
+environment&lt;/a&gt;, that I moved
+all of those roughly-related commands out into their own file.&lt;/p&gt;
+&lt;p&gt;Honestly, I think I can dump most of them now. There's stuff in there for
+quickly and easily converting buffers between "DOS format" and "Unix format"
+(from back when I was still working a lot on Windows machines, and sometimes
+even in MS-DOS-based virtual machines, and often using the
+&lt;a href="https://www.delorie.com/djgpp/" rel="noopener noreferrer" target="_blank"&gt;DJGPP&lt;/a&gt;-built version of Emacs).&lt;/p&gt;
+&lt;p&gt;One command I still use all the time is
+&lt;code&gt;become-free-of-trailing-whitespace&lt;/code&gt;, because I have that set up as part of
+a &lt;code&gt;before-save-hook&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;use-package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;become&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:ensure&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:defer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:vc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;:url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://github.com/davep/become.el&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:rev&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:newest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:commands&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;become-free-of-trailing-whitespace&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:init&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;unless&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;noninteractive&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;add-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;before-save-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;&lt;/span&gt;&lt;span class="nv"&gt;become-free-of-trailing-whitespace&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:bind&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; &amp;lt;tab&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;become-freshly-indented-no-tabs&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;While I know that there are better ways of handling the trailing space issue
+these days, this is one I rolled for myself a couple of decades ago and it's
+yet to fail me. You can see just how dated it is from this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cl-flet&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;is-sig-line&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="w"&gt;                       &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;save-excursion&lt;/span&gt;
+&lt;span class="w"&gt;                         &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;beginning-of-line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;                         &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;looking-at&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;^-- $&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;markdown-br-p&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="w"&gt;                         &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;save-excursion&lt;/span&gt;
+&lt;span class="w"&gt;                           &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;beginning-of-line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;                           &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;major-mode&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;markdown-mode&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;                                &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;looking-at&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;^.+[^ ]  $&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+&lt;span class="c1"&gt;; ...body removed&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If you know, you'll know why &lt;code&gt;is-sig-line&lt;/code&gt; is there&lt;sup id="fnref:401-2"&gt;&lt;a class="footnote-ref" href="#fn:401-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;I do still use &lt;code&gt;become-freshly-indented-no-tabs&lt;/code&gt; on occasion too, and have
+it bound to an easy-to-remember and obvious (to me) key.&lt;/p&gt;
+&lt;p&gt;And so, despite the fact that most of the content of &lt;code&gt;become.el&lt;/code&gt; is probably
+obsolete at this point, despite the fact that there are probably far better
+and more idiomatic ways of doing these things these days... it's my little
+personal package that has grown with me in the 3 (and a bit) decades I've
+had Emacs under my fingertips. I'm going to keep it around just a little
+longer.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:401-1"&gt;
+&lt;p&gt;The header for &lt;code&gt;become.el&lt;/code&gt; says 2017, but I think the header itself
+came a little later when I &lt;a href="https://blog.davep.org/2017/04/01/another_revamp_of_my_emacs_config.html"&gt;did some more work on my
+config&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:401-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:401-2"&gt;
+&lt;p&gt;And if you don't know, &lt;a href="https://en.wikipedia.org/wiki/Signature_block#Standard_delimiter" rel="noopener noreferrer" target="_blank"&gt;now you
+do&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:401-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/06/16/become-el-v1-4-0.html"/>
+    <category term="Emacs"/>
+    <category term="Emacs"/>
+    <category term="Emacs Lisp"/>
+    <category term="Lisp"/>
+    <category term="become.el"/>
+    <category term="coding"/>
+    <published>2026-06-16T16:19:59+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/06/15/more-mode-line-tweaking.html</id>
     <title>More mode line tweaking</title>
@@ -107,7 +190,7 @@ none have ever stuck. When trying them I've run into various issues:&lt;/p&gt;
 &lt;li&gt;Too many other things I use in Emacs didn't get themed&lt;/li&gt;
 &lt;li&gt;It looked like there was going to be too much work to do to really theme
   things well&lt;/li&gt;
-&lt;li&gt;It caused Emacs to crash&lt;sup id="fnref:403-1"&gt;&lt;a class="footnote-ref" href="#fn:403-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;It caused Emacs to crash&lt;sup id="fnref:404-1"&gt;&lt;a class="footnote-ref" href="#fn:404-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;However, yesterday evening, after &lt;a href="https://blog.davep.org/2026/06/12/simplifying-my-mode-line.html"&gt;making an effort to simplify my mode
 line&lt;/a&gt;, I was determined to find a
@@ -159,9 +242,9 @@ doesn't quite blend how I'd like.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:403-1"&gt;
+&lt;li id="fn:404-1"&gt;
 &lt;p&gt;Seriously, just the once, but that happened. I took that as a sign
-from the Lisp gods that I was doing something sinful.&amp;#160;&lt;a class="footnote-backref" href="#fnref:403-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+from the Lisp gods that I was doing something sinful.&amp;#160;&lt;a class="footnote-backref" href="#fnref:404-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -944,84 +1027,5 @@ that my window will disappear at any given moment...&lt;/p&gt;</content>
     <category term="expando.el"/>
     <category term="local-set-key"/>
     <published>2026-04-22T19:21:40+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/04/21/blogmore-el-v4-2.html</id>
-    <title>blogmore.el v4.2</title>
-    <updated>2026-04-21T19:27:26+01:00</updated>
-    <content type="html">&lt;p&gt;Another wee update to &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt;,
-with a bump to v4.2.&lt;/p&gt;
-&lt;p&gt;After &lt;a href="https://blog.davep.org/2026/04/17/blogmore-el-v4-1.html"&gt;adding the webp helper command&lt;/a&gt;
-the other day, something about it has been bothering me. While the command
-is there as a simple helper if I want to &lt;a href="https://blog.davep.org/2026/04/16/i-should-use-webp.html"&gt;change an individual image to
-webp&lt;/a&gt; -- so it's not intended to be a
-general-purpose tool -- it felt "wrong" that it did this one specific thing.&lt;/p&gt;
-&lt;p&gt;So I've changed it up and now, rather than being a command that changes an
-image's filename so that it has a &lt;code&gt;webp&lt;/code&gt; extension, it now cycles through a
-small range of different image formats. Specifically it goes &lt;code&gt;jpeg&lt;/code&gt; to &lt;code&gt;png&lt;/code&gt;
-to &lt;code&gt;gif&lt;/code&gt; to &lt;code&gt;webp&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;With this change in place I can position &lt;code&gt;point&lt;/code&gt; on an image in the Markdown
-of a post and keep running the command to cycle the extension through the
-different options. I suppose at some point it might make sense to turn this
-into something that &lt;em&gt;actually&lt;/em&gt; converts the image itself, but this is about
-going back and editing key posts when I change their image formats.&lt;/p&gt;
-&lt;p&gt;Another change is to the code that slugs the title of a post to make the
-Markdown file name. I ran into the motivating issue yesterday when posting
-some images on &lt;a href="https://seen-by.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;my photoblog&lt;/a&gt;. I had a title
-with an apostrophe in it, which meant that it went from something like
-&lt;code&gt;Dave's Test&lt;/code&gt; (as the title) to &lt;code&gt;dave-s-test&lt;/code&gt; (as the slug). While the slug
-doesn't really matter, this felt sort of messy; I would prefer that it came
-out as &lt;code&gt;daves-test&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Given that wish, I modified &lt;code&gt;blogmore-slug&lt;/code&gt; so that it strips &lt;code&gt;'&lt;/code&gt; and &lt;code&gt;"&lt;/code&gt;
-before doing the conversion of non-alphanumeric characters to &lt;code&gt;-&lt;/code&gt;. While
-doing this, for the sake of completeness, I did a simple attempt at removing
-accents from some characters too. So now the slugs come out a little tidier
-still.&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;blogmore-slug&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;That&amp;#39;s Café Ëmacs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="s"&gt;&amp;quot;thats-cafe-emacs&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The slug function has been the perfect use for an &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs
-Lisp&lt;/a&gt; function I've never used before: &lt;code&gt;thread-last&lt;/code&gt;. It's
-not like I've been avoiding it, it's just more a case of I've never quite
-felt it was worthwhile using until now. Thanks to it the body of
-&lt;code&gt;blogmore-slug&lt;/code&gt; looks like this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;thread-last&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;title&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nf"&gt;downcase&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;ucs-normalize-NFKD-string&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;seq-filter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;#x300&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;#x36F&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nf"&gt;concat&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;replace-regexp-in-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;any&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;#39;\&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;replace-regexp-in-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;any&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0-9a-z&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;replace-regexp-in-string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;seq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;bol&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;seq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;eol&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;rather than something like this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;replace-regexp-in-string&lt;/span&gt;
-&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;seq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;bol&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;seq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;eol&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;replace-regexp-in-string&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;any&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0-9a-z&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;replace-regexp-in-string&lt;/span&gt;
-&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;any&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;#39;\&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;concat&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;seq-filter&lt;/span&gt;
-&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;lambda&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;#x300&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;#x36F&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;ucs-normalize-NFKD-string&lt;/span&gt;
-&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;downcase&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;title&lt;/span&gt;&lt;span class="p"&gt;)))))))&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Given that making the slug is very much a "pipeline" of functions, the
-former looks far more readable and feels more maintainable than the latter.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/04/21/blogmore-el-v4-2.html"/>
-    <category term="Emacs"/>
-    <category term="BlogMore"/>
-    <category term="Emacs"/>
-    <category term="Emacs Lisp"/>
-    <category term="Lisp"/>
-    <category term="blogmore.el"/>
-    <category term="coding"/>
-    <published>2026-04-21T19:27:26+01:00</published>
   </entry>
 </feed>

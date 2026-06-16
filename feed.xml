@@ -8,7 +8,89 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 15 Jun 2026 18:49:17 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2026 15:21:52 +0000</lastBuildDate>
+    <item>
+      <title>become.el v1.4.0</title>
+      <link>https://blog.davep.org/2026/06/16/become-el-v1-4-0.html</link>
+      <description>&lt;p&gt;In the last month or so, as I've mentioned a few times before, I've been
+trying to tidy up some of my older personal &lt;a href="https://blog.davep.org/tag/emacs-lisp/"&gt;Emacs Lisp&lt;/a&gt;
+packages. I &lt;em&gt;thought&lt;/em&gt; I'd updated all the ones I commonly use, but it turns
+out I hadn't. Somehow I'd missed
+&lt;a href="https://github.com/davep/become.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;become.el&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is another one of those packages whose content started out as ad-hoc
+commands, added to the &lt;code&gt;~/.emacs&lt;/code&gt; that first started to emerge as I got to
+know Emacs on OS/2 and then GNU/Linux back in the mid-1990s. I think it was
+back in 2016&lt;sup id="fnref:401-1"&gt;&lt;a class="footnote-ref" href="#fn:401-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, when I did &lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;a big revamp of my Emacs
+environment&lt;/a&gt;, that I moved
+all of those roughly-related commands out into their own file.&lt;/p&gt;
+&lt;p&gt;Honestly, I think I can dump most of them now. There's stuff in there for
+quickly and easily converting buffers between "DOS format" and "Unix format"
+(from back when I was still working a lot on Windows machines, and sometimes
+even in MS-DOS-based virtual machines, and often using the
+&lt;a href="https://www.delorie.com/djgpp/" rel="noopener noreferrer" target="_blank"&gt;DJGPP&lt;/a&gt;-built version of Emacs).&lt;/p&gt;
+&lt;p&gt;One command I still use all the time is
+&lt;code&gt;become-free-of-trailing-whitespace&lt;/code&gt;, because I have that set up as part of
+a &lt;code&gt;before-save-hook&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;use-package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;become&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:ensure&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:defer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:vc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;:url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://github.com/davep/become.el&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:rev&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;:newest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:commands&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;become-free-of-trailing-whitespace&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:init&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;unless&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;noninteractive&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;add-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;before-save-hook&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;#&amp;#39;&lt;/span&gt;&lt;span class="nv"&gt;become-free-of-trailing-whitespace&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;:bind&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;f12&amp;gt; &amp;lt;tab&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;become-freshly-indented-no-tabs&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;While I know that there are better ways of handling the trailing space issue
+these days, this is one I rolled for myself a couple of decades ago and it's
+yet to fail me. You can see just how dated it is from this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="elisp"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cl-flet&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;is-sig-line&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="w"&gt;                       &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;save-excursion&lt;/span&gt;
+&lt;span class="w"&gt;                         &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;beginning-of-line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;                         &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;looking-at&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;^-- $&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;markdown-br-p&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="w"&gt;                         &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;save-excursion&lt;/span&gt;
+&lt;span class="w"&gt;                           &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;beginning-of-line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;                           &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;major-mode&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;#39;markdown-mode&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;                                &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;looking-at&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;^.+[^ ]  $&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+&lt;span class="c1"&gt;; ...body removed&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If you know, you'll know why &lt;code&gt;is-sig-line&lt;/code&gt; is there&lt;sup id="fnref:401-2"&gt;&lt;a class="footnote-ref" href="#fn:401-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;I do still use &lt;code&gt;become-freshly-indented-no-tabs&lt;/code&gt; on occasion too, and have
+it bound to an easy-to-remember and obvious (to me) key.&lt;/p&gt;
+&lt;p&gt;And so, despite the fact that most of the content of &lt;code&gt;become.el&lt;/code&gt; is probably
+obsolete at this point, despite the fact that there are probably far better
+and more idiomatic ways of doing these things these days... it's my little
+personal package that has grown with me in the 3 (and a bit) decades I've
+had Emacs under my fingertips. I'm going to keep it around just a little
+longer.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:401-1"&gt;
+&lt;p&gt;The header for &lt;code&gt;become.el&lt;/code&gt; says 2017, but I think the header itself
+came a little later when I &lt;a href="https://blog.davep.org/2017/04/01/another_revamp_of_my_emacs_config.html"&gt;did some more work on my
+config&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:401-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:401-2"&gt;
+&lt;p&gt;And if you don't know, &lt;a href="https://en.wikipedia.org/wiki/Signature_block#Standard_delimiter" rel="noopener noreferrer" target="_blank"&gt;now you
+do&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:401-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/16/become-el-v1-4-0.html</guid>
+      <category>Emacs</category>
+      <category>Emacs</category>
+      <category>Emacs Lisp</category>
+      <category>Lisp</category>
+      <category>become.el</category>
+      <category>coding</category>
+      <pubDate>Tue, 16 Jun 2026 16:19:59 +0100</pubDate>
+    </item>
     <item>
       <title>More mode line tweaking</title>
       <link>https://blog.davep.org/2026/06/15/more-mode-line-tweaking.html</link>
@@ -409,7 +491,7 @@ none have ever stuck. When trying them I've run into various issues:&lt;/p&gt;
 &lt;li&gt;Too many other things I use in Emacs didn't get themed&lt;/li&gt;
 &lt;li&gt;It looked like there was going to be too much work to do to really theme
   things well&lt;/li&gt;
-&lt;li&gt;It caused Emacs to crash&lt;sup id="fnref:403-1"&gt;&lt;a class="footnote-ref" href="#fn:403-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;It caused Emacs to crash&lt;sup id="fnref:404-1"&gt;&lt;a class="footnote-ref" href="#fn:404-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;However, yesterday evening, after &lt;a href="https://blog.davep.org/2026/06/12/simplifying-my-mode-line.html"&gt;making an effort to simplify my mode
 line&lt;/a&gt;, I was determined to find a
@@ -461,9 +543,9 @@ doesn't quite blend how I'd like.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:403-1"&gt;
+&lt;li id="fn:404-1"&gt;
 &lt;p&gt;Seriously, just the once, but that happened. I took that as a sign
-from the Lisp gods that I was doing something sinful.&amp;#160;&lt;a class="footnote-backref" href="#fnref:403-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+from the Lisp gods that I was doing something sinful.&amp;#160;&lt;a class="footnote-backref" href="#fnref:404-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1054,100 +1136,6 @@ it) series completion while writing a post.&lt;/p&gt;</description>
       <category>PyPI</category>
       <category>Python</category>
       <pubDate>Mon, 08 Jun 2026 15:30:07 +0100</pubDate>
-    </item>
-    <item>
-      <title>Attempting a Stottie</title>
-      <link>https://blog.davep.org/2026/06/07/attempting-a-stottie.html</link>
-      <description>&lt;p&gt;When I moved to &lt;a href="https://seen-by.davep.dev/tag/newcastle/" rel="noopener noreferrer" target="_blank"&gt;Newcastle&lt;/a&gt;, as a
-student, back in 1986, I was introduced to many new things. So many new
-things. Different folk. Different accents. Different backgrounds. People
-from the south! But, as well as all the eye-opening things that student life
-had to throw at a working-class Yorkshire lad, there were also all the
-things that Tyneside had to offer too.&lt;/p&gt;
-&lt;p&gt;Without question, my absolute favourite discovery was the
-&lt;a href="https://en.wikipedia.org/wiki/Stottie_cake" rel="noopener noreferrer" target="_blank"&gt;stottie&lt;/a&gt;. This became my go-to
-food, especially in my second and third years, when I was no longer in
-halls.&lt;/p&gt;
-&lt;p&gt;I left Newcastle in 1989 and never went back&lt;sup id="fnref:385-1"&gt;&lt;a class="footnote-ref" href="#fn:385-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, and sadly, have never had
-a stottie since. While I'm sure I could have found some niche place in the
-various places I've lived since, they're not a thing you find normally in
-Hampshire, Lincolnshire or Midlothian.&lt;/p&gt;
-&lt;p&gt;Meanwhile...&lt;/p&gt;
-&lt;p&gt;Earlier this week I was sat watching some TV and the cat was chilling on the
-sofa too. She's a ragdoll, a magnificent collection of floppy liquid floof.
-It occurred to me that she's not a cat that
-&lt;a href="https://en.wikipedia.org/wiki/Cats_and_the_Internet#Catloaf" rel="noopener noreferrer" target="_blank"&gt;loafs&lt;/a&gt;, she
-stotties! Seriously, she sits there and just flows into a huge furry circle.
-I mentioned this to my partner, and then realised that I'd have to explain
-the concept, given that they're not familiar with the North East of England.&lt;/p&gt;
-&lt;p&gt;The ensuing conversation resulted in the idea that, to fix my wish to have a
-stottie again (after I'd done an Internet search for them around the
-Edinburgh area), I should just have a go at making them!&lt;/p&gt;
-&lt;p&gt;Which brings me to today. I attempted making a stottie and it actually
-wasn't a complete disaster.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The bits to make a stottie" height="1536" loading="lazy" src="https://blog.davep.org/attachments/2026/06/07/the-bits.webp#centre" width="2048" /&gt;&lt;/p&gt;
-&lt;p&gt;While I've made plenty of bread in the past, I've never been too brilliant
-at it and, honestly, it's not something that really excites or interests me.
-For some reason though, making my own had never occurred to me. So, with
-some yeast, water, sugar and white pepper...&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Sorting the yeast" height="1536" loading="lazy" src="https://blog.davep.org/attachments/2026/06/07/the-yeast.webp#centre" width="2048" /&gt;&lt;/p&gt;
-&lt;p&gt;Plus some flour...&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The flour" height="1536" loading="lazy" src="https://blog.davep.org/attachments/2026/06/07/the-flour.webp#centre" width="2048" /&gt;&lt;/p&gt;
-&lt;p&gt;Which I threw together, along with some salt...&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Throwing the parts together" height="1536" loading="lazy" src="https://blog.davep.org/attachments/2026/06/07/throwing-it-together.webp#centre" width="2048" /&gt;&lt;/p&gt;
-&lt;p&gt;And then kneaded for about 10 minutes, then left to stand for an hour while
-I went for a walk.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The finished mixture" height="1536" loading="lazy" src="https://blog.davep.org/attachments/2026/06/07/the-dough.webp#centre" width="2048" /&gt;&lt;/p&gt;
-&lt;p&gt;I don't think it managed to rise quite as much as it should have, but it
-also didn't seem like enough of a disaster to stop there. Besides, the lack
-of faffing is sort of the trademark of a stottie, so I also decided this
-might be fine. I then gave it a bit more of a mix before cutting into two
-halves and getting it ready for the oven.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Ready for the oven" height="1536" loading="lazy" src="https://blog.davep.org/attachments/2026/06/07/ready-for-the-oven.webp#centre" width="2048" /&gt;&lt;/p&gt;
-&lt;p&gt;I think this was a step where I went a little wrong. I wanted to try and get
-the size and thickness I remember (and which you see in plenty of photos
-online), but I was somewhat hesitant when it came to flattening it out. I
-was concerned I'd made it too thin at this point anyway and it wouldn't rise
-much. I was wrong. Next time&lt;sup id="fnref:385-2"&gt;&lt;a class="footnote-ref" href="#fn:385-2"&gt;2&lt;/a&gt;&lt;/sup&gt; I think I'll flatten it a lot more.&lt;/p&gt;
-&lt;p&gt;Anyway, I threw both proto-stotties into the oven and about 20 minutes later
-I had something that was passable!&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Stottie number one" height="1536" loading="lazy" src="https://blog.davep.org/attachments/2026/06/07/out-of-the-oven-1.webp#centre" width="2048" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Stottie number two" height="1536" loading="lazy" src="https://blog.davep.org/attachments/2026/06/07/out-of-the-oven-2.webp#centre" width="2048" /&gt;&lt;/p&gt;
-&lt;p&gt;Neither was really quite the nicely-round shape I was hoping for, and both
-were quite a bit thicker than I would have liked too. But both were baked
-well, and looked and felt fine inside too, with the texture having the chewy
-density that I remember.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Cut in half" height="1536" loading="lazy" src="https://blog.davep.org/attachments/2026/06/07/cut-in-half.webp#centre" width="2048" /&gt;&lt;/p&gt;
-&lt;p&gt;As for the taste: they were actually good! They made for good sarnie bread
-for a slightly late lunch, and also got finished off along with dinner.&lt;/p&gt;
-&lt;p&gt;Overall I would say that things didn't work out as well as I'd hoped, but
-for a first attempt they came out okay and tasted just fine. Now I know how
-I'd do things differently in the future, and it's also given me the
-confidence to have another go at some point.&lt;/p&gt;
-&lt;p&gt;As for the cat that inspired this, it's only fair I pay the cat tax.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Cat tax" height="768" loading="lazy" src="https://blog.davep.org/attachments/2026/06/07/cat-tax.webp#centre" width="1024" /&gt;&lt;/p&gt;
-&lt;p&gt;This is the Internet after all.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:385-1"&gt;
-&lt;p&gt;I've travelled through plenty of times, but it's been 37 years, and
-counting, since I was last in toon.&amp;#160;&lt;a class="footnote-backref" href="#fnref:385-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:385-2"&gt;
-&lt;p&gt;There 100% will be a next time.&amp;#160;&lt;a class="footnote-backref" href="#fnref:385-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/06/07/attempting-a-stottie.html</guid>
-      <category>Life</category>
-      <category>Cat</category>
-      <category>Newcastle</category>
-      <category>baking</category>
-      <category>bread</category>
-      <category>cooking</category>
-      <category>stottie</category>
-      <pubDate>Sun, 07 Jun 2026 19:12:53 +0100</pubDate>
     </item>
   </channel>
 </rss>
