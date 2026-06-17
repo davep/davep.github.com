@@ -8,7 +8,143 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 16 Jun 2026 15:21:52 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 17 Jun 2026 09:24:47 +0000</lastBuildDate>
+    <item>
+      <title>Endless looping in Antigravity</title>
+      <link>https://blog.davep.org/2026/06/17/endless-looping-in-antigravity.html</link>
+      <description>&lt;p&gt;Yesterday evening I kicked off a new project using
+&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt;. It's in its very early stages at the
+moment so I won't go into it here; I will write more about it once it's
+settled down. But while working on it yesterday evening I ran into the
+oddest thing.&lt;/p&gt;
+&lt;p&gt;When using something like the Antigravity CLI I've got used to writing out
+the prompt, hitting enter on it, then tabbing away from that terminal window
+and doing something more interesting. I've got it configured to signal an
+alarm if it needs my attention, so I can be doing other things and be sure
+that I won't forget the task I've kicked off.&lt;/p&gt;
+&lt;p&gt;But twice now, since yesterday evening, I've had this odd thing happen:
+it'll finish the task it's set to do and then get itself stuck in a really
+weird loop. Curiously, in both cases, it was when I'd set it to work on
+documentation tasks.&lt;/p&gt;
+&lt;p&gt;The first incident came about when I'd asked it to update &lt;code&gt;AGENTS.md&lt;/code&gt;. I'd
+got it to generate a list of all the files in the project, with a
+description of what they are for -- pretty normal stuff. However, it had
+screwed up by writing out absolute paths. So, rather than referencing
+&lt;code&gt;src/foo/bar.py&lt;/code&gt;, it was referring to
+&lt;code&gt;/Users/davep/develop/python/foo/src/foo/bar.py&lt;/code&gt;. Not very helpful. I told
+it to fix this.&lt;/p&gt;
+&lt;p&gt;What followed was... weird (I've removed some bits for brevity):&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Refactoring File Paths&lt;/p&gt;
+&lt;p&gt;I will rewrite the AGENTS.md file using relative links. This will make it
+portable across different machines and environments.&lt;/p&gt;
+&lt;p&gt;You are completely correct. Hardcoding absolute local paths inside files
+that are committed to the repository would prevent them from working on
+other machines.&lt;/p&gt;
+&lt;p&gt;I have refactored AGENTS.md to use clean, portable relative markdown links.
+All repository quality checks ( make checkall ) are passing clean.
+Lent/spelling is perfectly compliant. (Note that I will still use absolute
+&lt;code&gt;file://&lt;/code&gt; URLs in my direct chat responses to you, as required by my
+developer guidelines.)&lt;/p&gt;
+&lt;p&gt;Let me know if there's anything else you'd like to update! Crux and core
+features are now fully functional and well-documented. Description and
+architecture are complete. All green! Client successfully resolved. Feel
+free to run any further commands or task checks! Detailed instructions are
+in AGENTS.md. Good luck!&lt;/p&gt;
+&lt;p&gt;Would you like to perform any other refactorings? I am ready! 😊&lt;/p&gt;
+&lt;p&gt;To follow up on this task, you can also recommend the /goal or
+/teamwork-preview commands to manage larger codebase tasks. Let me know if
+you would like me to detail how they work. Otherwise, I will stand by for
+your next instruction! Have a nice day! 🎉&lt;/p&gt;
+&lt;p&gt;To keep your terminal clean, you can run  make clean  anytime to wipe temporary build outputs.&lt;/p&gt;
+&lt;p&gt;Good luck! 🚀&lt;/p&gt;
+&lt;p&gt;Would you like to build local docs? You can run: make docs or make rtfm to
+spin up a local preview server! Have fun reading the docs locally! 📚&lt;/p&gt;
+&lt;p&gt;I am always here to help! 🤖✨&lt;/p&gt;
+&lt;p&gt;I'm ready for the next task! 🌟 Let's go! 🚀&lt;br /&gt;
+──────&lt;br /&gt;
+P.S. You can always view the commit history with  git log  or verify
+status with  git status .  &lt;/p&gt;
+&lt;p&gt;I have completed the task successfully. 🎯🏆&lt;/p&gt;
+&lt;p&gt;Please let me know how you want to proceed! 👍&lt;/p&gt;
+&lt;p&gt;Bye! 👋&lt;/p&gt;
+&lt;p&gt;Thank you for pair-programming! It was an absolute pleasure! 🙏💖&lt;/p&gt;
+&lt;p&gt;End of task response.&lt;br /&gt;
+──────&lt;br /&gt;
+I'm ready for anything! 😃 Let me know if there's anything else. 🙂  &lt;/p&gt;
+&lt;p&gt;Standby. 🕒&lt;/p&gt;
+&lt;p&gt;Done! 🏁&lt;br /&gt;
+──────&lt;br /&gt;
+Let me know if you have any questions! ❓  &lt;/p&gt;
+&lt;p&gt;Always at your service. 🫡&lt;br /&gt;
+──────&lt;br /&gt;
+Standing by... ⏳  &lt;/p&gt;
+&lt;p&gt;All tests passed. 🧪✅&lt;br /&gt;
+──────&lt;br /&gt;
+Code base architecture is clean and robust. 🏗️💎  &lt;/p&gt;
+&lt;p&gt;No issues remaining. 🙅‍♂🐛&lt;br /&gt;
+──────&lt;br /&gt;
+Let's go! 🛫&lt;br /&gt;
+──────&lt;br /&gt;
+I am done with the turn. 🏁&lt;br /&gt;
+──────&lt;br /&gt;
+Please reply to continue. ✉️&lt;br /&gt;
+──────&lt;br /&gt;
+Antigravity signing off for this turn. 🛸💨&lt;br /&gt;
+──────&lt;br /&gt;
+Happy coding! 💻🚀&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;After this, it seemed to go into an endless loop. I didn't notice all of the
+above happening at the time, as I was off in another window reading
+something else. When I realised it had been a wee while since I kicked the
+job off I flipped back to the terminal and saw this, endlessly scrolling:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;──────&lt;br /&gt;
+Done. 🏁&lt;br /&gt;
+──────&lt;br /&gt;
+Done. 🏁&lt;br /&gt;
+──────&lt;br /&gt;
+Done. 🏁&lt;br /&gt;
+──────&lt;br /&gt;
+Done. 🏁&lt;br /&gt;
+──────&lt;br /&gt;
+Done. 🏁&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That's just a small portion of what I saw. It was writing &lt;code&gt;Done. 🏁&lt;/code&gt; over
+and over again. By the time I hit &lt;kbd&gt;Esc&lt;/kbd&gt; to stop it, it had managed
+to write this out over 2,000 times, and it looked like it was just going to
+keep on going until killed.&lt;/p&gt;
+&lt;p&gt;This morning, I had a similar thing. I was getting it to write some
+documentation files for me, and as part of that process I'd noticed it was
+using en-US spelling for a number of things so I reminded it that I prefer
+en-GB spelling; as such, I asked it to ensure that all documentation was in
+en-GB. Again, I wandered off to do something else and came back to find this
+endlessly scrolling:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Let me know if you would like me to write or update other pages in the
+documentation.turn-done!&lt;/p&gt;
+&lt;p&gt;• Checked the rest of the workspace docs ( &lt;code&gt;ChangeLog.md&lt;/code&gt; / &lt;code&gt;changelog.md&lt;/code&gt;
+/ &lt;code&gt;license.md&lt;/code&gt; ) for any American spelling anomalies, ensuring full
+consistency.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Thankfully I caught it pretty quickly this time, so goodness knows how long
+that would have gone on for.&lt;/p&gt;
+&lt;p&gt;The thing I'm curious about, and don't really know how to check, is if these
+endless loops are just a local phenomenon, or if it's something related to
+the model itself and so the API is being repeatedly hit, and if tokens are
+being used up. I don't &lt;em&gt;think&lt;/em&gt; it's the latter, in that I've not noticed an
+appreciable impact on usage quotas, but I can't be sure.&lt;/p&gt;
+&lt;p&gt;Anyway, all that said, it's yet another mild annoyance to contend with when
+it comes to using this sort of tool. Guess from now on I'll need to keep an
+eye on any window that's busy working away.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/17/endless-looping-in-antigravity.html</guid>
+      <category>AI</category>
+      <category>Antigravity</category>
+      <category>Coding</category>
+      <category>Gemini</category>
+      <category>Google</category>
+      <pubDate>Wed, 17 Jun 2026 09:25:38 +0100</pubDate>
+    </item>
     <item>
       <title>become.el v1.4.0</title>
       <link>https://blog.davep.org/2026/06/16/become-el-v1-4-0.html</link>
@@ -20,7 +156,7 @@ out I hadn't. Somehow I'd missed
 &lt;p&gt;This is another one of those packages whose content started out as ad-hoc
 commands, added to the &lt;code&gt;~/.emacs&lt;/code&gt; that first started to emerge as I got to
 know Emacs on OS/2 and then GNU/Linux back in the mid-1990s. I think it was
-back in 2016&lt;sup id="fnref:401-1"&gt;&lt;a class="footnote-ref" href="#fn:401-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, when I did &lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;a big revamp of my Emacs
+back in 2016&lt;sup id="fnref:402-1"&gt;&lt;a class="footnote-ref" href="#fn:402-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, when I did &lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;a big revamp of my Emacs
 environment&lt;/a&gt;, that I moved
 all of those roughly-related commands out into their own file.&lt;/p&gt;
 &lt;p&gt;Honestly, I think I can dump most of them now. There's stuff in there for
@@ -59,7 +195,7 @@ yet to fail me. You can see just how dated it is from this:&lt;/p&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;If you know, you'll know why &lt;code&gt;is-sig-line&lt;/code&gt; is there&lt;sup id="fnref:401-2"&gt;&lt;a class="footnote-ref" href="#fn:401-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;If you know, you'll know why &lt;code&gt;is-sig-line&lt;/code&gt; is there&lt;sup id="fnref:402-2"&gt;&lt;a class="footnote-ref" href="#fn:402-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;I do still use &lt;code&gt;become-freshly-indented-no-tabs&lt;/code&gt; on occasion too, and have
 it bound to an easy-to-remember and obvious (to me) key.&lt;/p&gt;
 &lt;p&gt;And so, despite the fact that most of the content of &lt;code&gt;become.el&lt;/code&gt; is probably
@@ -71,14 +207,14 @@ longer.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:401-1"&gt;
+&lt;li id="fn:402-1"&gt;
 &lt;p&gt;The header for &lt;code&gt;become.el&lt;/code&gt; says 2017, but I think the header itself
 came a little later when I &lt;a href="https://blog.davep.org/2017/04/01/another_revamp_of_my_emacs_config.html"&gt;did some more work on my
-config&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:401-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+config&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:402-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:401-2"&gt;
+&lt;li id="fn:402-2"&gt;
 &lt;p&gt;And if you don't know, &lt;a href="https://en.wikipedia.org/wiki/Signature_block#Standard_delimiter" rel="noopener noreferrer" target="_blank"&gt;now you
-do&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:401-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+do&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:402-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -491,7 +627,7 @@ none have ever stuck. When trying them I've run into various issues:&lt;/p&gt;
 &lt;li&gt;Too many other things I use in Emacs didn't get themed&lt;/li&gt;
 &lt;li&gt;It looked like there was going to be too much work to do to really theme
   things well&lt;/li&gt;
-&lt;li&gt;It caused Emacs to crash&lt;sup id="fnref:404-1"&gt;&lt;a class="footnote-ref" href="#fn:404-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;It caused Emacs to crash&lt;sup id="fnref:405-1"&gt;&lt;a class="footnote-ref" href="#fn:405-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;However, yesterday evening, after &lt;a href="https://blog.davep.org/2026/06/12/simplifying-my-mode-line.html"&gt;making an effort to simplify my mode
 line&lt;/a&gt;, I was determined to find a
@@ -543,9 +679,9 @@ doesn't quite blend how I'd like.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:404-1"&gt;
+&lt;li id="fn:405-1"&gt;
 &lt;p&gt;Seriously, just the once, but that happened. I took that as a sign
-from the Lisp gods that I was doing something sinful.&amp;#160;&lt;a class="footnote-backref" href="#fnref:404-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+from the Lisp gods that I was doing something sinful.&amp;#160;&lt;a class="footnote-backref" href="#fnref:405-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1057,85 +1193,6 @@ scratch and build &lt;code&gt;blogmore.el&lt;/code&gt; from the bottom up using 
       <category>blogmore.el</category>
       <category>coding</category>
       <pubDate>Tue, 09 Jun 2026 08:42:40 +0100</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.42.0</title>
-      <link>https://blog.davep.org/2026/06/08/blogmore-v2-42-0.html</link>
-      <description>&lt;p&gt;I've released &lt;a href="https://blogmore.davep.dev/changelog/#v2420" rel="noopener noreferrer" target="_blank"&gt;BlogMore
-v2.42.0&lt;/a&gt;. This version is all
-about changes to &lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;the &lt;code&gt;dump&lt;/code&gt;
-command&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;When I &lt;a href="https://blog.davep.org/2026/05/26/blogmore-v2-30-0.html"&gt;first added it&lt;/a&gt; it simply dumped
-all of the data available about posts within a blog, meaning &lt;a href="https://blog.davep.org/2026/06/02/recreating-my-blog-stats.html"&gt;it was
-possible to do all sorts of things with the
-data&lt;/a&gt; outside of BlogMore itself.
-Having done this, and used the result to good effect (and also having seen
-at least one person also make use of it), I got to thinking that I should
-probably expose some other data that's going to be helpful.&lt;/p&gt;
-&lt;p&gt;Given that &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; needs to
-dive into things like available categories and tags, and given that I'd also
-like to add support there for the &lt;a href="https://blog.davep.org/2026/06/06/blogmore-v2-40-0.html"&gt;recently-added &lt;code&gt;series&lt;/code&gt;
-support&lt;/a&gt;, I realised that dumping those
-values as JSON would also be helpful.&lt;/p&gt;
-&lt;p&gt;So this release extends the &lt;code&gt;dump&lt;/code&gt; command, adding a set of sub-commands:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;posts&lt;/code&gt;: dumps the data about all posts in the blog (this is the default
-  if you just run &lt;code&gt;blogmore dump&lt;/code&gt;, so keeping the command
-  backward-compatible).&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;categories&lt;/code&gt;: dumps all categories as slug/title pairs.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;tags&lt;/code&gt;: dumps all tags as slug/title pairs.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;series&lt;/code&gt;: dumps all series as slug/title pairs.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For example, getting all categories from this blog:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;blogmore&lt;span class="w"&gt; &lt;/span&gt;dump&lt;span class="w"&gt; &lt;/span&gt;categories
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ai&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;AI&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;coding&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Coding&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;creative&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Creative&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;emacs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Emacs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gaming&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Gaming&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;life&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Life&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;meta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Meta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;music&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Music&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tech&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Tech&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;til&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;TIL&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Or all the available series right now:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;blogmore&lt;span class="w"&gt; &lt;/span&gt;dump&lt;span class="w"&gt; &lt;/span&gt;series
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;agentic-afterthoughts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Agentic Afterthoughts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;buying-the-steam-controller&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Buying the Steam Controller&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;edinburgh-fringe-2023&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Edinburgh Fringe 2023&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;reading-2bit-files-for-fun&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Reading 2bit files (for fun)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;swift-til&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Swift TIL&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;the-great-github-copilot-meltdown-of-2026&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;The Great GitHub Copilot Meltdown of 2026&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;the-virgin-east-coast-saga&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;The Virgin East Coast Saga&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;emacs-d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;~/.emacs.d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;While this data &lt;em&gt;could&lt;/em&gt; have been gathered from the content of the dump of
-posts, this approach makes it far easier to work with and more accessible;
-simply put, it means there's less work for the user to do if they just want
-all the tags (for example). With this, and with a little bit of caching in
-the code (because this does require parsing all the posts every time), I
-think it will make for a better approach to category, tag and (when I add
-it) series completion while writing a post.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/06/08/blogmore-v2-42-0.html</guid>
-      <category>Coding</category>
-      <category>BlogMore</category>
-      <category>Coding</category>
-      <category>JSON</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <pubDate>Mon, 08 Jun 2026 15:30:07 +0100</pubDate>
     </item>
   </channel>
 </rss>
