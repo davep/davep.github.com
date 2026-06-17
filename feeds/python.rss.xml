@@ -8,7 +8,85 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 17 Jun 2026 09:24:47 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 17 Jun 2026 19:06:08 +0000</lastBuildDate>
+    <item>
+      <title>Wasat - A Gemini protocol library for Python</title>
+      <link>https://blog.davep.org/2026/06/17/wasat-a-gemini-protocol-library-for-python.html</link>
+      <description>&lt;p&gt;I can't remember how and where I saw it, but just over a week ago I ran into
+&lt;a href="https://geminiprotocol.net/" rel="noopener noreferrer" target="_blank"&gt;Project Gemini&lt;/a&gt;. Somehow I've never read or
+seen anything about this before, which is pretty wild considering it's been
+on the go for around seven years now. As I read up on it I got more and more
+intrigued. I had the urge to do... something with it.&lt;/p&gt;
+&lt;p&gt;I think the thing I want to do, and I know &lt;a href="https://geminiprotocol.net/software/" rel="noopener noreferrer" target="_blank"&gt;I'm far from the
+first&lt;/a&gt;, is write a client for the
+terminal. I'm envisioning something very similar to
+&lt;a href="https://hike.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Hike&lt;/a&gt;, but obviously only targeting the &lt;a href="https://geminiprotocol.net/docs/protocol-specification.gmi" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;gemini&lt;/code&gt;
+protocol&lt;/a&gt;
+itself, and only handling and rendering
+&lt;a href="https://geminiprotocol.net/docs/gemtext-specification.gmi" rel="noopener noreferrer" target="_blank"&gt;gemtext&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I will, obviously, be looking to write this in &lt;a href="https://blog.davep.org/tag/python/"&gt;Python&lt;/a&gt;, and
+of course, will be looking to use &lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual&lt;/a&gt;, which means that
+it would be useful to have a Python client library for the protocol, and
+ideally a client library that is async. I did some searching, found client
+libraries, but none of them seemed to be async-first.&lt;/p&gt;
+&lt;p&gt;With this in mind, and to kick-start the project, last night I fired up
+&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt;&lt;sup id="fnref:384-1"&gt;&lt;a class="footnote-ref" href="#fn:384-1"&gt;1&lt;/a&gt;&lt;/sup&gt; and got a library up and going.
+&lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt; is the result. For the moment this should
+be considered alpha-status software (hence v0.0.1). I've done some &lt;em&gt;very&lt;/em&gt;
+rudimentary testing and experimenting with it and, so far, so good. It's
+also proving to be a good tool with which to get to know the protocol. It
+also gives me another project to use to experiment with an agent (this being
+the first project I've started from scratch using Antigravity).&lt;/p&gt;
+&lt;p&gt;Over the next few days I'm going to toy with the library more, clean up the
+code, look for any issues, and then I'll start on the client application.
+That will be hand-built; no AI. I have some ideas of fun things I want to
+do, especially when it comes to handling gemtext.&lt;/p&gt;
+&lt;p&gt;It'll be nice to have a new pet project that's a hand-coded project. The
+first significant one since &lt;a href="https://blog.davep.org/tag/oldnews/"&gt;OldNews&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Getting back to Wasat itself: I believe it has everything necessary to allow
+for writing such a client (which, to be fair, isn't much -- that's kind of
+the point of the protocol). It also comes with a simple CLI built in, which
+can be run with &lt;code&gt;python -m wasat&lt;/code&gt; (if it's just installed as a library) or
+with &lt;code&gt;wasat&lt;/code&gt; (if installed globally, along with any command scripts). The
+command itself is just a simple download tool for a "page" in a "capsule".
+For example, I can grab the content &lt;a href="gemini://davep.gemcities.com/" rel="noopener noreferrer" target="_blank"&gt;of a test capsule I've
+created&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ wasat gemini://davep.gemcities.com/
+# Introduction
+Hey! I&amp;#39;m Dave. Normally you&amp;#39;d find me at:
+=&amp;gt; https://www.davep.org My web site
+or
+=&amp;gt; https://blog.davep.org My blog
+amongst other places. But I discovered Gemini and I&amp;#39;m really curious about
+the idea, so here I am giving GemCities a go to get to know things a little
+better.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;(with thanks to &lt;a href="https://gemcities.com/" rel="noopener noreferrer" target="_blank"&gt;GemCities&lt;/a&gt; for providing a neat
+little service).&lt;/p&gt;
+&lt;p&gt;As for where this is all going: there's no direction, really. I've found a
+neat new thing that I didn't know about before, the idea sits well with me,
+and I want to explore it more. It also gives me an excuse to do a thing I
+really enjoy doing: writing terminal-based TUI applications for the sake of
+it, and especially writing one that works just how I want.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:384-1"&gt;
+&lt;p&gt;No, not &lt;a href="https://xkcd.com/353/" rel="noopener noreferrer" target="_blank"&gt;that one&lt;/a&gt;, the &lt;a href="https://antigravity.google/" rel="noopener noreferrer" target="_blank"&gt;other one&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:384-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/17/wasat-a-gemini-protocol-library-for-python.html</guid>
+      <category>Python</category>
+      <category>AI</category>
+      <category>Antigravity</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>Python</category>
+      <category>smolweb</category>
+      <pubDate>Wed, 17 Jun 2026 19:35:29 +0100</pubDate>
+    </item>
     <item>
       <title>Trouble with PyPI</title>
       <link>https://blog.davep.org/2026/06/11/trouble-with-pypi.html</link>

@@ -8,7 +8,85 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 17 Jun 2026 09:24:47 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 17 Jun 2026 19:06:08 +0000</lastBuildDate>
+    <item>
+      <title>Wasat - A Gemini protocol library for Python</title>
+      <link>https://blog.davep.org/2026/06/17/wasat-a-gemini-protocol-library-for-python.html</link>
+      <description>&lt;p&gt;I can't remember how and where I saw it, but just over a week ago I ran into
+&lt;a href="https://geminiprotocol.net/" rel="noopener noreferrer" target="_blank"&gt;Project Gemini&lt;/a&gt;. Somehow I've never read or
+seen anything about this before, which is pretty wild considering it's been
+on the go for around seven years now. As I read up on it I got more and more
+intrigued. I had the urge to do... something with it.&lt;/p&gt;
+&lt;p&gt;I think the thing I want to do, and I know &lt;a href="https://geminiprotocol.net/software/" rel="noopener noreferrer" target="_blank"&gt;I'm far from the
+first&lt;/a&gt;, is write a client for the
+terminal. I'm envisioning something very similar to
+&lt;a href="https://hike.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Hike&lt;/a&gt;, but obviously only targeting the &lt;a href="https://geminiprotocol.net/docs/protocol-specification.gmi" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;gemini&lt;/code&gt;
+protocol&lt;/a&gt;
+itself, and only handling and rendering
+&lt;a href="https://geminiprotocol.net/docs/gemtext-specification.gmi" rel="noopener noreferrer" target="_blank"&gt;gemtext&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I will, obviously, be looking to write this in &lt;a href="https://blog.davep.org/tag/python/"&gt;Python&lt;/a&gt;, and
+of course, will be looking to use &lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual&lt;/a&gt;, which means that
+it would be useful to have a Python client library for the protocol, and
+ideally a client library that is async. I did some searching, found client
+libraries, but none of them seemed to be async-first.&lt;/p&gt;
+&lt;p&gt;With this in mind, and to kick-start the project, last night I fired up
+&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt;&lt;sup id="fnref:384-1"&gt;&lt;a class="footnote-ref" href="#fn:384-1"&gt;1&lt;/a&gt;&lt;/sup&gt; and got a library up and going.
+&lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt; is the result. For the moment this should
+be considered alpha-status software (hence v0.0.1). I've done some &lt;em&gt;very&lt;/em&gt;
+rudimentary testing and experimenting with it and, so far, so good. It's
+also proving to be a good tool with which to get to know the protocol. It
+also gives me another project to use to experiment with an agent (this being
+the first project I've started from scratch using Antigravity).&lt;/p&gt;
+&lt;p&gt;Over the next few days I'm going to toy with the library more, clean up the
+code, look for any issues, and then I'll start on the client application.
+That will be hand-built; no AI. I have some ideas of fun things I want to
+do, especially when it comes to handling gemtext.&lt;/p&gt;
+&lt;p&gt;It'll be nice to have a new pet project that's a hand-coded project. The
+first significant one since &lt;a href="https://blog.davep.org/tag/oldnews/"&gt;OldNews&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Getting back to Wasat itself: I believe it has everything necessary to allow
+for writing such a client (which, to be fair, isn't much -- that's kind of
+the point of the protocol). It also comes with a simple CLI built in, which
+can be run with &lt;code&gt;python -m wasat&lt;/code&gt; (if it's just installed as a library) or
+with &lt;code&gt;wasat&lt;/code&gt; (if installed globally, along with any command scripts). The
+command itself is just a simple download tool for a "page" in a "capsule".
+For example, I can grab the content &lt;a href="gemini://davep.gemcities.com/" rel="noopener noreferrer" target="_blank"&gt;of a test capsule I've
+created&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ wasat gemini://davep.gemcities.com/
+# Introduction
+Hey! I&amp;#39;m Dave. Normally you&amp;#39;d find me at:
+=&amp;gt; https://www.davep.org My web site
+or
+=&amp;gt; https://blog.davep.org My blog
+amongst other places. But I discovered Gemini and I&amp;#39;m really curious about
+the idea, so here I am giving GemCities a go to get to know things a little
+better.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;(with thanks to &lt;a href="https://gemcities.com/" rel="noopener noreferrer" target="_blank"&gt;GemCities&lt;/a&gt; for providing a neat
+little service).&lt;/p&gt;
+&lt;p&gt;As for where this is all going: there's no direction, really. I've found a
+neat new thing that I didn't know about before, the idea sits well with me,
+and I want to explore it more. It also gives me an excuse to do a thing I
+really enjoy doing: writing terminal-based TUI applications for the sake of
+it, and especially writing one that works just how I want.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:384-1"&gt;
+&lt;p&gt;No, not &lt;a href="https://xkcd.com/353/" rel="noopener noreferrer" target="_blank"&gt;that one&lt;/a&gt;, the &lt;a href="https://antigravity.google/" rel="noopener noreferrer" target="_blank"&gt;other one&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:384-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/17/wasat-a-gemini-protocol-library-for-python.html</guid>
+      <category>Python</category>
+      <category>AI</category>
+      <category>Antigravity</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>Python</category>
+      <category>smolweb</category>
+      <pubDate>Wed, 17 Jun 2026 19:35:29 +0100</pubDate>
+    </item>
     <item>
       <title>Endless looping in Antigravity</title>
       <link>https://blog.davep.org/2026/06/17/endless-looping-in-antigravity.html</link>
@@ -156,7 +234,7 @@ out I hadn't. Somehow I'd missed
 &lt;p&gt;This is another one of those packages whose content started out as ad-hoc
 commands, added to the &lt;code&gt;~/.emacs&lt;/code&gt; that first started to emerge as I got to
 know Emacs on OS/2 and then GNU/Linux back in the mid-1990s. I think it was
-back in 2016&lt;sup id="fnref:402-1"&gt;&lt;a class="footnote-ref" href="#fn:402-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, when I did &lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;a big revamp of my Emacs
+back in 2016&lt;sup id="fnref:403-1"&gt;&lt;a class="footnote-ref" href="#fn:403-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, when I did &lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;a big revamp of my Emacs
 environment&lt;/a&gt;, that I moved
 all of those roughly-related commands out into their own file.&lt;/p&gt;
 &lt;p&gt;Honestly, I think I can dump most of them now. There's stuff in there for
@@ -195,7 +273,7 @@ yet to fail me. You can see just how dated it is from this:&lt;/p&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;If you know, you'll know why &lt;code&gt;is-sig-line&lt;/code&gt; is there&lt;sup id="fnref:402-2"&gt;&lt;a class="footnote-ref" href="#fn:402-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;If you know, you'll know why &lt;code&gt;is-sig-line&lt;/code&gt; is there&lt;sup id="fnref:403-2"&gt;&lt;a class="footnote-ref" href="#fn:403-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;I do still use &lt;code&gt;become-freshly-indented-no-tabs&lt;/code&gt; on occasion too, and have
 it bound to an easy-to-remember and obvious (to me) key.&lt;/p&gt;
 &lt;p&gt;And so, despite the fact that most of the content of &lt;code&gt;become.el&lt;/code&gt; is probably
@@ -207,14 +285,14 @@ longer.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:402-1"&gt;
+&lt;li id="fn:403-1"&gt;
 &lt;p&gt;The header for &lt;code&gt;become.el&lt;/code&gt; says 2017, but I think the header itself
 came a little later when I &lt;a href="https://blog.davep.org/2017/04/01/another_revamp_of_my_emacs_config.html"&gt;did some more work on my
-config&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:402-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+config&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:403-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:402-2"&gt;
+&lt;li id="fn:403-2"&gt;
 &lt;p&gt;And if you don't know, &lt;a href="https://en.wikipedia.org/wiki/Signature_block#Standard_delimiter" rel="noopener noreferrer" target="_blank"&gt;now you
-do&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:402-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+do&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:403-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -405,7 +483,7 @@ target this approach in some way too.&lt;/p&gt;
       <description>&lt;p&gt;It's the best part of two years now &lt;a href="https://blog.davep.org/2024/08/18/paindrop.html"&gt;since I dropped Pinboard in favour of
 Raindrop&lt;/a&gt;. It's also seven years now since I
 first created a Pinboard account and started collecting possibly-useful
-bookmarks&lt;sup id="fnref:384-1"&gt;&lt;a class="footnote-ref" href="#fn:384-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I've found this process useful, and it continues to be a
+bookmarks&lt;sup id="fnref:385-1"&gt;&lt;a class="footnote-ref" href="#fn:385-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I've found this process useful, and it continues to be a
 great way to find and remember things. The way it works these days is:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Spend most of the week scrolling social networks, Reddit, the Orange Site,
@@ -445,8 +523,8 @@ or once every few weeks.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:384-1"&gt;
-&lt;p&gt;I say "started collecting"; I was a del.icio.us user back in the day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:384-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:385-1"&gt;
+&lt;p&gt;I say "started collecting"; I was a del.icio.us user back in the day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:385-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -627,7 +705,7 @@ none have ever stuck. When trying them I've run into various issues:&lt;/p&gt;
 &lt;li&gt;Too many other things I use in Emacs didn't get themed&lt;/li&gt;
 &lt;li&gt;It looked like there was going to be too much work to do to really theme
   things well&lt;/li&gt;
-&lt;li&gt;It caused Emacs to crash&lt;sup id="fnref:405-1"&gt;&lt;a class="footnote-ref" href="#fn:405-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;It caused Emacs to crash&lt;sup id="fnref:406-1"&gt;&lt;a class="footnote-ref" href="#fn:406-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;However, yesterday evening, after &lt;a href="https://blog.davep.org/2026/06/12/simplifying-my-mode-line.html"&gt;making an effort to simplify my mode
 line&lt;/a&gt;, I was determined to find a
@@ -679,9 +757,9 @@ doesn't quite blend how I'd like.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:405-1"&gt;
+&lt;li id="fn:406-1"&gt;
 &lt;p&gt;Seriously, just the once, but that happened. I took that as a sign
-from the Lisp gods that I was doing something sinful.&amp;#160;&lt;a class="footnote-backref" href="#fnref:405-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+from the Lisp gods that I was doing something sinful.&amp;#160;&lt;a class="footnote-backref" href="#fnref:406-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -762,7 +840,7 @@ continues. I fear this is going to be a lot harder.&lt;/p&gt;</description>
       <title>Cake and beers, I guess</title>
       <link>https://blog.davep.org/2026/06/12/cake-and-beers-i-guess.html</link>
       <description>&lt;p&gt;&lt;img alt="u/davepearson" height="243" loading="lazy" src="https://blog.davep.org/attachments/2026/06/12/davep-reddit-half.webp#centre" width="190" /&gt;&lt;/p&gt;
-&lt;p&gt;Damn. Oh damn. My Reddit account is now old enough to buy beer&lt;sup id="fnref:391-1"&gt;&lt;a class="footnote-ref" href="#fn:391-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. O_o&lt;/p&gt;
+&lt;p&gt;Damn. Oh damn. My Reddit account is now old enough to buy beer&lt;sup id="fnref:392-1"&gt;&lt;a class="footnote-ref" href="#fn:392-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. O_o&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Happy cake day to me" height="88" loading="lazy" src="https://blog.davep.org/attachments/2026/06/12/cake-day.webp#centre" width="291" /&gt;&lt;/p&gt;
 &lt;p&gt;While I probably have accounts somewhere that are older than this, that's
 still a pretty long time to have held an account somewhere &lt;em&gt;and still be
@@ -789,7 +867,7 @@ third-party clients, I stopped using the site for a while. These days I have
 got back into the habit of reading it again. While I do occasionally check
 in on a handful of &lt;a href="https://join-lemmy.org/" rel="noopener noreferrer" target="_blank"&gt;Lemmy subscriptions&lt;/a&gt;, and do
 keep thinking I should probably look into
-&lt;a href="https://lobste.rs/" rel="noopener noreferrer" target="_blank"&gt;lobste.rs&lt;/a&gt;&lt;sup id="fnref:391-2"&gt;&lt;a class="footnote-ref" href="#fn:391-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, it's hard to break the habit of opening
+&lt;a href="https://lobste.rs/" rel="noopener noreferrer" target="_blank"&gt;lobste.rs&lt;/a&gt;&lt;sup id="fnref:392-2"&gt;&lt;a class="footnote-ref" href="#fn:392-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, it's hard to break the habit of opening
 the Reddit app and scrolling for a wee while. I've yet to finally and fully
 replace it.&lt;/p&gt;
 &lt;p&gt;I should go look at some of my other longer-serving accounts on websites and
@@ -797,12 +875,12 @@ services and see exactly which is my oldest one.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:391-1"&gt;
-&lt;p&gt;Legally. In the UK.&amp;#160;&lt;a class="footnote-backref" href="#fnref:391-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:392-1"&gt;
+&lt;p&gt;Legally. In the UK.&amp;#160;&lt;a class="footnote-backref" href="#fnref:392-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:391-2"&gt;
+&lt;li id="fn:392-2"&gt;
 &lt;p&gt;If you are reading this, do use lobste.rs, and fancy throwing me an
-invite, I'd appreciate it!&amp;#160;&lt;a class="footnote-backref" href="#fnref:391-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+invite, I'd appreciate it!&amp;#160;&lt;a class="footnote-backref" href="#fnref:392-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1153,46 +1231,6 @@ casing is cleaned up, etc.&amp;#160;&lt;a class="footnote-backref" href="#fnref:
       <category>blogmore.el</category>
       <category>coding</category>
       <pubDate>Wed, 10 Jun 2026 10:22:12 +0100</pubDate>
-    </item>
-    <item>
-      <title>blogmore.el v4.7.0</title>
-      <link>https://blog.davep.org/2026/06/09/blogmore-el-v4-7-0.html</link>
-      <description>&lt;p&gt;A quick update to &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt;.
-Having &lt;a href="https://blog.davep.org/2026/06/06/blogmore-v2-40-0.html"&gt;recently added series support to
-BlogMore&lt;/a&gt; it made sense that I then add a
-quick way of adding a post to a series in the package.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Selecting a series" height="718" loading="lazy" src="https://blog.davep.org/attachments/2026/06/09/select-a-series.webp#centre" width="706" /&gt;&lt;/p&gt;
-&lt;p&gt;You can, of course, set a new one too, but the idea here (as with categories
-and tags) is that you can quickly find back an existing series and add the
-current post to it.&lt;/p&gt;
-&lt;p&gt;Also, as with tags, the expectation is that either a single series is being
-used, or if more than one series is in play for a post they'll be listed as
-a comma-separated list. The issue here is that while BlogMore supports this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;series&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Some series of posts&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Some other series of posts&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Yet another series of posts&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;the frontmatter-handling code in &lt;code&gt;blogmore.el&lt;/code&gt; isn't very sophisticated at
-all; it doesn't actually handle it as actual YAML, instead just treating it
-as a set of key/value pairs separated by a colon.&lt;/p&gt;
-&lt;p&gt;At some point soon I want to give &lt;code&gt;blogmore.el&lt;/code&gt; a revamp and base all of the
-frontmatter-handling code on something like
-&lt;a href="https://github.com/zkry/yaml.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;yaml.el&lt;/code&gt;&lt;/a&gt;. I did do some experimenting
-last night to drop it in and handle proper lists. It worked well enough, but
-I abandoned the work as I realised I really wanted to start again from
-scratch and build &lt;code&gt;blogmore.el&lt;/code&gt; from the bottom up using that package.&lt;/p&gt;
-&lt;p&gt;Some time soon...&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/06/09/blogmore-el-v4-7-0.html</guid>
-      <category>Emacs</category>
-      <category>BlogMore</category>
-      <category>Emacs</category>
-      <category>Emacs Lisp</category>
-      <category>Lisp</category>
-      <category>blogmore.el</category>
-      <category>coding</category>
-      <pubDate>Tue, 09 Jun 2026 08:42:40 +0100</pubDate>
     </item>
   </channel>
 </rss>
