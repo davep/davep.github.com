@@ -8,7 +8,43 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 19 Jun 2026 19:19:27 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 19 Jun 2026 20:10:32 +0000</lastBuildDate>
+    <item>
+      <title>Copyright Nvidia</title>
+      <link>https://blog.davep.org/2026/06/19/copyright-nvidia.html</link>
+      <description>&lt;p&gt;I've been trying, on and off,
+&lt;a href="https://github.com/copilot-emacs/copilot.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;copilot.el&lt;/code&gt;&lt;/a&gt;. I'm kind of
+50/50 on it most of the time. Sometimes it seems to really understand the
+code around what I'm working on and does a good job of helping complete the
+thing I'm about to type; other times it makes wild predictions that just
+annoy me and get in the way.&lt;/p&gt;
+&lt;p&gt;It's interesting to experiment with though.&lt;/p&gt;
+&lt;p&gt;But, just now, I saw something new&lt;sup id="fnref:376-1"&gt;&lt;a class="footnote-ref" href="#fn:376-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'd just started a fresh file and
+run &lt;a href="https://github.com/davep/funhead.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;funhead&lt;/code&gt;&lt;/a&gt;. That means that what
+had been typed into my buffer was:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;##############################################################################&lt;/span&gt;
+&lt;span class="c1"&gt;# _&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and my cursor was sat where you see the &lt;code&gt;_&lt;/code&gt; above. Then Copilot made a
+suggestion:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Copilot doing its thing" height="204" loading="lazy" src="https://blog.davep.org/attachments/2026/06/19/copilot.webp#centre" width="1266" /&gt;&lt;/p&gt;
+&lt;p&gt;Like, sure, we all know that this is what can happen, but damn. Still, of
+all the companies involved with or adjacent to AI, I guess they're the ones
+to &lt;a href="https://isaiprofitable.com/" rel="noopener noreferrer" target="_blank"&gt;care the least&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:376-1"&gt;
+&lt;p&gt;To me, I know others have seen this sort of thing before.&amp;#160;&lt;a class="footnote-backref" href="#fnref:376-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/19/copyright-nvidia.html</guid>
+      <category>AI</category>
+      <category>Copilot</category>
+      <pubDate>Fri, 19 Jun 2026 21:06:26 +0100</pubDate>
+    </item>
     <item>
       <title>Endless looping in Antigravity</title>
       <link>https://blog.davep.org/2026/06/17/endless-looping-in-antigravity.html</link>
@@ -1641,76 +1677,6 @@ soul.&lt;/p&gt;
       <category>leadership</category>
       <category>quote</category>
       <pubDate>Tue, 12 May 2026 08:20:25 +0100</pubDate>
-    </item>
-    <item>
-      <title>An argument with Gemini</title>
-      <link>https://blog.davep.org/2026/05/10/an-argument-with-gemini.html</link>
-      <description>&lt;p&gt;At the moment I'm working on a linting command for
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;. &lt;a href="https://blog.davep.org/2026/05/09/an-unreliable-buddy.html"&gt;Having given up on Copilot/Claude
-for this&lt;/a&gt;, I've been having quite a
-bit of success with Gemini CLI. But while doing this, I've noticed some odd
-things with it. It does have this habit of cargo-culting some changes, or
-just rewriting code that doesn't need it.&lt;/p&gt;
-&lt;p&gt;For example, the tests for the new linting tool: it keeps adding &lt;code&gt;import
-pytest&lt;/code&gt; near the top of the test file &lt;em&gt;despite the fact that &lt;code&gt;pytest&lt;/code&gt;
-doesn't get used anywhere in the code&lt;/em&gt;. Every time, I'll remove it, every
-time it adds more tests, it'll add it back.&lt;/p&gt;
-&lt;p&gt;Another thing I've noticed is it seems to be obsessed with adding
-indentation to empty lines. So, if you've got a line of code indented 8
-spaces, then an empty line, then another line of code indented 8 spaces,
-&lt;em&gt;it'll add 8 spaces on that empty line&lt;/em&gt;. That sort of thing annoys the hell
-out of me&lt;sup id="fnref:332-1"&gt;&lt;a class="footnote-ref" href="#fn:332-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;But the worst thing I just ran into was this. It had written this bit of
-code:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;lint_site&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;site_config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;SiteConfig&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Convenience function to run the linter.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Args:&lt;/span&gt;
-&lt;span class="sd"&gt;        site_config: The site configuration.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    Returns:&lt;/span&gt;
-&lt;span class="sd"&gt;        0 if no errors, 1 if errors were found.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="n"&gt;linter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Linter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;site_config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;linter&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lint&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;On the surface this seems fine: a function that hides just a little bit of
-detail while providing a simple function interface to a feature. But that
-use of a variable to essentially "discard" it the next line... nah. I
-dislike that sort of thing. The code can be just a little more elegant. So
-seeing this I edited it to be (removing the docstring for the purposes of
-this post):&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;lint_site&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;site_config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;SiteConfig&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;Linter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;site_config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lint&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Nice and tidy.&lt;/p&gt;
-&lt;p&gt;I then had Gemini work on something else in the linting code. What did I see
-towards the end of the diff? This!&lt;/p&gt;
-&lt;p&gt;&lt;img alt="A sneaky edit" height="144" loading="lazy" src="https://blog.davep.org/attachments/2026/05/10/sneaky-edit.webp#centre" width="512" /&gt;&lt;/p&gt;
-&lt;p&gt;Sneaky little shit!&lt;/p&gt;
-&lt;p&gt;Now, sure, the idea is you review all changes before you run with them, but
-knowing that it's likely that any given change might rewrite parts of the
-code that aren't related to the problem at hand adds a lot more overhead,
-and I wonder how often people using these tools even bother.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:332-1"&gt;
-&lt;p&gt;I've seen some IDEs do that on purpose too; I've got Emacs configured
-to strip that out on save.&amp;#160;&lt;a class="footnote-backref" href="#fnref:332-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/05/10/an-argument-with-gemini.html</guid>
-      <category>AI</category>
-      <category>Coding</category>
-      <category>Gemini</category>
-      <category>Google</category>
-      <category>Python</category>
-      <category>code review</category>
-      <pubDate>Sun, 10 May 2026 09:39:49 +0100</pubDate>
     </item>
   </channel>
 </rss>
