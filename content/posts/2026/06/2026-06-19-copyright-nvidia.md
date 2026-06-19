@@ -2,7 +2,7 @@
 title: "Copyright Nvidia"
 date: "2026-06-19 21:06:26+0100"
 category: AI
-tags: [Copilot]
+tags: [AI, Copilot, GitHub]
 cover: "/attachments/2026/06/19/copilot.webp"
 ---
 
