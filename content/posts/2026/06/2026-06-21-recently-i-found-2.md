@@ -2,7 +2,7 @@
 title: "Recently I found - 2"
 date: "2026-06-21 17:10:55+0100"
 category: Bookmarks
-tags: [Bookmarks, Raindrop]
+tags: [AI, Bookmarks, "Gemini Protocol", Politics, RSS, Raindrop]
 series: ["Recently I found..."]
 ---
 
