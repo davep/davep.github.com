@@ -8,7 +8,48 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 21 Jun 2026 16:13:40 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jun 2026 18:49:04 +0000</lastBuildDate>
+    <item>
+      <title>Gemini client history (redux)</title>
+      <link>https://blog.davep.org/2026/06/22/gemini-client-history-redux.html</link>
+      <description>&lt;p&gt;A couple of days ago &lt;a href="https://blog.davep.org/2026/06/20/gemini-client-history.html"&gt;I thought I had history working well in the Gemini
+client I'm working on&lt;/a&gt;; I was wrong.
+It worked, but the more I used it the more I felt it wasn't quite right. The
+main problem was I had a single history structure that served both the
+navigation history (moving backwards and forwards) as well as the general
+location visit history (the list of places I've visited). It made sense
+initially, but in use it just wasn't cutting it.&lt;/p&gt;
+&lt;p&gt;So now I've redone it, using two different history lists that also grow in
+rather different ways. For the navigation history, when "adding" a new
+location, everything after the current location gets removed, making the new
+location the latest in the list. The visit history, on the other hand, grows
+more like an ordered set: if I add a location that is already in the list,
+the older version is removed and it is added to the end of the list. In
+doing this, it's also allowed me to track the date and time I've visited a
+location, which means I can now have a useful history panel (which can be
+popped in and out of view) that shows me where I've been, and when.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Client, showing the history panel" height="1654" loading="lazy" src="https://blog.davep.org/attachments/2026/06/22/gemini-client-with-history.webp#centre" width="1982" /&gt;&lt;/p&gt;
+&lt;p&gt;Having done this, I now want to take some of these approaches and apply them
+to &lt;a href="https://hike.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Hike&lt;/a&gt;. It has a pretty simple location and
+navigation history system that suffers from the same issues that I wasn't
+liking in this project. It'll benefit quite a bit from this improvement. I
+sense a v2.0.0 of Hike in the next few months.&lt;/p&gt;
+&lt;p&gt;As for when I'll let &lt;em&gt;this&lt;/em&gt; project see the light of day: I think I'm close
+to opening the repository and publishing the first version to
+&lt;a href="https://blog.davep.org/tag/pypi/"&gt;PyPI&lt;/a&gt;. I had wanted to do it sometime yesterday, but the above
+kicked in and I've been tinkering more to try and make a stable foundation
+for the initial release. There's still a lot of work needed for it to be
+feature-complete, but there's enough here to play and experiment.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/22/gemini-client-history-redux.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>Hike</category>
+      <category>Python</category>
+      <category>smolweb</category>
+      <category>textual</category>
+      <pubDate>Mon, 22 Jun 2026 19:47:06 +0100</pubDate>
+    </item>
     <item>
       <title>Recently I found - 2</title>
       <link>https://blog.davep.org/2026/06/21/recently-i-found-2.html</link>
@@ -190,7 +231,7 @@ it would be useful to have a Python client library for the protocol, and
 ideally a client library that is async. I did some searching, found client
 libraries, but none of them seemed to be async-first.&lt;/p&gt;
 &lt;p&gt;With this in mind, and to kick-start the project, last night I fired up
-&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt;&lt;sup id="fnref:385-1"&gt;&lt;a class="footnote-ref" href="#fn:385-1"&gt;1&lt;/a&gt;&lt;/sup&gt; and got a library up and going.
+&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt;&lt;sup id="fnref:386-1"&gt;&lt;a class="footnote-ref" href="#fn:386-1"&gt;1&lt;/a&gt;&lt;/sup&gt; and got a library up and going.
 &lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt; is the result. For the moment this should
 be considered alpha-status software (hence v0.0.1). I've done some &lt;em&gt;very&lt;/em&gt;
 rudimentary testing and experimenting with it and, so far, so good. It's
@@ -232,8 +273,8 @@ it, and especially writing one that works just how I want.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:385-1"&gt;
-&lt;p&gt;No, not &lt;a href="https://xkcd.com/353/" rel="noopener noreferrer" target="_blank"&gt;that one&lt;/a&gt;, the &lt;a href="https://antigravity.google/" rel="noopener noreferrer" target="_blank"&gt;other one&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:385-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:386-1"&gt;
+&lt;p&gt;No, not &lt;a href="https://xkcd.com/353/" rel="noopener noreferrer" target="_blank"&gt;that one&lt;/a&gt;, the &lt;a href="https://antigravity.google/" rel="noopener noreferrer" target="_blank"&gt;other one&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:386-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -394,7 +435,7 @@ out I hadn't. Somehow I'd missed
 &lt;p&gt;This is another one of those packages whose content started out as ad-hoc
 commands, added to the &lt;code&gt;~/.emacs&lt;/code&gt; that first started to emerge as I got to
 know Emacs on OS/2 and then GNU/Linux back in the mid-1990s. I think it was
-back in 2016&lt;sup id="fnref:407-1"&gt;&lt;a class="footnote-ref" href="#fn:407-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, when I did &lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;a big revamp of my Emacs
+back in 2016&lt;sup id="fnref:408-1"&gt;&lt;a class="footnote-ref" href="#fn:408-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, when I did &lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;a big revamp of my Emacs
 environment&lt;/a&gt;, that I moved
 all of those roughly-related commands out into their own file.&lt;/p&gt;
 &lt;p&gt;Honestly, I think I can dump most of them now. There's stuff in there for
@@ -433,7 +474,7 @@ yet to fail me. You can see just how dated it is from this:&lt;/p&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;If you know, you'll know why &lt;code&gt;is-sig-line&lt;/code&gt; is there&lt;sup id="fnref:407-2"&gt;&lt;a class="footnote-ref" href="#fn:407-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;If you know, you'll know why &lt;code&gt;is-sig-line&lt;/code&gt; is there&lt;sup id="fnref:408-2"&gt;&lt;a class="footnote-ref" href="#fn:408-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;I do still use &lt;code&gt;become-freshly-indented-no-tabs&lt;/code&gt; on occasion too, and have
 it bound to an easy-to-remember and obvious (to me) key.&lt;/p&gt;
 &lt;p&gt;And so, despite the fact that most of the content of &lt;code&gt;become.el&lt;/code&gt; is probably
@@ -445,14 +486,14 @@ longer.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:407-1"&gt;
+&lt;li id="fn:408-1"&gt;
 &lt;p&gt;The header for &lt;code&gt;become.el&lt;/code&gt; says 2017, but I think the header itself
 came a little later when I &lt;a href="https://blog.davep.org/2017/04/01/another_revamp_of_my_emacs_config.html"&gt;did some more work on my
-config&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:407-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+config&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:408-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:407-2"&gt;
+&lt;li id="fn:408-2"&gt;
 &lt;p&gt;And if you don't know, &lt;a href="https://en.wikipedia.org/wiki/Signature_block#Standard_delimiter" rel="noopener noreferrer" target="_blank"&gt;now you
-do&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:407-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+do&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:408-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -643,7 +684,7 @@ target this approach in some way too.&lt;/p&gt;
       <description>&lt;p&gt;It's the best part of two years now &lt;a href="https://blog.davep.org/2024/08/18/paindrop.html"&gt;since I dropped Pinboard in favour of
 Raindrop&lt;/a&gt;. It's also seven years now since I
 first created a Pinboard account and started collecting possibly-useful
-bookmarks&lt;sup id="fnref:386-1"&gt;&lt;a class="footnote-ref" href="#fn:386-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I've found this process useful, and it continues to be a
+bookmarks&lt;sup id="fnref:387-1"&gt;&lt;a class="footnote-ref" href="#fn:387-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I've found this process useful, and it continues to be a
 great way to find and remember things. The way it works these days is:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Spend most of the week scrolling social networks, Reddit, the Orange Site,
@@ -683,8 +724,8 @@ or once every few weeks.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:386-1"&gt;
-&lt;p&gt;I say "started collecting"; I was a del.icio.us user back in the day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:386-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:387-1"&gt;
+&lt;p&gt;I say "started collecting"; I was a del.icio.us user back in the day.&amp;#160;&lt;a class="footnote-backref" href="#fnref:387-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -865,7 +906,7 @@ none have ever stuck. When trying them I've run into various issues:&lt;/p&gt;
 &lt;li&gt;Too many other things I use in Emacs didn't get themed&lt;/li&gt;
 &lt;li&gt;It looked like there was going to be too much work to do to really theme
   things well&lt;/li&gt;
-&lt;li&gt;It caused Emacs to crash&lt;sup id="fnref:410-1"&gt;&lt;a class="footnote-ref" href="#fn:410-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;It caused Emacs to crash&lt;sup id="fnref:411-1"&gt;&lt;a class="footnote-ref" href="#fn:411-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;However, yesterday evening, after &lt;a href="https://blog.davep.org/2026/06/12/simplifying-my-mode-line.html"&gt;making an effort to simplify my mode
 line&lt;/a&gt;, I was determined to find a
@@ -917,9 +958,9 @@ doesn't quite blend how I'd like.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:410-1"&gt;
+&lt;li id="fn:411-1"&gt;
 &lt;p&gt;Seriously, just the once, but that happened. I took that as a sign
-from the Lisp gods that I was doing something sinful.&amp;#160;&lt;a class="footnote-backref" href="#fnref:410-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+from the Lisp gods that I was doing something sinful.&amp;#160;&lt;a class="footnote-backref" href="#fnref:411-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -995,60 +1036,6 @@ continues. I fear this is going to be a lot harder.&lt;/p&gt;</description>
       <category>Emacs Lisp</category>
       <category>Lisp</category>
       <pubDate>Fri, 12 Jun 2026 19:06:26 +0100</pubDate>
-    </item>
-    <item>
-      <title>Cake and beers, I guess</title>
-      <link>https://blog.davep.org/2026/06/12/cake-and-beers-i-guess.html</link>
-      <description>&lt;p&gt;&lt;img alt="u/davepearson" height="243" loading="lazy" src="https://blog.davep.org/attachments/2026/06/12/davep-reddit-half.webp#centre" width="190" /&gt;&lt;/p&gt;
-&lt;p&gt;Damn. Oh damn. My Reddit account is now old enough to buy beer&lt;sup id="fnref:394-1"&gt;&lt;a class="footnote-ref" href="#fn:394-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. O_o&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Happy cake day to me" height="88" loading="lazy" src="https://blog.davep.org/attachments/2026/06/12/cake-day.webp#centre" width="291" /&gt;&lt;/p&gt;
-&lt;p&gt;While I probably have accounts somewhere that are older than this, that's
-still a pretty long time to have held an account somewhere &lt;em&gt;and still be
-actively using it&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;I remember I'd been reading Reddit for a couple of years before I finally
-made an account; I can't quite remember what prompted me to do that. In that
-time I've been more or less active there (although seldom one to post things
-or make comments -- normally I just consume and vote). From what I can tell
-that suggests I was starting to read Reddit within a year of it being
-launched.&lt;/p&gt;
-&lt;p&gt;I vaguely remember those old days. I remember all the conversation when &lt;a href="http://www.aaronsw.com/weblog/rewritingreddit" rel="noopener noreferrer" target="_blank"&gt;it
-moved away from being developed in
-Lisp&lt;/a&gt;. I can't remember if I
-was visiting it around that time.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Charter member badge" height="71" loading="lazy" src="https://blog.davep.org/attachments/2026/06/12/charter-member.webp#centre" width="71" /&gt;&lt;/p&gt;
-&lt;p&gt;I do have the &lt;a href="https://www.reddit.com/r/TrophyWiki/comments/f11gv2/reddit_trophy_charter_member/" rel="noopener noreferrer" target="_blank"&gt;charter member
-badge&lt;/a&gt;
-because, back when gold was launched, I was reading the site a &lt;em&gt;lot&lt;/em&gt; and it
-seemed sensible to support it at the time. I've long since let that
-subscription lapse. I see zero benefit in Reddit Premium.&lt;/p&gt;
-&lt;p&gt;I still subscribe to &lt;a href="https://www.reddit.com/r/lounge/" rel="noopener noreferrer" target="_blank"&gt;r/lounge&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;For some time, a couple or so years back, when they killed off most
-third-party clients, I stopped using the site for a while. These days I have
-got back into the habit of reading it again. While I do occasionally check
-in on a handful of &lt;a href="https://join-lemmy.org/" rel="noopener noreferrer" target="_blank"&gt;Lemmy subscriptions&lt;/a&gt;, and do
-keep thinking I should probably look into
-&lt;a href="https://lobste.rs/" rel="noopener noreferrer" target="_blank"&gt;lobste.rs&lt;/a&gt;&lt;sup id="fnref:394-2"&gt;&lt;a class="footnote-ref" href="#fn:394-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, it's hard to break the habit of opening
-the Reddit app and scrolling for a wee while. I've yet to finally and fully
-replace it.&lt;/p&gt;
-&lt;p&gt;I should go look at some of my other longer-serving accounts on websites and
-services and see exactly which is my oldest one.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:394-1"&gt;
-&lt;p&gt;Legally. In the UK.&amp;#160;&lt;a class="footnote-backref" href="#fnref:394-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:394-2"&gt;
-&lt;p&gt;If you are reading this, do use lobste.rs, and fancy throwing me an
-invite, I'd appreciate it!&amp;#160;&lt;a class="footnote-backref" href="#fnref:394-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/06/12/cake-and-beers-i-guess.html</guid>
-      <category>Life</category>
-      <category>history</category>
-      <category>reddit</category>
-      <pubDate>Fri, 12 Jun 2026 13:27:16 +0100</pubDate>
     </item>
   </channel>
 </rss>

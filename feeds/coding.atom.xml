@@ -2,11 +2,53 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-06-21T16:13:40.550743+00:00</updated>
+  <updated>2026-06-22T18:49:04.327728+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/06/22/gemini-client-history-redux.html</id>
+    <title>Gemini client history (redux)</title>
+    <updated>2026-06-22T19:47:06+01:00</updated>
+    <content type="html">&lt;p&gt;A couple of days ago &lt;a href="https://blog.davep.org/2026/06/20/gemini-client-history.html"&gt;I thought I had history working well in the Gemini
+client I'm working on&lt;/a&gt;; I was wrong.
+It worked, but the more I used it the more I felt it wasn't quite right. The
+main problem was I had a single history structure that served both the
+navigation history (moving backwards and forwards) as well as the general
+location visit history (the list of places I've visited). It made sense
+initially, but in use it just wasn't cutting it.&lt;/p&gt;
+&lt;p&gt;So now I've redone it, using two different history lists that also grow in
+rather different ways. For the navigation history, when "adding" a new
+location, everything after the current location gets removed, making the new
+location the latest in the list. The visit history, on the other hand, grows
+more like an ordered set: if I add a location that is already in the list,
+the older version is removed and it is added to the end of the list. In
+doing this, it's also allowed me to track the date and time I've visited a
+location, which means I can now have a useful history panel (which can be
+popped in and out of view) that shows me where I've been, and when.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Client, showing the history panel" height="1654" loading="lazy" src="https://blog.davep.org/attachments/2026/06/22/gemini-client-with-history.webp#centre" width="1982" /&gt;&lt;/p&gt;
+&lt;p&gt;Having done this, I now want to take some of these approaches and apply them
+to &lt;a href="https://hike.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Hike&lt;/a&gt;. It has a pretty simple location and
+navigation history system that suffers from the same issues that I wasn't
+liking in this project. It'll benefit quite a bit from this improvement. I
+sense a v2.0.0 of Hike in the next few months.&lt;/p&gt;
+&lt;p&gt;As for when I'll let &lt;em&gt;this&lt;/em&gt; project see the light of day: I think I'm close
+to opening the repository and publishing the first version to
+&lt;a href="https://blog.davep.org/tag/pypi/"&gt;PyPI&lt;/a&gt;. I had wanted to do it sometime yesterday, but the above
+kicked in and I've been tinkering more to try and make a stable foundation
+for the initial release. There's still a lot of work needed for it to be
+feature-complete, but there's enough here to play and experiment.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/06/22/gemini-client-history-redux.html"/>
+    <category term="Coding"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="Hike"/>
+    <category term="Python"/>
+    <category term="smolweb"/>
+    <category term="textual"/>
+    <published>2026-06-22T19:47:06+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/06/20/gemini-client-history.html</id>
     <title>Gemini client history</title>
@@ -448,7 +490,7 @@ should have added right near the start of the project.&lt;/p&gt;
 &lt;p&gt;First, the cosmetic: in pages and posts, when you use headings (&lt;code&gt;#&lt;/code&gt;, &lt;code&gt;##&lt;/code&gt;,
 etc.), a &lt;code&gt;¶&lt;/code&gt; is added to the end of each heading, along with some
 show-on-mouse-hover styling, to make it easy to grab the anchor of a
-particular section of a page&lt;sup id="fnref:392-1"&gt;&lt;a class="footnote-ref" href="#fn:392-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. A problem I'd noticed with this recently
+particular section of a page&lt;sup id="fnref:393-1"&gt;&lt;a class="footnote-ref" href="#fn:393-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. A problem I'd noticed with this recently
 is that the &lt;code&gt;¶&lt;/code&gt; shows up in the &lt;a href="https://blog.davep.org/search/"&gt;search&lt;/a&gt; text, and also in the
 content of all the feeds. While not a problem as such, it felt untidy.&lt;/p&gt;
 &lt;p&gt;So, with this release that particular &lt;code&gt;¶&lt;/code&gt; character is stripped from the
@@ -503,9 +545,9 @@ information lives with the page or post being redirected to.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:392-1"&gt;
+&lt;li id="fn:393-1"&gt;
 &lt;p&gt;The &lt;a href="https://blog.davep.org/2026/06/04/blogmore-v2-38-0.html"&gt;recently-added floating ToC&lt;/a&gt;
-is another way to do this now too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:392-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+is another way to do this now too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:393-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -564,7 +606,7 @@ if the feature should be on or off, by default, site-wide. It is set to
 post level, there is also &lt;a href="https://blogmore.davep.dev/writing_a_post/#show_toc" rel="noopener noreferrer" target="_blank"&gt;a &lt;code&gt;show_toc&lt;/code&gt; frontmatter
 property&lt;/a&gt; too. This
 &lt;em&gt;always&lt;/em&gt; overrides the global setting in the configuration file.&lt;/p&gt;
-&lt;p&gt;On top of this, I can imagine that someone&lt;sup id="fnref:390-1"&gt;&lt;a class="footnote-ref" href="#fn:390-1"&gt;1&lt;/a&gt;&lt;/sup&gt; might also want to have the
+&lt;p&gt;On top of this, I can imagine that someone&lt;sup id="fnref:391-1"&gt;&lt;a class="footnote-ref" href="#fn:391-1"&gt;1&lt;/a&gt;&lt;/sup&gt; might also want to have the
 right-side floating ToC, but never have the inline ToC showing on smaller
 displays. With this in mind I've also added a &lt;code&gt;show_toc_inline&lt;/code&gt;
 &lt;a href="https://blogmore.davep.dev/configuration/#show_toc_inline" rel="noopener noreferrer" target="_blank"&gt;configuration
@@ -586,8 +628,8 @@ override that explicit markup choice.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:390-1"&gt;
-&lt;p&gt;Me, I'm thinking it might be me.&amp;#160;&lt;a class="footnote-backref" href="#fnref:390-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:391-1"&gt;
+&lt;p&gt;Me, I'm thinking it might be me.&amp;#160;&lt;a class="footnote-backref" href="#fnref:391-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -999,41 +1041,5 @@ adding stuff now and &lt;em&gt;should&lt;/em&gt; be getting back to refining the
     <category term="Python"/>
     <category term="a11y"/>
     <published>2026-05-26T20:54:21+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/05/25/blogmore-v2-29-0.html</id>
-    <title>BlogMore v2.29.0</title>
-    <updated>2026-05-25T08:29:56+01:00</updated>
-    <content type="html">&lt;p&gt;A quick update to &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; that stems from a
-couple of accessibility concerns raised when using &lt;a href="https://pagespeed.web.dev/" rel="noopener noreferrer" target="_blank"&gt;PageSpeed
-Insights&lt;/a&gt;. While the accessibility score on
-pages generated by BlogMore is pretty excellent (96/100), a couple of things
-were highlighted that seemed worth tackling in some way.&lt;/p&gt;
-&lt;p&gt;The first was that the title bar of code blocks is rather low in contrast,
-especially the name of the language. This was a deliberate choice on my
-part; when I'd prompted &lt;a href="https://blog.davep.org/tag/copilot/"&gt;Copilot&lt;/a&gt; to do this work some time
-back I'd expressly asked it to make the text "subtle". While I could have
-undone that, I do like how it looks and would like to retain it if possible.
-So, as an experiment, I've used
-&lt;a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-contrast" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;prefers-contrast&lt;/code&gt;&lt;/a&gt;
-as a signal that I shouldn't do that. So now there's a bit of extra CSS
-under &lt;code&gt;prefers-contrast: more&lt;/code&gt; which just uses the normal text colour for
-those headers.&lt;/p&gt;
-&lt;p&gt;I imagine this &lt;em&gt;won't&lt;/em&gt; boost the score on PageSpeed Insights -- presumably
-it won't simulate that being used -- but I would hope it's an improvement
-for those who do need the extra contrast.&lt;/p&gt;
-&lt;p&gt;The other issue that was flagged up was the lack of an underline on the
-email address link in the comment-via-email invitation box (the optional
-feature I &lt;a href="https://blog.davep.org/2026/04/27/blogmore-v2-17-0.html"&gt;added back in v2.17.0&lt;/a&gt;). That
-one was an easy fix. There was no reason to avoid an underline on the link,
-so I added one.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/05/25/blogmore-v2-29-0.html"/>
-    <category term="Coding"/>
-    <category term="BlogMore"/>
-    <category term="Coding"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="a11y"/>
-    <published>2026-05-25T08:29:56+01:00</published>
   </entry>
 </feed>
