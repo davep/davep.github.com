@@ -80,6 +80,15 @@ for [Python Enhancement Proposals](https://peps.python.org/). It provides
 the ability to browse, filter and search the metadata for all the PEPs
 available via the [PEP API](https://peps.python.org/api/).
 
+## Rogallo
 
+[Rogallo](https://github.com/davep/rogallo) is a terminal-based browser for
+the [Gemini Protocol](https://geminiprotocol.net/). Still in early
+development.
+
+## Wasat
+
+[Wasat](https://wasat.davep.dev/) is an async Gemini Protcol client library
+for Python. Currently in early development as the core of Rogallo.
 
 [//]: # (active-projects.md ends here)
