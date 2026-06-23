@@ -2,7 +2,7 @@
 title: "Gemini client basic framework"
 date: "2026-06-18 16:23:15+0100"
 category: Coding
-tags: [Coding, "Gemini Protocol", Python, smolweb]
+tags: [Coding, "Gemini Protocol", Python, Rogallo, smolweb]
 cover: "/attachments/2026/06/18/gemini-cover.webp"
 ---
 

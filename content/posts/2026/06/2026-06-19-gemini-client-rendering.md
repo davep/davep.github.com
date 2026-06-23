@@ -2,7 +2,7 @@
 title: "Gemini client rendering"
 date: "2026-06-19 20:06:45+0100"
 category: Coding
-tags: [Coding, "Gemini Protocol", Python, smolweb, textual]
+tags: [Coding, "Gemini Protocol", Python, Rogallo, smolweb, textual]
 cover: "/attachments/2026/06/19/gemini-client-cover.webp"
 ---
 

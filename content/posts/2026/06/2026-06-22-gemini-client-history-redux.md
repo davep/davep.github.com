@@ -2,7 +2,7 @@
 title: "Gemini client history (redux)"
 date: "2026-06-22 19:47:06+0100"
 category: Coding
-tags: [Coding, "Gemini Protocol", Hike, Python, smolweb, textual]
+tags: [Coding, "Gemini Protocol", Hike, Python, Rogallo, smolweb, textual]
 cover: "/attachments/2026/06/22/gemini-client-with-history.webp"
 ---
 
