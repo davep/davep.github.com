@@ -2,11 +2,55 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-06-23T18:23:29.598718+00:00</updated>
+  <updated>2026-06-24T08:24:43.884623+00:00</updated>
   <link href="https://blog.davep.org/feeds/python.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Python" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/06/24/wasat-v0-1-0.html</id>
+    <title>Wasat v0.1.0</title>
+    <updated>2026-06-24T08:56:50+01:00</updated>
+    <content type="html">&lt;p&gt;I've just released &lt;a href="https://wasat.davep.dev/changelog/#v010" rel="noopener noreferrer" target="_blank"&gt;v0.1.0&lt;/a&gt; of
+&lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;, my async &lt;a href="https://blog.davep.org/tag/gemini-protocol/"&gt;Gemini
+Protocol&lt;/a&gt; client library for
+&lt;a href="https://blog.davep.org/category/python/"&gt;Python&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Changes in this release include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Support for generating and storing client certificates to help when
+  handling &lt;code&gt;6x&lt;/code&gt; responses. This is still experimental.&lt;/li&gt;
+&lt;li&gt;Updated the CLI to handle requests for input (handling &lt;code&gt;1x&lt;/code&gt; responses).&lt;/li&gt;
+&lt;li&gt;Added a &lt;code&gt;uri&lt;/code&gt; property to the &lt;code&gt;Response&lt;/code&gt; class, to expose the target URI
+  reached from a request.&lt;/li&gt;
+&lt;li&gt;Added a &lt;code&gt;history&lt;/code&gt; property to the &lt;code&gt;Response&lt;/code&gt; class, to expose the redirect
+  history if redirection took place.&lt;/li&gt;
+&lt;li&gt;Added a &lt;code&gt;requested_uri&lt;/code&gt; property to the &lt;code&gt;Response&lt;/code&gt; class, to expose the
+  originally requested URI.&lt;/li&gt;
+&lt;li&gt;Updated the CLI so that, when in verbose mode, it prints all of the
+  available redirection information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Most of the changes here are in support of resolving &lt;a href="https://github.com/davep/rogallo/issues/22" rel="noopener noreferrer" target="_blank"&gt;an issue I found with
+Rogallo yesterday&lt;/a&gt;. With v0.1.0
+available I should be able to update Rogallo with an easy fix.&lt;/p&gt;
+&lt;p&gt;So far, building this library, and &lt;a href="https://blog.davep.org/tag/rogallo/"&gt;the client application&lt;/a&gt;,
+is proving to be really interesting and educational. There's something fun
+about building a "web browser" of sorts, from the ground up. It really hits
+this point:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;{Gemini might be of interest to you if you}&lt;/em&gt; Are a hobbyist programmer
+with a "do it yourself" attitude who enjoys building their own tools and
+getting real use out of them every day&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;from the &lt;a href="https://geminiprotocol.net/docs/faq.gmi" rel="noopener noreferrer" target="_blank"&gt;Gemini protocol FAQ&lt;/a&gt;. For
+me, in &lt;em&gt;"hobbyist programmer"&lt;/em&gt; mode, this is all kinds of fun.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/06/24/wasat-v0-1-0.html"/>
+    <category term="Python"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="Python"/>
+    <category term="smolweb"/>
+    <published>2026-06-24T08:56:50+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/06/23/bagofstuff-v1-0-0.html</id>
     <title>BagOfStuff v1.0.0</title>
@@ -1495,96 +1539,5 @@ and also get benefits from it as you use it.&lt;/p&gt;</content>
     <category term="Python"/>
     <category term="documentation"/>
     <published>2019-10-26T13:19:00+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2018/06/02/a_little_speed_issue_with_openpyxl.html</id>
-    <title>A little speed issue with openpyxl</title>
-    <updated>2018-06-02T13:16:37+01:00</updated>
-    <content type="html">&lt;p&gt;It's been very quiet on the blogging front, I'm afraid, mostly for &lt;a href="https://blog.davep.org/2017/12/12/on_to_something_new.html"&gt;the
-reasons I wrote about back in December last
-year&lt;/a&gt;. In that time I've been really
-very busy with work (in a good way, in a &lt;em&gt;very&lt;/em&gt; good way) and there's not a
-whole lot of time to be toying with pet projects at home.&lt;/p&gt;
-&lt;p&gt;However, finding myself with a spare hour or so, I wanted to write about
-something I did run into as part of some development at work, and which I
-thought might be worth writing about in case it helps someone else.&lt;/p&gt;
-&lt;p&gt;Recently I've needed to write a library of code for loading data from Excel
-Workbooks. Given that the vast majority of coding I do at the moment is in
-Python, it made sense to make use of
-&lt;a href="https://openpyxl.readthedocs.io/" rel="noopener noreferrer" target="_blank"&gt;openpyxl&lt;/a&gt;. The initial prototype code I
-wrote worked well and it soon grew into a full-blown library that'll be used
-in a couple of work-related projects.&lt;/p&gt;
-&lt;p&gt;But one thing kept niggling me... It just wasn't as fast as I'd expected.
-The workbooks I'm pulling data from aren't that large, and yet it was taking
-a noticeable number of seconds to read in the data, and when I let the code
-have a go at a directory full of such workbooks... even the fan on the
-machine would ramp up.&lt;/p&gt;
-&lt;p&gt;It didn't seem right.&lt;/p&gt;
-&lt;p&gt;I did a little bit of profiling and could see that the code was spending
-most of its time deep in the guts of some XML-parsing functions. While I
-know that an &lt;code&gt;xlsx&lt;/code&gt; file is pretty much an XML document, it seemed odd to me
-that it would take so much time and effort to pull the data out from it.&lt;/p&gt;
-&lt;p&gt;Given that I had other code to be writing, and given that the
-workbook-parsing code was "good enough" for the moment, I moved on for a
-short while.&lt;/p&gt;
-&lt;p&gt;But, a couple of weeks back, I had a bit of spare time and decided to
-revisit it. I did some more searching on openpyxl and speed issues and
-almost everything I found said that the common problem was failing to open
-the workbook in &lt;code&gt;read_only&lt;/code&gt; mode. That can't have been my problem because
-I'd being doing that from the very start.&lt;/p&gt;
-&lt;p&gt;Eventually I came across a post somewhere (sorry, I've lost it for now --
-I'll try and track it down again) that suggested that openpyxl was very slow
-to read from a workbook if you were reading one cell at a time, rather than
-using generators. The suggestion being that every time you pull a value form
-a cell, it has to parse the whole sheet up to that cell. Generators, on the
-other hand, would allow access to all the cells during one parse.&lt;/p&gt;
-&lt;p&gt;This seemed a little unlikely to me -- I'd have expected the code to cache
-the parsing results or something like that -- but it also would explain what
-I was seeing. So I decided to give it a test.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/davep/openpyxl-speed-issue" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;openpyxl-speed-issue&lt;/code&gt;&lt;/a&gt; is a
-version of the tests I wrote and ran and they absolutely show that there's a
-huge difference between cell-by-cell access vs generator access.&lt;/p&gt;
-&lt;p&gt;Code like this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;row&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sheet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max_row&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;col&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sheet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max_column&lt;/span&gt; &lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sheet&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="n"&gt;row&lt;/span&gt; &lt;span class="p"&gt;][&lt;/span&gt; &lt;span class="n"&gt;col&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;is &lt;em&gt;far slower&lt;/em&gt; than something like this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;row&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;wb&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Test Sheet&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rows&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;cell&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cell&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Here's an example of the difference in time, as seen on my iMac:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;make&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;test&lt;/span&gt;
-pipenv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;./read-using-generators
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.59&lt;span class="w"&gt; &lt;/span&gt;real&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.44&lt;span class="w"&gt; &lt;/span&gt;user&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.04&lt;span class="w"&gt; &lt;/span&gt;sys
-pipenv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;./read-using-peeking
-&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="m"&gt;25&lt;/span&gt;.02&lt;span class="w"&gt; &lt;/span&gt;real&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="m"&gt;24&lt;/span&gt;.88&lt;span class="w"&gt; &lt;/span&gt;user&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.10&lt;span class="w"&gt; &lt;/span&gt;sys
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;As you can see, the cell-by-cell approach is about 16 times slower than the
-generator approach.&lt;/p&gt;
-&lt;p&gt;In most circumstances the generator approach would make most sense anyway,
-and in any other situation I probably would have used it and never have
-noticed this. However, the nature of the workbooks I need to pull data from
-means I need to "peek ahead" to make decisions about what I'm doing, so a
-more traditional loop over, with an index, made more sense.&lt;/p&gt;
-&lt;p&gt;I can easily "fix" this by using the generator approach to build up a
-two-dimensional array of cells, acquired via the generator; so I can still
-do what I want &lt;em&gt;and&lt;/em&gt; benefit from using generators.&lt;/p&gt;
-&lt;p&gt;In conclusion: given that I found it difficult to find information about my
-speed issue, and given that the one off-hand comment I saw that suggested it
-was this wasn't exactly easy to find, I thought I'd write it all down too
-and &lt;a href="https://github.com/davep/openpyxl-speed-issue" rel="noopener noreferrer" target="_blank"&gt;create a repository of some test code to illustrate the
-issue&lt;/a&gt;. Hopefully someone
-else will benefit from this in the future.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2018/06/02/a_little_speed_issue_with_openpyxl.html"/>
-    <category term="Python"/>
-    <category term="Coding"/>
-    <category term="Python"/>
-    <category term="openpyxl"/>
-    <published>2018-06-02T13:16:37+01:00</published>
   </entry>
 </feed>
