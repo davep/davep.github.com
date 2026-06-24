@@ -2,11 +2,91 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-06-24T08:24:43.888989+00:00</updated>
+  <updated>2026-06-24T18:28:34.354661+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/06/24/rogallo-v0-2-0.html</id>
+    <title>Rogallo v0.2.0</title>
+    <updated>2026-06-24T19:26:55+01:00</updated>
+    <content type="html">&lt;p&gt;Rogallo v0.2.0 is now available. This version fixes some issues with links,
+makes &lt;a href="https://geminiprotocol.net/docs/gemtext-specification.gmi" rel="noopener noreferrer" target="_blank"&gt;gemtext&lt;/a&gt;
+parsing better conform with the specification, and also makes it easier to
+see where a link will take you.&lt;/p&gt;
+&lt;p&gt;The first issue is a fix to how page-relative links were resolved if the
+page you were viewing was the result of a redirection. What was happening
+was the links were being resolved relative to the initial URI, rather than
+the final URI of the redirection. This was most noticeably a problem when
+following links in the geminispace equivalent of webrings. The main change
+&lt;a href="https://blog.davep.org/2026/06/24/wasat-v0-1-0.html"&gt;took place in Wasat&lt;/a&gt;, with Rogallo making
+use of the new &lt;a href="https://wasat.davep.dev/library/response/#wasat.response.Response.uri" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;Response.uri&lt;/code&gt;
+property&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The second fix was to how I parse gemtext. The initial parser was close
+enough, but I noticed there were some finer points relating to whitespace
+that I hadn't paid attention to (mainly due to skim-reading the
+specification). For example, I expected links to always start with &lt;code&gt;=&amp;gt;&lt;/code&gt;
+followed by a space, when in fact a link can simply start with a &lt;code&gt;=&amp;gt;&lt;/code&gt; and
+then be followed by the URI with no space.&lt;/p&gt;
+&lt;div class="highlight" data-lang="abnf"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nc"&gt;link-line&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;&amp;quot;=&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;WSP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;URI-reference&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;1*&lt;/span&gt;&lt;span class="k"&gt;WSP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;1*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;SP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;VCHAR&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;WSP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;CRLF&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Similar improvements to the detection of headings and quotes have also been
+added.&lt;/p&gt;
+&lt;p&gt;Finally, I've added a couple of features which make it easy to know where a
+link will take you. The first is that I've added a tooltip to each link, so
+that when you hover the mouse cursor over it the URI will be displayed. But,
+because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:395-1"&gt;&lt;a class="footnote-ref" href="#fn:395-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
+a status bar to the main viewer panel that shows the URI of the focused
+link.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The Rogallo status bar" height="1760" loading="lazy" src="https://blog.davep.org/attachments/2026/06/24/rogallo-with-bar.webp#centre" width="1750" /&gt;&lt;/p&gt;
+&lt;p&gt;As you &lt;kbd&gt;tab&lt;/kbd&gt; through the links it will update, of course.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Status bar in action" loading="lazy" src="https://blog.davep.org/attachments/2026/06/24/status-bar.gif#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;This should ensure that links are less likely to be surprising.&lt;/p&gt;
+&lt;p&gt;If any of this sounds interesting and you want to have a play, Rogallo is
+licensed GPL-3.0 and available &lt;a href="https://github.com/davep/rogallo" rel="noopener noreferrer" target="_blank"&gt;via
+GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/rogallo/" rel="noopener noreferrer" target="_blank"&gt;via
+PyPI&lt;/a&gt;. If you have an environment that
+has &lt;code&gt;pipx&lt;/code&gt; installed, you should be able to get up and running with:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;rogallo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It can also be installed using
+&lt;a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;rogallo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If you don't have &lt;code&gt;uv&lt;/code&gt; installed, you can use &lt;a href="https://uvx.sh" rel="noopener noreferrer" target="_blank"&gt;uvx.sh&lt;/a&gt; to
+perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-LsSf&lt;span class="w"&gt; &lt;/span&gt;uvx.sh/rogallo/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;or on Windows:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;powershell&lt;span class="w"&gt; &lt;/span&gt;-ExecutionPolicy&lt;span class="w"&gt; &lt;/span&gt;ByPass&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;irm https://uvx.sh/rogallo/install.ps1 | iex&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Once installed, run the &lt;code&gt;rogallo&lt;/code&gt; command.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:395-1"&gt;
+&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:395-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/06/24/rogallo-v0-2-0.html"/>
+    <category term="Coding"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="Rogallo"/>
+    <category term="gemtext"/>
+    <category term="smolweb"/>
+    <category term="textual"/>
+    <published>2026-06-24T19:26:55+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/06/23/rogallo-v0-1-0.html</id>
     <title>Rogallo v0.1.0</title>
@@ -1017,43 +1097,5 @@ to&lt;/a&gt;.&lt;/p&gt;</content>
     <category term="PyPI"/>
     <category term="Python"/>
     <published>2026-05-28T15:00:56+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/05/27/blogmore-v2-31-0.html</id>
-    <title>BlogMore v2.31.0</title>
-    <updated>2026-05-27T14:44:31+01:00</updated>
-    <content type="html">&lt;p&gt;A quick update to &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, with a small
-&lt;a href="https://blog.davep.org/tag/a11y/"&gt;accessibility&lt;/a&gt; improvement, and also a whole new set of data
-for the &lt;a href="https://blog.davep.org/graph/"&gt;graph&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The accessibility update follows on from a change &lt;a href="https://blog.davep.org/2026/05/26/blogmore-v2-30-0.html"&gt;published
-yesterday&lt;/a&gt;. In that release I did a
-little bit of work to disambiguate links to categories and tags that had the
-same link text; this time I've given the same &lt;code&gt;aria-label&lt;/code&gt; treatment to the
-post dates where they link to the year, month, and day archives. While we're
-never really going to get ambiguous year links (unless there are also links
-in the body of a post that are four digit numbers), it's highly likely we're
-going to get the occasional month and day that are ambiguous.&lt;/p&gt;
-&lt;p&gt;So now those links make it clear, with &lt;code&gt;aria-label&lt;/code&gt;, what's being linked to.&lt;/p&gt;
-&lt;p&gt;The other main change in
-&lt;a href="https://blogmore.davep.dev/changelog/#v2310" rel="noopener noreferrer" target="_blank"&gt;v2.31.0&lt;/a&gt; comes from a thought
-I had last night about the new "related posts" feature I added yesterday.
-Currently the &lt;a href="https://blog.davep.org/graph/"&gt;graph&lt;/a&gt; shows the relationships the posts have based
-around their common categories and tags:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The graph based on links" height="604" loading="lazy" src="https://blog.davep.org/attachments/2026/05/27/links.webp#centre" width="578" /&gt;&lt;/p&gt;
-&lt;p&gt;But now I've got this code that can work out how posts might be related
-based on their text content. What might that look like? It might be cool to
-be able to switch the graph view between the two sets of data, if the blog
-owner is building with related posts turned on.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The graph based on related posts" height="603" loading="lazy" src="https://blog.davep.org/attachments/2026/05/27/related.webp#centre" width="563" /&gt;&lt;/p&gt;
-&lt;p&gt;While I'm not sure it really &lt;em&gt;tells&lt;/em&gt; me anything, I like that I have yet
-another method of (re)discovering posts.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/05/27/blogmore-v2-31-0.html"/>
-    <category term="Coding"/>
-    <category term="BlogMore"/>
-    <category term="Coding"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="a11y"/>
-    <published>2026-05-27T14:44:31+01:00</published>
   </entry>
 </feed>

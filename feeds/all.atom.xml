@@ -2,11 +2,91 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-06-24T08:24:43.876542+00:00</updated>
+  <updated>2026-06-24T18:28:34.352150+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/06/24/rogallo-v0-2-0.html</id>
+    <title>Rogallo v0.2.0</title>
+    <updated>2026-06-24T19:26:55+01:00</updated>
+    <content type="html">&lt;p&gt;Rogallo v0.2.0 is now available. This version fixes some issues with links,
+makes &lt;a href="https://geminiprotocol.net/docs/gemtext-specification.gmi" rel="noopener noreferrer" target="_blank"&gt;gemtext&lt;/a&gt;
+parsing better conform with the specification, and also makes it easier to
+see where a link will take you.&lt;/p&gt;
+&lt;p&gt;The first issue is a fix to how page-relative links were resolved if the
+page you were viewing was the result of a redirection. What was happening
+was the links were being resolved relative to the initial URI, rather than
+the final URI of the redirection. This was most noticeably a problem when
+following links in the geminispace equivalent of webrings. The main change
+&lt;a href="https://blog.davep.org/2026/06/24/wasat-v0-1-0.html"&gt;took place in Wasat&lt;/a&gt;, with Rogallo making
+use of the new &lt;a href="https://wasat.davep.dev/library/response/#wasat.response.Response.uri" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;Response.uri&lt;/code&gt;
+property&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The second fix was to how I parse gemtext. The initial parser was close
+enough, but I noticed there were some finer points relating to whitespace
+that I hadn't paid attention to (mainly due to skim-reading the
+specification). For example, I expected links to always start with &lt;code&gt;=&amp;gt;&lt;/code&gt;
+followed by a space, when in fact a link can simply start with a &lt;code&gt;=&amp;gt;&lt;/code&gt; and
+then be followed by the URI with no space.&lt;/p&gt;
+&lt;div class="highlight" data-lang="abnf"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nc"&gt;link-line&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;&amp;quot;=&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;WSP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;URI-reference&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;1*&lt;/span&gt;&lt;span class="k"&gt;WSP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;1*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;SP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;VCHAR&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;WSP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;CRLF&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Similar improvements to the detection of headings and quotes have also been
+added.&lt;/p&gt;
+&lt;p&gt;Finally, I've added a couple of features which make it easy to know where a
+link will take you. The first is that I've added a tooltip to each link, so
+that when you hover the mouse cursor over it the URI will be displayed. But,
+because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:395-1"&gt;&lt;a class="footnote-ref" href="#fn:395-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
+a status bar to the main viewer panel that shows the URI of the focused
+link.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The Rogallo status bar" height="1760" loading="lazy" src="https://blog.davep.org/attachments/2026/06/24/rogallo-with-bar.webp#centre" width="1750" /&gt;&lt;/p&gt;
+&lt;p&gt;As you &lt;kbd&gt;tab&lt;/kbd&gt; through the links it will update, of course.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Status bar in action" loading="lazy" src="https://blog.davep.org/attachments/2026/06/24/status-bar.gif#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;This should ensure that links are less likely to be surprising.&lt;/p&gt;
+&lt;p&gt;If any of this sounds interesting and you want to have a play, Rogallo is
+licensed GPL-3.0 and available &lt;a href="https://github.com/davep/rogallo" rel="noopener noreferrer" target="_blank"&gt;via
+GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/rogallo/" rel="noopener noreferrer" target="_blank"&gt;via
+PyPI&lt;/a&gt;. If you have an environment that
+has &lt;code&gt;pipx&lt;/code&gt; installed, you should be able to get up and running with:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;rogallo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It can also be installed using
+&lt;a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;rogallo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If you don't have &lt;code&gt;uv&lt;/code&gt; installed, you can use &lt;a href="https://uvx.sh" rel="noopener noreferrer" target="_blank"&gt;uvx.sh&lt;/a&gt; to
+perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-LsSf&lt;span class="w"&gt; &lt;/span&gt;uvx.sh/rogallo/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;or on Windows:&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;powershell&lt;span class="w"&gt; &lt;/span&gt;-ExecutionPolicy&lt;span class="w"&gt; &lt;/span&gt;ByPass&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;irm https://uvx.sh/rogallo/install.ps1 | iex&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Once installed, run the &lt;code&gt;rogallo&lt;/code&gt; command.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:395-1"&gt;
+&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:395-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/06/24/rogallo-v0-2-0.html"/>
+    <category term="Coding"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="Rogallo"/>
+    <category term="gemtext"/>
+    <category term="smolweb"/>
+    <category term="textual"/>
+    <published>2026-06-24T19:26:55+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/06/24/wasat-v0-1-0.html</id>
     <title>Wasat v0.1.0</title>
@@ -603,7 +683,7 @@ out I hadn't. Somehow I'd missed
 &lt;p&gt;This is another one of those packages whose content started out as ad-hoc
 commands, added to the &lt;code&gt;~/.emacs&lt;/code&gt; that first started to emerge as I got to
 know Emacs on OS/2 and then GNU/Linux back in the mid-1990s. I think it was
-back in 2016&lt;sup id="fnref:408-1"&gt;&lt;a class="footnote-ref" href="#fn:408-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, when I did &lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;a big revamp of my Emacs
+back in 2016&lt;sup id="fnref:409-1"&gt;&lt;a class="footnote-ref" href="#fn:409-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, when I did &lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;a big revamp of my Emacs
 environment&lt;/a&gt;, that I moved
 all of those roughly-related commands out into their own file.&lt;/p&gt;
 &lt;p&gt;Honestly, I think I can dump most of them now. There's stuff in there for
@@ -642,7 +722,7 @@ yet to fail me. You can see just how dated it is from this:&lt;/p&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;If you know, you'll know why &lt;code&gt;is-sig-line&lt;/code&gt; is there&lt;sup id="fnref:408-2"&gt;&lt;a class="footnote-ref" href="#fn:408-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;If you know, you'll know why &lt;code&gt;is-sig-line&lt;/code&gt; is there&lt;sup id="fnref:409-2"&gt;&lt;a class="footnote-ref" href="#fn:409-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;I do still use &lt;code&gt;become-freshly-indented-no-tabs&lt;/code&gt; on occasion too, and have
 it bound to an easy-to-remember and obvious (to me) key.&lt;/p&gt;
 &lt;p&gt;And so, despite the fact that most of the content of &lt;code&gt;become.el&lt;/code&gt; is probably
@@ -654,14 +734,14 @@ longer.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:408-1"&gt;
+&lt;li id="fn:409-1"&gt;
 &lt;p&gt;The header for &lt;code&gt;become.el&lt;/code&gt; says 2017, but I think the header itself
 came a little later when I &lt;a href="https://blog.davep.org/2017/04/01/another_revamp_of_my_emacs_config.html"&gt;did some more work on my
-config&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:408-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+config&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:409-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:408-2"&gt;
+&lt;li id="fn:409-2"&gt;
 &lt;p&gt;And if you don't know, &lt;a href="https://en.wikipedia.org/wiki/Signature_block#Standard_delimiter" rel="noopener noreferrer" target="_blank"&gt;now you
-do&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:408-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+do&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:409-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -964,34 +1044,5 @@ another post about how EE and Openreach messed up.&lt;/p&gt;</content>
     <category term="EE"/>
     <category term="Openreach"/>
     <published>2026-06-13T20:33:04+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/06/13/stottie-attempt-2.html</id>
-    <title>Stottie - attempt 2</title>
-    <updated>2026-06-13T17:16:36+01:00</updated>
-    <content type="html">&lt;p&gt;After last weekend's &lt;a href="https://blog.davep.org/2026/06/07/attempting-a-stottie.html"&gt;attempt at making a couple of
-stotties&lt;/a&gt;, I thought I'd have another
-go. This time the aim was to try and get the classic shape, mostly by trying
-to ensure they were rounded and also flatter before going into the oven.&lt;/p&gt;
-&lt;p&gt;The dough post-rise:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The dough" height="1521" loading="lazy" src="https://blog.davep.org/attachments/2026/06/13/IMG_0081.webp#centre" width="2028" /&gt;&lt;/p&gt;
-&lt;p&gt;Ready for the oven:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Ready for the oven" height="1536" loading="lazy" src="https://blog.davep.org/attachments/2026/06/13/IMG_0084.webp#centre" width="2048" /&gt;&lt;/p&gt;
-&lt;p&gt;Fresh out of the oven:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Fresh out of the oven" height="1536" loading="lazy" src="https://blog.davep.org/attachments/2026/06/13/IMG_0085.webp#centre" width="2048" /&gt;&lt;/p&gt;
-&lt;p&gt;Side view:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The side view" height="1536" loading="lazy" src="https://blog.davep.org/attachments/2026/06/13/IMG_0087.webp#centre" width="2048" /&gt;&lt;/p&gt;
-&lt;p&gt;So... still viable bread. Still going to get eaten. But I think this is
-obviously another fail when it comes to the (lack of) thinness and the shape
-after they come out of the oven.&lt;/p&gt;
-&lt;p&gt;There will be another attempt. I'm going to keep trying this until I get it
-right!&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/06/13/stottie-attempt-2.html"/>
-    <category term="Life"/>
-    <category term="baking"/>
-    <category term="bread"/>
-    <category term="cooking"/>
-    <category term="stottie"/>
-    <published>2026-06-13T17:16:36+01:00</published>
   </entry>
 </feed>
