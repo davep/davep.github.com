@@ -2,11 +2,93 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-06-24T18:28:34.352150+00:00</updated>
+  <updated>2026-06-25T11:07:23.873039+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/06/25/gemtext-a-gemtext-parsing-library-for-python.html</id>
+    <title>gemtext - A Gemtext parsing library for Python</title>
+    <updated>2026-06-25T12:05:42+01:00</updated>
+    <content type="html">&lt;p&gt;I've just made an initial release of a new library related to my &lt;a href="https://blog.davep.org/tag/rogallo/"&gt;ongoing
+project to build my own Gemini protocol browser&lt;/a&gt;. Initially,
+the code to parse the &lt;a href="https://geminiprotocol.net/docs/gemtext-specification.gmi" rel="noopener noreferrer" target="_blank"&gt;hypertext
+format&lt;/a&gt; used for
+Gemini sites, lived in the Rogallo codebase. But despite it being a pretty
+simple bit of code, I felt it could be useful for other things too. So
+rather than have it be buried inside a package that has a lot of other
+dependencies, I've decided to spin it out into its own little package.&lt;/p&gt;
+&lt;p&gt;So &lt;a href="https://gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;gemtext&lt;/code&gt;&lt;/a&gt; v0.1.0 is &lt;a href="https://pypi.org/project/gemtext/" rel="noopener noreferrer" target="_blank"&gt;now
+available&lt;/a&gt;. The library provides a single
+parsing class, which takes raw markup as a string and turns it into a
+sequence of objects, each typed for the type of line found. A very simple
+parsing tool might look like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;fileinput&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;gemtext&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Gemtext&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;parse_input&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;gem_line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;Gemtext&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fileinput&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;input&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;gem_line&lt;/span&gt;&lt;span class="si"&gt;!r}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If fed with the following input:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# This is a heading
+
+## This is a sub-heading
+
+### This is a sub-sub-heading
+
+=&amp;gt; gemini://davep.gemcities.com/ Dave&amp;#39;s test capsule
+
+&amp;gt; This is a deep and meaningful quote
+
+```
+Here is some pre-formatted text.
+
+Here&amp;#39;s some more of that text.
+```
+
+* One
+* Two
+* Three
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;the output would be this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Heading&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;This is a heading&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Paragraph&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Heading&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;This is a sub-heading&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Paragraph&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Heading&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;This is a sub-sub-heading&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Paragraph&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Link&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Dave&amp;#39;s test capsule&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;uri&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;gemini://davep.gemcities.com/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Paragraph&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Quote&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;This is a deep and meaningful quote&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Paragraph&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;PreFormatted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Here is some pre-formatted text.&lt;/span&gt;&lt;span class="se"&gt;\n\n&lt;/span&gt;&lt;span class="s2"&gt;Here&amp;#39;s some more of that text.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Paragraph&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ListItem&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;One&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ListItem&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Two&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ListItem&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Three&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;That's the extent of the library for the moment. I don't see it growing too
+much, given how straightforward the markup language is. Perhaps one addition
+I might make at some point is a method of going the other way: allow
+collecting together each of the &lt;a href="https://gemtext.davep.dev/gemtext/" rel="noopener noreferrer" target="_blank"&gt;individual line-oriented
+objects&lt;/a&gt; and getting a text document
+back, so providing an object-oriented interface for producing Gemtext
+documents.&lt;/p&gt;
+&lt;p&gt;For now though this is enough to support what Rogallo needs.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/06/25/gemtext-a-gemtext-parsing-library-for-python.html"/>
+    <category term="Python"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="Python"/>
+    <category term="gemtext"/>
+    <category term="smolweb"/>
+    <published>2026-06-25T12:05:42+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/06/24/rogallo-v0-2-0.html</id>
     <title>Rogallo v0.2.0</title>
@@ -683,7 +765,7 @@ out I hadn't. Somehow I'd missed
 &lt;p&gt;This is another one of those packages whose content started out as ad-hoc
 commands, added to the &lt;code&gt;~/.emacs&lt;/code&gt; that first started to emerge as I got to
 know Emacs on OS/2 and then GNU/Linux back in the mid-1990s. I think it was
-back in 2016&lt;sup id="fnref:409-1"&gt;&lt;a class="footnote-ref" href="#fn:409-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, when I did &lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;a big revamp of my Emacs
+back in 2016&lt;sup id="fnref:410-1"&gt;&lt;a class="footnote-ref" href="#fn:410-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, when I did &lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;a big revamp of my Emacs
 environment&lt;/a&gt;, that I moved
 all of those roughly-related commands out into their own file.&lt;/p&gt;
 &lt;p&gt;Honestly, I think I can dump most of them now. There's stuff in there for
@@ -722,7 +804,7 @@ yet to fail me. You can see just how dated it is from this:&lt;/p&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;If you know, you'll know why &lt;code&gt;is-sig-line&lt;/code&gt; is there&lt;sup id="fnref:409-2"&gt;&lt;a class="footnote-ref" href="#fn:409-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;If you know, you'll know why &lt;code&gt;is-sig-line&lt;/code&gt; is there&lt;sup id="fnref:410-2"&gt;&lt;a class="footnote-ref" href="#fn:410-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;I do still use &lt;code&gt;become-freshly-indented-no-tabs&lt;/code&gt; on occasion too, and have
 it bound to an easy-to-remember and obvious (to me) key.&lt;/p&gt;
 &lt;p&gt;And so, despite the fact that most of the content of &lt;code&gt;become.el&lt;/code&gt; is probably
@@ -734,14 +816,14 @@ longer.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:409-1"&gt;
+&lt;li id="fn:410-1"&gt;
 &lt;p&gt;The header for &lt;code&gt;become.el&lt;/code&gt; says 2017, but I think the header itself
 came a little later when I &lt;a href="https://blog.davep.org/2017/04/01/another_revamp_of_my_emacs_config.html"&gt;did some more work on my
-config&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:409-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+config&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:410-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:409-2"&gt;
+&lt;li id="fn:410-2"&gt;
 &lt;p&gt;And if you don't know, &lt;a href="https://en.wikipedia.org/wiki/Signature_block#Standard_delimiter" rel="noopener noreferrer" target="_blank"&gt;now you
-do&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:409-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+do&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:410-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1010,39 +1092,5 @@ transient menu.&lt;/p&gt;</content>
     <category term="blogmore.el"/>
     <category term="coding"/>
     <published>2026-06-14T08:49:14+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/06/13/full-fibre-might-be-back-on.html</id>
-    <title>Full fibre might be back on</title>
-    <updated>2026-06-13T20:33:04+01:00</updated>
-    <content type="html">&lt;p&gt;So &lt;a href="https://blog.davep.org/2026/05/26/let-down-by-openreach-and-ee.html"&gt;after the screw-up by Openreach and
-EE&lt;/a&gt;, where I was promised
-full fibre and then it never happened, I'd assumed that nothing was going to
-happen for quite some time. I was told that (likely)
-&lt;a href="https://blog.davep.org/tag/openreach/"&gt;Openreach&lt;/a&gt; would contact me when they'd solved whatever
-the problem was, but I wasn't holding out much hope that it would be a swift
-turnaround.&lt;/p&gt;
-&lt;p&gt;Yesterday, however, I got an email from &lt;a href="https://blog.davep.org/tag/ee/"&gt;EE&lt;/a&gt; claiming that full
-fibre was available at my address. While sceptical about this, assuming it
-was just some marketing nonsense that wasn't paying attention to the details
-of where I live, I called them to check. I explained the problem, I had them
-read the notes on my account, I had them acknowledge all that had happened
-and they reassured me that, for real, no kidding, no nonsense, this was all
-gonna happen this time.&lt;/p&gt;
-&lt;p&gt;So... watch this space. I already have an installation date (it's next
-month) just from the order-planning call -- something which didn't happen
-the last time. Within the next few weeks, I will either finally be
-&lt;a href="https://blog.davep.org/2026/05/15/planning-on-returning-to-streaming.html"&gt;returning to
-streaming&lt;/a&gt;, and
-enjoying all the other benefits of full fibre, or I'll be writing yet
-another post about how EE and Openreach messed up.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/06/13/full-fibre-might-be-back-on.html"/>
-    <category term="Life"/>
-    <category term="BT"/>
-    <category term="Broadband"/>
-    <category term="Business"/>
-    <category term="EE"/>
-    <category term="Openreach"/>
-    <published>2026-06-13T20:33:04+01:00</published>
   </entry>
 </feed>
