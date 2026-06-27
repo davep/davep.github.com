@@ -8,7 +8,123 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 26 Jun 2026 15:56:36 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 27 Jun 2026 15:33:55 +0000</lastBuildDate>
+    <item>
+      <title>BlogMore v2.44.0</title>
+      <link>https://blog.davep.org/2026/06/27/blogmore-v2-44-0.html</link>
+      <description>&lt;p&gt;It's been a short while since I last made a release of
+&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;; in fact, the time since the &lt;a href="https://blog.davep.org/2026/06/11/blogmore-v2-43-0.html"&gt;last
+update&lt;/a&gt; might be the longest I've gone
+between versions since the first release. I think this &lt;em&gt;might&lt;/em&gt; mean it is
+actually more or less feature complete!&lt;/p&gt;
+&lt;p&gt;More or less.&lt;/p&gt;
+&lt;p&gt;Except... I did have to spend a bit of time (and some
+&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt; quota) this morning adding something I've
+been wanting to add: automatic generation of cover images aimed at social
+media sites (so the kinds of images that show up when you post to Mastodon,
+Bluesky, or that other terrible site some people still seem intent on using
+for some perverse reason).&lt;/p&gt;
+&lt;p&gt;BlogMore has supported &lt;a href="https://blogmore.davep.dev/writing_a_post/#cover" rel="noopener noreferrer" target="_blank"&gt;the declaration of a
+&lt;code&gt;cover&lt;/code&gt;&lt;/a&gt; from the very
+first release. This was done in a way that it was up to the author of the
+post to create and include the image. Personally, in my posts, I've tended
+to set the &lt;code&gt;cover&lt;/code&gt; to point at the most relevant image in the post, if a
+post has any images. I've also had BlogMore always work such that a post
+without a &lt;code&gt;cover&lt;/code&gt; has the social image set to the site's logo image (if it
+has one).&lt;/p&gt;
+&lt;p&gt;This works, but it does mean that all of the posts I make that have no cover
+(feels like that's roughly half of them -- I could &lt;a href="https://blog.davep.org/2026/06/02/recreating-my-blog-stats.html"&gt;probably do something
+fun with the dump of posts to know for
+sure&lt;/a&gt;) simply show my masked face
+when I share them. That's by design, but not ideal.&lt;/p&gt;
+&lt;p&gt;So &lt;a href="https://blogmore.davep.dev/changelog/#v2440" rel="noopener noreferrer" target="_blank"&gt;v2.44.0&lt;/a&gt; adds support for
+an "auto covers" feature. I've tried to do this in a way that is fully
+backward-compatible. The feature itself is off by default, won't override
+any covers you have specifically set for posts, and can also be used and
+controlled on a per-post basis.&lt;/p&gt;
+&lt;p&gt;The core of the feature is controlled by a new &lt;a href="https://blogmore.davep.dev/configuration/#auto_covers" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;auto_covers&lt;/code&gt; section in the
+configuration file&lt;/a&gt;.
+In here you can control if the feature is on or off by default, what layout
+to use for the cover images, what colours to use, and so on. There's plenty
+to experiment with and it should be fairly straightforward to create covers
+that look unique to your blog.&lt;/p&gt;
+&lt;p&gt;There are three styles of cover that can be generated. The &lt;code&gt;minimalist&lt;/code&gt; does
+as the name suggests: it tries to keep things as minimal as possible (and
+will generally result in the smallest file).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Minimalist cover" height="630" loading="lazy" src="https://blog.davep.org/attachments/2026/06/27/cover-minimalist.webp#centre" width="1200" /&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;split&lt;/code&gt; type is a little richer, including the site logo if you've set
+one. Generally the image size will be bigger than &lt;code&gt;minimalist&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Split cover" height="630" loading="lazy" src="https://blog.davep.org/attachments/2026/06/27/cover-split.webp#centre" width="1200" /&gt;&lt;/p&gt;
+&lt;p&gt;Finally there is &lt;code&gt;editorial&lt;/code&gt;, which includes the title, logo, the
+description for the post, the category and the tags. Because this is the
+busiest style it will generally result in the biggest file.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Editorial cover" height="630" loading="lazy" src="https://blog.davep.org/attachments/2026/06/27/cover-editorial.webp#centre" width="1200" /&gt;&lt;/p&gt;
+&lt;p&gt;As you might imagine, generating these images for &lt;em&gt;every&lt;/em&gt; post that doesn't
+have a &lt;code&gt;cover&lt;/code&gt; set can be very time-consuming. Because of this the generated
+images are &lt;a href="https://blogmore.davep.dev/command_line/#cache-command" rel="noopener noreferrer" target="_blank"&gt;cached&lt;/a&gt;,
+so subsequent site generations should hardly ever be affected (unless you
+change any of the parameters relating to cover generation).&lt;/p&gt;
+&lt;div class="admonition admonition-note"&gt;
+&lt;div class="admonition-title"&gt;ℹ️ Note&lt;/div&gt;
+&lt;div class="admonition-content"&gt;
+&lt;p&gt;As with image optimisation, this does mean that more storage is going to
+be used between blog builds. If you use this cover feature, not only will
+more images be created in your static site output, but the BlogMore cache
+related to the blog will also grow. Keep this in mind when deciding to use
+this feature.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;It might also be the case that you don't want to generate cover images for
+all of your historical posts, but you do want them for all future posts.
+That approach is possible. All you need to do is set everything as you want
+it in the configuration file but set &lt;code&gt;enabled&lt;/code&gt; under &lt;code&gt;auto_covers&lt;/code&gt; to
+&lt;code&gt;false&lt;/code&gt;. Then, for any post where you &lt;em&gt;do&lt;/em&gt; want an auto-generated cover,
+simply &lt;a href="https://blogmore.davep.dev/writing_a_post/#auto_cover" rel="noopener noreferrer" target="_blank"&gt;set &lt;code&gt;auto_cover&lt;/code&gt; in its frontmatter to an appropriate
+value&lt;/a&gt;. To go with
+the default settings, set it to &lt;code&gt;default&lt;/code&gt;, or if you want to control the
+layout per-post, set it to the desired layout for that post.&lt;/p&gt;
+&lt;p&gt;To try and summarise, the rules for selecting a cover for a given post are
+something like:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;If it has a &lt;code&gt;cover&lt;/code&gt; set in its frontmatter, that is used.&lt;/li&gt;
+&lt;li&gt;If it has an &lt;code&gt;auto_cover&lt;/code&gt; set to anything other than &lt;code&gt;none&lt;/code&gt; in its
+   frontmatter, the desired type of auto-cover will be used.&lt;/li&gt;
+&lt;li&gt;If it has neither &lt;code&gt;cover&lt;/code&gt; nor &lt;code&gt;auto_cover&lt;/code&gt; set, a cover will be generated
+   if &lt;code&gt;auto_covers.enabled&lt;/code&gt; is set to &lt;code&gt;true&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Hopefully that's clear.&lt;/p&gt;
+&lt;p&gt;Despite this post having images in it, I've &lt;em&gt;not&lt;/em&gt; set a &lt;code&gt;cover&lt;/code&gt; for it and I
+have the following setup in my configuration file:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;auto_covers&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;enabled&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;layout&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;editorial&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;background_type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;gradient&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;background_color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#0f172a&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;gradient_colors&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#1e293b&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#0f172a&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;font_family&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Inter&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;text_color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#f8fafc&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;meta_color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#94a3b8&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;accent_color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#38bdf8&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;show_author&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;show_read_time&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;show_date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;show_logo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This should mean that, if I've got this all working correctly, this post,
+and all historical posts without a cover, get auto-generated covers. This
+should also be very evident as you hover over posts in the &lt;a href="https://blog.davep.org/graph/"&gt;graph&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Fingers crossed it all works out...&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/27/blogmore-v2-44-0.html</guid>
+      <category>Coding</category>
+      <category>BlogMore</category>
+      <category>Coding</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <pubDate>Sat, 27 Jun 2026 16:31:11 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v0.3.0</title>
       <link>https://blog.davep.org/2026/06/26/rogallo-v0-3-0.html</link>
@@ -981,7 +1097,7 @@ out I hadn't. Somehow I'd missed
 &lt;p&gt;This is another one of those packages whose content started out as ad-hoc
 commands, added to the &lt;code&gt;~/.emacs&lt;/code&gt; that first started to emerge as I got to
 know Emacs on OS/2 and then GNU/Linux back in the mid-1990s. I think it was
-back in 2016&lt;sup id="fnref:412-1"&gt;&lt;a class="footnote-ref" href="#fn:412-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, when I did &lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;a big revamp of my Emacs
+back in 2016&lt;sup id="fnref:413-1"&gt;&lt;a class="footnote-ref" href="#fn:413-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, when I did &lt;a href="https://blog.davep.org/2016/05/26/starting_fresh_with_gnu_emacs.html"&gt;a big revamp of my Emacs
 environment&lt;/a&gt;, that I moved
 all of those roughly-related commands out into their own file.&lt;/p&gt;
 &lt;p&gt;Honestly, I think I can dump most of them now. There's stuff in there for
@@ -1020,7 +1136,7 @@ yet to fail me. You can see just how dated it is from this:&lt;/p&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;If you know, you'll know why &lt;code&gt;is-sig-line&lt;/code&gt; is there&lt;sup id="fnref:412-2"&gt;&lt;a class="footnote-ref" href="#fn:412-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;If you know, you'll know why &lt;code&gt;is-sig-line&lt;/code&gt; is there&lt;sup id="fnref:413-2"&gt;&lt;a class="footnote-ref" href="#fn:413-2"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;I do still use &lt;code&gt;become-freshly-indented-no-tabs&lt;/code&gt; on occasion too, and have
 it bound to an easy-to-remember and obvious (to me) key.&lt;/p&gt;
 &lt;p&gt;And so, despite the fact that most of the content of &lt;code&gt;become.el&lt;/code&gt; is probably
@@ -1032,14 +1148,14 @@ longer.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:412-1"&gt;
+&lt;li id="fn:413-1"&gt;
 &lt;p&gt;The header for &lt;code&gt;become.el&lt;/code&gt; says 2017, but I think the header itself
 came a little later when I &lt;a href="https://blog.davep.org/2017/04/01/another_revamp_of_my_emacs_config.html"&gt;did some more work on my
-config&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:412-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+config&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:413-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:412-2"&gt;
+&lt;li id="fn:413-2"&gt;
 &lt;p&gt;And if you don't know, &lt;a href="https://en.wikipedia.org/wiki/Signature_block#Standard_delimiter" rel="noopener noreferrer" target="_blank"&gt;now you
-do&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:412-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+do&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:413-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1167,62 +1283,6 @@ CLI&lt;/a&gt;, and &lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antig
       <category>Video</category>
       <category>YouTube</category>
       <pubDate>Mon, 15 Jun 2026 14:28:58 +0100</pubDate>
-    </item>
-    <item>
-      <title>Recently I found - 1</title>
-      <link>https://blog.davep.org/2026/06/15/recently-i-found-1.html</link>
-      <description>&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;An occasional collection of things I've &lt;a href="https://blog.davep.org/series/recently-i-found/"&gt;recently
-found&lt;/a&gt; on the Internet and added to &lt;a href="https://blog.davep.org/bookmarks/"&gt;my
-bookmarks&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="tutti-space-program"&gt;&lt;a href="https://tsp.grantkot.com/" rel="noopener noreferrer" target="_blank"&gt;Tutti Space Program&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Described as &lt;em&gt;"A playful 2D space sandbox with flowing materials, heat, and
-gravity"&lt;/em&gt;, it's exactly that. One of those things to mess with in the
-browser when you're either waiting for a boring meeting, or in a boring
-meeting, or just have time to kill. Or just because.&lt;/p&gt;
-&lt;h2 id="the-jqwik-anti-ai-affair"&gt;&lt;a href="https://blog.johanneslink.net/2026/06/09/the-jqwik-anti-ai-affair/" rel="noopener noreferrer" target="_blank"&gt;The Jqwik Anti-AI Affair&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The Jqwik author's perspective on their Markdown-based "malware".&lt;/p&gt;
-&lt;h2 id="finalist"&gt;&lt;a href="https://www.finalist.works/" rel="noopener noreferrer" target="_blank"&gt;Finalist&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Saw this go past in my Mastodon feed, although I lost track of who mentioned
-it. This app falls under the heading of &lt;em&gt;"apps I really want to like because
-it seems to solve a problem I want solved but I don't like how it solves
-it"&lt;/em&gt;. Mostly I do like how it solves it, but something is off about it; also
-it's laggy as hell on my iPhone 16 Pro, for some reason.&lt;/p&gt;
-&lt;p&gt;As such, I didn't stick with it for long, but I might revisit it at some
-point to see if the performance improves; hence saving it.&lt;/p&gt;
-&lt;h2 id="modus-themes"&gt;&lt;a href="https://protesilaos.com/emacs/modus-themes" rel="noopener noreferrer" target="_blank"&gt;Modus Themes&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;In the past few days I've been toying with
-&lt;a href="https://blog.davep.org/2026/06/12/simplifying-my-mode-line.html"&gt;changing&lt;/a&gt; the
-&lt;a href="https://blog.davep.org/2026/06/13/it-got-darker.html"&gt;look&lt;/a&gt; of my Emacs. This is where I landed.
-The documentation is excellent. I don't know why it took me so long to
-discover it.&lt;/p&gt;
-&lt;h2 id="lisaos-emulator"&gt;&lt;a href="https://experiments.frontierslab.ai/lisa-emulator/?profile=/lisa-emulator/los31-run.image" rel="noopener noreferrer" target="_blank"&gt;LisaOS Emulator&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;An Apple Lisa. In the browser! I've never used a Lisa. I've never seen one
-in person. It's sort of wild to me that I now live at a moment in time where
-we can emulate, right in the browser, machines that date from my younger
-days.&lt;/p&gt;
-&lt;h2 id="vintage-macworld-magazine-library"&gt;&lt;a href="https://vintageapple.org/macworld/" rel="noopener noreferrer" target="_blank"&gt;Vintage Macworld Magazine Library&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Never read it myself; I'm a late arrival to the world of the Mac (I've been
-a user &lt;a href="https://blog.davep.org/2015/06/27/my-first-couple-of-weeks-with-an-imac.html"&gt;just over a decade
-now&lt;/a&gt;). Should be fun
-reading some of the older copies.&lt;/p&gt;
-&lt;h2 id="project-gemini"&gt;&lt;a href="https://geminiprotocol.net/" rel="noopener noreferrer" target="_blank"&gt;Project Gemini&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This is a new one on me; I just stumbled on it over the weekend. It is a now
-well-established protocol for a simple web of documents. I'm &lt;em&gt;very&lt;/em&gt; tempted
-to have a play with this. I'm ever so slightly tempted to see if I can do
-something with &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, such that I could
-target this approach in some way too.&lt;/p&gt;
-&lt;h2 id="gemcities"&gt;&lt;a href="https://www.gemcities.com/" rel="noopener noreferrer" target="_blank"&gt;Gemcities&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Free hosting for Gemini-protocol sites.&lt;/p&gt;
-&lt;h2 id="flounder"&gt;&lt;a href="https://flounder.online/" rel="noopener noreferrer" target="_blank"&gt;flounder&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Free hosting for Gemini-protocol sites.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/06/15/recently-i-found-1.html</guid>
-      <category>Bookmarks</category>
-      <category>Apple</category>
-      <category>Bookmarks</category>
-      <category>Emacs</category>
-      <category>Raindrop</category>
-      <pubDate>Mon, 15 Jun 2026 09:35:19 +0100</pubDate>
     </item>
   </channel>
 </rss>

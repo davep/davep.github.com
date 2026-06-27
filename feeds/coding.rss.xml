@@ -8,7 +8,123 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 26 Jun 2026 15:56:36 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 27 Jun 2026 15:33:55 +0000</lastBuildDate>
+    <item>
+      <title>BlogMore v2.44.0</title>
+      <link>https://blog.davep.org/2026/06/27/blogmore-v2-44-0.html</link>
+      <description>&lt;p&gt;It's been a short while since I last made a release of
+&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;; in fact, the time since the &lt;a href="https://blog.davep.org/2026/06/11/blogmore-v2-43-0.html"&gt;last
+update&lt;/a&gt; might be the longest I've gone
+between versions since the first release. I think this &lt;em&gt;might&lt;/em&gt; mean it is
+actually more or less feature complete!&lt;/p&gt;
+&lt;p&gt;More or less.&lt;/p&gt;
+&lt;p&gt;Except... I did have to spend a bit of time (and some
+&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt; quota) this morning adding something I've
+been wanting to add: automatic generation of cover images aimed at social
+media sites (so the kinds of images that show up when you post to Mastodon,
+Bluesky, or that other terrible site some people still seem intent on using
+for some perverse reason).&lt;/p&gt;
+&lt;p&gt;BlogMore has supported &lt;a href="https://blogmore.davep.dev/writing_a_post/#cover" rel="noopener noreferrer" target="_blank"&gt;the declaration of a
+&lt;code&gt;cover&lt;/code&gt;&lt;/a&gt; from the very
+first release. This was done in a way that it was up to the author of the
+post to create and include the image. Personally, in my posts, I've tended
+to set the &lt;code&gt;cover&lt;/code&gt; to point at the most relevant image in the post, if a
+post has any images. I've also had BlogMore always work such that a post
+without a &lt;code&gt;cover&lt;/code&gt; has the social image set to the site's logo image (if it
+has one).&lt;/p&gt;
+&lt;p&gt;This works, but it does mean that all of the posts I make that have no cover
+(feels like that's roughly half of them -- I could &lt;a href="https://blog.davep.org/2026/06/02/recreating-my-blog-stats.html"&gt;probably do something
+fun with the dump of posts to know for
+sure&lt;/a&gt;) simply show my masked face
+when I share them. That's by design, but not ideal.&lt;/p&gt;
+&lt;p&gt;So &lt;a href="https://blogmore.davep.dev/changelog/#v2440" rel="noopener noreferrer" target="_blank"&gt;v2.44.0&lt;/a&gt; adds support for
+an "auto covers" feature. I've tried to do this in a way that is fully
+backward-compatible. The feature itself is off by default, won't override
+any covers you have specifically set for posts, and can also be used and
+controlled on a per-post basis.&lt;/p&gt;
+&lt;p&gt;The core of the feature is controlled by a new &lt;a href="https://blogmore.davep.dev/configuration/#auto_covers" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;auto_covers&lt;/code&gt; section in the
+configuration file&lt;/a&gt;.
+In here you can control if the feature is on or off by default, what layout
+to use for the cover images, what colours to use, and so on. There's plenty
+to experiment with and it should be fairly straightforward to create covers
+that look unique to your blog.&lt;/p&gt;
+&lt;p&gt;There are three styles of cover that can be generated. The &lt;code&gt;minimalist&lt;/code&gt; does
+as the name suggests: it tries to keep things as minimal as possible (and
+will generally result in the smallest file).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Minimalist cover" height="630" loading="lazy" src="https://blog.davep.org/attachments/2026/06/27/cover-minimalist.webp#centre" width="1200" /&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;split&lt;/code&gt; type is a little richer, including the site logo if you've set
+one. Generally the image size will be bigger than &lt;code&gt;minimalist&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Split cover" height="630" loading="lazy" src="https://blog.davep.org/attachments/2026/06/27/cover-split.webp#centre" width="1200" /&gt;&lt;/p&gt;
+&lt;p&gt;Finally there is &lt;code&gt;editorial&lt;/code&gt;, which includes the title, logo, the
+description for the post, the category and the tags. Because this is the
+busiest style it will generally result in the biggest file.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Editorial cover" height="630" loading="lazy" src="https://blog.davep.org/attachments/2026/06/27/cover-editorial.webp#centre" width="1200" /&gt;&lt;/p&gt;
+&lt;p&gt;As you might imagine, generating these images for &lt;em&gt;every&lt;/em&gt; post that doesn't
+have a &lt;code&gt;cover&lt;/code&gt; set can be very time-consuming. Because of this the generated
+images are &lt;a href="https://blogmore.davep.dev/command_line/#cache-command" rel="noopener noreferrer" target="_blank"&gt;cached&lt;/a&gt;,
+so subsequent site generations should hardly ever be affected (unless you
+change any of the parameters relating to cover generation).&lt;/p&gt;
+&lt;div class="admonition admonition-note"&gt;
+&lt;div class="admonition-title"&gt;ℹ️ Note&lt;/div&gt;
+&lt;div class="admonition-content"&gt;
+&lt;p&gt;As with image optimisation, this does mean that more storage is going to
+be used between blog builds. If you use this cover feature, not only will
+more images be created in your static site output, but the BlogMore cache
+related to the blog will also grow. Keep this in mind when deciding to use
+this feature.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;It might also be the case that you don't want to generate cover images for
+all of your historical posts, but you do want them for all future posts.
+That approach is possible. All you need to do is set everything as you want
+it in the configuration file but set &lt;code&gt;enabled&lt;/code&gt; under &lt;code&gt;auto_covers&lt;/code&gt; to
+&lt;code&gt;false&lt;/code&gt;. Then, for any post where you &lt;em&gt;do&lt;/em&gt; want an auto-generated cover,
+simply &lt;a href="https://blogmore.davep.dev/writing_a_post/#auto_cover" rel="noopener noreferrer" target="_blank"&gt;set &lt;code&gt;auto_cover&lt;/code&gt; in its frontmatter to an appropriate
+value&lt;/a&gt;. To go with
+the default settings, set it to &lt;code&gt;default&lt;/code&gt;, or if you want to control the
+layout per-post, set it to the desired layout for that post.&lt;/p&gt;
+&lt;p&gt;To try and summarise, the rules for selecting a cover for a given post are
+something like:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;If it has a &lt;code&gt;cover&lt;/code&gt; set in its frontmatter, that is used.&lt;/li&gt;
+&lt;li&gt;If it has an &lt;code&gt;auto_cover&lt;/code&gt; set to anything other than &lt;code&gt;none&lt;/code&gt; in its
+   frontmatter, the desired type of auto-cover will be used.&lt;/li&gt;
+&lt;li&gt;If it has neither &lt;code&gt;cover&lt;/code&gt; nor &lt;code&gt;auto_cover&lt;/code&gt; set, a cover will be generated
+   if &lt;code&gt;auto_covers.enabled&lt;/code&gt; is set to &lt;code&gt;true&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Hopefully that's clear.&lt;/p&gt;
+&lt;p&gt;Despite this post having images in it, I've &lt;em&gt;not&lt;/em&gt; set a &lt;code&gt;cover&lt;/code&gt; for it and I
+have the following setup in my configuration file:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;auto_covers&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;enabled&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;layout&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;editorial&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;background_type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;gradient&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;background_color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#0f172a&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;gradient_colors&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#1e293b&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#0f172a&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;font_family&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Inter&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;text_color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#f8fafc&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;meta_color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#94a3b8&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;accent_color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#38bdf8&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;show_author&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;show_read_time&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;show_date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;show_logo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This should mean that, if I've got this all working correctly, this post,
+and all historical posts without a cover, get auto-generated covers. This
+should also be very evident as you hover over posts in the &lt;a href="https://blog.davep.org/graph/"&gt;graph&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Fingers crossed it all works out...&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/27/blogmore-v2-44-0.html</guid>
+      <category>Coding</category>
+      <category>BlogMore</category>
+      <category>Coding</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <pubDate>Sat, 27 Jun 2026 16:31:11 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v0.3.0</title>
       <link>https://blog.davep.org/2026/06/26/rogallo-v0-3-0.html</link>
@@ -1186,65 +1302,6 @@ easily ask the question.&lt;/p&gt;</description>
       <category>Python</category>
       <category>jq</category>
       <pubDate>Sun, 31 May 2026 10:59:18 +0100</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.33.0</title>
-      <link>https://blog.davep.org/2026/05/29/blogmore-v2-33-0.html</link>
-      <description>&lt;p&gt;I've released &lt;a href="https://blogmore.davep.dev/changelog/#v2330" rel="noopener noreferrer" target="_blank"&gt;v2.33.0&lt;/a&gt; of
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;, which extends the &lt;a href="https://blog.davep.org/stats/"&gt;stats
-page&lt;/a&gt; some more, and also adds a tool so a user can do all sorts of
-fun things with the raw data of their posts.&lt;/p&gt;
-&lt;p&gt;The addition to the stats page is a list of years along with the top five
-words that characterise the &lt;a href="https://blog.davep.org/stats/#focus-by-year"&gt;focused subject for those
-years&lt;/a&gt;. This is done using
-&lt;a href="https://en.wikipedia.org/wiki/Tf–idf" rel="noopener noreferrer" target="_blank"&gt;TF-IDF&lt;/a&gt;. While the results for my
-blog don't come as a surprise, I am pleased to see that it does turn out
-pretty much how I would have expected:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Blogging focus per year" height="542" loading="lazy" src="https://blog.davep.org/attachments/2026/05/29/focus.webp#centre" width="777" /&gt;&lt;/p&gt;
-&lt;p&gt;This feels like another fun way to learn something about the post history
-for your own blog.&lt;/p&gt;
-&lt;p&gt;Which got me thinking: there's probably any number of other niche and
-bizarre things that could be done with the content of a blog to gain some
-insight as to its history, and I really shouldn't just keep adding more and
-more things to the stats page. But what if I wanted a way to run some code
-over all the posts? Wouldn't it be useful if I could get all of the parsed
-post data in JSON format so I can play with it?&lt;/p&gt;
-&lt;p&gt;With that idea in mind, &lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;I added the &lt;code&gt;dump&lt;/code&gt;
-command&lt;/a&gt;. When run,
-it will print to &lt;code&gt;stdout&lt;/code&gt; a full dump of all of your posts, as JSON, so you
-can then write your own nifty tool to read it back in and do any number of
-interesting checks, tests, reformats or manipulations. For example, if I
-wanted to use &lt;a href="https://jqlang.org/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;jq&lt;/code&gt;&lt;/a&gt; to pull out the metadata for this
-particular post I could:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;blogmore&lt;span class="w"&gt; &lt;/span&gt;dump&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.[] | select(.id == &amp;quot;posts/2026/05/2026-05-29-blogmore-v2-33-0.md&amp;quot;) | .metadata&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;which gives me this result:&lt;/p&gt;
-&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;BlogMore v2.33.0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2026-05-29 14:14:10+0100&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;category&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Coding&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;BlogMore, Coding, PyPI, Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;cover&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/attachments/2026/05/29/focus.webp&amp;quot;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;I can see this being pretty useful to
-&lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; at some point, if I
-want to add some better querying tools or similar (not that I'd want to run
-a &lt;code&gt;dump&lt;/code&gt; every time, it does require that a full parse and render has to
-happen).&lt;/p&gt;
-&lt;p&gt;Hopefully this will be useful to someone else. I know I'll be toying with it
-to find out other things about my posting history.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/05/29/blogmore-v2-33-0.html</guid>
-      <category>Coding</category>
-      <category>BlogMore</category>
-      <category>Coding</category>
-      <category>JSON</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>jq</category>
-      <pubDate>Fri, 29 May 2026 14:14:10 +0100</pubDate>
     </item>
   </channel>
 </rss>
