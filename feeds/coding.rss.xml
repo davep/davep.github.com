@@ -8,7 +8,48 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 28 Jun 2026 09:32:12 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jun 2026 13:04:08 +0000</lastBuildDate>
+    <item>
+      <title>BlogMore v2.44.1</title>
+      <link>https://blog.davep.org/2026/06/28/blogmore-v2-44-1.html</link>
+      <description>&lt;p&gt;I've just done a quick update to &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;,
+bumping the version to v2.44.1. This release fixes an issue with
+&lt;a href="https://blog.davep.org/2026/06/27/blogmore-v2-44-0.html"&gt;auto-cover generation&lt;/a&gt; where, if you
+changed some properties relating to a post (or the blog as a whole), the
+auto-covers weren't being updated to reflect those changes.&lt;/p&gt;
+&lt;p&gt;A good example is the description of a post. In the editorial-style cover,
+the description is shown; this is taken either from the first paragraph of
+the post or, if you've provided a &lt;code&gt;description&lt;/code&gt; front matter value, it's
+taken from that property. The problem was that if you changed the post such
+that the text of the description changed, after a cover had been generated,
+it wasn't regenerated because it was already in the cache.&lt;/p&gt;
+&lt;p&gt;So this release is a bit more aggressive about when it will ignore the
+cached cover and generate a new one. The result is that the cover will
+reflect the changes.&lt;/p&gt;
+&lt;p&gt;There is, of course, a small downside to all of this (which was also an
+issue for v2.44.0 too): if you're working on a new post in &lt;code&gt;serve&lt;/code&gt; mode, any
+time you change something that causes the cover to be recreated, the older
+versions of the cover will be left in the cache; in other words, there's a
+storage overhead to all of this.&lt;/p&gt;
+&lt;p&gt;For now, I'm just going to live with this downside (BlogMore has a cache
+clearing command anyway, so if it becomes an issue you can always use that).
+In the near future, though, I think I'm going to add a smart-clear
+sub-command to the &lt;code&gt;cache&lt;/code&gt; command (or perhaps a &lt;code&gt;--smart&lt;/code&gt; switch to the
+&lt;code&gt;clear&lt;/code&gt; sub-command). This will go through the cache and find all the files
+that aren't currently "valid" and remove them, leaving all the "good" cache
+entries intact. That should be useful for occasional housekeeping without
+needing to wipe out the whole cache, and so greatly slowing the next build
+of a site because every single cover needs creating again, and every single
+optimised image needs generating again (if you have image optimisation
+turned on).&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/06/28/blogmore-v2-44-1.html</guid>
+      <category>Coding</category>
+      <category>BlogMore</category>
+      <category>Coding</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <pubDate>Sun, 28 Jun 2026 14:01:33 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v0.4.0</title>
       <link>https://blog.davep.org/2026/06/28/rogallo-v0-4-0.html</link>
@@ -1269,41 +1310,6 @@ appearing on those pages. That's now fixed.&lt;/p&gt;</description>
       <category>PyPI</category>
       <category>Python</category>
       <pubDate>Mon, 01 Jun 2026 08:42:40 +0100</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.35.0</title>
-      <link>https://blog.davep.org/2026/05/31/blogmore-v2-35-0.html</link>
-      <description>&lt;p&gt;Well, I wasn't expecting to release a new version of
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; quite so soon, given I made a
-release earlier today. But &lt;a href="https://github.com/davep/blogmore/issues/572" rel="noopener noreferrer" target="_blank"&gt;an issue came
-in&lt;/a&gt; that the Bluesky icon
-wasn't showing in the socials section on someone's blog, despite the fact
-that the docs suggested it should work.&lt;/p&gt;
-&lt;p&gt;Sure enough, &lt;a href="https://blog.cpjobling.net/" rel="noopener noreferrer" target="_blank"&gt;the icon wasn't there&lt;/a&gt; despite
-the docs giving Bluesky as an example that should work. A quick check, and
-the reason for the problem was clear: &lt;a href="https://github.com/davep/blogmore/pull/573/changes" rel="noopener noreferrer" target="_blank"&gt;the code was using a version of
-FontAwesome that didn't have that
-icon&lt;/a&gt;. An easy fix.&lt;/p&gt;
-&lt;p&gt;It's interesting to note that Copilot/Claude (which is what did this work
-originally) produced one thing in the code, and then made an unsupportable
-claim in the documentation. Furthermore, it &lt;em&gt;didn't&lt;/em&gt; construct the tests to
-at least match the documentation's claims. None of this is a surprise, of
-course, but it is a good illustration of the fact that agent-based coding is
-just fancy auto-complete with no real ability to maintain a coherent view of
-the whole project.&lt;/p&gt;
-&lt;p&gt;Anyway, &lt;a href="https://blogmore.davep.dev/changelog/#v2350" rel="noopener noreferrer" target="_blank"&gt;v2.35.0&lt;/a&gt; is now
-available and I too can have a &lt;a href="https://bsky.app/profile/davep.org" rel="noopener noreferrer" target="_blank"&gt;Bluesky
-link&lt;/a&gt; in my socials. Oddly, I hadn't
-thought to add it before now.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/05/31/blogmore-v2-35-0.html</guid>
-      <category>Coding</category>
-      <category>AI</category>
-      <category>BlogMore</category>
-      <category>Coding</category>
-      <category>Copilot</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <pubDate>Sun, 31 May 2026 16:40:49 +0100</pubDate>
     </item>
   </channel>
 </rss>
