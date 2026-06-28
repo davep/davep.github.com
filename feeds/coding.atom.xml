@@ -2,11 +2,95 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-06-27T15:33:55.442976+00:00</updated>
+  <updated>2026-06-28T09:32:12.728861+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/06/28/rogallo-v0-4-0.html</id>
+    <title>Rogallo v0.4.0</title>
+    <updated>2026-06-28T10:30:35+01:00</updated>
+    <content type="html">&lt;p&gt;I've updated &lt;a href="https://github.com/davep/rogallo" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt; to v0.4.0. The main
+new feature in this release is support for capsule-requested user input.
+There are some other simple additions too.&lt;/p&gt;
+&lt;p&gt;I've added a &lt;code&gt;Reload&lt;/code&gt; command, bound to &lt;kbd&gt;F5&lt;/kbd&gt; by default. As you
+might imagine, it reloads whatever page you're looking at right now.&lt;/p&gt;
+&lt;p&gt;I've also added a pair of commands for copying things to the clipboard.
+There is &lt;code&gt;CopyLocationToClipboard&lt;/code&gt; (bound to
+&lt;kbd&gt;ctrl&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kbd&gt;c&lt;/kbd&gt; by default) which, as the name
+suggests, copies the current location (either the Gemini URI or the path to
+the file depending on what you're viewing) to the clipboard. In a similar
+way, &lt;code&gt;CopyDocumentToClipboard&lt;/code&gt; will copy the content of the document you're
+viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kbd&gt;c&lt;/kbd&gt; by default).&lt;/p&gt;
+&lt;p&gt;It's worth noting that the default bindings for both of those aren't going
+to be ideal for some terminals. They should be fine in any terminal that
+supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
+This can be changed to your taste via the configuration file&lt;sup id="fnref:416-1"&gt;&lt;a class="footnote-ref" href="#fn:416-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
+(bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
+between a rendered view and a plain text (source) view. So if you're looking
+at a page like this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A rendered Gemini page" height="1792" loading="lazy" src="https://blog.davep.org/attachments/2026/06/28/rendered-view.webp#centre" width="1974" /&gt;&lt;/p&gt;
+&lt;p&gt;and want to know what the underlying source looks like, just toggle the
+view:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The source view of the page" height="1792" loading="lazy" src="https://blog.davep.org/attachments/2026/06/28/source-view.webp#centre" width="1974" /&gt;&lt;/p&gt;
+&lt;p&gt;Finally, the most significant addition is support for capsule-requested user
+input. This handles a &lt;code&gt;10&lt;/code&gt; or &lt;code&gt;11&lt;/code&gt; response from a server, prompts the user
+for input, and then sends it back as a query.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A request for user input" height="1792" loading="lazy" src="https://blog.davep.org/attachments/2026/06/28/user-input.webp#centre" width="1974" /&gt;&lt;/p&gt;
+&lt;p&gt;It's worth noting that the sensitive input (response &lt;code&gt;11&lt;/code&gt;) isn't done in the
+most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
+password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
+widget&lt;/a&gt;.
+The problem there though is that an input request from a Gemini server
+expects and allows for multi-line input&lt;sup id="fnref:416-2"&gt;&lt;a class="footnote-ref" href="#fn:416-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+&lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
+support password-style input.&lt;/p&gt;
+&lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
+greatly lower the contrast of the text vs the background. This should match
+the &lt;em&gt;"reduce shoulder-surfing opportunities"&lt;/em&gt; requirement while not making
+it impossible to see what you're doing.&lt;/p&gt;
+&lt;p&gt;Normally I wouldn't be satisfied with this approach given that the text will
+still be visible, but I think it's a fair solution given one glaring problem
+with Gemini's sensitive input facility: the input is &lt;strong&gt;always sent back as a
+URI query string&lt;/strong&gt;. That means that the resulting input is part of the URI,
+will be visible in any URI display on the screen, will be part of the
+history, etc. The sensitive part is &lt;em&gt;only&lt;/em&gt; about making it less obvious at
+the moment of input, so I think this approach is in that spirit.&lt;/p&gt;
+&lt;p&gt;So... that's it for v0.4.0, and that's also likely it for the next week or
+so. I'm going to be super busy in AFK life next week and into the week
+after, so work on Rogallo will pause. It's almost a shame, I'm having tons
+of fun working on it.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:416-1"&gt;
+&lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
+documented when I get round to writing the documentation for Rogallo.
+Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
+Hike&lt;/a&gt; to get
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:416-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:416-2"&gt;
+&lt;p&gt;Well, technically, it's an optional feature of a client; the
+specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:416-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/06/28/rogallo-v0-4-0.html"/>
+    <category term="Coding"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="Rogallo"/>
+    <category term="gemtext"/>
+    <category term="smolweb"/>
+    <category term="textual"/>
+    <published>2026-06-28T10:30:35+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/06/27/blogmore-v2-44-0.html</id>
     <title>BlogMore v2.44.0</title>
@@ -1238,87 +1322,5 @@ thought to add it before now.&lt;/p&gt;</content>
     <category term="PyPI"/>
     <category term="Python"/>
     <published>2026-05-31T16:40:49+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/05/31/blogmore-v2-34-0.html</id>
-    <title>BlogMore v2.34.0</title>
-    <updated>2026-05-31T10:59:18+01:00</updated>
-    <content type="html">&lt;p&gt;I've released &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
-&lt;a href="https://blogmore.davep.dev/changelog/#v2340" rel="noopener noreferrer" target="_blank"&gt;v2.34.0&lt;/a&gt;. This is a small
-update to make some changes to the
-&lt;a href="https://blog.davep.org/2026/05/29/blogmore-v2-33-0.html"&gt;newly-added&lt;/a&gt; &lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;dump&lt;/code&gt;
-command&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The first change is a small fix to the &lt;code&gt;url_path&lt;/code&gt; property, which wasn't
-being populated; now it is.&lt;/p&gt;
-&lt;p&gt;The second change adds two new properties to the output which relate to
-links that can be found inside posts: &lt;code&gt;internal_links&lt;/code&gt; and &lt;code&gt;external_links&lt;/code&gt;.
-As the names suggest, the first gives you a list of all the internal links
-that can be found in a given post, with the values given being the same
-format as the &lt;code&gt;id&lt;/code&gt; used for every post in the dump. For example:&lt;/p&gt;
-&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;quot;internal_links&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;posts/2026/05/2026-05-20-blogmore-v2-25-0.md&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;posts/2026/05/2026-05-22-blogmore-v2-26-0.md&amp;quot;&lt;/span&gt;
-&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This should give everything needed to write tools that do things similar to
-the &lt;a href="https://blogmore.davep.dev/configuration/#with_backlinks" rel="noopener noreferrer" target="_blank"&gt;back-links
-system&lt;/a&gt; in
-BlogMore itself.&lt;/p&gt;
-&lt;p&gt;The list of external links is, obviously, a list of all the links in the
-post that are external to the blog. It looks like this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;quot;external_links&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://blogmore.davep.dev/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://validator.w3.org&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://json-ld.org/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://microformats.org/wiki/microformats2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://microformats.org/wiki/rel-me&amp;quot;&lt;/span&gt;
-&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;There is, of course, some overlap with the &lt;a href="https://blogmore.davep.dev/command_line/#dump" rel="noopener noreferrer" target="_blank"&gt;link dumping
-command&lt;/a&gt;, but given that the
-information is available it seemed to make sense to provide it here; it also
-means that it's available in a more structured form.&lt;/p&gt;
-&lt;p&gt;Also providing this sort of information in the JSON output means there's a
-lot of flexibility when it comes to analysing all the posts in my blog. For
-example, I can now easily satisfy my curiosity if I want to know exactly
-which posts in my blog have no links whatsoever.&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;blogmore&lt;span class="w"&gt; &lt;/span&gt;dump&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.[] | select((.internal_links | length) == 0 and (.external_links | length) == 0) | .id&amp;#39;&lt;/span&gt;
-
-posts/2015/2015-06-18-a-mild-chrome-annoyance.md
-posts/2015/2015-06-23-and-now-for-some-ios.md
-posts/2015/2015-07-01-odd-ipod-update.md
-posts/2015/2015-08-03-best-update-ever.md
-posts/2015/2015-09-04-unknown-promo.md
-posts/2015/2015-10-19-microsoft-accounts.md
-posts/2015/2015-11-11-voice-search-failing-on-nexus-6.md
-posts/2015/2015-11-12-i-miss-until-next-alarm.md
-posts/2016/2016-04-28-i-now-own-a-macbook.md
-posts/2017/2017-12-12-on_to_something_new.md
-posts/2020/2020-06-24-swift-til-3.md
-posts/2020/2020-06-26-switch-til-5.md
-posts/2020/2020-06-28-swift-til-7.md
-posts/2020/2020-07-05-swift-til-10.md
-posts/2022/2022-06-03-failed-successfully.md
-posts/2023/2023-07-21-encouragement-i-guess.md
-posts/2023/2023-07-29-home-pod-stuck-installing.md
-posts/2023/2023-10-20-constant-siri-voice-loss.md
-posts/2026/05/2026-05-04-my-new-favourite-game-on-steam.md
-posts/2026/05/2026-05-11-steam-controller-is-close.md
-posts/2026/05/2026-05-25-this-is-not-fun.md
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Sure, I don't know what I'd do with this information, but at least I can
-easily ask the question.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/05/31/blogmore-v2-34-0.html"/>
-    <category term="Coding"/>
-    <category term="BlogMore"/>
-    <category term="Coding"/>
-    <category term="JSON"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="jq"/>
-    <published>2026-05-31T10:59:18+01:00</published>
   </entry>
 </feed>
