@@ -2,7 +2,7 @@
 title: "A view of the Wash"
 date: "2026-06-29 20:10:22+0200"
 category: Life
-tags: [Lincolnshire, flying, photography, travel]
+tags: [Lincolnshire, flying, life, photography, travel]
 cover: "/attachments/2026/06/29/the-wash.webp"
 ---
 
