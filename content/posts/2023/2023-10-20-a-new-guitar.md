@@ -1,9 +1,9 @@
 ---
-title: A new guitar
+title: "A new guitar"
 category: Life
-tags: music, guitar
-date: 2023-10-20 08:39:00 +0100
-cover: /attachments/2023/10/20/IMG_3329.webp
+tags: [guitar, life, music]
+date: "2023-10-20 08:39:00 +0100"
+cover: "/attachments/2023/10/20/IMG_3329.webp"
 ---
 
 This one has been brewing for a year, more or less. Now that I commute into

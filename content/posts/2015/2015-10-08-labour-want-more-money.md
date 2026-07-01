@@ -1,9 +1,9 @@
 ---
-title: Labour want more money
+title: "Labour want more money"
 category: Life
-tags: Politics, Labour, Labour Purge
-date: 2015-10-08 10:08:02+0100
-cover: /attachments/2015/10/08/ToryUK.webp
+tags: [Labour, "Labour Purge", Politics, life]
+date: "2015-10-08 10:08:02+0100"
+cover: "/attachments/2015/10/08/ToryUK.webp"
 ---
 
 I woke up this morning to see [this](https://twitter.com/MarkRobotArm/status/651811143284076544) being retweeted by a few people I follow:

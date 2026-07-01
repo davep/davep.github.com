@@ -1,9 +1,9 @@
 ---
-title: Labour said no thanks to my support
+title: "Labour said no thanks to my support"
 category: Life
-tags: Politics, Labour, Labour Purge
-date: 2015-09-07 12:16:30+0100
-cover: /attachments/2015/09/07/IGotPurged.webp
+tags: [Labour, "Labour Purge", Politics, life]
+date: "2015-09-07 12:16:30+0100"
+cover: "/attachments/2015/09/07/IGotPurged.webp"
 ---
 
 I've never been a member of a political party. Ever. The main reason is I'm not
