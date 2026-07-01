@@ -2,7 +2,7 @@
 title: "Recently I found - 3"
 date: "2026-07-01 10:18:29+0200"
 category: Bookmarks
-tags: [Bookmarks, Raindrop]
+tags: [AI, Bookmarks, Raindrop, "Second Life", gemtext, macOS]
 series: ["Recently I found..."]
 ---
 

@@ -1,9 +1,9 @@
 ---
-title: Goodbye Textualize
+title: "Goodbye Textualize"
 category: Life
-tags: Python, textual, Free Software, work
-date: 2024-03-28 06:30:00 +0000
-cover: /attachments/2024/03/28/achievement-unlocked.webp
+tags: ["Free Software", Python, life, textual, work]
+date: "2024-03-28 06:30:00 +0000"
+cover: "/attachments/2024/03/28/achievement-unlocked.webp"
 ---
 
 While I have been [on the receiving end of redundancy once

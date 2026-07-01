@@ -1,8 +1,8 @@
 ---
-title: On to something new (redux) (redux)
+title: "On to something new (redux) (redux)"
 category: Life
-tags: work, YouTube, streaming, gaming, PS5
-date: 2024-06-16 13:08:00 +0100
+tags: [PS5, YouTube, gaming, life, streaming, work]
+date: "2024-06-16 13:08:00 +0100"
 ---
 
 It's been a wee while since I wrote anything here (been about a month) so I
