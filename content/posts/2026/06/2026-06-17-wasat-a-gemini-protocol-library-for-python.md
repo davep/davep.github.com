@@ -2,7 +2,7 @@
 title: "Wasat - A Gemini protocol library for Python"
 date: "2026-06-17 19:35:29+0100"
 category: Python
-tags: [AI, Antigravity, Coding, "Gemini Protocol", Python, smolweb]
+tags: [AI, Antigravity, Coding, "Gemini Protocol", PyPI, Python, smolweb, wasat]
 ---
 
 I can't remember how and where I saw it, but just over a week ago I ran into
