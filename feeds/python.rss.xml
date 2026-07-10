@@ -8,7 +8,27 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 10 Jul 2026 09:18:20 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 10 Jul 2026 10:43:49 +0000</lastBuildDate>
+    <item>
+      <title>Wasat v0.2.0</title>
+      <link>https://blog.davep.org/2026/07/10/wasat-v0-2-0.html</link>
+      <description>&lt;p&gt;I've made a quick update to &lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;, my async
+&lt;a href="https://blog.davep.org/tag/gemini-protocol/"&gt;Gemini Protocol&lt;/a&gt; client library for
+&lt;a href="https://blog.davep.org/category/python/"&gt;Python&lt;/a&gt;. Now that I'm at a point where I want to add
+client certificates to &lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt;, I'm essentially shaking
+down the support for this in Wasat.&lt;/p&gt;
+&lt;p&gt;One thing I wanted right away was a certificate that, in effect, never
+expires. So with this release of Wasat I've added an option where the days
+to expire can be set to &lt;code&gt;None&lt;/code&gt;, which results in the expiration date being
+set to 9999-12-31.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/07/10/wasat-v0-2-0.html</guid>
+      <category>Python</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>Python</category>
+      <category>smolweb</category>
+      <pubDate>Fri, 10 Jul 2026 11:37:37 +0100</pubDate>
+    </item>
     <item>
       <title>textual-enhanced v1.6.0</title>
       <link>https://blog.davep.org/2026/07/06/textual-enhanced-v1-6-0.html</link>
@@ -252,7 +272,7 @@ it would be useful to have a Python client library for the protocol, and
 ideally a client library that is async. I did some searching, found client
 libraries, but none of them seemed to be async-first.&lt;/p&gt;
 &lt;p&gt;With this in mind, and to kick-start the project, last night I fired up
-&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt;&lt;sup id="fnref:393-1"&gt;&lt;a class="footnote-ref" href="#fn:393-1"&gt;1&lt;/a&gt;&lt;/sup&gt; and got a library up and going.
+&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt;&lt;sup id="fnref:394-1"&gt;&lt;a class="footnote-ref" href="#fn:394-1"&gt;1&lt;/a&gt;&lt;/sup&gt; and got a library up and going.
 &lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt; is the result. For the moment this should
 be considered alpha-status software (hence v0.0.1). I've done some &lt;em&gt;very&lt;/em&gt;
 rudimentary testing and experimenting with it and, so far, so good. It's
@@ -294,8 +314,8 @@ it, and especially writing one that works just how I want.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:393-1"&gt;
-&lt;p&gt;No, not &lt;a href="https://xkcd.com/353/" rel="noopener noreferrer" target="_blank"&gt;that one&lt;/a&gt;, the &lt;a href="https://antigravity.google/" rel="noopener noreferrer" target="_blank"&gt;other one&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:393-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:394-1"&gt;
+&lt;p&gt;No, not &lt;a href="https://xkcd.com/353/" rel="noopener noreferrer" target="_blank"&gt;that one&lt;/a&gt;, the &lt;a href="https://antigravity.google/" rel="noopener noreferrer" target="_blank"&gt;other one&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:394-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1242,77 +1262,6 @@ I'm always happy to learn about new ways!&lt;/p&gt;</description>
       <category>macOS</category>
       <category>coding</category>
       <pubDate>Sat, 05 Nov 2022 08:49:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>The PEP 8 hill I will die on</title>
-      <link>https://blog.davep.org/2020/08/23/the-pep-8-hill-i-will-die-on.html</link>
-      <description>&lt;p&gt;I first learnt Python back in the mid-to-late 90s, used it in place of Perl
-once I was comfortable with it, and then we sort of drifted apart when I
-first met Ruby. It's only in the last couple of years that I've got back
-into it, and in a huge way, thanks to &lt;a href="https://blog.davep.org/2017/12/12/on_to_something_new.html"&gt;my (not-quite-so-) new
-job&lt;/a&gt;. Despite
-the quirks and oddness (as I perceive them), I actually quite like Python
-and it's one of those languages that just flows off my fingers. I'm sure you
-know the same thing, perhaps not with Python, but there will be languages
-that just flow for you, and those that take a bit more effort and
-concentration. Python... feels okay to me.&lt;/p&gt;
-&lt;p&gt;I also appreciate that there's been a long-standing style guide. I quite
-like &lt;a href="https://python.org/dev/peps/pep-0008/" rel="noopener noreferrer" target="_blank"&gt;PEP 8&lt;/a&gt; as a read, and think
-there's a lot of good ideas in there; much of the content sits with how I'd
-approach things if I was tasked to come up with such a document. With this
-in mind, I'm a fairly heavy user of &lt;code&gt;pylint&lt;/code&gt; and it in turn leans on PEP 8
-(amongst other things) and I'm happy to accept most of its judgements. Not
-all of its judgements, &lt;a href="https://blog.davep.org/2019/11/04/my-pylint-shame.html"&gt;but even when I disagree with it I try and keep
-track of how far I'm drifting&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;But there is absolutely one hill I will happily die on when it comes to PEP
-8: the concept of &lt;a href="https://www.python.org/dev/peps/pep-0008/#whitespace-in-expressions-and-statements" rel="noopener noreferrer" target="_blank"&gt;"extraneous whitespace" in lists and
-expressions&lt;/a&gt;.
-Just.... no! Oh gods no!&lt;/p&gt;
-&lt;p&gt;To borrow a line of code from &lt;a href="https://blog.davep.org/2019/11/10/going-on-a-journey.html"&gt;the journey problem I dabbled with a while
-back&lt;/a&gt;,
-PEP 8 would have me write something like this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;perform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;commands&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;State&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;State&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Now, I'm sure plenty of people won't see a problem with this at all; but all
-I can see is an almost-claustrophobic parameter list. What's with the
-parameters being jammed up against the opening and closing parens? Why have
-the dinky little comma lost between two different things? Why have it look
-like a long stream of letters and punctuation? Why....&lt;/p&gt;
-&lt;p&gt;No.&lt;/p&gt;
-&lt;p&gt;Just no.&lt;/p&gt;
-&lt;p&gt;I can't.&lt;/p&gt;
-&lt;p&gt;Rightly or wrongly, I just need for the code to breathe a bit. When I type
-this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;perform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;commands&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;State&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;State&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;suddenly if feels like there's fresh air in the code, like it flows gently
-out of my head, off my fingers, through the keyboard and into the buffer.&lt;/p&gt;
-&lt;p&gt;In my head, and to my eyes, the code is.... relaxed.&lt;/p&gt;
-&lt;p&gt;Do I have a rational reason for this? Nope. Then again I don't see one for
-doing it the other way either; I can't think of one and I don't see one in
-the source document. So, that's a warning I always turn off with &lt;code&gt;pylint&lt;/code&gt;
-and it's a style I carry through all my Python code; and I think that's the
-important point here: anyone reading and working with my code should see the
-same style all the way through. It might differ from PEP 8 on this point,
-but at least it's the same all the way.&lt;/p&gt;
-&lt;p&gt;And, really, that's okay: &lt;a href="https://www.python.org/dev/peps/pep-0008/#a-foolish-consistency-is-the-hobgoblin-of-little-minds" rel="noopener noreferrer" target="_blank"&gt;PEP 8 is there to be
-ignored&lt;/a&gt;.
-;-)&lt;/p&gt;
-&lt;p&gt;PS: This is a small part of another blog post I was meaning to write, and
-might still do, about my (still ongoing) experience of getting
-&lt;a href="https://github.com/emacs-lsp/lsp-mode" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;lsp-mode&lt;/code&gt;&lt;/a&gt; up and running in Emacs
-and having it play nice with Python projects. I have that working, but it
-was a bit of a learning curve and epic battle over a couple of days, and one
-that had me first encounter
-&lt;a href="https://pypi.org/project/pycodestyle/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;pycodestyle&lt;/code&gt;&lt;/a&gt;. I may still tell the
-tale...&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2020/08/23/the-pep-8-hill-i-will-die-on.html</guid>
-      <category>Python</category>
-      <category>Coding</category>
-      <category>Python</category>
-      <pubDate>Sun, 23 Aug 2020 16:54:00 +0100</pubDate>
     </item>
   </channel>
 </rss>
