@@ -8,7 +8,125 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 09 Jul 2026 08:36:31 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 10 Jul 2026 09:18:20 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v0.5.0</title>
+      <link>https://blog.davep.org/2026/07/10/rogallo-v0-5-0.html</link>
+      <description>&lt;p&gt;As mentioned in &lt;a href="https://blog.davep.org/2026/06/28/rogallo-v0-4-0.html"&gt;the last release&lt;/a&gt;, I've
+been afk for a week and a bit, enjoying some downtime over in the
+Netherlands. Although... it wasn't &lt;em&gt;exactly&lt;/em&gt; all afk. I did &lt;a href="https://blog.davep.org/2026/03/28/hello-macbook-air-again.html"&gt;take a keyboard
+with me&lt;/a&gt; and, while time
+permitted, I did tinker on &lt;a href="https://github.com/davep/rogallo" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;.
+That's resulted in quite a few TODO items being ticked off, and quite a few
+changes and improvements being made.&lt;/p&gt;
+&lt;h2 id="visible-mime-type"&gt;Visible MIME type&lt;/h2&gt;
+&lt;p&gt;It's a small tweak, but I found it useful. The status bar of the main viewer
+panel now shows the MIME type of the document currently being viewed.
+Normally it will be showing &lt;code&gt;text/gemini&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="text/gemini" height="170" loading="lazy" src="https://blog.davep.org/attachments/2026/07/10/text-gemini.webp#centre" width="348" /&gt;&lt;/p&gt;
+&lt;p&gt;but Rogallo can show some other &lt;code&gt;text/&lt;/code&gt; types too, so this will also make it
+obvious what you're looking at:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="text/plain" height="190" loading="lazy" src="https://blog.davep.org/attachments/2026/07/10/text-plain.webp#centre" width="352" /&gt;&lt;/p&gt;
+&lt;p&gt;You might also notice that, depending on the theme being used, the "correct"
+MIME type gets a "this is fine" colour whereas anything else is in a more
+"neutral" colour.&lt;/p&gt;
+&lt;h2 id="better-handling-of-textplain-and-friends"&gt;Better handling of &lt;code&gt;text/plain&lt;/code&gt; and friends&lt;/h2&gt;
+&lt;p&gt;Now, if a document comes in that isn't &lt;code&gt;text/gemini&lt;/code&gt;, there is no attempt to
+parse and render it as Gemtext; it's just shown as a simple block of plain
+text.&lt;/p&gt;
+&lt;h2 id="mime-type-handling-of-local-files"&gt;MIME type handling of local files&lt;/h2&gt;
+&lt;p&gt;Given the above changes, Rogallo now makes an effort to guess the MIME type
+of any local file you view. This should help ensure that only Gemtext files
+get parsed and rendered as such.&lt;/p&gt;
+&lt;h2 id="os-hand-off-for-other-mime-types"&gt;OS hand-off for other MIME types&lt;/h2&gt;
+&lt;p&gt;Where possible, when confronted with a MIME type that Rogallo can't handle,
+it will attempt to hand it off to your environment's main web browser. While
+not ideal, I have no wish to turn Rogallo into a terminal-based general
+content browser/viewer; this is all about Gemini and Gemtext.&lt;/p&gt;
+&lt;h2 id="history-enhancements"&gt;History enhancements&lt;/h2&gt;
+&lt;p&gt;The history list has been updated to allow the removal of individual items,
+and also clearing down the whole history.&lt;/p&gt;
+&lt;h2 id="added-home-page-support"&gt;Added home page support&lt;/h2&gt;
+&lt;p&gt;It's now possible to set a home page with either a &lt;code&gt;SetHome&lt;/code&gt; (which prompts
+for a URI) or a &lt;code&gt;SetHomeToCurrentLocation&lt;/code&gt; (it does what it says) command.
+There is also a &lt;code&gt;GoHome&lt;/code&gt; command that takes you to the home page you've set.
+The default bindings for all of these can be found by either running
+&lt;code&gt;rogallo bindings&lt;/code&gt;, or by viewing the help screen; pulling up the command
+palette is also an option.&lt;/p&gt;
+&lt;h2 id="added-support-for-bookmarks"&gt;Added support for bookmarks&lt;/h2&gt;
+&lt;p&gt;Bookmarks are now supported. The &lt;code&gt;ToggleBookmarks&lt;/code&gt; will show/hide the
+bookmarks list. &lt;code&gt;AddLocationToBookmarks&lt;/code&gt; will add the current location to
+the bookmarks. &lt;code&gt;SearchBookmarks&lt;/code&gt; lets you search the bookmarks.&lt;/p&gt;
+&lt;h2 id="more-command-line-suggestions"&gt;More command line suggestions&lt;/h2&gt;
+&lt;p&gt;The completion suggestion facility in the application's command line (where
+you enter URIs or commands) has been enhanced to include suggestions from
+the navigation history, the location visit history and the bookmarks. This
+should make it a little easier to enter a URI you're trying to remember.&lt;/p&gt;
+&lt;h2 id="added-a-history-search"&gt;Added a history search&lt;/h2&gt;
+&lt;p&gt;Having added the &lt;code&gt;SearchBookmarks&lt;/code&gt; command, it made sense to also add a
+&lt;code&gt;SearchHistory&lt;/code&gt; command too. So with that you can quickly search all the
+locations you've visited (within the limits of the history) and head back to
+one.&lt;/p&gt;
+&lt;h2 id="optimised-gemtext-rendering"&gt;Optimised Gemtext rendering&lt;/h2&gt;
+&lt;p&gt;While not something that should generally be obvious to the user, the
+Gemtext rendering engine has been optimised a little to reduce the number of
+&lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual&lt;/a&gt; widgets used to display a document by consolidating
+all adjacent plain paragraphs.&lt;/p&gt;
+&lt;h2 id="cleaned-up-quoted-paragraphs"&gt;Cleaned up quoted paragraphs&lt;/h2&gt;
+&lt;p&gt;I've cleaned up an issue with adjacent quoted paragraphs. Until now there
+was an empty line between each quote; this spoiled the layout.&lt;/p&gt;
+&lt;h2 id="view-source-and-ansi-escape-sequences"&gt;View source and ANSI escape sequences&lt;/h2&gt;
+&lt;p&gt;Some Gemini sites use ANSI escape sequences to add colour to pages. While
+this isn't, as far as I can tell, part of the standard for Gemtext, it's a
+simple thing to support and so Rogallo has supported rendering this for a
+while; if a page has colours, they'll be used.&lt;/p&gt;
+&lt;p&gt;This meant that if you asked to view the source of a page, you'd also see
+that rendered in colour. I felt that wasn't in the spirit of viewing the
+source.&lt;/p&gt;
+&lt;p&gt;So now, if viewing a page like this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="My glower" height="1664" loading="lazy" src="https://blog.davep.org/attachments/2026/07/10/colour-garden.webp#centre" width="1656" /&gt;&lt;/p&gt;
+&lt;p&gt;When you go to view the source, instead of all of the colours still being
+rendered, you now get to see which ANSI escape codes were used where:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ANSI source" height="1664" loading="lazy" src="https://blog.davep.org/attachments/2026/07/10/colour-garden-source.webp#centre" width="1656" /&gt;&lt;/p&gt;
+&lt;h2 id="viewer-auto-focus"&gt;Viewer auto-focus&lt;/h2&gt;
+&lt;p&gt;One small change is that, any time a document is loaded (from bookmarks,
+history, the command line, etc), the viewer now gains focus. Something I
+kept forgetting to do and finally I got fed up with having to tab over to
+the viewer each time.&lt;/p&gt;
+&lt;h2 id="content-cache"&gt;Content cache&lt;/h2&gt;
+&lt;p&gt;Rogallo now has a content cache for pages loaded from capsules (the aim is
+to never bother caching content loaded from the filesystem). Any page that
+is loaded with a success status code (&lt;code&gt;20&lt;/code&gt;) gets cached, and when you go
+back to it, if it's within the TTL of the cache entry (by default set to one
+hour), the content of the page will be loaded from the cache rather than
+making a fresh request.&lt;/p&gt;
+&lt;p&gt;Using the &lt;code&gt;Reload&lt;/code&gt; command &lt;em&gt;always&lt;/em&gt; bypasses the cache.&lt;/p&gt;
+&lt;p&gt;There is also a &lt;code&gt;ClearCache&lt;/code&gt; command which will delete all cached data.&lt;/p&gt;
+&lt;p&gt;The TTL of the cache can be changed in the configuration file by updating
+the value for &lt;code&gt;cache_ttl&lt;/code&gt;. Also, if you don't wish to ever use a cache, you
+can set &lt;code&gt;with_cache&lt;/code&gt; to &lt;code&gt;false&lt;/code&gt; to disable it.&lt;/p&gt;
+&lt;h2 id="whats-next"&gt;What's next&lt;/h2&gt;
+&lt;p&gt;With all of the above, I feel this gets Rogallo close to being v1.0.0-ready.
+Not quite, but very close. The main addition that still needs to be tackled
+is &lt;a href="https://github.com/davep/rogallo/issues/11" rel="noopener noreferrer" target="_blank"&gt;client-side certificates&lt;/a&gt;. I
+don't anticipate this being too tricky, it's just more a case of needing to
+play around with the code I've got so far, and needing to think about how to
+implement it in a TUI-friendly way (if, indeed, there are any considerations
+there at all).&lt;/p&gt;
+&lt;p&gt;For now though, as long as you don't need a client-side certificate, there's
+plenty to play with and try out.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/07/10/rogallo-v0-5-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>gemtext</category>
+      <category>smolweb</category>
+      <category>textual</category>
+      <pubDate>Fri, 10 Jul 2026 10:16:36 +0100</pubDate>
+    </item>
     <item>
       <title>A view of Whitby</title>
       <link>https://blog.davep.org/2026/07/09/a-view-of-whitby.html</link>
@@ -248,7 +366,7 @@ viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kb
 &lt;p&gt;It's worth noting that the default bindings for both of those aren't going
 to be ideal for some terminals. They should be fine in any terminal that
 supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
-This can be changed to your taste via the configuration file&lt;sup id="fnref:422-1"&gt;&lt;a class="footnote-ref" href="#fn:422-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+This can be changed to your taste via the configuration file&lt;sup id="fnref:423-1"&gt;&lt;a class="footnote-ref" href="#fn:423-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
 (bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
 between a rendered view and a plain text (source) view. So if you're looking
@@ -266,7 +384,7 @@ most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
 password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
 widget&lt;/a&gt;.
 The problem there though is that an input request from a Gemini server
-expects and allows for multi-line input&lt;sup id="fnref:422-2"&gt;&lt;a class="footnote-ref" href="#fn:422-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+expects and allows for multi-line input&lt;sup id="fnref:423-2"&gt;&lt;a class="footnote-ref" href="#fn:423-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
 &lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
 support password-style input.&lt;/p&gt;
 &lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
@@ -287,17 +405,17 @@ of fun working on it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:422-1"&gt;
+&lt;li id="fn:423-1"&gt;
 &lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
 documented when I get round to writing the documentation for Rogallo.
 Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
 Hike&lt;/a&gt; to get
-an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:422-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:423-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:422-2"&gt;
+&lt;li id="fn:423-2"&gt;
 &lt;p&gt;Well, technically, it's an optional feature of a client; the
 specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
-of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:422-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:423-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -440,7 +558,7 @@ There are also a couple of cosmetic configuration options thrown in.&lt;/p&gt;
 &lt;p&gt;Starting with the cosmetic configuration options: I got to feeling that the
 URI-containing tooltips that show on mouse-hover over a link might be a bit
 much for some people, so I've added &lt;code&gt;show_link_tooltips&lt;/code&gt; to the
-configuration file&lt;sup id="fnref:382-1"&gt;&lt;a class="footnote-ref" href="#fn:382-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
+configuration file&lt;sup id="fnref:383-1"&gt;&lt;a class="footnote-ref" href="#fn:383-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
 &lt;p&gt;Similar to this I've also added &lt;code&gt;disable_animations&lt;/code&gt;. Out of the box
 &lt;a href="https://textual.textualize.io" rel="noopener noreferrer" target="_blank"&gt;Textual&lt;/a&gt; &lt;em&gt;loves&lt;/em&gt; its animations. This is
 arguably most noticeable if you have a long body of text in a scrolling
@@ -611,10 +729,10 @@ and water my plant in Astrobotany&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:382-1"&gt;
+&lt;li id="fn:383-1"&gt;
 &lt;p&gt;&lt;code&gt;~/.config/rogallo/configuration.json&lt;/code&gt; on most systems. This and all
 the options within will eventually be documented, when I get round to
-creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:382-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:383-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -767,7 +885,7 @@ added.&lt;/p&gt;
 &lt;p&gt;Finally, I've added a couple of features which make it easy to know where a
 link will take you. The first is that I've added a tooltip to each link, so
 that when you hover the mouse cursor over it the URI will be displayed. But,
-because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:403-1"&gt;&lt;a class="footnote-ref" href="#fn:403-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
+because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:404-1"&gt;&lt;a class="footnote-ref" href="#fn:404-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
 a status bar to the main viewer panel that shows the URI of the focused
 link.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The Rogallo status bar" height="1760" loading="lazy" src="https://blog.davep.org/attachments/2026/06/24/rogallo-with-bar.webp#centre" width="1750" /&gt;&lt;/p&gt;
@@ -800,8 +918,8 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:403-1"&gt;
-&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:403-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:404-1"&gt;
+&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:404-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1091,44 +1209,6 @@ maintaining.&lt;/p&gt;</description>
       <category>smolweb</category>
       <category>textual</category>
       <pubDate>Sat, 20 Jun 2026 17:11:17 +0100</pubDate>
-    </item>
-    <item>
-      <title>Copyright Nvidia</title>
-      <link>https://blog.davep.org/2026/06/19/copyright-nvidia.html</link>
-      <description>&lt;p&gt;I've been trying, on and off,
-&lt;a href="https://github.com/copilot-emacs/copilot.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;copilot.el&lt;/code&gt;&lt;/a&gt;. I'm kind of
-50/50 on it most of the time. Sometimes it seems to really understand the
-code around what I'm working on and does a good job of helping complete the
-thing I'm about to type; other times it makes wild predictions that just
-annoy me and get in the way.&lt;/p&gt;
-&lt;p&gt;It's interesting to experiment with though.&lt;/p&gt;
-&lt;p&gt;But, just now, I saw something new&lt;sup id="fnref:381-1"&gt;&lt;a class="footnote-ref" href="#fn:381-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'd just started a fresh file and
-run &lt;a href="https://github.com/davep/funhead.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;funhead&lt;/code&gt;&lt;/a&gt;. That means that what
-had been typed into my buffer was:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;##############################################################################&lt;/span&gt;
-&lt;span class="c1"&gt;# _&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;and my cursor was sat where you see the &lt;code&gt;_&lt;/code&gt; above. Then Copilot made a
-suggestion:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Copilot doing its thing" height="204" loading="lazy" src="https://blog.davep.org/attachments/2026/06/19/copilot.webp#centre" width="1266" /&gt;&lt;/p&gt;
-&lt;p&gt;Like, sure, we all know that this is what can happen, but damn. Still, of
-all the companies involved with or adjacent to AI, I guess they're the ones
-to &lt;a href="https://isaiprofitable.com/" rel="noopener noreferrer" target="_blank"&gt;care the least&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:381-1"&gt;
-&lt;p&gt;To me, I know others have seen this sort of thing before.&amp;#160;&lt;a class="footnote-backref" href="#fnref:381-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/06/19/copyright-nvidia.html</guid>
-      <category>AI</category>
-      <category>AI</category>
-      <category>Copilot</category>
-      <category>GitHub</category>
-      <pubDate>Fri, 19 Jun 2026 21:06:26 +0100</pubDate>
     </item>
   </channel>
 </rss>
