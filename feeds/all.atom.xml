@@ -2,11 +2,101 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-07-12T09:15:06.320966+00:00</updated>
+  <updated>2026-07-12T11:02:57.507821+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/07/12/rogallo-v0-6-0.html</id>
+    <title>Rogallo v0.6.0</title>
+    <updated>2026-07-12T12:01:17+01:00</updated>
+    <content type="html">&lt;p&gt;I've just released &lt;a href="https://github.com/davep/rogallo" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt; v0.6.0, which
+contains the last big feature that was missing to make it a viable
+daily-driver &lt;a href="https://blog.davep.org/tag/gemini-protocol/"&gt;Gemini Protocol&lt;/a&gt; client. That feature?
+Client certificates.&lt;/p&gt;
+&lt;p&gt;From now on, if you visit a capsule that requests a client certificate,
+rather than an error being shown, a dialog will pop up:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Simple dialog" height="2208" loading="lazy" src="https://blog.davep.org/attachments/2026/07/12/simple-cert.webp#centre" width="2182" /&gt;&lt;/p&gt;
+&lt;p&gt;When you select the &lt;code&gt;Create&lt;/code&gt; button, the certificate will be created and
+then, from then on, when you visit the capsule, that client certificate will
+be used.&lt;/p&gt;
+&lt;p&gt;As you might have noticed, there are "advanced options" available too. Most
+are just optional values that go into the certificate itself:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The advanced options" height="2208" loading="lazy" src="https://blog.davep.org/attachments/2026/07/12/advanced-cert.webp#centre" width="2182" /&gt;&lt;/p&gt;
+&lt;p&gt;The two advanced options that mostly affect how all of this works are the
+scope and the transient option. The transient option means that the
+certificate is only good for the lifetime of this run of Rogallo. If you
+close Rogallo, the certificate will be discarded. In almost all cases,
+you'll want to leave this turned off.&lt;/p&gt;
+&lt;p&gt;The scope toggle affects the scoping of the certificate. As I've &lt;a href="https://blog.davep.org/2026/07/12/wasat-v0-4-0.html"&gt;been able
+to understand&lt;/a&gt;, the strict reading of the
+Gemini Protocol says that a certificate should be scoped to the host, port,
+and &lt;em&gt;path&lt;/em&gt; where it was first requested and generated for. However, out in
+the real world, it seems there are applications built for the protocol that
+don't work well with that approach. With this in mind, I've built Rogallo to
+always scope to just the domain and port, by default. If you want a
+particular certificate to follow the strict letter of the specification,
+turn the &lt;em&gt;"Scope to domain/port"&lt;/em&gt; option off.&lt;/p&gt;
+&lt;p&gt;With all that in place, it should now be possible to use Rogallo with any
+Gemini application that needs client-side authentication. For the last
+couple of days, I've been using it to successfully play AstroBotany, for
+example.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Logged in to AstroBotany" height="2208" loading="lazy" src="https://blog.davep.org/attachments/2026/07/12/logged-in.webp#centre" width="2182" /&gt;&lt;/p&gt;
+&lt;p&gt;As I said: with this in place, I believe Rogallo has all of the basic
+requirements of a Gemini protocol client covered. I'm not quite ready to
+call it v1.0.0 just yet -- there's a fair bit of testing and tweaking I
+still want to do, and I can see that, when it comes to certificates for
+example, there's some extra error handling I need to throw in. Additionally,
+the "advanced" version of the certificate create dialog is kind of tall for
+many terminals; I think I might need to play with the layout a bit.&lt;/p&gt;
+&lt;p&gt;Also, as I've mentioned a few times: I want to get proper documentation
+written and hosted on a dedicated site.&lt;/p&gt;
+&lt;p&gt;Back to this release: there's also a handful of other QoL changes and fixes.
+These include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Any page that is opened from an in-page link is now always retrieved from
+  the remote location, bypassing any cached copy. The idea being that, if
+  someone is actively navigating documents, they will want the freshest
+  version of the new page.&lt;/li&gt;
+&lt;li&gt;Fixed the layout of list items. Before now, the text wasn't wrapping,
+  while, at the same time, space was being made for the text as if it was
+  being wrapped.&lt;/li&gt;
+&lt;li&gt;The bookmark search palette is no longer available if there are no
+  bookmarks to search (the idea being that not being available is less
+  confusing than being available but empty).&lt;/li&gt;
+&lt;li&gt;The connection timeout, read timeout, and maximum number of redirects can
+  now be set in the configuration file.&lt;/li&gt;
+&lt;li&gt;The title area of the viewer now has a key icon that appears if a page is
+  using a client certificate.&lt;/li&gt;
+&lt;li&gt;Pages that require a client-side certificate are never added to the cache
+  (the idea being that such pages are more likely to have dynamic content,
+  and so the freshest version should always be loaded).&lt;/li&gt;
+&lt;li&gt;Reworked what is recorded in navigation and location history to ensure
+  that what is saved is the landing URI, not the URI that was first visited.
+  This solves the problem of what happens during redirections, and so also
+  solves the issue of what happens with &lt;code&gt;10&lt;/code&gt;/&lt;code&gt;11&lt;/code&gt; response inputs (having
+  the resulting query appear in history could result in duplicated
+  "submissions" to whatever app was in use).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;With these enhancements and fixes in place, I'm going to &lt;a href="gemini://astrobotany.mozz.us/public/ccd9fe566703411fa6065a9935fb6832/m1" rel="noopener noreferrer" target="_blank"&gt;keep tending my
+plant&lt;/a&gt;,
+and &lt;a href="gemini://station.martinrue.com/davep" rel="noopener noreferrer" target="_blank"&gt;posting away on Station&lt;/a&gt;, as a
+way of continuing to shake down the application. With that in mind, if
+anyone knows of any other sites and apps I should be testing against out in
+Geminispace, do let me know!&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/07/12/rogallo-v0-6-0.html"/>
+    <category term="Coding"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="Rogallo"/>
+    <category term="gemtext"/>
+    <category term="smolweb"/>
+    <category term="textual"/>
+    <published>2026-07-12T12:01:17+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/07/12/wasat-v0-4-0.html</id>
     <title>Wasat v0.4.0</title>
@@ -502,7 +592,7 @@ viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kb
 &lt;p&gt;It's worth noting that the default bindings for both of those aren't going
 to be ideal for some terminals. They should be fine in any terminal that
 supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
-This can be changed to your taste via the configuration file&lt;sup id="fnref:426-1"&gt;&lt;a class="footnote-ref" href="#fn:426-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+This can be changed to your taste via the configuration file&lt;sup id="fnref:427-1"&gt;&lt;a class="footnote-ref" href="#fn:427-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
 (bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
 between a rendered view and a plain text (source) view. So if you're looking
@@ -520,7 +610,7 @@ most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
 password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
 widget&lt;/a&gt;.
 The problem there though is that an input request from a Gemini server
-expects and allows for multi-line input&lt;sup id="fnref:426-2"&gt;&lt;a class="footnote-ref" href="#fn:426-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+expects and allows for multi-line input&lt;sup id="fnref:427-2"&gt;&lt;a class="footnote-ref" href="#fn:427-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
 &lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
 support password-style input.&lt;/p&gt;
 &lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
@@ -541,17 +631,17 @@ of fun working on it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:426-1"&gt;
+&lt;li id="fn:427-1"&gt;
 &lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
 documented when I get round to writing the documentation for Rogallo.
 Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
 Hike&lt;/a&gt; to get
-an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:426-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:427-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:426-2"&gt;
+&lt;li id="fn:427-2"&gt;
 &lt;p&gt;Well, technically, it's an optional feature of a client; the
 specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
-of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:426-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:427-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -696,7 +786,7 @@ There are also a couple of cosmetic configuration options thrown in.&lt;/p&gt;
 &lt;p&gt;Starting with the cosmetic configuration options: I got to feeling that the
 URI-containing tooltips that show on mouse-hover over a link might be a bit
 much for some people, so I've added &lt;code&gt;show_link_tooltips&lt;/code&gt; to the
-configuration file&lt;sup id="fnref:386-1"&gt;&lt;a class="footnote-ref" href="#fn:386-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
+configuration file&lt;sup id="fnref:387-1"&gt;&lt;a class="footnote-ref" href="#fn:387-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
 &lt;p&gt;Similar to this I've also added &lt;code&gt;disable_animations&lt;/code&gt;. Out of the box
 &lt;a href="https://textual.textualize.io" rel="noopener noreferrer" target="_blank"&gt;Textual&lt;/a&gt; &lt;em&gt;loves&lt;/em&gt; its animations. This is
 arguably most noticeable if you have a long body of text in a scrolling
@@ -867,10 +957,10 @@ and water my plant in Astrobotany&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:386-1"&gt;
+&lt;li id="fn:387-1"&gt;
 &lt;p&gt;&lt;code&gt;~/.config/rogallo/configuration.json&lt;/code&gt; on most systems. This and all
 the options within will eventually be documented, when I get round to
-creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:386-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:387-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1026,7 +1116,7 @@ added.&lt;/p&gt;
 &lt;p&gt;Finally, I've added a couple of features which make it easy to know where a
 link will take you. The first is that I've added a tooltip to each link, so
 that when you hover the mouse cursor over it the URI will be displayed. But,
-because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:407-1"&gt;&lt;a class="footnote-ref" href="#fn:407-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
+because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:408-1"&gt;&lt;a class="footnote-ref" href="#fn:408-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
 a status bar to the main viewer panel that shows the URI of the focused
 link.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The Rogallo status bar" height="1760" loading="lazy" src="https://blog.davep.org/attachments/2026/06/24/rogallo-with-bar.webp#centre" width="1750" /&gt;&lt;/p&gt;
@@ -1059,8 +1149,8 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:407-1"&gt;
-&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:407-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:408-1"&gt;
+&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:408-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1201,38 +1291,5 @@ discussion&lt;/a&gt;.&lt;/p&gt;</content>
     <category term="smolweb"/>
     <category term="textual"/>
     <published>2026-06-23T19:21:37+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/06/23/bagofstuff-v1-0-0.html</id>
-    <title>BagOfStuff v1.0.0</title>
-    <updated>2026-06-23T16:32:39+01:00</updated>
-    <content type="html">&lt;p&gt;&lt;a href="https://bagofstuff.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BagOfStuff&lt;/a&gt; started as a very small side
-project when I was &lt;a href="https://blog.davep.org/2026/02/11/oldnews.html"&gt;working on&lt;/a&gt;
-&lt;a href="https://oldnews.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;OldNews&lt;/a&gt; during my winter break, and then into
-the new year. It began as some support code in OldNews, which was living in
-a sort of tools section of the codebase (you know: the dreaded and
-much-maligned &lt;code&gt;utils&lt;/code&gt; section of the project). Sensing that something in it
-could end up being of utility elsewhere, I moved it out into its own
-library.&lt;/p&gt;
-&lt;p&gt;Having written some history-management type of code for the &lt;a href="https://blog.davep.org/tag/gemini-protocol/"&gt;Gemini
-protocol&lt;/a&gt; client I'm working on, I got to thinking
-that it too should move into this library; a benefit here being that I'll
-eventually migrate &lt;a href="https://hike.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Hike&lt;/a&gt;'s histories to this. With
-that done, I've decided to promote BagOfStuff to v1.0.0 and call it stable.&lt;/p&gt;
-&lt;p&gt;I don't see this library growing too much; the old days of languages either
-having a spartan standard library, or a third-party ecosystem that lacks
-comprehensive coverage, are pretty far behind us, and Python suffers from
-neither issue. On the other hand, there are some general-but-niche things
-that I'm going to want for my own projects, which probably don't deserve a
-library in their own right, which can live in here.&lt;/p&gt;
-&lt;p&gt;Also, sometimes, it's fun to just jam on a little problem and try to make
-the personally-ideal approach to solving it. BagOfStuff serves that purpose
-too.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/06/23/bagofstuff-v1-0-0.html"/>
-    <category term="Python"/>
-    <category term="BagOfStuff"/>
-    <category term="Coding"/>
-    <category term="Python"/>
-    <published>2026-06-23T16:32:39+01:00</published>
   </entry>
 </feed>

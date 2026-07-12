@@ -8,7 +8,96 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 12 Jul 2026 09:15:06 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jul 2026 11:02:57 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v0.6.0</title>
+      <link>https://blog.davep.org/2026/07/12/rogallo-v0-6-0.html</link>
+      <description>&lt;p&gt;I've just released &lt;a href="https://github.com/davep/rogallo" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt; v0.6.0, which
+contains the last big feature that was missing to make it a viable
+daily-driver &lt;a href="https://blog.davep.org/tag/gemini-protocol/"&gt;Gemini Protocol&lt;/a&gt; client. That feature?
+Client certificates.&lt;/p&gt;
+&lt;p&gt;From now on, if you visit a capsule that requests a client certificate,
+rather than an error being shown, a dialog will pop up:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Simple dialog" height="2208" loading="lazy" src="https://blog.davep.org/attachments/2026/07/12/simple-cert.webp#centre" width="2182" /&gt;&lt;/p&gt;
+&lt;p&gt;When you select the &lt;code&gt;Create&lt;/code&gt; button, the certificate will be created and
+then, from then on, when you visit the capsule, that client certificate will
+be used.&lt;/p&gt;
+&lt;p&gt;As you might have noticed, there are "advanced options" available too. Most
+are just optional values that go into the certificate itself:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The advanced options" height="2208" loading="lazy" src="https://blog.davep.org/attachments/2026/07/12/advanced-cert.webp#centre" width="2182" /&gt;&lt;/p&gt;
+&lt;p&gt;The two advanced options that mostly affect how all of this works are the
+scope and the transient option. The transient option means that the
+certificate is only good for the lifetime of this run of Rogallo. If you
+close Rogallo, the certificate will be discarded. In almost all cases,
+you'll want to leave this turned off.&lt;/p&gt;
+&lt;p&gt;The scope toggle affects the scoping of the certificate. As I've &lt;a href="https://blog.davep.org/2026/07/12/wasat-v0-4-0.html"&gt;been able
+to understand&lt;/a&gt;, the strict reading of the
+Gemini Protocol says that a certificate should be scoped to the host, port,
+and &lt;em&gt;path&lt;/em&gt; where it was first requested and generated for. However, out in
+the real world, it seems there are applications built for the protocol that
+don't work well with that approach. With this in mind, I've built Rogallo to
+always scope to just the domain and port, by default. If you want a
+particular certificate to follow the strict letter of the specification,
+turn the &lt;em&gt;"Scope to domain/port"&lt;/em&gt; option off.&lt;/p&gt;
+&lt;p&gt;With all that in place, it should now be possible to use Rogallo with any
+Gemini application that needs client-side authentication. For the last
+couple of days, I've been using it to successfully play AstroBotany, for
+example.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Logged in to AstroBotany" height="2208" loading="lazy" src="https://blog.davep.org/attachments/2026/07/12/logged-in.webp#centre" width="2182" /&gt;&lt;/p&gt;
+&lt;p&gt;As I said: with this in place, I believe Rogallo has all of the basic
+requirements of a Gemini protocol client covered. I'm not quite ready to
+call it v1.0.0 just yet -- there's a fair bit of testing and tweaking I
+still want to do, and I can see that, when it comes to certificates for
+example, there's some extra error handling I need to throw in. Additionally,
+the "advanced" version of the certificate create dialog is kind of tall for
+many terminals; I think I might need to play with the layout a bit.&lt;/p&gt;
+&lt;p&gt;Also, as I've mentioned a few times: I want to get proper documentation
+written and hosted on a dedicated site.&lt;/p&gt;
+&lt;p&gt;Back to this release: there's also a handful of other QoL changes and fixes.
+These include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Any page that is opened from an in-page link is now always retrieved from
+  the remote location, bypassing any cached copy. The idea being that, if
+  someone is actively navigating documents, they will want the freshest
+  version of the new page.&lt;/li&gt;
+&lt;li&gt;Fixed the layout of list items. Before now, the text wasn't wrapping,
+  while, at the same time, space was being made for the text as if it was
+  being wrapped.&lt;/li&gt;
+&lt;li&gt;The bookmark search palette is no longer available if there are no
+  bookmarks to search (the idea being that not being available is less
+  confusing than being available but empty).&lt;/li&gt;
+&lt;li&gt;The connection timeout, read timeout, and maximum number of redirects can
+  now be set in the configuration file.&lt;/li&gt;
+&lt;li&gt;The title area of the viewer now has a key icon that appears if a page is
+  using a client certificate.&lt;/li&gt;
+&lt;li&gt;Pages that require a client-side certificate are never added to the cache
+  (the idea being that such pages are more likely to have dynamic content,
+  and so the freshest version should always be loaded).&lt;/li&gt;
+&lt;li&gt;Reworked what is recorded in navigation and location history to ensure
+  that what is saved is the landing URI, not the URI that was first visited.
+  This solves the problem of what happens during redirections, and so also
+  solves the issue of what happens with &lt;code&gt;10&lt;/code&gt;/&lt;code&gt;11&lt;/code&gt; response inputs (having
+  the resulting query appear in history could result in duplicated
+  "submissions" to whatever app was in use).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;With these enhancements and fixes in place, I'm going to &lt;a href="gemini://astrobotany.mozz.us/public/ccd9fe566703411fa6065a9935fb6832/m1" rel="noopener noreferrer" target="_blank"&gt;keep tending my
+plant&lt;/a&gt;,
+and &lt;a href="gemini://station.martinrue.com/davep" rel="noopener noreferrer" target="_blank"&gt;posting away on Station&lt;/a&gt;, as a
+way of continuing to shake down the application. With that in mind, if
+anyone knows of any other sites and apps I should be testing against out in
+Geminispace, do let me know!&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/07/12/rogallo-v0-6-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>gemtext</category>
+      <category>smolweb</category>
+      <category>textual</category>
+      <pubDate>Sun, 12 Jul 2026 12:01:17 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v0.5.0</title>
       <link>https://blog.davep.org/2026/07/10/rogallo-v0-5-0.html</link>
@@ -186,7 +275,7 @@ viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kb
 &lt;p&gt;It's worth noting that the default bindings for both of those aren't going
 to be ideal for some terminals. They should be fine in any terminal that
 supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
-This can be changed to your taste via the configuration file&lt;sup id="fnref:426-1"&gt;&lt;a class="footnote-ref" href="#fn:426-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+This can be changed to your taste via the configuration file&lt;sup id="fnref:427-1"&gt;&lt;a class="footnote-ref" href="#fn:427-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
 (bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
 between a rendered view and a plain text (source) view. So if you're looking
@@ -204,7 +293,7 @@ most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
 password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
 widget&lt;/a&gt;.
 The problem there though is that an input request from a Gemini server
-expects and allows for multi-line input&lt;sup id="fnref:426-2"&gt;&lt;a class="footnote-ref" href="#fn:426-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+expects and allows for multi-line input&lt;sup id="fnref:427-2"&gt;&lt;a class="footnote-ref" href="#fn:427-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
 &lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
 support password-style input.&lt;/p&gt;
 &lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
@@ -225,17 +314,17 @@ of fun working on it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:426-1"&gt;
+&lt;li id="fn:427-1"&gt;
 &lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
 documented when I get round to writing the documentation for Rogallo.
 Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
 Hike&lt;/a&gt; to get
-an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:426-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:427-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:426-2"&gt;
+&lt;li id="fn:427-2"&gt;
 &lt;p&gt;Well, technically, it's an optional feature of a client; the
 specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
-of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:426-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:427-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -378,7 +467,7 @@ There are also a couple of cosmetic configuration options thrown in.&lt;/p&gt;
 &lt;p&gt;Starting with the cosmetic configuration options: I got to feeling that the
 URI-containing tooltips that show on mouse-hover over a link might be a bit
 much for some people, so I've added &lt;code&gt;show_link_tooltips&lt;/code&gt; to the
-configuration file&lt;sup id="fnref:386-1"&gt;&lt;a class="footnote-ref" href="#fn:386-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
+configuration file&lt;sup id="fnref:387-1"&gt;&lt;a class="footnote-ref" href="#fn:387-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
 &lt;p&gt;Similar to this I've also added &lt;code&gt;disable_animations&lt;/code&gt;. Out of the box
 &lt;a href="https://textual.textualize.io" rel="noopener noreferrer" target="_blank"&gt;Textual&lt;/a&gt; &lt;em&gt;loves&lt;/em&gt; its animations. This is
 arguably most noticeable if you have a long body of text in a scrolling
@@ -549,10 +638,10 @@ and water my plant in Astrobotany&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:386-1"&gt;
+&lt;li id="fn:387-1"&gt;
 &lt;p&gt;&lt;code&gt;~/.config/rogallo/configuration.json&lt;/code&gt; on most systems. This and all
 the options within will eventually be documented, when I get round to
-creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:386-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:387-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -598,7 +687,7 @@ added.&lt;/p&gt;
 &lt;p&gt;Finally, I've added a couple of features which make it easy to know where a
 link will take you. The first is that I've added a tooltip to each link, so
 that when you hover the mouse cursor over it the URI will be displayed. But,
-because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:407-1"&gt;&lt;a class="footnote-ref" href="#fn:407-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
+because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:408-1"&gt;&lt;a class="footnote-ref" href="#fn:408-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
 a status bar to the main viewer panel that shows the URI of the focused
 link.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The Rogallo status bar" height="1760" loading="lazy" src="https://blog.davep.org/attachments/2026/06/24/rogallo-with-bar.webp#centre" width="1750" /&gt;&lt;/p&gt;
@@ -631,8 +720,8 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:407-1"&gt;
-&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:407-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:408-1"&gt;
+&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:408-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1203,7 +1292,7 @@ should have added right near the start of the project.&lt;/p&gt;
 &lt;p&gt;First, the cosmetic: in pages and posts, when you use headings (&lt;code&gt;#&lt;/code&gt;, &lt;code&gt;##&lt;/code&gt;,
 etc.), a &lt;code&gt;¶&lt;/code&gt; is added to the end of each heading, along with some
 show-on-mouse-hover styling, to make it easy to grab the anchor of a
-particular section of a page&lt;sup id="fnref:404-1"&gt;&lt;a class="footnote-ref" href="#fn:404-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. A problem I'd noticed with this recently
+particular section of a page&lt;sup id="fnref:405-1"&gt;&lt;a class="footnote-ref" href="#fn:405-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. A problem I'd noticed with this recently
 is that the &lt;code&gt;¶&lt;/code&gt; shows up in the &lt;a href="https://blog.davep.org/search/"&gt;search&lt;/a&gt; text, and also in the
 content of all the feeds. While not a problem as such, it felt untidy.&lt;/p&gt;
 &lt;p&gt;So, with this release that particular &lt;code&gt;¶&lt;/code&gt; character is stripped from the
@@ -1258,9 +1347,9 @@ information lives with the page or post being redirected to.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:404-1"&gt;
+&lt;li id="fn:405-1"&gt;
 &lt;p&gt;The &lt;a href="https://blog.davep.org/2026/06/04/blogmore-v2-38-0.html"&gt;recently-added floating ToC&lt;/a&gt;
-is another way to do this now too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:404-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+is another way to do this now too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:405-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1318,7 +1407,7 @@ if the feature should be on or off, by default, site-wide. It is set to
 post level, there is also &lt;a href="https://blogmore.davep.dev/writing_a_post/#show_toc" rel="noopener noreferrer" target="_blank"&gt;a &lt;code&gt;show_toc&lt;/code&gt; frontmatter
 property&lt;/a&gt; too. This
 &lt;em&gt;always&lt;/em&gt; overrides the global setting in the configuration file.&lt;/p&gt;
-&lt;p&gt;On top of this, I can imagine that someone&lt;sup id="fnref:402-1"&gt;&lt;a class="footnote-ref" href="#fn:402-1"&gt;1&lt;/a&gt;&lt;/sup&gt; might also want to have the
+&lt;p&gt;On top of this, I can imagine that someone&lt;sup id="fnref:403-1"&gt;&lt;a class="footnote-ref" href="#fn:403-1"&gt;1&lt;/a&gt;&lt;/sup&gt; might also want to have the
 right-side floating ToC, but never have the inline ToC showing on smaller
 displays. With this in mind I've also added a &lt;code&gt;show_toc_inline&lt;/code&gt;
 &lt;a href="https://blogmore.davep.dev/configuration/#show_toc_inline" rel="noopener noreferrer" target="_blank"&gt;configuration
@@ -1340,8 +1429,8 @@ override that explicit markup choice.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:402-1"&gt;
-&lt;p&gt;Me, I'm thinking it might be me.&amp;#160;&lt;a class="footnote-backref" href="#fnref:402-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:403-1"&gt;
+&lt;p&gt;Me, I'm thinking it might be me.&amp;#160;&lt;a class="footnote-backref" href="#fnref:403-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1352,48 +1441,6 @@ override that explicit markup choice.&lt;/p&gt;
       <category>PyPI</category>
       <category>Python</category>
       <pubDate>Thu, 04 Jun 2026 13:21:38 +0100</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.37.0</title>
-      <link>https://blog.davep.org/2026/06/03/blogmore-v2-37-0.html</link>
-      <description>&lt;p&gt;I've just released &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
-&lt;a href="https://blogmore.davep.dev/changelog/#v2370" rel="noopener noreferrer" target="_blank"&gt;v2.37.0&lt;/a&gt;. This is a small
-update that fixes a bug and also improves the way that warnings and errors
-are emitted.&lt;/p&gt;
-&lt;p&gt;The bugfix comes from &lt;a href="https://blog.davep.org/2026/06/02/recreating-my-blog-stats.html"&gt;yesterday's
-post&lt;/a&gt; where I noticed that the
-&lt;a href="https://blog.davep.org/stats/"&gt;stats page&lt;/a&gt; was misreporting the number of tags on the blog. The
-cause of the problem was that, within reason, a single tag can be
-represented in a number of different ways. In the &lt;code&gt;tags&lt;/code&gt; frontmatter you
-could write any of &lt;code&gt;Python Coding&lt;/code&gt;, &lt;code&gt;Python coding&lt;/code&gt;, &lt;code&gt;python coding&lt;/code&gt;,
-&lt;code&gt;Python-Coding&lt;/code&gt;, etc and they would all be seen as the tag &lt;code&gt;python-coding&lt;/code&gt;.
-This gives some useful flexibility and also ensures that the actual tag is
-URL-safe.&lt;/p&gt;
-&lt;p&gt;The problem was that the stats page was counting the list of unique tags, as
-they were typed into posts, rather than the unique list of &lt;em&gt;"made safe"&lt;/em&gt;
-tags. So &lt;a href="https://github.com/davep/blogmore/pull/582/changes" rel="noopener noreferrer" target="_blank"&gt;that is now fixed, along with categories
-too&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The other main change in this release is that warnings and errors that might
-get printed during post parsing and other operations are now printed to
-&lt;a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_error_(stderr)" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;stderr&lt;/code&gt;&lt;/a&gt;.
-Until now everything was simply printed to
-&lt;a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_output_(stdout)" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;stdout&lt;/code&gt;&lt;/a&gt;,
-which was fine until I introduced the &lt;a href="https://blogmore.davep.dev/command_line/#dump" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;links
-dump&lt;/code&gt;&lt;/a&gt; and &lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;main
-&lt;code&gt;dump&lt;/code&gt;&lt;/a&gt;
-&lt;a href="https://blogmore.davep.dev/command_line/" rel="noopener noreferrer" target="_blank"&gt;commands&lt;/a&gt;. With the addition of
-those commands, you're far more likely to want to redirect the output to a
-file. So if there's some sort of warning when parsing a post, &lt;em&gt;that&lt;/em&gt; would
-get dropped into the middle of the JSON output (if using &lt;code&gt;dump&lt;/code&gt;), resulting
-in a JSON file that can't be parsed.&lt;/p&gt;
-&lt;p&gt;Now all warnings and errors will go to &lt;code&gt;stderr&lt;/code&gt;.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/06/03/blogmore-v2-37-0.html</guid>
-      <category>Coding</category>
-      <category>BlogMore</category>
-      <category>Coding</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <pubDate>Wed, 03 Jun 2026 08:30:11 +0100</pubDate>
     </item>
   </channel>
 </rss>
