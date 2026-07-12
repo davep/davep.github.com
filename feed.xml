@@ -8,7 +8,83 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 11 Jul 2026 13:41:22 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jul 2026 09:15:06 +0000</lastBuildDate>
+    <item>
+      <title>Wasat v0.4.0</title>
+      <link>https://blog.davep.org/2026/07/12/wasat-v0-4-0.html</link>
+      <description>&lt;p&gt;By this point today I was hoping to have released a new version of
+&lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt;, complete with client certificate support. It is
+more or less all there and ready to go, but I ran into a small problem,
+something which confused me.&lt;/p&gt;
+&lt;p&gt;You see, according to &lt;a href="https://geminiprotocol.net/docs/protocol-specification.gmi" rel="noopener noreferrer" target="_blank"&gt;the documentation for the Gemini
+Protocol&lt;/a&gt;, when
+there's a request by a capsule for a client certificate, that certificate
+should be scoped to the host, port &lt;em&gt;and path and all paths below it&lt;/em&gt;. So
+that means that if &lt;code&gt;example.com/foo&lt;/code&gt; causes a certificate to be requested,
+it's good for &lt;code&gt;example.com/foo&lt;/code&gt; and &lt;code&gt;example.com/foo/bar&lt;/code&gt;, but it isn't
+valid for &lt;code&gt;example.com/other&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Makes sense.&lt;/p&gt;
+&lt;p&gt;The problem I ran into pretty quickly, with my implementation of this in
+Wasat and Rogallo, was this: I hit a site (a microblogging site of sorts)
+that had a joining page at &lt;code&gt;example.com/join&lt;/code&gt;. Once you joined up and set
+your user name, you'd normally land at &lt;code&gt;example.com/me&lt;/code&gt;. They're sibling
+paths and so should &lt;em&gt;not&lt;/em&gt; use the same certificate. However, this was done
+via redirection, so I did some work to "clone" a certificate when there's a
+redirection.&lt;/p&gt;
+&lt;p&gt;But then it got more complicated. The site also lets you follow other
+people. This means that if you visit &lt;code&gt;example.com/other-user&lt;/code&gt; you should
+also still have the client certificate in place so the capsule knows who you
+are (because client certificates are also, in effect, session cookies, as I
+understand it), so you can perform the follow. Again, this is a sibling
+path, and there's no redirection, so the certificate is no good because, at
+this point, it's scoped to &lt;code&gt;example.com/join&lt;/code&gt; and &lt;code&gt;example.com/me&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Meanwhile: testing this with &lt;a href="https://gmi.skyjake.fi/lagrange/" rel="noopener noreferrer" target="_blank"&gt;Lagrange&lt;/a&gt;,
+it had no such problem whatsoever. How was it getting around this issue? Was
+I doing something wrong? Was I misreading the specification for the
+protocol? Was Lagrange being a bit more relaxed about its certificate scope?&lt;/p&gt;
+&lt;p&gt;After doing some digging, it would seem that it's the latter. It looks like
+it, and perhaps other clients, take a pragmatic approach to certificate
+scopes and generally scope them to the host and port alone, ignoring the
+path (in the case of Lagrange it seems to sort of actually divorce the
+certificates from the URIs anyway, treating certificates more as identities
+you can associate with any capsule, etc).&lt;/p&gt;
+&lt;p&gt;Given this, at least for now, I'm going to take that approach. Any time a
+certificate needs to be generated in Rogallo, I'm going to give the user the
+option (on by default) to scope the certificate to the whole host/port
+combination. Later on I might add the ability to fully manage certificates
+(right now that can be done by editing the certificates file in the data
+directory, but a proper UI for it would be nice).&lt;/p&gt;
+&lt;p&gt;Which brings me to this release of Wasat.
+&lt;a href="https://wasat.davep.dev/changelog/#v040" rel="noopener noreferrer" target="_blank"&gt;v0.4.0&lt;/a&gt; adds some extra
+functionality to
+&lt;a href="https://wasat.davep.dev/library/uri/#wasat.uri.GeminiURI" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;GeminiURI&lt;/code&gt;&lt;/a&gt; that
+allows changing and removing individual parts of the URI. There's a new
+&lt;a href="https://wasat.davep.dev/library/uri/#wasat.uri.GeminiURI.replace" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;replace&lt;/code&gt;
+method&lt;/a&gt;
+that can be used to create a clone of a URI with various parts changed.
+Also, if you just want to change one specific part or simply prefer method
+chaining approaches, I've also added more &lt;code&gt;with_&lt;/code&gt; methods similar to the
+pre-existing &lt;a href="https://wasat.davep.dev/library/uri/#wasat.uri.GeminiURI.with_query" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;with_query&lt;/code&gt;
+method&lt;/a&gt;,
+so now there's also
+&lt;a href="https://wasat.davep.dev/library/uri/#wasat.uri.GeminiURI.with_host" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;with_host&lt;/code&gt;&lt;/a&gt;,
+&lt;a href="https://wasat.davep.dev/library/uri/#wasat.uri.GeminiURI.with_port" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;with_port&lt;/code&gt;&lt;/a&gt;
+and
+&lt;a href="https://wasat.davep.dev/library/uri/#wasat.uri.GeminiURI.with_path" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;with_path&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;With these in place I can go back to Rogallo and carry on with the last bits
+of work I want to do on client certificate support, with Wasat making it
+easy for me to clone up and chop and change URIs to suit the scoping
+requirements.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/07/12/wasat-v0-4-0.html</guid>
+      <category>Python</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>smolweb</category>
+      <category>wasat</category>
+      <pubDate>Sun, 12 Jul 2026 10:12:59 +0100</pubDate>
+    </item>
     <item>
       <title>Wasat v0.3.0</title>
       <link>https://blog.davep.org/2026/07/11/wasat-v0-3-0.html</link>
@@ -416,7 +492,7 @@ viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kb
 &lt;p&gt;It's worth noting that the default bindings for both of those aren't going
 to be ideal for some terminals. They should be fine in any terminal that
 supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
-This can be changed to your taste via the configuration file&lt;sup id="fnref:425-1"&gt;&lt;a class="footnote-ref" href="#fn:425-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+This can be changed to your taste via the configuration file&lt;sup id="fnref:426-1"&gt;&lt;a class="footnote-ref" href="#fn:426-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
 (bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
 between a rendered view and a plain text (source) view. So if you're looking
@@ -434,7 +510,7 @@ most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
 password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
 widget&lt;/a&gt;.
 The problem there though is that an input request from a Gemini server
-expects and allows for multi-line input&lt;sup id="fnref:425-2"&gt;&lt;a class="footnote-ref" href="#fn:425-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+expects and allows for multi-line input&lt;sup id="fnref:426-2"&gt;&lt;a class="footnote-ref" href="#fn:426-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
 &lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
 support password-style input.&lt;/p&gt;
 &lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
@@ -455,17 +531,17 @@ of fun working on it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:425-1"&gt;
+&lt;li id="fn:426-1"&gt;
 &lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
 documented when I get round to writing the documentation for Rogallo.
 Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
 Hike&lt;/a&gt; to get
-an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:425-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:426-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:425-2"&gt;
+&lt;li id="fn:426-2"&gt;
 &lt;p&gt;Well, technically, it's an optional feature of a client; the
 specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
-of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:425-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:426-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -608,7 +684,7 @@ There are also a couple of cosmetic configuration options thrown in.&lt;/p&gt;
 &lt;p&gt;Starting with the cosmetic configuration options: I got to feeling that the
 URI-containing tooltips that show on mouse-hover over a link might be a bit
 much for some people, so I've added &lt;code&gt;show_link_tooltips&lt;/code&gt; to the
-configuration file&lt;sup id="fnref:385-1"&gt;&lt;a class="footnote-ref" href="#fn:385-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
+configuration file&lt;sup id="fnref:386-1"&gt;&lt;a class="footnote-ref" href="#fn:386-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
 &lt;p&gt;Similar to this I've also added &lt;code&gt;disable_animations&lt;/code&gt;. Out of the box
 &lt;a href="https://textual.textualize.io" rel="noopener noreferrer" target="_blank"&gt;Textual&lt;/a&gt; &lt;em&gt;loves&lt;/em&gt; its animations. This is
 arguably most noticeable if you have a long body of text in a scrolling
@@ -779,10 +855,10 @@ and water my plant in Astrobotany&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:385-1"&gt;
+&lt;li id="fn:386-1"&gt;
 &lt;p&gt;&lt;code&gt;~/.config/rogallo/configuration.json&lt;/code&gt; on most systems. This and all
 the options within will eventually be documented, when I get round to
-creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:385-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:386-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -935,7 +1011,7 @@ added.&lt;/p&gt;
 &lt;p&gt;Finally, I've added a couple of features which make it easy to know where a
 link will take you. The first is that I've added a tooltip to each link, so
 that when you hover the mouse cursor over it the URI will be displayed. But,
-because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:406-1"&gt;&lt;a class="footnote-ref" href="#fn:406-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
+because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:407-1"&gt;&lt;a class="footnote-ref" href="#fn:407-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
 a status bar to the main viewer panel that shows the URI of the focused
 link.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The Rogallo status bar" height="1760" loading="lazy" src="https://blog.davep.org/attachments/2026/06/24/rogallo-with-bar.webp#centre" width="1750" /&gt;&lt;/p&gt;
@@ -968,8 +1044,8 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:406-1"&gt;
-&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:406-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:407-1"&gt;
+&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:407-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1140,48 +1216,6 @@ too.&lt;/p&gt;</description>
       <category>Coding</category>
       <category>Python</category>
       <pubDate>Tue, 23 Jun 2026 16:32:39 +0100</pubDate>
-    </item>
-    <item>
-      <title>Gemini client history (redux)</title>
-      <link>https://blog.davep.org/2026/06/22/gemini-client-history-redux.html</link>
-      <description>&lt;p&gt;A couple of days ago &lt;a href="https://blog.davep.org/2026/06/20/gemini-client-history.html"&gt;I thought I had history working well in the Gemini
-client I'm working on&lt;/a&gt;; I was wrong.
-It worked, but the more I used it the more I felt it wasn't quite right. The
-main problem was I had a single history structure that served both the
-navigation history (moving backwards and forwards) as well as the general
-location visit history (the list of places I've visited). It made sense
-initially, but in use it just wasn't cutting it.&lt;/p&gt;
-&lt;p&gt;So now I've redone it, using two different history lists that also grow in
-rather different ways. For the navigation history, when "adding" a new
-location, everything after the current location gets removed, making the new
-location the latest in the list. The visit history, on the other hand, grows
-more like an ordered set: if I add a location that is already in the list,
-the older version is removed and it is added to the end of the list. In
-doing this, it's also allowed me to track the date and time I've visited a
-location, which means I can now have a useful history panel (which can be
-popped in and out of view) that shows me where I've been, and when.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Client, showing the history panel" height="1654" loading="lazy" src="https://blog.davep.org/attachments/2026/06/22/gemini-client-with-history.webp#centre" width="1982" /&gt;&lt;/p&gt;
-&lt;p&gt;Having done this, I now want to take some of these approaches and apply them
-to &lt;a href="https://hike.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Hike&lt;/a&gt;. It has a pretty simple location and
-navigation history system that suffers from the same issues that I wasn't
-liking in this project. It'll benefit quite a bit from this improvement. I
-sense a v2.0.0 of Hike in the next few months.&lt;/p&gt;
-&lt;p&gt;As for when I'll let &lt;em&gt;this&lt;/em&gt; project see the light of day: I think I'm close
-to opening the repository and publishing the first version to
-&lt;a href="https://blog.davep.org/tag/pypi/"&gt;PyPI&lt;/a&gt;. I had wanted to do it sometime yesterday, but the above
-kicked in and I've been tinkering more to try and make a stable foundation
-for the initial release. There's still a lot of work needed for it to be
-feature-complete, but there's enough here to play and experiment.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/06/22/gemini-client-history-redux.html</guid>
-      <category>Coding</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>Hike</category>
-      <category>Python</category>
-      <category>Rogallo</category>
-      <category>smolweb</category>
-      <category>textual</category>
-      <pubDate>Mon, 22 Jun 2026 19:47:06 +0100</pubDate>
     </item>
   </channel>
 </rss>
