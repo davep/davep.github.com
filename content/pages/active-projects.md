@@ -82,13 +82,15 @@ available via the [PEP API](https://peps.python.org/api/).
 
 ## Rogallo
 
-[Rogallo](https://github.com/davep/rogallo) is a terminal-based browser for
-the [Gemini Protocol](https://geminiprotocol.net/). Still in early
-development.
+![Rogallo](/attachments/active-projects/rogallo-social-banner.webp#centre)
+
+[Rogallo](https://rogallo.davep.dev/) is a terminal-based browser for the
+[Gemini Protocol](https://geminiprotocol.net/). It's one of my daily-drivers
+for navigating Geminispace.
 
 ## Wasat
 
 [Wasat](https://wasat.davep.dev/) is an async Gemini Protcol client library
-for Python. Currently in early development as the core of Rogallo.
+for Python, developed as the heart of Rogallo.
 
 [//]: # (active-projects.md ends here)
