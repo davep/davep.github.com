@@ -8,7 +8,74 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 13 Jul 2026 18:37:23 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 14 Jul 2026 11:16:54 +0000</lastBuildDate>
+    <item>
+      <title>Wasat v0.6.0</title>
+      <link>https://blog.davep.org/2026/07/14/wasat-v0-6-0.html</link>
+      <description>&lt;p&gt;&lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;
+&lt;a href="https://wasat.davep.dev/changelog/#v060" rel="noopener noreferrer" target="_blank"&gt;v0.6.0&lt;/a&gt; is now available. This is
+another quick update that fixes a small typing issue and also adds a handy
+new method I've been meaning to add to
+&lt;a href="https://wasat.davep.dev/library/uri/#wasat.uri.GeminiURI" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;GeminiURI&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The typing issue is a simple enough one. The &lt;code&gt;__init__&lt;/code&gt; method for
+&lt;code&gt;GeminiURI&lt;/code&gt; can take either a string or another &lt;code&gt;GeminiURI&lt;/code&gt; as its argument.
+However, the type was actually specified as &lt;code&gt;str | Self&lt;/code&gt;. In
+&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;, I want to have a sub-class of
+&lt;code&gt;GeminiURI&lt;/code&gt; for one particular purpose, which will be passed an instance of
+&lt;code&gt;GeminiURI&lt;/code&gt;. Something like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;KnownHost&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;GeminiURI&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;A known host.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;From this, I want to be able to do:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;KnownHost&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;known_hosts&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;where &lt;code&gt;known_hosts&lt;/code&gt; is typed as &lt;code&gt;list[GeminiURI]&lt;/code&gt;. At this point, the type
+checker complains:&lt;/p&gt;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Argument 1 to &amp;quot;KnownHost&amp;quot; has incompatible type &amp;quot;GeminiURI&amp;quot;; expected &amp;quot;str | KnownHost&amp;quot;  [arg-type]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The error is correct, because the use of &lt;code&gt;Self&lt;/code&gt; is saying "this needs to be
+an instance of my class". There's no reason why it needs to work this way,
+so I've relaxed the type to &lt;code&gt;str | GeminiURI&lt;/code&gt;. In my example above,
+&lt;code&gt;KnownHost&lt;/code&gt; is a subclass of &lt;code&gt;GeminiURI&lt;/code&gt;, so the type checker will be happy
+again.&lt;/p&gt;
+&lt;p&gt;The new method I've added is &lt;code&gt;GeminiURI.with_default_scheme&lt;/code&gt;. This is a
+class method that acts as a more relaxed "constructor" for a &lt;code&gt;GeminiURI&lt;/code&gt;.
+Again, in Rogallo, there are a few places where I'm taking some input,
+assuming it's going to be a &lt;code&gt;gemini://&lt;/code&gt; URI, checking if it's missing the
+scheme prefix, and then prefixing the string with &lt;code&gt;gemini://&lt;/code&gt; before
+creating a &lt;code&gt;GeminiURI&lt;/code&gt;&lt;sup id="fnref:382-1"&gt;&lt;a class="footnote-ref" href="#fn:382-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This means that Rogallo contains a few instances
+of this sort of code:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="c1"&gt;# ...we should treat some text as a URI but it isn&amp;#39;t prefixed with &amp;quot;gemini://&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;uri&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GeminiURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;GEMINI_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}{&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It's a small difference, but from now on I'll be able to:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;uri&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GeminiURI&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;with_default_scheme&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This removes the need to check if there's a scheme already &lt;em&gt;and&lt;/em&gt; it saves me
+having to import &lt;code&gt;GEMINI_PREFIX&lt;/code&gt;, etc.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:382-1"&gt;
+&lt;p&gt;&lt;code&gt;GeminiURI&lt;/code&gt; will deliberately raise an exception if the scheme isn't &lt;code&gt;gemini&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:382-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/07/14/wasat-v0-6-0.html</guid>
+      <category>Python</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>smolweb</category>
+      <category>wasat</category>
+      <pubDate>Tue, 14 Jul 2026 12:14:35 +0100</pubDate>
+    </item>
     <item>
       <title>Wasat v0.5.0</title>
       <link>https://blog.davep.org/2026/07/13/wasat-v0-5-0.html</link>
@@ -406,7 +473,7 @@ it would be useful to have a Python client library for the protocol, and
 ideally a client library that is async. I did some searching, found client
 libraries, but none of them seemed to be async-first.&lt;/p&gt;
 &lt;p&gt;With this in mind, and to kick-start the project, last night I fired up
-&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt;&lt;sup id="fnref:399-1"&gt;&lt;a class="footnote-ref" href="#fn:399-1"&gt;1&lt;/a&gt;&lt;/sup&gt; and got a library up and going.
+&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt;&lt;sup id="fnref:400-1"&gt;&lt;a class="footnote-ref" href="#fn:400-1"&gt;1&lt;/a&gt;&lt;/sup&gt; and got a library up and going.
 &lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt; is the result. For the moment this should
 be considered alpha-status software (hence v0.0.1). I've done some &lt;em&gt;very&lt;/em&gt;
 rudimentary testing and experimenting with it and, so far, so good. It's
@@ -448,8 +515,8 @@ it, and especially writing one that works just how I want.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:399-1"&gt;
-&lt;p&gt;No, not &lt;a href="https://xkcd.com/353/" rel="noopener noreferrer" target="_blank"&gt;that one&lt;/a&gt;, the &lt;a href="https://antigravity.google/" rel="noopener noreferrer" target="_blank"&gt;other one&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:399-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:400-1"&gt;
+&lt;p&gt;No, not &lt;a href="https://xkcd.com/353/" rel="noopener noreferrer" target="_blank"&gt;that one&lt;/a&gt;, the &lt;a href="https://antigravity.google/" rel="noopener noreferrer" target="_blank"&gt;other one&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:400-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -943,32 +1010,6 @@ helpful to me if it &lt;em&gt;does&lt;/em&gt; break and they yell.&lt;/p&gt;</de
       <category>coding</category>
       <category>Textual</category>
       <pubDate>Sun, 13 Aug 2023 21:21:00 +0100</pubDate>
-    </item>
-    <item>
-      <title>textual-canvas v0.2.0</title>
-      <link>https://blog.davep.org/2023/07/16/textual-canvas-0-2-0.html</link>
-      <description>&lt;p&gt;&lt;img alt="Demo of textual-canvas" height="573" loading="lazy" src="https://blog.davep.org/attachments/2023/07/16/textual-canvas.webp#centre" width="512" /&gt;&lt;/p&gt;
-&lt;p&gt;Given that for a good chunk of this year I've been a bit lax about writing
-here, there's a couple or so coding projects I've not written about (well,
-not on &lt;em&gt;here&lt;/em&gt; anyway -- I have spoken lots about them &lt;a href="https://fosstodon.org/@davep" rel="noopener noreferrer" target="_blank"&gt;over on
-Fosstodon&lt;/a&gt;). One such project is
-&lt;a href="https://pypi.org/project/textual-canvas/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;textual-canvas&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;As the name might suggest, it's a "canvas" for Textual applications, which
-provides a pretty basic interface for drawing pixels, lines and circles --
-and of course any other shape you are able to build up from those basics.&lt;/p&gt;
-&lt;p&gt;I've just &lt;a href="https://github.com/davep/textual-canvas/releases/tag/v0.2.0" rel="noopener noreferrer" target="_blank"&gt;released a quick
-update&lt;/a&gt; after
-it was &lt;a href="https://github.com/davep/textual-canvas/discussions/1" rel="noopener noreferrer" target="_blank"&gt;requested that I add a &lt;code&gt;clear&lt;/code&gt; method to the &lt;code&gt;Canvas&lt;/code&gt;
-widget&lt;/a&gt;; a request
-that makes perfect sense.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2023/07/16/textual-canvas-0-2-0.html</guid>
-      <category>Python</category>
-      <category>Python</category>
-      <category>Textual</category>
-      <category>coding</category>
-      <category>PyPI</category>
-      <category>textual-canvas</category>
-      <pubDate>Sun, 16 Jul 2023 09:00:00 +0100</pubDate>
     </item>
   </channel>
 </rss>
