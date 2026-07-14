@@ -8,7 +8,81 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 14 Jul 2026 11:16:54 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 14 Jul 2026 18:23:54 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v0.7.0</title>
+      <link>https://blog.davep.org/2026/07/14/rogallo-v0-7-0.html</link>
+      <description>&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
+&lt;a href="https://rogallo.davep.dev/changelog/#v070" rel="noopener noreferrer" target="_blank"&gt;v0.7.0&lt;/a&gt; is &lt;a href="https://pypi.org/project/rogallo/" rel="noopener noreferrer" target="_blank"&gt;now
+available&lt;/a&gt;. The main changes in this
+release revolve around the display and navigation of links.&lt;/p&gt;
+&lt;p&gt;The aim of Rogallo, as a "TUI" application, is that it is usable purely with
+the keyboard, and also very usable with the mouse too. So far I think I've
+managed to hit that mark, but I felt that things weren't quite as smooth as
+they could be when it came to navigating links.&lt;/p&gt;
+&lt;p&gt;Links, like any other UI element in the application that can receive
+"focus", can be navigated to using &lt;kbd&gt;Tab&lt;/kbd&gt; and
+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;Tab&lt;/kbd&gt;. This is fine if there's just a handful of
+links in a page, but more than that and having to repeatedly press tab gets
+a bit boring. Meanwhile, if you have a mouse or other pointing device to
+hand, it's easy to scroll and click. I wanted to try and have a similar
+keyboard-based speedup available.&lt;/p&gt;
+&lt;p&gt;So now, by default, all links on a page get a numeric label:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Links with numeric labels" height="1984" loading="lazy" src="https://blog.davep.org/attachments/2026/07/14/links-with-labels.webp#centre" width="1894" /&gt;&lt;/p&gt;
+&lt;p&gt;To jump to a link, while the viewer has focus, simply type the number. When
+you do so, the corresponding link will be focused, then you just need to hit
+&lt;kbd&gt;Enter&lt;/kbd&gt; to follow the link.&lt;/p&gt;
+&lt;p&gt;The input system is written to "wrap around", as it were. So if you type
+&lt;kbd&gt;1&lt;/kbd&gt; the link with a label of &lt;code&gt;1&lt;/code&gt; will be focused. If you then type
+&lt;kbd&gt;2&lt;/kbd&gt;, and if there's a link with a label of &lt;code&gt;12&lt;/code&gt;, it will be
+focused. If there are fewer than 12 links, the input chain resets, and &lt;code&gt;2&lt;/code&gt;
+will be focused. The idea being: as you keep typing numbers, they
+concatenate until there's no matching link and then it starts fresh.&lt;/p&gt;
+&lt;p&gt;I was quite keen on having the labels over to the right, so they didn't
+disturb the layout of the main body of text, but there's a small downside
+with this: if you have a lot of links next to each other it's not always
+obvious which link and which label go together. While getting close to your
+desired link should be good enough (you can then still hit &lt;kbd&gt;Tab&lt;/kbd&gt; to
+get to your chosen link), I felt something else could be done to give some
+help. So I added an option to turn on alternating background stripes for
+links.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Links with stripes" height="1984" loading="lazy" src="https://blog.davep.org/attachments/2026/07/14/links-with-stripes.webp#centre" width="1894" /&gt;&lt;/p&gt;
+&lt;p&gt;If all of this seems a bit too cluttered, especially if you're the sort of
+person who is mouse-first or mouse-heavy with the terminal, there's still
+the option to turn off both the labels and the stripes and have Rogallo look
+like it did before.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Links how they used to look" height="1984" loading="lazy" src="https://blog.davep.org/attachments/2026/07/14/links-like-before.webp#centre" width="1894" /&gt;&lt;/p&gt;
+&lt;p&gt;I think this covers pretty much all the possible link navigation needs I can
+imagine anyone having.&lt;/p&gt;
+&lt;p&gt;As well as the above, other small changes in v0.7.0 include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed a cosmetic issue with the truncation of the current location shown
+  in the viewer panel, if the location is longer than the available space is
+  wide.&lt;/li&gt;
+&lt;li&gt;The suggestions provided in the command line now include hosts found in
+  the "known hosts" trust store. So if you are trying to remember a location
+  you visited long ago, and you never bookmarked it and it's fallen out of
+  the location history, it's still there as a reminder/hint/completion.&lt;/li&gt;
+&lt;li&gt;Also added the same to the history search palette.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I've also done more work on &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;the website&lt;/a&gt;. The
+&lt;a href="https://rogallo.davep.dev/configuration/" rel="noopener noreferrer" target="_blank"&gt;configuration section&lt;/a&gt; now covers
+pretty much everything you can modify that changes how Rogallo works. I
+still want to add more to the site -- mostly concentrating on explaining
+some key features -- but I felt that anyone using Rogallo right now would be
+most interested in how they can tailor it to their own taste.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/07/14/rogallo-v0-7-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>gemtext</category>
+      <category>smolweb</category>
+      <category>textual</category>
+      <pubDate>Tue, 14 Jul 2026 18:45:28 +0100</pubDate>
+    </item>
     <item>
       <title>Wasat v0.6.0</title>
       <link>https://blog.davep.org/2026/07/14/wasat-v0-6-0.html</link>
@@ -735,7 +809,7 @@ viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kb
 &lt;p&gt;It's worth noting that the default bindings for both of those aren't going
 to be ideal for some terminals. They should be fine in any terminal that
 supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
-This can be changed to your taste via the configuration file&lt;sup id="fnref:430-1"&gt;&lt;a class="footnote-ref" href="#fn:430-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+This can be changed to your taste via the configuration file&lt;sup id="fnref:431-1"&gt;&lt;a class="footnote-ref" href="#fn:431-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
 (bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
 between a rendered view and a plain text (source) view. So if you're looking
@@ -753,7 +827,7 @@ most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
 password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
 widget&lt;/a&gt;.
 The problem there though is that an input request from a Gemini server
-expects and allows for multi-line input&lt;sup id="fnref:430-2"&gt;&lt;a class="footnote-ref" href="#fn:430-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+expects and allows for multi-line input&lt;sup id="fnref:431-2"&gt;&lt;a class="footnote-ref" href="#fn:431-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
 &lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
 support password-style input.&lt;/p&gt;
 &lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
@@ -774,17 +848,17 @@ of fun working on it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:430-1"&gt;
+&lt;li id="fn:431-1"&gt;
 &lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
 documented when I get round to writing the documentation for Rogallo.
 Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
 Hike&lt;/a&gt; to get
-an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:430-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:431-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:430-2"&gt;
+&lt;li id="fn:431-2"&gt;
 &lt;p&gt;Well, technically, it's an optional feature of a client; the
 specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
-of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:430-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:431-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -927,7 +1001,7 @@ There are also a couple of cosmetic configuration options thrown in.&lt;/p&gt;
 &lt;p&gt;Starting with the cosmetic configuration options: I got to feeling that the
 URI-containing tooltips that show on mouse-hover over a link might be a bit
 much for some people, so I've added &lt;code&gt;show_link_tooltips&lt;/code&gt; to the
-configuration file&lt;sup id="fnref:390-1"&gt;&lt;a class="footnote-ref" href="#fn:390-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
+configuration file&lt;sup id="fnref:391-1"&gt;&lt;a class="footnote-ref" href="#fn:391-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
 &lt;p&gt;Similar to this I've also added &lt;code&gt;disable_animations&lt;/code&gt;. Out of the box
 &lt;a href="https://textual.textualize.io" rel="noopener noreferrer" target="_blank"&gt;Textual&lt;/a&gt; &lt;em&gt;loves&lt;/em&gt; its animations. This is
 arguably most noticeable if you have a long body of text in a scrolling
@@ -1098,10 +1172,10 @@ and water my plant in Astrobotany&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:390-1"&gt;
+&lt;li id="fn:391-1"&gt;
 &lt;p&gt;&lt;code&gt;~/.config/rogallo/configuration.json&lt;/code&gt; on most systems. This and all
 the options within will eventually be documented, when I get round to
-creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:390-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:391-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1143,87 +1217,6 @@ plan for mobile data, and a Mac-to-iPhone tethering setup...&lt;/p&gt;</descript
       <category>storm</category>
       <category>weather</category>
       <pubDate>Fri, 26 Jun 2026 09:12:10 +0100</pubDate>
-    </item>
-    <item>
-      <title>gemtext - A Gemtext parsing library for Python</title>
-      <link>https://blog.davep.org/2026/06/25/gemtext-a-gemtext-parsing-library-for-python.html</link>
-      <description>&lt;p&gt;I've just made an initial release of a new library related to my &lt;a href="https://blog.davep.org/tag/rogallo/"&gt;ongoing
-project to build my own Gemini protocol browser&lt;/a&gt;. Initially,
-the code to parse the &lt;a href="https://geminiprotocol.net/docs/gemtext-specification.gmi" rel="noopener noreferrer" target="_blank"&gt;hypertext
-format&lt;/a&gt; used for
-Gemini sites, lived in the Rogallo codebase. But despite it being a pretty
-simple bit of code, I felt it could be useful for other things too. So
-rather than have it be buried inside a package that has a lot of other
-dependencies, I've decided to spin it out into its own little package.&lt;/p&gt;
-&lt;p&gt;So &lt;a href="https://gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;gemtext&lt;/code&gt;&lt;/a&gt; v0.1.0 is &lt;a href="https://pypi.org/project/gemtext/" rel="noopener noreferrer" target="_blank"&gt;now
-available&lt;/a&gt;. The library provides a single
-parsing class, which takes raw markup as a string and turns it into a
-sequence of objects, each typed for the type of line found. A very simple
-parsing tool might look like this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;fileinput&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;gemtext&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Gemtext&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;parse_input&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;gem_line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;Gemtext&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fileinput&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;input&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;gem_line&lt;/span&gt;&lt;span class="si"&gt;!r}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;If fed with the following input:&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# This is a heading
-
-## This is a sub-heading
-
-### This is a sub-sub-heading
-
-=&amp;gt; gemini://davep.gemcities.com/ Dave&amp;#39;s test capsule
-
-&amp;gt; This is a deep and meaningful quote
-
-```
-Here is some pre-formatted text.
-
-Here&amp;#39;s some more of that text.
-```
-
-* One
-* Two
-* Three
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;the output would be this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Heading&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;This is a heading&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Paragraph&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Heading&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;This is a sub-heading&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Paragraph&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Heading&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;This is a sub-sub-heading&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Paragraph&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Link&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Dave&amp;#39;s test capsule&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;uri&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;gemini://davep.gemcities.com/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Paragraph&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Quote&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;This is a deep and meaningful quote&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Paragraph&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;PreFormatted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Here is some pre-formatted text.&lt;/span&gt;&lt;span class="se"&gt;\n\n&lt;/span&gt;&lt;span class="s2"&gt;Here&amp;#39;s some more of that text.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Paragraph&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;ListItem&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;One&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;ListItem&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Two&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;ListItem&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Three&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;That's the extent of the library for the moment. I don't see it growing too
-much, given how straightforward the markup language is. Perhaps one addition
-I might make at some point is a method of going the other way: allow
-collecting together each of the &lt;a href="https://gemtext.davep.dev/gemtext/" rel="noopener noreferrer" target="_blank"&gt;individual line-oriented
-objects&lt;/a&gt; and getting a text document
-back, so providing an object-oriented interface for producing Gemtext
-documents.&lt;/p&gt;
-&lt;p&gt;For now though this is enough to support what Rogallo needs.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/06/25/gemtext-a-gemtext-parsing-library-for-python.html</guid>
-      <category>Python</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>Python</category>
-      <category>gemtext</category>
-      <category>smolweb</category>
-      <pubDate>Thu, 25 Jun 2026 12:05:42 +0100</pubDate>
     </item>
   </channel>
 </rss>

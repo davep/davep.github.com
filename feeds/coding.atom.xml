@@ -2,11 +2,86 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-07-14T11:16:54.228804+00:00</updated>
+  <updated>2026-07-14T18:23:54.017974+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/07/14/rogallo-v0-7-0.html</id>
+    <title>Rogallo v0.7.0</title>
+    <updated>2026-07-14T18:45:28+01:00</updated>
+    <content type="html">&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
+&lt;a href="https://rogallo.davep.dev/changelog/#v070" rel="noopener noreferrer" target="_blank"&gt;v0.7.0&lt;/a&gt; is &lt;a href="https://pypi.org/project/rogallo/" rel="noopener noreferrer" target="_blank"&gt;now
+available&lt;/a&gt;. The main changes in this
+release revolve around the display and navigation of links.&lt;/p&gt;
+&lt;p&gt;The aim of Rogallo, as a "TUI" application, is that it is usable purely with
+the keyboard, and also very usable with the mouse too. So far I think I've
+managed to hit that mark, but I felt that things weren't quite as smooth as
+they could be when it came to navigating links.&lt;/p&gt;
+&lt;p&gt;Links, like any other UI element in the application that can receive
+"focus", can be navigated to using &lt;kbd&gt;Tab&lt;/kbd&gt; and
+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;Tab&lt;/kbd&gt;. This is fine if there's just a handful of
+links in a page, but more than that and having to repeatedly press tab gets
+a bit boring. Meanwhile, if you have a mouse or other pointing device to
+hand, it's easy to scroll and click. I wanted to try and have a similar
+keyboard-based speedup available.&lt;/p&gt;
+&lt;p&gt;So now, by default, all links on a page get a numeric label:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Links with numeric labels" height="1984" loading="lazy" src="https://blog.davep.org/attachments/2026/07/14/links-with-labels.webp#centre" width="1894" /&gt;&lt;/p&gt;
+&lt;p&gt;To jump to a link, while the viewer has focus, simply type the number. When
+you do so, the corresponding link will be focused, then you just need to hit
+&lt;kbd&gt;Enter&lt;/kbd&gt; to follow the link.&lt;/p&gt;
+&lt;p&gt;The input system is written to "wrap around", as it were. So if you type
+&lt;kbd&gt;1&lt;/kbd&gt; the link with a label of &lt;code&gt;1&lt;/code&gt; will be focused. If you then type
+&lt;kbd&gt;2&lt;/kbd&gt;, and if there's a link with a label of &lt;code&gt;12&lt;/code&gt;, it will be
+focused. If there are fewer than 12 links, the input chain resets, and &lt;code&gt;2&lt;/code&gt;
+will be focused. The idea being: as you keep typing numbers, they
+concatenate until there's no matching link and then it starts fresh.&lt;/p&gt;
+&lt;p&gt;I was quite keen on having the labels over to the right, so they didn't
+disturb the layout of the main body of text, but there's a small downside
+with this: if you have a lot of links next to each other it's not always
+obvious which link and which label go together. While getting close to your
+desired link should be good enough (you can then still hit &lt;kbd&gt;Tab&lt;/kbd&gt; to
+get to your chosen link), I felt something else could be done to give some
+help. So I added an option to turn on alternating background stripes for
+links.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Links with stripes" height="1984" loading="lazy" src="https://blog.davep.org/attachments/2026/07/14/links-with-stripes.webp#centre" width="1894" /&gt;&lt;/p&gt;
+&lt;p&gt;If all of this seems a bit too cluttered, especially if you're the sort of
+person who is mouse-first or mouse-heavy with the terminal, there's still
+the option to turn off both the labels and the stripes and have Rogallo look
+like it did before.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Links how they used to look" height="1984" loading="lazy" src="https://blog.davep.org/attachments/2026/07/14/links-like-before.webp#centre" width="1894" /&gt;&lt;/p&gt;
+&lt;p&gt;I think this covers pretty much all the possible link navigation needs I can
+imagine anyone having.&lt;/p&gt;
+&lt;p&gt;As well as the above, other small changes in v0.7.0 include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed a cosmetic issue with the truncation of the current location shown
+  in the viewer panel, if the location is longer than the available space is
+  wide.&lt;/li&gt;
+&lt;li&gt;The suggestions provided in the command line now include hosts found in
+  the "known hosts" trust store. So if you are trying to remember a location
+  you visited long ago, and you never bookmarked it and it's fallen out of
+  the location history, it's still there as a reminder/hint/completion.&lt;/li&gt;
+&lt;li&gt;Also added the same to the history search palette.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I've also done more work on &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;the website&lt;/a&gt;. The
+&lt;a href="https://rogallo.davep.dev/configuration/" rel="noopener noreferrer" target="_blank"&gt;configuration section&lt;/a&gt; now covers
+pretty much everything you can modify that changes how Rogallo works. I
+still want to add more to the site -- mostly concentrating on explaining
+some key features -- but I felt that anyone using Rogallo right now would be
+most interested in how they can tailor it to their own taste.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/07/14/rogallo-v0-7-0.html"/>
+    <category term="Coding"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="Rogallo"/>
+    <category term="gemtext"/>
+    <category term="smolweb"/>
+    <category term="textual"/>
+    <published>2026-07-14T18:45:28+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/07/12/rogallo-v0-6-0.html</id>
     <title>Rogallo v0.6.0</title>
@@ -277,7 +352,7 @@ viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kb
 &lt;p&gt;It's worth noting that the default bindings for both of those aren't going
 to be ideal for some terminals. They should be fine in any terminal that
 supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
-This can be changed to your taste via the configuration file&lt;sup id="fnref:430-1"&gt;&lt;a class="footnote-ref" href="#fn:430-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+This can be changed to your taste via the configuration file&lt;sup id="fnref:431-1"&gt;&lt;a class="footnote-ref" href="#fn:431-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
 (bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
 between a rendered view and a plain text (source) view. So if you're looking
@@ -295,7 +370,7 @@ most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
 password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
 widget&lt;/a&gt;.
 The problem there though is that an input request from a Gemini server
-expects and allows for multi-line input&lt;sup id="fnref:430-2"&gt;&lt;a class="footnote-ref" href="#fn:430-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+expects and allows for multi-line input&lt;sup id="fnref:431-2"&gt;&lt;a class="footnote-ref" href="#fn:431-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
 &lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
 support password-style input.&lt;/p&gt;
 &lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
@@ -316,17 +391,17 @@ of fun working on it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:430-1"&gt;
+&lt;li id="fn:431-1"&gt;
 &lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
 documented when I get round to writing the documentation for Rogallo.
 Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
 Hike&lt;/a&gt; to get
-an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:430-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:431-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:430-2"&gt;
+&lt;li id="fn:431-2"&gt;
 &lt;p&gt;Well, technically, it's an optional feature of a client; the
 specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
-of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:430-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:431-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -471,7 +546,7 @@ There are also a couple of cosmetic configuration options thrown in.&lt;/p&gt;
 &lt;p&gt;Starting with the cosmetic configuration options: I got to feeling that the
 URI-containing tooltips that show on mouse-hover over a link might be a bit
 much for some people, so I've added &lt;code&gt;show_link_tooltips&lt;/code&gt; to the
-configuration file&lt;sup id="fnref:390-1"&gt;&lt;a class="footnote-ref" href="#fn:390-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
+configuration file&lt;sup id="fnref:391-1"&gt;&lt;a class="footnote-ref" href="#fn:391-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
 &lt;p&gt;Similar to this I've also added &lt;code&gt;disable_animations&lt;/code&gt;. Out of the box
 &lt;a href="https://textual.textualize.io" rel="noopener noreferrer" target="_blank"&gt;Textual&lt;/a&gt; &lt;em&gt;loves&lt;/em&gt; its animations. This is
 arguably most noticeable if you have a long body of text in a scrolling
@@ -642,10 +717,10 @@ and water my plant in Astrobotany&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:390-1"&gt;
+&lt;li id="fn:391-1"&gt;
 &lt;p&gt;&lt;code&gt;~/.config/rogallo/configuration.json&lt;/code&gt; on most systems. This and all
 the options within will eventually be documented, when I get round to
-creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:390-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:391-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -692,7 +767,7 @@ added.&lt;/p&gt;
 &lt;p&gt;Finally, I've added a couple of features which make it easy to know where a
 link will take you. The first is that I've added a tooltip to each link, so
 that when you hover the mouse cursor over it the URI will be displayed. But,
-because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:411-1"&gt;&lt;a class="footnote-ref" href="#fn:411-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
+because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:412-1"&gt;&lt;a class="footnote-ref" href="#fn:412-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
 a status bar to the main viewer panel that shows the URI of the focused
 link.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The Rogallo status bar" height="1760" loading="lazy" src="https://blog.davep.org/attachments/2026/06/24/rogallo-with-bar.webp#centre" width="1750" /&gt;&lt;/p&gt;
@@ -725,8 +800,8 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:411-1"&gt;
-&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:411-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:412-1"&gt;
+&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:412-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1309,7 +1384,7 @@ should have added right near the start of the project.&lt;/p&gt;
 &lt;p&gt;First, the cosmetic: in pages and posts, when you use headings (&lt;code&gt;#&lt;/code&gt;, &lt;code&gt;##&lt;/code&gt;,
 etc.), a &lt;code&gt;¶&lt;/code&gt; is added to the end of each heading, along with some
 show-on-mouse-hover styling, to make it easy to grab the anchor of a
-particular section of a page&lt;sup id="fnref:408-1"&gt;&lt;a class="footnote-ref" href="#fn:408-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. A problem I'd noticed with this recently
+particular section of a page&lt;sup id="fnref:409-1"&gt;&lt;a class="footnote-ref" href="#fn:409-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. A problem I'd noticed with this recently
 is that the &lt;code&gt;¶&lt;/code&gt; shows up in the &lt;a href="https://blog.davep.org/search/"&gt;search&lt;/a&gt; text, and also in the
 content of all the feeds. While not a problem as such, it felt untidy.&lt;/p&gt;
 &lt;p&gt;So, with this release that particular &lt;code&gt;¶&lt;/code&gt; character is stripped from the
@@ -1364,9 +1439,9 @@ information lives with the page or post being redirected to.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:408-1"&gt;
+&lt;li id="fn:409-1"&gt;
 &lt;p&gt;The &lt;a href="https://blog.davep.org/2026/06/04/blogmore-v2-38-0.html"&gt;recently-added floating ToC&lt;/a&gt;
-is another way to do this now too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:408-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+is another way to do this now too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:409-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1380,84 +1455,5 @@ is another way to do this now too.&amp;#160;&lt;a class="footnote-backref" href=
     <category term="SEO"/>
     <category term="atom"/>
     <published>2026-06-05T08:36:57+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/06/04/blogmore-v2-38-0.html</id>
-    <title>BlogMore v2.38.0</title>
-    <updated>2026-06-04T13:21:38+01:00</updated>
-    <content type="html">&lt;p&gt;&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt; has been bumped to
-&lt;a href="https://blogmore.davep.dev/changelog/#v2380" rel="noopener noreferrer" target="_blank"&gt;v2.38.0&lt;/a&gt;. This release
-includes a small cosmetic change to the &lt;a href="https://blog.davep.org/stats/"&gt;stats page&lt;/a&gt;, and also adds
-a fairly big cosmetic feature with some comprehensive control.&lt;/p&gt;
-&lt;p&gt;First, the change to the stats page: here I've changed the formatting of
-numbers a little so that numbers that are in the thousands or higher get
-better formatting. So rather than a count of something being &lt;code&gt;1234&lt;/code&gt; it'll
-now display as &lt;code&gt;1,234&lt;/code&gt;. Hardly a groundbreaking change, but something I'd
-omitted some time ago and yesterday evening it came to mind. This should
-make the stats page just a little easier on the eye.&lt;/p&gt;
-&lt;p&gt;The second change is a reasonably big one, with some extra configuration
-file and frontmatter additions.&lt;/p&gt;
-&lt;p&gt;BlogMore has long supported auto-generation of a table of contents in the
-body of a post by including a &lt;code&gt;[TOC]&lt;/code&gt; shortcut. Generally I'm not a fan of
-using this approach, but I can see the utility. Yesterday evening I added a
-new approach to showing a table of contents that means you don't need to
-have the list of links within the post.&lt;/p&gt;
-&lt;p&gt;Starting with this version, if a page or post has one or more headings in
-it, a table of contents will appear in the "dead space" on the right-hand
-side of the page, like this:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="ToC to the right" height="636" loading="lazy" src="https://blog.davep.org/attachments/2026/06/04/toc.webp#centre" width="966" /&gt;&lt;/p&gt;
-&lt;p&gt;This follows the same kind of style as is used for the year and month index
-in the &lt;a href="https://blog.davep.org/archive/"&gt;archives page&lt;/a&gt;. However, whereas in the archives the
-index just disappears (by design) if you're on a smaller screen, this new
-table of contents will switch to being inline in the page or post, in a form
-that is collapsed:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Collapsed inline ToC" height="391" loading="lazy" src="https://blog.davep.org/attachments/2026/06/04/toc-inline-collapsed.webp#centre" width="572" /&gt;&lt;/p&gt;
-&lt;p&gt;If the user clicks on it, it expands:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Expanded inline ToC" height="629" loading="lazy" src="https://blog.davep.org/attachments/2026/06/04/toc-inline-expanded.webp#centre" width="569" /&gt;&lt;/p&gt;
-&lt;p&gt;Given that this is a fairly big cosmetic change that could affect many pages
-and posts on a blog, I've built in as much control as makes sense. This new
-ToC approach is on by default, but can be turned off. First off, there is &lt;a href="https://blogmore.davep.dev/configuration/#show_toc" rel="noopener noreferrer" target="_blank"&gt;a
-&lt;code&gt;show_toc&lt;/code&gt; configuration file
-setting&lt;/a&gt; which controls
-if the feature should be on or off, by default, site-wide. It is set to
-&lt;code&gt;true&lt;/code&gt; by default.&lt;/p&gt;
-&lt;p&gt;Because there might be times where you want to control this at the page or
-post level, there is also &lt;a href="https://blogmore.davep.dev/writing_a_post/#show_toc" rel="noopener noreferrer" target="_blank"&gt;a &lt;code&gt;show_toc&lt;/code&gt; frontmatter
-property&lt;/a&gt; too. This
-&lt;em&gt;always&lt;/em&gt; overrides the global setting in the configuration file.&lt;/p&gt;
-&lt;p&gt;On top of this, I can imagine that someone&lt;sup id="fnref:406-1"&gt;&lt;a class="footnote-ref" href="#fn:406-1"&gt;1&lt;/a&gt;&lt;/sup&gt; might also want to have the
-right-side floating ToC, but never have the inline ToC showing on smaller
-displays. With this in mind I've also added a &lt;code&gt;show_toc_inline&lt;/code&gt;
-&lt;a href="https://blogmore.davep.dev/configuration/#show_toc_inline" rel="noopener noreferrer" target="_blank"&gt;configuration
-option&lt;/a&gt; and
-&lt;a href="https://blogmore.davep.dev/writing_a_post/#show_toc_inline" rel="noopener noreferrer" target="_blank"&gt;frontmatter
-property&lt;/a&gt;. These
-just control if the inline version of the ToC will ever be shown. To be
-clear: if the ToC is disabled (either site-wide or via a specific page or
-post's frontmatter), this inline-specific setting is ignored -- the ToC will
-never show. But if &lt;code&gt;show_toc&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt; then &lt;code&gt;show_toc_inline&lt;/code&gt; controls if
-the inline ToC ever appears on smaller displays.&lt;/p&gt;
-&lt;p&gt;I fear I might have made it sound more complicated than it is. Apologies if
-that's the case. I'm confident that someone needing this level of control
-will make sense of it easily enough.&lt;/p&gt;
-&lt;p&gt;Also, just to be clear: the &lt;code&gt;[TOC]&lt;/code&gt; shortcut is totally unaffected by any of
-this. If you have &lt;code&gt;[TOC]&lt;/code&gt; in your post, that version of the table of
-contents will &lt;em&gt;always&lt;/em&gt; be generated. I didn't think it made sense to
-override that explicit markup choice.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:406-1"&gt;
-&lt;p&gt;Me, I'm thinking it might be me.&amp;#160;&lt;a class="footnote-backref" href="#fnref:406-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/06/04/blogmore-v2-38-0.html"/>
-    <category term="Coding"/>
-    <category term="BlogMore"/>
-    <category term="Coding"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <published>2026-06-04T13:21:38+01:00</published>
   </entry>
 </feed>
