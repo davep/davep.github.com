@@ -8,7 +8,91 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 14 Jul 2026 18:23:54 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 15 Jul 2026 18:59:17 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v0.8.0</title>
+      <link>https://blog.davep.org/2026/07/15/rogallo-v0-8-0.html</link>
+      <description>&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
+&lt;a href="https://rogallo.davep.dev/changelog/#v080" rel="noopener noreferrer" target="_blank"&gt;v0.8.0&lt;/a&gt; is now available. This
+release includes a small bug fix, a big change to how external links and
+unhandled MIME types are dealt with, and a further improvement to link
+navigation.&lt;/p&gt;
+&lt;p&gt;First the big change: hand-off of unhandled content and trust. Until now, if
+Rogallo was met with a URI it didn't know how to handle, or met with a MIME
+type it isn't designed to deal with, it would simply hand it off to the
+browser in your environment. This is generally handy as it means that, when
+you're browsing &lt;a href="https://blog.davep.org/tag/gemtext/"&gt;gemtext&lt;/a&gt; content, if you meet a link that
+takes you to a conventional website, the link will (normally) be opened in
+your browser.&lt;/p&gt;
+&lt;p&gt;There are, of course, any number of schemes that form part of a URI. While
+Rogallo might commonly be handing off &lt;code&gt;http&lt;/code&gt; and &lt;code&gt;https&lt;/code&gt; URIs, there's no
+reason why it can't be handing off a &lt;code&gt;finger&lt;/code&gt; or a &lt;code&gt;mailto&lt;/code&gt; or whatever. Or,
+potentially, something a wee bit more dodgy like a &lt;code&gt;javascript&lt;/code&gt; URI. While
+some web browsers don't allow that sort of thing by default (Safari, for
+example, blocks it unless configured otherwise), others might, and this
+&lt;em&gt;could&lt;/em&gt; result in a nasty surprise.&lt;/p&gt;
+&lt;p&gt;So now Rogallo has a confirmation step that lets you allow a scheme this
+once, this and every subsequent time, or just cancel out.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Confirm a scheme" height="1792" loading="lazy" src="https://blog.davep.org/attachments/2026/07/15/scheme-confirm.webp#centre" width="1798" /&gt;&lt;/p&gt;
+&lt;p&gt;By default the trusted schemes (the ones you say "always" on) are saved in a
+&lt;code&gt;trusted_schemes&lt;/code&gt; file in the data directory.&lt;/p&gt;
+&lt;p&gt;Similar to the above: if, via a URI that Rogallo can handle, it meets a MIME
+type it can't handle, it will also pass it off to your operating system.
+I've added similar protection there too.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Confirm MIME type" height="1792" loading="lazy" src="https://blog.davep.org/attachments/2026/07/15/mime-type-confirm.webp#centre" width="1798" /&gt;&lt;/p&gt;
+&lt;p&gt;In this case any MIME types marked as trusted are dropped into a
+&lt;code&gt;trusted_mime_types&lt;/code&gt; file in the data directory.&lt;/p&gt;
+&lt;div class="admonition admonition-note"&gt;
+&lt;div class="admonition-title"&gt;ℹ️ Note&lt;/div&gt;
+&lt;div class="admonition-content"&gt;
+&lt;p&gt;If such a MIME type is allowed, it is &lt;em&gt;passed off to your operating system
+to handle&lt;/em&gt;. If you'd like to tell Rogallo to try and internally handle a
+MIME type, you can set that by configuring the &lt;a href="https://rogallo.davep.dev/configuration/#displayable-content-types" rel="noopener noreferrer" target="_blank"&gt;displayable content
+types&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;I feel these changes help remove any possible footguns previously caused by
+unquestionably handing off URIs to the wider environment.&lt;/p&gt;
+&lt;p&gt;Another change I've made is to add even more link navigation. This sort of
+follows on from &lt;a href="https://blog.davep.org/2026/07/14/rogallo-v0-7-0.html"&gt;yesterday's release&lt;/a&gt; where
+I added labelled jumps to links. Again, the usual method of moving between
+links is to use &lt;kbd&gt;Tab&lt;/kbd&gt; and &lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;Tab&lt;/kbd&gt;. The
+problem with those keys is they navigate you through &lt;em&gt;all&lt;/em&gt; widgets in the UI
+that can receive focus. So, if you keep tapping &lt;kbd&gt;Tab&lt;/kbd&gt;, you'll
+navigate out of the viewer and into the next available widget, once you
+reach the last link.&lt;/p&gt;
+&lt;p&gt;With this release I've added some extra keys which can be used to constantly
+cycle around the links while you're inside the viewer. These are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;kbd&gt;Left&lt;/kbd&gt;, &lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;Up&lt;/kbd&gt;, &lt;kbd&gt;L&lt;/kbd&gt; to go
+  backwards through the links.&lt;/li&gt;
+&lt;li&gt;&lt;kbd&gt;Right&lt;/kbd&gt;, &lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;Down&lt;/kbd&gt;, &lt;kbd&gt;l&lt;/kbd&gt; to go
+  forwards through the links.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;While these might not be to everyone's taste (I'm already getting very used
+to using &lt;kbd&gt;Left&lt;/kbd&gt; and &lt;kbd&gt;Right&lt;/kbd&gt;), they do add another set of
+options for link navigation.&lt;/p&gt;
+&lt;p&gt;The final change is a simple bug fix, where the command line history simply
+wasn't being saved and loaded correctly. From now on it should save
+correctly and allow navigation of the history using the cursor keys.&lt;/p&gt;
+&lt;p&gt;With these changes in place, I feel I'm actually getting close to bumping up
+to a v1.0.0 release. While there are still things I want to add (there are
+currently a handful of TODO items in the issues), I see these as
+nice-to-have items that I want to do later on, rather than as must-have
+items that preclude considering Rogallo a viable daily-driver.&lt;/p&gt;
+&lt;p&gt;I'll see how the next day or so goes.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/07/15/rogallo-v0-8-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>gemtext</category>
+      <category>smolweb</category>
+      <category>textual</category>
+      <pubDate>Wed, 15 Jul 2026 19:56:57 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v0.7.0</title>
       <link>https://blog.davep.org/2026/07/14/rogallo-v0-7-0.html</link>
@@ -120,7 +204,7 @@ class method that acts as a more relaxed "constructor" for a &lt;code&gt;GeminiU
 Again, in Rogallo, there are a few places where I'm taking some input,
 assuming it's going to be a &lt;code&gt;gemini://&lt;/code&gt; URI, checking if it's missing the
 scheme prefix, and then prefixing the string with &lt;code&gt;gemini://&lt;/code&gt; before
-creating a &lt;code&gt;GeminiURI&lt;/code&gt;&lt;sup id="fnref:382-1"&gt;&lt;a class="footnote-ref" href="#fn:382-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This means that Rogallo contains a few instances
+creating a &lt;code&gt;GeminiURI&lt;/code&gt;&lt;sup id="fnref:383-1"&gt;&lt;a class="footnote-ref" href="#fn:383-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This means that Rogallo contains a few instances
 of this sort of code:&lt;/p&gt;
 &lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="c1"&gt;# ...we should treat some text as a URI but it isn&amp;#39;t prefixed with &amp;quot;gemini://&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;uri&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GeminiURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;GEMINI_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}{&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -135,8 +219,8 @@ having to import &lt;code&gt;GEMINI_PREFIX&lt;/code&gt;, etc.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:382-1"&gt;
-&lt;p&gt;&lt;code&gt;GeminiURI&lt;/code&gt; will deliberately raise an exception if the scheme isn't &lt;code&gt;gemini&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:382-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:383-1"&gt;
+&lt;p&gt;&lt;code&gt;GeminiURI&lt;/code&gt; will deliberately raise an exception if the scheme isn't &lt;code&gt;gemini&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:383-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -809,7 +893,7 @@ viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kb
 &lt;p&gt;It's worth noting that the default bindings for both of those aren't going
 to be ideal for some terminals. They should be fine in any terminal that
 supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
-This can be changed to your taste via the configuration file&lt;sup id="fnref:431-1"&gt;&lt;a class="footnote-ref" href="#fn:431-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+This can be changed to your taste via the configuration file&lt;sup id="fnref:432-1"&gt;&lt;a class="footnote-ref" href="#fn:432-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
 (bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
 between a rendered view and a plain text (source) view. So if you're looking
@@ -827,7 +911,7 @@ most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
 password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
 widget&lt;/a&gt;.
 The problem there though is that an input request from a Gemini server
-expects and allows for multi-line input&lt;sup id="fnref:431-2"&gt;&lt;a class="footnote-ref" href="#fn:431-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+expects and allows for multi-line input&lt;sup id="fnref:432-2"&gt;&lt;a class="footnote-ref" href="#fn:432-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
 &lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
 support password-style input.&lt;/p&gt;
 &lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
@@ -848,17 +932,17 @@ of fun working on it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:431-1"&gt;
+&lt;li id="fn:432-1"&gt;
 &lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
 documented when I get round to writing the documentation for Rogallo.
 Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
 Hike&lt;/a&gt; to get
-an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:431-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:432-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:431-2"&gt;
+&lt;li id="fn:432-2"&gt;
 &lt;p&gt;Well, technically, it's an optional feature of a client; the
 specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
-of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:431-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:432-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1001,7 +1085,7 @@ There are also a couple of cosmetic configuration options thrown in.&lt;/p&gt;
 &lt;p&gt;Starting with the cosmetic configuration options: I got to feeling that the
 URI-containing tooltips that show on mouse-hover over a link might be a bit
 much for some people, so I've added &lt;code&gt;show_link_tooltips&lt;/code&gt; to the
-configuration file&lt;sup id="fnref:391-1"&gt;&lt;a class="footnote-ref" href="#fn:391-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
+configuration file&lt;sup id="fnref:392-1"&gt;&lt;a class="footnote-ref" href="#fn:392-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
 &lt;p&gt;Similar to this I've also added &lt;code&gt;disable_animations&lt;/code&gt;. Out of the box
 &lt;a href="https://textual.textualize.io" rel="noopener noreferrer" target="_blank"&gt;Textual&lt;/a&gt; &lt;em&gt;loves&lt;/em&gt; its animations. This is
 arguably most noticeable if you have a long body of text in a scrolling
@@ -1172,10 +1256,10 @@ and water my plant in Astrobotany&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:391-1"&gt;
+&lt;li id="fn:392-1"&gt;
 &lt;p&gt;&lt;code&gt;~/.config/rogallo/configuration.json&lt;/code&gt; on most systems. This and all
 the options within will eventually be documented, when I get round to
-creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:391-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:392-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1191,32 +1275,6 @@ creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" h
       <category>smolweb</category>
       <category>textual</category>
       <pubDate>Fri, 26 Jun 2026 16:54:54 +0100</pubDate>
-    </item>
-    <item>
-      <title>Stormy outage</title>
-      <link>https://blog.davep.org/2026/06/26/stormy-outage.html</link>
-      <description>&lt;p&gt;It looks like I'm going to have a fairly interrupted work day today. I was
-woken up in the early hours of the morning by a pretty impressive storm.
-While most of the lightning was
-&lt;a href="https://en.wikipedia.org/wiki/Lightning#Forms" rel="noopener noreferrer" target="_blank"&gt;IC&lt;/a&gt;, it was almost constant
-for a good thirty minutes or so. Given it was still dark, it was an
-impressive show.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Lightning map of the last 24 hours" height="462" loading="lazy" src="https://blog.davep.org/attachments/2026/06/26/lightning-map.webp#centre" width="640" /&gt;&lt;/p&gt;
-&lt;p&gt;Around 08:00, it started up again. Some time between 08:00 and 08:30, I lost
-broadband. A quick check of the status page showed it wasn't just me...&lt;/p&gt;
-&lt;p&gt;&lt;img alt="No broadband via EE" height="320" loading="lazy" src="https://blog.davep.org/attachments/2026/06/26/nonet.webp#centre" width="732" /&gt;&lt;/p&gt;
-&lt;p&gt;That 19:00 expected fix time doesn't look so good for getting a lot of
-quality work done today. I would expect that to be an initial pessimistic
-estimate, but it still suggests it's likely not a straightforward issue.&lt;/p&gt;
-&lt;p&gt;You've got to be somewhat thankful for a couple of bars of 5G, an unlimited
-plan for mobile data, and a Mac-to-iPhone tethering setup...&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/06/26/stormy-outage.html</guid>
-      <category>Life</category>
-      <category>Broadband</category>
-      <category>EE</category>
-      <category>storm</category>
-      <category>weather</category>
-      <pubDate>Fri, 26 Jun 2026 09:12:10 +0100</pubDate>
     </item>
   </channel>
 </rss>
