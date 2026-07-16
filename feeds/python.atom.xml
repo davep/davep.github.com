@@ -2,11 +2,56 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-07-15T18:59:17.532698+00:00</updated>
+  <updated>2026-07-16T08:14:45.306591+00:00</updated>
   <link href="https://blog.davep.org/feeds/python.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Python" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/07/16/gemtext-v1-0-0.html</id>
+    <title>Gemtext v1.0.0</title>
+    <updated>2026-07-16T08:58:50+01:00</updated>
+    <content type="html">&lt;p&gt;I've bumped &lt;a href="https://gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Gemtext&lt;/a&gt; to
+&lt;a href="https://gemtext.davep.dev/changelog/#v100" rel="noopener noreferrer" target="_blank"&gt;v1.0.0&lt;/a&gt;. I've gone from "this is
+test code" to "this is stable code" mostly because the library is so simple
+and I'm unlikely to add any radically new features to it&lt;sup id="fnref:385-1"&gt;&lt;a class="footnote-ref" href="#fn:385-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;This bump also has one small addition: I've added &lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.PreFormatted.alt_text" rel="noopener noreferrer" target="_blank"&gt;an &lt;code&gt;alt_text&lt;/code&gt;
+property&lt;/a&gt;
+to &lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.PreFormatted" rel="noopener noreferrer" target="_blank"&gt;the &lt;code&gt;PreFormatted&lt;/code&gt;
+class&lt;/a&gt;. This exists
+to capture and make available any text that comes after the pre-formatted
+text marker. For example, this text:&lt;/p&gt;
+&lt;div class="highlight" data-lang="gemtext"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;```python
+print(&amp;quot;Hello, World!&amp;quot;)
+```
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;will now result in:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;PreFormatted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;print(&amp;quot;Hello, World!&amp;quot;)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;alt_text&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;python&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If/when I &lt;a href="https://github.com/davep/rogallo/issues/151" rel="noopener noreferrer" target="_blank"&gt;add syntax highlighting of pre-formatted text blocks to
+Rogallo&lt;/a&gt;, this new property
+will make that possible.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:385-1"&gt;
+&lt;p&gt;I was thinking about adding a Gemtext builder class at some point,
+but I can't see a use for it any time soon. Perhaps v2.0.0.&amp;#160;&lt;a class="footnote-backref" href="#fnref:385-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/07/16/gemtext-v1-0-0.html"/>
+    <category term="Python"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="gemtext"/>
+    <category term="smolweb"/>
+    <published>2026-07-16T08:58:50+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/07/14/wasat-v0-6-0.html</id>
     <title>Wasat v0.6.0</title>
@@ -326,7 +371,7 @@ parsing tool might look like this:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;If fed with the following input:&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# This is a heading
+&lt;div class="highlight" data-lang="gemtext"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# This is a heading
 
 ## This is a sub-heading
 
@@ -377,6 +422,7 @@ documents.&lt;/p&gt;
     <category term="Python"/>
     <category term="Coding"/>
     <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
     <category term="Python"/>
     <category term="gemtext"/>
     <category term="smolweb"/>
@@ -483,7 +529,7 @@ it would be useful to have a Python client library for the protocol, and
 ideally a client library that is async. I did some searching, found client
 libraries, but none of them seemed to be async-first.&lt;/p&gt;
 &lt;p&gt;With this in mind, and to kick-start the project, last night I fired up
-&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt;&lt;sup id="fnref:402-1"&gt;&lt;a class="footnote-ref" href="#fn:402-1"&gt;1&lt;/a&gt;&lt;/sup&gt; and got a library up and going.
+&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt;&lt;sup id="fnref:403-1"&gt;&lt;a class="footnote-ref" href="#fn:403-1"&gt;1&lt;/a&gt;&lt;/sup&gt; and got a library up and going.
 &lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt; is the result. For the moment this should
 be considered alpha-status software (hence v0.0.1). I've done some &lt;em&gt;very&lt;/em&gt;
 rudimentary testing and experimenting with it and, so far, so good. It's
@@ -525,8 +571,8 @@ it, and especially writing one that works just how I want.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:402-1"&gt;
-&lt;p&gt;No, not &lt;a href="https://xkcd.com/353/" rel="noopener noreferrer" target="_blank"&gt;that one&lt;/a&gt;, the &lt;a href="https://antigravity.google/" rel="noopener noreferrer" target="_blank"&gt;other one&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:402-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:403-1"&gt;
+&lt;p&gt;No, not &lt;a href="https://xkcd.com/353/" rel="noopener noreferrer" target="_blank"&gt;that one&lt;/a&gt;, the &lt;a href="https://antigravity.google/" rel="noopener noreferrer" target="_blank"&gt;other one&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:403-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -984,49 +1030,5 @@ for a really quick and easy tool to double-check how to query something.&lt;/p&g
     <category term="coding"/>
     <category term="Textual"/>
     <published>2023-09-01T07:42:00+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2023/08/13/unbored-0-6-0.html</id>
-    <title>Unbored v0.6.0</title>
-    <updated>2023-08-13T21:21:00+01:00</updated>
-    <content type="html">&lt;p&gt;&lt;a href="https://blog.davep.org/2022/12/01/new-things-on-pypi.html"&gt;Late on last year&lt;/a&gt; I wrote about a
-bunch of new things that I'd added to PyPI, things mostly kicked off by an
-early &lt;a href="https://blog.davep.org/2022/11/26/on-dog-food.html"&gt;dog-fooding session we had at textual
-HQ&lt;/a&gt;. Since then I've been slowly doing my best
-to keep the applications up to date with Textual.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Unbored" height="487" loading="lazy" src="https://blog.davep.org/attachments/2023/08/13/unbored.webp#centre" width="512" /&gt;&lt;/p&gt;
-&lt;p&gt;As much as possible we try and not make breaking changes with the framework,
-but at the same time it is still 0.x software and there's still new ways of
-doing things being designed so there's going to be the odd break in approach
-now and again.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/davep/unbored" rel="noopener noreferrer" target="_blank"&gt;Unbored&lt;/a&gt;, my kind of silly
-self-populating TODO list application, has been sitting atop Textual 0.20.x
-for a while now and earlier today I checked how it was getting in with
-0.32.0 and... actually surprisingly okay. Not perfect, there were a couple
-of things that had suffered from bitrot, but it wasn't crashing.&lt;/p&gt;
-&lt;p&gt;The main thing I needed to change was the ability to focus a couple of
-containers (they didn't used to receive focus by default, now they do so I
-had to tell them not to again), and that was about it.&lt;/p&gt;
-&lt;p&gt;While I was in there I also updated the application so that I dropped the
-&lt;a href="https://www.youtube.com/watch?v=N2ZsXGQQpFw" rel="noopener noreferrer" target="_blank"&gt;nifty little slide-in error dialog I'd
-made&lt;/a&gt;, and instead embraced
-&lt;a href="https://textual.textualize.io/blog/2023/07/17/textual-0300-adds-desktop-style-notifications/" rel="noopener noreferrer" target="_blank"&gt;the new Textual notification
-system&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;While the application itself is a bit silly, and likely of no &lt;em&gt;real&lt;/em&gt; use to
-anyone, I feel it's a pretty good barometer application, helping me check
-what the experience is like when it comes to maintaining a Textual
-application and the needs to keep on top of changes to Textual.&lt;/p&gt;
-&lt;p&gt;It goes without saying, I hope, that really you should pin the Textual
-dependency for your applications, and upgrade in a controlled and tested
-way; for this though it's less crucial and is a good test of the state of
-the ecosystem, and on the remote chance that anyone is using it, it'll be
-helpful to me if it &lt;em&gt;does&lt;/em&gt; break and they yell.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2023/08/13/unbored-0-6-0.html"/>
-    <category term="Python"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="coding"/>
-    <category term="Textual"/>
-    <published>2023-08-13T21:21:00+01:00</published>
   </entry>
 </feed>
