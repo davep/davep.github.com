@@ -2,7 +2,7 @@
 title: "gemtext - A Gemtext parsing library for Python"
 date: "2026-06-25 12:05:42+0100"
 category: Python
-tags: [Coding, "Gemini Protocol", Python, gemtext, smolweb]
+tags: [Coding, "Gemini Protocol", PyPI, Python, gemtext, smolweb]
 ---
 
 I've just made an initial release of a new library related to my [ongoing
@@ -31,7 +31,7 @@ def parse_input() -> None:
 
 If fed with the following input:
 
-````text
+````gemtext
 # This is a heading
 
 ## This is a sub-heading
