@@ -2,11 +2,48 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-07-16T08:14:45.300345+00:00</updated>
+  <updated>2026-07-16T16:14:57.806322+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/07/16/wasat-v0-7-0.html</id>
+    <title>Wasat v0.7.0</title>
+    <updated>2026-07-16T17:07:52+01:00</updated>
+    <content type="html">&lt;p&gt;The &lt;a href="https://geminiprotocol.net/docs/protocol-specification.gmi" rel="noopener noreferrer" target="_blank"&gt;Gemini
+Protocol&lt;/a&gt; makes
+it clear that &lt;a href="https://geminiprotocol.net/docs/protocol-specification.gmi#requests" rel="noopener noreferrer" target="_blank"&gt;the maximum length of a URI, when making a request, is 1024
+bytes&lt;/a&gt;.
+This has implications for how large a user's input can be when responding to
+a &lt;code&gt;1x&lt;/code&gt; response. Because of this, I'd like to update
+&lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt; so that it lets the user know how much space they
+have left as they type in their input.&lt;/p&gt;
+&lt;p&gt;With this in mind I've released
+&lt;a href="https://wasat.davep.dev/changelog/#v070" rel="noopener noreferrer" target="_blank"&gt;v0.7.0&lt;/a&gt; of
+&lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;. This adds the following to &lt;code&gt;GeminiURI&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;GeminiURI.MAXIMUM_LENGTH&lt;/code&gt; -- a constant for the maximum length of a
+  Gemini URI (as mentioned above: 1024).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;len()&lt;/code&gt; support -- if you ask for the &lt;code&gt;len&lt;/code&gt; of an instance of &lt;code&gt;GeminiURI&lt;/code&gt;
+  it will return the length of the full URI.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GeminiURI.bytes_left&lt;/code&gt; is a property that tells you how many bytes are
+  left until the limit, given the current URI.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GeminiURI.too_long&lt;/code&gt; is a boolean property that flags if the current URI
+  is too long to send to a Gemini capsule.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This should give me all I need to add some guardrails to the user input
+dialog in Rogallo.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/07/16/wasat-v0-7-0.html"/>
+    <category term="Python"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="smolweb"/>
+    <category term="wasat"/>
+    <published>2026-07-16T17:07:52+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/07/16/gemtext-v1-0-0.html</id>
     <title>Gemtext v1.0.0</title>
@@ -14,7 +51,7 @@
     <content type="html">&lt;p&gt;I've bumped &lt;a href="https://gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Gemtext&lt;/a&gt; to
 &lt;a href="https://gemtext.davep.dev/changelog/#v100" rel="noopener noreferrer" target="_blank"&gt;v1.0.0&lt;/a&gt;. I've gone from "this is
 test code" to "this is stable code" mostly because the library is so simple
-and I'm unlikely to add any radically new features to it&lt;sup id="fnref:385-1"&gt;&lt;a class="footnote-ref" href="#fn:385-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+and I'm unlikely to add any radically new features to it&lt;sup id="fnref:386-1"&gt;&lt;a class="footnote-ref" href="#fn:386-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;This bump also has one small addition: I've added &lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.PreFormatted.alt_text" rel="noopener noreferrer" target="_blank"&gt;an &lt;code&gt;alt_text&lt;/code&gt;
 property&lt;/a&gt;
 to &lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.PreFormatted" rel="noopener noreferrer" target="_blank"&gt;the &lt;code&gt;PreFormatted&lt;/code&gt;
@@ -36,9 +73,9 @@ will make that possible.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:385-1"&gt;
+&lt;li id="fn:386-1"&gt;
 &lt;p&gt;I was thinking about adding a Gemtext builder class at some point,
-but I can't see a use for it any time soon. Perhaps v2.0.0.&amp;#160;&lt;a class="footnote-backref" href="#fnref:385-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+but I can't see a use for it any time soon. Perhaps v2.0.0.&amp;#160;&lt;a class="footnote-backref" href="#fnref:386-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -250,7 +287,7 @@ class method that acts as a more relaxed "constructor" for a &lt;code&gt;GeminiU
 Again, in Rogallo, there are a few places where I'm taking some input,
 assuming it's going to be a &lt;code&gt;gemini://&lt;/code&gt; URI, checking if it's missing the
 scheme prefix, and then prefixing the string with &lt;code&gt;gemini://&lt;/code&gt; before
-creating a &lt;code&gt;GeminiURI&lt;/code&gt;&lt;sup id="fnref:383-1"&gt;&lt;a class="footnote-ref" href="#fn:383-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This means that Rogallo contains a few instances
+creating a &lt;code&gt;GeminiURI&lt;/code&gt;&lt;sup id="fnref:384-1"&gt;&lt;a class="footnote-ref" href="#fn:384-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This means that Rogallo contains a few instances
 of this sort of code:&lt;/p&gt;
 &lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="c1"&gt;# ...we should treat some text as a URI but it isn&amp;#39;t prefixed with &amp;quot;gemini://&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;uri&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GeminiURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;GEMINI_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}{&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -265,8 +302,8 @@ having to import &lt;code&gt;GEMINI_PREFIX&lt;/code&gt;, etc.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:383-1"&gt;
-&lt;p&gt;&lt;code&gt;GeminiURI&lt;/code&gt; will deliberately raise an exception if the scheme isn't &lt;code&gt;gemini&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:383-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:384-1"&gt;
+&lt;p&gt;&lt;code&gt;GeminiURI&lt;/code&gt; will deliberately raise an exception if the scheme isn't &lt;code&gt;gemini&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:384-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -954,7 +991,7 @@ viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kb
 &lt;p&gt;It's worth noting that the default bindings for both of those aren't going
 to be ideal for some terminals. They should be fine in any terminal that
 supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
-This can be changed to your taste via the configuration file&lt;sup id="fnref:433-1"&gt;&lt;a class="footnote-ref" href="#fn:433-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+This can be changed to your taste via the configuration file&lt;sup id="fnref:434-1"&gt;&lt;a class="footnote-ref" href="#fn:434-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
 (bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
 between a rendered view and a plain text (source) view. So if you're looking
@@ -972,7 +1009,7 @@ most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
 password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
 widget&lt;/a&gt;.
 The problem there though is that an input request from a Gemini server
-expects and allows for multi-line input&lt;sup id="fnref:433-2"&gt;&lt;a class="footnote-ref" href="#fn:433-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+expects and allows for multi-line input&lt;sup id="fnref:434-2"&gt;&lt;a class="footnote-ref" href="#fn:434-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
 &lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
 support password-style input.&lt;/p&gt;
 &lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
@@ -993,17 +1030,17 @@ of fun working on it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:433-1"&gt;
+&lt;li id="fn:434-1"&gt;
 &lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
 documented when I get round to writing the documentation for Rogallo.
 Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
 Hike&lt;/a&gt; to get
-an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:433-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:434-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:433-2"&gt;
+&lt;li id="fn:434-2"&gt;
 &lt;p&gt;Well, technically, it's an optional feature of a client; the
 specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
-of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:433-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:434-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1018,122 +1055,5 @@ of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&l
     <category term="smolweb"/>
     <category term="textual"/>
     <published>2026-06-28T10:30:35+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/06/27/blogmore-v2-44-0.html</id>
-    <title>BlogMore v2.44.0</title>
-    <updated>2026-06-27T16:31:11+01:00</updated>
-    <content type="html">&lt;p&gt;It's been a short while since I last made a release of
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;; in fact, the time since the &lt;a href="https://blog.davep.org/2026/06/11/blogmore-v2-43-0.html"&gt;last
-update&lt;/a&gt; might be the longest I've gone
-between versions since the first release. I think this &lt;em&gt;might&lt;/em&gt; mean it is
-actually more or less feature complete!&lt;/p&gt;
-&lt;p&gt;More or less.&lt;/p&gt;
-&lt;p&gt;Except... I did have to spend a bit of time (and some
-&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt; quota) this morning adding something I've
-been wanting to add: automatic generation of cover images aimed at social
-media sites (so the kinds of images that show up when you post to Mastodon,
-Bluesky, or that other terrible site some people still seem intent on using
-for some perverse reason).&lt;/p&gt;
-&lt;p&gt;BlogMore has supported &lt;a href="https://blogmore.davep.dev/writing_a_post/#cover" rel="noopener noreferrer" target="_blank"&gt;the declaration of a
-&lt;code&gt;cover&lt;/code&gt;&lt;/a&gt; from the very
-first release. This was done in a way that it was up to the author of the
-post to create and include the image. Personally, in my posts, I've tended
-to set the &lt;code&gt;cover&lt;/code&gt; to point at the most relevant image in the post, if a
-post has any images. I've also had BlogMore always work such that a post
-without a &lt;code&gt;cover&lt;/code&gt; has the social image set to the site's logo image (if it
-has one).&lt;/p&gt;
-&lt;p&gt;This works, but it does mean that all of the posts I make that have no cover
-(feels like that's roughly half of them -- I could &lt;a href="https://blog.davep.org/2026/06/02/recreating-my-blog-stats.html"&gt;probably do something
-fun with the dump of posts to know for
-sure&lt;/a&gt;) simply show my masked face
-when I share them. That's by design, but not ideal.&lt;/p&gt;
-&lt;p&gt;So &lt;a href="https://blogmore.davep.dev/changelog/#v2440" rel="noopener noreferrer" target="_blank"&gt;v2.44.0&lt;/a&gt; adds support for
-an "auto covers" feature. I've tried to do this in a way that is fully
-backward-compatible. The feature itself is off by default, won't override
-any covers you have specifically set for posts, and can also be used and
-controlled on a per-post basis.&lt;/p&gt;
-&lt;p&gt;The core of the feature is controlled by a new &lt;a href="https://blogmore.davep.dev/configuration/#auto_covers" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;auto_covers&lt;/code&gt; section in the
-configuration file&lt;/a&gt;.
-In here you can control if the feature is on or off by default, what layout
-to use for the cover images, what colours to use, and so on. There's plenty
-to experiment with and it should be fairly straightforward to create covers
-that look unique to your blog.&lt;/p&gt;
-&lt;p&gt;There are three styles of cover that can be generated. The &lt;code&gt;minimalist&lt;/code&gt; does
-as the name suggests: it tries to keep things as minimal as possible (and
-will generally result in the smallest file).&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Minimalist cover" height="630" loading="lazy" src="https://blog.davep.org/attachments/2026/06/27/cover-minimalist.webp#centre" width="1200" /&gt;&lt;/p&gt;
-&lt;p&gt;The &lt;code&gt;split&lt;/code&gt; type is a little richer, including the site logo if you've set
-one. Generally the image size will be bigger than &lt;code&gt;minimalist&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Split cover" height="630" loading="lazy" src="https://blog.davep.org/attachments/2026/06/27/cover-split.webp#centre" width="1200" /&gt;&lt;/p&gt;
-&lt;p&gt;Finally there is &lt;code&gt;editorial&lt;/code&gt;, which includes the title, logo, the
-description for the post, the category and the tags. Because this is the
-busiest style it will generally result in the biggest file.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Editorial cover" height="630" loading="lazy" src="https://blog.davep.org/attachments/2026/06/27/cover-editorial.webp#centre" width="1200" /&gt;&lt;/p&gt;
-&lt;p&gt;As you might imagine, generating these images for &lt;em&gt;every&lt;/em&gt; post that doesn't
-have a &lt;code&gt;cover&lt;/code&gt; set can be very time-consuming. Because of this the generated
-images are &lt;a href="https://blogmore.davep.dev/command_line/#cache-command" rel="noopener noreferrer" target="_blank"&gt;cached&lt;/a&gt;,
-so subsequent site generations should hardly ever be affected (unless you
-change any of the parameters relating to cover generation).&lt;/p&gt;
-&lt;div class="admonition admonition-note"&gt;
-&lt;div class="admonition-title"&gt;ℹ️ Note&lt;/div&gt;
-&lt;div class="admonition-content"&gt;
-&lt;p&gt;As with image optimisation, this does mean that more storage is going to
-be used between blog builds. If you use this cover feature, not only will
-more images be created in your static site output, but the BlogMore cache
-related to the blog will also grow. Keep this in mind when deciding to use
-this feature.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;It might also be the case that you don't want to generate cover images for
-all of your historical posts, but you do want them for all future posts.
-That approach is possible. All you need to do is set everything as you want
-it in the configuration file but set &lt;code&gt;enabled&lt;/code&gt; under &lt;code&gt;auto_covers&lt;/code&gt; to
-&lt;code&gt;false&lt;/code&gt;. Then, for any post where you &lt;em&gt;do&lt;/em&gt; want an auto-generated cover,
-simply &lt;a href="https://blogmore.davep.dev/writing_a_post/#auto_cover" rel="noopener noreferrer" target="_blank"&gt;set &lt;code&gt;auto_cover&lt;/code&gt; in its frontmatter to an appropriate
-value&lt;/a&gt;. To go with
-the default settings, set it to &lt;code&gt;default&lt;/code&gt;, or if you want to control the
-layout per-post, set it to the desired layout for that post.&lt;/p&gt;
-&lt;p&gt;To try and summarise, the rules for selecting a cover for a given post are
-something like:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;If it has a &lt;code&gt;cover&lt;/code&gt; set in its frontmatter, that is used.&lt;/li&gt;
-&lt;li&gt;If it has an &lt;code&gt;auto_cover&lt;/code&gt; set to anything other than &lt;code&gt;none&lt;/code&gt; in its
-   frontmatter, the desired type of auto-cover will be used.&lt;/li&gt;
-&lt;li&gt;If it has neither &lt;code&gt;cover&lt;/code&gt; nor &lt;code&gt;auto_cover&lt;/code&gt; set, a cover will be generated
-   if &lt;code&gt;auto_covers.enabled&lt;/code&gt; is set to &lt;code&gt;true&lt;/code&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Hopefully that's clear.&lt;/p&gt;
-&lt;p&gt;Despite this post having images in it, I've &lt;em&gt;not&lt;/em&gt; set a &lt;code&gt;cover&lt;/code&gt; for it and I
-have the following setup in my configuration file:&lt;/p&gt;
-&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;auto_covers&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;enabled&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;layout&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;editorial&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;background_type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;gradient&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;background_color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#0f172a&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;gradient_colors&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#1e293b&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#0f172a&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;font_family&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Inter&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;text_color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#f8fafc&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;meta_color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#94a3b8&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;accent_color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#38bdf8&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;show_author&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;show_read_time&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;show_date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;show_logo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This should mean that, if I've got this all working correctly, this post,
-and all historical posts without a cover, get auto-generated covers. This
-should also be very evident as you hover over posts in the &lt;a href="https://blog.davep.org/graph/"&gt;graph&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Fingers crossed it all works out...&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/06/27/blogmore-v2-44-0.html"/>
-    <category term="Coding"/>
-    <category term="BlogMore"/>
-    <category term="Coding"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <published>2026-06-27T16:31:11+01:00</published>
   </entry>
 </feed>
