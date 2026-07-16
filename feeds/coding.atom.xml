@@ -2,11 +2,80 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-07-16T16:14:57.827371+00:00</updated>
+  <updated>2026-07-16T19:12:14.119046+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/07/16/rogallo-v0-9-0.html</id>
+    <title>Rogallo v0.9.0</title>
+    <updated>2026-07-16T20:10:35+01:00</updated>
+    <content type="html">&lt;p&gt;I've released &lt;a href="https://rogallo.davep.dev/changelog/#v090" rel="noopener noreferrer" target="_blank"&gt;v0.9.0&lt;/a&gt; of
+&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;. The first big change in this release
+is the addition of syntax highlighting to pre-formatted text.&lt;/p&gt;
+&lt;p&gt;Much like in Markdown, Gemtext also supports pre-formatted text bounded by
+code fences. Gemtext supports the concept of "alt-text" for such text, like
+this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="gemtext"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;```python
+def hello(name: str = &amp;quot;World&amp;quot;) -&amp;gt; str:
+    return f&amp;quot;Hello, {name}!&amp;quot;
+```
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Until now Rogallo would simply show the text as-is (with some styling to
+make it stand out from normal paragraphs). From this release, if there is
+alt-text for the pre-formatted block, and if it's the name of a supported
+language, the content will have syntax highlighting applied.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Pre-text with syntax highlighting" height="1984" loading="lazy" src="https://blog.davep.org/attachments/2026/07/16/pre-highlight.webp#centre" width="1798" /&gt;&lt;/p&gt;
+&lt;p&gt;If you're curious which languages are supported, it should be &lt;a href="https://pygments.org/languages/" rel="noopener noreferrer" target="_blank"&gt;anything that
+Pygments supports&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Another significant change is to the user input dialog. As &lt;a href="https://blog.davep.org/2026/07/16/wasat-v0-7-0.html"&gt;mentioned in an
+earlier post&lt;/a&gt;, the Gemini protocol imposes
+limits on how much text can be submitted to a capsule. As documented, the
+limit is for a resulting URI of 1024 bytes&lt;sup id="fnref:376-1"&gt;&lt;a class="footnote-ref" href="#fn:376-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. To save someone typing out a
+long entry, only to have it lost&lt;sup id="fnref:376-2"&gt;&lt;a class="footnote-ref" href="#fn:376-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, I've added a count of how much input
+is left available (calculated from the size of the URI that would result):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The input count" height="1984" loading="lazy" src="https://blog.davep.org/attachments/2026/07/16/input-count.webp#centre" width="1894" /&gt;&lt;/p&gt;
+&lt;p&gt;To help ensure that the user doesn't submit too much, I've also added an
+error display if you go over the limit, which also refuses to submit the
+input.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Too much input" height="1984" loading="lazy" src="https://blog.davep.org/attachments/2026/07/16/too-much.webp#centre" width="1894" /&gt;&lt;/p&gt;
+&lt;p&gt;With these in place it should be a lot harder to run into an unexpected loss
+of input.&lt;/p&gt;
+&lt;p&gt;One final tweak is a small change to the optional link stripe system &lt;a href="https://blog.davep.org/2026/07/14/rogallo-v0-7-0.html"&gt;I
+recently added&lt;/a&gt;. While playing around with
+some other themes, I noticed that the styling didn't show up well, or at
+all, in many of them. So I've changed it a little so it now shows in all
+available themes. I'm still not convinced it's quite right -- I'll play some
+more. But at least now it's visible in all cases.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:376-1"&gt;
+&lt;p&gt;Although I've already &lt;a href="gemini://station.martinrue.com/davep/d23d9c4731eb461bba2db4b20bb18a6e" rel="noopener noreferrer" target="_blank"&gt;encountered one capsule that limits to 1022,
+from what I can
+tell&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:376-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:376-2"&gt;
+&lt;p&gt;Right away I'm now thinking it &lt;em&gt;might&lt;/em&gt; be a good idea to re-populate
+the input dialog in such a situation. I'll have to remember to make that
+a TODO issue.&amp;#160;&lt;a class="footnote-backref" href="#fnref:376-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/07/16/rogallo-v0-9-0.html"/>
+    <category term="Coding"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="Rogallo"/>
+    <category term="gemtext"/>
+    <category term="smolweb"/>
+    <category term="textual"/>
+    <published>2026-07-16T20:10:35+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/07/15/rogallo-v0-8-0.html</id>
     <title>Rogallo v0.8.0</title>
@@ -437,7 +506,7 @@ viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kb
 &lt;p&gt;It's worth noting that the default bindings for both of those aren't going
 to be ideal for some terminals. They should be fine in any terminal that
 supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
-This can be changed to your taste via the configuration file&lt;sup id="fnref:434-1"&gt;&lt;a class="footnote-ref" href="#fn:434-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+This can be changed to your taste via the configuration file&lt;sup id="fnref:435-1"&gt;&lt;a class="footnote-ref" href="#fn:435-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
 (bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
 between a rendered view and a plain text (source) view. So if you're looking
@@ -455,7 +524,7 @@ most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
 password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
 widget&lt;/a&gt;.
 The problem there though is that an input request from a Gemini server
-expects and allows for multi-line input&lt;sup id="fnref:434-2"&gt;&lt;a class="footnote-ref" href="#fn:434-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+expects and allows for multi-line input&lt;sup id="fnref:435-2"&gt;&lt;a class="footnote-ref" href="#fn:435-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
 &lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
 support password-style input.&lt;/p&gt;
 &lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
@@ -476,17 +545,17 @@ of fun working on it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:434-1"&gt;
+&lt;li id="fn:435-1"&gt;
 &lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
 documented when I get round to writing the documentation for Rogallo.
 Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
 Hike&lt;/a&gt; to get
-an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:434-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:435-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:434-2"&gt;
+&lt;li id="fn:435-2"&gt;
 &lt;p&gt;Well, technically, it's an optional feature of a client; the
 specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
-of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:434-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:435-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -631,7 +700,7 @@ There are also a couple of cosmetic configuration options thrown in.&lt;/p&gt;
 &lt;p&gt;Starting with the cosmetic configuration options: I got to feeling that the
 URI-containing tooltips that show on mouse-hover over a link might be a bit
 much for some people, so I've added &lt;code&gt;show_link_tooltips&lt;/code&gt; to the
-configuration file&lt;sup id="fnref:394-1"&gt;&lt;a class="footnote-ref" href="#fn:394-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
+configuration file&lt;sup id="fnref:395-1"&gt;&lt;a class="footnote-ref" href="#fn:395-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
 &lt;p&gt;Similar to this I've also added &lt;code&gt;disable_animations&lt;/code&gt;. Out of the box
 &lt;a href="https://textual.textualize.io" rel="noopener noreferrer" target="_blank"&gt;Textual&lt;/a&gt; &lt;em&gt;loves&lt;/em&gt; its animations. This is
 arguably most noticeable if you have a long body of text in a scrolling
@@ -802,10 +871,10 @@ and water my plant in Astrobotany&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:394-1"&gt;
+&lt;li id="fn:395-1"&gt;
 &lt;p&gt;&lt;code&gt;~/.config/rogallo/configuration.json&lt;/code&gt; on most systems. This and all
 the options within will eventually be documented, when I get round to
-creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:394-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:395-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -852,7 +921,7 @@ added.&lt;/p&gt;
 &lt;p&gt;Finally, I've added a couple of features which make it easy to know where a
 link will take you. The first is that I've added a tooltip to each link, so
 that when you hover the mouse cursor over it the URI will be displayed. But,
-because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:415-1"&gt;&lt;a class="footnote-ref" href="#fn:415-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
+because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:416-1"&gt;&lt;a class="footnote-ref" href="#fn:416-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
 a status bar to the main viewer panel that shows the URI of the focused
 link.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The Rogallo status bar" height="1760" loading="lazy" src="https://blog.davep.org/attachments/2026/06/24/rogallo-with-bar.webp#centre" width="1750" /&gt;&lt;/p&gt;
@@ -885,8 +954,8 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:415-1"&gt;
-&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:415-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:416-1"&gt;
+&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:416-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1374,88 +1443,5 @@ linter now knows about the series feature and the URLs it creates.&lt;/p&gt;</co
     <category term="PyPI"/>
     <category term="Python"/>
     <published>2026-06-06T14:22:06+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/06/06/blogmore-v2-40-0.html</id>
-    <title>BlogMore v2.40.0</title>
-    <updated>2026-06-06T10:45:58+01:00</updated>
-    <content type="html">&lt;p&gt;I've just released &lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;
-&lt;a href="https://blogmore.davep.dev/changelog/#v2400" rel="noopener noreferrer" target="_blank"&gt;v2.40.0&lt;/a&gt;. This version
-contains just one new feature: &lt;a href="https://blogmore.davep.dev/writing_a_post/#series" rel="noopener noreferrer" target="_blank"&gt;post series
-support&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;It's hardly a novel feature, plenty of blog engines support this sort of
-thing; I felt it was high time I added it to BlogMore too. The idea is
-simple: while &lt;a href="https://blog.davep.org/categories/"&gt;categories&lt;/a&gt; provide a method of having
-"sub-blogs" within a blog (they also provide their own feeds), and while
-&lt;a href="https://blog.davep.org/tags/"&gt;tags&lt;/a&gt; let you group together posts that touch on related subjects,
-a &lt;a href="https://blog.davep.org/series/"&gt;series&lt;/a&gt; will let you stitch together a collection of posts as
-directly relating to each other.&lt;/p&gt;
-&lt;p&gt;Adding a post to a series is as simple as adding a &lt;code&gt;series&lt;/code&gt; to the
-frontmatter of a post.&lt;/p&gt;
-&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Five days with Copilot&lt;/span&gt;
-&lt;span class="nt"&gt;category&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;AI&lt;/span&gt;
-&lt;span class="nt"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Python, AI, LLM, Copilot, GitHub, BlogMore, coding&lt;/span&gt;
-&lt;span class="nt"&gt;date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;2026-02-20 15:46:00 +0000&lt;/span&gt;
-&lt;span class="nt"&gt;series&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Agentic Afterthoughts&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;With this done, when a reader is viewing an individual post that is within a
-series, some new navigation appears at the top and bottom of the post that
-lets them know about the series, and also offers them easy navigation to the
-previous and next posts.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Series navigation" height="284" loading="lazy" src="https://blog.davep.org/attachments/2026/06/06/post-navigation.webp#centre" width="640" /&gt;&lt;/p&gt;
-&lt;p&gt;Also, if the reader were to click on the series title, it will take them to
-an archive page for that series, where the posts are presented in the usual
-pagination format, but where they're also presented in series order. To be
-clear: series order is &lt;em&gt;always&lt;/em&gt; chronological order.&lt;/p&gt;
-&lt;p&gt;To help encourage further post discovery, if one or more series are
-available, a new &lt;code&gt;Series&lt;/code&gt; link appears at the top of the blog. This links to
-an index of every series available.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="My blog's series index" height="541" loading="lazy" src="https://blog.davep.org/attachments/2026/06/06/series-index.webp#centre" width="640" /&gt;&lt;/p&gt;
-&lt;p&gt;Sorted in alphabetical order, the list also shows how many posts are in each
-series and, if &lt;a href="https://blogmore.davep.dev/configuration/#with_read_time" rel="noopener noreferrer" target="_blank"&gt;reading time is turned
-on&lt;/a&gt;, the total
-reading time will be shown.&lt;/p&gt;
-&lt;p&gt;Worth noting is the fact that a post doesn't have to be restricted to just
-one series. If you need a post to be in two or more series, you can provide
-the series as a list:&lt;/p&gt;
-&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;My post that crosses the streams&lt;/span&gt;
-&lt;span class="nt"&gt;category&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Testing&lt;/span&gt;
-&lt;span class="nt"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;BlogMore, Series, Test&lt;/span&gt;
-&lt;span class="nt"&gt;date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;2022-02-22 22:22:22 +2200&lt;/span&gt;
-&lt;span class="nt"&gt;series&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Experiments with blogging&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Eating my own dog food&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Testing thing&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The post will then show navigation for every one of those series, and the
-post will be in each series' archive page.&lt;/p&gt;
-&lt;p&gt;Having added this, I've also updated the output of &lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;the &lt;code&gt;dump&lt;/code&gt;
-command&lt;/a&gt; so that
-&lt;code&gt;series&lt;/code&gt; (the series list as provided in the frontmatter), &lt;code&gt;safe_series&lt;/code&gt;
-(the series list in their URL-friendly slug forms) and &lt;code&gt;series_pair&lt;/code&gt; (a list
-of series title and slug pairs) properties are available.&lt;/p&gt;
-&lt;p&gt;As of the time of writing this, I have noticed one issue. The
-&lt;a href="https://blogmore.davep.dev/linting/" rel="noopener noreferrer" target="_blank"&gt;linter&lt;/a&gt; isn't currently aware of the
-URLs that are created as part of the series facility. So if you have a page
-or post that &lt;a href="https://blog.davep.org/series/"&gt;links to the index&lt;/a&gt;, or &lt;a href="https://blog.davep.org/series/the-virgin-east-coast-saga/"&gt;links to a particular
-series&lt;/a&gt;, there will be errors:&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;blogmore lint
-Linting site in content...
-ERROR: posts/2026/06/2026-06-06-blogmore-v2-40-0.md: Link points to non-existent internal path: /series/ (resolved to /series/)
-ERROR: posts/2026/06/2026-06-06-blogmore-v2-40-0.md: Link points to non-existent internal path: /series/ (resolved to /series/)
-ERROR: posts/2026/06/2026-06-06-blogmore-v2-40-0.md: Link points to non-existent internal path: /series/the-virgin-east-coast-saga/ (resolved to /series/the-virgin-east-coast-saga/)
-Linting complete: 377 post(s), 4 page(s), 3 error(s), 0 warning(s) [0.45s].
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This should be a straightforward fix which I'll make in a follow-up release.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/06/06/blogmore-v2-40-0.html"/>
-    <category term="Coding"/>
-    <category term="BlogMore"/>
-    <category term="Coding"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <published>2026-06-06T10:45:58+01:00</published>
   </entry>
 </feed>
