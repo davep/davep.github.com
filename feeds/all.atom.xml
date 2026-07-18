@@ -2,11 +2,122 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-07-18T09:31:12.784059+00:00</updated>
+  <updated>2026-07-18T15:46:33.891183+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/07/18/rogallo-v0-10-0.html</id>
+    <title>Rogallo v0.10.0</title>
+    <updated>2026-07-18T16:44:46+01:00</updated>
+    <content type="html">&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
+&lt;a href="https://rogallo.davep.dev/changelog/#v0100" rel="noopener noreferrer" target="_blank"&gt;v0.10.0&lt;/a&gt; is now available. This
+release has a number of changes, including some new features, some changes
+to the user interface, and a couple of quality-of-life improvements.&lt;/p&gt;
+&lt;h2 id="maximum-document-width"&gt;Maximum document width&lt;/h2&gt;
+&lt;p&gt;Amongst some feedback someone left &lt;a href="gemini://station.martinrue.com/davep/666afe3d00074b079d2529ac0f4953b8" rel="noopener noreferrer" target="_blank"&gt;on a slightly unrelated post over on
+&lt;code&gt;station&lt;/code&gt;&lt;/a&gt;
+there was mention of how a document &lt;em&gt;"should"&lt;/em&gt; wrap at around 72 characters.
+While no rationale was given for the "should" part, I was happy enough to
+accept that this could be a preference for some people. With this in mind,
+I've added &lt;a href="https://rogallo.davep.dev/configuration/#maximum-document-width" rel="noopener noreferrer" target="_blank"&gt;a configuration option to set a maximum width for
+documents&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While, personally, I prefer Rogallo's default behaviour (I work in an
+environment where I can resize a window, and I'm capable of doing it), I can
+appreciate that someone might want to cap it. So for folk who prefer this,
+they can now make Rogallo look like this (with &lt;code&gt;maximum_document_width&lt;/code&gt; set
+to &lt;code&gt;80&lt;/code&gt;):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Max document width in action" height="1984" loading="lazy" src="https://blog.davep.org/attachments/2026/07/18/max-doc-width.webp#centre" width="2054" /&gt;&lt;/p&gt;
+&lt;p&gt;For the moment this can only be set via the configuration file. At some
+point I might make this more of a dynamic thing. I can imagine this being
+something handy, or at least fun, to change up as you're viewing different
+content.&lt;/p&gt;
+&lt;h2 id="link-jump-timeout"&gt;Link jump timeout&lt;/h2&gt;
+&lt;p&gt;The same feedback "suggested" that the link jumping facility that Rogallo
+has should have a timeout that clears the buildup of the number being looked
+for. This seemed like a reasonable thing to ask for. So, before, if you
+typed &lt;kbd&gt;1&lt;/kbd&gt;, a link with a label of &lt;code&gt;1&lt;/code&gt; would be selected. If you did
+nothing for a while, and then typed &lt;kbd&gt;2&lt;/kbd&gt;, a link with the label of
+&lt;code&gt;12&lt;/code&gt; would be highlighted. With the new timeout (set to 1 second by default,
+configurable in the configuration file), if you type &lt;kbd&gt;1&lt;/kbd&gt; and then
+&lt;kbd&gt;2&lt;/kbd&gt; more than a second later, first link &lt;code&gt;1&lt;/code&gt; will be selected, then
+link &lt;code&gt;2&lt;/code&gt; will be selected. On the other hand, if you type &lt;kbd&gt;1&lt;/kbd&gt; then
+&lt;kbd&gt;2&lt;/kbd&gt; within a second, &lt;code&gt;12&lt;/code&gt; will be selected.&lt;/p&gt;
+&lt;p&gt;Setting the timeout to &lt;code&gt;0&lt;/code&gt; disables this and Rogallo's link jumping facility
+will work as it did before.&lt;/p&gt;
+&lt;h2 id="failed-input-recovery"&gt;Failed input recovery&lt;/h2&gt;
+&lt;p&gt;With this new feature, if you send input text to a capsule and it rejects it
+for some reason, the input will be held on to. If you then visit the same
+URI again, the input dialog will be pre-populated with what you attempted to
+send a moment ago. This gives you the opportunity to edit anything wrong
+with the submission and try again.&lt;/p&gt;
+&lt;h2 id="added-all-application-commands-to-the-command-line"&gt;Added all application commands to the command line&lt;/h2&gt;
+&lt;p&gt;If you prefer to use Rogallo's command line more than the command palette,
+I've now ensured that &lt;a href="https://rogallo.davep.dev/configuration/#keyboard-bindings" rel="noopener noreferrer" target="_blank"&gt;all bindable application
+commands&lt;/a&gt; can be
+accessed via the command line. There's a difference in their form, to stay
+in keeping with the command line. So whereas in the command palette you'd
+run &lt;code&gt;GoHome&lt;/code&gt; by typing &lt;code&gt;go home&lt;/code&gt;, in the command line it becomes a
+&lt;code&gt;!&lt;/code&gt;-prefixed snake-case command: &lt;code&gt;!go_home&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;All possible commands are listed in the help screen if it's brought up while
+the command line has focus.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Help showing commands" height="2368" loading="lazy" src="https://blog.davep.org/attachments/2026/07/18/cli-help.webp#centre" width="2310" /&gt;&lt;/p&gt;
+&lt;h2 id="capsule-navigation-commands"&gt;Capsule navigation commands&lt;/h2&gt;
+&lt;p&gt;Rogallo now has two new commands for quickly navigating within the current
+capsule path. &lt;code&gt;GoToParent&lt;/code&gt; will navigate up a level in the path of the
+current URI, and &lt;code&gt;GoToRoot&lt;/code&gt; will go to the root of the capsule.&lt;/p&gt;
+&lt;h2 id="visited-vs-non-visited-links"&gt;Visited vs non-visited links&lt;/h2&gt;
+&lt;p&gt;The icon for links is now used to show if a link is already in the location
+history (and so has been visited before), or not:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Visited and non-visited links" height="228" loading="lazy" src="https://blog.davep.org/attachments/2026/07/18/link-colours.webp#centre" width="692" /&gt;&lt;/p&gt;
+&lt;p&gt;Here you can see that &lt;code&gt;Account settings&lt;/code&gt; isn't in the visit history, but the
+other two links are. I was going to do the whole link, but I've never been a
+fan of how web browsers do this, so I've gone with just the icon. I've also
+made it subtle but still noticeable. So far, I'm much preferring this; I
+don't need it blasting out the difference, I just need it to be enough for
+me to notice&lt;sup id="fnref:378-1"&gt;&lt;a class="footnote-ref" href="#fn:378-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;h2 id="swapped-around-history-and-bookmark-tools"&gt;Swapped around history and bookmark tools&lt;/h2&gt;
+&lt;p&gt;Until now the "history" and "bookmarks" shortcut keys advertised in the
+footer brought up the sidebar-based management widgets. This made sense when
+that's all I had in Rogallo. For a while now though I've had palette-based
+search tools for both history and bookmarks. Normally I want to search for
+and select a bookmark or history item way more than I want to manage those
+lists. So I've relegated the sidebar-based tools to a secondary position and
+placed the palette-based search tools up front.&lt;/p&gt;
+&lt;p&gt;This also means that the default bindings have changed a bit. As always, you
+can discover the bindings &lt;a href="https://rogallo.davep.dev/#bindings" rel="noopener noreferrer" target="_blank"&gt;with &lt;code&gt;rogallo
+bindings&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I know I've nodded towards this before, but I think I'm getting close to
+making a v1.0.0 release. I want to daily-drive for a few more days, and I'd
+also like to expand &lt;a href="https://rogallo.davep.dev" rel="noopener noreferrer" target="_blank"&gt;the website&lt;/a&gt;. I'd &lt;em&gt;also&lt;/em&gt;
+like to build a Gemini/Gemtext-based site for Rogallo -- it'd be pretty
+weird if I only documented it in http(s)space. I won't let those wishes
+become blockers for moving to calling Rogallo "stable", but it would be nice
+to have.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:378-1"&gt;
+&lt;p&gt;I do recognise that there's an &lt;a href="https://blog.davep.org/tag/a11y/"&gt;a11y&lt;/a&gt; issue here with the
+subtle difference; there's some work to be done at some point to allow
+for a high-contrast theme that will resolve this sort of issue.&amp;#160;&lt;a class="footnote-backref" href="#fnref:378-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/07/18/rogallo-v0-10-0.html"/>
+    <category term="Coding"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="Rogallo"/>
+    <category term="gemtext"/>
+    <category term="smolweb"/>
+    <category term="textual"/>
+    <published>2026-07-18T16:44:46+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/07/18/wasat-v0-8-0.html</id>
     <title>Wasat v0.8.0</title>
@@ -61,7 +172,7 @@ preferences, or offer suggestions (there were plenty of people who were
 pleasant like that, they were lovely to converse with), no: their engagement
 was written as if every word that was mashed into their keyboard was a
 well-crafted, handed-from-on-high RFC-like holy document that &lt;strong&gt;MUST&lt;/strong&gt; and
-&lt;strong&gt;SHOULD&lt;/strong&gt; be followed&lt;sup id="fnref:390-1"&gt;&lt;a class="footnote-ref" href="#fn:390-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;strong&gt;SHOULD&lt;/strong&gt; be followed&lt;sup id="fnref:391-1"&gt;&lt;a class="footnote-ref" href="#fn:391-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;If I was being very charitable I could cut them some slack. If you're
 building a framework for building applications for the terminal, there's a
 good reason to make it at least possible for the application authors to
@@ -80,7 +191,7 @@ that emulator.&lt;/p&gt;
 &lt;p&gt;It's even worse when they do it in a way where they have to show their &lt;em&gt;very
 deep knowledge&lt;/em&gt; of terminals, and how they're very proud of just how lacking
 in features and progress their own choice of terminal emulator is.&lt;/p&gt;
-&lt;p&gt;Dude...&lt;sup id="fnref:390-2"&gt;&lt;a class="footnote-ref" href="#fn:390-2"&gt;2&lt;/a&gt;&lt;/sup&gt; I know. I've used physical terminals. I've written COBOL on a
+&lt;p&gt;Dude...&lt;sup id="fnref:391-2"&gt;&lt;a class="footnote-ref" href="#fn:391-2"&gt;2&lt;/a&gt;&lt;/sup&gt; I know. I've used physical terminals. I've written COBOL on a
 minicomputer using a line editor on some honking great dumb all-green
 all-in-one box. I've even written code on a terminal using fan-fold paper.
 I've used all sorts of terminal emulators. I spent well over a decade doing
@@ -103,19 +214,19 @@ application I'm having tons of fun building, that I'm spending time in a
 joyous flow-state creating and tinkering with. You just care about making
 the post all about you and your purity. We know you just care about showing
 how smart you are.&lt;/p&gt;
-&lt;p&gt;We know you just can't resist the urge to reply-guy&lt;sup id="fnref:390-3"&gt;&lt;a class="footnote-ref" href="#fn:390-3"&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;We know you just can't resist the urge to reply-guy&lt;sup id="fnref:391-3"&gt;&lt;a class="footnote-ref" href="#fn:391-3"&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;We get it: you don't like bean soup. Nobody cares. Nobody asked.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:390-1"&gt;
-&lt;p&gt;That reminds me: one day I should write a rant about the folk who obsess about the &lt;em&gt;"Zen of Python"&lt;/em&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:390-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:391-1"&gt;
+&lt;p&gt;That reminds me: one day I should write a rant about the folk who obsess about the &lt;em&gt;"Zen of Python"&lt;/em&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:391-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:390-2"&gt;
-&lt;p&gt;Let's be honest: it's &lt;em&gt;always&lt;/em&gt; a dude.&amp;#160;&lt;a class="footnote-backref" href="#fnref:390-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:391-2"&gt;
+&lt;p&gt;Let's be honest: it's &lt;em&gt;always&lt;/em&gt; a dude.&amp;#160;&lt;a class="footnote-backref" href="#fnref:391-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:390-3"&gt;
-&lt;p&gt;Let's be honest: it's &lt;em&gt;always&lt;/em&gt; a guy.&amp;#160;&lt;a class="footnote-backref" href="#fnref:390-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:391-3"&gt;
+&lt;p&gt;Let's be honest: it's &lt;em&gt;always&lt;/em&gt; a guy.&amp;#160;&lt;a class="footnote-backref" href="#fnref:391-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -259,7 +370,7 @@ dialog in Rogallo.&lt;/p&gt;</content>
     <content type="html">&lt;p&gt;I've bumped &lt;a href="https://gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Gemtext&lt;/a&gt; to
 &lt;a href="https://gemtext.davep.dev/changelog/#v100" rel="noopener noreferrer" target="_blank"&gt;v1.0.0&lt;/a&gt;. I've gone from "this is
 test code" to "this is stable code" mostly because the library is so simple
-and I'm unlikely to add any radically new features to it&lt;sup id="fnref:388-1"&gt;&lt;a class="footnote-ref" href="#fn:388-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+and I'm unlikely to add any radically new features to it&lt;sup id="fnref:389-1"&gt;&lt;a class="footnote-ref" href="#fn:389-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;This bump also has one small addition: I've added &lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.PreFormatted.alt_text" rel="noopener noreferrer" target="_blank"&gt;an &lt;code&gt;alt_text&lt;/code&gt;
 property&lt;/a&gt;
 to &lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.PreFormatted" rel="noopener noreferrer" target="_blank"&gt;the &lt;code&gt;PreFormatted&lt;/code&gt;
@@ -281,9 +392,9 @@ will make that possible.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:388-1"&gt;
+&lt;li id="fn:389-1"&gt;
 &lt;p&gt;I was thinking about adding a Gemtext builder class at some point,
-but I can't see a use for it any time soon. Perhaps v2.0.0.&amp;#160;&lt;a class="footnote-backref" href="#fnref:388-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+but I can't see a use for it any time soon. Perhaps v2.0.0.&amp;#160;&lt;a class="footnote-backref" href="#fnref:389-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -495,7 +606,7 @@ class method that acts as a more relaxed "constructor" for a &lt;code&gt;GeminiU
 Again, in Rogallo, there are a few places where I'm taking some input,
 assuming it's going to be a &lt;code&gt;gemini://&lt;/code&gt; URI, checking if it's missing the
 scheme prefix, and then prefixing the string with &lt;code&gt;gemini://&lt;/code&gt; before
-creating a &lt;code&gt;GeminiURI&lt;/code&gt;&lt;sup id="fnref:386-1"&gt;&lt;a class="footnote-ref" href="#fn:386-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This means that Rogallo contains a few instances
+creating a &lt;code&gt;GeminiURI&lt;/code&gt;&lt;sup id="fnref:387-1"&gt;&lt;a class="footnote-ref" href="#fn:387-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This means that Rogallo contains a few instances
 of this sort of code:&lt;/p&gt;
 &lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="c1"&gt;# ...we should treat some text as a URI but it isn&amp;#39;t prefixed with &amp;quot;gemini://&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;uri&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GeminiURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;GEMINI_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}{&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -510,8 +621,8 @@ having to import &lt;code&gt;GEMINI_PREFIX&lt;/code&gt;, etc.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:386-1"&gt;
-&lt;p&gt;&lt;code&gt;GeminiURI&lt;/code&gt; will deliberately raise an exception if the scheme isn't &lt;code&gt;gemini&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:386-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:387-1"&gt;
+&lt;p&gt;&lt;code&gt;GeminiURI&lt;/code&gt; will deliberately raise an exception if the scheme isn't &lt;code&gt;gemini&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:387-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1027,30 +1138,5 @@ the history, so that's kind of needed too.&lt;/p&gt;
     <category term="Coding"/>
     <category term="Python"/>
     <published>2026-07-03T11:27:07+02:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/07/02/bagofstuff-v1-1-0.html</id>
-    <title>BagOfStuff v1.1.0</title>
-    <updated>2026-07-02T21:39:33+02:00</updated>
-    <content type="html">&lt;p&gt;I've just updated &lt;a href="https://bagofstuff.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BagOfStuff&lt;/a&gt; with a change
-and addition, in anticipation of some work I'll be doing on
-&lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt; in the near future. The change is a small and
-simple one, adding &lt;code&gt;del&lt;/code&gt; support to the &lt;a href="https://bagofstuff.davep.dev/library-contents/history/" rel="noopener noreferrer" target="_blank"&gt;history
-classes&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The addition is &lt;a href="https://bagofstuff.davep.dev/library-contents/cache/" rel="noopener noreferrer" target="_blank"&gt;a simple cache
-manager&lt;/a&gt;. For now it's
-just a straightforward bit of code that, given a set of keyword arguments,
-creates a unique hash, sets up a directory, and returns a base filename
-within it. From there, any calling code can detect if the file(s) exist and
-make use of it/them, or otherwise get on with some work and populate the
-cache.&lt;/p&gt;
-&lt;p&gt;Of course, in the case of Rogallo, this is all going to be used to cache the
-&lt;a href="https://blog.davep.org/tag/gemtext/"&gt;Gemtext&lt;/a&gt; that is retrieved from capsules.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/07/02/bagofstuff-v1-1-0.html"/>
-    <category term="Python"/>
-    <category term="BagOfStuff"/>
-    <category term="Coding"/>
-    <category term="Python"/>
-    <published>2026-07-02T21:39:33+02:00</published>
   </entry>
 </feed>

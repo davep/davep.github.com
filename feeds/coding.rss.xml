@@ -8,7 +8,117 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 18 Jul 2026 09:31:12 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 18 Jul 2026 15:46:33 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v0.10.0</title>
+      <link>https://blog.davep.org/2026/07/18/rogallo-v0-10-0.html</link>
+      <description>&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
+&lt;a href="https://rogallo.davep.dev/changelog/#v0100" rel="noopener noreferrer" target="_blank"&gt;v0.10.0&lt;/a&gt; is now available. This
+release has a number of changes, including some new features, some changes
+to the user interface, and a couple of quality-of-life improvements.&lt;/p&gt;
+&lt;h2 id="maximum-document-width"&gt;Maximum document width&lt;/h2&gt;
+&lt;p&gt;Amongst some feedback someone left &lt;a href="gemini://station.martinrue.com/davep/666afe3d00074b079d2529ac0f4953b8" rel="noopener noreferrer" target="_blank"&gt;on a slightly unrelated post over on
+&lt;code&gt;station&lt;/code&gt;&lt;/a&gt;
+there was mention of how a document &lt;em&gt;"should"&lt;/em&gt; wrap at around 72 characters.
+While no rationale was given for the "should" part, I was happy enough to
+accept that this could be a preference for some people. With this in mind,
+I've added &lt;a href="https://rogallo.davep.dev/configuration/#maximum-document-width" rel="noopener noreferrer" target="_blank"&gt;a configuration option to set a maximum width for
+documents&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While, personally, I prefer Rogallo's default behaviour (I work in an
+environment where I can resize a window, and I'm capable of doing it), I can
+appreciate that someone might want to cap it. So for folk who prefer this,
+they can now make Rogallo look like this (with &lt;code&gt;maximum_document_width&lt;/code&gt; set
+to &lt;code&gt;80&lt;/code&gt;):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Max document width in action" height="1984" loading="lazy" src="https://blog.davep.org/attachments/2026/07/18/max-doc-width.webp#centre" width="2054" /&gt;&lt;/p&gt;
+&lt;p&gt;For the moment this can only be set via the configuration file. At some
+point I might make this more of a dynamic thing. I can imagine this being
+something handy, or at least fun, to change up as you're viewing different
+content.&lt;/p&gt;
+&lt;h2 id="link-jump-timeout"&gt;Link jump timeout&lt;/h2&gt;
+&lt;p&gt;The same feedback "suggested" that the link jumping facility that Rogallo
+has should have a timeout that clears the buildup of the number being looked
+for. This seemed like a reasonable thing to ask for. So, before, if you
+typed &lt;kbd&gt;1&lt;/kbd&gt;, a link with a label of &lt;code&gt;1&lt;/code&gt; would be selected. If you did
+nothing for a while, and then typed &lt;kbd&gt;2&lt;/kbd&gt;, a link with the label of
+&lt;code&gt;12&lt;/code&gt; would be highlighted. With the new timeout (set to 1 second by default,
+configurable in the configuration file), if you type &lt;kbd&gt;1&lt;/kbd&gt; and then
+&lt;kbd&gt;2&lt;/kbd&gt; more than a second later, first link &lt;code&gt;1&lt;/code&gt; will be selected, then
+link &lt;code&gt;2&lt;/code&gt; will be selected. On the other hand, if you type &lt;kbd&gt;1&lt;/kbd&gt; then
+&lt;kbd&gt;2&lt;/kbd&gt; within a second, &lt;code&gt;12&lt;/code&gt; will be selected.&lt;/p&gt;
+&lt;p&gt;Setting the timeout to &lt;code&gt;0&lt;/code&gt; disables this and Rogallo's link jumping facility
+will work as it did before.&lt;/p&gt;
+&lt;h2 id="failed-input-recovery"&gt;Failed input recovery&lt;/h2&gt;
+&lt;p&gt;With this new feature, if you send input text to a capsule and it rejects it
+for some reason, the input will be held on to. If you then visit the same
+URI again, the input dialog will be pre-populated with what you attempted to
+send a moment ago. This gives you the opportunity to edit anything wrong
+with the submission and try again.&lt;/p&gt;
+&lt;h2 id="added-all-application-commands-to-the-command-line"&gt;Added all application commands to the command line&lt;/h2&gt;
+&lt;p&gt;If you prefer to use Rogallo's command line more than the command palette,
+I've now ensured that &lt;a href="https://rogallo.davep.dev/configuration/#keyboard-bindings" rel="noopener noreferrer" target="_blank"&gt;all bindable application
+commands&lt;/a&gt; can be
+accessed via the command line. There's a difference in their form, to stay
+in keeping with the command line. So whereas in the command palette you'd
+run &lt;code&gt;GoHome&lt;/code&gt; by typing &lt;code&gt;go home&lt;/code&gt;, in the command line it becomes a
+&lt;code&gt;!&lt;/code&gt;-prefixed snake-case command: &lt;code&gt;!go_home&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;All possible commands are listed in the help screen if it's brought up while
+the command line has focus.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Help showing commands" height="2368" loading="lazy" src="https://blog.davep.org/attachments/2026/07/18/cli-help.webp#centre" width="2310" /&gt;&lt;/p&gt;
+&lt;h2 id="capsule-navigation-commands"&gt;Capsule navigation commands&lt;/h2&gt;
+&lt;p&gt;Rogallo now has two new commands for quickly navigating within the current
+capsule path. &lt;code&gt;GoToParent&lt;/code&gt; will navigate up a level in the path of the
+current URI, and &lt;code&gt;GoToRoot&lt;/code&gt; will go to the root of the capsule.&lt;/p&gt;
+&lt;h2 id="visited-vs-non-visited-links"&gt;Visited vs non-visited links&lt;/h2&gt;
+&lt;p&gt;The icon for links is now used to show if a link is already in the location
+history (and so has been visited before), or not:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Visited and non-visited links" height="228" loading="lazy" src="https://blog.davep.org/attachments/2026/07/18/link-colours.webp#centre" width="692" /&gt;&lt;/p&gt;
+&lt;p&gt;Here you can see that &lt;code&gt;Account settings&lt;/code&gt; isn't in the visit history, but the
+other two links are. I was going to do the whole link, but I've never been a
+fan of how web browsers do this, so I've gone with just the icon. I've also
+made it subtle but still noticeable. So far, I'm much preferring this; I
+don't need it blasting out the difference, I just need it to be enough for
+me to notice&lt;sup id="fnref:378-1"&gt;&lt;a class="footnote-ref" href="#fn:378-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;h2 id="swapped-around-history-and-bookmark-tools"&gt;Swapped around history and bookmark tools&lt;/h2&gt;
+&lt;p&gt;Until now the "history" and "bookmarks" shortcut keys advertised in the
+footer brought up the sidebar-based management widgets. This made sense when
+that's all I had in Rogallo. For a while now though I've had palette-based
+search tools for both history and bookmarks. Normally I want to search for
+and select a bookmark or history item way more than I want to manage those
+lists. So I've relegated the sidebar-based tools to a secondary position and
+placed the palette-based search tools up front.&lt;/p&gt;
+&lt;p&gt;This also means that the default bindings have changed a bit. As always, you
+can discover the bindings &lt;a href="https://rogallo.davep.dev/#bindings" rel="noopener noreferrer" target="_blank"&gt;with &lt;code&gt;rogallo
+bindings&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I know I've nodded towards this before, but I think I'm getting close to
+making a v1.0.0 release. I want to daily-drive for a few more days, and I'd
+also like to expand &lt;a href="https://rogallo.davep.dev" rel="noopener noreferrer" target="_blank"&gt;the website&lt;/a&gt;. I'd &lt;em&gt;also&lt;/em&gt;
+like to build a Gemini/Gemtext-based site for Rogallo -- it'd be pretty
+weird if I only documented it in http(s)space. I won't let those wishes
+become blockers for moving to calling Rogallo "stable", but it would be nice
+to have.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:378-1"&gt;
+&lt;p&gt;I do recognise that there's an &lt;a href="https://blog.davep.org/tag/a11y/"&gt;a11y&lt;/a&gt; issue here with the
+subtle difference; there's some work to be done at some point to allow
+for a high-contrast theme that will resolve this sort of issue.&amp;#160;&lt;a class="footnote-backref" href="#fnref:378-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/07/18/rogallo-v0-10-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>gemtext</category>
+      <category>smolweb</category>
+      <category>textual</category>
+      <pubDate>Sat, 18 Jul 2026 16:44:46 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v0.9.0</title>
       <link>https://blog.davep.org/2026/07/16/rogallo-v0-9-0.html</link>
@@ -501,7 +611,7 @@ viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kb
 &lt;p&gt;It's worth noting that the default bindings for both of those aren't going
 to be ideal for some terminals. They should be fine in any terminal that
 supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
-This can be changed to your taste via the configuration file&lt;sup id="fnref:438-1"&gt;&lt;a class="footnote-ref" href="#fn:438-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+This can be changed to your taste via the configuration file&lt;sup id="fnref:439-1"&gt;&lt;a class="footnote-ref" href="#fn:439-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
 (bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
 between a rendered view and a plain text (source) view. So if you're looking
@@ -519,7 +629,7 @@ most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
 password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
 widget&lt;/a&gt;.
 The problem there though is that an input request from a Gemini server
-expects and allows for multi-line input&lt;sup id="fnref:438-2"&gt;&lt;a class="footnote-ref" href="#fn:438-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+expects and allows for multi-line input&lt;sup id="fnref:439-2"&gt;&lt;a class="footnote-ref" href="#fn:439-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
 &lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
 support password-style input.&lt;/p&gt;
 &lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
@@ -540,17 +650,17 @@ of fun working on it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:438-1"&gt;
+&lt;li id="fn:439-1"&gt;
 &lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
 documented when I get round to writing the documentation for Rogallo.
 Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
 Hike&lt;/a&gt; to get
-an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:438-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:439-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:438-2"&gt;
+&lt;li id="fn:439-2"&gt;
 &lt;p&gt;Well, technically, it's an optional feature of a client; the
 specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
-of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:438-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:439-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -693,7 +803,7 @@ There are also a couple of cosmetic configuration options thrown in.&lt;/p&gt;
 &lt;p&gt;Starting with the cosmetic configuration options: I got to feeling that the
 URI-containing tooltips that show on mouse-hover over a link might be a bit
 much for some people, so I've added &lt;code&gt;show_link_tooltips&lt;/code&gt; to the
-configuration file&lt;sup id="fnref:398-1"&gt;&lt;a class="footnote-ref" href="#fn:398-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
+configuration file&lt;sup id="fnref:399-1"&gt;&lt;a class="footnote-ref" href="#fn:399-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
 &lt;p&gt;Similar to this I've also added &lt;code&gt;disable_animations&lt;/code&gt;. Out of the box
 &lt;a href="https://textual.textualize.io" rel="noopener noreferrer" target="_blank"&gt;Textual&lt;/a&gt; &lt;em&gt;loves&lt;/em&gt; its animations. This is
 arguably most noticeable if you have a long body of text in a scrolling
@@ -864,10 +974,10 @@ and water my plant in Astrobotany&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:398-1"&gt;
+&lt;li id="fn:399-1"&gt;
 &lt;p&gt;&lt;code&gt;~/.config/rogallo/configuration.json&lt;/code&gt; on most systems. This and all
 the options within will eventually be documented, when I get round to
-creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:398-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:399-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -913,7 +1023,7 @@ added.&lt;/p&gt;
 &lt;p&gt;Finally, I've added a couple of features which make it easy to know where a
 link will take you. The first is that I've added a tooltip to each link, so
 that when you hover the mouse cursor over it the URI will be displayed. But,
-because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:419-1"&gt;&lt;a class="footnote-ref" href="#fn:419-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
+because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:420-1"&gt;&lt;a class="footnote-ref" href="#fn:420-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
 a status bar to the main viewer panel that shows the URI of the focused
 link.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The Rogallo status bar" height="1760" loading="lazy" src="https://blog.davep.org/attachments/2026/06/24/rogallo-with-bar.webp#centre" width="1750" /&gt;&lt;/p&gt;
@@ -946,8 +1056,8 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:419-1"&gt;
-&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:419-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:420-1"&gt;
+&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:420-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1407,24 +1517,6 @@ maths markup.&lt;/p&gt;</description>
       <category>PyPI</category>
       <category>Python</category>
       <pubDate>Sun, 07 Jun 2026 09:53:01 +0100</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.40.1</title>
-      <link>https://blog.davep.org/2026/06/06/blogmore-v2-40-1.html</link>
-      <description>&lt;p&gt;A quick update carrying on from &lt;a href="https://blog.davep.org/2026/06/06/blogmore-v2-40-0.html"&gt;this morning's
-release&lt;/a&gt;: as mentioned towards the end of
-the post, there was a small problem with the &lt;a href="https://blogmore.davep.dev/linting/" rel="noopener noreferrer" target="_blank"&gt;lint
-command&lt;/a&gt; where it would raise an error
-if a page or post linked to any page related to the new series feature.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://blogmore.davep.dev/changelog/#v2401" rel="noopener noreferrer" target="_blank"&gt;v2.40.1&lt;/a&gt; fixes this. The
-linter now knows about the series feature and the URLs it creates.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/06/06/blogmore-v2-40-1.html</guid>
-      <category>Coding</category>
-      <category>BlogMore</category>
-      <category>Coding</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <pubDate>Sat, 06 Jun 2026 14:22:06 +0100</pubDate>
     </item>
   </channel>
 </rss>
