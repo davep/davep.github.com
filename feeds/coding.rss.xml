@@ -8,7 +8,78 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 19 Jul 2026 19:52:29 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jul 2026 19:00:38 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v0.12.0</title>
+      <link>https://blog.davep.org/2026/07/20/rogallo-v0-12-0.html</link>
+      <description>&lt;p&gt;I've bumped &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt; to
+&lt;a href="https://rogallo.davep.dev/changelog/#v0120" rel="noopener noreferrer" target="_blank"&gt;v0.12.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The first change is a simple addition of a &lt;code&gt;!theme&lt;/code&gt; command to the command
+line. As much as possible, I've tried to make sure that every command that's
+in the command palette can also be run from the in-app command line, but I'd
+managed to leave this one out. Now you can type &lt;code&gt;!theme&lt;/code&gt; and get the theme
+picker.&lt;/p&gt;
+&lt;p&gt;Next is the addition of an &lt;code&gt;OpenFile&lt;/code&gt; command, bound to
+&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;o&lt;/kbd&gt; by default. This opens a dialog for browsing
+the filesystem, allowing for easy access to local &lt;a href="https://blog.davep.org/tag/gemtext/"&gt;gemtext&lt;/a&gt;
+files.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The file opening dialog" height="1952" loading="lazy" src="https://blog.davep.org/attachments/2026/07/20/open-file.webp#centre" width="1990" /&gt;&lt;/p&gt;
+&lt;p&gt;Related to this, if you now enter the name of a directory in the command
+line, the same dialog will open, starting at that directory. Both these
+changes should make finding local gemtext files a smoother experience.&lt;/p&gt;
+&lt;p&gt;Another change is to the way that the &lt;a href="https://blog.davep.org/2026/07/19/rogallo-v0-11-0.html"&gt;recently added emoji
+removal&lt;/a&gt; works. I decided that it was a
+little too aggressive, in that it shouldn't remove them from the content of
+pre-formatted text. In my experience in Geminispace, so far, pre-formatted
+text is where the more creative displays happen. Indeed, I had a go at this
+myself for &lt;a href="gemini://tilde.team/~davep/" rel="noopener noreferrer" target="_blank"&gt;my new page&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="My page, with my image" height="1952" loading="lazy" src="https://blog.davep.org/attachments/2026/07/20/my-page.webp#centre" width="1990" /&gt;&lt;/p&gt;
+&lt;p&gt;Here I've used ANSI escape sequences and half-block characters to recreate
+my usual avatar. The problem is: the &lt;a href="https://github.com/davep/rogallo/blob/e8c8af4bfa469b791cebc0d12658f81ef98e7b60/src/rogallo/widgets/viewer/content_filter.py#L47-L56" rel="noopener noreferrer" target="_blank"&gt;emoji-removal approach I've
+used&lt;/a&gt;
+sees the half-blocks as something to remove. The result isn't great.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="My page, with emoji removed" height="1952" loading="lazy" src="https://blog.davep.org/attachments/2026/07/20/my-page-with-emoji-removed.webp#centre" width="1990" /&gt;&lt;/p&gt;
+&lt;p&gt;Given that the unwanted emojis will generally be those in body text, links,
+quotes and headers, I've tweaked the way that pre-formatted text is shown,
+with it &lt;em&gt;not&lt;/em&gt; having emojis removed. I feel this is a sensible approach.&lt;/p&gt;
+&lt;p&gt;I guess, if anyone really objects to this, I could add a configuration
+switch that dictates how aggressive the removal is.&lt;/p&gt;
+&lt;p&gt;The final change is something I wasn't really ever planning on doing, and I
+felt I'd removed the need for it &lt;a href="https://blog.davep.org/2026/07/14/rogallo-v0-7-0.html"&gt;when I added link
+stripes&lt;/a&gt;. But &lt;a href="https://github.com/davep/rogallo/issues/190" rel="noopener noreferrer" target="_blank"&gt;I got a request to do
+it&lt;/a&gt; and, really, the cost of
+doing it is nothing. The request? An option to move the link jump labels
+over to the left.&lt;/p&gt;
+&lt;p&gt;So now there's a &lt;code&gt;ToggleCosyLinkNumbers&lt;/code&gt; command (bound to
+&lt;kbd&gt;Super&lt;/kbd&gt;+&lt;kbd&gt;F8&lt;/kbd&gt; by default&lt;sup id="fnref:389-1"&gt;&lt;a class="footnote-ref" href="#fn:389-1"&gt;1&lt;/a&gt;&lt;/sup&gt;) which does what it says:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Toggling the jump labels" loading="lazy" src="https://blog.davep.org/attachments/2026/07/20/label-toggle.gif#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;Personally, I prefer them on the right, where they don't disrupt the
+left-aligned margin for all the text, but I can see why this would be far
+more comfortable for others, so... why the heck not?&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:389-1"&gt;
+&lt;p&gt;One day I'll write a post about why I'm giving &lt;em&gt;every&lt;/em&gt; command a
+default binding, even if it's not so accessible in less-advanced
+terminal emulators. Mostly it's down to one of my least favourite design
+decisions in Textual mixed with my wish to have a command-based
+interface that works via the palette first and bindings second.&amp;#160;&lt;a class="footnote-backref" href="#fnref:389-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/07/20/rogallo-v0-12-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>gemtext</category>
+      <category>smolweb</category>
+      <category>textual</category>
+      <pubDate>Mon, 20 Jul 2026 19:56:51 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v0.11.0</title>
       <link>https://blog.davep.org/2026/07/19/rogallo-v0-11-0.html</link>
@@ -660,7 +731,7 @@ viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kb
 &lt;p&gt;It's worth noting that the default bindings for both of those aren't going
 to be ideal for some terminals. They should be fine in any terminal that
 supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
-This can be changed to your taste via the configuration file&lt;sup id="fnref:442-1"&gt;&lt;a class="footnote-ref" href="#fn:442-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+This can be changed to your taste via the configuration file&lt;sup id="fnref:443-1"&gt;&lt;a class="footnote-ref" href="#fn:443-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
 (bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
 between a rendered view and a plain text (source) view. So if you're looking
@@ -678,7 +749,7 @@ most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
 password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
 widget&lt;/a&gt;.
 The problem there though is that an input request from a Gemini server
-expects and allows for multi-line input&lt;sup id="fnref:442-2"&gt;&lt;a class="footnote-ref" href="#fn:442-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+expects and allows for multi-line input&lt;sup id="fnref:443-2"&gt;&lt;a class="footnote-ref" href="#fn:443-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
 &lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
 support password-style input.&lt;/p&gt;
 &lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
@@ -699,17 +770,17 @@ of fun working on it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:442-1"&gt;
+&lt;li id="fn:443-1"&gt;
 &lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
 documented when I get round to writing the documentation for Rogallo.
 Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
 Hike&lt;/a&gt; to get
-an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:442-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:443-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:442-2"&gt;
+&lt;li id="fn:443-2"&gt;
 &lt;p&gt;Well, technically, it's an optional feature of a client; the
 specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
-of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:442-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:443-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -852,7 +923,7 @@ There are also a couple of cosmetic configuration options thrown in.&lt;/p&gt;
 &lt;p&gt;Starting with the cosmetic configuration options: I got to feeling that the
 URI-containing tooltips that show on mouse-hover over a link might be a bit
 much for some people, so I've added &lt;code&gt;show_link_tooltips&lt;/code&gt; to the
-configuration file&lt;sup id="fnref:402-1"&gt;&lt;a class="footnote-ref" href="#fn:402-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
+configuration file&lt;sup id="fnref:403-1"&gt;&lt;a class="footnote-ref" href="#fn:403-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
 &lt;p&gt;Similar to this I've also added &lt;code&gt;disable_animations&lt;/code&gt;. Out of the box
 &lt;a href="https://textual.textualize.io" rel="noopener noreferrer" target="_blank"&gt;Textual&lt;/a&gt; &lt;em&gt;loves&lt;/em&gt; its animations. This is
 arguably most noticeable if you have a long body of text in a scrolling
@@ -1023,10 +1094,10 @@ and water my plant in Astrobotany&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:402-1"&gt;
+&lt;li id="fn:403-1"&gt;
 &lt;p&gt;&lt;code&gt;~/.config/rogallo/configuration.json&lt;/code&gt; on most systems. This and all
 the options within will eventually be documented, when I get round to
-creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:402-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:403-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1072,7 +1143,7 @@ added.&lt;/p&gt;
 &lt;p&gt;Finally, I've added a couple of features which make it easy to know where a
 link will take you. The first is that I've added a tooltip to each link, so
 that when you hover the mouse cursor over it the URI will be displayed. But,
-because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:423-1"&gt;&lt;a class="footnote-ref" href="#fn:423-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
+because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:424-1"&gt;&lt;a class="footnote-ref" href="#fn:424-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
 a status bar to the main viewer panel that shows the URI of the focused
 link.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The Rogallo status bar" height="1760" loading="lazy" src="https://blog.davep.org/attachments/2026/06/24/rogallo-with-bar.webp#centre" width="1750" /&gt;&lt;/p&gt;
@@ -1105,8 +1176,8 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:423-1"&gt;
-&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:423-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:424-1"&gt;
+&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:424-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1407,85 +1478,6 @@ yourself in that situation.&lt;/p&gt;</description>
       <category>PyPI</category>
       <category>Python</category>
       <pubDate>Thu, 11 Jun 2026 08:27:45 +0100</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.42.0</title>
-      <link>https://blog.davep.org/2026/06/08/blogmore-v2-42-0.html</link>
-      <description>&lt;p&gt;I've released &lt;a href="https://blogmore.davep.dev/changelog/#v2420" rel="noopener noreferrer" target="_blank"&gt;BlogMore
-v2.42.0&lt;/a&gt;. This version is all
-about changes to &lt;a href="https://blogmore.davep.dev/command_line/#dump-command" rel="noopener noreferrer" target="_blank"&gt;the &lt;code&gt;dump&lt;/code&gt;
-command&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;When I &lt;a href="https://blog.davep.org/2026/05/26/blogmore-v2-30-0.html"&gt;first added it&lt;/a&gt; it simply dumped
-all of the data available about posts within a blog, meaning &lt;a href="https://blog.davep.org/2026/06/02/recreating-my-blog-stats.html"&gt;it was
-possible to do all sorts of things with the
-data&lt;/a&gt; outside of BlogMore itself.
-Having done this, and used the result to good effect (and also having seen
-at least one person also make use of it), I got to thinking that I should
-probably expose some other data that's going to be helpful.&lt;/p&gt;
-&lt;p&gt;Given that &lt;a href="https://github.com/davep/blogmore.el" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;blogmore.el&lt;/code&gt;&lt;/a&gt; needs to
-dive into things like available categories and tags, and given that I'd also
-like to add support there for the &lt;a href="https://blog.davep.org/2026/06/06/blogmore-v2-40-0.html"&gt;recently-added &lt;code&gt;series&lt;/code&gt;
-support&lt;/a&gt;, I realised that dumping those
-values as JSON would also be helpful.&lt;/p&gt;
-&lt;p&gt;So this release extends the &lt;code&gt;dump&lt;/code&gt; command, adding a set of sub-commands:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;posts&lt;/code&gt;: dumps the data about all posts in the blog (this is the default
-  if you just run &lt;code&gt;blogmore dump&lt;/code&gt;, so keeping the command
-  backward-compatible).&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;categories&lt;/code&gt;: dumps all categories as slug/title pairs.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;tags&lt;/code&gt;: dumps all tags as slug/title pairs.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;series&lt;/code&gt;: dumps all series as slug/title pairs.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For example, getting all categories from this blog:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;blogmore&lt;span class="w"&gt; &lt;/span&gt;dump&lt;span class="w"&gt; &lt;/span&gt;categories
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ai&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;AI&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;coding&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Coding&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;creative&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Creative&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;emacs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Emacs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gaming&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Gaming&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;life&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Life&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;meta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Meta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;music&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Music&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tech&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Tech&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;til&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;TIL&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Or all the available series right now:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;blogmore&lt;span class="w"&gt; &lt;/span&gt;dump&lt;span class="w"&gt; &lt;/span&gt;series
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;agentic-afterthoughts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Agentic Afterthoughts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;buying-the-steam-controller&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Buying the Steam Controller&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;edinburgh-fringe-2023&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Edinburgh Fringe 2023&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;reading-2bit-files-for-fun&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Reading 2bit files (for fun)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;swift-til&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Swift TIL&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;the-great-github-copilot-meltdown-of-2026&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;The Great GitHub Copilot Meltdown of 2026&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;the-virgin-east-coast-saga&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;The Virgin East Coast Saga&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;emacs-d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;~/.emacs.d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;While this data &lt;em&gt;could&lt;/em&gt; have been gathered from the content of the dump of
-posts, this approach makes it far easier to work with and more accessible;
-simply put, it means there's less work for the user to do if they just want
-all the tags (for example). With this, and with a little bit of caching in
-the code (because this does require parsing all the posts every time), I
-think it will make for a better approach to category, tag and (when I add
-it) series completion while writing a post.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/06/08/blogmore-v2-42-0.html</guid>
-      <category>Coding</category>
-      <category>BlogMore</category>
-      <category>Coding</category>
-      <category>JSON</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <pubDate>Mon, 08 Jun 2026 15:30:07 +0100</pubDate>
     </item>
   </channel>
 </rss>
