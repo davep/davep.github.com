@@ -8,7 +8,128 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 23 Jul 2026 10:06:59 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 24 Jul 2026 15:33:08 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v1.1.0</title>
+      <link>https://blog.davep.org/2026/07/24/rogallo-v1-1-0.html</link>
+      <description>&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
+&lt;a href="https://rogallo.davep.dev/changelog/#v110" rel="noopener noreferrer" target="_blank"&gt;v1.1.0&lt;/a&gt; is now available. This
+release includes a number of new features and improvements, plus a small
+cosmetic fix.&lt;/p&gt;
+&lt;h2 id="diagnostics"&gt;Diagnostics&lt;/h2&gt;
+&lt;p&gt;On the off chance that someone else does use Rogallo, and needs help getting
+to the bottom of some sort of issue, I thought it might be useful to add a
+&lt;code&gt;diagnostics&lt;/code&gt; command to the CLI. Right now it's pretty simple, just dumping
+some version and environment information.&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;rogallo&lt;span class="w"&gt; &lt;/span&gt;diagnostics
+&lt;span class="c1"&gt;# Libraries&lt;/span&gt;
+bagofstuff:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.2.1
+cryptography:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;49&lt;/span&gt;.0.0
+gemtext:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.0.0
+rogallo:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.1.0
+textual:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8&lt;/span&gt;.2.8
+textual_enhanced:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.6.0
+textual_fspicker:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.0.1
+wasat:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.0.1
+
+&lt;span class="c1"&gt;# Python&lt;/span&gt;
+Compiler:&lt;span class="w"&gt; &lt;/span&gt;Clang&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;.0.0&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;clang-1700.3.19.1&lt;span class="o"&gt;)&lt;/span&gt;
+Executable:&lt;span class="w"&gt; &lt;/span&gt;/Users/davep/.local/share/uv/tools/rogallo/bin/python3
+Implementation:&lt;span class="w"&gt; &lt;/span&gt;CPython
+Version:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.14.0
+
+&lt;span class="c1"&gt;# System&lt;/span&gt;
+Name:&lt;span class="w"&gt; &lt;/span&gt;Darwin
+Release:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;25&lt;/span&gt;.5.0
+Version:&lt;span class="w"&gt; &lt;/span&gt;Darwin&lt;span class="w"&gt; &lt;/span&gt;Kernel&lt;span class="w"&gt; &lt;/span&gt;Version&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;25&lt;/span&gt;.5.0:&lt;span class="w"&gt; &lt;/span&gt;Mon&lt;span class="w"&gt; &lt;/span&gt;Apr&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;27&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;20&lt;/span&gt;:40:51&lt;span class="w"&gt; &lt;/span&gt;PDT&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2026&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;root:xnu-12377.121.6~2/RELEASE_ARM64_T8112
+
+&lt;span class="c1"&gt;# Terminal&lt;/span&gt;
+Detected:&lt;span class="w"&gt; &lt;/span&gt;ghostty
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="finger-protocol-support"&gt;Finger protocol support&lt;/h2&gt;
+&lt;p&gt;This was something I was interested in adding, and a couple of people have
+already requested it, so Rogallo now has finger support. This has been added
+in a couple of ways. The first and most obvious is that &lt;code&gt;finger:&lt;/code&gt; URIs are
+now natively supported in Gemtext content. So now if you follow a &lt;code&gt;finger://&lt;/code&gt;
+link you'll see the response in Rogallo itself.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Following a finger URI" loading="lazy" src="https://blog.davep.org/attachments/2026/07/24/finger.gif#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;The other method is to use the new &lt;code&gt;!finger&lt;/code&gt; command that has been added to
+the application's command line.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Using the finger command" loading="lazy" src="https://blog.davep.org/attachments/2026/07/24/finger-command.gif#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;Of course, in the command line, you can also just enter a &lt;code&gt;finger://&lt;/code&gt; URI if
+you wish, which I guess is a third way of doing it.&lt;/p&gt;
+&lt;p&gt;Finger URIs are recorded in the history, and can also be bookmarked.&lt;/p&gt;
+&lt;h2 id="using-an-external-editor-for-user-input"&gt;Using an external editor for user input&lt;/h2&gt;
+&lt;p&gt;This was also something I was keen on doing, and then someone else happened
+to ask for it: support for swapping out to an external editor for writing
+user input. While the current mechanism is fine for entering a one-liner --
+or composing a very short message -- a proper editor (for me that's ideally
+one with the ability to check spellings) is generally going to be far more
+useful for a longer body of text. So, with this in mind, the internal editor
+can now optionally swap out to your text editor of choice.&lt;/p&gt;
+&lt;p&gt;If you have either &lt;code&gt;VISUAL&lt;/code&gt; or &lt;code&gt;EDITOR&lt;/code&gt; set in your environment (&lt;code&gt;VISUAL&lt;/code&gt;
+beats &lt;code&gt;EDITOR&lt;/code&gt;), Rogallo will let you swap to it by pressing &lt;kbd&gt;F3&lt;/kbd&gt;
+in the internal editor. You can also override that choice by &lt;a href="https://rogallo.davep.dev/configuration/#user-input-editor" rel="noopener noreferrer" target="_blank"&gt;setting
+&lt;code&gt;external_editor&lt;/code&gt; in the configuration
+file&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Using the external editor" loading="lazy" src="https://blog.davep.org/attachments/2026/07/24/external-editor.gif#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;Personally, I'm finding this is working really well with &lt;code&gt;emacsclient&lt;/code&gt;. From
+now on, I'm going to find writing content in Geminispace a &lt;em&gt;lot&lt;/em&gt; easier.&lt;/p&gt;
+&lt;h2 id="blended-pre-formatted-text"&gt;Blended pre-formatted text&lt;/h2&gt;
+&lt;p&gt;Now that I've been wandering around Geminispace some more, I've noticed that
+a common use of pre-formatted text is for logos, ASCII art, that sort of
+thing. Generally, the sort of things that are best presented with the
+background the same as the surrounding text. A different shade of background
+is fine if showing code and stuff, but I feel that this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="AstroBotany logo blended" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/07/24/astro-blended.webp#centre" width="780" /&gt;&lt;/p&gt;
+&lt;p&gt;looks better than this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="AstroBotany logo not blended" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/07/24/astro-not-blended.webp#centre" width="780" /&gt;&lt;/p&gt;
+&lt;p&gt;To this end, I've modified the pre-formatted text rendering so that, by
+default, if pre-formatted text has no alt-text, the background is the same
+as the surrounding text. On the other hand, if it &lt;em&gt;does&lt;/em&gt; have alt-text (and
+so is likely the name of a programming language, which implies syntax
+highlighting, which in turn implies you want it to stand out), it isn't
+blended with the rest of the text.&lt;/p&gt;
+&lt;p&gt;If your preferences differ from mine, you can control this with the new
+&lt;code&gt;blend_pre_formatted_with_background&lt;/code&gt; configuration file setting. It takes a
+list of alt-text strings that should be blended. By default it looks like
+this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;blend_pre_formatted_with_background&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;That is, by default, it only blends empty alt-text pre-formatted text. As it
+happens, &lt;a href="gemini://station.martinrue.com/" rel="noopener noreferrer" target="_blank"&gt;Station&lt;/a&gt; uses alt-text for the
+logo and the user image, but I'd like them blended in too, so I'm running
+with this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;blend_pre_formatted_with_background&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Station logo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;User image&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Doubtless I'll add others as I run into them.&lt;/p&gt;
+&lt;h2 id="fixed-mouse-hover-effect"&gt;Fixed mouse hover effect&lt;/h2&gt;
+&lt;p&gt;The last change is a small cosmetic fix to mouse interaction with links.
+When the mouse cursor is over a link, there should be a hover effect (that
+is, the background should change colour). This wasn't working if you had
+&lt;a href="https://rogallo.davep.dev/configuration/#striped-links" rel="noopener noreferrer" target="_blank"&gt;link stripes&lt;/a&gt;
+turned on. This is now fixed.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/07/24/rogallo-v1-1-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>gemtext</category>
+      <category>smolweb</category>
+      <category>textual</category>
+      <pubDate>Fri, 24 Jul 2026 16:31:02 +0100</pubDate>
+    </item>
     <item>
       <title>Port79 v0.2.0</title>
       <link>https://blog.davep.org/2026/07/23/port79-v0-2-0.html</link>
@@ -245,7 +366,7 @@ features, as of this first "stable" release, are:&lt;/p&gt;
 &lt;p&gt;On top of this, there's more to come. v1.0.0 isn't the end of the line with
 Rogallo. I'm having plenty of fun using it, and improving it, and there's
 more I want to add. I very much want to add in-app support for the Finger
-Protocol, and I can see myself falling down the Gopher rabbit-hole&lt;sup id="fnref:388-1"&gt;&lt;a class="footnote-ref" href="#fn:388-1"&gt;1&lt;/a&gt;&lt;/sup&gt; at
+Protocol, and I can see myself falling down the Gopher rabbit-hole&lt;sup id="fnref:389-1"&gt;&lt;a class="footnote-ref" href="#fn:389-1"&gt;1&lt;/a&gt;&lt;/sup&gt; at
 some point too. While I don't want the application to grow out of hand, I
 can see plenty of extensions and enhancements that will be satisfying to
 add.&lt;/p&gt;
@@ -276,8 +397,8 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:388-1"&gt;
-&lt;p&gt;Yeah, I agree, probably not the right phrase there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:388-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:389-1"&gt;
+&lt;p&gt;Yeah, I agree, probably not the right phrase there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:389-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -390,7 +511,7 @@ it&lt;/a&gt; and, really, the cost of
 doing it is nothing. The request? An option to move the link jump labels
 over to the left.&lt;/p&gt;
 &lt;p&gt;So now there's a &lt;code&gt;ToggleCosyLinkNumbers&lt;/code&gt; command (bound to
-&lt;kbd&gt;Super&lt;/kbd&gt;+&lt;kbd&gt;F8&lt;/kbd&gt; by default&lt;sup id="fnref:395-1"&gt;&lt;a class="footnote-ref" href="#fn:395-1"&gt;1&lt;/a&gt;&lt;/sup&gt;) which does what it says:&lt;/p&gt;
+&lt;kbd&gt;Super&lt;/kbd&gt;+&lt;kbd&gt;F8&lt;/kbd&gt; by default&lt;sup id="fnref:396-1"&gt;&lt;a class="footnote-ref" href="#fn:396-1"&gt;1&lt;/a&gt;&lt;/sup&gt;) which does what it says:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Toggling the jump labels" loading="lazy" src="https://blog.davep.org/attachments/2026/07/20/label-toggle.gif#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;Personally, I prefer them on the right, where they don't disrupt the
 left-aligned margin for all the text, but I can see why this would be far
@@ -398,12 +519,12 @@ more comfortable for others, so... why the heck not?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:395-1"&gt;
+&lt;li id="fn:396-1"&gt;
 &lt;p&gt;One day I'll write a post about why I'm giving &lt;em&gt;every&lt;/em&gt; command a
 default binding, even if it's not so accessible in less-advanced
 terminal emulators. Mostly it's down to one of my least favourite design
 decisions in Textual mixed with my wish to have a command-based
-interface that works via the palette first and bindings second.&amp;#160;&lt;a class="footnote-backref" href="#fnref:395-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+interface that works via the palette first and bindings second.&amp;#160;&lt;a class="footnote-backref" href="#fnref:396-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -729,7 +850,7 @@ preferences, or offer suggestions (there were plenty of people who were
 pleasant like that, they were lovely to converse with), no: their engagement
 was written as if every word that was mashed into their keyboard was a
 well-crafted, handed-from-on-high RFC-like holy document that &lt;strong&gt;MUST&lt;/strong&gt; and
-&lt;strong&gt;SHOULD&lt;/strong&gt; be followed&lt;sup id="fnref:401-1"&gt;&lt;a class="footnote-ref" href="#fn:401-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;strong&gt;SHOULD&lt;/strong&gt; be followed&lt;sup id="fnref:402-1"&gt;&lt;a class="footnote-ref" href="#fn:402-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;If I was being very charitable I could cut them some slack. If you're
 building a framework for building applications for the terminal, there's a
 good reason to make it at least possible for the application authors to
@@ -748,7 +869,7 @@ that emulator.&lt;/p&gt;
 &lt;p&gt;It's even worse when they do it in a way where they have to show their &lt;em&gt;very
 deep knowledge&lt;/em&gt; of terminals, and how they're very proud of just how lacking
 in features and progress their own choice of terminal emulator is.&lt;/p&gt;
-&lt;p&gt;Dude...&lt;sup id="fnref:401-2"&gt;&lt;a class="footnote-ref" href="#fn:401-2"&gt;2&lt;/a&gt;&lt;/sup&gt; I know. I've used physical terminals. I've written COBOL on a
+&lt;p&gt;Dude...&lt;sup id="fnref:402-2"&gt;&lt;a class="footnote-ref" href="#fn:402-2"&gt;2&lt;/a&gt;&lt;/sup&gt; I know. I've used physical terminals. I've written COBOL on a
 minicomputer using a line editor on some honking great dumb all-green
 all-in-one box. I've even written code on a terminal using fan-fold paper.
 I've used all sorts of terminal emulators. I spent well over a decade doing
@@ -771,19 +892,19 @@ application I'm having tons of fun building, that I'm spending time in a
 joyous flow-state creating and tinkering with. You just care about making
 the post all about you and your purity. We know you just care about showing
 how smart you are.&lt;/p&gt;
-&lt;p&gt;We know you just can't resist the urge to reply-guy&lt;sup id="fnref:401-3"&gt;&lt;a class="footnote-ref" href="#fn:401-3"&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;We know you just can't resist the urge to reply-guy&lt;sup id="fnref:402-3"&gt;&lt;a class="footnote-ref" href="#fn:402-3"&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;We get it: you don't like bean soup. Nobody cares. Nobody asked.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:401-1"&gt;
-&lt;p&gt;That reminds me: one day I should write a rant about the folk who obsess about the &lt;em&gt;"Zen of Python"&lt;/em&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:401-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:402-1"&gt;
+&lt;p&gt;That reminds me: one day I should write a rant about the folk who obsess about the &lt;em&gt;"Zen of Python"&lt;/em&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:402-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:401-2"&gt;
-&lt;p&gt;Let's be honest: it's &lt;em&gt;always&lt;/em&gt; a dude.&amp;#160;&lt;a class="footnote-backref" href="#fnref:401-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:402-2"&gt;
+&lt;p&gt;Let's be honest: it's &lt;em&gt;always&lt;/em&gt; a dude.&amp;#160;&lt;a class="footnote-backref" href="#fnref:402-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:401-3"&gt;
-&lt;p&gt;Let's be honest: it's &lt;em&gt;always&lt;/em&gt; a guy.&amp;#160;&lt;a class="footnote-backref" href="#fnref:401-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:402-3"&gt;
+&lt;p&gt;Let's be honest: it's &lt;em&gt;always&lt;/em&gt; a guy.&amp;#160;&lt;a class="footnote-backref" href="#fnref:402-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -923,7 +1044,7 @@ dialog in Rogallo.&lt;/p&gt;</description>
       <description>&lt;p&gt;I've bumped &lt;a href="https://gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Gemtext&lt;/a&gt; to
 &lt;a href="https://gemtext.davep.dev/changelog/#v100" rel="noopener noreferrer" target="_blank"&gt;v1.0.0&lt;/a&gt;. I've gone from "this is
 test code" to "this is stable code" mostly because the library is so simple
-and I'm unlikely to add any radically new features to it&lt;sup id="fnref:398-1"&gt;&lt;a class="footnote-ref" href="#fn:398-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+and I'm unlikely to add any radically new features to it&lt;sup id="fnref:399-1"&gt;&lt;a class="footnote-ref" href="#fn:399-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;This bump also has one small addition: I've added &lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.PreFormatted.alt_text" rel="noopener noreferrer" target="_blank"&gt;an &lt;code&gt;alt_text&lt;/code&gt;
 property&lt;/a&gt;
 to &lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.PreFormatted" rel="noopener noreferrer" target="_blank"&gt;the &lt;code&gt;PreFormatted&lt;/code&gt;
@@ -945,9 +1066,9 @@ will make that possible.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:398-1"&gt;
+&lt;li id="fn:399-1"&gt;
 &lt;p&gt;I was thinking about adding a Gemtext builder class at some point,
-but I can't see a use for it any time soon. Perhaps v2.0.0.&amp;#160;&lt;a class="footnote-backref" href="#fnref:398-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+but I can't see a use for it any time soon. Perhaps v2.0.0.&amp;#160;&lt;a class="footnote-backref" href="#fnref:399-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1118,73 +1239,6 @@ most interested in how they can tailor it to their own taste.&lt;/p&gt;</descrip
       <category>smolweb</category>
       <category>textual</category>
       <pubDate>Tue, 14 Jul 2026 18:45:28 +0100</pubDate>
-    </item>
-    <item>
-      <title>Wasat v0.6.0</title>
-      <link>https://blog.davep.org/2026/07/14/wasat-v0-6-0.html</link>
-      <description>&lt;p&gt;&lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;
-&lt;a href="https://wasat.davep.dev/changelog/#v060" rel="noopener noreferrer" target="_blank"&gt;v0.6.0&lt;/a&gt; is now available. This is
-another quick update that fixes a small typing issue and also adds a handy
-new method I've been meaning to add to
-&lt;a href="https://wasat.davep.dev/library/uri/#wasat.uri.GeminiURI" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;GeminiURI&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The typing issue is a simple enough one. The &lt;code&gt;__init__&lt;/code&gt; method for
-&lt;code&gt;GeminiURI&lt;/code&gt; can take either a string or another &lt;code&gt;GeminiURI&lt;/code&gt; as its argument.
-However, the type was actually specified as &lt;code&gt;str | Self&lt;/code&gt;. In
-&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;, I want to have a sub-class of
-&lt;code&gt;GeminiURI&lt;/code&gt; for one particular purpose, which will be passed an instance of
-&lt;code&gt;GeminiURI&lt;/code&gt;. Something like this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;KnownHost&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;GeminiURI&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;A known host.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;From this, I want to be able to do:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;KnownHost&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;known_hosts&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;where &lt;code&gt;known_hosts&lt;/code&gt; is typed as &lt;code&gt;list[GeminiURI]&lt;/code&gt;. At this point, the type
-checker complains:&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Argument 1 to &amp;quot;KnownHost&amp;quot; has incompatible type &amp;quot;GeminiURI&amp;quot;; expected &amp;quot;str | KnownHost&amp;quot;  [arg-type]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The error is correct, because the use of &lt;code&gt;Self&lt;/code&gt; is saying "this needs to be
-an instance of my class". There's no reason why it needs to work this way,
-so I've relaxed the type to &lt;code&gt;str | GeminiURI&lt;/code&gt;. In my example above,
-&lt;code&gt;KnownHost&lt;/code&gt; is a subclass of &lt;code&gt;GeminiURI&lt;/code&gt;, so the type checker will be happy
-again.&lt;/p&gt;
-&lt;p&gt;The new method I've added is &lt;code&gt;GeminiURI.with_default_scheme&lt;/code&gt;. This is a
-class method that acts as a more relaxed "constructor" for a &lt;code&gt;GeminiURI&lt;/code&gt;.
-Again, in Rogallo, there are a few places where I'm taking some input,
-assuming it's going to be a &lt;code&gt;gemini://&lt;/code&gt; URI, checking if it's missing the
-scheme prefix, and then prefixing the string with &lt;code&gt;gemini://&lt;/code&gt; before
-creating a &lt;code&gt;GeminiURI&lt;/code&gt;&lt;sup id="fnref:396-1"&gt;&lt;a class="footnote-ref" href="#fn:396-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This means that Rogallo contains a few instances
-of this sort of code:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="c1"&gt;# ...we should treat some text as a URI but it isn&amp;#39;t prefixed with &amp;quot;gemini://&amp;quot;&lt;/span&gt;
-    &lt;span class="n"&gt;uri&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GeminiURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;GEMINI_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}{&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;It's a small difference, but from now on I'll be able to:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;uri&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GeminiURI&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;with_default_scheme&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This removes the need to check if there's a scheme already &lt;em&gt;and&lt;/em&gt; it saves me
-having to import &lt;code&gt;GEMINI_PREFIX&lt;/code&gt;, etc.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:396-1"&gt;
-&lt;p&gt;&lt;code&gt;GeminiURI&lt;/code&gt; will deliberately raise an exception if the scheme isn't &lt;code&gt;gemini&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:396-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/14/wasat-v0-6-0.html</guid>
-      <category>Python</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>smolweb</category>
-      <category>wasat</category>
-      <pubDate>Tue, 14 Jul 2026 12:14:35 +0100</pubDate>
     </item>
   </channel>
 </rss>

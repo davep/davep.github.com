@@ -2,11 +2,133 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-07-23T10:06:59.066292+00:00</updated>
+  <updated>2026-07-24T15:33:08.096929+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/07/24/rogallo-v1-1-0.html</id>
+    <title>Rogallo v1.1.0</title>
+    <updated>2026-07-24T16:31:02+01:00</updated>
+    <content type="html">&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
+&lt;a href="https://rogallo.davep.dev/changelog/#v110" rel="noopener noreferrer" target="_blank"&gt;v1.1.0&lt;/a&gt; is now available. This
+release includes a number of new features and improvements, plus a small
+cosmetic fix.&lt;/p&gt;
+&lt;h2 id="diagnostics"&gt;Diagnostics&lt;/h2&gt;
+&lt;p&gt;On the off chance that someone else does use Rogallo, and needs help getting
+to the bottom of some sort of issue, I thought it might be useful to add a
+&lt;code&gt;diagnostics&lt;/code&gt; command to the CLI. Right now it's pretty simple, just dumping
+some version and environment information.&lt;/p&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;rogallo&lt;span class="w"&gt; &lt;/span&gt;diagnostics
+&lt;span class="c1"&gt;# Libraries&lt;/span&gt;
+bagofstuff:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.2.1
+cryptography:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;49&lt;/span&gt;.0.0
+gemtext:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.0.0
+rogallo:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.1.0
+textual:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8&lt;/span&gt;.2.8
+textual_enhanced:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.6.0
+textual_fspicker:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.0.1
+wasat:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.0.1
+
+&lt;span class="c1"&gt;# Python&lt;/span&gt;
+Compiler:&lt;span class="w"&gt; &lt;/span&gt;Clang&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;.0.0&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;clang-1700.3.19.1&lt;span class="o"&gt;)&lt;/span&gt;
+Executable:&lt;span class="w"&gt; &lt;/span&gt;/Users/davep/.local/share/uv/tools/rogallo/bin/python3
+Implementation:&lt;span class="w"&gt; &lt;/span&gt;CPython
+Version:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.14.0
+
+&lt;span class="c1"&gt;# System&lt;/span&gt;
+Name:&lt;span class="w"&gt; &lt;/span&gt;Darwin
+Release:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;25&lt;/span&gt;.5.0
+Version:&lt;span class="w"&gt; &lt;/span&gt;Darwin&lt;span class="w"&gt; &lt;/span&gt;Kernel&lt;span class="w"&gt; &lt;/span&gt;Version&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;25&lt;/span&gt;.5.0:&lt;span class="w"&gt; &lt;/span&gt;Mon&lt;span class="w"&gt; &lt;/span&gt;Apr&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;27&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;20&lt;/span&gt;:40:51&lt;span class="w"&gt; &lt;/span&gt;PDT&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2026&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;root:xnu-12377.121.6~2/RELEASE_ARM64_T8112
+
+&lt;span class="c1"&gt;# Terminal&lt;/span&gt;
+Detected:&lt;span class="w"&gt; &lt;/span&gt;ghostty
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="finger-protocol-support"&gt;Finger protocol support&lt;/h2&gt;
+&lt;p&gt;This was something I was interested in adding, and a couple of people have
+already requested it, so Rogallo now has finger support. This has been added
+in a couple of ways. The first and most obvious is that &lt;code&gt;finger:&lt;/code&gt; URIs are
+now natively supported in Gemtext content. So now if you follow a &lt;code&gt;finger://&lt;/code&gt;
+link you'll see the response in Rogallo itself.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Following a finger URI" loading="lazy" src="https://blog.davep.org/attachments/2026/07/24/finger.gif#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;The other method is to use the new &lt;code&gt;!finger&lt;/code&gt; command that has been added to
+the application's command line.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Using the finger command" loading="lazy" src="https://blog.davep.org/attachments/2026/07/24/finger-command.gif#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;Of course, in the command line, you can also just enter a &lt;code&gt;finger://&lt;/code&gt; URI if
+you wish, which I guess is a third way of doing it.&lt;/p&gt;
+&lt;p&gt;Finger URIs are recorded in the history, and can also be bookmarked.&lt;/p&gt;
+&lt;h2 id="using-an-external-editor-for-user-input"&gt;Using an external editor for user input&lt;/h2&gt;
+&lt;p&gt;This was also something I was keen on doing, and then someone else happened
+to ask for it: support for swapping out to an external editor for writing
+user input. While the current mechanism is fine for entering a one-liner --
+or composing a very short message -- a proper editor (for me that's ideally
+one with the ability to check spellings) is generally going to be far more
+useful for a longer body of text. So, with this in mind, the internal editor
+can now optionally swap out to your text editor of choice.&lt;/p&gt;
+&lt;p&gt;If you have either &lt;code&gt;VISUAL&lt;/code&gt; or &lt;code&gt;EDITOR&lt;/code&gt; set in your environment (&lt;code&gt;VISUAL&lt;/code&gt;
+beats &lt;code&gt;EDITOR&lt;/code&gt;), Rogallo will let you swap to it by pressing &lt;kbd&gt;F3&lt;/kbd&gt;
+in the internal editor. You can also override that choice by &lt;a href="https://rogallo.davep.dev/configuration/#user-input-editor" rel="noopener noreferrer" target="_blank"&gt;setting
+&lt;code&gt;external_editor&lt;/code&gt; in the configuration
+file&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Using the external editor" loading="lazy" src="https://blog.davep.org/attachments/2026/07/24/external-editor.gif#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;Personally, I'm finding this is working really well with &lt;code&gt;emacsclient&lt;/code&gt;. From
+now on, I'm going to find writing content in Geminispace a &lt;em&gt;lot&lt;/em&gt; easier.&lt;/p&gt;
+&lt;h2 id="blended-pre-formatted-text"&gt;Blended pre-formatted text&lt;/h2&gt;
+&lt;p&gt;Now that I've been wandering around Geminispace some more, I've noticed that
+a common use of pre-formatted text is for logos, ASCII art, that sort of
+thing. Generally, the sort of things that are best presented with the
+background the same as the surrounding text. A different shade of background
+is fine if showing code and stuff, but I feel that this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="AstroBotany logo blended" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/07/24/astro-blended.webp#centre" width="780" /&gt;&lt;/p&gt;
+&lt;p&gt;looks better than this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="AstroBotany logo not blended" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/07/24/astro-not-blended.webp#centre" width="780" /&gt;&lt;/p&gt;
+&lt;p&gt;To this end, I've modified the pre-formatted text rendering so that, by
+default, if pre-formatted text has no alt-text, the background is the same
+as the surrounding text. On the other hand, if it &lt;em&gt;does&lt;/em&gt; have alt-text (and
+so is likely the name of a programming language, which implies syntax
+highlighting, which in turn implies you want it to stand out), it isn't
+blended with the rest of the text.&lt;/p&gt;
+&lt;p&gt;If your preferences differ from mine, you can control this with the new
+&lt;code&gt;blend_pre_formatted_with_background&lt;/code&gt; configuration file setting. It takes a
+list of alt-text strings that should be blended. By default it looks like
+this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;blend_pre_formatted_with_background&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;That is, by default, it only blends empty alt-text pre-formatted text. As it
+happens, &lt;a href="gemini://station.martinrue.com/" rel="noopener noreferrer" target="_blank"&gt;Station&lt;/a&gt; uses alt-text for the
+logo and the user image, but I'd like them blended in too, so I'm running
+with this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;blend_pre_formatted_with_background&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Station logo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;User image&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Doubtless I'll add others as I run into them.&lt;/p&gt;
+&lt;h2 id="fixed-mouse-hover-effect"&gt;Fixed mouse hover effect&lt;/h2&gt;
+&lt;p&gt;The last change is a small cosmetic fix to mouse interaction with links.
+When the mouse cursor is over a link, there should be a hover effect (that
+is, the background should change colour). This wasn't working if you had
+&lt;a href="https://rogallo.davep.dev/configuration/#striped-links" rel="noopener noreferrer" target="_blank"&gt;link stripes&lt;/a&gt;
+turned on. This is now fixed.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/07/24/rogallo-v1-1-0.html"/>
+    <category term="Coding"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="Rogallo"/>
+    <category term="gemtext"/>
+    <category term="smolweb"/>
+    <category term="textual"/>
+    <published>2026-07-24T16:31:02+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/07/21/rogallo-v1-0-0.html</id>
     <title>Rogallo v1.0.0</title>
@@ -58,7 +180,7 @@ features, as of this first "stable" release, are:&lt;/p&gt;
 &lt;p&gt;On top of this, there's more to come. v1.0.0 isn't the end of the line with
 Rogallo. I'm having plenty of fun using it, and improving it, and there's
 more I want to add. I very much want to add in-app support for the Finger
-Protocol, and I can see myself falling down the Gopher rabbit-hole&lt;sup id="fnref:388-1"&gt;&lt;a class="footnote-ref" href="#fn:388-1"&gt;1&lt;/a&gt;&lt;/sup&gt; at
+Protocol, and I can see myself falling down the Gopher rabbit-hole&lt;sup id="fnref:389-1"&gt;&lt;a class="footnote-ref" href="#fn:389-1"&gt;1&lt;/a&gt;&lt;/sup&gt; at
 some point too. While I don't want the application to grow out of hand, I
 can see plenty of extensions and enhancements that will be satisfying to
 add.&lt;/p&gt;
@@ -89,8 +211,8 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:388-1"&gt;
-&lt;p&gt;Yeah, I agree, probably not the right phrase there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:388-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:389-1"&gt;
+&lt;p&gt;Yeah, I agree, probably not the right phrase there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:389-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -149,7 +271,7 @@ it&lt;/a&gt; and, really, the cost of
 doing it is nothing. The request? An option to move the link jump labels
 over to the left.&lt;/p&gt;
 &lt;p&gt;So now there's a &lt;code&gt;ToggleCosyLinkNumbers&lt;/code&gt; command (bound to
-&lt;kbd&gt;Super&lt;/kbd&gt;+&lt;kbd&gt;F8&lt;/kbd&gt; by default&lt;sup id="fnref:395-1"&gt;&lt;a class="footnote-ref" href="#fn:395-1"&gt;1&lt;/a&gt;&lt;/sup&gt;) which does what it says:&lt;/p&gt;
+&lt;kbd&gt;Super&lt;/kbd&gt;+&lt;kbd&gt;F8&lt;/kbd&gt; by default&lt;sup id="fnref:396-1"&gt;&lt;a class="footnote-ref" href="#fn:396-1"&gt;1&lt;/a&gt;&lt;/sup&gt;) which does what it says:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Toggling the jump labels" loading="lazy" src="https://blog.davep.org/attachments/2026/07/20/label-toggle.gif#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;Personally, I prefer them on the right, where they don't disrupt the
 left-aligned margin for all the text, but I can see why this would be far
@@ -157,12 +279,12 @@ more comfortable for others, so... why the heck not?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:395-1"&gt;
+&lt;li id="fn:396-1"&gt;
 &lt;p&gt;One day I'll write a post about why I'm giving &lt;em&gt;every&lt;/em&gt; command a
 default binding, even if it's not so accessible in less-advanced
 terminal emulators. Mostly it's down to one of my least favourite design
 decisions in Textual mixed with my wish to have a command-based
-interface that works via the palette first and bindings second.&amp;#160;&lt;a class="footnote-backref" href="#fnref:395-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+interface that works via the palette first and bindings second.&amp;#160;&lt;a class="footnote-backref" href="#fnref:396-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -838,7 +960,7 @@ viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kb
 &lt;p&gt;It's worth noting that the default bindings for both of those aren't going
 to be ideal for some terminals. They should be fine in any terminal that
 supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
-This can be changed to your taste via the configuration file&lt;sup id="fnref:449-1"&gt;&lt;a class="footnote-ref" href="#fn:449-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+This can be changed to your taste via the configuration file&lt;sup id="fnref:450-1"&gt;&lt;a class="footnote-ref" href="#fn:450-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
 (bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
 between a rendered view and a plain text (source) view. So if you're looking
@@ -856,7 +978,7 @@ most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
 password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
 widget&lt;/a&gt;.
 The problem there though is that an input request from a Gemini server
-expects and allows for multi-line input&lt;sup id="fnref:449-2"&gt;&lt;a class="footnote-ref" href="#fn:449-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+expects and allows for multi-line input&lt;sup id="fnref:450-2"&gt;&lt;a class="footnote-ref" href="#fn:450-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
 &lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
 support password-style input.&lt;/p&gt;
 &lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
@@ -877,17 +999,17 @@ of fun working on it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:449-1"&gt;
+&lt;li id="fn:450-1"&gt;
 &lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
 documented when I get round to writing the documentation for Rogallo.
 Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
 Hike&lt;/a&gt; to get
-an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:449-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:450-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:449-2"&gt;
+&lt;li id="fn:450-2"&gt;
 &lt;p&gt;Well, technically, it's an optional feature of a client; the
 specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
-of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:449-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:450-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1032,7 +1154,7 @@ There are also a couple of cosmetic configuration options thrown in.&lt;/p&gt;
 &lt;p&gt;Starting with the cosmetic configuration options: I got to feeling that the
 URI-containing tooltips that show on mouse-hover over a link might be a bit
 much for some people, so I've added &lt;code&gt;show_link_tooltips&lt;/code&gt; to the
-configuration file&lt;sup id="fnref:409-1"&gt;&lt;a class="footnote-ref" href="#fn:409-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
+configuration file&lt;sup id="fnref:410-1"&gt;&lt;a class="footnote-ref" href="#fn:410-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
 &lt;p&gt;Similar to this I've also added &lt;code&gt;disable_animations&lt;/code&gt;. Out of the box
 &lt;a href="https://textual.textualize.io" rel="noopener noreferrer" target="_blank"&gt;Textual&lt;/a&gt; &lt;em&gt;loves&lt;/em&gt; its animations. This is
 arguably most noticeable if you have a long body of text in a scrolling
@@ -1203,10 +1325,10 @@ and water my plant in Astrobotany&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:409-1"&gt;
+&lt;li id="fn:410-1"&gt;
 &lt;p&gt;&lt;code&gt;~/.config/rogallo/configuration.json&lt;/code&gt; on most systems. This and all
 the options within will eventually be documented, when I get round to
-creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:409-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:410-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1253,7 +1375,7 @@ added.&lt;/p&gt;
 &lt;p&gt;Finally, I've added a couple of features which make it easy to know where a
 link will take you. The first is that I've added a tooltip to each link, so
 that when you hover the mouse cursor over it the URI will be displayed. But,
-because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:430-1"&gt;&lt;a class="footnote-ref" href="#fn:430-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
+because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:431-1"&gt;&lt;a class="footnote-ref" href="#fn:431-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
 a status bar to the main viewer panel that shows the URI of the focused
 link.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The Rogallo status bar" height="1760" loading="lazy" src="https://blog.davep.org/attachments/2026/06/24/rogallo-with-bar.webp#centre" width="1750" /&gt;&lt;/p&gt;
@@ -1286,8 +1408,8 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:430-1"&gt;
-&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:430-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:431-1"&gt;
+&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:431-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1506,35 +1628,5 @@ writing it all myself. It's nice to be in that flow state once again.&lt;/p&gt;<
     <category term="Rogallo"/>
     <category term="smolweb"/>
     <published>2026-06-18T16:23:15+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/06/15/animated-blogmore.html</id>
-    <title>Animated BlogMore</title>
-    <updated>2026-06-15T14:28:58+01:00</updated>
-    <content type="html">&lt;p&gt;A little animation of the first few months of the work on
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;:&lt;/p&gt;
-&lt;div style="text-align: center;"&gt;
-  &lt;iframe
-    width="560"
-    height="315"
-    src="https://www.youtube.com/embed/M03iPvWKNBQ?si=aBiA2g4XEAGL6C2V"
-    title="YouTube video player"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen&gt;
-  &lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=M03iPvWKNBQ" rel="noopener noreferrer" target="_blank"&gt;The video&lt;/a&gt; covers the whole
-period of building BlogMore, from the start until today. This means that it
-includes work done using &lt;a href="https://blog.davep.org/tag/copilot/"&gt;GitHub Copilot&lt;/a&gt;, &lt;a href="https://blog.davep.org/tag/gemini/"&gt;Google Gemini
-CLI&lt;/a&gt;, and &lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt;.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/06/15/animated-blogmore.html"/>
-    <category term="Coding"/>
-    <category term="BlogMore"/>
-    <category term="Video"/>
-    <category term="YouTube"/>
-    <published>2026-06-15T14:28:58+01:00</published>
   </entry>
 </feed>
