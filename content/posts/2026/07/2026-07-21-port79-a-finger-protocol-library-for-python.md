@@ -2,7 +2,7 @@
 title: "Port79 - A finger protocol library for Python"
 date: "2026-07-21 16:19:20+0100"
 category: Python
-tags: [Coding, PyPI, Python, finger, smolweb]
+tags: [Coding, PyPI, Python, finger, port79, smolweb]
 ---
 
 Now that [Rogallo](https://rogallo.davep.dev/) is starting to settle down
