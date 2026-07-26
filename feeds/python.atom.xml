@@ -2,11 +2,50 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-07-25T13:26:43.601408+00:00</updated>
+  <updated>2026-07-26T10:36:39.633399+00:00</updated>
   <link href="https://blog.davep.org/feeds/python.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Python" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/07/26/port70-a-gopher-protocol-library-for-python.html</id>
+    <title>Port70 - A Gopher protocol library for Python</title>
+    <updated>2026-07-26T11:32:33+01:00</updated>
+    <content type="html">&lt;p&gt;It was, of course, inevitable that this would happen. After &lt;a href="https://blog.davep.org/2026/07/25/port79-v1-0-0.html"&gt;spinning up
+Port79&lt;/a&gt; so that I could &lt;a href="https://blog.davep.org/2026/07/24/rogallo-v1-1-0.html"&gt;add &lt;code&gt;finger&lt;/code&gt;
+support to Rogallo&lt;/a&gt;, it made sense that I
+start to think about Gopher support too. So here we go:
+&lt;a href="https://port70.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Port70&lt;/a&gt;, a similar library for async interaction
+with Gopher servers.&lt;/p&gt;
+&lt;p&gt;This is going to be a bit of an adventure for me. While I'm long familiar
+with the existence of Gopher, and I'm fairly certain I used a client once or
+twice back in the 90s, I've never really had dealings with the protocol so
+know very little about it. Which is a good thing: something new (old?) to
+learn.&lt;/p&gt;
+&lt;p&gt;My plan with this is to add the &lt;code&gt;GopherURI&lt;/code&gt; class to &lt;a href="https://github.com/davep/rogallo/blob/7ea4abaddb542e0cc9baa5ddb88d24836cf2bdec/src/rogallo/types.py#L17-L19" rel="noopener noreferrer" target="_blank"&gt;the list of URI
+types&lt;/a&gt;
+that &lt;a href="https://github.com/davep/rogallo/blob/7ea4abaddb542e0cc9baa5ddb88d24836cf2bdec/src/rogallo/screens/main.py#L711-L723" rel="noopener noreferrer" target="_blank"&gt;Rogallo understands and
+handles&lt;/a&gt;
+and then provide a method of displaying and navigating the result. I &lt;em&gt;think&lt;/em&gt;
+the cleanest and easiest way of doing this will be to add some code that
+transforms a &lt;a href="https://en.wikipedia.org/wiki/Gopher_(protocol)#Source_code_of_a_menu" rel="noopener noreferrer" target="_blank"&gt;menu
+response&lt;/a&gt;
+into &lt;a href="https://gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;gemtext&lt;/a&gt; and then just let the &lt;a href="https://github.com/davep/rogallo/tree/main/src/rogallo/widgets/viewer" rel="noopener noreferrer" target="_blank"&gt;viewer
+widget&lt;/a&gt;
+display it as normal; each of the links in the menu being turned into
+&lt;code&gt;gopher://&lt;/code&gt; URIs.&lt;/p&gt;
+&lt;p&gt;This should be fun to play with. I'm looking forward to pulling it all
+together.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/07/26/port70-a-gopher-protocol-library-for-python.html"/>
+    <category term="Python"/>
+    <category term="Coding"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="Rogallo"/>
+    <category term="gopher"/>
+    <category term="smolweb"/>
+    <published>2026-07-26T11:32:33+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/07/25/port79-v1-0-0.html</id>
     <title>Port79 v1.0.0</title>
@@ -156,6 +195,7 @@ adding &lt;code&gt;finger&lt;/code&gt; as a "native protocol".&lt;/p&gt;</conten
     <category term="Coding"/>
     <category term="PyPI"/>
     <category term="Python"/>
+    <category term="Rogallo"/>
     <category term="finger"/>
     <category term="smolweb"/>
     <published>2026-07-21T16:19:20+01:00</published>
@@ -230,7 +270,7 @@ dialog in Rogallo.&lt;/p&gt;</content>
     <content type="html">&lt;p&gt;I've bumped &lt;a href="https://gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Gemtext&lt;/a&gt; to
 &lt;a href="https://gemtext.davep.dev/changelog/#v100" rel="noopener noreferrer" target="_blank"&gt;v1.0.0&lt;/a&gt;. I've gone from "this is
 test code" to "this is stable code" mostly because the library is so simple
-and I'm unlikely to add any radically new features to it&lt;sup id="fnref:400-1"&gt;&lt;a class="footnote-ref" href="#fn:400-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+and I'm unlikely to add any radically new features to it&lt;sup id="fnref:401-1"&gt;&lt;a class="footnote-ref" href="#fn:401-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;This bump also has one small addition: I've added &lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.PreFormatted.alt_text" rel="noopener noreferrer" target="_blank"&gt;an &lt;code&gt;alt_text&lt;/code&gt;
 property&lt;/a&gt;
 to &lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.PreFormatted" rel="noopener noreferrer" target="_blank"&gt;the &lt;code&gt;PreFormatted&lt;/code&gt;
@@ -252,9 +292,9 @@ will make that possible.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:400-1"&gt;
+&lt;li id="fn:401-1"&gt;
 &lt;p&gt;I was thinking about adding a Gemtext builder class at some point,
-but I can't see a use for it any time soon. Perhaps v2.0.0.&amp;#160;&lt;a class="footnote-backref" href="#fnref:400-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+but I can't see a use for it any time soon. Perhaps v2.0.0.&amp;#160;&lt;a class="footnote-backref" href="#fnref:401-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -306,7 +346,7 @@ class method that acts as a more relaxed "constructor" for a &lt;code&gt;GeminiU
 Again, in Rogallo, there are a few places where I'm taking some input,
 assuming it's going to be a &lt;code&gt;gemini://&lt;/code&gt; URI, checking if it's missing the
 scheme prefix, and then prefixing the string with &lt;code&gt;gemini://&lt;/code&gt; before
-creating a &lt;code&gt;GeminiURI&lt;/code&gt;&lt;sup id="fnref:398-1"&gt;&lt;a class="footnote-ref" href="#fn:398-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This means that Rogallo contains a few instances
+creating a &lt;code&gt;GeminiURI&lt;/code&gt;&lt;sup id="fnref:399-1"&gt;&lt;a class="footnote-ref" href="#fn:399-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This means that Rogallo contains a few instances
 of this sort of code:&lt;/p&gt;
 &lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="c1"&gt;# ...we should treat some text as a URI but it isn&amp;#39;t prefixed with &amp;quot;gemini://&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;uri&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GeminiURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;GEMINI_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}{&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -321,8 +361,8 @@ having to import &lt;code&gt;GEMINI_PREFIX&lt;/code&gt;, etc.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:398-1"&gt;
-&lt;p&gt;&lt;code&gt;GeminiURI&lt;/code&gt; will deliberately raise an exception if the scheme isn't &lt;code&gt;gemini&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:398-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:399-1"&gt;
+&lt;p&gt;&lt;code&gt;GeminiURI&lt;/code&gt; will deliberately raise an exception if the scheme isn't &lt;code&gt;gemini&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:399-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -745,7 +785,7 @@ it would be useful to have a Python client library for the protocol, and
 ideally a client library that is async. I did some searching, found client
 libraries, but none of them seemed to be async-first.&lt;/p&gt;
 &lt;p&gt;With this in mind, and to kick-start the project, last night I fired up
-&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt;&lt;sup id="fnref:421-1"&gt;&lt;a class="footnote-ref" href="#fn:421-1"&gt;1&lt;/a&gt;&lt;/sup&gt; and got a library up and going.
+&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt;&lt;sup id="fnref:422-1"&gt;&lt;a class="footnote-ref" href="#fn:422-1"&gt;1&lt;/a&gt;&lt;/sup&gt; and got a library up and going.
 &lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt; is the result. For the moment this should
 be considered alpha-status software (hence v0.0.1). I've done some &lt;em&gt;very&lt;/em&gt;
 rudimentary testing and experimenting with it and, so far, so good. It's
@@ -787,8 +827,8 @@ it, and especially writing one that works just how I want.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:421-1"&gt;
-&lt;p&gt;No, not &lt;a href="https://xkcd.com/353/" rel="noopener noreferrer" target="_blank"&gt;that one&lt;/a&gt;, the &lt;a href="https://antigravity.google/" rel="noopener noreferrer" target="_blank"&gt;other one&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:421-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:422-1"&gt;
+&lt;p&gt;No, not &lt;a href="https://xkcd.com/353/" rel="noopener noreferrer" target="_blank"&gt;that one&lt;/a&gt;, the &lt;a href="https://antigravity.google/" rel="noopener noreferrer" target="_blank"&gt;other one&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:422-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -803,105 +843,5 @@ it, and especially writing one that works just how I want.&lt;/p&gt;
     <category term="smolweb"/>
     <category term="wasat"/>
     <published>2026-06-17T19:35:29+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/06/11/trouble-with-pypi.html</id>
-    <title>Trouble with PyPI</title>
-    <updated>2026-06-11T16:26:06+01:00</updated>
-    <content type="html">&lt;p&gt;I had quite the adventure with PyPI this morning, and I don't think it's
-over yet. It started out with the release of &lt;a href="https://blog.davep.org/2026/06/11/blogmore-v2-43-0.html"&gt;BlogMore
-v2.43.0&lt;/a&gt;. I did my usual thing of doing
-&lt;a href="https://test.pypi.org/project/blogmore/" rel="noopener noreferrer" target="_blank"&gt;a test release&lt;/a&gt; to &lt;a href="https://test.pypi.org/" rel="noopener noreferrer" target="_blank"&gt;the test
-version of PyPI&lt;/a&gt;, and then did a &lt;a href="https://pypi.org/project/blogmore/" rel="noopener noreferrer" target="_blank"&gt;production
-release&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;As normally happens, I then went on to &lt;a href="https://github.com/davep/blogmore/releases/tag/v2.43.0" rel="noopener noreferrer" target="_blank"&gt;tag the release on
-GitHub&lt;/a&gt;, followed by
-writing the blog post to announce the new version. While doing this, despite
-the fact that it wasn't necessary given the nature of the change, I decided
-to update BlogMore &lt;a href="https://github.com/davep/davep.github.com" rel="noopener noreferrer" target="_blank"&gt;in my blog's
-repository&lt;/a&gt;. That's when things
-started to look odd.&lt;/p&gt;
-&lt;p&gt;I did the usual &lt;a href="https://github.com/davep/davep.github.com/blob/main/Makefile" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;make
-update&lt;/code&gt;&lt;/a&gt; but
-nothing new appeared. Now, it's not unheard of that I do this and no new
-version of BlogMore appears. Often I do it a couple more times and it's
-fine. So I kept trying every minute or two and still nothing. So I checked
-back on PyPI. Sure enough, a search showed that it had updated:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="PyPI search" height="350" loading="lazy" src="https://blog.davep.org/attachments/2026/06/11/pypi-search.webp#centre" width="812" /&gt;&lt;/p&gt;
-&lt;p&gt;(The 16 minutes being about the time since I'd made the release), but when I
-clicked through it was showing the last version from a couple of days ago.
-Even when I looked at the &lt;a href="https://pypi.org/project/blogmore/#history" rel="noopener noreferrer" target="_blank"&gt;release
-history&lt;/a&gt; it was saying the
-latest version was the previous version:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The apparent latest release" height="193" loading="lazy" src="https://blog.davep.org/attachments/2026/06/11/release-history.webp#centre" width="545" /&gt;&lt;/p&gt;
-&lt;p&gt;Odd.&lt;/p&gt;
-&lt;p&gt;At this point, depending on how I searched and where I went, I'd either see
-that my latest upload wasn't available, or I'd get a 500 error.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="PyPI 500 error" height="626" loading="lazy" src="https://blog.davep.org/attachments/2026/06/11/pypi-500.webp#centre" width="640" /&gt;&lt;/p&gt;
-&lt;p&gt;Clicking through to &lt;a href="https://status.python.org/" rel="noopener noreferrer" target="_blank"&gt;the status page&lt;/a&gt; showed no
-errors. Clicking through to &lt;a href="https://x.com/PythonStatus" rel="noopener noreferrer" target="_blank"&gt;the Twitter account that was
-suggested&lt;/a&gt; showed nothing at all.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="PyPI status on Twitter" height="518" loading="lazy" src="https://blog.davep.org/attachments/2026/06/11/pypi-twitter.webp#centre" width="512" /&gt;&lt;/p&gt;
-&lt;p&gt;Leaving aside the whole issue of having an account on Twitter these days
-anyway, I felt it wasn't that useful to point people at a resource that
-seems to have never been updated, &lt;a href="https://github.com/pypi/warehouse/issues/20145" rel="noopener noreferrer" target="_blank"&gt;so I did raise an issue about
-that&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Digging around the status page at some point, despite the fact that the main
-display was green all the way, I did see a rise in &lt;em&gt;"PyPI CDN Edge Errors"&lt;/em&gt;.
-I'm not a web guy, I'm not an infrastructure guy, so I'm not really sure
-what this would mean, but it sounds like it's not a good thing.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="CDN edge errors" height="205" loading="lazy" src="https://blog.davep.org/attachments/2026/06/11/pypi-edge-errors.webp#centre" width="560" /&gt;&lt;/p&gt;
-&lt;p&gt;Opening the graph to look longer term, it did seem today was a spike, with
-another spike quite some time ago.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="More CDN edge errors" height="200" loading="lazy" src="https://blog.davep.org/attachments/2026/06/11/pypi-more-edge-errors.webp#centre" width="553" /&gt;&lt;/p&gt;
-&lt;p&gt;At this point I left it a while, not announcing the new version of
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;. I came back some time later and,
-finally, I could see 2.43.0 was showing! Also, this seemed to coincide with
-the above graph calming down again.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="A calm CDN" height="201" loading="lazy" src="https://blog.davep.org/attachments/2026/06/11/pypi-cdn-calm.webp#centre" width="562" /&gt;&lt;/p&gt;
-&lt;p&gt;Seeing this I went to upgrade BlogMore in my blog's repo/venv and this time
-it all worked.&lt;/p&gt;
-&lt;p&gt;Yay!&lt;/p&gt;
-&lt;p&gt;At that point I left it alone and went about my work day. However, I don't
-think whatever is going on is over. Despite the fact that it was showing
-BlogMore as being v2.43.0 earlier today, once things were settled, I just
-checked again as I started to write this and:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Old BlogMore again" height="413" loading="lazy" src="https://blog.davep.org/attachments/2026/06/11/pypi-old-blogmore.webp#centre" width="640" /&gt;&lt;/p&gt;
-&lt;p&gt;The search index on PyPI shows it as having been updated about 8 hours ago
-(as I write this), but the page itself shows that the latest version is from
-2 days ago. At least installing it gives me 2.43.0:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;blogmore
-Using&lt;span class="w"&gt; &lt;/span&gt;CPython&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.13.1
-Creating&lt;span class="w"&gt; &lt;/span&gt;virtual&lt;span class="w"&gt; &lt;/span&gt;environment&lt;span class="w"&gt; &lt;/span&gt;at:&lt;span class="w"&gt; &lt;/span&gt;.venv
-Resolved&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;packages&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;325ms
-Installed&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;packages&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;41ms
-&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;blogmore&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;.43.0
-&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;feedgen&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.0.0
-&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;jinja2&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.1.6
-&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;lxml&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;6&lt;/span&gt;.1.1
-&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;markdown&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.10.2
-&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;markupsafe&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.0.3
-&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;minify-html&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.18.1
-&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;pillow&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;12&lt;/span&gt;.2.0
-&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;pygments&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;.20.0
-&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;python-dateutil&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;.9.0.post0
-&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;python-frontmatter&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.3.0
-&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;pyyaml&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;6&lt;/span&gt;.0.3
-&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;rcssmin&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.2.2
-&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;rjsmin&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.2.5
-&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;six&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.17.0
-&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;watchdog&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;6&lt;/span&gt;.0.0
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Also: &lt;a href="https://github.com/davep/pispy" rel="noopener noreferrer" target="_blank"&gt;PISpy&lt;/a&gt; sees 2.43.0 as the latest
-version too (something it wasn't seeing during the height of the issues this
-morning).&lt;/p&gt;
-&lt;p&gt;It's all kind of confusing though.&lt;/p&gt;
-&lt;p&gt;Guess it's time for me to read up on CDN edge errors or something...&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/06/11/trouble-with-pypi.html"/>
-    <category term="Python"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <published>2026-06-11T16:26:06+01:00</published>
   </entry>
 </feed>
