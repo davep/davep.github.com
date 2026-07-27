@@ -2,11 +2,53 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-07-27T08:12:47.321116+00:00</updated>
+  <updated>2026-07-27T18:40:19.594796+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/07/27/gophermap-a-simple-library-for-parsing-gopher-responses.html</id>
+    <title>GopherMap - A simple library for parsing Gopher responses</title>
+    <updated>2026-07-27T19:20:30+01:00</updated>
+    <content type="html">&lt;p&gt;Having &lt;a href="https://blog.davep.org/2026/07/26/port70-a-gopher-protocol-library-for-python.html"&gt;spun up
+Port70&lt;/a&gt; as a
+support library for my effort to add &lt;a href="https://blog.davep.org/tag/gopher/"&gt;gopher&lt;/a&gt; support to
+&lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt;, the next thing I needed was some code to parse the
+"gopher map" responses that you get back from Gopher servers. While this
+could have been some code in Rogallo itself, much like with
+&lt;a href="https://gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Gemtext&lt;/a&gt;, it seemed sensible to put it in its
+own library so it could be useful elsewhere.&lt;/p&gt;
+&lt;p&gt;So... &lt;a href="https://gophermap.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;GopherMap&lt;/a&gt;
+&lt;a href="https://gophermap.davep.dev/changelog/#v010" rel="noopener noreferrer" target="_blank"&gt;v0.1.0&lt;/a&gt; is a thing. Its main
+provision is a &lt;a href="https://gophermap.davep.dev/gophermap/#gophermap.GopherMap" rel="noopener noreferrer" target="_blank"&gt;class called
+&lt;code&gt;GopherMap&lt;/code&gt;&lt;/a&gt;,
+which is used to parse some text you give it. Its &lt;a href="https://gophermap.davep.dev/gophermap/#gophermap.GopherMap.items" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;items&lt;/code&gt;
+property&lt;/a&gt;
+is then a tuple of
+&lt;a href="https://gophermap.davep.dev/gophermap/#gophermap.GopherItem" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;GopherItem&lt;/code&gt;&lt;/a&gt;
+objects. Each one of those objects has &lt;a href="https://gophermap.davep.dev/gophermap/#gophermap.GopherItem.type" rel="noopener noreferrer" target="_blank"&gt;a &lt;code&gt;type&lt;/code&gt;
+property&lt;/a&gt;
+which can be used to &lt;a href="https://gophermap.davep.dev/gophermap/#gophermap.ItemType" rel="noopener noreferrer" target="_blank"&gt;check the type of the
+resource&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Because Rogallo heavily relies on MIME types to make decisions about what to
+do with content, each &lt;code&gt;ItemType&lt;/code&gt; has a best-efforts-guess
+&lt;a href="https://gophermap.davep.dev/gophermap/#gophermap.ItemType.mime_type" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;mime_type&lt;/code&gt;&lt;/a&gt;
+associated with it. This will make it pretty straightforward for me to
+decide if a resource from a Gopher server is something Rogallo can display.&lt;/p&gt;
+&lt;p&gt;All of this has prompted me to &lt;a href="gopher://tilde.team/1/~davep/" rel="noopener noreferrer" target="_blank"&gt;have a go at creating my own little Gopher
+site&lt;/a&gt; to help with testing. As with my &lt;a href="gemini://tilde.team/~davep/" rel="noopener noreferrer" target="_blank"&gt;wee
+Gemini capsule&lt;/a&gt;, this is all thanks to
+&lt;a href="https://tilde.team/" rel="noopener noreferrer" target="_blank"&gt;tilde.team&lt;/a&gt;.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/07/27/gophermap-a-simple-library-for-parsing-gopher-responses.html"/>
+    <category term="Python"/>
+    <category term="Coding"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="gopher"/>
+    <category term="smolweb"/>
+    <published>2026-07-27T19:20:30+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/07/27/rogallo-v1-1-1.html</id>
     <title>Rogallo v1.1.1</title>
@@ -471,7 +513,7 @@ features, as of this first "stable" release, are:&lt;/p&gt;
 &lt;p&gt;On top of this, there's more to come. v1.0.0 isn't the end of the line with
 Rogallo. I'm having plenty of fun using it, and improving it, and there's
 more I want to add. I very much want to add in-app support for the Finger
-Protocol, and I can see myself falling down the Gopher rabbit-hole&lt;sup id="fnref:390-1"&gt;&lt;a class="footnote-ref" href="#fn:390-1"&gt;1&lt;/a&gt;&lt;/sup&gt; at
+Protocol, and I can see myself falling down the Gopher rabbit-hole&lt;sup id="fnref:391-1"&gt;&lt;a class="footnote-ref" href="#fn:391-1"&gt;1&lt;/a&gt;&lt;/sup&gt; at
 some point too. While I don't want the application to grow out of hand, I
 can see plenty of extensions and enhancements that will be satisfying to
 add.&lt;/p&gt;
@@ -502,8 +544,8 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:390-1"&gt;
-&lt;p&gt;Yeah, I agree, probably not the right phrase there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:390-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:391-1"&gt;
+&lt;p&gt;Yeah, I agree, probably not the right phrase there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:391-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -619,7 +661,7 @@ it&lt;/a&gt; and, really, the cost of
 doing it is nothing. The request? An option to move the link jump labels
 over to the left.&lt;/p&gt;
 &lt;p&gt;So now there's a &lt;code&gt;ToggleCosyLinkNumbers&lt;/code&gt; command (bound to
-&lt;kbd&gt;Super&lt;/kbd&gt;+&lt;kbd&gt;F8&lt;/kbd&gt; by default&lt;sup id="fnref:399-1"&gt;&lt;a class="footnote-ref" href="#fn:399-1"&gt;1&lt;/a&gt;&lt;/sup&gt;) which does what it says:&lt;/p&gt;
+&lt;kbd&gt;Super&lt;/kbd&gt;+&lt;kbd&gt;F8&lt;/kbd&gt; by default&lt;sup id="fnref:400-1"&gt;&lt;a class="footnote-ref" href="#fn:400-1"&gt;1&lt;/a&gt;&lt;/sup&gt;) which does what it says:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Toggling the jump labels" loading="lazy" src="https://blog.davep.org/attachments/2026/07/20/label-toggle.gif#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;Personally, I prefer them on the right, where they don't disrupt the
 left-aligned margin for all the text, but I can see why this would be far
@@ -627,12 +669,12 @@ more comfortable for others, so... why the heck not?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:399-1"&gt;
+&lt;li id="fn:400-1"&gt;
 &lt;p&gt;One day I'll write a post about why I'm giving &lt;em&gt;every&lt;/em&gt; command a
 default binding, even if it's not so accessible in less-advanced
 terminal emulators. Mostly it's down to one of my least favourite design
 decisions in Textual mixed with my wish to have a command-based
-interface that works via the palette first and bindings second.&amp;#160;&lt;a class="footnote-backref" href="#fnref:399-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+interface that works via the palette first and bindings second.&amp;#160;&lt;a class="footnote-backref" href="#fnref:400-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -964,7 +1006,7 @@ preferences, or offer suggestions (there were plenty of people who were
 pleasant like that, they were lovely to converse with), no: their engagement
 was written as if every word that was mashed into their keyboard was a
 well-crafted, handed-from-on-high RFC-like holy document that &lt;strong&gt;MUST&lt;/strong&gt; and
-&lt;strong&gt;SHOULD&lt;/strong&gt; be followed&lt;sup id="fnref:405-1"&gt;&lt;a class="footnote-ref" href="#fn:405-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;strong&gt;SHOULD&lt;/strong&gt; be followed&lt;sup id="fnref:406-1"&gt;&lt;a class="footnote-ref" href="#fn:406-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;If I was being very charitable I could cut them some slack. If you're
 building a framework for building applications for the terminal, there's a
 good reason to make it at least possible for the application authors to
@@ -983,7 +1025,7 @@ that emulator.&lt;/p&gt;
 &lt;p&gt;It's even worse when they do it in a way where they have to show their &lt;em&gt;very
 deep knowledge&lt;/em&gt; of terminals, and how they're very proud of just how lacking
 in features and progress their own choice of terminal emulator is.&lt;/p&gt;
-&lt;p&gt;Dude...&lt;sup id="fnref:405-2"&gt;&lt;a class="footnote-ref" href="#fn:405-2"&gt;2&lt;/a&gt;&lt;/sup&gt; I know. I've used physical terminals. I've written COBOL on a
+&lt;p&gt;Dude...&lt;sup id="fnref:406-2"&gt;&lt;a class="footnote-ref" href="#fn:406-2"&gt;2&lt;/a&gt;&lt;/sup&gt; I know. I've used physical terminals. I've written COBOL on a
 minicomputer using a line editor on some honking great dumb all-green
 all-in-one box. I've even written code on a terminal using fan-fold paper.
 I've used all sorts of terminal emulators. I spent well over a decade doing
@@ -1006,19 +1048,19 @@ application I'm having tons of fun building, that I'm spending time in a
 joyous flow-state creating and tinkering with. You just care about making
 the post all about you and your purity. We know you just care about showing
 how smart you are.&lt;/p&gt;
-&lt;p&gt;We know you just can't resist the urge to reply-guy&lt;sup id="fnref:405-3"&gt;&lt;a class="footnote-ref" href="#fn:405-3"&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;We know you just can't resist the urge to reply-guy&lt;sup id="fnref:406-3"&gt;&lt;a class="footnote-ref" href="#fn:406-3"&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;We get it: you don't like bean soup. Nobody cares. Nobody asked.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:405-1"&gt;
-&lt;p&gt;That reminds me: one day I should write a rant about the folk who obsess about the &lt;em&gt;"Zen of Python"&lt;/em&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:405-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:406-1"&gt;
+&lt;p&gt;That reminds me: one day I should write a rant about the folk who obsess about the &lt;em&gt;"Zen of Python"&lt;/em&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:406-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:405-2"&gt;
-&lt;p&gt;Let's be honest: it's &lt;em&gt;always&lt;/em&gt; a dude.&amp;#160;&lt;a class="footnote-backref" href="#fnref:405-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:406-2"&gt;
+&lt;p&gt;Let's be honest: it's &lt;em&gt;always&lt;/em&gt; a dude.&amp;#160;&lt;a class="footnote-backref" href="#fnref:406-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:405-3"&gt;
-&lt;p&gt;Let's be honest: it's &lt;em&gt;always&lt;/em&gt; a guy.&amp;#160;&lt;a class="footnote-backref" href="#fnref:405-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:406-3"&gt;
+&lt;p&gt;Let's be honest: it's &lt;em&gt;always&lt;/em&gt; a guy.&amp;#160;&lt;a class="footnote-backref" href="#fnref:406-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1117,42 +1159,5 @@ a TODO issue.&amp;#160;&lt;a class="footnote-backref" href="#fnref:379-2" title=
     <category term="smolweb"/>
     <category term="textual"/>
     <published>2026-07-16T20:10:35+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/07/16/wasat-v0-7-0.html</id>
-    <title>Wasat v0.7.0</title>
-    <updated>2026-07-16T17:07:52+01:00</updated>
-    <content type="html">&lt;p&gt;The &lt;a href="https://geminiprotocol.net/docs/protocol-specification.gmi" rel="noopener noreferrer" target="_blank"&gt;Gemini
-Protocol&lt;/a&gt; makes
-it clear that &lt;a href="https://geminiprotocol.net/docs/protocol-specification.gmi#requests" rel="noopener noreferrer" target="_blank"&gt;the maximum length of a URI, when making a request, is 1024
-bytes&lt;/a&gt;.
-This has implications for how large a user's input can be when responding to
-a &lt;code&gt;1x&lt;/code&gt; response. Because of this, I'd like to update
-&lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt; so that it lets the user know how much space they
-have left as they type in their input.&lt;/p&gt;
-&lt;p&gt;With this in mind I've released
-&lt;a href="https://wasat.davep.dev/changelog/#v070" rel="noopener noreferrer" target="_blank"&gt;v0.7.0&lt;/a&gt; of
-&lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;. This adds the following to &lt;code&gt;GeminiURI&lt;/code&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;GeminiURI.MAXIMUM_LENGTH&lt;/code&gt; -- a constant for the maximum length of a
-  Gemini URI (as mentioned above: 1024).&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;len()&lt;/code&gt; support -- if you ask for the &lt;code&gt;len&lt;/code&gt; of an instance of &lt;code&gt;GeminiURI&lt;/code&gt;
-  it will return the length of the full URI.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;GeminiURI.bytes_left&lt;/code&gt; is a property that tells you how many bytes are
-  left until the limit, given the current URI.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;GeminiURI.too_long&lt;/code&gt; is a boolean property that flags if the current URI
-  is too long to send to a Gemini capsule.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This should give me all I need to add some guardrails to the user input
-dialog in Rogallo.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/07/16/wasat-v0-7-0.html"/>
-    <category term="Python"/>
-    <category term="Coding"/>
-    <category term="Gemini Protocol"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="smolweb"/>
-    <category term="wasat"/>
-    <published>2026-07-16T17:07:52+01:00</published>
   </entry>
 </feed>
