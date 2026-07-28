@@ -2,11 +2,41 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-07-28T08:18:31.175332+00:00</updated>
+  <updated>2026-07-28T15:50:34.094345+00:00</updated>
   <link href="https://blog.davep.org/feeds/python.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Python" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/07/28/gophermap-v0-2-0.html</id>
+    <title>GopherMap v0.2.0</title>
+    <updated>2026-07-28T16:48:01+01:00</updated>
+    <content type="html">&lt;p&gt;A quick little update to &lt;a href="https://gophermap.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;GopherMap&lt;/a&gt;.
+&lt;a href="https://gophermap.davep.dev/changelog/#v020" rel="noopener noreferrer" target="_blank"&gt;v0.2.0&lt;/a&gt; greatly relaxes the
+validation of incoming lines, being a lot less fussy about missing tab
+characters and also about fully empty lines.&lt;/p&gt;
+&lt;p&gt;In the first take on this I was being pretty strict but, unsurprisingly,
+&lt;a href="https://github.com/davep/rogallo/discussions/241" rel="noopener noreferrer" target="_blank"&gt;there are sites out there with likely-malformed
+maps&lt;/a&gt; that should
+otherwise work if you're chill about their mistakes.&lt;/p&gt;
+&lt;p&gt;I've got no desire for &lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt; to be harsh in this respect,
+so here's a much more relaxed version of GopherMap.&lt;/p&gt;
+&lt;p&gt;As of right now, the exceptions that are defined in the library are never
+raised. I've left them in for the moment because there's a window of time
+between this version being pushed to PyPI and Rogallo being updated (it does
+use the exceptions), where failure to supply them would cause Rogallo to
+crash under normal circumstances (nobody wants an unnecessary
+&lt;code&gt;ImportError&lt;/code&gt;). Once I've updated Rogallo to pin a new lower bound, and
+removed use of the exceptions, I'll remove them from GopherMap.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/07/28/gophermap-v0-2-0.html"/>
+    <category term="Python"/>
+    <category term="Coding"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="gopher"/>
+    <category term="smolweb"/>
+    <published>2026-07-28T16:48:01+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/07/27/gophermap-a-simple-library-for-parsing-gopher-responses.html</id>
     <title>GopherMap - A simple library for parsing Gopher responses</title>
@@ -312,7 +342,7 @@ dialog in Rogallo.&lt;/p&gt;</content>
     <content type="html">&lt;p&gt;I've bumped &lt;a href="https://gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Gemtext&lt;/a&gt; to
 &lt;a href="https://gemtext.davep.dev/changelog/#v100" rel="noopener noreferrer" target="_blank"&gt;v1.0.0&lt;/a&gt;. I've gone from "this is
 test code" to "this is stable code" mostly because the library is so simple
-and I'm unlikely to add any radically new features to it&lt;sup id="fnref:404-1"&gt;&lt;a class="footnote-ref" href="#fn:404-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+and I'm unlikely to add any radically new features to it&lt;sup id="fnref:405-1"&gt;&lt;a class="footnote-ref" href="#fn:405-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;This bump also has one small addition: I've added &lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.PreFormatted.alt_text" rel="noopener noreferrer" target="_blank"&gt;an &lt;code&gt;alt_text&lt;/code&gt;
 property&lt;/a&gt;
 to &lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.PreFormatted" rel="noopener noreferrer" target="_blank"&gt;the &lt;code&gt;PreFormatted&lt;/code&gt;
@@ -334,9 +364,9 @@ will make that possible.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:404-1"&gt;
+&lt;li id="fn:405-1"&gt;
 &lt;p&gt;I was thinking about adding a Gemtext builder class at some point,
-but I can't see a use for it any time soon. Perhaps v2.0.0.&amp;#160;&lt;a class="footnote-backref" href="#fnref:404-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+but I can't see a use for it any time soon. Perhaps v2.0.0.&amp;#160;&lt;a class="footnote-backref" href="#fnref:405-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -388,7 +418,7 @@ class method that acts as a more relaxed "constructor" for a &lt;code&gt;GeminiU
 Again, in Rogallo, there are a few places where I'm taking some input,
 assuming it's going to be a &lt;code&gt;gemini://&lt;/code&gt; URI, checking if it's missing the
 scheme prefix, and then prefixing the string with &lt;code&gt;gemini://&lt;/code&gt; before
-creating a &lt;code&gt;GeminiURI&lt;/code&gt;&lt;sup id="fnref:402-1"&gt;&lt;a class="footnote-ref" href="#fn:402-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This means that Rogallo contains a few instances
+creating a &lt;code&gt;GeminiURI&lt;/code&gt;&lt;sup id="fnref:403-1"&gt;&lt;a class="footnote-ref" href="#fn:403-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This means that Rogallo contains a few instances
 of this sort of code:&lt;/p&gt;
 &lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="c1"&gt;# ...we should treat some text as a URI but it isn&amp;#39;t prefixed with &amp;quot;gemini://&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;uri&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GeminiURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;GEMINI_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}{&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -403,8 +433,8 @@ having to import &lt;code&gt;GEMINI_PREFIX&lt;/code&gt;, etc.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:402-1"&gt;
-&lt;p&gt;&lt;code&gt;GeminiURI&lt;/code&gt; will deliberately raise an exception if the scheme isn't &lt;code&gt;gemini&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:402-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:403-1"&gt;
+&lt;p&gt;&lt;code&gt;GeminiURI&lt;/code&gt; will deliberately raise an exception if the scheme isn't &lt;code&gt;gemini&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:403-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -771,38 +801,5 @@ me, in &lt;em&gt;"hobbyist programmer"&lt;/em&gt; mode, this is all kinds of fun
     <category term="smolweb"/>
     <category term="wasat"/>
     <published>2026-06-24T08:56:50+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/06/23/bagofstuff-v1-0-0.html</id>
-    <title>BagOfStuff v1.0.0</title>
-    <updated>2026-06-23T16:32:39+01:00</updated>
-    <content type="html">&lt;p&gt;&lt;a href="https://bagofstuff.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BagOfStuff&lt;/a&gt; started as a very small side
-project when I was &lt;a href="https://blog.davep.org/2026/02/11/oldnews.html"&gt;working on&lt;/a&gt;
-&lt;a href="https://oldnews.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;OldNews&lt;/a&gt; during my winter break, and then into
-the new year. It began as some support code in OldNews, which was living in
-a sort of tools section of the codebase (you know: the dreaded and
-much-maligned &lt;code&gt;utils&lt;/code&gt; section of the project). Sensing that something in it
-could end up being of utility elsewhere, I moved it out into its own
-library.&lt;/p&gt;
-&lt;p&gt;Having written some history-management type of code for the &lt;a href="https://blog.davep.org/tag/gemini-protocol/"&gt;Gemini
-protocol&lt;/a&gt; client I'm working on, I got to thinking
-that it too should move into this library; a benefit here being that I'll
-eventually migrate &lt;a href="https://hike.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Hike&lt;/a&gt;'s histories to this. With
-that done, I've decided to promote BagOfStuff to v1.0.0 and call it stable.&lt;/p&gt;
-&lt;p&gt;I don't see this library growing too much; the old days of languages either
-having a spartan standard library, or a third-party ecosystem that lacks
-comprehensive coverage, are pretty far behind us, and Python suffers from
-neither issue. On the other hand, there are some general-but-niche things
-that I'm going to want for my own projects, which probably don't deserve a
-library in their own right, which can live in here.&lt;/p&gt;
-&lt;p&gt;Also, sometimes, it's fun to just jam on a little problem and try to make
-the personally-ideal approach to solving it. BagOfStuff serves that purpose
-too.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/06/23/bagofstuff-v1-0-0.html"/>
-    <category term="Python"/>
-    <category term="BagOfStuff"/>
-    <category term="Coding"/>
-    <category term="Python"/>
-    <published>2026-06-23T16:32:39+01:00</published>
   </entry>
 </feed>
