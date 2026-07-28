@@ -2,11 +2,76 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-07-27T18:40:19.600068+00:00</updated>
+  <updated>2026-07-28T08:18:31.166798+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/07/28/rogallo-v1-2-0.html</id>
+    <title>Rogallo v1.2.0</title>
+    <updated>2026-07-28T08:39:19+01:00</updated>
+    <content type="html">&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
+&lt;a href="https://rogallo.davep.dev/changelog/#v120" rel="noopener noreferrer" target="_blank"&gt;v1.2.0&lt;/a&gt; is now available. The
+main change in this release is the kick-off of support for the &lt;a href="https://en.wikipedia.org/wiki/Gopher_(protocol)" rel="noopener noreferrer" target="_blank"&gt;Gopher
+protocol&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As I've mentioned before: Gopher is kind of an unknown to me, in terms of
+actually using it. I'm aware of it, I've known about it ever since I first
+got on the Internet back in the 1990s, I have a half-recalled memory of
+dabbling with a Gopher client at some point back then, but I had no
+conscious knowledge of its workings. So, when I say "kick-off" above, I say
+it because I suspect there's going to be more work to do to make it work
+"just so".&lt;/p&gt;
+&lt;p&gt;However, right now, &lt;code&gt;gopher://&lt;/code&gt; URIs are supported in Rogallo.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Viewing a Gopher site" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/07/28/gopher-site.webp#centre" width="836" /&gt;&lt;/p&gt;
+&lt;p&gt;The approach to supporting this is pretty simple: given a gophermap, as
+pulled from a server, Rogallo &lt;a href="https://github.com/davep/rogallo/blob/e89d023ed6fb4f6961296368e6245399f2ef1df8/src/rogallo/widgets/viewer/gopher.py" rel="noopener noreferrer" target="_blank"&gt;converts it into
+Gemtext&lt;/a&gt;
+and then displays it using the normal Gemtext viewer.&lt;/p&gt;
+&lt;p&gt;There is more to Gopher than just displaying the maps, of course: there's
+access to all kinds of resources. Where possible, Rogallo will display
+text-based resources within the viewer; all other kinds of resources are
+handed off to the operating system as they probably need applications and
+tools that Rogallo doesn't offer (viewing images, playing audio, etc).&lt;/p&gt;
+&lt;p&gt;Searches (item type &lt;code&gt;7&lt;/code&gt;) are supported, and when following such a link, you
+will be prompted for input, which will be used as the query.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Prompting for search input" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/07/28/searching.webp#centre" width="836" /&gt;&lt;/p&gt;
+&lt;p&gt;Note that, for the moment, there is no support for extensions to the
+protocol such as
+&lt;a href="https://en.wikipedia.org/wiki/Gopher_(protocol)#Gopher+" rel="noopener noreferrer" target="_blank"&gt;Gopher+&lt;/a&gt;.
+Doubtless I'll look into doing something with this in the future; Rogallo's
+development is incremental and for me it's all about having fun
+(re)discovering new/old things.&lt;/p&gt;
+&lt;p&gt;There are two other notable changes in Rogallo v1.2.0:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I've modified the ordering of entries in the history search so that the
+  items appear in most to least recent order. While being able to type in
+  things to find back a location is the primary use, I also found I was
+  often pulling it up to find something I'd visited very recently.&lt;/li&gt;
+&lt;li&gt;I fixed the "view source" status being sticky during navigation. If I was
+  viewing the source of a location, and then navigated to another location
+  (by using the &lt;code&gt;Back&lt;/code&gt; command, for example), that other location would
+  &lt;em&gt;also&lt;/em&gt; show the source. The status is now reset every time you navigate to
+  somewhere else.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That's it for this release. There's still &lt;a href="https://github.com/davep/rogallo/issues?q=sort%3Aupdated-desc%20is%3Aissue%20state%3Aopen%20label%3ATODO" rel="noopener noreferrer" target="_blank"&gt;a good few things on the TODO
+list&lt;/a&gt;
+so I'll be tinkering and enhancing for some time to come. As always,
+&lt;a href="https://github.com/davep/rogallo/discussions" rel="noopener noreferrer" target="_blank"&gt;questions or suggestions are very
+welcome&lt;/a&gt;.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/07/28/rogallo-v1-2-0.html"/>
+    <category term="Coding"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="Rogallo"/>
+    <category term="gemtext"/>
+    <category term="gopher"/>
+    <category term="smolweb"/>
+    <category term="textual"/>
+    <published>2026-07-28T08:39:19+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/07/27/rogallo-v1-1-1.html</id>
     <title>Rogallo v1.1.1</title>
@@ -220,7 +285,7 @@ features, as of this first "stable" release, are:&lt;/p&gt;
 &lt;p&gt;On top of this, there's more to come. v1.0.0 isn't the end of the line with
 Rogallo. I'm having plenty of fun using it, and improving it, and there's
 more I want to add. I very much want to add in-app support for the Finger
-Protocol, and I can see myself falling down the Gopher rabbit-hole&lt;sup id="fnref:391-1"&gt;&lt;a class="footnote-ref" href="#fn:391-1"&gt;1&lt;/a&gt;&lt;/sup&gt; at
+Protocol, and I can see myself falling down the Gopher rabbit-hole&lt;sup id="fnref:392-1"&gt;&lt;a class="footnote-ref" href="#fn:392-1"&gt;1&lt;/a&gt;&lt;/sup&gt; at
 some point too. While I don't want the application to grow out of hand, I
 can see plenty of extensions and enhancements that will be satisfying to
 add.&lt;/p&gt;
@@ -251,8 +316,8 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:391-1"&gt;
-&lt;p&gt;Yeah, I agree, probably not the right phrase there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:391-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:392-1"&gt;
+&lt;p&gt;Yeah, I agree, probably not the right phrase there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:392-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -311,7 +376,7 @@ it&lt;/a&gt; and, really, the cost of
 doing it is nothing. The request? An option to move the link jump labels
 over to the left.&lt;/p&gt;
 &lt;p&gt;So now there's a &lt;code&gt;ToggleCosyLinkNumbers&lt;/code&gt; command (bound to
-&lt;kbd&gt;Super&lt;/kbd&gt;+&lt;kbd&gt;F8&lt;/kbd&gt; by default&lt;sup id="fnref:400-1"&gt;&lt;a class="footnote-ref" href="#fn:400-1"&gt;1&lt;/a&gt;&lt;/sup&gt;) which does what it says:&lt;/p&gt;
+&lt;kbd&gt;Super&lt;/kbd&gt;+&lt;kbd&gt;F8&lt;/kbd&gt; by default&lt;sup id="fnref:401-1"&gt;&lt;a class="footnote-ref" href="#fn:401-1"&gt;1&lt;/a&gt;&lt;/sup&gt;) which does what it says:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Toggling the jump labels" loading="lazy" src="https://blog.davep.org/attachments/2026/07/20/label-toggle.gif#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;Personally, I prefer them on the right, where they don't disrupt the
 left-aligned margin for all the text, but I can see why this would be far
@@ -319,12 +384,12 @@ more comfortable for others, so... why the heck not?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:400-1"&gt;
+&lt;li id="fn:401-1"&gt;
 &lt;p&gt;One day I'll write a post about why I'm giving &lt;em&gt;every&lt;/em&gt; command a
 default binding, even if it's not so accessible in less-advanced
 terminal emulators. Mostly it's down to one of my least favourite design
 decisions in Textual mixed with my wish to have a command-based
-interface that works via the palette first and bindings second.&amp;#160;&lt;a class="footnote-backref" href="#fnref:400-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+interface that works via the palette first and bindings second.&amp;#160;&lt;a class="footnote-backref" href="#fnref:401-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1000,7 +1065,7 @@ viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kb
 &lt;p&gt;It's worth noting that the default bindings for both of those aren't going
 to be ideal for some terminals. They should be fine in any terminal that
 supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
-This can be changed to your taste via the configuration file&lt;sup id="fnref:454-1"&gt;&lt;a class="footnote-ref" href="#fn:454-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+This can be changed to your taste via the configuration file&lt;sup id="fnref:455-1"&gt;&lt;a class="footnote-ref" href="#fn:455-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
 (bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
 between a rendered view and a plain text (source) view. So if you're looking
@@ -1018,7 +1083,7 @@ most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
 password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
 widget&lt;/a&gt;.
 The problem there though is that an input request from a Gemini server
-expects and allows for multi-line input&lt;sup id="fnref:454-2"&gt;&lt;a class="footnote-ref" href="#fn:454-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+expects and allows for multi-line input&lt;sup id="fnref:455-2"&gt;&lt;a class="footnote-ref" href="#fn:455-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
 &lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
 support password-style input.&lt;/p&gt;
 &lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
@@ -1039,17 +1104,17 @@ of fun working on it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:454-1"&gt;
+&lt;li id="fn:455-1"&gt;
 &lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
 documented when I get round to writing the documentation for Rogallo.
 Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
 Hike&lt;/a&gt; to get
-an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:454-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:455-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:454-2"&gt;
+&lt;li id="fn:455-2"&gt;
 &lt;p&gt;Well, technically, it's an optional feature of a client; the
 specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
-of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:454-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:455-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1194,7 +1259,7 @@ There are also a couple of cosmetic configuration options thrown in.&lt;/p&gt;
 &lt;p&gt;Starting with the cosmetic configuration options: I got to feeling that the
 URI-containing tooltips that show on mouse-hover over a link might be a bit
 much for some people, so I've added &lt;code&gt;show_link_tooltips&lt;/code&gt; to the
-configuration file&lt;sup id="fnref:414-1"&gt;&lt;a class="footnote-ref" href="#fn:414-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
+configuration file&lt;sup id="fnref:415-1"&gt;&lt;a class="footnote-ref" href="#fn:415-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
 &lt;p&gt;Similar to this I've also added &lt;code&gt;disable_animations&lt;/code&gt;. Out of the box
 &lt;a href="https://textual.textualize.io" rel="noopener noreferrer" target="_blank"&gt;Textual&lt;/a&gt; &lt;em&gt;loves&lt;/em&gt; its animations. This is
 arguably most noticeable if you have a long body of text in a scrolling
@@ -1365,10 +1430,10 @@ and water my plant in Astrobotany&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:414-1"&gt;
+&lt;li id="fn:415-1"&gt;
 &lt;p&gt;&lt;code&gt;~/.config/rogallo/configuration.json&lt;/code&gt; on most systems. This and all
 the options within will eventually be documented, when I get round to
-creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:414-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:415-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1415,7 +1480,7 @@ added.&lt;/p&gt;
 &lt;p&gt;Finally, I've added a couple of features which make it easy to know where a
 link will take you. The first is that I've added a tooltip to each link, so
 that when you hover the mouse cursor over it the URI will be displayed. But,
-because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:435-1"&gt;&lt;a class="footnote-ref" href="#fn:435-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
+because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:436-1"&gt;&lt;a class="footnote-ref" href="#fn:436-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
 a status bar to the main viewer panel that shows the URI of the focused
 link.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The Rogallo status bar" height="1760" loading="lazy" src="https://blog.davep.org/attachments/2026/06/24/rogallo-with-bar.webp#centre" width="1750" /&gt;&lt;/p&gt;
@@ -1448,8 +1513,8 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:435-1"&gt;
-&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:435-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:436-1"&gt;
+&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:436-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1620,28 +1685,5 @@ maintaining.&lt;/p&gt;</content>
     <category term="smolweb"/>
     <category term="textual"/>
     <published>2026-06-20T17:11:17+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/06/19/gemini-client-rendering.html</id>
-    <title>Gemini client rendering</title>
-    <updated>2026-06-19T20:06:45+01:00</updated>
-    <content type="html">&lt;p&gt;Yesterday &lt;a href="https://blog.davep.org/2026/06/18/gemini-client-basic-framework.html"&gt;I got the basic framework of my Gemini client up and
-going&lt;/a&gt;, and this evening
-I've been working on getting rendering of the gemtext in place. It's not the
-most tricky format to handle, so the parser and Textual widget to display
-the result have come together pretty quickly.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Browsing with the client" loading="lazy" src="https://blog.davep.org/attachments/2026/06/19/gemini-client.gif#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;With this in place I've got the core of a working client now. Next up is
-going to be adding history with forward and backward navigation, then after
-that things like bookmarks and so on.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/06/19/gemini-client-rendering.html"/>
-    <category term="Coding"/>
-    <category term="Coding"/>
-    <category term="Gemini Protocol"/>
-    <category term="Python"/>
-    <category term="Rogallo"/>
-    <category term="smolweb"/>
-    <category term="textual"/>
-    <published>2026-06-19T20:06:45+01:00</published>
   </entry>
 </feed>
