@@ -8,7 +8,122 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 28 Jul 2026 15:50:34 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jul 2026 18:30:19 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v1.3.0</title>
+      <link>https://blog.davep.org/2026/07/29/rogallo-v1-3-0.html</link>
+      <description>&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt; has been updated to
+&lt;a href="https://rogallo.davep.dev/changelog/#v130" rel="noopener noreferrer" target="_blank"&gt;v1.3.0&lt;/a&gt;. This release adds an
+extra cosmetic feature to the Gopher support, and also extends what the
+internal command line is capable of.&lt;/p&gt;
+&lt;p&gt;Both of the changes come from suggestions made by
+&lt;a href="https://redterminal.org" rel="noopener noreferrer" target="_blank"&gt;-fab-&lt;/a&gt;, who's been an avid tester of Rogallo and a
+good source of pointers and ideas. The first change comes from a mention
+they made of how some &lt;a href="https://blog.davep.org/tag/gopher/"&gt;Gopher&lt;/a&gt; clients will prefix links in a
+map with a three-letter ID to give a clue as to what the linked resource is.
+&lt;code&gt;TXT&lt;/code&gt; for a text file, &lt;code&gt;SND&lt;/code&gt; for any audio file, &lt;code&gt;MNU&lt;/code&gt; for a link to a
+further map, that sort of thing. While I didn't add that &lt;a href="https://blog.davep.org/2026/07/28/rogallo-v1-2-0.html"&gt;when I initially
+added Gopher support&lt;/a&gt;, it did seem like a
+useful option to provide.&lt;/p&gt;
+&lt;p&gt;However, this being a "modern" TUI application, with access to a wee bit
+more than plain old ASCII, I thought I'd mix it up a little. By default,
+little "icons" or "badges" are shown with each link. So to take the examples
+given above, I'm using 📄 for a text file, 🎵 for an audio file, and 📁 for
+a menu.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Rogallo showing a Gopher hole" height="1952" loading="lazy" src="https://blog.davep.org/attachments/2026/07/29/gopher-site.webp#centre" width="1766" /&gt;&lt;/p&gt;
+&lt;p&gt;Of course, some people might not want this, and this can be &lt;a href="https://rogallo.davep.dev/configuration/#gopher-item-badges" rel="noopener noreferrer" target="_blank"&gt;turned off
+entirely in the configuration
+file&lt;/a&gt; by
+setting &lt;code&gt;gopher_show_type_badges&lt;/code&gt; to &lt;code&gt;false&lt;/code&gt;. However, it might be that
+someone wants this, but not the emoji. That's where &lt;code&gt;gopher_type_badges&lt;/code&gt;
+comes in. This is an association of Gopher types with text to use as the
+"badge". If three-letter all-ASCII "badges" are what you want:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;quot;gopher_type_badges&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(TXT)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(DIR)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(CSO)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;3&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(ERR)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;4&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(HQX)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;5&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(DOS)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;6&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(UUE)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;7&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(FND)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;8&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(TEL)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;9&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(BIN)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;i&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(INF)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;g&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(GIF)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;I&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(IMG)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;h&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(WEB)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(DOC)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;s&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(SND)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;P&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(PDF)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;X&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(XML)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;unknown&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(???)&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The other feature springs from &lt;a href="https://github.com/davep/rogallo/discussions/252" rel="noopener noreferrer" target="_blank"&gt;another suggestion -fab-
+made&lt;/a&gt;. This time it was
+the idea of adding direct command-line support for Gemini and Gopher search
+engines. This struck me as an excellent idea, but I got to thinking that it
+could be a little more generic than that. So I've added support for
+declaring simple command-line aliases. There's now a section in the
+configuration file&lt;sup id="fnref:388-1"&gt;&lt;a class="footnote-ref" href="#fn:388-1"&gt;1&lt;/a&gt;&lt;/sup&gt; called &lt;code&gt;aliases&lt;/code&gt;. It's an association of a command
+alias and an expansion. The alias itself must be a single "word" of
+characters, and the expansion the actual command that will be used. It can
+be any other command-line command, or a URI. Anything that the command line
+can normally handle.&lt;/p&gt;
+&lt;p&gt;When the user types something into the command line, the input will be split
+on the first space. If the first half matches an alias, it will be
+substituted for the input, and the tail of the input will be made available
+as a parameter to the expansion.&lt;/p&gt;
+&lt;p&gt;There are three placeholders that do the expansion:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;{q}&lt;/code&gt; -- The tail of the command quoted for use in a URI&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{qp}&lt;/code&gt; -- As above, but spaces will be &lt;code&gt;+&lt;/code&gt; rather than &lt;code&gt;%20&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{r}&lt;/code&gt; -- The raw, unquoted, tail of the command&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I've probably done a bad job of explaining it. But hopefully the following
+default set of aliases will nicely illustrate it:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;quot;aliases&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;fg&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gopher://gopher.floodgap.com/1/v2/vs?{q}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;gp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gemini://gemi.dev/cgi-bin/wp.cgi/search?{q}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;ken&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gemini://kennedy.gemi.dev/search?{q}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;tlgs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gemini://tlgs.one/search?{q}&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Given this, if you type &lt;code&gt;ken test search&lt;/code&gt;, the actual command that gets
+input is &lt;code&gt;gemini://kennedy.gemi.dev/search?test%20search&lt;/code&gt;. As I said, it's
+not just about search engines; you can also expand to other built-in
+commands. For example:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;quot;whois&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;!finger {r}&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Would have &lt;code&gt;whois davep@plan.cat&lt;/code&gt; expand to &lt;code&gt;!finger davep@plan.cat&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I feel this nicely solves the original request &lt;em&gt;and&lt;/em&gt; adds an extra layer of
+utility to the internal command line.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:388-1"&gt;
+&lt;p&gt;Which I totally forgot to document when putting together this release.
+It'll come to the docs soon.&amp;#160;&lt;a class="footnote-backref" href="#fnref:388-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/07/29/rogallo-v1-3-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>gemtext</category>
+      <category>gopher</category>
+      <category>smolweb</category>
+      <category>textual</category>
+      <pubDate>Wed, 29 Jul 2026 19:29:05 +0100</pubDate>
+    </item>
     <item>
       <title>GopherMap v0.2.0</title>
       <link>https://blog.davep.org/2026/07/28/gophermap-v0-2-0.html</link>
@@ -598,7 +713,7 @@ features, as of this first "stable" release, are:&lt;/p&gt;
 &lt;p&gt;On top of this, there's more to come. v1.0.0 isn't the end of the line with
 Rogallo. I'm having plenty of fun using it, and improving it, and there's
 more I want to add. I very much want to add in-app support for the Finger
-Protocol, and I can see myself falling down the Gopher rabbit-hole&lt;sup id="fnref:393-1"&gt;&lt;a class="footnote-ref" href="#fn:393-1"&gt;1&lt;/a&gt;&lt;/sup&gt; at
+Protocol, and I can see myself falling down the Gopher rabbit-hole&lt;sup id="fnref:394-1"&gt;&lt;a class="footnote-ref" href="#fn:394-1"&gt;1&lt;/a&gt;&lt;/sup&gt; at
 some point too. While I don't want the application to grow out of hand, I
 can see plenty of extensions and enhancements that will be satisfying to
 add.&lt;/p&gt;
@@ -629,8 +744,8 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:393-1"&gt;
-&lt;p&gt;Yeah, I agree, probably not the right phrase there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:393-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:394-1"&gt;
+&lt;p&gt;Yeah, I agree, probably not the right phrase there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:394-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -744,7 +859,7 @@ it&lt;/a&gt; and, really, the cost of
 doing it is nothing. The request? An option to move the link jump labels
 over to the left.&lt;/p&gt;
 &lt;p&gt;So now there's a &lt;code&gt;ToggleCosyLinkNumbers&lt;/code&gt; command (bound to
-&lt;kbd&gt;Super&lt;/kbd&gt;+&lt;kbd&gt;F8&lt;/kbd&gt; by default&lt;sup id="fnref:402-1"&gt;&lt;a class="footnote-ref" href="#fn:402-1"&gt;1&lt;/a&gt;&lt;/sup&gt;) which does what it says:&lt;/p&gt;
+&lt;kbd&gt;Super&lt;/kbd&gt;+&lt;kbd&gt;F8&lt;/kbd&gt; by default&lt;sup id="fnref:403-1"&gt;&lt;a class="footnote-ref" href="#fn:403-1"&gt;1&lt;/a&gt;&lt;/sup&gt;) which does what it says:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Toggling the jump labels" loading="lazy" src="https://blog.davep.org/attachments/2026/07/20/label-toggle.gif#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;Personally, I prefer them on the right, where they don't disrupt the
 left-aligned margin for all the text, but I can see why this would be far
@@ -752,12 +867,12 @@ more comfortable for others, so... why the heck not?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:402-1"&gt;
+&lt;li id="fn:403-1"&gt;
 &lt;p&gt;One day I'll write a post about why I'm giving &lt;em&gt;every&lt;/em&gt; command a
 default binding, even if it's not so accessible in less-advanced
 terminal emulators. Mostly it's down to one of my least favourite design
 decisions in Textual mixed with my wish to have a command-based
-interface that works via the palette first and bindings second.&amp;#160;&lt;a class="footnote-backref" href="#fnref:402-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+interface that works via the palette first and bindings second.&amp;#160;&lt;a class="footnote-backref" href="#fnref:403-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1055,100 +1170,6 @@ commands to &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" ta
       <category>smolweb</category>
       <category>wasat</category>
       <pubDate>Sat, 18 Jul 2026 10:23:11 +0100</pubDate>
-    </item>
-    <item>
-      <title>Terminal bean soup</title>
-      <link>https://blog.davep.org/2026/07/17/terminal-bean-soup.html</link>
-      <description>&lt;p&gt;I'm sure most people reading this will be familiar with the concept of "bean
-soup theory". In case anyone isn't, &lt;a href="https://en.wikipedia.org/wiki/Glossary_of_2020s_slang#B" rel="noopener noreferrer" target="_blank"&gt;here's how Wikipedia describes
-it&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;A specific phenomenon described as a 'What about me' effect. An individual
-watches a video that doesn't pertain to them, but finds a way to make it
-about them anyway. Stems from a 2023 TikTok recipe for bean soup, with
-commenters saying "What if I don't like beans?"&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I feel there's a very specific set of folk who love to "bean soup" anything
-relating to terminals, and it's common to have them turn up in your mentions
-if you happen to do &lt;em&gt;anything&lt;/em&gt; in the terminal, or for the terminal, that
-isn't about their purist opinions and how everything &lt;em&gt;must&lt;/em&gt; be a Vim clone,
-or worse.&lt;/p&gt;
-&lt;p&gt;I first encountered this when &lt;a href="https://blog.davep.org/2022/10/05/on-to-something-new-redux.html"&gt;I started working at
-Textualize&lt;/a&gt;. Unsurprisingly,
-given the point, purpose and focus of &lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual&lt;/a&gt;, some folk
-would turn up in the Discord server, in the issues, in the discussions, in
-the mentions of posts in various places, and post their &lt;em&gt;very important
-opinions&lt;/em&gt; about how TUI software &lt;em&gt;must&lt;/em&gt; work. Not... discuss their
-preferences, or offer suggestions (there were plenty of people who were
-pleasant like that, they were lovely to converse with), no: their engagement
-was written as if every word that was mashed into their keyboard was a
-well-crafted, handed-from-on-high RFC-like holy document that &lt;strong&gt;MUST&lt;/strong&gt; and
-&lt;strong&gt;SHOULD&lt;/strong&gt; be followed&lt;sup id="fnref:408-1"&gt;&lt;a class="footnote-ref" href="#fn:408-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;If I was being very charitable I could cut them some slack. If you're
-building a framework for building applications for the terminal, there's a
-good reason to make it at least possible for the application authors to
-follow recognised best practice and to stick with hard-won conventions.
-Indeed, Textual has some design choices that I think are deeply questionable
-and misguided and I objected to them on more than one occasion. So, yeah, if
-I was being charitable, I could cut them some slack.&lt;/p&gt;
-&lt;p&gt;I could... if they weren't such arseholes about it.&lt;/p&gt;
-&lt;p&gt;This gets worse though if you're building an application for the terminal,
-especially if it's built as Free Software and the motivation is &lt;em&gt;to build
-something for yourself and be kind enough to share&lt;/em&gt;. It irks the hell out of
-me when I build some application for myself, as a TUI, and then someone
-turns up and starts complaining about &lt;em&gt;my&lt;/em&gt; choice of default key bindings,
-that work in &lt;em&gt;my&lt;/em&gt; choice of terminal emulator and &lt;em&gt;my&lt;/em&gt; configuration for
-that emulator.&lt;/p&gt;
-&lt;p&gt;It's even worse when they do it in a way where they have to show their &lt;em&gt;very
-deep knowledge&lt;/em&gt; of terminals, and how they're very proud of just how lacking
-in features and progress their own choice of terminal emulator is.&lt;/p&gt;
-&lt;p&gt;Dude...&lt;sup id="fnref:408-2"&gt;&lt;a class="footnote-ref" href="#fn:408-2"&gt;2&lt;/a&gt;&lt;/sup&gt; I know. I've used physical terminals. I've written COBOL on a
-minicomputer using a line editor on some honking great dumb all-green
-all-in-one box. I've even written code on a terminal using fan-fold paper.
-I've used all sorts of terminal emulators. I spent well over a decade doing
-shit inside &lt;code&gt;rxvt&lt;/code&gt; which was running on my GNU/Linux server while displaying
-on my Windows desktop machine.&lt;/p&gt;
-&lt;p&gt;I've &lt;a href="https://github.com/Textualize/textual-key-recorder" rel="noopener noreferrer" target="_blank"&gt;installed and tested plenty of terminal
-emulators&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I'm well aware of the conventions and expectations. If
-&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;C&lt;/kbd&gt; doesn't quit... that is &lt;strong&gt;my choice&lt;/strong&gt;. It's not
-ignorance, it's not a lack of history with this stuff, it's a choice. For my
-software.&lt;/p&gt;
-&lt;p&gt;So when you turn up and feel the need to tell me that some function keys
-might not work in some terminal on some GNU/Linux box... I get it, you don't
-like beans. If that's the case, how about you either don't make my hobby all
-about &lt;em&gt;your&lt;/em&gt; tastes and how I should build my application to suit you, or
-how about you RTFM and configure my application so it works in your choice
-of terminal?&lt;/p&gt;
-&lt;p&gt;I mean... we know you won't. We know you don't even care about the
-application I'm having tons of fun building, that I'm spending time in a
-joyous flow-state creating and tinkering with. You just care about making
-the post all about you and your purity. We know you just care about showing
-how smart you are.&lt;/p&gt;
-&lt;p&gt;We know you just can't resist the urge to reply-guy&lt;sup id="fnref:408-3"&gt;&lt;a class="footnote-ref" href="#fn:408-3"&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;We get it: you don't like bean soup. Nobody cares. Nobody asked.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:408-1"&gt;
-&lt;p&gt;That reminds me: one day I should write a rant about the folk who obsess about the &lt;em&gt;"Zen of Python"&lt;/em&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:408-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:408-2"&gt;
-&lt;p&gt;Let's be honest: it's &lt;em&gt;always&lt;/em&gt; a dude.&amp;#160;&lt;a class="footnote-backref" href="#fnref:408-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:408-3"&gt;
-&lt;p&gt;Let's be honest: it's &lt;em&gt;always&lt;/em&gt; a guy.&amp;#160;&lt;a class="footnote-backref" href="#fnref:408-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/17/terminal-bean-soup.html</guid>
-      <category>Tech</category>
-      <category>Coding</category>
-      <category>FOSS</category>
-      <category>Free Software</category>
-      <category>terminal</category>
-      <category>textual</category>
-      <pubDate>Fri, 17 Jul 2026 20:54:32 +0100</pubDate>
     </item>
   </channel>
 </rss>
