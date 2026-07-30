@@ -2,11 +2,73 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-07-29T18:30:19.017626+00:00</updated>
+  <updated>2026-07-30T08:26:36.541037+00:00</updated>
   <link href="https://blog.davep.org/feeds/python.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Python" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/07/30/wasat-v1-2-0.html</id>
+    <title>Wasat v1.2.0</title>
+    <updated>2026-07-30T08:45:09+01:00</updated>
+    <content type="html">&lt;p&gt;I've just released &lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;
+&lt;a href="https://wasat.davep.dev/changelog/#v120" rel="noopener noreferrer" target="_blank"&gt;v1.2.0&lt;/a&gt;. This release aims to help
+out with a change I want to make in &lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt; in relation to
+certificate verification.&lt;/p&gt;
+&lt;p&gt;The issue is that, until now, Wasat offered either &lt;code&gt;ca&lt;/code&gt; or &lt;code&gt;tofu&lt;/code&gt; as
+verification modes. Meanwhile Rogallo was using &lt;code&gt;tofu&lt;/code&gt;. Long story short:
+&lt;a href="https://github.com/davep/rogallo/issues/221" rel="noopener noreferrer" target="_blank"&gt;this meant that sometimes some sites looked like they were changing
+fingerprint way more often than you'd
+expect&lt;/a&gt;. The obvious solution
+here is to first check if a site can be validated via the &lt;code&gt;ca&lt;/code&gt; route and, if
+not, fall back to the &lt;code&gt;tofu&lt;/code&gt; route. This sort of change could have been made
+in Rogallo itself, but it would have been inelegant. Rogallo maintains a
+single Gemini client object, and the verification mode is baked in when the
+object is created. To move to this &lt;em&gt;"try one way then the other"&lt;/em&gt; approach
+would have meant either maintaining two instances of the object, or tearing
+it down and making another each time we connected to a capsule.&lt;/p&gt;
+&lt;p&gt;Nah.&lt;/p&gt;
+&lt;p&gt;So the
+&lt;a href="https://wasat.davep.dev/library/client/#wasat.client.Client(verify_mode)" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;verify_mode&lt;/code&gt;&lt;/a&gt;
+of the
+&lt;a href="https://wasat.davep.dev/library/client/#wasat.client.Client" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;Client&lt;/code&gt;&lt;/a&gt; has
+grown a new option: &lt;code&gt;hybrid&lt;/code&gt;. When set to &lt;code&gt;hybrid&lt;/code&gt;, the client will do the
+dance mentioned above: it will try and see if &lt;code&gt;ca&lt;/code&gt; will work and, if it
+does, it will take that approach. If it fails, it will then fall back on
+pure &lt;code&gt;tofu&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Out of the box, the defaults for the client are the same (it uses &lt;code&gt;ca&lt;/code&gt; by
+default), and for the moment Rogallo is still hard-baked to &lt;code&gt;tofu&lt;/code&gt;; given
+this, there should be no change in how things work when Wasat is updated.
+Now that this is up on PyPI, I'm going to pin Rogallo's use of &lt;code&gt;wasat&lt;/code&gt; to
+&lt;code&gt;&amp;gt;=1.2.0&lt;/code&gt; and then, in an update, I'll swap over to &lt;code&gt;hybrid&lt;/code&gt;. Hopefully this
+will result in a smoother journey when using sites like
+&lt;a href="gemini://astrobotany.mozz.us/app" rel="noopener noreferrer" target="_blank"&gt;AstroBotany&lt;/a&gt; and
+&lt;a href="gemini://station.martinrue.com/" rel="noopener noreferrer" target="_blank"&gt;Station&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="admonition admonition-note"&gt;
+&lt;div class="admonition-title"&gt;ℹ️ Note&lt;/div&gt;
+&lt;div class="admonition-content"&gt;
+&lt;p&gt;While writing this, I've noticed that there's one change I still need to
+make to this hybrid flow. I realised that, at the moment, &lt;em&gt;any&lt;/em&gt; kind of CA
+failure will result in a fallback to TOFU. That's not ideal and needs
+refining. All part of the learning process.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr /&gt;
+&lt;p&gt;PS: If you're wondering what happened to v1.1.0 of Wasat... there wasn't
+one. While preparing this release, I was also fighting with the fact that my
+MX Mechanical Mini keyboard seemed to be dying (and its battery &lt;em&gt;does&lt;/em&gt; seem
+to be dying) and, because of that, managed to bump the version from v1.0.1
+to v1.2.0. Oh well...&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/07/30/wasat-v1-2-0.html"/>
+    <category term="Python"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="smolweb"/>
+    <category term="wasat"/>
+    <published>2026-07-30T08:45:09+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/07/28/gophermap-v0-2-0.html</id>
     <title>GopherMap v0.2.0</title>
@@ -342,7 +404,7 @@ dialog in Rogallo.&lt;/p&gt;</content>
     <content type="html">&lt;p&gt;I've bumped &lt;a href="https://gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Gemtext&lt;/a&gt; to
 &lt;a href="https://gemtext.davep.dev/changelog/#v100" rel="noopener noreferrer" target="_blank"&gt;v1.0.0&lt;/a&gt;. I've gone from "this is
 test code" to "this is stable code" mostly because the library is so simple
-and I'm unlikely to add any radically new features to it&lt;sup id="fnref:406-1"&gt;&lt;a class="footnote-ref" href="#fn:406-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+and I'm unlikely to add any radically new features to it&lt;sup id="fnref:407-1"&gt;&lt;a class="footnote-ref" href="#fn:407-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;This bump also has one small addition: I've added &lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.PreFormatted.alt_text" rel="noopener noreferrer" target="_blank"&gt;an &lt;code&gt;alt_text&lt;/code&gt;
 property&lt;/a&gt;
 to &lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.PreFormatted" rel="noopener noreferrer" target="_blank"&gt;the &lt;code&gt;PreFormatted&lt;/code&gt;
@@ -364,9 +426,9 @@ will make that possible.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:406-1"&gt;
+&lt;li id="fn:407-1"&gt;
 &lt;p&gt;I was thinking about adding a Gemtext builder class at some point,
-but I can't see a use for it any time soon. Perhaps v2.0.0.&amp;#160;&lt;a class="footnote-backref" href="#fnref:406-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+but I can't see a use for it any time soon. Perhaps v2.0.0.&amp;#160;&lt;a class="footnote-backref" href="#fnref:407-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -418,7 +480,7 @@ class method that acts as a more relaxed "constructor" for a &lt;code&gt;GeminiU
 Again, in Rogallo, there are a few places where I'm taking some input,
 assuming it's going to be a &lt;code&gt;gemini://&lt;/code&gt; URI, checking if it's missing the
 scheme prefix, and then prefixing the string with &lt;code&gt;gemini://&lt;/code&gt; before
-creating a &lt;code&gt;GeminiURI&lt;/code&gt;&lt;sup id="fnref:404-1"&gt;&lt;a class="footnote-ref" href="#fn:404-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This means that Rogallo contains a few instances
+creating a &lt;code&gt;GeminiURI&lt;/code&gt;&lt;sup id="fnref:405-1"&gt;&lt;a class="footnote-ref" href="#fn:405-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This means that Rogallo contains a few instances
 of this sort of code:&lt;/p&gt;
 &lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="c1"&gt;# ...we should treat some text as a URI but it isn&amp;#39;t prefixed with &amp;quot;gemini://&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;uri&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GeminiURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;GEMINI_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}{&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -433,8 +495,8 @@ having to import &lt;code&gt;GEMINI_PREFIX&lt;/code&gt;, etc.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:404-1"&gt;
-&lt;p&gt;&lt;code&gt;GeminiURI&lt;/code&gt; will deliberately raise an exception if the scheme isn't &lt;code&gt;gemini&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:404-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:405-1"&gt;
+&lt;p&gt;&lt;code&gt;GeminiURI&lt;/code&gt; will deliberately raise an exception if the scheme isn't &lt;code&gt;gemini&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:405-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -755,51 +817,5 @@ documents.&lt;/p&gt;
     <category term="gemtext"/>
     <category term="smolweb"/>
     <published>2026-06-25T12:05:42+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/06/24/wasat-v0-1-0.html</id>
-    <title>Wasat v0.1.0</title>
-    <updated>2026-06-24T08:56:50+01:00</updated>
-    <content type="html">&lt;p&gt;I've just released &lt;a href="https://wasat.davep.dev/changelog/#v010" rel="noopener noreferrer" target="_blank"&gt;v0.1.0&lt;/a&gt; of
-&lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;, my async &lt;a href="https://blog.davep.org/tag/gemini-protocol/"&gt;Gemini
-Protocol&lt;/a&gt; client library for
-&lt;a href="https://blog.davep.org/category/python/"&gt;Python&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Changes in this release include:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Support for generating and storing client certificates to help when
-  handling &lt;code&gt;6x&lt;/code&gt; responses. This is still experimental.&lt;/li&gt;
-&lt;li&gt;Updated the CLI to handle requests for input (handling &lt;code&gt;1x&lt;/code&gt; responses).&lt;/li&gt;
-&lt;li&gt;Added a &lt;code&gt;uri&lt;/code&gt; property to the &lt;code&gt;Response&lt;/code&gt; class, to expose the target URI
-  reached from a request.&lt;/li&gt;
-&lt;li&gt;Added a &lt;code&gt;history&lt;/code&gt; property to the &lt;code&gt;Response&lt;/code&gt; class, to expose the redirect
-  history if redirection took place.&lt;/li&gt;
-&lt;li&gt;Added a &lt;code&gt;requested_uri&lt;/code&gt; property to the &lt;code&gt;Response&lt;/code&gt; class, to expose the
-  originally requested URI.&lt;/li&gt;
-&lt;li&gt;Updated the CLI so that, when in verbose mode, it prints all of the
-  available redirection information.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Most of the changes here are in support of resolving &lt;a href="https://github.com/davep/rogallo/issues/22" rel="noopener noreferrer" target="_blank"&gt;an issue I found with
-Rogallo yesterday&lt;/a&gt;. With v0.1.0
-available I should be able to update Rogallo with an easy fix.&lt;/p&gt;
-&lt;p&gt;So far, building this library, and &lt;a href="https://blog.davep.org/tag/rogallo/"&gt;the client application&lt;/a&gt;,
-is proving to be really interesting and educational. There's something fun
-about building a "web browser" of sorts, from the ground up. It really hits
-this point:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;{Gemini might be of interest to you if you}&lt;/em&gt; Are a hobbyist programmer
-with a "do it yourself" attitude who enjoys building their own tools and
-getting real use out of them every day&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;from the &lt;a href="https://geminiprotocol.net/docs/faq.gmi" rel="noopener noreferrer" target="_blank"&gt;Gemini protocol FAQ&lt;/a&gt;. For
-me, in &lt;em&gt;"hobbyist programmer"&lt;/em&gt; mode, this is all kinds of fun.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/06/24/wasat-v0-1-0.html"/>
-    <category term="Python"/>
-    <category term="Coding"/>
-    <category term="Gemini Protocol"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="smolweb"/>
-    <category term="wasat"/>
-    <published>2026-06-24T08:56:50+01:00</published>
   </entry>
 </feed>

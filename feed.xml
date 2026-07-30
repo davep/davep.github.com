@@ -8,7 +8,68 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 29 Jul 2026 18:30:19 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jul 2026 08:26:36 +0000</lastBuildDate>
+    <item>
+      <title>Wasat v1.2.0</title>
+      <link>https://blog.davep.org/2026/07/30/wasat-v1-2-0.html</link>
+      <description>&lt;p&gt;I've just released &lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;
+&lt;a href="https://wasat.davep.dev/changelog/#v120" rel="noopener noreferrer" target="_blank"&gt;v1.2.0&lt;/a&gt;. This release aims to help
+out with a change I want to make in &lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt; in relation to
+certificate verification.&lt;/p&gt;
+&lt;p&gt;The issue is that, until now, Wasat offered either &lt;code&gt;ca&lt;/code&gt; or &lt;code&gt;tofu&lt;/code&gt; as
+verification modes. Meanwhile Rogallo was using &lt;code&gt;tofu&lt;/code&gt;. Long story short:
+&lt;a href="https://github.com/davep/rogallo/issues/221" rel="noopener noreferrer" target="_blank"&gt;this meant that sometimes some sites looked like they were changing
+fingerprint way more often than you'd
+expect&lt;/a&gt;. The obvious solution
+here is to first check if a site can be validated via the &lt;code&gt;ca&lt;/code&gt; route and, if
+not, fall back to the &lt;code&gt;tofu&lt;/code&gt; route. This sort of change could have been made
+in Rogallo itself, but it would have been inelegant. Rogallo maintains a
+single Gemini client object, and the verification mode is baked in when the
+object is created. To move to this &lt;em&gt;"try one way then the other"&lt;/em&gt; approach
+would have meant either maintaining two instances of the object, or tearing
+it down and making another each time we connected to a capsule.&lt;/p&gt;
+&lt;p&gt;Nah.&lt;/p&gt;
+&lt;p&gt;So the
+&lt;a href="https://wasat.davep.dev/library/client/#wasat.client.Client(verify_mode)" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;verify_mode&lt;/code&gt;&lt;/a&gt;
+of the
+&lt;a href="https://wasat.davep.dev/library/client/#wasat.client.Client" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;Client&lt;/code&gt;&lt;/a&gt; has
+grown a new option: &lt;code&gt;hybrid&lt;/code&gt;. When set to &lt;code&gt;hybrid&lt;/code&gt;, the client will do the
+dance mentioned above: it will try and see if &lt;code&gt;ca&lt;/code&gt; will work and, if it
+does, it will take that approach. If it fails, it will then fall back on
+pure &lt;code&gt;tofu&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Out of the box, the defaults for the client are the same (it uses &lt;code&gt;ca&lt;/code&gt; by
+default), and for the moment Rogallo is still hard-baked to &lt;code&gt;tofu&lt;/code&gt;; given
+this, there should be no change in how things work when Wasat is updated.
+Now that this is up on PyPI, I'm going to pin Rogallo's use of &lt;code&gt;wasat&lt;/code&gt; to
+&lt;code&gt;&amp;gt;=1.2.0&lt;/code&gt; and then, in an update, I'll swap over to &lt;code&gt;hybrid&lt;/code&gt;. Hopefully this
+will result in a smoother journey when using sites like
+&lt;a href="gemini://astrobotany.mozz.us/app" rel="noopener noreferrer" target="_blank"&gt;AstroBotany&lt;/a&gt; and
+&lt;a href="gemini://station.martinrue.com/" rel="noopener noreferrer" target="_blank"&gt;Station&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="admonition admonition-note"&gt;
+&lt;div class="admonition-title"&gt;ℹ️ Note&lt;/div&gt;
+&lt;div class="admonition-content"&gt;
+&lt;p&gt;While writing this, I've noticed that there's one change I still need to
+make to this hybrid flow. I realised that, at the moment, &lt;em&gt;any&lt;/em&gt; kind of CA
+failure will result in a fallback to TOFU. That's not ideal and needs
+refining. All part of the learning process.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr /&gt;
+&lt;p&gt;PS: If you're wondering what happened to v1.1.0 of Wasat... there wasn't
+one. While preparing this release, I was also fighting with the fact that my
+MX Mechanical Mini keyboard seemed to be dying (and its battery &lt;em&gt;does&lt;/em&gt; seem
+to be dying) and, because of that, managed to bump the version from v1.0.1
+to v1.2.0. Oh well...&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/07/30/wasat-v1-2-0.html</guid>
+      <category>Python</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>smolweb</category>
+      <category>wasat</category>
+      <pubDate>Thu, 30 Jul 2026 08:45:09 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v1.3.0</title>
       <link>https://blog.davep.org/2026/07/29/rogallo-v1-3-0.html</link>
@@ -859,7 +920,7 @@ it&lt;/a&gt; and, really, the cost of
 doing it is nothing. The request? An option to move the link jump labels
 over to the left.&lt;/p&gt;
 &lt;p&gt;So now there's a &lt;code&gt;ToggleCosyLinkNumbers&lt;/code&gt; command (bound to
-&lt;kbd&gt;Super&lt;/kbd&gt;+&lt;kbd&gt;F8&lt;/kbd&gt; by default&lt;sup id="fnref:403-1"&gt;&lt;a class="footnote-ref" href="#fn:403-1"&gt;1&lt;/a&gt;&lt;/sup&gt;) which does what it says:&lt;/p&gt;
+&lt;kbd&gt;Super&lt;/kbd&gt;+&lt;kbd&gt;F8&lt;/kbd&gt; by default&lt;sup id="fnref:404-1"&gt;&lt;a class="footnote-ref" href="#fn:404-1"&gt;1&lt;/a&gt;&lt;/sup&gt;) which does what it says:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Toggling the jump labels" loading="lazy" src="https://blog.davep.org/attachments/2026/07/20/label-toggle.gif#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;Personally, I prefer them on the right, where they don't disrupt the
 left-aligned margin for all the text, but I can see why this would be far
@@ -867,12 +928,12 @@ more comfortable for others, so... why the heck not?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:403-1"&gt;
+&lt;li id="fn:404-1"&gt;
 &lt;p&gt;One day I'll write a post about why I'm giving &lt;em&gt;every&lt;/em&gt; command a
 default binding, even if it's not so accessible in less-advanced
 terminal emulators. Mostly it's down to one of my least favourite design
 decisions in Textual mixed with my wish to have a command-based
-interface that works via the palette first and bindings second.&amp;#160;&lt;a class="footnote-backref" href="#fnref:403-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+interface that works via the palette first and bindings second.&amp;#160;&lt;a class="footnote-backref" href="#fnref:404-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1145,31 +1206,6 @@ for a high-contrast theme that will resolve this sort of issue.&amp;#160;&lt;a c
       <category>smolweb</category>
       <category>textual</category>
       <pubDate>Sat, 18 Jul 2026 16:44:46 +0100</pubDate>
-    </item>
-    <item>
-      <title>Wasat v0.8.0</title>
-      <link>https://blog.davep.org/2026/07/18/wasat-v0-8-0.html</link>
-      <description>&lt;p&gt;&lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;
-&lt;a href="https://wasat.davep.dev/changelog/#v080" rel="noopener noreferrer" target="_blank"&gt;v0.8.0&lt;/a&gt; is now available. This
-provides a small update to the &lt;code&gt;GeminiURI&lt;/code&gt; class, adding three utility
-properties for extra URI manipulation.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;without_query&lt;/code&gt; - gives the URI minus any attached query&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;parent&lt;/code&gt; - gives the parent path of the current URI (also minus the query)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;root&lt;/code&gt; - gives the root path for the current URI (also minus the query)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In each case, the result is a fresh &lt;code&gt;GeminiURI&lt;/code&gt; instance.&lt;/p&gt;
-&lt;p&gt;These are added because I'm aiming to add "go to parent" and "go to root"
-commands to &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/18/wasat-v0-8-0.html</guid>
-      <category>Python</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>smolweb</category>
-      <category>wasat</category>
-      <pubDate>Sat, 18 Jul 2026 10:23:11 +0100</pubDate>
     </item>
   </channel>
 </rss>
