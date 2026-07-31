@@ -8,7 +8,85 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 30 Jul 2026 15:26:14 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 09:07:52 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v1.4.0</title>
+      <link>https://blog.davep.org/2026/07/31/rogallo-v1-4-0.html</link>
+      <description>&lt;p&gt;I've updated &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt; to
+&lt;a href="https://rogallo.davep.dev/changelog/#v140" rel="noopener noreferrer" target="_blank"&gt;v1.4.0&lt;/a&gt;. The main change in this
+release is to how server certificates are handled, which in turn should
+solve a bit of friction Rogallo had when using some popular Gemini capsules.&lt;/p&gt;
+&lt;p&gt;Until now, Rogallo simply used a
+&lt;a href="https://en.wikipedia.org/wiki/Trust_on_first_use" rel="noopener noreferrer" target="_blank"&gt;TOFU&lt;/a&gt; approach for all
+capsules it encountered. In part, this was because that's all I'd really
+read about until that point, and also in part because, as Rogallo became
+more capable and I started to use it as my daily-driver, it just worked.
+Then, within the space of about a week, I had two popular capsules
+apparently change their fingerprint. I wasn't expecting that so soon (hence
+&lt;a href="https://github.com/davep/rogallo/issues/148" rel="noopener noreferrer" target="_blank"&gt;one issue about dealing with
+this&lt;/a&gt; still needing to be
+worked on).&lt;/p&gt;
+&lt;p&gt;With this in mind, &lt;a href="https://github.com/davep/rogallo/issues/221" rel="noopener noreferrer" target="_blank"&gt;I made a note about
+this&lt;/a&gt;, and carried on. When
+&lt;a href="gemini://bbs.geminispace.org/s/Astrobotany/46479" rel="noopener noreferrer" target="_blank"&gt;someone else also noticed the fingerprint change for
+AstroBotany&lt;/a&gt;, this made me
+want to try and actually sort this out. And so here's v1.4.0, which I think
+will (if I've understood things correctly) address the problem and make the
+journey a lot smoother.&lt;/p&gt;
+&lt;p&gt;From this version, Rogallo uses a kind of "hybrid" approach to validating
+the certificate of a capsule. Simply put, here's how it goes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Can we check with a certificate authority? If so, perform that check and
+  raise an error if there's a problem.&lt;/li&gt;
+&lt;li&gt;If, on the other hand, the certificate is self-signed, use the TOFU route.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To help keep an eye on this approach, and because it's just generally handy
+to know, I've added a small new element to the UI of Rogallo: a verification
+badge. This can be seen up in the top-left corner of the viewer. It has
+three states:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It will show &lt;code&gt;⛉&lt;/code&gt; if we're visiting a capsule that was validated using a CA&lt;/li&gt;
+&lt;li&gt;It will show &lt;code&gt;✓&lt;/code&gt; if we're visiting a capsule that was validated using TOFU&lt;/li&gt;
+&lt;li&gt;It will show no icon if we're visiting a location where this isn't
+  applicable&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is alongside the already-existing &lt;code&gt;⚿&lt;/code&gt; icon that is shown if we're
+making use of a client certificate.&lt;/p&gt;
+&lt;p&gt;While I've not documented them yet (I need to do a round of website
+updates), each of these icons can be changed if you prefer something
+different. Just take a look in the &lt;code&gt;configuration.json&lt;/code&gt; file for Rogallo.&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;client_certificate_used_icon&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u26bf&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;verified_ca_icon&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u26c9&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;verified_tofu_icon&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u2713&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;verified_off_icon&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u2717&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;verified_none_icon&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that under normal circumstances the &lt;code&gt;off&lt;/code&gt; icon there should never be
+needed or seen. That's just more for testing.&lt;/p&gt;
+&lt;p&gt;All of this ends up looking something like this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Showing the new icons" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/07/31/showing-icons.webp#centre" width="780" /&gt;&lt;/p&gt;
+&lt;p&gt;To help test and keep an eye on this, I've also added a new command to
+Rogallo: &lt;code&gt;AboutThisPage&lt;/code&gt;, bound to &lt;kbd&gt;F7&lt;/kbd&gt; by default. With it you can
+check on some information about the current page, and also the certificate
+that was checked when acquiring it.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Showing info on a CA-certified page" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/07/31/ca-info.webp#centre" width="852" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Showing info on a self-signed page" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/07/31/self-signed-info.webp#centre" width="852" /&gt;&lt;/p&gt;
+&lt;p&gt;Note that if a page is loaded from cache you &lt;em&gt;won't&lt;/em&gt; see certificate
+information in this dialog, as that isn't (currently) recorded in the
+metadata in the cache. I &lt;em&gt;might&lt;/em&gt; do that at some point in the future, but it
+didn't seem necessary for now.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/07/31/rogallo-v1-4-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>gemtext</category>
+      <category>smolweb</category>
+      <pubDate>Fri, 31 Jul 2026 08:53:27 +0100</pubDate>
+    </item>
     <item>
       <title>Wasat v1.3.0</title>
       <link>https://blog.davep.org/2026/07/30/wasat-v1-3-0.html</link>
@@ -177,7 +255,7 @@ the idea of adding direct command-line support for Gemini and Gopher search
 engines. This struck me as an excellent idea, but I got to thinking that it
 could be a little more generic than that. So I've added support for
 declaring simple command-line aliases. There's now a section in the
-configuration file&lt;sup id="fnref:388-1"&gt;&lt;a class="footnote-ref" href="#fn:388-1"&gt;1&lt;/a&gt;&lt;/sup&gt; called &lt;code&gt;aliases&lt;/code&gt;. It's an association of a command
+configuration file&lt;sup id="fnref:389-1"&gt;&lt;a class="footnote-ref" href="#fn:389-1"&gt;1&lt;/a&gt;&lt;/sup&gt; called &lt;code&gt;aliases&lt;/code&gt;. It's an association of a command
 alias and an expansion. The alias itself must be a single "word" of
 characters, and the expansion the actual command that will be used. It can
 be any other command-line command, or a URI. Anything that the command line
@@ -215,9 +293,9 @@ utility to the internal command line.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:388-1"&gt;
+&lt;li id="fn:389-1"&gt;
 &lt;p&gt;Which I totally forgot to document when putting together this release.
-It'll come to the docs soon.&amp;#160;&lt;a class="footnote-backref" href="#fnref:388-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+It'll come to the docs soon.&amp;#160;&lt;a class="footnote-backref" href="#fnref:389-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -823,7 +901,7 @@ features, as of this first "stable" release, are:&lt;/p&gt;
 &lt;p&gt;On top of this, there's more to come. v1.0.0 isn't the end of the line with
 Rogallo. I'm having plenty of fun using it, and improving it, and there's
 more I want to add. I very much want to add in-app support for the Finger
-Protocol, and I can see myself falling down the Gopher rabbit-hole&lt;sup id="fnref:394-1"&gt;&lt;a class="footnote-ref" href="#fn:394-1"&gt;1&lt;/a&gt;&lt;/sup&gt; at
+Protocol, and I can see myself falling down the Gopher rabbit-hole&lt;sup id="fnref:395-1"&gt;&lt;a class="footnote-ref" href="#fn:395-1"&gt;1&lt;/a&gt;&lt;/sup&gt; at
 some point too. While I don't want the application to grow out of hand, I
 can see plenty of extensions and enhancements that will be satisfying to
 add.&lt;/p&gt;
@@ -854,8 +932,8 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:394-1"&gt;
-&lt;p&gt;Yeah, I agree, probably not the right phrase there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:394-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:395-1"&gt;
+&lt;p&gt;Yeah, I agree, probably not the right phrase there.&amp;#160;&lt;a class="footnote-backref" href="#fnref:395-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -969,7 +1047,7 @@ it&lt;/a&gt; and, really, the cost of
 doing it is nothing. The request? An option to move the link jump labels
 over to the left.&lt;/p&gt;
 &lt;p&gt;So now there's a &lt;code&gt;ToggleCosyLinkNumbers&lt;/code&gt; command (bound to
-&lt;kbd&gt;Super&lt;/kbd&gt;+&lt;kbd&gt;F8&lt;/kbd&gt; by default&lt;sup id="fnref:405-1"&gt;&lt;a class="footnote-ref" href="#fn:405-1"&gt;1&lt;/a&gt;&lt;/sup&gt;) which does what it says:&lt;/p&gt;
+&lt;kbd&gt;Super&lt;/kbd&gt;+&lt;kbd&gt;F8&lt;/kbd&gt; by default&lt;sup id="fnref:406-1"&gt;&lt;a class="footnote-ref" href="#fn:406-1"&gt;1&lt;/a&gt;&lt;/sup&gt;) which does what it says:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Toggling the jump labels" loading="lazy" src="https://blog.davep.org/attachments/2026/07/20/label-toggle.gif#centre" /&gt;&lt;/p&gt;
 &lt;p&gt;Personally, I prefer them on the right, where they don't disrupt the
 left-aligned margin for all the text, but I can see why this would be far
@@ -977,12 +1055,12 @@ more comfortable for others, so... why the heck not?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:405-1"&gt;
+&lt;li id="fn:406-1"&gt;
 &lt;p&gt;One day I'll write a post about why I'm giving &lt;em&gt;every&lt;/em&gt; command a
 default binding, even if it's not so accessible in less-advanced
 terminal emulators. Mostly it's down to one of my least favourite design
 decisions in Textual mixed with my wish to have a command-based
-interface that works via the palette first and bindings second.&amp;#160;&lt;a class="footnote-backref" href="#fnref:405-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+interface that works via the palette first and bindings second.&amp;#160;&lt;a class="footnote-backref" href="#fnref:406-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1080,71 +1158,6 @@ configuration file&lt;/a&gt;.&lt;/p&gt;</description>
       <category>smolweb</category>
       <category>textual</category>
       <pubDate>Sun, 19 Jul 2026 11:52:32 +0100</pubDate>
-    </item>
-    <item>
-      <title>Recently I found - 4</title>
-      <link>https://blog.davep.org/2026/07/19/recently-i-found-4.html</link>
-      <description>&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;An occasional collection of things I've &lt;a href="https://blog.davep.org/series/recently-i-found/"&gt;recently
-found&lt;/a&gt; on the Internet and added to &lt;a href="https://blog.davep.org/bookmarks/"&gt;my
-bookmarks&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="this-blog-is-written-in-english"&gt;&lt;a href="https://shkspr.mobi/blog/2026/07/this-blog-is-written-in-en-gb/" rel="noopener noreferrer" target="_blank"&gt;This blog is written in English&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Yeah, it's okay to write in your own voice, and for yourself. Weird, huh?&lt;/p&gt;
-&lt;h2 id="gitfut"&gt;&lt;a href="https://gitfut.com/davep" rel="noopener noreferrer" target="_blank"&gt;GitFut&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Got to love a stupid GitHub-based profile rating tool.&lt;/p&gt;
-&lt;h2 id="lisp-hax"&gt;&lt;a href="https://www.tfeb.org/fragments/documentation/tfeb-lisp-hax.html" rel="noopener noreferrer" target="_blank"&gt;Lisp hax&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Lots of really useful Lisp code. Hours of great reading.&lt;/p&gt;
-&lt;h2 id="very-average-prototypes"&gt;&lt;a href="https://goodnameforablog.com/posts/very-average-prototypes/" rel="noopener noreferrer" target="_blank"&gt;Very Average Prototypes&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Interesting article about some of the downsides of working with AI to create
-code. Says a few things I've also been saying about my journey with
-BlogMore.&lt;/p&gt;
-&lt;h2 id="gta2js"&gt;&lt;a href="https://gta2js.vercel.app/" rel="noopener noreferrer" target="_blank"&gt;GTA2js&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;GTA2. On the web.&lt;/p&gt;
-&lt;h2 id="half-life-2-on-the-web"&gt;&lt;a href="https://hl2.slqnt.dev/" rel="noopener noreferrer" target="_blank"&gt;Half-Life 2 on the web&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Half-Life 2. With follow-ups. On the web.&lt;/p&gt;
-&lt;h2 id="the-ai-hype-reckoning-is-upon-us"&gt;&lt;a href="https://karlbode.com/the-ai-hype-reckoning-is-upon-us/" rel="noopener noreferrer" target="_blank"&gt;The AI Hype Reckoning Is Upon Us&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Good article about the gulf that does seem to exist between the hype around
-AI in business, and the actual benefits.&lt;/p&gt;
-&lt;h2 id="mastodon-the-only-good-choice"&gt;&lt;a href="https://www.tbray.org/ongoing/When/202x/2026/07/05/Choose-Mastodon" rel="noopener noreferrer" target="_blank"&gt;Mastodon, The Only Good Choice&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Good article about what Mastodon delivers if you enjoy social media.&lt;/p&gt;
-&lt;h2 id="please-delete-your-repository"&gt;&lt;a href="https://github.com/Vandivier/ladderly-3/issues/639" rel="noopener noreferrer" target="_blank"&gt;Please delete your repository&lt;/a&gt;&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;If you had never opened this repository, there is a 21% chance that we
-would have already cured cancer. Let that sink in.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I don't care if it's totally made up, it made me chuckle.&lt;/p&gt;
-&lt;h2 id="css-dos"&gt;&lt;a href="https://css-dos.ahmedamer.co.uk/" rel="noopener noreferrer" target="_blank"&gt;CSS-DOS&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;An entire PC built in CSS.&lt;/p&gt;
-&lt;h2 id="human-emacs"&gt;&lt;a href="https://human-emacs.org/" rel="noopener noreferrer" target="_blank"&gt;Human Emacs&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I feel like this project is jumping the gun quite a bit, but I also
-appreciate that it exists. I did also see someone say the other day that it
-was worth running with anyway to "get away from RMS". Which is fair I guess.&lt;/p&gt;
-&lt;h2 id="mastodon-most-followed"&gt;&lt;a href="https://most-followed-mastodon-accounts.stefanhayden.com/" rel="noopener noreferrer" target="_blank"&gt;Mastodon Most Followed&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Because it's all about being popular...&lt;/p&gt;
-&lt;h2 id="web-flight"&gt;&lt;a href="https://flight.tarmizi.id/" rel="noopener noreferrer" target="_blank"&gt;Web Flight&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;A flight simulator, on the web. What's not to like?&lt;/p&gt;
-&lt;p&gt;Perfect to mess with during those boring Teams calls...&lt;/p&gt;
-&lt;h2 id="a-road-to-lisp-which-lisp"&gt;&lt;a href="https://scotto.me/blog/2026-07-17-which-lisp/" rel="noopener noreferrer" target="_blank"&gt;A Road to Lisp: Which Lisp&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Good review of all the Lisp options you have available to you today.&lt;/p&gt;
-&lt;h2 id="backrooms-copyright-strikes"&gt;&lt;a href="https://kotaku.com/backrooms-director-kane-parsons-a24-copyright-strike-wallpaper-2000717053" rel="noopener noreferrer" target="_blank"&gt;Backrooms copyright strikes&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;A24 got embroiled in copyright strikes against online creations related to
-the Backrooms. People, unsurprisingly, got very angry. The issue seems
-solved, for the moment, but it says a lot about capitalist appropriation of
-mass-created popular culture.&lt;/p&gt;
-&lt;h2 id="zerover"&gt;&lt;a href="https://0ver.org/" rel="noopener noreferrer" target="_blank"&gt;ZeroVer&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Fantastic list of well-known and popular applications that seem too afraid
-to ever evolve beyond v0.x.&lt;/p&gt;
-&lt;h2 id="ai-mania-is-eviscerating-global-decision-making"&gt;&lt;a href="https://ludic.mataroa.blog/blog/ai-mania-is-eviscerating-global-decision-making/" rel="noopener noreferrer" target="_blank"&gt;AI Mania Is Eviscerating Global Decision-Making&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I feel this so much. I wish the people who need to read this would read this.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/19/recently-i-found-4.html</guid>
-      <category>Bookmarks</category>
-      <category>AI</category>
-      <category>Bookmarks</category>
-      <category>Emacs</category>
-      <category>GitHub</category>
-      <category>Raindrop</category>
-      <category>gaming</category>
-      <pubDate>Sun, 19 Jul 2026 09:43:29 +0100</pubDate>
     </item>
   </channel>
 </rss>
