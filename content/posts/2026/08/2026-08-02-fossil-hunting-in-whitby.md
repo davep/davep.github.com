@@ -3,6 +3,7 @@ title: "Fossil hunting in Whitby"
 date: "2026-08-02 20:27:54+0100"
 category: Life
 tags: [Fossils, Whitby, Yorkshire, life, travel]
+cover: "/attachments/2026/08/02/IMG_0520.webp"
 ---
 
 Today was a wonderful day of fossil hunting on the east beach in
