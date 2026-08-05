@@ -8,7 +8,85 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 03 Aug 2026 19:01:33 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2026 15:34:35 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v1.5.0</title>
+      <link>https://blog.davep.org/2026/08/05/rogallo-v1-5-0.html</link>
+      <description>&lt;p&gt;After a short break &lt;a href="https://blog.davep.org/2026/08/02/fossil-hunting-in-whitby.html"&gt;to do some fossil
+hunting&lt;/a&gt;, I'm back tinkering with
+&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;. The main change in
+&lt;a href="https://rogallo.davep.dev/changelog/#v150" rel="noopener noreferrer" target="_blank"&gt;v1.5.0&lt;/a&gt; is the addition of
+&lt;a href="https://rogallo.davep.dev/custom-themes/" rel="noopener noreferrer" target="_blank"&gt;support for custom themes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Before I get to that though, there's a small number of other fixes,
+additions and tweaks. The first is a small change to the Gopher support. As
+of this version, if there's a type &lt;code&gt;8&lt;/code&gt; item in a Gopher menu, it will now be
+turned into a &lt;code&gt;telnet://&lt;/code&gt; URI rather than being left as a &lt;code&gt;gopher://&lt;/code&gt; URI.
+This should help in handing off such an item to the correct application in
+your environment.&lt;/p&gt;
+&lt;p&gt;I've also added a new command: &lt;code&gt;PipeDocument&lt;/code&gt;. This is bound to
+&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;p&lt;/kbd&gt; by default. If you're viewing
+a document and run this command, you'll be prompted for a shell command that
+the source of the document will be piped through. This could be useful for
+transforming the source and passing it on elsewhere. For example:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Piping a document" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/08/05/pipe-document.webp#centre" width="916" /&gt;&lt;/p&gt;
+&lt;p&gt;One small fix in this release is the correction of a typo in the code that
+resulted in a misspelled item in the configuration file. The
+&lt;code&gt;bookmarks_visble&lt;/code&gt; configuration setting has been changed to
+&lt;code&gt;bookmarks_visible&lt;/code&gt; (the spelling of &lt;em&gt;visible&lt;/em&gt; was wrong). Technically this
+is a breaking change but, because the impact is almost zero, I'm running
+with it. The worst possible outcome after installing v1.5.0 is that the
+bookmarks aren't showing in the sidebar when they were before; calling them
+back up will fix the issue.&lt;/p&gt;
+&lt;p&gt;Now on to the main change: custom themes. Rogallo has always had theme
+support, and the themes that were made available were most of the themes
+built into &lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual&lt;/a&gt;. There &lt;a href="https://github.com/davep/rogallo/discussions/225" rel="noopener noreferrer" target="_blank"&gt;was a
+request&lt;/a&gt; to be able to
+create additional themes, and so, &lt;a href="https://rogallo.davep.dev/custom-themes/" rel="noopener noreferrer" target="_blank"&gt;here's that
+feature&lt;/a&gt;. Using this, if you want
+to have Rogallo look &lt;em&gt;just so&lt;/em&gt;, you can now follow the documentation, or
+look over the
+&lt;a href="https://github.com/davep/rogallo/tree/main/example-themes" rel="noopener noreferrer" target="_blank"&gt;examples&lt;/a&gt;, and
+have a play. So if you fancied a version of Rogallo that looked like it was
+running on a good old green terminal:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Green example theme" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/08/05/green.webp#centre" width="916" /&gt;&lt;/p&gt;
+&lt;p&gt;Or perhaps an amber terminal is more your thing?&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Amber example theme" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/08/05/amber.webp#centre" width="916" /&gt;&lt;/p&gt;
+&lt;p&gt;Maybe you hanker after the days of MS-DOS and those Turbo IDEs?&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Something more Turbo" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/08/05/turbo.webp#centre" width="916" /&gt;&lt;/p&gt;
+&lt;p&gt;Even better: perhaps the CBM64 was your thing back in the day?&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A theme that evokes the CBM64" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/08/05/cbm64.webp#centre" width="916" /&gt;&lt;/p&gt;
+&lt;p&gt;Note that none of these themes are part of Rogallo itself, and don't ship
+&lt;em&gt;with&lt;/em&gt; it; they're just examples of what you could do if you wished. I don't
+even offer them as good examples of what you could do (for example: I can
+see that I've managed to end up with the jump labels being far too dim to be
+readable). I'm sure other people with more talent for design than I have
+will be able to do far better. If anyone wants to make their own themes and
+share them, I've &lt;a href="https://github.com/davep/rogallo/discussions/categories/custom-themes" rel="noopener noreferrer" target="_blank"&gt;created a spot just for
+that&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;One last thing: while it's not a feature of this version of Rogallo, I've
+also done some work on &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;the site&lt;/a&gt; to try and add
+a little more detail about using Rogallo. This process will be ongoing. The
+main additions here are some background on &lt;a href="https://rogallo.davep.dev/protocols/" rel="noopener noreferrer" target="_blank"&gt;the supported
+protocols&lt;/a&gt; and &lt;a href="https://rogallo.davep.dev/ui/" rel="noopener noreferrer" target="_blank"&gt;some help on the key
+UI elements&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The documentation is also greatly improved with better examples thanks to
+&lt;a href="https://smolserve.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;smolserve&lt;/a&gt; -- this is a little helper project
+I've been tinkering with. Note that this is &lt;em&gt;not&lt;/em&gt; and will never be intended
+to be an actual small web server; it is and always will be a tool to help
+development and to support &lt;a href="https://github.com/davep/rogallo/tree/main/docs" rel="noopener noreferrer" target="_blank"&gt;the production of Rogallo's
+documentation&lt;/a&gt;.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/05/rogallo-v1-5-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>gemtext</category>
+      <category>smolserve</category>
+      <category>smolweb</category>
+      <pubDate>Wed, 05 Aug 2026 15:55:32 +0100</pubDate>
+    </item>
     <item>
       <title>Grid Bike revived</title>
       <link>https://blog.davep.org/2026/08/03/grid-bike-revived.html</link>
@@ -24,7 +102,7 @@ that page on most versions of my website. What I haven't done, since the
 early 1980s, is play the game.&lt;/p&gt;
 &lt;p&gt;I suppose, at some point, I could have grabbed a VIC-20 emulator and typed
 it in. Or, if I didn't want to type it in (and I don't), I suppose I could
-have tried to OCR it and get it into an emulator&lt;sup id="fnref:418-1"&gt;&lt;a class="footnote-ref" href="#fn:418-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. But of course I never
+have tried to OCR it and get it into an emulator&lt;sup id="fnref:419-1"&gt;&lt;a class="footnote-ref" href="#fn:419-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. But of course I never
 did.&lt;/p&gt;
 &lt;p&gt;Then, a week or so back, I got to thinking: if I threw the two images at an
 agent, asked it to OCR the code, and then build me a web-based version of
@@ -69,8 +147,8 @@ back off the page.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:418-1"&gt;
-&lt;p&gt;And given how well this has gone, I might try that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:418-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:419-1"&gt;
+&lt;p&gt;And given how well this has gone, I might try that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:419-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1069,62 +1147,6 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
       <category>smolweb</category>
       <category>textual</category>
       <pubDate>Tue, 21 Jul 2026 18:33:16 +0100</pubDate>
-    </item>
-    <item>
-      <title>Port79 - A finger protocol library for Python</title>
-      <link>https://blog.davep.org/2026/07/21/port79-a-finger-protocol-library-for-python.html</link>
-      <description>&lt;p&gt;Now that &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt; is starting to settle down
-somewhat, with all the main &lt;a href="https://blog.davep.org/tag/gemini-protocol/"&gt;Gemini Protocol&lt;/a&gt; work
-falling into place, I've been thinking about adding one or two adjacent
-protocols. The two most common and obvious ones are
-&lt;a href="https://en.wikipedia.org/wiki/Finger_(protocol)" rel="noopener noreferrer" target="_blank"&gt;Finger&lt;/a&gt; and
-&lt;a href="https://en.wikipedia.org/wiki/Gopher_(protocol)" rel="noopener noreferrer" target="_blank"&gt;Gopher&lt;/a&gt;. While I'm still
-undecided about adding the latter, the former seems like a fun one to
-include (if only because &lt;a href="finger://plan.cat/davep" rel="noopener noreferrer" target="_blank"&gt;I've had an account&lt;/a&gt; on
-&lt;a href="https://plan.cat/" rel="noopener noreferrer" target="_blank"&gt;plan.cat&lt;/a&gt; for around four years now).&lt;/p&gt;
-&lt;p&gt;With that in mind, much like &lt;a href="https://blog.davep.org/2026/06/17/wasat-a-gemini-protocol-library-for-python.html"&gt;I did with
-Wasat&lt;/a&gt;, I wrote
-a spec for what I wanted and pointed &lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt; at it.
-The result is &lt;a href="https://port79.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Port79&lt;/a&gt;. As well as providing a
-library, there's also a small &lt;code&gt;finger&lt;/code&gt; clone CLI, which can be run with
-&lt;code&gt;python -m port79&lt;/code&gt; (if it's installed as a library) or with &lt;code&gt;port79&lt;/code&gt; (if
-installed along with any command scripts).&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;port79&lt;span class="w"&gt; &lt;/span&gt;davep@tilde.team
-
-hello&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;removed&lt;span class="o"&gt;]&lt;/span&gt;,
-
-Project:
-&lt;span class="w"&gt;  &lt;/span&gt;Rogallo:&lt;span class="w"&gt; &lt;/span&gt;https://rogallo.davep.dev/
-
-Plan:
-&lt;span class="w"&gt;  &lt;/span&gt;Currently&lt;span class="w"&gt; &lt;/span&gt;building&lt;span class="w"&gt; &lt;/span&gt;gemini://tilde.team/~davep/
-
-Pronouns:&lt;span class="w"&gt; &lt;/span&gt;he/him
-
-$&lt;span class="w"&gt; &lt;/span&gt;port79&lt;span class="w"&gt; &lt;/span&gt;davep@plan.cat
-Login:&lt;span class="w"&gt; &lt;/span&gt;davep&lt;span class="w"&gt;                            &lt;/span&gt;Name:&lt;span class="w"&gt; &lt;/span&gt;Dave&lt;span class="w"&gt; &lt;/span&gt;Pearson
-Directory:&lt;span class="w"&gt; &lt;/span&gt;/home/davep&lt;span class="w"&gt;                 &lt;/span&gt;Shell:&lt;span class="w"&gt; &lt;/span&gt;/bin/plan.cat
-Last&lt;span class="w"&gt; &lt;/span&gt;login&lt;span class="w"&gt; &lt;/span&gt;Mon&lt;span class="w"&gt; &lt;/span&gt;Jul&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;20&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;19&lt;/span&gt;:06:33&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2026&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;UTC
-No&lt;span class="w"&gt; &lt;/span&gt;Mail.
-Plan:
-Rogallo&lt;span class="w"&gt; &lt;/span&gt;v0.12.0,&lt;span class="w"&gt; &lt;/span&gt;with&lt;span class="w"&gt; &lt;/span&gt;some&lt;span class="w"&gt; &lt;/span&gt;more&lt;span class="w"&gt; &lt;/span&gt;QoL&lt;span class="w"&gt; &lt;/span&gt;changes:
-https://blog.davep.org/2026/07/20/rogallo-v0-12-0.html
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;To be clear: this isn't intended to be a serious finger command (like, why
-would anyone even need that?), it's just a tool within the library that can
-be used to do some testing within a development (v)environment.&lt;/p&gt;
-&lt;p&gt;At some point soon I'll be adding &lt;code&gt;port79&lt;/code&gt; as a dependency of Rogallo and
-adding &lt;code&gt;finger&lt;/code&gt; as a "native protocol".&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/21/port79-a-finger-protocol-library-for-python.html</guid>
-      <category>Python</category>
-      <category>Coding</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>Rogallo</category>
-      <category>finger</category>
-      <category>smolweb</category>
-      <pubDate>Tue, 21 Jul 2026 16:19:20 +0100</pubDate>
     </item>
   </channel>
 </rss>

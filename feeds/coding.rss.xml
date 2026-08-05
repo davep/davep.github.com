@@ -8,7 +8,85 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 03 Aug 2026 19:01:33 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2026 15:34:35 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v1.5.0</title>
+      <link>https://blog.davep.org/2026/08/05/rogallo-v1-5-0.html</link>
+      <description>&lt;p&gt;After a short break &lt;a href="https://blog.davep.org/2026/08/02/fossil-hunting-in-whitby.html"&gt;to do some fossil
+hunting&lt;/a&gt;, I'm back tinkering with
+&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;. The main change in
+&lt;a href="https://rogallo.davep.dev/changelog/#v150" rel="noopener noreferrer" target="_blank"&gt;v1.5.0&lt;/a&gt; is the addition of
+&lt;a href="https://rogallo.davep.dev/custom-themes/" rel="noopener noreferrer" target="_blank"&gt;support for custom themes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Before I get to that though, there's a small number of other fixes,
+additions and tweaks. The first is a small change to the Gopher support. As
+of this version, if there's a type &lt;code&gt;8&lt;/code&gt; item in a Gopher menu, it will now be
+turned into a &lt;code&gt;telnet://&lt;/code&gt; URI rather than being left as a &lt;code&gt;gopher://&lt;/code&gt; URI.
+This should help in handing off such an item to the correct application in
+your environment.&lt;/p&gt;
+&lt;p&gt;I've also added a new command: &lt;code&gt;PipeDocument&lt;/code&gt;. This is bound to
+&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;p&lt;/kbd&gt; by default. If you're viewing
+a document and run this command, you'll be prompted for a shell command that
+the source of the document will be piped through. This could be useful for
+transforming the source and passing it on elsewhere. For example:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Piping a document" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/08/05/pipe-document.webp#centre" width="916" /&gt;&lt;/p&gt;
+&lt;p&gt;One small fix in this release is the correction of a typo in the code that
+resulted in a misspelled item in the configuration file. The
+&lt;code&gt;bookmarks_visble&lt;/code&gt; configuration setting has been changed to
+&lt;code&gt;bookmarks_visible&lt;/code&gt; (the spelling of &lt;em&gt;visible&lt;/em&gt; was wrong). Technically this
+is a breaking change but, because the impact is almost zero, I'm running
+with it. The worst possible outcome after installing v1.5.0 is that the
+bookmarks aren't showing in the sidebar when they were before; calling them
+back up will fix the issue.&lt;/p&gt;
+&lt;p&gt;Now on to the main change: custom themes. Rogallo has always had theme
+support, and the themes that were made available were most of the themes
+built into &lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual&lt;/a&gt;. There &lt;a href="https://github.com/davep/rogallo/discussions/225" rel="noopener noreferrer" target="_blank"&gt;was a
+request&lt;/a&gt; to be able to
+create additional themes, and so, &lt;a href="https://rogallo.davep.dev/custom-themes/" rel="noopener noreferrer" target="_blank"&gt;here's that
+feature&lt;/a&gt;. Using this, if you want
+to have Rogallo look &lt;em&gt;just so&lt;/em&gt;, you can now follow the documentation, or
+look over the
+&lt;a href="https://github.com/davep/rogallo/tree/main/example-themes" rel="noopener noreferrer" target="_blank"&gt;examples&lt;/a&gt;, and
+have a play. So if you fancied a version of Rogallo that looked like it was
+running on a good old green terminal:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Green example theme" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/08/05/green.webp#centre" width="916" /&gt;&lt;/p&gt;
+&lt;p&gt;Or perhaps an amber terminal is more your thing?&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Amber example theme" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/08/05/amber.webp#centre" width="916" /&gt;&lt;/p&gt;
+&lt;p&gt;Maybe you hanker after the days of MS-DOS and those Turbo IDEs?&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Something more Turbo" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/08/05/turbo.webp#centre" width="916" /&gt;&lt;/p&gt;
+&lt;p&gt;Even better: perhaps the CBM64 was your thing back in the day?&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A theme that evokes the CBM64" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/08/05/cbm64.webp#centre" width="916" /&gt;&lt;/p&gt;
+&lt;p&gt;Note that none of these themes are part of Rogallo itself, and don't ship
+&lt;em&gt;with&lt;/em&gt; it; they're just examples of what you could do if you wished. I don't
+even offer them as good examples of what you could do (for example: I can
+see that I've managed to end up with the jump labels being far too dim to be
+readable). I'm sure other people with more talent for design than I have
+will be able to do far better. If anyone wants to make their own themes and
+share them, I've &lt;a href="https://github.com/davep/rogallo/discussions/categories/custom-themes" rel="noopener noreferrer" target="_blank"&gt;created a spot just for
+that&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;One last thing: while it's not a feature of this version of Rogallo, I've
+also done some work on &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;the site&lt;/a&gt; to try and add
+a little more detail about using Rogallo. This process will be ongoing. The
+main additions here are some background on &lt;a href="https://rogallo.davep.dev/protocols/" rel="noopener noreferrer" target="_blank"&gt;the supported
+protocols&lt;/a&gt; and &lt;a href="https://rogallo.davep.dev/ui/" rel="noopener noreferrer" target="_blank"&gt;some help on the key
+UI elements&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The documentation is also greatly improved with better examples thanks to
+&lt;a href="https://smolserve.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;smolserve&lt;/a&gt; -- this is a little helper project
+I've been tinkering with. Note that this is &lt;em&gt;not&lt;/em&gt; and will never be intended
+to be an actual small web server; it is and always will be a tool to help
+development and to support &lt;a href="https://github.com/davep/rogallo/tree/main/docs" rel="noopener noreferrer" target="_blank"&gt;the production of Rogallo's
+documentation&lt;/a&gt;.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/05/rogallo-v1-5-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>gemtext</category>
+      <category>smolserve</category>
+      <category>smolweb</category>
+      <pubDate>Wed, 05 Aug 2026 15:55:32 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v1.4.0</title>
       <link>https://blog.davep.org/2026/07/31/rogallo-v1-4-0.html</link>
@@ -1246,7 +1324,7 @@ viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kb
 &lt;p&gt;It's worth noting that the default bindings for both of those aren't going
 to be ideal for some terminals. They should be fine in any terminal that
 supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
-This can be changed to your taste via the configuration file&lt;sup id="fnref:463-1"&gt;&lt;a class="footnote-ref" href="#fn:463-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+This can be changed to your taste via the configuration file&lt;sup id="fnref:464-1"&gt;&lt;a class="footnote-ref" href="#fn:464-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
 (bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
 between a rendered view and a plain text (source) view. So if you're looking
@@ -1264,7 +1342,7 @@ most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
 password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
 widget&lt;/a&gt;.
 The problem there though is that an input request from a Gemini server
-expects and allows for multi-line input&lt;sup id="fnref:463-2"&gt;&lt;a class="footnote-ref" href="#fn:463-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+expects and allows for multi-line input&lt;sup id="fnref:464-2"&gt;&lt;a class="footnote-ref" href="#fn:464-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
 &lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
 support password-style input.&lt;/p&gt;
 &lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
@@ -1285,17 +1363,17 @@ of fun working on it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:463-1"&gt;
+&lt;li id="fn:464-1"&gt;
 &lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
 documented when I get round to writing the documentation for Rogallo.
 Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
 Hike&lt;/a&gt; to get
-an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:463-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:464-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:463-2"&gt;
+&lt;li id="fn:464-2"&gt;
 &lt;p&gt;Well, technically, it's an optional feature of a client; the
 specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
-of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:463-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:464-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1438,7 +1516,7 @@ There are also a couple of cosmetic configuration options thrown in.&lt;/p&gt;
 &lt;p&gt;Starting with the cosmetic configuration options: I got to feeling that the
 URI-containing tooltips that show on mouse-hover over a link might be a bit
 much for some people, so I've added &lt;code&gt;show_link_tooltips&lt;/code&gt; to the
-configuration file&lt;sup id="fnref:423-1"&gt;&lt;a class="footnote-ref" href="#fn:423-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
+configuration file&lt;sup id="fnref:424-1"&gt;&lt;a class="footnote-ref" href="#fn:424-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
 &lt;p&gt;Similar to this I've also added &lt;code&gt;disable_animations&lt;/code&gt;. Out of the box
 &lt;a href="https://textual.textualize.io" rel="noopener noreferrer" target="_blank"&gt;Textual&lt;/a&gt; &lt;em&gt;loves&lt;/em&gt; its animations. This is
 arguably most noticeable if you have a long body of text in a scrolling
@@ -1609,10 +1687,10 @@ and water my plant in Astrobotany&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:423-1"&gt;
+&lt;li id="fn:424-1"&gt;
 &lt;p&gt;&lt;code&gt;~/.config/rogallo/configuration.json&lt;/code&gt; on most systems. This and all
 the options within will eventually be documented, when I get round to
-creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:423-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:424-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1658,7 +1736,7 @@ added.&lt;/p&gt;
 &lt;p&gt;Finally, I've added a couple of features which make it easy to know where a
 link will take you. The first is that I've added a tooltip to each link, so
 that when you hover the mouse cursor over it the URI will be displayed. But,
-because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:444-1"&gt;&lt;a class="footnote-ref" href="#fn:444-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
+because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:445-1"&gt;&lt;a class="footnote-ref" href="#fn:445-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
 a status bar to the main viewer panel that shows the URI of the focused
 link.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The Rogallo status bar" height="1760" loading="lazy" src="https://blog.davep.org/attachments/2026/06/24/rogallo-with-bar.webp#centre" width="1750" /&gt;&lt;/p&gt;
@@ -1691,8 +1769,8 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:444-1"&gt;
-&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:444-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:445-1"&gt;
+&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:445-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1707,85 +1785,6 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
       <category>smolweb</category>
       <category>textual</category>
       <pubDate>Wed, 24 Jun 2026 19:26:55 +0100</pubDate>
-    </item>
-    <item>
-      <title>Rogallo v0.1.0</title>
-      <link>https://blog.davep.org/2026/06/23/rogallo-v0-1-0.html</link>
-      <description>&lt;p&gt;I've just made public, and published to &lt;a href="https://blog.davep.org/tag/pypi/"&gt;PyPI&lt;/a&gt;, v0.1.0 of
-&lt;a href="https://github.com/davep/rogallo" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;. As mentioned a couple of times
-recently, it's a terminal-based client for the &lt;a href="https://geminiprotocol.net/" rel="noopener noreferrer" target="_blank"&gt;Gemini
-Protocol&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Rogallo displaying the Gemini home page" height="1856" loading="lazy" src="https://blog.davep.org/attachments/2026/06/23/rogallo.webp#centre" width="1830" /&gt;&lt;/p&gt;
-&lt;p&gt;This is a &lt;em&gt;very&lt;/em&gt; early release, &lt;a href="https://github.com/davep/rogallo/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20label%3ATODO" rel="noopener noreferrer" target="_blank"&gt;with lots of things still to be
-added&lt;/a&gt;.
-Right now it's at a place where it interacts with the basics of the
-protocol, handles &lt;a href="https://geminiprotocol.net/docs/gemtext-specification.gmi" rel="noopener noreferrer" target="_blank"&gt;the document
-format&lt;/a&gt;, and has
-the basic navigation facilities you'd expect from a document browser. Things
-I aim to add over the next few weeks include, in no specific order:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;A bookmark facility&lt;/li&gt;
-&lt;li&gt;Support for the protocol's user input facility (status &lt;code&gt;1x&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;Support for the protocol's client authentication facility (status &lt;code&gt;6x&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;Support for local browsing (I want to be able to view and navigate local
-  &lt;code&gt;gmi&lt;/code&gt; files)&lt;/li&gt;
-&lt;li&gt;A settable home page&lt;/li&gt;
-&lt;li&gt;The ability to clear down the location history&lt;/li&gt;
-&lt;li&gt;A cache system&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I'll also be updating the TODO list as other ideas come to mind.&lt;/p&gt;
-&lt;p&gt;Another thing fairly high on the list is documentation. For now, Rogallo
-should be pretty easy to grasp, and there is a help screen that describes
-all the keyboard bindings in the current context.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The help screen" height="1856" loading="lazy" src="https://blog.davep.org/attachments/2026/06/23/rogallo-help.webp#centre" width="1830" /&gt;&lt;/p&gt;
-&lt;p&gt;Commands that can be run can also be discovered via the command palette.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The command palette" height="1856" loading="lazy" src="https://blog.davep.org/attachments/2026/06/23/rogallo-commands.webp#centre" width="1830" /&gt;&lt;/p&gt;
-&lt;p&gt;For those who care about different looks, there is, of course, support for
-loading up different themes.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The theme options" height="1856" loading="lazy" src="https://blog.davep.org/attachments/2026/06/23/rogallo-themes.webp#centre" width="1830" /&gt;&lt;/p&gt;
-&lt;p&gt;This means that even folk who, for some reason, like light themes, can go
-light too.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Rose pine theme" height="1856" loading="lazy" src="https://blog.davep.org/attachments/2026/06/23/rogallo-rose-pine.webp#centre" width="1830" /&gt;
-&lt;img alt="Latte theme" height="1856" loading="lazy" src="https://blog.davep.org/attachments/2026/06/23/rogallo-latte.webp#centre" width="1830" /&gt;&lt;/p&gt;
-&lt;p&gt;Not really my thing, but I'm told some people like this.&lt;/p&gt;
-&lt;p&gt;If any of this sounds interesting and you want to have a play, Rogallo is
-licensed GPL-3.0 and available &lt;a href="https://github.com/davep/rogallo" rel="noopener noreferrer" target="_blank"&gt;via
-GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/rogallo/" rel="noopener noreferrer" target="_blank"&gt;via
-PyPI&lt;/a&gt;. If you have an environment that
-has &lt;code&gt;pipx&lt;/code&gt; installed, you should be able to get up and running with:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;rogallo
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;It can also be installed using
-&lt;a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;rogallo
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;If you don't have &lt;code&gt;uv&lt;/code&gt; installed, you can use &lt;a href="https://uvx.sh" rel="noopener noreferrer" target="_blank"&gt;uvx.sh&lt;/a&gt; to
-perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-LsSf&lt;span class="w"&gt; &lt;/span&gt;uvx.sh/rogallo/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;or on Windows:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;powershell&lt;span class="w"&gt; &lt;/span&gt;-ExecutionPolicy&lt;span class="w"&gt; &lt;/span&gt;ByPass&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;irm https://uvx.sh/rogallo/install.ps1 | iex&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Once installed, run the &lt;code&gt;rogallo&lt;/code&gt; command.&lt;/p&gt;
-&lt;p&gt;As I say above, this is &lt;em&gt;very&lt;/em&gt; early days for the project, so don't be
-surprised if you find something missing, or even run into a bug or two. If
-you need help, have any ideas, or find any problems, please feel free to
-&lt;a href="https://github.com/davep/rogallo/issues" rel="noopener noreferrer" target="_blank"&gt;raise an issue&lt;/a&gt; or &lt;a href="https://github.com/davep/rogallo/discussions" rel="noopener noreferrer" target="_blank"&gt;start a
-discussion&lt;/a&gt;.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/06/23/rogallo-v0-1-0.html</guid>
-      <category>Coding</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>Rogallo</category>
-      <category>smolweb</category>
-      <category>textual</category>
-      <pubDate>Tue, 23 Jun 2026 19:21:37 +0100</pubDate>
     </item>
   </channel>
 </rss>
