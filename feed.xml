@@ -8,7 +8,40 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 06 Aug 2026 15:17:14 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 07 Aug 2026 15:34:58 +0000</lastBuildDate>
+    <item>
+      <title>Gemtext v1.1.0</title>
+      <link>https://blog.davep.org/2026/08/07/gemtext-v1-1-0.html</link>
+      <description>&lt;p&gt;I've released a small update to &lt;a href="https://gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Gemtext&lt;/a&gt;. At
+the moment, I'm working on adding &lt;a href="https://portal.mozz.us/spartan/spartan.mozz.us/" rel="noopener noreferrer" target="_blank"&gt;Spartan
+protocol&lt;/a&gt; support to
+&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;, and to do this I need to handle a
+small extension it makes to Gemtext.&lt;/p&gt;
+&lt;p&gt;While Spartan is quite different from Gemini in the underlying protocol, it
+uses Gemtext as the default/standard markup language, but with one small
+difference. To allow uploaded data that is initiated by the markup, rather
+than by the server, there is a &lt;code&gt;=:&lt;/code&gt; line type. In some respects, this is
+similar to type &lt;code&gt;7&lt;/code&gt; items in Gopher maps.&lt;/p&gt;
+&lt;p&gt;Rather than spin up a whole new library just to support this one small
+difference, and rather than do some special-case nonsense in Rogallo itself,
+I've added optional (and turned on by default) support for &lt;code&gt;=:&lt;/code&gt;. When
+encountered, this results in a
+&lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.SpartanPrompt" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;SpartanPrompt&lt;/code&gt;&lt;/a&gt;
+object, which simply inherits from a
+&lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.Link" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;Link&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Any code that doesn't require this feature can turn it off with the
+&lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.Gemtext(with_spartan_support)" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;with_spartan_support&lt;/code&gt;
+parameter&lt;/a&gt;.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/07/gemtext-v1-1-0.html</guid>
+      <category>Python</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>gemtext</category>
+      <category>smolweb</category>
+      <pubDate>Fri, 07 Aug 2026 16:33:03 +0100</pubDate>
+    </item>
     <item>
       <title>Recently I found - 5</title>
       <link>https://blog.davep.org/2026/08/05/recently-i-found-5.html</link>
@@ -157,7 +190,7 @@ that page on most versions of my website. What I haven't done, since the
 early 1980s, is play the game.&lt;/p&gt;
 &lt;p&gt;I suppose, at some point, I could have grabbed a VIC-20 emulator and typed
 it in. Or, if I didn't want to type it in (and I don't), I suppose I could
-have tried to OCR it and get it into an emulator&lt;sup id="fnref:420-1"&gt;&lt;a class="footnote-ref" href="#fn:420-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. But of course I never
+have tried to OCR it and get it into an emulator&lt;sup id="fnref:421-1"&gt;&lt;a class="footnote-ref" href="#fn:421-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. But of course I never
 did.&lt;/p&gt;
 &lt;p&gt;Then, a week or so back, I got to thinking: if I threw the two images at an
 agent, asked it to OCR the code, and then build me a web-based version of
@@ -202,8 +235,8 @@ back off the page.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:420-1"&gt;
-&lt;p&gt;And given how well this has gone, I might try that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:420-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:421-1"&gt;
+&lt;p&gt;And given how well this has gone, I might try that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:421-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1081,29 +1114,6 @@ again&lt;/a&gt;.&lt;/p&gt;</description>
       <category>macOS</category>
       <category>networking</category>
       <pubDate>Wed, 22 Jul 2026 16:10:35 +0100</pubDate>
-    </item>
-    <item>
-      <title>Wasat v1.0.0</title>
-      <link>https://blog.davep.org/2026/07/21/wasat-v1-0-0.html</link>
-      <description>&lt;p&gt;While I'm having a moment of &lt;a href="https://blog.davep.org/2026/07/21/rogallo-v1-0-0.html"&gt;calling code
-stable&lt;/a&gt;, I've bumped
-&lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt; to
-&lt;a href="https://wasat.davep.dev/changelog/#v100" rel="noopener noreferrer" target="_blank"&gt;v1.0.0&lt;/a&gt; as well. There's no actual
-difference here when compared to the &lt;a href="https://blog.davep.org/2026/07/18/wasat-v0-8-0.html"&gt;last
-release&lt;/a&gt;, other than the development status
-classifier in the PyPI metadata and the version number.&lt;/p&gt;
-&lt;p&gt;The library feels pretty stable at this point. I've been using
-&lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt; every day for a wee while now and I've seen no
-surprising problems.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/21/wasat-v1-0-0.html</guid>
-      <category>Python</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>smolweb</category>
-      <category>wasat</category>
-      <pubDate>Tue, 21 Jul 2026 19:10:21 +0100</pubDate>
     </item>
   </channel>
 </rss>

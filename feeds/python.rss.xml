@@ -8,7 +8,40 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 06 Aug 2026 15:17:14 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 07 Aug 2026 15:34:58 +0000</lastBuildDate>
+    <item>
+      <title>Gemtext v1.1.0</title>
+      <link>https://blog.davep.org/2026/08/07/gemtext-v1-1-0.html</link>
+      <description>&lt;p&gt;I've released a small update to &lt;a href="https://gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Gemtext&lt;/a&gt;. At
+the moment, I'm working on adding &lt;a href="https://portal.mozz.us/spartan/spartan.mozz.us/" rel="noopener noreferrer" target="_blank"&gt;Spartan
+protocol&lt;/a&gt; support to
+&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;, and to do this I need to handle a
+small extension it makes to Gemtext.&lt;/p&gt;
+&lt;p&gt;While Spartan is quite different from Gemini in the underlying protocol, it
+uses Gemtext as the default/standard markup language, but with one small
+difference. To allow uploaded data that is initiated by the markup, rather
+than by the server, there is a &lt;code&gt;=:&lt;/code&gt; line type. In some respects, this is
+similar to type &lt;code&gt;7&lt;/code&gt; items in Gopher maps.&lt;/p&gt;
+&lt;p&gt;Rather than spin up a whole new library just to support this one small
+difference, and rather than do some special-case nonsense in Rogallo itself,
+I've added optional (and turned on by default) support for &lt;code&gt;=:&lt;/code&gt;. When
+encountered, this results in a
+&lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.SpartanPrompt" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;SpartanPrompt&lt;/code&gt;&lt;/a&gt;
+object, which simply inherits from a
+&lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.Link" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;Link&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Any code that doesn't require this feature can turn it off with the
+&lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.Gemtext(with_spartan_support)" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;with_spartan_support&lt;/code&gt;
+parameter&lt;/a&gt;.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/07/gemtext-v1-1-0.html</guid>
+      <category>Python</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>gemtext</category>
+      <category>smolweb</category>
+      <pubDate>Fri, 07 Aug 2026 16:33:03 +0100</pubDate>
+    </item>
     <item>
       <title>Wasat v1.3.0</title>
       <link>https://blog.davep.org/2026/07/30/wasat-v1-3-0.html</link>
@@ -742,30 +775,6 @@ the history, so that's kind of needed too.&lt;/p&gt;
       <category>Coding</category>
       <category>Python</category>
       <pubDate>Fri, 03 Jul 2026 11:27:07 +0200</pubDate>
-    </item>
-    <item>
-      <title>BagOfStuff v1.1.0</title>
-      <link>https://blog.davep.org/2026/07/02/bagofstuff-v1-1-0.html</link>
-      <description>&lt;p&gt;I've just updated &lt;a href="https://bagofstuff.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BagOfStuff&lt;/a&gt; with a change
-and addition, in anticipation of some work I'll be doing on
-&lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt; in the near future. The change is a small and
-simple one, adding &lt;code&gt;del&lt;/code&gt; support to the &lt;a href="https://bagofstuff.davep.dev/library-contents/history/" rel="noopener noreferrer" target="_blank"&gt;history
-classes&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The addition is &lt;a href="https://bagofstuff.davep.dev/library-contents/cache/" rel="noopener noreferrer" target="_blank"&gt;a simple cache
-manager&lt;/a&gt;. For now it's
-just a straightforward bit of code that, given a set of keyword arguments,
-creates a unique hash, sets up a directory, and returns a base filename
-within it. From there, any calling code can detect if the file(s) exist and
-make use of it/them, or otherwise get on with some work and populate the
-cache.&lt;/p&gt;
-&lt;p&gt;Of course, in the case of Rogallo, this is all going to be used to cache the
-&lt;a href="https://blog.davep.org/tag/gemtext/"&gt;Gemtext&lt;/a&gt; that is retrieved from capsules.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/02/bagofstuff-v1-1-0.html</guid>
-      <category>Python</category>
-      <category>BagOfStuff</category>
-      <category>Coding</category>
-      <category>Python</category>
-      <pubDate>Thu, 02 Jul 2026 21:39:33 +0200</pubDate>
     </item>
   </channel>
 </rss>
