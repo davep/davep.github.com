@@ -8,7 +8,69 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 07 Aug 2026 18:28:39 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 08 Aug 2026 16:09:09 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v1.6.0</title>
+      <link>https://blog.davep.org/2026/08/08/rogallo-v1-6-0.html</link>
+      <description>&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
+&lt;a href="https://rogallo.davep.dev/changelog/#v160" rel="noopener noreferrer" target="_blank"&gt;v1.6.0&lt;/a&gt; is now available. This
+release concentrates on the addition of a newly-supported protocol, and
+improving what can be displayed in the viewer and how it looks.&lt;/p&gt;
+&lt;p&gt;The headline change is the addition of support for the &lt;a href="https://portal.mozz.us/spartan/spartan.mozz.us/" rel="noopener noreferrer" target="_blank"&gt;Spartan
+protocol&lt;/a&gt;. Having run into
+a couple of sites that either offered this as an alternative access method
+to their content, or the only access method, and noticing its vague
+similarity to Gemini (and also its reliance on Gemtext as the main hypertext
+language), it seemed like an obvious feature to add. So, &lt;a href="https://blog.davep.org/2026/08/07/sybaritic-a-spartan-protocol-library-for-python.html"&gt;having built a
+library to handle the
+low-level details&lt;/a&gt;,
+I got to &lt;a href="https://rogallo.davep.dev/spartan/" rel="noopener noreferrer" target="_blank"&gt;adding support for this to
+Rogallo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Showing the Spartan home page" height="1952" loading="lazy" src="https://blog.davep.org/attachments/2026/08/08/spartan.webp#centre" width="1766" /&gt;&lt;/p&gt;
+&lt;p&gt;Anyone using Rogallo should find that &lt;code&gt;spartan://&lt;/code&gt; URIs are handled in just
+the same way as &lt;code&gt;gemini://&lt;/code&gt; URIs are, so following them from within
+documents, or entering them into the &lt;a href="https://rogallo.davep.dev/command-line/" rel="noopener noreferrer" target="_blank"&gt;command
+line&lt;/a&gt; all works. On top of this,
+Rogallo now supports Spartan's &lt;code&gt;=:&lt;/code&gt; line type in documents served from a
+Spartan server. This means that this form of input is now supported.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Entering text to upload to a Spartan server" height="1952" loading="lazy" src="https://blog.davep.org/attachments/2026/08/08/spartan-input.webp#centre" width="1766" /&gt;&lt;/p&gt;
+&lt;p&gt;So, just to recap, at this point, Rogallo &lt;a href="https://rogallo.davep.dev/protocols/" rel="noopener noreferrer" target="_blank"&gt;supports 4 different
+protocols&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://rogallo.davep.dev/finger/" rel="noopener noreferrer" target="_blank"&gt;Finger&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://rogallo.davep.dev/gemini/" rel="noopener noreferrer" target="_blank"&gt;Gemini&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://rogallo.davep.dev/gopher/" rel="noopener noreferrer" target="_blank"&gt;Gopher&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://rogallo.davep.dev/spartan/" rel="noopener noreferrer" target="_blank"&gt;Spartan&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I suspect this won't be the last of them, but I sense I'm close to adding
+the most useful ones.&lt;/p&gt;
+&lt;p&gt;The two other changes in this release are closely related. Rogallo has
+always handed off any MIME types that it can't directly handle, and the
+types it could handle were set to a very narrow collection -- Gemtext,
+Gopher maps and plain text, pretty much. With this release the list has been
+expanded to anything &lt;code&gt;text/*&lt;/code&gt;. Working on the (pretty safe) assumption that
+any &lt;code&gt;text/&lt;/code&gt; MIME type can be displayed as text, this seemed like a sensible
+switch to make.&lt;/p&gt;
+&lt;p&gt;Working in conjunction with this, Rogallo will now also attempt to infer
+what kind of text is being shown, and apply some syntax highlighting where
+appropriate. So, for example, if you visit a text file that is Python code,
+it will be highlighted as Python code (&lt;em&gt;if&lt;/em&gt; the server tells us that we're
+looking at Python code).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Viewing some Python code" height="1952" loading="lazy" src="https://blog.davep.org/attachments/2026/08/08/python-code.webp#centre" width="1766" /&gt;&lt;/p&gt;
+&lt;p&gt;One final change in this release is a small fix to Gopher support. Rogallo
+lets you configure a connection timeout value, but this wasn't being used
+for Gopher support. This is now fixed.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/08/rogallo-v1-6-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>Spartan Protocol</category>
+      <category>smolweb</category>
+      <pubDate>Sat, 08 Aug 2026 16:21:19 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v1.5.0</title>
       <link>https://blog.davep.org/2026/08/05/rogallo-v1-5-0.html</link>
@@ -1324,7 +1386,7 @@ viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kb
 &lt;p&gt;It's worth noting that the default bindings for both of those aren't going
 to be ideal for some terminals. They should be fine in any terminal that
 supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
-This can be changed to your taste via the configuration file&lt;sup id="fnref:467-1"&gt;&lt;a class="footnote-ref" href="#fn:467-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+This can be changed to your taste via the configuration file&lt;sup id="fnref:468-1"&gt;&lt;a class="footnote-ref" href="#fn:468-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
 (bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
 between a rendered view and a plain text (source) view. So if you're looking
@@ -1342,7 +1404,7 @@ most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
 password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
 widget&lt;/a&gt;.
 The problem there though is that an input request from a Gemini server
-expects and allows for multi-line input&lt;sup id="fnref:467-2"&gt;&lt;a class="footnote-ref" href="#fn:467-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+expects and allows for multi-line input&lt;sup id="fnref:468-2"&gt;&lt;a class="footnote-ref" href="#fn:468-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
 &lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
 support password-style input.&lt;/p&gt;
 &lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
@@ -1363,17 +1425,17 @@ of fun working on it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:467-1"&gt;
+&lt;li id="fn:468-1"&gt;
 &lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
 documented when I get round to writing the documentation for Rogallo.
 Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
 Hike&lt;/a&gt; to get
-an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:467-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:468-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:467-2"&gt;
+&lt;li id="fn:468-2"&gt;
 &lt;p&gt;Well, technically, it's an optional feature of a client; the
 specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
-of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:467-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:468-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1516,7 +1578,7 @@ There are also a couple of cosmetic configuration options thrown in.&lt;/p&gt;
 &lt;p&gt;Starting with the cosmetic configuration options: I got to feeling that the
 URI-containing tooltips that show on mouse-hover over a link might be a bit
 much for some people, so I've added &lt;code&gt;show_link_tooltips&lt;/code&gt; to the
-configuration file&lt;sup id="fnref:427-1"&gt;&lt;a class="footnote-ref" href="#fn:427-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
+configuration file&lt;sup id="fnref:428-1"&gt;&lt;a class="footnote-ref" href="#fn:428-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
 &lt;p&gt;Similar to this I've also added &lt;code&gt;disable_animations&lt;/code&gt;. Out of the box
 &lt;a href="https://textual.textualize.io" rel="noopener noreferrer" target="_blank"&gt;Textual&lt;/a&gt; &lt;em&gt;loves&lt;/em&gt; its animations. This is
 arguably most noticeable if you have a long body of text in a scrolling
@@ -1687,10 +1749,10 @@ and water my plant in Astrobotany&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:427-1"&gt;
+&lt;li id="fn:428-1"&gt;
 &lt;p&gt;&lt;code&gt;~/.config/rogallo/configuration.json&lt;/code&gt; on most systems. This and all
 the options within will eventually be documented, when I get round to
-creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:427-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:428-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1706,85 +1768,6 @@ creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" h
       <category>smolweb</category>
       <category>textual</category>
       <pubDate>Fri, 26 Jun 2026 16:54:54 +0100</pubDate>
-    </item>
-    <item>
-      <title>Rogallo v0.2.0</title>
-      <link>https://blog.davep.org/2026/06/24/rogallo-v0-2-0.html</link>
-      <description>&lt;p&gt;Rogallo v0.2.0 is now available. This version fixes some issues with links,
-makes &lt;a href="https://geminiprotocol.net/docs/gemtext-specification.gmi" rel="noopener noreferrer" target="_blank"&gt;gemtext&lt;/a&gt;
-parsing better conform with the specification, and also makes it easier to
-see where a link will take you.&lt;/p&gt;
-&lt;p&gt;The first issue is a fix to how page-relative links were resolved if the
-page you were viewing was the result of a redirection. What was happening
-was the links were being resolved relative to the initial URI, rather than
-the final URI of the redirection. This was most noticeably a problem when
-following links in the geminispace equivalent of webrings. The main change
-&lt;a href="https://blog.davep.org/2026/06/24/wasat-v0-1-0.html"&gt;took place in Wasat&lt;/a&gt;, with Rogallo making
-use of the new &lt;a href="https://wasat.davep.dev/library/response/#wasat.response.Response.uri" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;Response.uri&lt;/code&gt;
-property&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The second fix was to how I parse gemtext. The initial parser was close
-enough, but I noticed there were some finer points relating to whitespace
-that I hadn't paid attention to (mainly due to skim-reading the
-specification). For example, I expected links to always start with &lt;code&gt;=&amp;gt;&lt;/code&gt;
-followed by a space, when in fact a link can simply start with a &lt;code&gt;=&amp;gt;&lt;/code&gt; and
-then be followed by the URI with no space.&lt;/p&gt;
-&lt;div class="highlight" data-lang="abnf"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nc"&gt;link-line&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;&amp;quot;=&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;WSP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;URI-reference&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;1*&lt;/span&gt;&lt;span class="k"&gt;WSP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;1*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;SP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;VCHAR&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;WSP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;CRLF&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Similar improvements to the detection of headings and quotes have also been
-added.&lt;/p&gt;
-&lt;p&gt;Finally, I've added a couple of features which make it easy to know where a
-link will take you. The first is that I've added a tooltip to each link, so
-that when you hover the mouse cursor over it the URI will be displayed. But,
-because not everyone is mouse-oriented in the terminal&lt;sup id="fnref:448-1"&gt;&lt;a class="footnote-ref" href="#fn:448-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, I've also added
-a status bar to the main viewer panel that shows the URI of the focused
-link.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The Rogallo status bar" height="1760" loading="lazy" src="https://blog.davep.org/attachments/2026/06/24/rogallo-with-bar.webp#centre" width="1750" /&gt;&lt;/p&gt;
-&lt;p&gt;As you &lt;kbd&gt;tab&lt;/kbd&gt; through the links it will update, of course.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Status bar in action" loading="lazy" src="https://blog.davep.org/attachments/2026/06/24/status-bar.gif#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;This should ensure that links are less likely to be surprising.&lt;/p&gt;
-&lt;p&gt;If any of this sounds interesting and you want to have a play, Rogallo is
-licensed GPL-3.0 and available &lt;a href="https://github.com/davep/rogallo" rel="noopener noreferrer" target="_blank"&gt;via
-GitHub&lt;/a&gt; and also &lt;a href="https://pypi.org/project/rogallo/" rel="noopener noreferrer" target="_blank"&gt;via
-PyPI&lt;/a&gt;. If you have an environment that
-has &lt;code&gt;pipx&lt;/code&gt; installed, you should be able to get up and running with:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pipx&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;rogallo
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;It can also be installed using
-&lt;a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;rogallo
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;If you don't have &lt;code&gt;uv&lt;/code&gt; installed, you can use &lt;a href="https://uvx.sh" rel="noopener noreferrer" target="_blank"&gt;uvx.sh&lt;/a&gt; to
-perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-LsSf&lt;span class="w"&gt; &lt;/span&gt;uvx.sh/rogallo/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;or on Windows:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;powershell&lt;span class="w"&gt; &lt;/span&gt;-ExecutionPolicy&lt;span class="w"&gt; &lt;/span&gt;ByPass&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;irm https://uvx.sh/rogallo/install.ps1 | iex&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Once installed, run the &lt;code&gt;rogallo&lt;/code&gt; command.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:448-1"&gt;
-&lt;p&gt;Quite right too.&amp;#160;&lt;a class="footnote-backref" href="#fnref:448-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/06/24/rogallo-v0-2-0.html</guid>
-      <category>Coding</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>Rogallo</category>
-      <category>gemtext</category>
-      <category>smolweb</category>
-      <category>textual</category>
-      <pubDate>Wed, 24 Jun 2026 19:26:55 +0100</pubDate>
     </item>
   </channel>
 </rss>
