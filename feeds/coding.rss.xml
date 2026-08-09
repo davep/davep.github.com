@@ -8,7 +8,89 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 08 Aug 2026 16:09:09 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2026 13:18:00 +0000</lastBuildDate>
+    <item>
+      <title>SmolServe - A lightweight multi-protocol small web server</title>
+      <link>https://blog.davep.org/2026/08/09/smolserve-a-lightweight-multi-protocol-small-web-server.html</link>
+      <description>&lt;p&gt;As &lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt; got close to being "stable", I did a fair bit of
+work on &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;its documentation&lt;/a&gt;. Something that I
+wanted to include in the site was a good collection of up-to-date
+screenshots. These are all created on the fly. To do this, of course,
+requires something that looks like a Gemini server.&lt;/p&gt;
+&lt;p&gt;Initially, this was simple: Rogallo only supported Gemini capsules, so I
+could illustrate most things just using &lt;a href="https://blog.davep.org/tag/gemtext/"&gt;Gemtext&lt;/a&gt; files in
+the local filesystem (with an admonition in the documentation to point out
+that Rogallo was for more than viewing local files). This, of course, wasn't
+going to scale when &lt;a href="https://blog.davep.org/2026/07/24/rogallo-v1-1-0.html"&gt;I added Finger
+support&lt;/a&gt;, and neither was it going to work
+well for &lt;a href="https://blog.davep.org/2026/07/28/rogallo-v1-2-0.html"&gt;Gopher support&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The solution seemed obvious: use a lightweight local server for these
+protocols. With this need in place &lt;a href="https://smolserve.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;SmolServe&lt;/a&gt;
+was born. As mentioned &lt;a href="https://blog.davep.org/2026/08/05/rogallo-v1-5-0.html"&gt;when I released Rogallo
+v1.5.0&lt;/a&gt;, this &lt;em&gt;isn't&lt;/em&gt; a project to build a
+comprehensive &lt;a href="https://blog.davep.org/tag/smolweb/"&gt;smolweb&lt;/a&gt; server. The aim is to build myself a
+minimal just-good-enough server that helps me with local testing and
+documentation.&lt;/p&gt;
+&lt;p&gt;As it stands, SmolServe supports Gemini, Gopher, Finger and Spartan. Or,
+rather, it supports a just-enough-to-get-by version of each of those
+protocols. None are implemented in a way that would serve as a "production"
+server; they're implemented to allow me to generate screenshots for the
+Rogallo documentation, involving any of the supported protocols, without the
+need to rely on services I don't control and which aren't local.&lt;/p&gt;
+&lt;p&gt;The big benefit of SmolServe is the &lt;code&gt;exec&lt;/code&gt; support. With this, you can run
+up the server and then have it run another command. Once that command
+finishes its work, SmolServe will close down too. This means that, when it
+comes to producing the Rogallo documentation, I can just have the server
+running when I need it. Pulling some snippets &lt;a href="https://github.com/davep/rogallo/blob/main/Makefile" rel="noopener noreferrer" target="_blank"&gt;from the Rogallo
+&lt;code&gt;Makefile&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="makefile"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;run&lt;/span&gt;&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="o"&gt;:=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;run
+&lt;span class="nv"&gt;smol&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="o"&gt;:=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;run&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;smolserve&lt;span class="w"&gt; &lt;/span&gt;--config&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;docs&lt;span class="k"&gt;)&lt;/span&gt;server/smolserve.toml
+&lt;span class="nv"&gt;smolexec&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;:=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;smol&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;exec&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--
+&lt;span class="nv"&gt;mkdocs&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="o"&gt;:=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;smolexec&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;mkdocs
+
+&lt;span class="c"&gt;##############################################################################&lt;/span&gt;
+&lt;span class="c"&gt;# Documentation.&lt;/span&gt;
+&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;
+&lt;span class="nf"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;mkdocs&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;build
+
+&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;rtfm&lt;/span&gt;
+&lt;span class="nf"&gt;rtfm&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;mkdocs&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;serve&lt;span class="w"&gt; &lt;/span&gt;--livereload
+
+&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;publishdocs&lt;/span&gt;
+&lt;span class="nf"&gt;publishdocs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;clean&lt;/span&gt;-&lt;span class="n"&gt;docs&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;mkdocs&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;gh-deploy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The idea is that, when I build the documentation, I actually run
+&lt;code&gt;smolserve&lt;/code&gt;, which in turn runs &lt;code&gt;mkdocs&lt;/code&gt;, which then produces the
+documentation while the local server is available.&lt;/p&gt;
+&lt;p&gt;I also use this sort of approach for local testing of the &lt;a href="https://github.com/davep/tilde-team-capsule" rel="noopener noreferrer" target="_blank"&gt;content of my
+capsule&lt;/a&gt; that lives &lt;a href="gemini://tilde.team/~davep" rel="noopener noreferrer" target="_blank"&gt;over on
+&lt;code&gt;tilde.team&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight" data-lang="makefile"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;view&lt;/span&gt;
+&lt;span class="nf"&gt;view&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;smolserve&lt;span class="w"&gt; &lt;/span&gt;--config&lt;span class="w"&gt; &lt;/span&gt;smolserve.toml&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;exec&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;rogallo&lt;span class="w"&gt; &lt;/span&gt;open&lt;span class="w"&gt; &lt;/span&gt;gemini://localhost/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;My aim now is that, if I add any other protocols to Rogallo, I'll add a
+just-good-enough version of them to SmolServe to help me with testing and
+documentation. For the moment, though, I think it's in a stable and usable
+state.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/09/smolserve-a-lightweight-multi-protocol-small-web-server.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>SmolServe</category>
+      <category>Spartan Protocol</category>
+      <category>finger</category>
+      <category>gopher</category>
+      <category>smolweb</category>
+      <pubDate>Sun, 09 Aug 2026 14:05:08 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v1.6.0</title>
       <link>https://blog.davep.org/2026/08/08/rogallo-v1-6-0.html</link>
@@ -1386,7 +1468,7 @@ viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kb
 &lt;p&gt;It's worth noting that the default bindings for both of those aren't going
 to be ideal for some terminals. They should be fine in any terminal that
 supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
-This can be changed to your taste via the configuration file&lt;sup id="fnref:468-1"&gt;&lt;a class="footnote-ref" href="#fn:468-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+This can be changed to your taste via the configuration file&lt;sup id="fnref:469-1"&gt;&lt;a class="footnote-ref" href="#fn:469-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
 (bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
 between a rendered view and a plain text (source) view. So if you're looking
@@ -1404,7 +1486,7 @@ most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
 password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
 widget&lt;/a&gt;.
 The problem there though is that an input request from a Gemini server
-expects and allows for multi-line input&lt;sup id="fnref:468-2"&gt;&lt;a class="footnote-ref" href="#fn:468-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+expects and allows for multi-line input&lt;sup id="fnref:469-2"&gt;&lt;a class="footnote-ref" href="#fn:469-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
 &lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
 support password-style input.&lt;/p&gt;
 &lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
@@ -1425,17 +1507,17 @@ of fun working on it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:468-1"&gt;
+&lt;li id="fn:469-1"&gt;
 &lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
 documented when I get round to writing the documentation for Rogallo.
 Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
 Hike&lt;/a&gt; to get
-an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:468-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:469-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:468-2"&gt;
+&lt;li id="fn:469-2"&gt;
 &lt;p&gt;Well, technically, it's an optional feature of a client; the
 specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
-of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:468-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:469-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1566,208 +1648,6 @@ should also be very evident as you hover over posts in the &lt;a href="https://b
       <category>PyPI</category>
       <category>Python</category>
       <pubDate>Sat, 27 Jun 2026 16:31:11 +0100</pubDate>
-    </item>
-    <item>
-      <title>Rogallo v0.3.0</title>
-      <link>https://blog.davep.org/2026/06/26/rogallo-v0-3-0.html</link>
-      <description>&lt;p&gt;&lt;img alt="Rogallo" height="640" loading="lazy" src="https://blog.davep.org/attachments/2026/06/26/rogallo-social-banner.webp#centre" width="1280" /&gt;&lt;/p&gt;
-&lt;p&gt;I've released Rogallo v0.3.0, which mostly concentrates on adding command
-line support and sorting support for browsing files in the local filesystem.
-There are also a couple of cosmetic configuration options thrown in.&lt;/p&gt;
-&lt;h2 id="configurable-cosmetics"&gt;Configurable cosmetics&lt;/h2&gt;
-&lt;p&gt;Starting with the cosmetic configuration options: I got to feeling that the
-URI-containing tooltips that show on mouse-hover over a link might be a bit
-much for some people, so I've added &lt;code&gt;show_link_tooltips&lt;/code&gt; to the
-configuration file&lt;sup id="fnref:428-1"&gt;&lt;a class="footnote-ref" href="#fn:428-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Set it to &lt;code&gt;false&lt;/code&gt; to make the tooltips go away.&lt;/p&gt;
-&lt;p&gt;Similar to this I've also added &lt;code&gt;disable_animations&lt;/code&gt;. Out of the box
-&lt;a href="https://textual.textualize.io" rel="noopener noreferrer" target="_blank"&gt;Textual&lt;/a&gt; &lt;em&gt;loves&lt;/em&gt; its animations. This is
-arguably most noticeable if you have a long body of text in a scrolling
-widget (such as the document viewer in Rogallo), as you use &lt;kbd&gt;PgUp&lt;/kbd&gt;,
-&lt;kbd&gt;PgDn&lt;/kbd&gt;, &lt;kbd&gt;Home&lt;/kbd&gt;, &lt;kbd&gt;End&lt;/kbd&gt;, etc., it'll scroll in a
-fancy animated way. It looks cool for a moment but I can imagine plenty of
-people getting sick of it, or feeling sick because of it (I sense this is an
-&lt;a href="https://blog.davep.org/tag/a11y/"&gt;a11y&lt;/a&gt; issue too). With this in mind if &lt;code&gt;disable_animations&lt;/code&gt; is
-set to &lt;code&gt;true&lt;/code&gt; they'll all be turned off.&lt;/p&gt;
-&lt;h2 id="command-line-options"&gt;Command line options&lt;/h2&gt;
-&lt;p&gt;Rogallo now also has a number of command line options that can come in
-useful. In part borrowing from a number of my other TUI applications, and
-also adding some specific to Rogallo itself. They can be easily found with
-the &lt;code&gt;--help&lt;/code&gt; switch:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;usage:&lt;span class="w"&gt; &lt;/span&gt;rogallo&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;-h&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;-v&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;THEME&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;directories,dirs,d,license,licence,bindings,themes,open&lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;...
-
-A&lt;span class="w"&gt; &lt;/span&gt;terminal-based&lt;span class="w"&gt; &lt;/span&gt;client&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;Gemini&lt;span class="w"&gt; &lt;/span&gt;Protocol.
-
-positional&lt;span class="w"&gt; &lt;/span&gt;arguments:
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;directories,dirs,d,license,licence,bindings,themes,open&lt;span class="o"&gt;}&lt;/span&gt;
-&lt;span class="w"&gt;                        &lt;/span&gt;Available&lt;span class="w"&gt; &lt;/span&gt;commands
-&lt;span class="w"&gt;    &lt;/span&gt;directories&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;dirs,&lt;span class="w"&gt; &lt;/span&gt;d&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;                        &lt;/span&gt;Show&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;directories&lt;span class="w"&gt; &lt;/span&gt;created&lt;span class="w"&gt; &lt;/span&gt;and&lt;span class="w"&gt; &lt;/span&gt;used&lt;span class="w"&gt; &lt;/span&gt;by&lt;span class="w"&gt; &lt;/span&gt;Rogallo
-&lt;span class="w"&gt;    &lt;/span&gt;license&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;licence&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;Show&lt;span class="w"&gt; &lt;/span&gt;license&lt;span class="w"&gt; &lt;/span&gt;information
-&lt;span class="w"&gt;    &lt;/span&gt;bindings&lt;span class="w"&gt;            &lt;/span&gt;List&lt;span class="w"&gt; &lt;/span&gt;commands&lt;span class="w"&gt; &lt;/span&gt;that&lt;span class="w"&gt; &lt;/span&gt;can&lt;span class="w"&gt; &lt;/span&gt;have&lt;span class="w"&gt; &lt;/span&gt;their&lt;span class="w"&gt; &lt;/span&gt;bindings&lt;span class="w"&gt; &lt;/span&gt;changed
-&lt;span class="w"&gt;    &lt;/span&gt;themes&lt;span class="w"&gt;              &lt;/span&gt;List&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;available&lt;span class="w"&gt; &lt;/span&gt;themes&lt;span class="w"&gt; &lt;/span&gt;that&lt;span class="w"&gt; &lt;/span&gt;can&lt;span class="w"&gt; &lt;/span&gt;be&lt;span class="w"&gt; &lt;/span&gt;used&lt;span class="w"&gt; &lt;/span&gt;with&lt;span class="w"&gt; &lt;/span&gt;--theme
-&lt;span class="w"&gt;    &lt;/span&gt;open&lt;span class="w"&gt;                &lt;/span&gt;Open&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;location
-
-options:
-&lt;span class="w"&gt;  &lt;/span&gt;-h,&lt;span class="w"&gt; &lt;/span&gt;--help&lt;span class="w"&gt;            &lt;/span&gt;show&lt;span class="w"&gt; &lt;/span&gt;this&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;help&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;message&lt;span class="w"&gt; &lt;/span&gt;and&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;exit&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;-v,&lt;span class="w"&gt; &lt;/span&gt;--version&lt;span class="w"&gt;         &lt;/span&gt;Show&lt;span class="w"&gt; &lt;/span&gt;version&lt;span class="w"&gt; &lt;/span&gt;information
-&lt;span class="w"&gt;  &lt;/span&gt;-t,&lt;span class="w"&gt; &lt;/span&gt;--theme&lt;span class="w"&gt; &lt;/span&gt;THEME&lt;span class="w"&gt;     &lt;/span&gt;Set&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;theme&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;application&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;see&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;themes&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;command&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;available&lt;span class="w"&gt; &lt;/span&gt;themes&lt;span class="o"&gt;)&lt;/span&gt;
-
-v0.3.0
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id="directories"&gt;directories&lt;/h3&gt;
-&lt;p&gt;Because I feel it's important that people know where applications drop
-things in your filesystem, there is the &lt;code&gt;directories&lt;/code&gt; command, which shows
-you which directories are used by Rogallo.&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;rogallo&lt;span class="w"&gt; &lt;/span&gt;directories
-/Users/davep/.config/rogallo
-/Users/davep/.local/share/rogallo
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id="licence"&gt;licence&lt;/h3&gt;
-&lt;p&gt;On the off chance you &lt;em&gt;really&lt;/em&gt; need to know the licence of Rogallo (it's
-GPL3+), you can ask to see the key details:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;rogallo&lt;span class="w"&gt; &lt;/span&gt;licence
-Rogallo&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;A&lt;span class="w"&gt; &lt;/span&gt;client&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;Gemini&lt;span class="w"&gt; &lt;/span&gt;protocol&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;terminal.
-Copyright&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;C&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2026&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Dave&lt;span class="w"&gt; &lt;/span&gt;Pearson
-
-This&lt;span class="w"&gt; &lt;/span&gt;program&lt;span class="w"&gt; &lt;/span&gt;is&lt;span class="w"&gt; &lt;/span&gt;free&lt;span class="w"&gt; &lt;/span&gt;software:&lt;span class="w"&gt; &lt;/span&gt;you&lt;span class="w"&gt; &lt;/span&gt;can&lt;span class="w"&gt; &lt;/span&gt;redistribute&lt;span class="w"&gt; &lt;/span&gt;it&lt;span class="w"&gt; &lt;/span&gt;and/or&lt;span class="w"&gt; &lt;/span&gt;modify&lt;span class="w"&gt; &lt;/span&gt;it
-under&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;terms&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;GNU&lt;span class="w"&gt; &lt;/span&gt;General&lt;span class="w"&gt; &lt;/span&gt;Public&lt;span class="w"&gt; &lt;/span&gt;License&lt;span class="w"&gt; &lt;/span&gt;as&lt;span class="w"&gt; &lt;/span&gt;published&lt;span class="w"&gt; &lt;/span&gt;by&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;Free
-Software&lt;span class="w"&gt; &lt;/span&gt;Foundation,&lt;span class="w"&gt; &lt;/span&gt;either&lt;span class="w"&gt; &lt;/span&gt;version&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;License,&lt;span class="w"&gt; &lt;/span&gt;or&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;at&lt;span class="w"&gt; &lt;/span&gt;your&lt;span class="w"&gt; &lt;/span&gt;option&lt;span class="o"&gt;)&lt;/span&gt;
-any&lt;span class="w"&gt; &lt;/span&gt;later&lt;span class="w"&gt; &lt;/span&gt;version.
-
-This&lt;span class="w"&gt; &lt;/span&gt;program&lt;span class="w"&gt; &lt;/span&gt;is&lt;span class="w"&gt; &lt;/span&gt;distributed&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;hope&lt;span class="w"&gt; &lt;/span&gt;that&lt;span class="w"&gt; &lt;/span&gt;it&lt;span class="w"&gt; &lt;/span&gt;will&lt;span class="w"&gt; &lt;/span&gt;be&lt;span class="w"&gt; &lt;/span&gt;useful,&lt;span class="w"&gt; &lt;/span&gt;but&lt;span class="w"&gt; &lt;/span&gt;WITHOUT
-ANY&lt;span class="w"&gt; &lt;/span&gt;WARRANTY&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;without&lt;span class="w"&gt; &lt;/span&gt;even&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;implied&lt;span class="w"&gt; &lt;/span&gt;warranty&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;MERCHANTABILITY&lt;span class="w"&gt; &lt;/span&gt;or
-FITNESS&lt;span class="w"&gt; &lt;/span&gt;FOR&lt;span class="w"&gt; &lt;/span&gt;A&lt;span class="w"&gt; &lt;/span&gt;PARTICULAR&lt;span class="w"&gt; &lt;/span&gt;PURPOSE.&lt;span class="w"&gt; &lt;/span&gt;See&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;GNU&lt;span class="w"&gt; &lt;/span&gt;General&lt;span class="w"&gt; &lt;/span&gt;Public&lt;span class="w"&gt; &lt;/span&gt;License&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;
-more&lt;span class="w"&gt; &lt;/span&gt;details.
-
-You&lt;span class="w"&gt; &lt;/span&gt;should&lt;span class="w"&gt; &lt;/span&gt;have&lt;span class="w"&gt; &lt;/span&gt;received&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;copy&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;GNU&lt;span class="w"&gt; &lt;/span&gt;General&lt;span class="w"&gt; &lt;/span&gt;Public&lt;span class="w"&gt; &lt;/span&gt;License&lt;span class="w"&gt; &lt;/span&gt;along&lt;span class="w"&gt; &lt;/span&gt;with
-this&lt;span class="w"&gt; &lt;/span&gt;program.&lt;span class="w"&gt; &lt;/span&gt;If&lt;span class="w"&gt; &lt;/span&gt;not,&lt;span class="w"&gt; &lt;/span&gt;see&lt;span class="w"&gt; &lt;/span&gt;&amp;lt;https://www.gnu.org/licenses/&amp;gt;.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id="bindings"&gt;bindings&lt;/h3&gt;
-&lt;p&gt;If you wish to know what commands are available for binding, and what the
-default bindings are, you can use this command:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;rogallo&lt;span class="w"&gt; &lt;/span&gt;bindings
-Backward&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;Move&lt;span class="w"&gt; &lt;/span&gt;backward&lt;span class="w"&gt; &lt;/span&gt;through&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;history&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;Default:&lt;span class="w"&gt; &lt;/span&gt;ctrl+left_square_bracket
-ChangeCommandLineLocation&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;Swap&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;position&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;command&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;line&lt;span class="w"&gt; &lt;/span&gt;between&lt;span class="w"&gt; &lt;/span&gt;top&lt;span class="w"&gt; &lt;/span&gt;and&lt;span class="w"&gt; &lt;/span&gt;bottom
-&lt;span class="w"&gt;    &lt;/span&gt;Default:&lt;span class="w"&gt; &lt;/span&gt;ctrl+up,&lt;span class="w"&gt; &lt;/span&gt;ctrl+down
-ChangeTheme&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;Change&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;application&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s&lt;span class="w"&gt; &lt;/span&gt;theme
-&lt;span class="w"&gt;    &lt;/span&gt;Default:&lt;span class="w"&gt; &lt;/span&gt;f9
-Forward&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;Move&lt;span class="w"&gt; &lt;/span&gt;forward&lt;span class="w"&gt; &lt;/span&gt;through&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;history&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;Default:&lt;span class="w"&gt; &lt;/span&gt;ctrl+right_square_bracket
-Help&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;Show&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;help&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;and&lt;span class="w"&gt; &lt;/span&gt;information&lt;span class="w"&gt; &lt;/span&gt;about&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;application
-&lt;span class="w"&gt;    &lt;/span&gt;Default:&lt;span class="w"&gt; &lt;/span&gt;f1,&lt;span class="w"&gt; &lt;/span&gt;?
-JumpToCommandLine&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;Jump&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;command&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;line
-&lt;span class="w"&gt;    &lt;/span&gt;Default:&lt;span class="w"&gt; &lt;/span&gt;/,&lt;span class="w"&gt; &lt;/span&gt;ctrl+1
-JumpToDocument&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;Jump&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;document
-&lt;span class="w"&gt;    &lt;/span&gt;Default:&lt;span class="w"&gt; &lt;/span&gt;ctrl+slash,&lt;span class="w"&gt; &lt;/span&gt;ctrl+g,&lt;span class="w"&gt; &lt;/span&gt;ctrl+2
-Quit&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;Quit&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;application
-&lt;span class="w"&gt;    &lt;/span&gt;Default:&lt;span class="w"&gt; &lt;/span&gt;f10,&lt;span class="w"&gt; &lt;/span&gt;ctrl+q
-ToggleHistory&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;Toggle&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;display&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;history&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;viewer
-&lt;span class="w"&gt;    &lt;/span&gt;Default:&lt;span class="w"&gt; &lt;/span&gt;f2,&lt;span class="w"&gt; &lt;/span&gt;ctrl+3
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;em&gt;how&lt;/em&gt; of changing bindings still needs to be documented, but it's the
-same as with most of my other TUI applications, so if you look at &lt;a href="https://oldnews.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;how it's
-done in OldNews, for
-example&lt;/a&gt;, you
-should get the idea.&lt;/p&gt;
-&lt;h3 id="themes"&gt;themes&lt;/h3&gt;
-&lt;p&gt;This lists the available themes that can be used with the &lt;code&gt;--theme&lt;/code&gt; switch.&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;rogallo&lt;span class="w"&gt; &lt;/span&gt;themes
-atom-one-dark
-atom-one-light
-catppuccin-frappe
-catppuccin-latte
-catppuccin-macchiato
-catppuccin-mocha
-dracula
-flexoki
-gruvbox
-monokai
-nord
-rose-pine
-rose-pine-dawn
-rose-pine-moon
-solarized-dark
-solarized-light
-textual-dark
-textual-light
-tokyo-night
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id="open"&gt;open&lt;/h3&gt;
-&lt;p&gt;This command can be used to open a location from the command line. You can
-pass it either a URI for a Gemini capsule, or the path to a file in the
-local filesystem.&lt;/p&gt;
-&lt;h2 id="viewing-local-files"&gt;Viewing local files&lt;/h2&gt;
-&lt;p&gt;Talking of viewing files in the local filesystem... that's now supported
-too. This is something I wanted to build in from the start, as I feel it
-could be handy to anyone writing gemtext files prior to deployment. I sense
-there might be a couple of edge cases relating to this that I might still
-need to iron out, but mostly it seems to be working well.&lt;/p&gt;
-&lt;p&gt;At some point I'll probably also pull in
-&lt;a href="https://textual-fspicker.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;textual-fspicker&lt;/a&gt; so that the user can
-browse for files to view, making it just a little easier to open a file in
-some cases.&lt;/p&gt;
-&lt;h2 id="not-requiring-the-gemini-scheme-prefix"&gt;Not requiring the &lt;code&gt;gemini://&lt;/code&gt; scheme prefix&lt;/h2&gt;
-&lt;p&gt;So far, to connect to a Gemini capsule, it's been necessary to provide the
-full URI. That's kind of annoying. It had been deliberately left like this
-until I sorted the work to allow specifying local files, as I wasn't quite
-sure how it would all interact. Now that I've got that in place I could
-address this too. So whereas before you had to type
-&lt;code&gt;gemini://davep.gemcities.com/&lt;/code&gt; to get to my test capsule, now it's enough
-to enter &lt;code&gt;davep.gemcities.com&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;There is some guesswork going on in the background, with the resolution
-rules looking something like this:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Have I been given a URI that is &lt;em&gt;obviously&lt;/em&gt; a Gemini URI?&lt;/li&gt;
-&lt;li&gt;If not, if it has no scheme, and it matches the name of a file in the
-  filesystem, let's assume the user meant that.&lt;/li&gt;
-&lt;li&gt;If it's not a file in the filesystem, and it doesn't have a scheme, let's
-  slap &lt;code&gt;gemini://&lt;/code&gt; on the front and see how we get on with that.&lt;/li&gt;
-&lt;li&gt;None of the above applied, yet it has a scheme: throw it at the operating
-  system's URI resolution system.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In casual testing so far this is working out well.&lt;/p&gt;
-&lt;h2 id="more-to-come"&gt;More to come&lt;/h2&gt;
-&lt;p&gt;I'm still having a blast working on this, and there's still a lot more to
-do. The &lt;a href="https://github.com/davep/rogallo/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20label%3ATODO" rel="noopener noreferrer" target="_blank"&gt;TODO
-list&lt;/a&gt;
-is staying pretty constant in size at the moment because, as I knock an item
-off, I seem to keep finding new things I want to add or improve. I see this
-as a good thing.&lt;/p&gt;
-&lt;p&gt;I have a &lt;em&gt;very&lt;/em&gt; busy AFK life for the next week or so, so I don't imagine
-too many updates during that period. Once things have settled again I want
-to try and tackle the two big issues of &lt;a href="https://github.com/davep/rogallo/issues/10" rel="noopener noreferrer" target="_blank"&gt;user
-input&lt;/a&gt; and &lt;a href="https://github.com/davep/rogallo/issues/11" rel="noopener noreferrer" target="_blank"&gt;client
-certificates&lt;/a&gt;. I'll be happy
-that Rogallo is getting close to generally usable when I know I can &lt;a href="gemini://astrobotany.mozz.us/" rel="noopener noreferrer" target="_blank"&gt;log in
-and water my plant in Astrobotany&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:428-1"&gt;
-&lt;p&gt;&lt;code&gt;~/.config/rogallo/configuration.json&lt;/code&gt; on most systems. This and all
-the options within will eventually be documented, when I get round to
-creating the site to document Rogallo.&amp;#160;&lt;a class="footnote-backref" href="#fnref:428-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/06/26/rogallo-v0-3-0.html</guid>
-      <category>Coding</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>Rogallo</category>
-      <category>a11y</category>
-      <category>gemtext</category>
-      <category>smolweb</category>
-      <category>textual</category>
-      <pubDate>Fri, 26 Jun 2026 16:54:54 +0100</pubDate>
     </item>
   </channel>
 </rss>

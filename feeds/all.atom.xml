@@ -2,11 +2,94 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-08-08T16:09:09.333444+00:00</updated>
+  <updated>2026-08-09T13:18:00.352549+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/08/09/smolserve-a-lightweight-multi-protocol-small-web-server.html</id>
+    <title>SmolServe - A lightweight multi-protocol small web server</title>
+    <updated>2026-08-09T14:05:08+01:00</updated>
+    <content type="html">&lt;p&gt;As &lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt; got close to being "stable", I did a fair bit of
+work on &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;its documentation&lt;/a&gt;. Something that I
+wanted to include in the site was a good collection of up-to-date
+screenshots. These are all created on the fly. To do this, of course,
+requires something that looks like a Gemini server.&lt;/p&gt;
+&lt;p&gt;Initially, this was simple: Rogallo only supported Gemini capsules, so I
+could illustrate most things just using &lt;a href="https://blog.davep.org/tag/gemtext/"&gt;Gemtext&lt;/a&gt; files in
+the local filesystem (with an admonition in the documentation to point out
+that Rogallo was for more than viewing local files). This, of course, wasn't
+going to scale when &lt;a href="https://blog.davep.org/2026/07/24/rogallo-v1-1-0.html"&gt;I added Finger
+support&lt;/a&gt;, and neither was it going to work
+well for &lt;a href="https://blog.davep.org/2026/07/28/rogallo-v1-2-0.html"&gt;Gopher support&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The solution seemed obvious: use a lightweight local server for these
+protocols. With this need in place &lt;a href="https://smolserve.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;SmolServe&lt;/a&gt;
+was born. As mentioned &lt;a href="https://blog.davep.org/2026/08/05/rogallo-v1-5-0.html"&gt;when I released Rogallo
+v1.5.0&lt;/a&gt;, this &lt;em&gt;isn't&lt;/em&gt; a project to build a
+comprehensive &lt;a href="https://blog.davep.org/tag/smolweb/"&gt;smolweb&lt;/a&gt; server. The aim is to build myself a
+minimal just-good-enough server that helps me with local testing and
+documentation.&lt;/p&gt;
+&lt;p&gt;As it stands, SmolServe supports Gemini, Gopher, Finger and Spartan. Or,
+rather, it supports a just-enough-to-get-by version of each of those
+protocols. None are implemented in a way that would serve as a "production"
+server; they're implemented to allow me to generate screenshots for the
+Rogallo documentation, involving any of the supported protocols, without the
+need to rely on services I don't control and which aren't local.&lt;/p&gt;
+&lt;p&gt;The big benefit of SmolServe is the &lt;code&gt;exec&lt;/code&gt; support. With this, you can run
+up the server and then have it run another command. Once that command
+finishes its work, SmolServe will close down too. This means that, when it
+comes to producing the Rogallo documentation, I can just have the server
+running when I need it. Pulling some snippets &lt;a href="https://github.com/davep/rogallo/blob/main/Makefile" rel="noopener noreferrer" target="_blank"&gt;from the Rogallo
+&lt;code&gt;Makefile&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="makefile"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;run&lt;/span&gt;&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="o"&gt;:=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;run
+&lt;span class="nv"&gt;smol&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="o"&gt;:=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;run&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;smolserve&lt;span class="w"&gt; &lt;/span&gt;--config&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;docs&lt;span class="k"&gt;)&lt;/span&gt;server/smolserve.toml
+&lt;span class="nv"&gt;smolexec&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;:=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;smol&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;exec&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--
+&lt;span class="nv"&gt;mkdocs&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="o"&gt;:=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;smolexec&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;mkdocs
+
+&lt;span class="c"&gt;##############################################################################&lt;/span&gt;
+&lt;span class="c"&gt;# Documentation.&lt;/span&gt;
+&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;
+&lt;span class="nf"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;mkdocs&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;build
+
+&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;rtfm&lt;/span&gt;
+&lt;span class="nf"&gt;rtfm&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;mkdocs&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;serve&lt;span class="w"&gt; &lt;/span&gt;--livereload
+
+&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;publishdocs&lt;/span&gt;
+&lt;span class="nf"&gt;publishdocs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;clean&lt;/span&gt;-&lt;span class="n"&gt;docs&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;mkdocs&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;gh-deploy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The idea is that, when I build the documentation, I actually run
+&lt;code&gt;smolserve&lt;/code&gt;, which in turn runs &lt;code&gt;mkdocs&lt;/code&gt;, which then produces the
+documentation while the local server is available.&lt;/p&gt;
+&lt;p&gt;I also use this sort of approach for local testing of the &lt;a href="https://github.com/davep/tilde-team-capsule" rel="noopener noreferrer" target="_blank"&gt;content of my
+capsule&lt;/a&gt; that lives &lt;a href="gemini://tilde.team/~davep" rel="noopener noreferrer" target="_blank"&gt;over on
+&lt;code&gt;tilde.team&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight" data-lang="makefile"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;view&lt;/span&gt;
+&lt;span class="nf"&gt;view&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;smolserve&lt;span class="w"&gt; &lt;/span&gt;--config&lt;span class="w"&gt; &lt;/span&gt;smolserve.toml&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;exec&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;rogallo&lt;span class="w"&gt; &lt;/span&gt;open&lt;span class="w"&gt; &lt;/span&gt;gemini://localhost/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;My aim now is that, if I add any other protocols to Rogallo, I'll add a
+just-good-enough version of them to SmolServe to help me with testing and
+documentation. For the moment, though, I think it's in a stable and usable
+state.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/08/09/smolserve-a-lightweight-multi-protocol-small-web-server.html"/>
+    <category term="Coding"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="SmolServe"/>
+    <category term="Spartan Protocol"/>
+    <category term="finger"/>
+    <category term="gopher"/>
+    <category term="smolweb"/>
+    <published>2026-08-09T14:05:08+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/08/08/rogallo-v1-6-0.html</id>
     <title>Rogallo v1.6.0</title>
@@ -936,6 +1019,7 @@ zero-point-whatever-land.&lt;/p&gt;</content>
     <category term="PyPI"/>
     <category term="Python"/>
     <category term="finger"/>
+    <category term="port79"/>
     <category term="smolweb"/>
     <published>2026-07-25T14:25:04+01:00</published>
   </entry>
@@ -1060,56 +1144,5 @@ turned on. This is now fixed.&lt;/p&gt;</content>
     <category term="smolweb"/>
     <category term="textual"/>
     <published>2026-07-24T16:31:02+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/07/23/port79-v0-2-0.html</id>
-    <title>Port79 v0.2.0</title>
-    <updated>2026-07-23T11:04:54+01:00</updated>
-    <content type="html">&lt;p&gt;A quick update to &lt;a href="https://port79.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Port79&lt;/a&gt;. When I kicked this
-off I'd set up the &lt;a href="https://port79.davep.dev/library/uri/#port79.uri.FingerURI" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;FingerURI&lt;/code&gt;
-class&lt;/a&gt; so that
-it was pretty permissive in what it would accept. So, for example, you could
-do any of:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;FingerURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;davep&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;FingerURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;finger://davep/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;FingerURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;davep@example.com&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;FingerURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;finger://example.com/davep&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;FingerURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;finger://example.com/davep&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;FingerURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;finger://example.com/davep&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Nice and handy, right? Accept pretty much any input and turn it into a
-&lt;code&gt;finger&lt;/code&gt; URI. However, once I started to add finger support to
-&lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt;, I realised that this wasn't as helpful as I'd like
-as it meant I couldn't use it to actually check for a valid URI. It would be
-more useful to have the class be strict about &lt;em&gt;only&lt;/em&gt; being passed &lt;code&gt;finger:&lt;/code&gt;
-URIs.&lt;/p&gt;
-&lt;p&gt;So now, the first two examples give an error.&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;FingerURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;davep&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;port79&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exceptions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;URIError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Invalid&lt;/span&gt; &lt;span class="n"&gt;URI&lt;/span&gt; &lt;span class="n"&gt;scheme&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Expected&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;finger&amp;#39;&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;FingerURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;davep@example.com&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;port79&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exceptions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;URIError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Invalid&lt;/span&gt; &lt;span class="n"&gt;URI&lt;/span&gt; &lt;span class="n"&gt;scheme&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Expected&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;finger&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Instead, if you want the more relaxed approach, you should use the
-&lt;code&gt;from_string&lt;/code&gt; method.&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;FingerURI&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_string&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;davep&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;FingerURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;finger://davep/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;FingerURI&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_string&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;davep@example.com&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;FingerURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;finger://example.com/davep&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;With this change I can confidently use &lt;code&gt;FingerURI&lt;/code&gt; to test if any given
-input is an actual finger URI, and this also makes it work in a similar way
-to &lt;a href="https://wasat.davep.dev/library/uri/#wasat.uri.GeminiURI" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;GeminiURI&lt;/code&gt;&lt;/a&gt;
-in &lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/07/23/port79-v0-2-0.html"/>
-    <category term="Python"/>
-    <category term="Coding"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="finger"/>
-    <category term="smolweb"/>
-    <published>2026-07-23T11:04:54+01:00</published>
   </entry>
 </feed>
