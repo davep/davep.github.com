@@ -80,6 +80,16 @@ for [Python Enhancement Proposals](https://peps.python.org/). It provides
 the ability to browse, filter and search the metadata for all the PEPs
 available via the [PEP API](https://peps.python.org/api/).
 
+## Port70
+
+[Port70](https://port70.davep.dev/) is an async Gopher client library for
+Python, developed as a support library for [Rogallo](#rogallo).
+
+## Port79
+
+[Port79](https://port79.davep.dev/) is an async Finger client library for
+Python, developed as a support library for [Rogallo](#rogallo).
+
 ## Rogallo
 
 ![Rogallo](/attachments/active-projects/rogallo-social-banner.webp#centre)
