@@ -76,4 +76,9 @@ view:
     uv run smolserve --config smolserve.toml exec rogallo open gemini://localhost/
 ```
 
+My aim now is that, if I add any other protocols to Rogallo, I'll add a
+just-good-enough version of them to SmolServe to help me with testing and
+documentation. For the moment, though, I think it's in a stable and usable
+state.
+
 [//]: # (2026-08-09-smolserve-a-lightweight-multi-protocol-small-web-server.md ends here)
