@@ -2,11 +2,57 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-08-09T13:18:00.352549+00:00</updated>
+  <updated>2026-08-10T19:14:40.618777+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/08/10/rogallo-v1-7-0.html</id>
+    <title>Rogallo v1.7.0</title>
+    <updated>2026-08-10T20:13:18+01:00</updated>
+    <content type="html">&lt;p&gt;I've just made a small release of &lt;a href="https://rogallo.davep.dev" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;,
+bumping the version to &lt;a href="https://rogallo.davep.dev/changelog/#v170" rel="noopener noreferrer" target="_blank"&gt;v1.7.0&lt;/a&gt;.
+Most of the changes in this version aren't very visible, but quite a few
+things have changed under the hood.&lt;/p&gt;
+&lt;p&gt;One change that &lt;em&gt;might&lt;/em&gt; show up on occasion is the addition of an encoding
+fallback if you encounter an ISO-8859-1 file out in the wild (oh how that
+takes me back). Before, Rogallo would pop up an error and refuse to show the
+file; now it will show it just fine.&lt;/p&gt;
+&lt;p&gt;I've also made some improvements to how Rogallo navigates Gemtext files
+being browsed locally in the filesystem. Before now, when viewing local
+files, if a link was for another local file, it would show an external link
+icon rather than a Gemini link icon. This is now fixed. The other change is
+that, if you're browsing local files that have links to a directory rather
+than a file -- thereby implying that an &lt;code&gt;index.gmi&lt;/code&gt; should be looked for --
+Rogallo will take a peek at the directory, see if there is an index file
+available, and take this into account.&lt;/p&gt;
+&lt;p&gt;This &lt;em&gt;should&lt;/em&gt; make it a smoother experience if you're using Rogallo to
+locally preview some Gemtext files before you upload them to a capsule.&lt;/p&gt;
+&lt;p&gt;The final noticeable change is the addition of a &lt;code&gt;ViewChangeLog&lt;/code&gt; command
+(AKA &lt;code&gt;!view_change_log&lt;/code&gt; in the internal command line). Bound to
+&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;l&lt;/kbd&gt; by default, this navigates you
+to the &lt;a href="gemini://tilde.team/~davep/rogallo/changelog.gmi" rel="noopener noreferrer" target="_blank"&gt;Gemtext version of the Rogallo
+ChangeLog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In addition to this, I've made a &lt;em&gt;lot&lt;/em&gt; of changes to some of the internals.
+The class that handles the main screen of Rogallo was getting pretty large,
+with a lot of detail of how to handle different protocols sitting in the
+code. While not causing any runtime issues, it made the code increasingly
+bloated and untidy (and I &lt;strong&gt;really hate&lt;/strong&gt; large Python files). So I've moved
+the handling of each of the protocols into their own files. This also has
+the benefit of making it a little easier and a little more maintainable
+if/when I add another protocol or two. It should also make the code more
+readable for anyone else looking over it.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/08/10/rogallo-v1-7-0.html"/>
+    <category term="Coding"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="Rogallo"/>
+    <category term="smolweb"/>
+    <published>2026-08-10T20:13:18+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/08/09/smolserve-a-lightweight-multi-protocol-small-web-server.html</id>
     <title>SmolServe - A lightweight multi-protocol small web server</title>
@@ -369,7 +415,7 @@ that page on most versions of my website. What I haven't done, since the
 early 1980s, is play the game.&lt;/p&gt;
 &lt;p&gt;I suppose, at some point, I could have grabbed a VIC-20 emulator and typed
 it in. Or, if I didn't want to type it in (and I don't), I suppose I could
-have tried to OCR it and get it into an emulator&lt;sup id="fnref:423-1"&gt;&lt;a class="footnote-ref" href="#fn:423-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. But of course I never
+have tried to OCR it and get it into an emulator&lt;sup id="fnref:424-1"&gt;&lt;a class="footnote-ref" href="#fn:424-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. But of course I never
 did.&lt;/p&gt;
 &lt;p&gt;Then, a week or so back, I got to thinking: if I threw the two images at an
 agent, asked it to OCR the code, and then build me a web-based version of
@@ -414,8 +460,8 @@ back off the page.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:423-1"&gt;
-&lt;p&gt;And given how well this has gone, I might try that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:423-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:424-1"&gt;
+&lt;p&gt;And given how well this has gone, I might try that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:424-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1022,127 +1068,5 @@ zero-point-whatever-land.&lt;/p&gt;</content>
     <category term="port79"/>
     <category term="smolweb"/>
     <published>2026-07-25T14:25:04+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/07/24/rogallo-v1-1-0.html</id>
-    <title>Rogallo v1.1.0</title>
-    <updated>2026-07-24T16:31:02+01:00</updated>
-    <content type="html">&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
-&lt;a href="https://rogallo.davep.dev/changelog/#v110" rel="noopener noreferrer" target="_blank"&gt;v1.1.0&lt;/a&gt; is now available. This
-release includes a number of new features and improvements, plus a small
-cosmetic fix.&lt;/p&gt;
-&lt;h2 id="diagnostics"&gt;Diagnostics&lt;/h2&gt;
-&lt;p&gt;On the off chance that someone else does use Rogallo, and needs help getting
-to the bottom of some sort of issue, I thought it might be useful to add a
-&lt;code&gt;diagnostics&lt;/code&gt; command to the CLI. Right now it's pretty simple, just dumping
-some version and environment information.&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;rogallo&lt;span class="w"&gt; &lt;/span&gt;diagnostics
-&lt;span class="c1"&gt;# Libraries&lt;/span&gt;
-bagofstuff:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.2.1
-cryptography:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;49&lt;/span&gt;.0.0
-gemtext:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.0.0
-rogallo:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.1.0
-textual:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8&lt;/span&gt;.2.8
-textual_enhanced:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.6.0
-textual_fspicker:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.0.1
-wasat:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.0.1
-
-&lt;span class="c1"&gt;# Python&lt;/span&gt;
-Compiler:&lt;span class="w"&gt; &lt;/span&gt;Clang&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;.0.0&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;clang-1700.3.19.1&lt;span class="o"&gt;)&lt;/span&gt;
-Executable:&lt;span class="w"&gt; &lt;/span&gt;/Users/davep/.local/share/uv/tools/rogallo/bin/python3
-Implementation:&lt;span class="w"&gt; &lt;/span&gt;CPython
-Version:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.14.0
-
-&lt;span class="c1"&gt;# System&lt;/span&gt;
-Name:&lt;span class="w"&gt; &lt;/span&gt;Darwin
-Release:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;25&lt;/span&gt;.5.0
-Version:&lt;span class="w"&gt; &lt;/span&gt;Darwin&lt;span class="w"&gt; &lt;/span&gt;Kernel&lt;span class="w"&gt; &lt;/span&gt;Version&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;25&lt;/span&gt;.5.0:&lt;span class="w"&gt; &lt;/span&gt;Mon&lt;span class="w"&gt; &lt;/span&gt;Apr&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;27&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;20&lt;/span&gt;:40:51&lt;span class="w"&gt; &lt;/span&gt;PDT&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2026&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;root:xnu-12377.121.6~2/RELEASE_ARM64_T8112
-
-&lt;span class="c1"&gt;# Terminal&lt;/span&gt;
-Detected:&lt;span class="w"&gt; &lt;/span&gt;ghostty
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="finger-protocol-support"&gt;Finger protocol support&lt;/h2&gt;
-&lt;p&gt;This was something I was interested in adding, and a couple of people have
-already requested it, so Rogallo now has finger support. This has been added
-in a couple of ways. The first and most obvious is that &lt;code&gt;finger:&lt;/code&gt; URIs are
-now natively supported in Gemtext content. So now if you follow a &lt;code&gt;finger://&lt;/code&gt;
-link you'll see the response in Rogallo itself.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Following a finger URI" loading="lazy" src="https://blog.davep.org/attachments/2026/07/24/finger.gif#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;The other method is to use the new &lt;code&gt;!finger&lt;/code&gt; command that has been added to
-the application's command line.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Using the finger command" loading="lazy" src="https://blog.davep.org/attachments/2026/07/24/finger-command.gif#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Of course, in the command line, you can also just enter a &lt;code&gt;finger://&lt;/code&gt; URI if
-you wish, which I guess is a third way of doing it.&lt;/p&gt;
-&lt;p&gt;Finger URIs are recorded in the history, and can also be bookmarked.&lt;/p&gt;
-&lt;h2 id="using-an-external-editor-for-user-input"&gt;Using an external editor for user input&lt;/h2&gt;
-&lt;p&gt;This was also something I was keen on doing, and then someone else happened
-to ask for it: support for swapping out to an external editor for writing
-user input. While the current mechanism is fine for entering a one-liner --
-or composing a very short message -- a proper editor (for me that's ideally
-one with the ability to check spellings) is generally going to be far more
-useful for a longer body of text. So, with this in mind, the internal editor
-can now optionally swap out to your text editor of choice.&lt;/p&gt;
-&lt;p&gt;If you have either &lt;code&gt;VISUAL&lt;/code&gt; or &lt;code&gt;EDITOR&lt;/code&gt; set in your environment (&lt;code&gt;VISUAL&lt;/code&gt;
-beats &lt;code&gt;EDITOR&lt;/code&gt;), Rogallo will let you swap to it by pressing &lt;kbd&gt;F3&lt;/kbd&gt;
-in the internal editor. You can also override that choice by &lt;a href="https://rogallo.davep.dev/configuration/#user-input-editor" rel="noopener noreferrer" target="_blank"&gt;setting
-&lt;code&gt;external_editor&lt;/code&gt; in the configuration
-file&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Using the external editor" loading="lazy" src="https://blog.davep.org/attachments/2026/07/24/external-editor.gif#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Personally, I'm finding this is working really well with &lt;code&gt;emacsclient&lt;/code&gt;. From
-now on, I'm going to find writing content in Geminispace a &lt;em&gt;lot&lt;/em&gt; easier.&lt;/p&gt;
-&lt;h2 id="blended-pre-formatted-text"&gt;Blended pre-formatted text&lt;/h2&gt;
-&lt;p&gt;Now that I've been wandering around Geminispace some more, I've noticed that
-a common use of pre-formatted text is for logos, ASCII art, that sort of
-thing. Generally, the sort of things that are best presented with the
-background the same as the surrounding text. A different shade of background
-is fine if showing code and stuff, but I feel that this:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="AstroBotany logo blended" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/07/24/astro-blended.webp#centre" width="780" /&gt;&lt;/p&gt;
-&lt;p&gt;looks better than this:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="AstroBotany logo not blended" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/07/24/astro-not-blended.webp#centre" width="780" /&gt;&lt;/p&gt;
-&lt;p&gt;To this end, I've modified the pre-formatted text rendering so that, by
-default, if pre-formatted text has no alt-text, the background is the same
-as the surrounding text. On the other hand, if it &lt;em&gt;does&lt;/em&gt; have alt-text (and
-so is likely the name of a programming language, which implies syntax
-highlighting, which in turn implies you want it to stand out), it isn't
-blended with the rest of the text.&lt;/p&gt;
-&lt;p&gt;If your preferences differ from mine, you can control this with the new
-&lt;code&gt;blend_pre_formatted_with_background&lt;/code&gt; configuration file setting. It takes a
-list of alt-text strings that should be blended. By default it looks like
-this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;blend_pre_formatted_with_background&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;That is, by default, it only blends empty alt-text pre-formatted text. As it
-happens, &lt;a href="gemini://station.martinrue.com/" rel="noopener noreferrer" target="_blank"&gt;Station&lt;/a&gt; uses alt-text for the
-logo and the user image, but I'd like them blended in too, so I'm running
-with this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;blend_pre_formatted_with_background&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Station logo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;User image&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Doubtless I'll add others as I run into them.&lt;/p&gt;
-&lt;h2 id="fixed-mouse-hover-effect"&gt;Fixed mouse hover effect&lt;/h2&gt;
-&lt;p&gt;The last change is a small cosmetic fix to mouse interaction with links.
-When the mouse cursor is over a link, there should be a hover effect (that
-is, the background should change colour). This wasn't working if you had
-&lt;a href="https://rogallo.davep.dev/configuration/#striped-links" rel="noopener noreferrer" target="_blank"&gt;link stripes&lt;/a&gt;
-turned on. This is now fixed.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/07/24/rogallo-v1-1-0.html"/>
-    <category term="Coding"/>
-    <category term="Coding"/>
-    <category term="Gemini Protocol"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="Rogallo"/>
-    <category term="gemtext"/>
-    <category term="smolweb"/>
-    <category term="textual"/>
-    <published>2026-07-24T16:31:02+01:00</published>
   </entry>
 </feed>

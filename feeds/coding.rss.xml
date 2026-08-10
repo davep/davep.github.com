@@ -8,7 +8,52 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 09 Aug 2026 13:18:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Aug 2026 19:14:40 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v1.7.0</title>
+      <link>https://blog.davep.org/2026/08/10/rogallo-v1-7-0.html</link>
+      <description>&lt;p&gt;I've just made a small release of &lt;a href="https://rogallo.davep.dev" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;,
+bumping the version to &lt;a href="https://rogallo.davep.dev/changelog/#v170" rel="noopener noreferrer" target="_blank"&gt;v1.7.0&lt;/a&gt;.
+Most of the changes in this version aren't very visible, but quite a few
+things have changed under the hood.&lt;/p&gt;
+&lt;p&gt;One change that &lt;em&gt;might&lt;/em&gt; show up on occasion is the addition of an encoding
+fallback if you encounter an ISO-8859-1 file out in the wild (oh how that
+takes me back). Before, Rogallo would pop up an error and refuse to show the
+file; now it will show it just fine.&lt;/p&gt;
+&lt;p&gt;I've also made some improvements to how Rogallo navigates Gemtext files
+being browsed locally in the filesystem. Before now, when viewing local
+files, if a link was for another local file, it would show an external link
+icon rather than a Gemini link icon. This is now fixed. The other change is
+that, if you're browsing local files that have links to a directory rather
+than a file -- thereby implying that an &lt;code&gt;index.gmi&lt;/code&gt; should be looked for --
+Rogallo will take a peek at the directory, see if there is an index file
+available, and take this into account.&lt;/p&gt;
+&lt;p&gt;This &lt;em&gt;should&lt;/em&gt; make it a smoother experience if you're using Rogallo to
+locally preview some Gemtext files before you upload them to a capsule.&lt;/p&gt;
+&lt;p&gt;The final noticeable change is the addition of a &lt;code&gt;ViewChangeLog&lt;/code&gt; command
+(AKA &lt;code&gt;!view_change_log&lt;/code&gt; in the internal command line). Bound to
+&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;l&lt;/kbd&gt; by default, this navigates you
+to the &lt;a href="gemini://tilde.team/~davep/rogallo/changelog.gmi" rel="noopener noreferrer" target="_blank"&gt;Gemtext version of the Rogallo
+ChangeLog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In addition to this, I've made a &lt;em&gt;lot&lt;/em&gt; of changes to some of the internals.
+The class that handles the main screen of Rogallo was getting pretty large,
+with a lot of detail of how to handle different protocols sitting in the
+code. While not causing any runtime issues, it made the code increasingly
+bloated and untidy (and I &lt;strong&gt;really hate&lt;/strong&gt; large Python files). So I've moved
+the handling of each of the protocols into their own files. This also has
+the benefit of making it a little easier and a little more maintainable
+if/when I add another protocol or two. It should also make the code more
+readable for anyone else looking over it.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/10/rogallo-v1-7-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>smolweb</category>
+      <pubDate>Mon, 10 Aug 2026 20:13:18 +0100</pubDate>
+    </item>
     <item>
       <title>SmolServe - A lightweight multi-protocol small web server</title>
       <link>https://blog.davep.org/2026/08/09/smolserve-a-lightweight-multi-protocol-small-web-server.html</link>
@@ -1468,7 +1513,7 @@ viewing (bound to &lt;kbd&gt;alt&lt;/kbd&gt;+&lt;kbd&gt;shift&lt;/kbd&gt;+&lt;kb
 &lt;p&gt;It's worth noting that the default bindings for both of those aren't going
 to be ideal for some terminals. They should be fine in any terminal that
 supports the Kitty keyboard protocol, but will likely do nothing elsewhere.
-This can be changed to your taste via the configuration file&lt;sup id="fnref:469-1"&gt;&lt;a class="footnote-ref" href="#fn:469-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+This can be changed to your taste via the configuration file&lt;sup id="fnref:470-1"&gt;&lt;a class="footnote-ref" href="#fn:470-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Talking of a document's content: I've also added a &lt;code&gt;ToggleView&lt;/code&gt; command
 (bound to &lt;kbd&gt;F3&lt;/kbd&gt; by default) which toggles the document's view
 between a rendered view and a plain text (source) view. So if you're looking
@@ -1486,7 +1531,7 @@ most obvious way, on purpose. Normally I'd have taken the &lt;em&gt;"do obscured
 password input"&lt;/em&gt; thing, which &lt;a href="https://textual.textualize.io/widgets/input/#textual.widgets.Input" rel="noopener noreferrer" target="_blank"&gt;is supported by Textual's &lt;code&gt;Input&lt;/code&gt;
 widget&lt;/a&gt;.
 The problem there though is that an input request from a Gemini server
-expects and allows for multi-line input&lt;sup id="fnref:469-2"&gt;&lt;a class="footnote-ref" href="#fn:469-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
+expects and allows for multi-line input&lt;sup id="fnref:470-2"&gt;&lt;a class="footnote-ref" href="#fn:470-2"&gt;2&lt;/a&gt;&lt;/sup&gt;; that requires the use of a
 &lt;a href="https://textual.textualize.io/widgets/text_area/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;TextArea&lt;/code&gt;&lt;/a&gt;; it doesn't
 support password-style input.&lt;/p&gt;
 &lt;p&gt;So what I've done instead is, if it's a sensitive input request, I simply
@@ -1507,17 +1552,17 @@ of fun working on it.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:469-1"&gt;
+&lt;li id="fn:470-1"&gt;
 &lt;p&gt;As mentioned in another post about Rogallo, how to do that will be
 documented when I get round to writing the documentation for Rogallo.
 Meanwhile look &lt;a href="https://hike.davep.dev/configuration/#changing-a-binding" rel="noopener noreferrer" target="_blank"&gt;at similar documentation for
 Hike&lt;/a&gt; to get
-an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:469-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+an idea of how to go about it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:470-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:469-2"&gt;
+&lt;li id="fn:470-2"&gt;
 &lt;p&gt;Well, technically, it's an optional feature of a client; the
 specification says &lt;em&gt;"Clients MAY allow for the entry of input composed
-of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:469-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:470-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1532,122 +1577,6 @@ of multiple lines"&lt;/em&gt;. I wish Rogallo to be one such client.&amp;#160;&l
       <category>smolweb</category>
       <category>textual</category>
       <pubDate>Sun, 28 Jun 2026 10:30:35 +0100</pubDate>
-    </item>
-    <item>
-      <title>BlogMore v2.44.0</title>
-      <link>https://blog.davep.org/2026/06/27/blogmore-v2-44-0.html</link>
-      <description>&lt;p&gt;It's been a short while since I last made a release of
-&lt;a href="https://blogmore.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BlogMore&lt;/a&gt;; in fact, the time since the &lt;a href="https://blog.davep.org/2026/06/11/blogmore-v2-43-0.html"&gt;last
-update&lt;/a&gt; might be the longest I've gone
-between versions since the first release. I think this &lt;em&gt;might&lt;/em&gt; mean it is
-actually more or less feature complete!&lt;/p&gt;
-&lt;p&gt;More or less.&lt;/p&gt;
-&lt;p&gt;Except... I did have to spend a bit of time (and some
-&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt; quota) this morning adding something I've
-been wanting to add: automatic generation of cover images aimed at social
-media sites (so the kinds of images that show up when you post to Mastodon,
-Bluesky, or that other terrible site some people still seem intent on using
-for some perverse reason).&lt;/p&gt;
-&lt;p&gt;BlogMore has supported &lt;a href="https://blogmore.davep.dev/writing_a_post/#cover" rel="noopener noreferrer" target="_blank"&gt;the declaration of a
-&lt;code&gt;cover&lt;/code&gt;&lt;/a&gt; from the very
-first release. This was done in a way that it was up to the author of the
-post to create and include the image. Personally, in my posts, I've tended
-to set the &lt;code&gt;cover&lt;/code&gt; to point at the most relevant image in the post, if a
-post has any images. I've also had BlogMore always work such that a post
-without a &lt;code&gt;cover&lt;/code&gt; has the social image set to the site's logo image (if it
-has one).&lt;/p&gt;
-&lt;p&gt;This works, but it does mean that all of the posts I make that have no cover
-(feels like that's roughly half of them -- I could &lt;a href="https://blog.davep.org/2026/06/02/recreating-my-blog-stats.html"&gt;probably do something
-fun with the dump of posts to know for
-sure&lt;/a&gt;) simply show my masked face
-when I share them. That's by design, but not ideal.&lt;/p&gt;
-&lt;p&gt;So &lt;a href="https://blogmore.davep.dev/changelog/#v2440" rel="noopener noreferrer" target="_blank"&gt;v2.44.0&lt;/a&gt; adds support for
-an "auto covers" feature. I've tried to do this in a way that is fully
-backward-compatible. The feature itself is off by default, won't override
-any covers you have specifically set for posts, and can also be used and
-controlled on a per-post basis.&lt;/p&gt;
-&lt;p&gt;The core of the feature is controlled by a new &lt;a href="https://blogmore.davep.dev/configuration/#auto_covers" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;auto_covers&lt;/code&gt; section in the
-configuration file&lt;/a&gt;.
-In here you can control if the feature is on or off by default, what layout
-to use for the cover images, what colours to use, and so on. There's plenty
-to experiment with and it should be fairly straightforward to create covers
-that look unique to your blog.&lt;/p&gt;
-&lt;p&gt;There are three styles of cover that can be generated. The &lt;code&gt;minimalist&lt;/code&gt; does
-as the name suggests: it tries to keep things as minimal as possible (and
-will generally result in the smallest file).&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Minimalist cover" height="630" loading="lazy" src="https://blog.davep.org/attachments/2026/06/27/cover-minimalist.webp#centre" width="1200" /&gt;&lt;/p&gt;
-&lt;p&gt;The &lt;code&gt;split&lt;/code&gt; type is a little richer, including the site logo if you've set
-one. Generally the image size will be bigger than &lt;code&gt;minimalist&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Split cover" height="630" loading="lazy" src="https://blog.davep.org/attachments/2026/06/27/cover-split.webp#centre" width="1200" /&gt;&lt;/p&gt;
-&lt;p&gt;Finally there is &lt;code&gt;editorial&lt;/code&gt;, which includes the title, logo, the
-description for the post, the category and the tags. Because this is the
-busiest style it will generally result in the biggest file.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Editorial cover" height="630" loading="lazy" src="https://blog.davep.org/attachments/2026/06/27/cover-editorial.webp#centre" width="1200" /&gt;&lt;/p&gt;
-&lt;p&gt;As you might imagine, generating these images for &lt;em&gt;every&lt;/em&gt; post that doesn't
-have a &lt;code&gt;cover&lt;/code&gt; set can be very time-consuming. Because of this the generated
-images are &lt;a href="https://blogmore.davep.dev/command_line/#cache-command" rel="noopener noreferrer" target="_blank"&gt;cached&lt;/a&gt;,
-so subsequent site generations should hardly ever be affected (unless you
-change any of the parameters relating to cover generation).&lt;/p&gt;
-&lt;div class="admonition admonition-note"&gt;
-&lt;div class="admonition-title"&gt;ℹ️ Note&lt;/div&gt;
-&lt;div class="admonition-content"&gt;
-&lt;p&gt;As with image optimisation, this does mean that more storage is going to
-be used between blog builds. If you use this cover feature, not only will
-more images be created in your static site output, but the BlogMore cache
-related to the blog will also grow. Keep this in mind when deciding to use
-this feature.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;It might also be the case that you don't want to generate cover images for
-all of your historical posts, but you do want them for all future posts.
-That approach is possible. All you need to do is set everything as you want
-it in the configuration file but set &lt;code&gt;enabled&lt;/code&gt; under &lt;code&gt;auto_covers&lt;/code&gt; to
-&lt;code&gt;false&lt;/code&gt;. Then, for any post where you &lt;em&gt;do&lt;/em&gt; want an auto-generated cover,
-simply &lt;a href="https://blogmore.davep.dev/writing_a_post/#auto_cover" rel="noopener noreferrer" target="_blank"&gt;set &lt;code&gt;auto_cover&lt;/code&gt; in its frontmatter to an appropriate
-value&lt;/a&gt;. To go with
-the default settings, set it to &lt;code&gt;default&lt;/code&gt;, or if you want to control the
-layout per-post, set it to the desired layout for that post.&lt;/p&gt;
-&lt;p&gt;To try and summarise, the rules for selecting a cover for a given post are
-something like:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;If it has a &lt;code&gt;cover&lt;/code&gt; set in its frontmatter, that is used.&lt;/li&gt;
-&lt;li&gt;If it has an &lt;code&gt;auto_cover&lt;/code&gt; set to anything other than &lt;code&gt;none&lt;/code&gt; in its
-   frontmatter, the desired type of auto-cover will be used.&lt;/li&gt;
-&lt;li&gt;If it has neither &lt;code&gt;cover&lt;/code&gt; nor &lt;code&gt;auto_cover&lt;/code&gt; set, a cover will be generated
-   if &lt;code&gt;auto_covers.enabled&lt;/code&gt; is set to &lt;code&gt;true&lt;/code&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Hopefully that's clear.&lt;/p&gt;
-&lt;p&gt;Despite this post having images in it, I've &lt;em&gt;not&lt;/em&gt; set a &lt;code&gt;cover&lt;/code&gt; for it and I
-have the following setup in my configuration file:&lt;/p&gt;
-&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;auto_covers&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;enabled&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;layout&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;editorial&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;background_type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;gradient&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;background_color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#0f172a&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;gradient_colors&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#1e293b&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#0f172a&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;font_family&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Inter&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;text_color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#f8fafc&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;meta_color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#94a3b8&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;accent_color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#38bdf8&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;show_author&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;show_read_time&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;show_date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;show_logo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This should mean that, if I've got this all working correctly, this post,
-and all historical posts without a cover, get auto-generated covers. This
-should also be very evident as you hover over posts in the &lt;a href="https://blog.davep.org/graph/"&gt;graph&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Fingers crossed it all works out...&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/06/27/blogmore-v2-44-0.html</guid>
-      <category>Coding</category>
-      <category>BlogMore</category>
-      <category>Coding</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <pubDate>Sat, 27 Jun 2026 16:31:11 +0100</pubDate>
     </item>
   </channel>
 </rss>
