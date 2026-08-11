@@ -8,7 +8,91 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 10 Aug 2026 19:14:40 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 11 Aug 2026 19:28:25 +0000</lastBuildDate>
+    <item>
+      <title>html2gemtext - A simple library for converting HTML to Gemtext</title>
+      <link>https://blog.davep.org/2026/08/11/html2gemtext-a-simple-library-for-converting-html-to-gemtext.html</link>
+      <description>&lt;p&gt;Yesterday evening, while tinkering with
+&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;, I managed to nerd-snipe myself pretty
+well. I was playing around with the idea of better presentation of some
+forms of &lt;code&gt;text/*&lt;/code&gt; content. While, of course, Rogallo handles &lt;code&gt;text/gemtext&lt;/code&gt;
+just fine, there are lots of other MIME types that it will show too (pretty
+much all within &lt;code&gt;text/*&lt;/code&gt;). Already, if it can work out an appropriate
+language, the viewer will do syntax highlighting, and this includes Markdown
+files. However, &lt;a href="https://textual.textualize.io/widgets/markdown/" rel="noopener noreferrer" target="_blank"&gt;Rogallo has a full Markdown widget built right
+in&lt;/a&gt; so I was experimenting
+with using that as the way to show Markdown content.&lt;/p&gt;
+&lt;p&gt;Nothing that clever really, all pretty obvious.&lt;/p&gt;
+&lt;p&gt;But then I got to thinking... In &lt;a href="https://oldnews.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;OldNews&lt;/a&gt; I
+heavily rely on
+&lt;a href="https://docs.html-to-markdown.xberg.io/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;html-to-markdown&lt;/code&gt;&lt;/a&gt;. Given I have
+a Markdown viewer to hand, if the user ends up trying to look at some
+&lt;code&gt;text/html&lt;/code&gt;, why not convert it over to Markdown and render it that way?
+That's... doable.&lt;/p&gt;
+&lt;p&gt;There are, however, some problems with this idea:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;As useful as &lt;code&gt;html-to-markdown&lt;/code&gt; has been for OldNews, I've found it quite
+  unreliable at times, with the occasional breaking change. I don't mention
+  this as a negative about the project, but I don't want another one of my
+  projects sitting on top of a moving target like that.&lt;/li&gt;
+&lt;li&gt;Dragging in a reasonably large dependency for what's likely to be a niche
+  requirement doesn't quite feel right.&lt;/li&gt;
+&lt;li&gt;Textual's Markdown viewer has, to this day, one massive design flaw: links
+  can't be navigated with the keyboard&lt;sup id="fnref:420-1"&gt;&lt;a class="footnote-ref" href="#fn:420-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'm doing my absolute best to
+  ensure that Rogallo is keyboard-first. Leaning on this widget for viewing
+  Markdown is one thing, but leaning on the widget for other content types
+  starts to erode that aim.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I did consider the idea of having this feature as an install option, so
+you'd be able to install &lt;code&gt;rogallo&lt;/code&gt; and have it work as normal, or install
+&lt;code&gt;rogallo[html]&lt;/code&gt; (or similar) and it would drag in the ability to render some
+HTML using this pipeline.&lt;/p&gt;
+&lt;p&gt;Then I realised: why target Markdown at all? I already have the code for
+rendering Gemtext, and that solves the keyboard navigation of links problem.
+How hard could it be to write something to convert HTML to Gemtext?&lt;/p&gt;
+&lt;p&gt;Turns out, at least for the requirements I have right now, &lt;a href="https://github.com/davep/html2gemtext" rel="noopener noreferrer" target="_blank"&gt;not that
+hard&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://html2gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;html2gemtext&lt;/code&gt;&lt;/a&gt; is still in its infancy,
+but it's doing a passable job of turning most of the HTML I throw at it into
+reasonable Gemtext. I don't doubt for a moment that there are &lt;em&gt;lots&lt;/em&gt; of
+pages out there that won't turn out right -- for varied values of right --
+but so far the results are readable and navigable. The plan now is to keep
+improving as I run into new cases that could be handled better.&lt;/p&gt;
+&lt;p&gt;While I've not built this into Rogallo just yet, I think I will make use of
+it. I'm also giving serious thought to using it for &lt;a href="gemini://tilde.team/~davep/" rel="noopener noreferrer" target="_blank"&gt;my
+capsule&lt;/a&gt;. Over there I'm &lt;a href="gemini://tilde.team/~davep/gemlog/" rel="noopener noreferrer" target="_blank"&gt;adding some posts
+from this blog&lt;/a&gt; and &lt;code&gt;html2gemtext&lt;/code&gt; could
+form the basis of a tool to help automate some of that.&lt;/p&gt;
+&lt;p&gt;Right now &lt;a href="https://github.com/davep/tilde-team-capsule/blob/11a6bfa7e0ab6015471d660cacdd0287d10bd3dc/bin/borrow-from-blog" rel="noopener noreferrer" target="_blank"&gt;I'm using a script I've
+written&lt;/a&gt;
+that wraps &lt;a href="https://kristaps.bsd.lv/lowdown/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;lowdown&lt;/code&gt;&lt;/a&gt; to do the Markdown
+to Gemtext conversion, but the result -- as good as it is -- isn't &lt;em&gt;quite&lt;/em&gt;
+what I'd like. I'm thinking I could tailor the results exactly as I want if
+I go from this blog's HTML via &lt;code&gt;html2gemtext&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Or, of course, given my blog is written in Markdown, I could next tackle my
+own just-how-I-need-it Markdown to Gemtext converter...&lt;/p&gt;
+&lt;p&gt;As for how this new library will go into Rogallo... Using it to render HTML
+that might be found kicking about in Geminispace or Gopherspace makes sense,
+I think. That should be enough. It's not like I &lt;em&gt;really&lt;/em&gt; need to turn it
+into an &lt;code&gt;http(s)&lt;/code&gt; browser too. Right? Right?!?&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:420-1"&gt;
+&lt;p&gt;This mouse-only problem is a recurring theme in Textual.&amp;#160;&lt;a class="footnote-backref" href="#fnref:420-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/11/html2gemtext-a-simple-library-for-converting-html-to-gemtext.html</guid>
+      <category>Python</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>gemtext</category>
+      <category>smolweb</category>
+      <pubDate>Tue, 11 Aug 2026 20:24:39 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v1.7.0</title>
       <link>https://blog.davep.org/2026/08/10/rogallo-v1-7-0.html</link>
@@ -409,7 +493,7 @@ that page on most versions of my website. What I haven't done, since the
 early 1980s, is play the game.&lt;/p&gt;
 &lt;p&gt;I suppose, at some point, I could have grabbed a VIC-20 emulator and typed
 it in. Or, if I didn't want to type it in (and I don't), I suppose I could
-have tried to OCR it and get it into an emulator&lt;sup id="fnref:424-1"&gt;&lt;a class="footnote-ref" href="#fn:424-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. But of course I never
+have tried to OCR it and get it into an emulator&lt;sup id="fnref:425-1"&gt;&lt;a class="footnote-ref" href="#fn:425-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. But of course I never
 did.&lt;/p&gt;
 &lt;p&gt;Then, a week or so back, I got to thinking: if I threw the two images at an
 agent, asked it to OCR the code, and then build me a web-based version of
@@ -454,8 +538,8 @@ back off the page.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:424-1"&gt;
-&lt;p&gt;And given how well this has gone, I might try that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:424-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:425-1"&gt;
+&lt;p&gt;And given how well this has gone, I might try that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:425-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1028,28 +1112,6 @@ together.&lt;/p&gt;</description>
       <category>gopher</category>
       <category>smolweb</category>
       <pubDate>Sun, 26 Jul 2026 11:32:33 +0100</pubDate>
-    </item>
-    <item>
-      <title>Port79 v1.0.0</title>
-      <link>https://blog.davep.org/2026/07/25/port79-v1-0-0.html</link>
-      <description>&lt;p&gt;I've just bumped &lt;a href="https://port79.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Port79&lt;/a&gt; to
-&lt;a href="https://port79.davep.dev/changelog/#v100" rel="noopener noreferrer" target="_blank"&gt;v1.0.0&lt;/a&gt;. There's no significant
-change in this release, other than the addition of the usual dunder-based
-metadata that is common in Python libraries; somehow I'd managed to leave it
-out in the last couple of releases.&lt;/p&gt;
-&lt;p&gt;Now that I've successfully &lt;a href="https://blog.davep.org/2026/07/24/rogallo-v1-1-0.html"&gt;added &lt;code&gt;finger&lt;/code&gt; support to
-Rogallo&lt;/a&gt;, and the library is working out
-well, there didn't seem much point in letting it hang around in
-zero-point-whatever-land.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/25/port79-v1-0-0.html</guid>
-      <category>Python</category>
-      <category>Coding</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>finger</category>
-      <category>port79</category>
-      <category>smolweb</category>
-      <pubDate>Sat, 25 Jul 2026 14:25:04 +0100</pubDate>
     </item>
   </channel>
 </rss>
