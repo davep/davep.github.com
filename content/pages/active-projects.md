@@ -57,6 +57,11 @@ tree](https://docs.python.org/3/library/ast.html) and
 [Hike](https://hike.davep.dev/) is a terminal-based TUI browser for Markdown
 files.
 
+## html2gemtext
+
+[html2gemtext](https://html2gemtext.davep.dev/) is a small Python library
+that provides code for converting HTML to Gemtext.
+
 ## obs2nlm
 
 [obs2nlm](https://obs2nlm.davep.dev/) is a command line tool for turning
