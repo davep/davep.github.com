@@ -8,7 +8,49 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 11 Aug 2026 19:28:25 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 12 Aug 2026 14:57:33 +0000</lastBuildDate>
+    <item>
+      <title>GopherMap v1.0.0</title>
+      <link>https://blog.davep.org/2026/08/12/gophermap-v1-0-0.html</link>
+      <description>&lt;p&gt;When I &lt;a href="https://blog.davep.org/2026/07/27/gophermap-a-simple-library-for-parsing-gopher-responses.html"&gt;first created
+GopherMap&lt;/a&gt;,
+I made it pretty strict about what it did and didn't consider a valid map.
+Unsurprisingly, reality did what reality does and, pretty quickly, Rogallo
+&lt;a href="https://github.com/davep/rogallo/discussions/241" rel="noopener noreferrer" target="_blank"&gt;met maps that didn't fit with this strict
+approach&lt;/a&gt;. So &lt;a href="https://blog.davep.org/2026/07/28/gophermap-v0-2-0.html"&gt;I relaxed
+things&lt;/a&gt;, accepting pretty much anything
+that even vaguely looked like a Gopher map. This solved the problem.&lt;/p&gt;
+&lt;p&gt;However, earlier today, &lt;a href="https://github.com/davep/rogallo/issues/327" rel="noopener noreferrer" target="_blank"&gt;I ran into a page that was obviously supposed to be
+plain text, but was being displayed in part like a
+map&lt;/a&gt;. The problem was my
+attempt at detecting a reply from a Gopher server that looked like it
+&lt;em&gt;might&lt;/em&gt; be an error. This very relaxed approach to &lt;em&gt;"this is likely some
+Gopher stuff, let's accept it as such"&lt;/em&gt; meant that a text file that had a
+&lt;code&gt;3&lt;/code&gt; anywhere in the first column was tripping off the &lt;em&gt;"this is likely some
+Gopher stuff and it looks like there's an error in there"&lt;/em&gt; check. The
+result? Treated like a Gopher map, converted into Gemtext, and displayed in
+the wrong way.&lt;/p&gt;
+&lt;p&gt;So... &lt;a href="https://gophermap.davep.dev/changelog/#v100" rel="noopener noreferrer" target="_blank"&gt;v1.0.0&lt;/a&gt; has been
+released which adds some code to help out with this. The default parsing
+still works as before, but there's now a strict mode which will raise
+exceptions if some sort of significant problem is found. On top of this are
+a couple of helper class methods which &lt;a href="https://gophermap.davep.dev/gophermap/#gophermap.GopherMap.is_likely_a_map" rel="noopener noreferrer" target="_blank"&gt;check if some text is likely a valid
+map&lt;/a&gt;,
+and &lt;a href="https://gophermap.davep.dev/gophermap/#gophermap.GopherMap.is_likely_error" rel="noopener noreferrer" target="_blank"&gt;check if some text is likely a valid map containing an
+error&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;With these in place, I can update Rogallo so that it's still pretty
+easy-going when it comes to showing Gopher maps, but isn't quite so
+laid-back when it comes to finding errors coming back from Gopher servers,
+and so incorrectly rendering the result.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/12/gophermap-v1-0-0.html</guid>
+      <category>Python</category>
+      <category>Coding</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>gopher</category>
+      <category>smolweb</category>
+      <pubDate>Wed, 12 Aug 2026 15:55:27 +0100</pubDate>
+    </item>
     <item>
       <title>html2gemtext - A simple library for converting HTML to Gemtext</title>
       <link>https://blog.davep.org/2026/08/11/html2gemtext-a-simple-library-for-converting-html-to-gemtext.html</link>
@@ -1074,44 +1116,6 @@ user&lt;/a&gt;. From the ChangeLog:&lt;/p&gt;
       <category>smolweb</category>
       <category>textual</category>
       <pubDate>Mon, 27 Jul 2026 09:01:52 +0100</pubDate>
-    </item>
-    <item>
-      <title>Port70 - A Gopher protocol library for Python</title>
-      <link>https://blog.davep.org/2026/07/26/port70-a-gopher-protocol-library-for-python.html</link>
-      <description>&lt;p&gt;It was, of course, inevitable that this would happen. After &lt;a href="https://blog.davep.org/2026/07/25/port79-v1-0-0.html"&gt;spinning up
-Port79&lt;/a&gt; so that I could &lt;a href="https://blog.davep.org/2026/07/24/rogallo-v1-1-0.html"&gt;add &lt;code&gt;finger&lt;/code&gt;
-support to Rogallo&lt;/a&gt;, it made sense that I
-start to think about Gopher support too. So here we go:
-&lt;a href="https://port70.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Port70&lt;/a&gt;, a similar library for async interaction
-with Gopher servers.&lt;/p&gt;
-&lt;p&gt;This is going to be a bit of an adventure for me. While I'm long familiar
-with the existence of Gopher, and I'm fairly certain I used a client once or
-twice back in the 90s, I've never really had dealings with the protocol so
-know very little about it. Which is a good thing: something new (old?) to
-learn.&lt;/p&gt;
-&lt;p&gt;My plan with this is to add the &lt;code&gt;GopherURI&lt;/code&gt; class to &lt;a href="https://github.com/davep/rogallo/blob/7ea4abaddb542e0cc9baa5ddb88d24836cf2bdec/src/rogallo/types.py#L17-L19" rel="noopener noreferrer" target="_blank"&gt;the list of URI
-types&lt;/a&gt;
-that &lt;a href="https://github.com/davep/rogallo/blob/7ea4abaddb542e0cc9baa5ddb88d24836cf2bdec/src/rogallo/screens/main.py#L711-L723" rel="noopener noreferrer" target="_blank"&gt;Rogallo understands and
-handles&lt;/a&gt;
-and then provide a method of displaying and navigating the result. I &lt;em&gt;think&lt;/em&gt;
-the cleanest and easiest way of doing this will be to add some code that
-transforms a &lt;a href="https://en.wikipedia.org/wiki/Gopher_(protocol)#Source_code_of_a_menu" rel="noopener noreferrer" target="_blank"&gt;menu
-response&lt;/a&gt;
-into &lt;a href="https://gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;gemtext&lt;/a&gt; and then just let the &lt;a href="https://github.com/davep/rogallo/tree/main/src/rogallo/widgets/viewer" rel="noopener noreferrer" target="_blank"&gt;viewer
-widget&lt;/a&gt;
-display it as normal; each of the links in the menu being turned into
-&lt;code&gt;gopher://&lt;/code&gt; URIs.&lt;/p&gt;
-&lt;p&gt;This should be fun to play with. I'm looking forward to pulling it all
-together.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/26/port70-a-gopher-protocol-library-for-python.html</guid>
-      <category>Python</category>
-      <category>Coding</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>Rogallo</category>
-      <category>gopher</category>
-      <category>smolweb</category>
-      <pubDate>Sun, 26 Jul 2026 11:32:33 +0100</pubDate>
     </item>
   </channel>
 </rss>

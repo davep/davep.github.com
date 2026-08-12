@@ -8,7 +8,49 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 11 Aug 2026 19:28:25 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 12 Aug 2026 14:57:33 +0000</lastBuildDate>
+    <item>
+      <title>GopherMap v1.0.0</title>
+      <link>https://blog.davep.org/2026/08/12/gophermap-v1-0-0.html</link>
+      <description>&lt;p&gt;When I &lt;a href="https://blog.davep.org/2026/07/27/gophermap-a-simple-library-for-parsing-gopher-responses.html"&gt;first created
+GopherMap&lt;/a&gt;,
+I made it pretty strict about what it did and didn't consider a valid map.
+Unsurprisingly, reality did what reality does and, pretty quickly, Rogallo
+&lt;a href="https://github.com/davep/rogallo/discussions/241" rel="noopener noreferrer" target="_blank"&gt;met maps that didn't fit with this strict
+approach&lt;/a&gt;. So &lt;a href="https://blog.davep.org/2026/07/28/gophermap-v0-2-0.html"&gt;I relaxed
+things&lt;/a&gt;, accepting pretty much anything
+that even vaguely looked like a Gopher map. This solved the problem.&lt;/p&gt;
+&lt;p&gt;However, earlier today, &lt;a href="https://github.com/davep/rogallo/issues/327" rel="noopener noreferrer" target="_blank"&gt;I ran into a page that was obviously supposed to be
+plain text, but was being displayed in part like a
+map&lt;/a&gt;. The problem was my
+attempt at detecting a reply from a Gopher server that looked like it
+&lt;em&gt;might&lt;/em&gt; be an error. This very relaxed approach to &lt;em&gt;"this is likely some
+Gopher stuff, let's accept it as such"&lt;/em&gt; meant that a text file that had a
+&lt;code&gt;3&lt;/code&gt; anywhere in the first column was tripping off the &lt;em&gt;"this is likely some
+Gopher stuff and it looks like there's an error in there"&lt;/em&gt; check. The
+result? Treated like a Gopher map, converted into Gemtext, and displayed in
+the wrong way.&lt;/p&gt;
+&lt;p&gt;So... &lt;a href="https://gophermap.davep.dev/changelog/#v100" rel="noopener noreferrer" target="_blank"&gt;v1.0.0&lt;/a&gt; has been
+released which adds some code to help out with this. The default parsing
+still works as before, but there's now a strict mode which will raise
+exceptions if some sort of significant problem is found. On top of this are
+a couple of helper class methods which &lt;a href="https://gophermap.davep.dev/gophermap/#gophermap.GopherMap.is_likely_a_map" rel="noopener noreferrer" target="_blank"&gt;check if some text is likely a valid
+map&lt;/a&gt;,
+and &lt;a href="https://gophermap.davep.dev/gophermap/#gophermap.GopherMap.is_likely_error" rel="noopener noreferrer" target="_blank"&gt;check if some text is likely a valid map containing an
+error&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;With these in place, I can update Rogallo so that it's still pretty
+easy-going when it comes to showing Gopher maps, but isn't quite so
+laid-back when it comes to finding errors coming back from Gopher servers,
+and so incorrectly rendering the result.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/12/gophermap-v1-0-0.html</guid>
+      <category>Python</category>
+      <category>Coding</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>gopher</category>
+      <category>smolweb</category>
+      <pubDate>Wed, 12 Aug 2026 15:55:27 +0100</pubDate>
+    </item>
     <item>
       <title>html2gemtext - A simple library for converting HTML to Gemtext</title>
       <link>https://blog.davep.org/2026/08/11/html2gemtext-a-simple-library-for-converting-html-to-gemtext.html</link>
@@ -828,28 +870,6 @@ that's all that's needed.&lt;/p&gt;</description>
       <category>smolweb</category>
       <category>wasat</category>
       <pubDate>Sat, 11 Jul 2026 14:40:00 +0100</pubDate>
-    </item>
-    <item>
-      <title>Wasat v0.2.0</title>
-      <link>https://blog.davep.org/2026/07/10/wasat-v0-2-0.html</link>
-      <description>&lt;p&gt;I've made a quick update to &lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;, my async
-&lt;a href="https://blog.davep.org/tag/gemini-protocol/"&gt;Gemini Protocol&lt;/a&gt; client library for
-&lt;a href="https://blog.davep.org/category/python/"&gt;Python&lt;/a&gt;. Now that I'm at a point where I want to add
-client certificates to &lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt;, I'm essentially shaking
-down the support for this in Wasat.&lt;/p&gt;
-&lt;p&gt;One thing I wanted right away was a certificate that, in effect, never
-expires. So with this release of Wasat I've added an option where the days
-to expire can be set to &lt;code&gt;None&lt;/code&gt;, which results in the expiration date being
-set to 9999-12-31.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/10/wasat-v0-2-0.html</guid>
-      <category>Python</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>smolweb</category>
-      <category>wasat</category>
-      <pubDate>Fri, 10 Jul 2026 11:37:37 +0100</pubDate>
     </item>
   </channel>
 </rss>
