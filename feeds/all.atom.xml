@@ -2,11 +2,76 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-08-14T19:01:41.738603+00:00</updated>
+  <updated>2026-08-15T15:09:53.202753+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/08/15/rogallo-v1-9-0.html</id>
+    <title>Rogallo v1.9.0</title>
+    <updated>2026-08-15T16:07:49+01:00</updated>
+    <content type="html">&lt;p&gt;Another update to &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;, another new
+protocol! The main change in
+&lt;a href="https://rogallo.davep.dev/changelog/#v190" rel="noopener noreferrer" target="_blank"&gt;v1.9.0&lt;/a&gt; is the addition of
+support for the &lt;a href="https://nightfall.city/nex/info/specification.txt" rel="noopener noreferrer" target="_blank"&gt;Nex
+protocol&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Nex support in action" height="1952" loading="lazy" src="https://blog.davep.org/attachments/2026/08/15/nex-in-action.webp#centre" width="1766" /&gt;&lt;/p&gt;
+&lt;p&gt;As with &lt;a href="https://rogallo.davep.dev/protocols/" rel="noopener noreferrer" target="_blank"&gt;any other supported
+protocol&lt;/a&gt;, entering a &lt;code&gt;nex://&lt;/code&gt; URI
+into the &lt;a href="https://rogallo.davep.dev/command-line/" rel="noopener noreferrer" target="_blank"&gt;command line&lt;/a&gt; will cause
+Rogallo to load up the response in the viewer and render it. Nex is kind of
+fun in that it's &lt;em&gt;almost&lt;/em&gt; a plain text system, by default, but the
+expectation is that any &lt;code&gt;text/plain&lt;/code&gt; document that has &lt;code&gt;=&amp;gt;&lt;/code&gt; at the start of
+a line will have those lines be treated just like Gemtext links. So, in
+Rogallo, when you visit a page, and that page is &lt;code&gt;text/plain&lt;/code&gt;, the result
+will be rendered like it's very simplistic Gemtext that only supports links.&lt;/p&gt;
+&lt;p&gt;Also, as per the Nex specification, the MIME type of a document is worked
+out from the extension of the file it points at; so if you happen to get a
+Gemtext or Markdown file back from a &lt;code&gt;nex://&lt;/code&gt; URI, this will be suitably
+rendered.&lt;/p&gt;
+&lt;p&gt;Another addition is a &lt;code&gt;SaveSource&lt;/code&gt; command (bound to
+&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;s&lt;/kbd&gt; by default). As you can probably work out from
+the name, this will save the source of the document you're currently
+viewing.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Saving the content of a page" height="1952" loading="lazy" src="https://blog.davep.org/attachments/2026/08/15/saving.webp#centre" width="1766" /&gt;&lt;/p&gt;
+&lt;p&gt;A small housekeeping addition in this release is the cleaning of the content
+cache. When you start up Rogallo, in the background, any cache entries that
+have exceeded their time-to-live (something you can set in the configuration
+file) will be removed. If this results in any cache directories being left
+empty, they will also be removed. This should result in a nice clean cache
+directory that's easier to navigate and manage, if you want to go diving
+into it.&lt;/p&gt;
+&lt;p&gt;I've also added a small experimental development tool, mostly for myself but
+it might be something someone else wants to play with. I realised a few days
+ago that it could be fun to &lt;a href="gemini://tilde.team/~davep/rogallo/screenshots.gmi" rel="noopener noreferrer" target="_blank"&gt;include screenshots of Rogallo in action in my
+Gemini capsule&lt;/a&gt;. The
+thing is: Gemtext doesn't allow for inline images. What it does allow for,
+and many clients support, is ANSI escape sequences. Meanwhile, Rogallo is a
+terminal-based application; its whole method of display is ANSI escape
+sequences. As such, it should be trivial to capture the sequences for any
+given screen and just include them in a Gemtext page.&lt;/p&gt;
+&lt;p&gt;I tried it out and it works a treat! So, if you happen to have
+&lt;code&gt;ROGALLO_SCREENSHOTS&lt;/code&gt; in your environment and it's set to any non-empty
+value, pressing &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;F12&lt;/kbd&gt; writes the
+current screen to &lt;code&gt;~/rogallo-screenshot.ansi&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Yes, it's all horribly hard-coded: the key combination is hard-coded (and
+probably only good for more modern terminal emulators), and the name of the
+file is hard-coded. As I said: it's a development tool that's there for my
+own use. I might make it a little more generic in the future.&lt;/p&gt;
+&lt;p&gt;One final tweak to this release is a fix to the &lt;code&gt;ToggleView&lt;/code&gt; command, which
+stopped letting you view the source of a Gopher map. That ability is now
+back.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/08/15/rogallo-v1-9-0.html"/>
+    <category term="Coding"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="Rogallo"/>
+    <category term="smolweb"/>
+    <published>2026-08-15T16:07:49+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/08/14/smolserve-v1-1-0.html</id>
     <title>SmolServe v1.1.0</title>
@@ -1148,35 +1213,5 @@ It'll come to the docs soon.&amp;#160;&lt;a class="footnote-backref" href="#fnre
     <category term="smolweb"/>
     <category term="textual"/>
     <published>2026-07-29T19:29:05+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/07/28/gophermap-v0-2-0.html</id>
-    <title>GopherMap v0.2.0</title>
-    <updated>2026-07-28T16:48:01+01:00</updated>
-    <content type="html">&lt;p&gt;A quick little update to &lt;a href="https://gophermap.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;GopherMap&lt;/a&gt;.
-&lt;a href="https://gophermap.davep.dev/changelog/#v020" rel="noopener noreferrer" target="_blank"&gt;v0.2.0&lt;/a&gt; greatly relaxes the
-validation of incoming lines, being a lot less fussy about missing tab
-characters and also about fully empty lines.&lt;/p&gt;
-&lt;p&gt;In the first take on this I was being pretty strict but, unsurprisingly,
-&lt;a href="https://github.com/davep/rogallo/discussions/241" rel="noopener noreferrer" target="_blank"&gt;there are sites out there with likely-malformed
-maps&lt;/a&gt; that should
-otherwise work if you're chill about their mistakes.&lt;/p&gt;
-&lt;p&gt;I've got no desire for &lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt; to be harsh in this respect,
-so here's a much more relaxed version of GopherMap.&lt;/p&gt;
-&lt;p&gt;As of right now, the exceptions that are defined in the library are never
-raised. I've left them in for the moment because there's a window of time
-between this version being pushed to PyPI and Rogallo being updated (it does
-use the exceptions), where failure to supply them would cause Rogallo to
-crash under normal circumstances (nobody wants an unnecessary
-&lt;code&gt;ImportError&lt;/code&gt;). Once I've updated Rogallo to pin a new lower bound, and
-removed use of the exceptions, I'll remove them from GopherMap.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/07/28/gophermap-v0-2-0.html"/>
-    <category term="Python"/>
-    <category term="Coding"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="gopher"/>
-    <category term="smolweb"/>
-    <published>2026-07-28T16:48:01+01:00</published>
   </entry>
 </feed>
