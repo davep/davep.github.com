@@ -2,11 +2,48 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-08-15T15:09:53.209813+00:00</updated>
+  <updated>2026-08-16T08:14:31.512323+00:00</updated>
   <link href="https://blog.davep.org/feeds/python.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Python" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/08/16/bagofstuff-v1-3-0.html</id>
+    <title>BagOfStuff v1.3.0</title>
+    <updated>2026-08-16T09:05:47+01:00</updated>
+    <content type="html">&lt;p&gt;For a wee while now I've been trying to nail down a weirdness with the
+navigation history in &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;. I never felt it
+was a difficult issue to deal with, but it was also one of those issues that
+I could never obviously recreate at will, and it only seemed to happen while
+I was busy working on something else.&lt;/p&gt;
+&lt;p&gt;Yesterday evening &lt;a href="https://github.com/davep/rogallo/issues/290#issuecomment-5304008984" rel="noopener noreferrer" target="_blank"&gt;I finally managed to come up with a way to always
+recreate
+it&lt;/a&gt;
+and, having done so, the solution seems pretty straightforward&lt;sup id="fnref:418-1"&gt;&lt;a class="footnote-ref" href="#fn:418-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In order
+to implement the tweak I want, I need to be able to truncate the navigation
+history, and of course do so in a non-destructive way.&lt;/p&gt;
+&lt;p&gt;So the history classes in BagOfStuff
+&lt;a href="https://bagofstuff.davep.dev/changelog/#v130" rel="noopener noreferrer" target="_blank"&gt;v1.3.0&lt;/a&gt; have grown
+&lt;a href="https://bagofstuff.davep.dev/library-contents/history/#bagofstuff.history.SimpleHistory.clone" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;clone&lt;/code&gt;&lt;/a&gt;
+and
+&lt;a href="https://bagofstuff.davep.dev/library-contents/history/#bagofstuff.history.SimpleHistory.truncate" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;truncate&lt;/code&gt;&lt;/a&gt;
+methods. This will allow me to duplicate a history, truncate it at its
+current location, then save it, without affecting the working copy.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:418-1"&gt;
+&lt;p&gt;Why do I feel like I'll regret saying that?&amp;#160;&lt;a class="footnote-backref" href="#fnref:418-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/08/16/bagofstuff-v1-3-0.html"/>
+    <category term="Python"/>
+    <category term="BagOfStuff"/>
+    <category term="Coding"/>
+    <category term="Python"/>
+    <published>2026-08-16T09:05:47+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/08/14/port1900-an-async-python-client-library-for-the-nex-protocol.html</id>
     <title>Port1900 - An async Python client library for the Nex protocol</title>
@@ -107,7 +144,7 @@ That's... doable.&lt;/p&gt;
 &lt;li&gt;Dragging in a reasonably large dependency for what's likely to be a niche
   requirement doesn't quite feel right.&lt;/li&gt;
 &lt;li&gt;Textual's Markdown viewer has, to this day, one massive design flaw: links
-  can't be navigated with the keyboard&lt;sup id="fnref:421-1"&gt;&lt;a class="footnote-ref" href="#fn:421-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'm doing my absolute best to
+  can't be navigated with the keyboard&lt;sup id="fnref:422-1"&gt;&lt;a class="footnote-ref" href="#fn:422-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'm doing my absolute best to
   ensure that Rogallo is keyboard-first. Leaning on this widget for viewing
   Markdown is one thing, but leaning on the widget for other content types
   starts to erode that aim.&lt;/li&gt;
@@ -147,8 +184,8 @@ into an &lt;code&gt;http(s)&lt;/code&gt; browser too. Right? Right?!?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:421-1"&gt;
-&lt;p&gt;This mouse-only problem is a recurring theme in Textual.&amp;#160;&lt;a class="footnote-backref" href="#fnref:421-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:422-1"&gt;
+&lt;p&gt;This mouse-only problem is a recurring theme in Textual.&amp;#160;&lt;a class="footnote-backref" href="#fnref:422-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -809,82 +846,5 @@ so it can complete from there.&lt;/p&gt;</content>
     <category term="smolweb"/>
     <category term="wasat"/>
     <published>2026-07-13T19:31:36+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/07/12/wasat-v0-4-0.html</id>
-    <title>Wasat v0.4.0</title>
-    <updated>2026-07-12T10:12:59+01:00</updated>
-    <content type="html">&lt;p&gt;By this point today I was hoping to have released a new version of
-&lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt;, complete with client certificate support. It is
-more or less all there and ready to go, but I ran into a small problem,
-something which confused me.&lt;/p&gt;
-&lt;p&gt;You see, according to &lt;a href="https://geminiprotocol.net/docs/protocol-specification.gmi" rel="noopener noreferrer" target="_blank"&gt;the documentation for the Gemini
-Protocol&lt;/a&gt;, when
-there's a request by a capsule for a client certificate, that certificate
-should be scoped to the host, port &lt;em&gt;and path and all paths below it&lt;/em&gt;. So
-that means that if &lt;code&gt;example.com/foo&lt;/code&gt; causes a certificate to be requested,
-it's good for &lt;code&gt;example.com/foo&lt;/code&gt; and &lt;code&gt;example.com/foo/bar&lt;/code&gt;, but it isn't
-valid for &lt;code&gt;example.com/other&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Makes sense.&lt;/p&gt;
-&lt;p&gt;The problem I ran into pretty quickly, with my implementation of this in
-Wasat and Rogallo, was this: I hit a site (a microblogging site of sorts)
-that had a joining page at &lt;code&gt;example.com/join&lt;/code&gt;. Once you joined up and set
-your user name, you'd normally land at &lt;code&gt;example.com/me&lt;/code&gt;. They're sibling
-paths and so should &lt;em&gt;not&lt;/em&gt; use the same certificate. However, this was done
-via redirection, so I did some work to "clone" a certificate when there's a
-redirection.&lt;/p&gt;
-&lt;p&gt;But then it got more complicated. The site also lets you follow other
-people. This means that if you visit &lt;code&gt;example.com/other-user&lt;/code&gt; you should
-also still have the client certificate in place so the capsule knows who you
-are (because client certificates are also, in effect, session cookies, as I
-understand it), so you can perform the follow. Again, this is a sibling
-path, and there's no redirection, so the certificate is no good because, at
-this point, it's scoped to &lt;code&gt;example.com/join&lt;/code&gt; and &lt;code&gt;example.com/me&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Meanwhile: testing this with &lt;a href="https://gmi.skyjake.fi/lagrange/" rel="noopener noreferrer" target="_blank"&gt;Lagrange&lt;/a&gt;,
-it had no such problem whatsoever. How was it getting around this issue? Was
-I doing something wrong? Was I misreading the specification for the
-protocol? Was Lagrange being a bit more relaxed about its certificate scope?&lt;/p&gt;
-&lt;p&gt;After doing some digging, it would seem that it's the latter. It looks like
-it, and perhaps other clients, take a pragmatic approach to certificate
-scopes and generally scope them to the host and port alone, ignoring the
-path (in the case of Lagrange it seems to sort of actually divorce the
-certificates from the URIs anyway, treating certificates more as identities
-you can associate with any capsule, etc).&lt;/p&gt;
-&lt;p&gt;Given this, at least for now, I'm going to take that approach. Any time a
-certificate needs to be generated in Rogallo, I'm going to give the user the
-option (on by default) to scope the certificate to the whole host/port
-combination. Later on I might add the ability to fully manage certificates
-(right now that can be done by editing the certificates file in the data
-directory, but a proper UI for it would be nice).&lt;/p&gt;
-&lt;p&gt;Which brings me to this release of Wasat.
-&lt;a href="https://wasat.davep.dev/changelog/#v040" rel="noopener noreferrer" target="_blank"&gt;v0.4.0&lt;/a&gt; adds some extra
-functionality to
-&lt;a href="https://wasat.davep.dev/library/uri/#wasat.uri.GeminiURI" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;GeminiURI&lt;/code&gt;&lt;/a&gt; that
-allows changing and removing individual parts of the URI. There's a new
-&lt;a href="https://wasat.davep.dev/library/uri/#wasat.uri.GeminiURI.replace" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;replace&lt;/code&gt;
-method&lt;/a&gt;
-that can be used to create a clone of a URI with various parts changed.
-Also, if you just want to change one specific part or simply prefer method
-chaining approaches, I've also added more &lt;code&gt;with_&lt;/code&gt; methods similar to the
-pre-existing &lt;a href="https://wasat.davep.dev/library/uri/#wasat.uri.GeminiURI.with_query" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;with_query&lt;/code&gt;
-method&lt;/a&gt;,
-so now there's also
-&lt;a href="https://wasat.davep.dev/library/uri/#wasat.uri.GeminiURI.with_host" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;with_host&lt;/code&gt;&lt;/a&gt;,
-&lt;a href="https://wasat.davep.dev/library/uri/#wasat.uri.GeminiURI.with_port" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;with_port&lt;/code&gt;&lt;/a&gt;
-and
-&lt;a href="https://wasat.davep.dev/library/uri/#wasat.uri.GeminiURI.with_path" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;with_path&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;With these in place I can go back to Rogallo and carry on with the last bits
-of work I want to do on client certificate support, with Wasat making it
-easy for me to clone up and chop and change URIs to suit the scoping
-requirements.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/07/12/wasat-v0-4-0.html"/>
-    <category term="Python"/>
-    <category term="Coding"/>
-    <category term="Gemini Protocol"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="smolweb"/>
-    <category term="wasat"/>
-    <published>2026-07-12T10:12:59+01:00</published>
   </entry>
 </feed>

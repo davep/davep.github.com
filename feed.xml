@@ -8,7 +8,43 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 15 Aug 2026 15:09:53 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 16 Aug 2026 08:14:31 +0000</lastBuildDate>
+    <item>
+      <title>BagOfStuff v1.3.0</title>
+      <link>https://blog.davep.org/2026/08/16/bagofstuff-v1-3-0.html</link>
+      <description>&lt;p&gt;For a wee while now I've been trying to nail down a weirdness with the
+navigation history in &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;. I never felt it
+was a difficult issue to deal with, but it was also one of those issues that
+I could never obviously recreate at will, and it only seemed to happen while
+I was busy working on something else.&lt;/p&gt;
+&lt;p&gt;Yesterday evening &lt;a href="https://github.com/davep/rogallo/issues/290#issuecomment-5304008984" rel="noopener noreferrer" target="_blank"&gt;I finally managed to come up with a way to always
+recreate
+it&lt;/a&gt;
+and, having done so, the solution seems pretty straightforward&lt;sup id="fnref:418-1"&gt;&lt;a class="footnote-ref" href="#fn:418-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In order
+to implement the tweak I want, I need to be able to truncate the navigation
+history, and of course do so in a non-destructive way.&lt;/p&gt;
+&lt;p&gt;So the history classes in BagOfStuff
+&lt;a href="https://bagofstuff.davep.dev/changelog/#v130" rel="noopener noreferrer" target="_blank"&gt;v1.3.0&lt;/a&gt; have grown
+&lt;a href="https://bagofstuff.davep.dev/library-contents/history/#bagofstuff.history.SimpleHistory.clone" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;clone&lt;/code&gt;&lt;/a&gt;
+and
+&lt;a href="https://bagofstuff.davep.dev/library-contents/history/#bagofstuff.history.SimpleHistory.truncate" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;truncate&lt;/code&gt;&lt;/a&gt;
+methods. This will allow me to duplicate a history, truncate it at its
+current location, then save it, without affecting the working copy.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:418-1"&gt;
+&lt;p&gt;Why do I feel like I'll regret saying that?&amp;#160;&lt;a class="footnote-backref" href="#fnref:418-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/16/bagofstuff-v1-3-0.html</guid>
+      <category>Python</category>
+      <category>BagOfStuff</category>
+      <category>Coding</category>
+      <category>Python</category>
+      <pubDate>Sun, 16 Aug 2026 09:05:47 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v1.9.0</title>
       <link>https://blog.davep.org/2026/08/15/rogallo-v1-9-0.html</link>
@@ -161,7 +197,7 @@ the HTML into Markdown and then use the Markdown widget to show the result,
 &lt;a href="https://blog.davep.org/2026/08/11/html2gemtext-a-simple-library-for-converting-html-to-gemtext.html"&gt;but in the end I decided to turn it into Gemtext
 instead&lt;/a&gt;;
 in part because it's a fun challenge, and in part because it feels more in
-keeping with the Geminispace aesthetic&lt;sup id="fnref:424-1"&gt;&lt;a class="footnote-ref" href="#fn:424-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+keeping with the Geminispace aesthetic&lt;sup id="fnref:425-1"&gt;&lt;a class="footnote-ref" href="#fn:425-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So, whereas before, if you landed on some HTML in Geminispace, you'd see
 this:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Viewing raw HTML" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/raw-html.webp#centre" width="836" /&gt;&lt;/p&gt;
@@ -199,7 +235,7 @@ you have to get past to get to the content. I can see this being an
 &lt;p&gt;&lt;img alt="The Station logo taking up space" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/the-station-logo.webp#centre" width="836" /&gt;&lt;/p&gt;
 &lt;p&gt;So I got to thinking: in the case of
 &lt;a href="gemini://station.martinrue.com/" rel="noopener noreferrer" target="_blank"&gt;Station&lt;/a&gt;, the author of the site has been
-kind enough to give the pre-formatted text block some alt-text&lt;sup id="fnref:424-2"&gt;&lt;a class="footnote-ref" href="#fn:424-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, so that
+kind enough to give the pre-formatted text block some alt-text&lt;sup id="fnref:425-2"&gt;&lt;a class="footnote-ref" href="#fn:425-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, so that
 means it's possible to have a targeted filter for such well-designed sites.
 Given this, I've added &lt;a href="https://rogallo.davep.dev/viewer/#filtering-out-pre-formatted-text" rel="noopener noreferrer" target="_blank"&gt;a method of filtering out pre-formatted
 blocks&lt;/a&gt;,
@@ -243,11 +279,11 @@ column of any line, being seen as a Gopher map that indicated an error.&lt;/p&gt
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:424-1"&gt;
-&lt;p&gt;Which also has me wanting, longer-term, to do the same for Markdown. While using the Markdown widget is neat and all, I think it would be far more in keeping with the purpose of this project to turn Markdown into Gemtext.&amp;#160;&lt;a class="footnote-backref" href="#fnref:424-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:425-1"&gt;
+&lt;p&gt;Which also has me wanting, longer-term, to do the same for Markdown. While using the Markdown widget is neat and all, I think it would be far more in keeping with the purpose of this project to turn Markdown into Gemtext.&amp;#160;&lt;a class="footnote-backref" href="#fnref:425-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:424-2"&gt;
-&lt;p&gt;As I write more Gemtext myself, I'm going to do my very best to always do the same.&amp;#160;&lt;a class="footnote-backref" href="#fnref:424-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:425-2"&gt;
+&lt;p&gt;As I write more Gemtext myself, I'm going to do my very best to always do the same.&amp;#160;&lt;a class="footnote-backref" href="#fnref:425-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -332,7 +368,7 @@ That's... doable.&lt;/p&gt;
 &lt;li&gt;Dragging in a reasonably large dependency for what's likely to be a niche
   requirement doesn't quite feel right.&lt;/li&gt;
 &lt;li&gt;Textual's Markdown viewer has, to this day, one massive design flaw: links
-  can't be navigated with the keyboard&lt;sup id="fnref:421-1"&gt;&lt;a class="footnote-ref" href="#fn:421-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'm doing my absolute best to
+  can't be navigated with the keyboard&lt;sup id="fnref:422-1"&gt;&lt;a class="footnote-ref" href="#fn:422-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'm doing my absolute best to
   ensure that Rogallo is keyboard-first. Leaning on this widget for viewing
   Markdown is one thing, but leaning on the widget for other content types
   starts to erode that aim.&lt;/li&gt;
@@ -372,8 +408,8 @@ into an &lt;code&gt;http(s)&lt;/code&gt; browser too. Right? Right?!?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:421-1"&gt;
-&lt;p&gt;This mouse-only problem is a recurring theme in Textual.&amp;#160;&lt;a class="footnote-backref" href="#fnref:421-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:422-1"&gt;
+&lt;p&gt;This mouse-only problem is a recurring theme in Textual.&amp;#160;&lt;a class="footnote-backref" href="#fnref:422-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -787,7 +823,7 @@ that page on most versions of my website. What I haven't done, since the
 early 1980s, is play the game.&lt;/p&gt;
 &lt;p&gt;I suppose, at some point, I could have grabbed a VIC-20 emulator and typed
 it in. Or, if I didn't want to type it in (and I don't), I suppose I could
-have tried to OCR it and get it into an emulator&lt;sup id="fnref:428-1"&gt;&lt;a class="footnote-ref" href="#fn:428-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. But of course I never
+have tried to OCR it and get it into an emulator&lt;sup id="fnref:429-1"&gt;&lt;a class="footnote-ref" href="#fn:429-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. But of course I never
 did.&lt;/p&gt;
 &lt;p&gt;Then, a week or so back, I got to thinking: if I threw the two images at an
 agent, asked it to OCR the code, and then build me a web-based version of
@@ -832,8 +868,8 @@ back off the page.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:428-1"&gt;
-&lt;p&gt;And given how well this has gone, I might try that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:428-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:429-1"&gt;
+&lt;p&gt;And given how well this has gone, I might try that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:429-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1080,121 +1116,6 @@ to v1.2.0. Oh well...&lt;/p&gt;</description>
       <category>smolweb</category>
       <category>wasat</category>
       <pubDate>Thu, 30 Jul 2026 08:45:09 +0100</pubDate>
-    </item>
-    <item>
-      <title>Rogallo v1.3.0</title>
-      <link>https://blog.davep.org/2026/07/29/rogallo-v1-3-0.html</link>
-      <description>&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt; has been updated to
-&lt;a href="https://rogallo.davep.dev/changelog/#v130" rel="noopener noreferrer" target="_blank"&gt;v1.3.0&lt;/a&gt;. This release adds an
-extra cosmetic feature to the Gopher support, and also extends what the
-internal command line is capable of.&lt;/p&gt;
-&lt;p&gt;Both of the changes come from suggestions made by
-&lt;a href="https://redterminal.org" rel="noopener noreferrer" target="_blank"&gt;-fab-&lt;/a&gt;, who's been an avid tester of Rogallo and a
-good source of pointers and ideas. The first change comes from a mention
-they made of how some &lt;a href="https://blog.davep.org/tag/gopher/"&gt;Gopher&lt;/a&gt; clients will prefix links in a
-map with a three-letter ID to give a clue as to what the linked resource is.
-&lt;code&gt;TXT&lt;/code&gt; for a text file, &lt;code&gt;SND&lt;/code&gt; for any audio file, &lt;code&gt;MNU&lt;/code&gt; for a link to a
-further map, that sort of thing. While I didn't add that &lt;a href="https://blog.davep.org/2026/07/28/rogallo-v1-2-0.html"&gt;when I initially
-added Gopher support&lt;/a&gt;, it did seem like a
-useful option to provide.&lt;/p&gt;
-&lt;p&gt;However, this being a "modern" TUI application, with access to a wee bit
-more than plain old ASCII, I thought I'd mix it up a little. By default,
-little "icons" or "badges" are shown with each link. So to take the examples
-given above, I'm using 📄 for a text file, 🎵 for an audio file, and 📁 for
-a menu.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Rogallo showing a Gopher hole" height="1952" loading="lazy" src="https://blog.davep.org/attachments/2026/07/29/gopher-site.webp#centre" width="1766" /&gt;&lt;/p&gt;
-&lt;p&gt;Of course, some people might not want this, and this can be &lt;a href="https://rogallo.davep.dev/configuration/#gopher-item-badges" rel="noopener noreferrer" target="_blank"&gt;turned off
-entirely in the configuration
-file&lt;/a&gt; by
-setting &lt;code&gt;gopher_show_type_badges&lt;/code&gt; to &lt;code&gt;false&lt;/code&gt;. However, it might be that
-someone wants this, but not the emoji. That's where &lt;code&gt;gopher_type_badges&lt;/code&gt;
-comes in. This is an association of Gopher types with text to use as the
-"badge". If three-letter all-ASCII "badges" are what you want:&lt;/p&gt;
-&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;quot;gopher_type_badges&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(TXT)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(DIR)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(CSO)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;3&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(ERR)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;4&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(HQX)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;5&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(DOS)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;6&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(UUE)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;7&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(FND)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;8&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(TEL)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;9&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(BIN)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;i&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(INF)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;g&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(GIF)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;I&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(IMG)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;h&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(WEB)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(DOC)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;s&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(SND)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;P&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(PDF)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;X&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(XML)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;unknown&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(???)&amp;quot;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The other feature springs from &lt;a href="https://github.com/davep/rogallo/discussions/252" rel="noopener noreferrer" target="_blank"&gt;another suggestion -fab-
-made&lt;/a&gt;. This time it was
-the idea of adding direct command-line support for Gemini and Gopher search
-engines. This struck me as an excellent idea, but I got to thinking that it
-could be a little more generic than that. So I've added support for
-declaring simple command-line aliases. There's now a section in the
-configuration file&lt;sup id="fnref:389-1"&gt;&lt;a class="footnote-ref" href="#fn:389-1"&gt;1&lt;/a&gt;&lt;/sup&gt; called &lt;code&gt;aliases&lt;/code&gt;. It's an association of a command
-alias and an expansion. The alias itself must be a single "word" of
-characters, and the expansion the actual command that will be used. It can
-be any other command-line command, or a URI. Anything that the command line
-can normally handle.&lt;/p&gt;
-&lt;p&gt;When the user types something into the command line, the input will be split
-on the first space. If the first half matches an alias, it will be
-substituted for the input, and the tail of the input will be made available
-as a parameter to the expansion.&lt;/p&gt;
-&lt;p&gt;There are three placeholders that do the expansion:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;{q}&lt;/code&gt; -- The tail of the command quoted for use in a URI&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;{qp}&lt;/code&gt; -- As above, but spaces will be &lt;code&gt;+&lt;/code&gt; rather than &lt;code&gt;%20&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;{r}&lt;/code&gt; -- The raw, unquoted, tail of the command&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I've probably done a bad job of explaining it. But hopefully the following
-default set of aliases will nicely illustrate it:&lt;/p&gt;
-&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;quot;aliases&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;fg&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gopher://gopher.floodgap.com/1/v2/vs?{q}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;gp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gemini://gemi.dev/cgi-bin/wp.cgi/search?{q}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;ken&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gemini://kennedy.gemi.dev/search?{q}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;tlgs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gemini://tlgs.one/search?{q}&amp;quot;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Given this, if you type &lt;code&gt;ken test search&lt;/code&gt;, the actual command that gets
-input is &lt;code&gt;gemini://kennedy.gemi.dev/search?test%20search&lt;/code&gt;. As I said, it's
-not just about search engines; you can also expand to other built-in
-commands. For example:&lt;/p&gt;
-&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;quot;whois&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;!finger {r}&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Would have &lt;code&gt;whois davep@plan.cat&lt;/code&gt; expand to &lt;code&gt;!finger davep@plan.cat&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;I feel this nicely solves the original request &lt;em&gt;and&lt;/em&gt; adds an extra layer of
-utility to the internal command line.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:389-1"&gt;
-&lt;p&gt;Which I totally forgot to document when putting together this release.
-It'll come to the docs soon.&amp;#160;&lt;a class="footnote-backref" href="#fnref:389-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/29/rogallo-v1-3-0.html</guid>
-      <category>Coding</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>Rogallo</category>
-      <category>gemtext</category>
-      <category>gopher</category>
-      <category>smolweb</category>
-      <category>textual</category>
-      <pubDate>Wed, 29 Jul 2026 19:29:05 +0100</pubDate>
     </item>
   </channel>
 </rss>
