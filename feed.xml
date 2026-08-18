@@ -8,7 +8,62 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 18 Aug 2026 07:04:47 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 18 Aug 2026 08:05:37 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v1.10.0</title>
+      <link>https://blog.davep.org/2026/08/18/rogallo-v1-10-0.html</link>
+      <description>&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
+&lt;a href="https://rogallo.davep.dev/changelog/#v1100" rel="noopener noreferrer" target="_blank"&gt;v1.10.0&lt;/a&gt; has been released.
+This is a pretty small release, with a bug fix to navigation, and an
+improvement to how navigable Markdown documents are if viewed in the
+application.&lt;/p&gt;
+&lt;p&gt;In &lt;a href="https://blog.davep.org/2026/08/13/rogallo-v1-8-0.html"&gt;Rogallo v1.8.0&lt;/a&gt; I made some changes to
+how Markdown documents are shown, if they're encountered and detected in
+Geminispace (or any of the other protocol spaces that might let you know the
+content type of a document). Whereas originally the document was shown in
+its raw form (marked up with syntax highlighting), v1.8.0 moved to using a
+fully-rendered form thanks to the internal Markdown widget.&lt;/p&gt;
+&lt;p&gt;But, &lt;a href="https://blog.davep.org/2026/08/16/md2gemtext-a-library-for-converting-markdown-to-gemtext.html"&gt;as I've mentioned elsewhere in this
+blog&lt;/a&gt;,
+I wasn't 100% happy with this. The main problem is that the Markdown widget
+supplied by Textual is pretty unfriendly to keyboard navigation, and I want
+as much of Rogallo to be navigable with the keyboard as is possible.&lt;/p&gt;
+&lt;p&gt;To solve this I've created &lt;a href="https://md2gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;md2gemtext&lt;/a&gt; and
+started using it here in Rogallo. This means that, by default, from now on,
+any time a Markdown document is received by Rogallo, the content is
+converted into Gemtext before being displayed. The big advantage here is
+that links are far easier to see and follow and the document as a whole
+looks more in keeping with most other pages you'll visit.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Markdown rendered as a Gemtext document" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/08/18/markdown-after.webp" width="916" /&gt;&lt;/p&gt;
+&lt;p&gt;I'm sensitive to the fact that some folk might prefer the previous method of
+viewing Markdown, so this feature &lt;a href="https://rogallo.davep.dev/viewer/#markdown-rendering" rel="noopener noreferrer" target="_blank"&gt;is
+configurable&lt;/a&gt;. If
+you'd prefer the widget-based rendering instead, set this value:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;quot;convert_markdown_to_gemtext&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;to &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Markdown rendered in a full Markdown widget" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/08/18/markdown-before.webp#centre" width="916" /&gt;&lt;/p&gt;
+&lt;p&gt;The other change in this release is a fix to how navigation history is saved
+and restored. For a couple or so weeks now, on occasion, I was finding that
+when I ran up Rogallo again, navigated from the restored page, and then used
+&lt;code&gt;Backward&lt;/code&gt;, I would end up somewhere else. It was intermittent and, for a
+while, hard to pin down. Mostly I'd notice this while rapidly closing and
+opening Rogallo while working on some other feature. Eventually &lt;a href="https://github.com/davep/rogallo/issues/290#issuecomment-5304008984" rel="noopener noreferrer" target="_blank"&gt;I figured
+out the sequence of events causing the
+problem&lt;/a&gt;
+and it was an easy enough fix.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/18/rogallo-v1-10-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>Markdown</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>smolweb</category>
+      <pubDate>Tue, 18 Aug 2026 09:03:27 +0100</pubDate>
+    </item>
     <item>
       <title>Recently I found - 6</title>
       <link>https://blog.davep.org/2026/08/17/recently-i-found-6.html</link>
@@ -1004,84 +1059,6 @@ Hatchery&lt;/a&gt;.&lt;/p&gt;</description>
       <category>life</category>
       <category>travel</category>
       <pubDate>Sat, 01 Aug 2026 21:09:52 +0100</pubDate>
-    </item>
-    <item>
-      <title>Rogallo v1.4.0</title>
-      <link>https://blog.davep.org/2026/07/31/rogallo-v1-4-0.html</link>
-      <description>&lt;p&gt;I've updated &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt; to
-&lt;a href="https://rogallo.davep.dev/changelog/#v140" rel="noopener noreferrer" target="_blank"&gt;v1.4.0&lt;/a&gt;. The main change in this
-release is to how server certificates are handled, which in turn should
-solve a bit of friction Rogallo had when using some popular Gemini capsules.&lt;/p&gt;
-&lt;p&gt;Until now, Rogallo simply used a
-&lt;a href="https://en.wikipedia.org/wiki/Trust_on_first_use" rel="noopener noreferrer" target="_blank"&gt;TOFU&lt;/a&gt; approach for all
-capsules it encountered. In part, this was because that's all I'd really
-read about until that point, and also in part because, as Rogallo became
-more capable and I started to use it as my daily-driver, it just worked.
-Then, within the space of about a week, I had two popular capsules
-apparently change their fingerprint. I wasn't expecting that so soon (hence
-&lt;a href="https://github.com/davep/rogallo/issues/148" rel="noopener noreferrer" target="_blank"&gt;one issue about dealing with
-this&lt;/a&gt; still needing to be
-worked on).&lt;/p&gt;
-&lt;p&gt;With this in mind, &lt;a href="https://github.com/davep/rogallo/issues/221" rel="noopener noreferrer" target="_blank"&gt;I made a note about
-this&lt;/a&gt;, and carried on. When
-&lt;a href="gemini://bbs.geminispace.org/s/Astrobotany/46479" rel="noopener noreferrer" target="_blank"&gt;someone else also noticed the fingerprint change for
-AstroBotany&lt;/a&gt;, this made me
-want to try and actually sort this out. And so here's v1.4.0, which I think
-will (if I've understood things correctly) address the problem and make the
-journey a lot smoother.&lt;/p&gt;
-&lt;p&gt;From this version, Rogallo uses a kind of "hybrid" approach to validating
-the certificate of a capsule. Simply put, here's how it goes:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Can we check with a certificate authority? If so, perform that check and
-  raise an error if there's a problem.&lt;/li&gt;
-&lt;li&gt;If, on the other hand, the certificate is self-signed, use the TOFU route.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;To help keep an eye on this approach, and because it's just generally handy
-to know, I've added a small new element to the UI of Rogallo: a verification
-badge. This can be seen up in the top-left corner of the viewer. It has
-three states:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;It will show &lt;code&gt;⛉&lt;/code&gt; if we're visiting a capsule that was validated using a CA&lt;/li&gt;
-&lt;li&gt;It will show &lt;code&gt;✓&lt;/code&gt; if we're visiting a capsule that was validated using TOFU&lt;/li&gt;
-&lt;li&gt;It will show no icon if we're visiting a location where this isn't
-  applicable&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This is alongside the already-existing &lt;code&gt;⚿&lt;/code&gt; icon that is shown if we're
-making use of a client certificate.&lt;/p&gt;
-&lt;p&gt;While I've not documented them yet (I need to do a round of website
-updates), each of these icons can be changed if you prefer something
-different. Just take a look in the &lt;code&gt;configuration.json&lt;/code&gt; file for Rogallo.&lt;/p&gt;
-&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;client_certificate_used_icon&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u26bf&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;verified_ca_icon&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u26c9&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;verified_tofu_icon&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u2713&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;verified_off_icon&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u2717&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;verified_none_icon&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Note that under normal circumstances the &lt;code&gt;off&lt;/code&gt; icon there should never be
-needed or seen. That's just more for testing.&lt;/p&gt;
-&lt;p&gt;All of this ends up looking something like this:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Showing the new icons" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/07/31/showing-icons.webp#centre" width="780" /&gt;&lt;/p&gt;
-&lt;p&gt;To help test and keep an eye on this, I've also added a new command to
-Rogallo: &lt;code&gt;AboutThisPage&lt;/code&gt;, bound to &lt;kbd&gt;F7&lt;/kbd&gt; by default. With it you can
-check on some information about the current page, and also the certificate
-that was checked when acquiring it.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Showing info on a CA-certified page" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/07/31/ca-info.webp#centre" width="852" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Showing info on a self-signed page" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/07/31/self-signed-info.webp#centre" width="852" /&gt;&lt;/p&gt;
-&lt;p&gt;Note that if a page is loaded from cache you &lt;em&gt;won't&lt;/em&gt; see certificate
-information in this dialog, as that isn't (currently) recorded in the
-metadata in the cache. I &lt;em&gt;might&lt;/em&gt; do that at some point in the future, but it
-didn't seem necessary for now.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/31/rogallo-v1-4-0.html</guid>
-      <category>Coding</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>Rogallo</category>
-      <category>gemtext</category>
-      <category>smolweb</category>
-      <pubDate>Fri, 31 Jul 2026 08:53:27 +0100</pubDate>
     </item>
   </channel>
 </rss>

@@ -2,11 +2,67 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-08-18T07:04:47.532251+00:00</updated>
+  <updated>2026-08-18T08:05:37.624662+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/08/18/rogallo-v1-10-0.html</id>
+    <title>Rogallo v1.10.0</title>
+    <updated>2026-08-18T09:03:27+01:00</updated>
+    <content type="html">&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
+&lt;a href="https://rogallo.davep.dev/changelog/#v1100" rel="noopener noreferrer" target="_blank"&gt;v1.10.0&lt;/a&gt; has been released.
+This is a pretty small release, with a bug fix to navigation, and an
+improvement to how navigable Markdown documents are if viewed in the
+application.&lt;/p&gt;
+&lt;p&gt;In &lt;a href="https://blog.davep.org/2026/08/13/rogallo-v1-8-0.html"&gt;Rogallo v1.8.0&lt;/a&gt; I made some changes to
+how Markdown documents are shown, if they're encountered and detected in
+Geminispace (or any of the other protocol spaces that might let you know the
+content type of a document). Whereas originally the document was shown in
+its raw form (marked up with syntax highlighting), v1.8.0 moved to using a
+fully-rendered form thanks to the internal Markdown widget.&lt;/p&gt;
+&lt;p&gt;But, &lt;a href="https://blog.davep.org/2026/08/16/md2gemtext-a-library-for-converting-markdown-to-gemtext.html"&gt;as I've mentioned elsewhere in this
+blog&lt;/a&gt;,
+I wasn't 100% happy with this. The main problem is that the Markdown widget
+supplied by Textual is pretty unfriendly to keyboard navigation, and I want
+as much of Rogallo to be navigable with the keyboard as is possible.&lt;/p&gt;
+&lt;p&gt;To solve this I've created &lt;a href="https://md2gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;md2gemtext&lt;/a&gt; and
+started using it here in Rogallo. This means that, by default, from now on,
+any time a Markdown document is received by Rogallo, the content is
+converted into Gemtext before being displayed. The big advantage here is
+that links are far easier to see and follow and the document as a whole
+looks more in keeping with most other pages you'll visit.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Markdown rendered as a Gemtext document" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/08/18/markdown-after.webp" width="916" /&gt;&lt;/p&gt;
+&lt;p&gt;I'm sensitive to the fact that some folk might prefer the previous method of
+viewing Markdown, so this feature &lt;a href="https://rogallo.davep.dev/viewer/#markdown-rendering" rel="noopener noreferrer" target="_blank"&gt;is
+configurable&lt;/a&gt;. If
+you'd prefer the widget-based rendering instead, set this value:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;quot;convert_markdown_to_gemtext&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;to &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Markdown rendered in a full Markdown widget" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/08/18/markdown-before.webp#centre" width="916" /&gt;&lt;/p&gt;
+&lt;p&gt;The other change in this release is a fix to how navigation history is saved
+and restored. For a couple or so weeks now, on occasion, I was finding that
+when I ran up Rogallo again, navigated from the restored page, and then used
+&lt;code&gt;Backward&lt;/code&gt;, I would end up somewhere else. It was intermittent and, for a
+while, hard to pin down. Mostly I'd notice this while rapidly closing and
+opening Rogallo while working on some other feature. Eventually &lt;a href="https://github.com/davep/rogallo/issues/290#issuecomment-5304008984" rel="noopener noreferrer" target="_blank"&gt;I figured
+out the sequence of events causing the
+problem&lt;/a&gt;
+and it was an easy enough fix.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/08/18/rogallo-v1-10-0.html"/>
+    <category term="Coding"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="Markdown"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="Rogallo"/>
+    <category term="smolweb"/>
+    <published>2026-08-18T09:03:27+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/08/15/rogallo-v1-9-0.html</id>
     <title>Rogallo v1.9.0</title>
@@ -1489,95 +1545,5 @@ most interested in how they can tailor it to their own taste.&lt;/p&gt;</content
     <category term="smolweb"/>
     <category term="textual"/>
     <published>2026-07-14T18:45:28+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/07/12/rogallo-v0-6-0.html</id>
-    <title>Rogallo v0.6.0</title>
-    <updated>2026-07-12T12:01:17+01:00</updated>
-    <content type="html">&lt;p&gt;I've just released &lt;a href="https://github.com/davep/rogallo" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt; v0.6.0, which
-contains the last big feature that was missing to make it a viable
-daily-driver &lt;a href="https://blog.davep.org/tag/gemini-protocol/"&gt;Gemini Protocol&lt;/a&gt; client. That feature?
-Client certificates.&lt;/p&gt;
-&lt;p&gt;From now on, if you visit a capsule that requests a client certificate,
-rather than an error being shown, a dialog will pop up:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Simple dialog" height="2208" loading="lazy" src="https://blog.davep.org/attachments/2026/07/12/simple-cert.webp#centre" width="2182" /&gt;&lt;/p&gt;
-&lt;p&gt;When you select the &lt;code&gt;Create&lt;/code&gt; button, the certificate will be created and
-then, from then on, when you visit the capsule, that client certificate will
-be used.&lt;/p&gt;
-&lt;p&gt;As you might have noticed, there are "advanced options" available too. Most
-are just optional values that go into the certificate itself:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The advanced options" height="2208" loading="lazy" src="https://blog.davep.org/attachments/2026/07/12/advanced-cert.webp#centre" width="2182" /&gt;&lt;/p&gt;
-&lt;p&gt;The two advanced options that mostly affect how all of this works are the
-scope and the transient option. The transient option means that the
-certificate is only good for the lifetime of this run of Rogallo. If you
-close Rogallo, the certificate will be discarded. In almost all cases,
-you'll want to leave this turned off.&lt;/p&gt;
-&lt;p&gt;The scope toggle affects the scoping of the certificate. As I've &lt;a href="https://blog.davep.org/2026/07/12/wasat-v0-4-0.html"&gt;been able
-to understand&lt;/a&gt;, the strict reading of the
-Gemini Protocol says that a certificate should be scoped to the host, port,
-and &lt;em&gt;path&lt;/em&gt; where it was first requested and generated for. However, out in
-the real world, it seems there are applications built for the protocol that
-don't work well with that approach. With this in mind, I've built Rogallo to
-always scope to just the domain and port, by default. If you want a
-particular certificate to follow the strict letter of the specification,
-turn the &lt;em&gt;"Scope to domain/port"&lt;/em&gt; option off.&lt;/p&gt;
-&lt;p&gt;With all that in place, it should now be possible to use Rogallo with any
-Gemini application that needs client-side authentication. For the last
-couple of days, I've been using it to successfully play AstroBotany, for
-example.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Logged in to AstroBotany" height="2208" loading="lazy" src="https://blog.davep.org/attachments/2026/07/12/logged-in.webp#centre" width="2182" /&gt;&lt;/p&gt;
-&lt;p&gt;As I said: with this in place, I believe Rogallo has all of the basic
-requirements of a Gemini protocol client covered. I'm not quite ready to
-call it v1.0.0 just yet -- there's a fair bit of testing and tweaking I
-still want to do, and I can see that, when it comes to certificates for
-example, there's some extra error handling I need to throw in. Additionally,
-the "advanced" version of the certificate create dialog is kind of tall for
-many terminals; I think I might need to play with the layout a bit.&lt;/p&gt;
-&lt;p&gt;Also, as I've mentioned a few times: I want to get proper documentation
-written and hosted on a dedicated site.&lt;/p&gt;
-&lt;p&gt;Back to this release: there's also a handful of other QoL changes and fixes.
-These include:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Any page that is opened from an in-page link is now always retrieved from
-  the remote location, bypassing any cached copy. The idea being that, if
-  someone is actively navigating documents, they will want the freshest
-  version of the new page.&lt;/li&gt;
-&lt;li&gt;Fixed the layout of list items. Before now, the text wasn't wrapping,
-  while, at the same time, space was being made for the text as if it was
-  being wrapped.&lt;/li&gt;
-&lt;li&gt;The bookmark search palette is no longer available if there are no
-  bookmarks to search (the idea being that not being available is less
-  confusing than being available but empty).&lt;/li&gt;
-&lt;li&gt;The connection timeout, read timeout, and maximum number of redirects can
-  now be set in the configuration file.&lt;/li&gt;
-&lt;li&gt;The title area of the viewer now has a key icon that appears if a page is
-  using a client certificate.&lt;/li&gt;
-&lt;li&gt;Pages that require a client-side certificate are never added to the cache
-  (the idea being that such pages are more likely to have dynamic content,
-  and so the freshest version should always be loaded).&lt;/li&gt;
-&lt;li&gt;Reworked what is recorded in navigation and location history to ensure
-  that what is saved is the landing URI, not the URI that was first visited.
-  This solves the problem of what happens during redirections, and so also
-  solves the issue of what happens with &lt;code&gt;10&lt;/code&gt;/&lt;code&gt;11&lt;/code&gt; response inputs (having
-  the resulting query appear in history could result in duplicated
-  "submissions" to whatever app was in use).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;With these enhancements and fixes in place, I'm going to &lt;a href="gemini://astrobotany.mozz.us/public/ccd9fe566703411fa6065a9935fb6832/m1" rel="noopener noreferrer" target="_blank"&gt;keep tending my
-plant&lt;/a&gt;,
-and &lt;a href="gemini://station.martinrue.com/davep" rel="noopener noreferrer" target="_blank"&gt;posting away on Station&lt;/a&gt;, as a
-way of continuing to shake down the application. With that in mind, if
-anyone knows of any other sites and apps I should be testing against out in
-Geminispace, do let me know!&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/07/12/rogallo-v0-6-0.html"/>
-    <category term="Coding"/>
-    <category term="Coding"/>
-    <category term="Gemini Protocol"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="Rogallo"/>
-    <category term="gemtext"/>
-    <category term="smolweb"/>
-    <category term="textual"/>
-    <published>2026-07-12T12:01:17+01:00</published>
   </entry>
 </feed>
