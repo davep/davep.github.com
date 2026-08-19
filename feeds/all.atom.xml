@@ -2,11 +2,115 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-08-18T08:05:37.616456+00:00</updated>
+  <updated>2026-08-19T14:27:57.755430+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/08/19/rogallo-v1-11-0.html</id>
+    <title>Rogallo v1.11.0</title>
+    <updated>2026-08-19T15:24:54+01:00</updated>
+    <content type="html">&lt;p&gt;A quick little update to &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;, bumping to
+&lt;a href="https://rogallo.davep.dev/changelog/#v1110" rel="noopener noreferrer" target="_blank"&gt;v1.11.0&lt;/a&gt;. This release is
+mainly in support of people who like to use the mouse as much as, if not
+more than, the keyboard; and also in support of people who might wish to
+reclaim a couple of lines of display for actual content.&lt;/p&gt;
+&lt;p&gt;The main change in this release is that I've swapped out the header line
+that Rogallo used to have (which used the &lt;a href="https://textual.textualize.io/widgets/header/" rel="noopener noreferrer" target="_blank"&gt;stock Textual &lt;code&gt;Header&lt;/code&gt;
+widget&lt;/a&gt;) and replaced it with
+a mouse-friendly toolbar.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The new Rogallo toolbar" height="1212" loading="lazy" src="https://blog.davep.org/attachments/2026/08/19/new-toolbar.webp#centre" width="1288" /&gt;&lt;/p&gt;
+&lt;p&gt;The thinking behind this was twofold: first, the current header wasn't
+really very useful, showing just the name of the application and the version
+number. I would hope, really, that most people know what application it is
+they're running, so having the name there wasn't super useful. Secondly,
+while Rogallo aims to be keyboard-friendly -- ideally keyboard-first -- it
+also aims to be mouse-friendly where possible. The problem with the
+mouse-friendly approach is that a lot of application commands were, for the
+mouse user, locked behind the command palette. While not impossible to
+navigate and use, it wasn't the smoothest experience.&lt;/p&gt;
+&lt;p&gt;So I've swapped that header out for &lt;a href="https://rogallo.davep.dev/toolbar/" rel="noopener noreferrer" target="_blank"&gt;a configurable toolbar of command
+buttons&lt;/a&gt;. The content of the toolbar is
+set using the &lt;code&gt;toolbar_contents&lt;/code&gt; setting in the configuration file. The
+default set looks like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;GoHome&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u2302&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Reload&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u21bb&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Backward&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u25c0\u25c0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Forward&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u25b6\u25b6&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;GoToParent&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u2191&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;GoToRoot&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u21c8&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SearchHistory&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u25f7&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SearchBookmarks&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u2605&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ToggleView&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u21cb&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The value in the first position for each button is the name of a &lt;a href="https://rogallo.davep.dev/configuration/#bindable-commands" rel="noopener noreferrer" target="_blank"&gt;bindable
+command&lt;/a&gt;. The
+second value is the text to place on the button itself. If you simply want
+to use the command's name, rather than a pair of values, you can just use
+the command name. So suppose you wanted to use &lt;code&gt;Reload&lt;/code&gt;, &lt;code&gt;Backward&lt;/code&gt; and
+&lt;code&gt;Forward&lt;/code&gt; as-is, you could set things like this:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;GoHome&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u2302&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Reload&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Backward&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Forward&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;GoToParent&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u2191&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;GoToRoot&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u21c8&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SearchHistory&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u25f7&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SearchBookmarks&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u2605&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ToggleView&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;\u21cb&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In addition to this setting, I've also added some other toolbar-related
+settings. There is:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;quot;toolbar_visible&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;which controls if the toolbar is visible at all. So if you're a
+keyboard-only kind of user and you want that extra line back, just set that
+to &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;There is also:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;quot;toolbar_tooltips&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;which controls the tooltips that will appear when you hover over a button in
+the toolbar. These are there to explain what each button does, and to also
+show you what keyboard binding is associated with each one. If the tooltips
+get irritating, set this to &lt;code&gt;false&lt;/code&gt; so they don't appear.&lt;/p&gt;
+&lt;p&gt;Lastly, there is:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;quot;toolbar_can_get_focus&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;As I've said: the toolbar is added in support of people who use the mouse a
+fair bit. This means that, by default, it can't be interacted with using the
+keyboard. This makes sense in that each of the commands will have a keyboard
+binding, so it makes more sense to simply use that. However, if you really
+&lt;em&gt;must&lt;/em&gt; use the toolbar with the keyboard, you can set this setting to &lt;code&gt;true&lt;/code&gt;
+to enable it. When set this way, you can navigate into the toolbar and
+switch focus to each of those buttons using the normal &lt;kbd&gt;Tab&lt;/kbd&gt; and
+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;Tab&lt;/kbd&gt; navigation keys.&lt;/p&gt;
+&lt;p&gt;One other little configuration feature can also be used to reclaim an extra
+line in the display. If you have no need for the footer of the application
+(where some important keys are shown), you can turn it off with:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;quot;footer_visible&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Set it to &lt;code&gt;false&lt;/code&gt; and you get one more line of content.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/08/19/rogallo-v1-11-0.html"/>
+    <category term="Coding"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="Rogallo"/>
+    <category term="smolweb"/>
+    <published>2026-08-19T15:24:54+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/08/18/rogallo-v1-10-0.html</id>
     <title>Rogallo v1.10.0</title>
@@ -334,7 +438,7 @@ the HTML into Markdown and then use the Markdown widget to show the result,
 &lt;a href="https://blog.davep.org/2026/08/11/html2gemtext-a-simple-library-for-converting-html-to-gemtext.html"&gt;but in the end I decided to turn it into Gemtext
 instead&lt;/a&gt;;
 in part because it's a fun challenge, and in part because it feels more in
-keeping with the Geminispace aesthetic&lt;sup id="fnref:427-1"&gt;&lt;a class="footnote-ref" href="#fn:427-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+keeping with the Geminispace aesthetic&lt;sup id="fnref:428-1"&gt;&lt;a class="footnote-ref" href="#fn:428-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So, whereas before, if you landed on some HTML in Geminispace, you'd see
 this:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Viewing raw HTML" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/raw-html.webp#centre" width="836" /&gt;&lt;/p&gt;
@@ -372,7 +476,7 @@ you have to get past to get to the content. I can see this being an
 &lt;p&gt;&lt;img alt="The Station logo taking up space" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/the-station-logo.webp#centre" width="836" /&gt;&lt;/p&gt;
 &lt;p&gt;So I got to thinking: in the case of
 &lt;a href="gemini://station.martinrue.com/" rel="noopener noreferrer" target="_blank"&gt;Station&lt;/a&gt;, the author of the site has been
-kind enough to give the pre-formatted text block some alt-text&lt;sup id="fnref:427-2"&gt;&lt;a class="footnote-ref" href="#fn:427-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, so that
+kind enough to give the pre-formatted text block some alt-text&lt;sup id="fnref:428-2"&gt;&lt;a class="footnote-ref" href="#fn:428-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, so that
 means it's possible to have a targeted filter for such well-designed sites.
 Given this, I've added &lt;a href="https://rogallo.davep.dev/viewer/#filtering-out-pre-formatted-text" rel="noopener noreferrer" target="_blank"&gt;a method of filtering out pre-formatted
 blocks&lt;/a&gt;,
@@ -416,11 +520,11 @@ column of any line, being seen as a Gopher map that indicated an error.&lt;/p&gt
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:427-1"&gt;
-&lt;p&gt;Which also has me wanting, longer-term, to do the same for Markdown. While using the Markdown widget is neat and all, I think it would be far more in keeping with the purpose of this project to turn Markdown into Gemtext.&amp;#160;&lt;a class="footnote-backref" href="#fnref:427-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:428-1"&gt;
+&lt;p&gt;Which also has me wanting, longer-term, to do the same for Markdown. While using the Markdown widget is neat and all, I think it would be far more in keeping with the purpose of this project to turn Markdown into Gemtext.&amp;#160;&lt;a class="footnote-backref" href="#fnref:428-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:427-2"&gt;
-&lt;p&gt;As I write more Gemtext myself, I'm going to do my very best to always do the same.&amp;#160;&lt;a class="footnote-backref" href="#fnref:427-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:428-2"&gt;
+&lt;p&gt;As I write more Gemtext myself, I'm going to do my very best to always do the same.&amp;#160;&lt;a class="footnote-backref" href="#fnref:428-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -507,7 +611,7 @@ That's... doable.&lt;/p&gt;
 &lt;li&gt;Dragging in a reasonably large dependency for what's likely to be a niche
   requirement doesn't quite feel right.&lt;/li&gt;
 &lt;li&gt;Textual's Markdown viewer has, to this day, one massive design flaw: links
-  can't be navigated with the keyboard&lt;sup id="fnref:423-1"&gt;&lt;a class="footnote-ref" href="#fn:423-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'm doing my absolute best to
+  can't be navigated with the keyboard&lt;sup id="fnref:424-1"&gt;&lt;a class="footnote-ref" href="#fn:424-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'm doing my absolute best to
   ensure that Rogallo is keyboard-first. Leaning on this widget for viewing
   Markdown is one thing, but leaning on the widget for other content types
   starts to erode that aim.&lt;/li&gt;
@@ -547,8 +651,8 @@ into an &lt;code&gt;http(s)&lt;/code&gt; browser too. Right? Right?!?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:423-1"&gt;
-&lt;p&gt;This mouse-only problem is a recurring theme in Textual.&amp;#160;&lt;a class="footnote-backref" href="#fnref:423-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:424-1"&gt;
+&lt;p&gt;This mouse-only problem is a recurring theme in Textual.&amp;#160;&lt;a class="footnote-backref" href="#fnref:424-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -970,7 +1074,7 @@ that page on most versions of my website. What I haven't done, since the
 early 1980s, is play the game.&lt;/p&gt;
 &lt;p&gt;I suppose, at some point, I could have grabbed a VIC-20 emulator and typed
 it in. Or, if I didn't want to type it in (and I don't), I suppose I could
-have tried to OCR it and get it into an emulator&lt;sup id="fnref:431-1"&gt;&lt;a class="footnote-ref" href="#fn:431-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. But of course I never
+have tried to OCR it and get it into an emulator&lt;sup id="fnref:432-1"&gt;&lt;a class="footnote-ref" href="#fn:432-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. But of course I never
 did.&lt;/p&gt;
 &lt;p&gt;Then, a week or so back, I got to thinking: if I threw the two images at an
 agent, asked it to OCR the code, and then build me a web-based version of
@@ -1015,8 +1119,8 @@ back off the page.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:431-1"&gt;
-&lt;p&gt;And given how well this has gone, I might try that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:431-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:432-1"&gt;
+&lt;p&gt;And given how well this has gone, I might try that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:432-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1061,21 +1165,5 @@ Hatchery&lt;/a&gt;.&lt;/p&gt;</content>
     <category term="life"/>
     <category term="travel"/>
     <published>2026-08-02T20:27:54+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/08/01/back-in-whitby.html</id>
-    <title>Back in Whitby</title>
-    <updated>2026-08-01T21:09:52+01:00</updated>
-    <content type="html">&lt;p&gt;Back in Whitby. Fossils will be hunted. Food will be eaten.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Back in Whitby" height="2268" loading="lazy" src="https://blog.davep.org/attachments/2026/08/01/whitby.webp#centre" width="4032" /&gt;&lt;/p&gt;
-&lt;p&gt;Easily my favourite place to visit.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/08/01/back-in-whitby.html"/>
-    <category term="Life"/>
-    <category term="Fossils"/>
-    <category term="Whitby"/>
-    <category term="Yorkshire"/>
-    <category term="life"/>
-    <category term="travel"/>
-    <published>2026-08-01T21:09:52+01:00</published>
   </entry>
 </feed>
