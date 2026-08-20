@@ -8,7 +8,59 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 19 Aug 2026 14:27:57 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Aug 2026 11:05:22 +0000</lastBuildDate>
+    <item>
+      <title>BagOfStuff v2.0.0</title>
+      <link>https://blog.davep.org/2026/08/20/bagofstuff-v2-0-0.html</link>
+      <description>&lt;p&gt;I've just made a small update to
+&lt;a href="https://bagofstuff.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BagOfStuff&lt;/a&gt;, my little support library for
+my personal Python-based FOSS projects. This release makes some more changes
+to the history classes, adding an
+&lt;a href="https://bagofstuff.davep.dev/library-contents/history/#bagofstuff.history.SimpleHistory.add_or_replace" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;add_or_replace&lt;/code&gt;&lt;/a&gt;
+method, and also making some improvements to the type hinting by basing the
+classes on
+&lt;a href="https://docs.python.org/3/library/collections.abc.html#collections.abc.MutableSequence" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;MutableSequence&lt;/code&gt;&lt;/a&gt;
+rather than
+&lt;a href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;Sequence&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While the history classes were originally intended to feel immutable, it's
+obvious that they're really not. The idea was that stuff gets added to them,
+stuff falls off the other end, and stuff might disappear depending on the
+context and when stuff gets added. The general idea was that direct
+manipulation was something that wouldn't happen. So I'd started out with
+them inheriting from &lt;code&gt;Sequence&lt;/code&gt;, and so implying they were a read-only
+interface.&lt;/p&gt;
+&lt;p&gt;Given this acknowledgement, they now inherit from &lt;code&gt;MutableSequence&lt;/code&gt;. This
+means that some extra (dunder) methods are added, and it also means that
+some extra exceptions can be raised. For example: setting slices to
+iterables &lt;em&gt;isn't&lt;/em&gt; supported and will raise a &lt;code&gt;NotImplementedError&lt;/code&gt;. Some
+other slice-based operations aren't supported either.&lt;/p&gt;
+&lt;p&gt;While this is close to a breaking change, it's fine for my use of this code.
+However, I had to make one big breaking change: I'd written &lt;code&gt;clear&lt;/code&gt; so that
+it returned &lt;code&gt;Self&lt;/code&gt;&lt;sup id="fnref:423-1"&gt;&lt;a class="footnote-ref" href="#fn:423-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The interface expected by &lt;code&gt;MutableSequence&lt;/code&gt; is one
+that returns &lt;code&gt;None&lt;/code&gt;. So to strictly comply with that interface, I've changed
+the return type.&lt;/p&gt;
+&lt;p&gt;With this being a breaking change, I've bumped the library version to
+&lt;a href="https://bagofstuff.davep.dev/changelog/#v200" rel="noopener noreferrer" target="_blank"&gt;v2.0.0&lt;/a&gt;. While it's really a
+small change, and only one I'd notice, there's no getting away from the fact
+that the API has changed. That deserves a major version bump.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:423-1"&gt;
+&lt;p&gt;I tend to prefer that a method that might return &lt;code&gt;None&lt;/code&gt; actually
+return &lt;code&gt;Self&lt;/code&gt;; it allows for chaining. I recognise that there are other
+schools of thought about this in the Python world; I'm not a member of
+those schools.&amp;#160;&lt;a class="footnote-backref" href="#fnref:423-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/20/bagofstuff-v2-0-0.html</guid>
+      <category>Python</category>
+      <category>BagOfStuff</category>
+      <category>Coding</category>
+      <category>Python</category>
+      <pubDate>Thu, 20 Aug 2026 10:46:16 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v1.11.0</title>
       <link>https://blog.davep.org/2026/08/19/rogallo-v1-11-0.html</link>
@@ -431,7 +483,7 @@ the HTML into Markdown and then use the Markdown widget to show the result,
 &lt;a href="https://blog.davep.org/2026/08/11/html2gemtext-a-simple-library-for-converting-html-to-gemtext.html"&gt;but in the end I decided to turn it into Gemtext
 instead&lt;/a&gt;;
 in part because it's a fun challenge, and in part because it feels more in
-keeping with the Geminispace aesthetic&lt;sup id="fnref:428-1"&gt;&lt;a class="footnote-ref" href="#fn:428-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+keeping with the Geminispace aesthetic&lt;sup id="fnref:429-1"&gt;&lt;a class="footnote-ref" href="#fn:429-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So, whereas before, if you landed on some HTML in Geminispace, you'd see
 this:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Viewing raw HTML" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/raw-html.webp#centre" width="836" /&gt;&lt;/p&gt;
@@ -469,7 +521,7 @@ you have to get past to get to the content. I can see this being an
 &lt;p&gt;&lt;img alt="The Station logo taking up space" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/the-station-logo.webp#centre" width="836" /&gt;&lt;/p&gt;
 &lt;p&gt;So I got to thinking: in the case of
 &lt;a href="gemini://station.martinrue.com/" rel="noopener noreferrer" target="_blank"&gt;Station&lt;/a&gt;, the author of the site has been
-kind enough to give the pre-formatted text block some alt-text&lt;sup id="fnref:428-2"&gt;&lt;a class="footnote-ref" href="#fn:428-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, so that
+kind enough to give the pre-formatted text block some alt-text&lt;sup id="fnref:429-2"&gt;&lt;a class="footnote-ref" href="#fn:429-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, so that
 means it's possible to have a targeted filter for such well-designed sites.
 Given this, I've added &lt;a href="https://rogallo.davep.dev/viewer/#filtering-out-pre-formatted-text" rel="noopener noreferrer" target="_blank"&gt;a method of filtering out pre-formatted
 blocks&lt;/a&gt;,
@@ -513,11 +565,11 @@ column of any line, being seen as a Gopher map that indicated an error.&lt;/p&gt
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:428-1"&gt;
-&lt;p&gt;Which also has me wanting, longer-term, to do the same for Markdown. While using the Markdown widget is neat and all, I think it would be far more in keeping with the purpose of this project to turn Markdown into Gemtext.&amp;#160;&lt;a class="footnote-backref" href="#fnref:428-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:429-1"&gt;
+&lt;p&gt;Which also has me wanting, longer-term, to do the same for Markdown. While using the Markdown widget is neat and all, I think it would be far more in keeping with the purpose of this project to turn Markdown into Gemtext.&amp;#160;&lt;a class="footnote-backref" href="#fnref:429-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:428-2"&gt;
-&lt;p&gt;As I write more Gemtext myself, I'm going to do my very best to always do the same.&amp;#160;&lt;a class="footnote-backref" href="#fnref:428-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:429-2"&gt;
+&lt;p&gt;As I write more Gemtext myself, I'm going to do my very best to always do the same.&amp;#160;&lt;a class="footnote-backref" href="#fnref:429-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -602,7 +654,7 @@ That's... doable.&lt;/p&gt;
 &lt;li&gt;Dragging in a reasonably large dependency for what's likely to be a niche
   requirement doesn't quite feel right.&lt;/li&gt;
 &lt;li&gt;Textual's Markdown viewer has, to this day, one massive design flaw: links
-  can't be navigated with the keyboard&lt;sup id="fnref:424-1"&gt;&lt;a class="footnote-ref" href="#fn:424-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'm doing my absolute best to
+  can't be navigated with the keyboard&lt;sup id="fnref:425-1"&gt;&lt;a class="footnote-ref" href="#fn:425-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'm doing my absolute best to
   ensure that Rogallo is keyboard-first. Leaning on this widget for viewing
   Markdown is one thing, but leaning on the widget for other content types
   starts to erode that aim.&lt;/li&gt;
@@ -642,8 +694,8 @@ into an &lt;code&gt;http(s)&lt;/code&gt; browser too. Right? Right?!?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:424-1"&gt;
-&lt;p&gt;This mouse-only problem is a recurring theme in Textual.&amp;#160;&lt;a class="footnote-backref" href="#fnref:424-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:425-1"&gt;
+&lt;p&gt;This mouse-only problem is a recurring theme in Textual.&amp;#160;&lt;a class="footnote-backref" href="#fnref:425-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1057,7 +1109,7 @@ that page on most versions of my website. What I haven't done, since the
 early 1980s, is play the game.&lt;/p&gt;
 &lt;p&gt;I suppose, at some point, I could have grabbed a VIC-20 emulator and typed
 it in. Or, if I didn't want to type it in (and I don't), I suppose I could
-have tried to OCR it and get it into an emulator&lt;sup id="fnref:432-1"&gt;&lt;a class="footnote-ref" href="#fn:432-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. But of course I never
+have tried to OCR it and get it into an emulator&lt;sup id="fnref:433-1"&gt;&lt;a class="footnote-ref" href="#fn:433-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. But of course I never
 did.&lt;/p&gt;
 &lt;p&gt;Then, a week or so back, I got to thinking: if I threw the two images at an
 agent, asked it to OCR the code, and then build me a web-based version of
@@ -1102,8 +1154,8 @@ back off the page.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:432-1"&gt;
-&lt;p&gt;And given how well this has gone, I might try that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:432-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:433-1"&gt;
+&lt;p&gt;And given how well this has gone, I might try that.&amp;#160;&lt;a class="footnote-backref" href="#fnref:433-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1118,35 +1170,6 @@ back off the page.&lt;/p&gt;
       <category>html</category>
       <category>web</category>
       <pubDate>Mon, 03 Aug 2026 19:59:12 +0100</pubDate>
-    </item>
-    <item>
-      <title>Fossil hunting in Whitby</title>
-      <link>https://blog.davep.org/2026/08/02/fossil-hunting-in-whitby.html</link>
-      <description>&lt;p&gt;Today was a wonderful day of fossil hunting on the east beach in
-&lt;a href="https://blog.davep.org/tag/whitby/"&gt;Whitby&lt;/a&gt;. We were ready to get down onto the beach before the
-tide was out enough to let us on, and got off not too long before it would
-have been back in again (but with more time to spare than the &lt;a href="https://blog.davep.org/2026/04/20/whitby.html"&gt;last
-time&lt;/a&gt;). Fossils were found. Rock pools were
-studied. Fun was had. Donuts and candy-floss were consumed on the way back
-to the car.&lt;/p&gt;
-&lt;p&gt;It was a pretty ideal day.&lt;/p&gt;
-&lt;p&gt;Here's a small assortment of photos.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Embedded fossil" height="3024" loading="lazy" src="https://blog.davep.org/attachments/2026/08/02/IMG_0505.webp#centre" width="3024" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Another embedded fossil" height="3024" loading="lazy" src="https://blog.davep.org/attachments/2026/08/02/IMG_0507.webp#centre" width="4032" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The cave that's good for fossils" height="4284" loading="lazy" src="https://blog.davep.org/attachments/2026/08/02/IMG_0520.webp#centre" width="5712" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://blog.davep.org/attachments/2026/08/02/IMG_0522.webp"&gt;&lt;img alt="Panorama of the beach" height="3868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/02/IMG_0522.webp#centre" width="16350" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Yet another embedded fossil" height="2721" loading="lazy" src="https://blog.davep.org/attachments/2026/08/02/IMG_0544.webp#centre" width="2721" /&gt;&lt;/p&gt;
-&lt;p&gt;We're all happy-tired now, and full of dinner. Back home tomorrow. But, all
-being well, only after a quick trip to the &lt;a href="https://whitbylobsterhatchery.co.uk/" rel="noopener noreferrer" target="_blank"&gt;Whitby Lobster
-Hatchery&lt;/a&gt;.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/08/02/fossil-hunting-in-whitby.html</guid>
-      <category>Life</category>
-      <category>Fossils</category>
-      <category>Whitby</category>
-      <category>Yorkshire</category>
-      <category>life</category>
-      <category>travel</category>
-      <pubDate>Sun, 02 Aug 2026 20:27:54 +0100</pubDate>
     </item>
   </channel>
 </rss>

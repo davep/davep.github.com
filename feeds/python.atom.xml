@@ -2,11 +2,64 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-08-19T14:27:57.769560+00:00</updated>
+  <updated>2026-08-20T11:05:22.326716+00:00</updated>
   <link href="https://blog.davep.org/feeds/python.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Python" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/08/20/bagofstuff-v2-0-0.html</id>
+    <title>BagOfStuff v2.0.0</title>
+    <updated>2026-08-20T10:46:16+01:00</updated>
+    <content type="html">&lt;p&gt;I've just made a small update to
+&lt;a href="https://bagofstuff.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;BagOfStuff&lt;/a&gt;, my little support library for
+my personal Python-based FOSS projects. This release makes some more changes
+to the history classes, adding an
+&lt;a href="https://bagofstuff.davep.dev/library-contents/history/#bagofstuff.history.SimpleHistory.add_or_replace" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;add_or_replace&lt;/code&gt;&lt;/a&gt;
+method, and also making some improvements to the type hinting by basing the
+classes on
+&lt;a href="https://docs.python.org/3/library/collections.abc.html#collections.abc.MutableSequence" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;MutableSequence&lt;/code&gt;&lt;/a&gt;
+rather than
+&lt;a href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;Sequence&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While the history classes were originally intended to feel immutable, it's
+obvious that they're really not. The idea was that stuff gets added to them,
+stuff falls off the other end, and stuff might disappear depending on the
+context and when stuff gets added. The general idea was that direct
+manipulation was something that wouldn't happen. So I'd started out with
+them inheriting from &lt;code&gt;Sequence&lt;/code&gt;, and so implying they were a read-only
+interface.&lt;/p&gt;
+&lt;p&gt;Given this acknowledgement, they now inherit from &lt;code&gt;MutableSequence&lt;/code&gt;. This
+means that some extra (dunder) methods are added, and it also means that
+some extra exceptions can be raised. For example: setting slices to
+iterables &lt;em&gt;isn't&lt;/em&gt; supported and will raise a &lt;code&gt;NotImplementedError&lt;/code&gt;. Some
+other slice-based operations aren't supported either.&lt;/p&gt;
+&lt;p&gt;While this is close to a breaking change, it's fine for my use of this code.
+However, I had to make one big breaking change: I'd written &lt;code&gt;clear&lt;/code&gt; so that
+it returned &lt;code&gt;Self&lt;/code&gt;&lt;sup id="fnref:423-1"&gt;&lt;a class="footnote-ref" href="#fn:423-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The interface expected by &lt;code&gt;MutableSequence&lt;/code&gt; is one
+that returns &lt;code&gt;None&lt;/code&gt;. So to strictly comply with that interface, I've changed
+the return type.&lt;/p&gt;
+&lt;p&gt;With this being a breaking change, I've bumped the library version to
+&lt;a href="https://bagofstuff.davep.dev/changelog/#v200" rel="noopener noreferrer" target="_blank"&gt;v2.0.0&lt;/a&gt;. While it's really a
+small change, and only one I'd notice, there's no getting away from the fact
+that the API has changed. That deserves a major version bump.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:423-1"&gt;
+&lt;p&gt;I tend to prefer that a method that might return &lt;code&gt;None&lt;/code&gt; actually
+return &lt;code&gt;Self&lt;/code&gt;; it allows for chaining. I recognise that there are other
+schools of thought about this in the Python world; I'm not a member of
+those schools.&amp;#160;&lt;a class="footnote-backref" href="#fnref:423-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content>
+    <link href="https://blog.davep.org/2026/08/20/bagofstuff-v2-0-0.html"/>
+    <category term="Python"/>
+    <category term="BagOfStuff"/>
+    <category term="Coding"/>
+    <category term="Python"/>
+    <published>2026-08-20T10:46:16+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/08/16/md2gemtext-a-library-for-converting-markdown-to-gemtext.html</id>
     <title>md2gemtext - A library for converting Markdown to Gemtext</title>
@@ -183,7 +236,7 @@ That's... doable.&lt;/p&gt;
 &lt;li&gt;Dragging in a reasonably large dependency for what's likely to be a niche
   requirement doesn't quite feel right.&lt;/li&gt;
 &lt;li&gt;Textual's Markdown viewer has, to this day, one massive design flaw: links
-  can't be navigated with the keyboard&lt;sup id="fnref:424-1"&gt;&lt;a class="footnote-ref" href="#fn:424-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'm doing my absolute best to
+  can't be navigated with the keyboard&lt;sup id="fnref:425-1"&gt;&lt;a class="footnote-ref" href="#fn:425-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'm doing my absolute best to
   ensure that Rogallo is keyboard-first. Leaning on this widget for viewing
   Markdown is one thing, but leaning on the widget for other content types
   starts to erode that aim.&lt;/li&gt;
@@ -223,8 +276,8 @@ into an &lt;code&gt;http(s)&lt;/code&gt; browser too. Right? Right?!?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:424-1"&gt;
-&lt;p&gt;This mouse-only problem is a recurring theme in Textual.&amp;#160;&lt;a class="footnote-backref" href="#fnref:424-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:425-1"&gt;
+&lt;p&gt;This mouse-only problem is a recurring theme in Textual.&amp;#160;&lt;a class="footnote-backref" href="#fnref:425-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -790,73 +843,5 @@ but I can't see a use for it any time soon. Perhaps v2.0.0.&amp;#160;&lt;a class
     <category term="gemtext"/>
     <category term="smolweb"/>
     <published>2026-07-16T08:58:50+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/07/14/wasat-v0-6-0.html</id>
-    <title>Wasat v0.6.0</title>
-    <updated>2026-07-14T12:14:35+01:00</updated>
-    <content type="html">&lt;p&gt;&lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;
-&lt;a href="https://wasat.davep.dev/changelog/#v060" rel="noopener noreferrer" target="_blank"&gt;v0.6.0&lt;/a&gt; is now available. This is
-another quick update that fixes a small typing issue and also adds a handy
-new method I've been meaning to add to
-&lt;a href="https://wasat.davep.dev/library/uri/#wasat.uri.GeminiURI" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;GeminiURI&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The typing issue is a simple enough one. The &lt;code&gt;__init__&lt;/code&gt; method for
-&lt;code&gt;GeminiURI&lt;/code&gt; can take either a string or another &lt;code&gt;GeminiURI&lt;/code&gt; as its argument.
-However, the type was actually specified as &lt;code&gt;str | Self&lt;/code&gt;. In
-&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;, I want to have a sub-class of
-&lt;code&gt;GeminiURI&lt;/code&gt; for one particular purpose, which will be passed an instance of
-&lt;code&gt;GeminiURI&lt;/code&gt;. Something like this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;KnownHost&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;GeminiURI&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;A known host.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;From this, I want to be able to do:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;KnownHost&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;known_hosts&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;where &lt;code&gt;known_hosts&lt;/code&gt; is typed as &lt;code&gt;list[GeminiURI]&lt;/code&gt;. At this point, the type
-checker complains:&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Argument 1 to &amp;quot;KnownHost&amp;quot; has incompatible type &amp;quot;GeminiURI&amp;quot;; expected &amp;quot;str | KnownHost&amp;quot;  [arg-type]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The error is correct, because the use of &lt;code&gt;Self&lt;/code&gt; is saying "this needs to be
-an instance of my class". There's no reason why it needs to work this way,
-so I've relaxed the type to &lt;code&gt;str | GeminiURI&lt;/code&gt;. In my example above,
-&lt;code&gt;KnownHost&lt;/code&gt; is a subclass of &lt;code&gt;GeminiURI&lt;/code&gt;, so the type checker will be happy
-again.&lt;/p&gt;
-&lt;p&gt;The new method I've added is &lt;code&gt;GeminiURI.with_default_scheme&lt;/code&gt;. This is a
-class method that acts as a more relaxed "constructor" for a &lt;code&gt;GeminiURI&lt;/code&gt;.
-Again, in Rogallo, there are a few places where I'm taking some input,
-assuming it's going to be a &lt;code&gt;gemini://&lt;/code&gt; URI, checking if it's missing the
-scheme prefix, and then prefixing the string with &lt;code&gt;gemini://&lt;/code&gt; before
-creating a &lt;code&gt;GeminiURI&lt;/code&gt;&lt;sup id="fnref:407-1"&gt;&lt;a class="footnote-ref" href="#fn:407-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This means that Rogallo contains a few instances
-of this sort of code:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="c1"&gt;# ...we should treat some text as a URI but it isn&amp;#39;t prefixed with &amp;quot;gemini://&amp;quot;&lt;/span&gt;
-    &lt;span class="n"&gt;uri&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GeminiURI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;GEMINI_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}{&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;It's a small difference, but from now on I'll be able to:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;uri&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GeminiURI&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;with_default_scheme&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This removes the need to check if there's a scheme already &lt;em&gt;and&lt;/em&gt; it saves me
-having to import &lt;code&gt;GEMINI_PREFIX&lt;/code&gt;, etc.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:407-1"&gt;
-&lt;p&gt;&lt;code&gt;GeminiURI&lt;/code&gt; will deliberately raise an exception if the scheme isn't &lt;code&gt;gemini&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:407-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/07/14/wasat-v0-6-0.html"/>
-    <category term="Python"/>
-    <category term="Coding"/>
-    <category term="Gemini Protocol"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="smolweb"/>
-    <category term="wasat"/>
-    <published>2026-07-14T12:14:35+01:00</published>
   </entry>
 </feed>
