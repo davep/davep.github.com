@@ -21,7 +21,7 @@ Textual Markdown widget to display it, or at least giving the user a
 configuration option to decide how Markdown is displayed -- I also want to
 pay some attention to my (currently rather simple) [Gemini-based
 log](gemini://tilde.team/~davep/gemlog/) and use this library to build a
-tool that will convert [my blog](https://blog.davep.org/)'s [Markdown
+tool that will convert this blog's [Markdown
 content](https://github.com/davep/davep.github.com/tree/main/content/posts)
 into Gemtext that looks just how I want it.
 
