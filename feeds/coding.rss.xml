@@ -8,7 +8,88 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 21 Aug 2026 12:55:59 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 22 Aug 2026 11:10:03 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v1.12.0</title>
+      <link>https://blog.davep.org/2026/08/22/rogallo-v1-12-0.html</link>
+      <description>&lt;p&gt;I've released &lt;a href="https://rogallo.davep.dev/changelog/#v1120" rel="noopener noreferrer" target="_blank"&gt;v1.12.0&lt;/a&gt; of
+&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;. This version contains a number of
+internal changes, as well as some user-facing improvements.&lt;/p&gt;
+&lt;h2 id="improved-navigation-history"&gt;Improved navigation history&lt;/h2&gt;
+&lt;p&gt;For a wee while now I've been wanting to tweak the way the navigation
+history works. Up until this release, this was simply a backward/forward
+affair with no attempt to restore the actual context of a page you've gone
+back to. This could best be felt if you're a fan of
+&lt;a href="gemini://astrobotany.mozz.us/" rel="noopener noreferrer" target="_blank"&gt;AstroBotany&lt;/a&gt;. If you were to visit the
+flowering plants in your community garden, with a view to visiting each one
+and picking petals, the natural thing to do would be to visit a specific
+plant, pick a petal, then go &lt;code&gt;Backward&lt;/code&gt; twice to get back to the list of
+flowering plants. The problem at that point is that the link for the
+just-visited plant would no longer be focused. This made it just a bit more
+faff to go to the next plant on the list.&lt;/p&gt;
+&lt;p&gt;From this release, when going backward and forward through navigation
+history, Rogallo attempts to ensure that the link you had followed on that
+page is focused again.&lt;/p&gt;
+&lt;p&gt;Internally, this caused a fairly big overhaul of how history navigation
+information is recorded. I've done a fair bit of testing and all seems good;
+but &lt;a href="https://github.com/davep/rogallo?tab=contributing-ov-file" rel="noopener noreferrer" target="_blank"&gt;do let me
+know&lt;/a&gt; if you
+experience any oddness.&lt;/p&gt;
+&lt;h2 id="showing-empty-content"&gt;Showing empty content&lt;/h2&gt;
+&lt;p&gt;This is a small fix. If you were to visit a URI that resulted in an empty
+document being received, the viewer would disappear. The viewer &lt;em&gt;is&lt;/em&gt;
+supposed to disappear if you are visiting nowhere, but it shouldn't
+disappear if you're visiting somewhere that has nothing to show. This is now
+fixed.&lt;/p&gt;
+&lt;h2 id="parentroot-navigation"&gt;Parent/root navigation&lt;/h2&gt;
+&lt;p&gt;Rogallo has a couple of commands that make it easier to navigate to the
+parent directory of a visited location, and also to the root. However, I'd
+only implemented this for Gemini and Spartan URIs and sort of forgotten to
+finish this off. With this release Gopher and Nex get to join in on the
+parent/root navigation party.&lt;/p&gt;
+&lt;h2 id="cancelling-requests"&gt;Cancelling requests&lt;/h2&gt;
+&lt;p&gt;This one came up because, as of the time of writing, the server where my wee
+capsule lives is dead&lt;sup id="fnref:432-1"&gt;&lt;a class="footnote-ref" href="#fn:432-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This meant that if I checked if it was there, and
+got impatient and went to navigate somewhere else, the somewhere else would
+load and then, after the defined timeout, the error about the previous
+request would pop up.&lt;/p&gt;
+&lt;p&gt;Rogallo now ensures that, if you have an in-flight request running, and then
+navigate elsewhere, that pre-existing request is cancelled.&lt;/p&gt;
+&lt;h2 id="custom-prompts"&gt;Custom prompts&lt;/h2&gt;
+&lt;p&gt;The in-application command line of Rogallo has two styles of prompt. The
+normal input prompt (shown as &lt;code&gt;&amp;gt;&lt;/code&gt;), and the busy prompt (shown as a series
+of braille characters that animate as dots snaking around). I realised that
+some folk might enjoy &lt;a href="https://rogallo.davep.dev/command-line/#configuration" rel="noopener noreferrer" target="_blank"&gt;setting their own
+prompts&lt;/a&gt;. While I
+think the defaults are nice and clean, if you wanted something more
+colourful and on-theme (in a Gemini sense anyway, which tends to be
+space-oriented), you could update your configuration file with:&lt;/p&gt;
+&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;command_line_prompt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;🚀&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;busy_indicator_cells&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;🌑🌒🌓🌔🌕🌖🌗🌘&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and have this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A space-themed prompt" loading="lazy" src="https://blog.davep.org/attachments/2026/08/22/space-prompt.gif#centre" /&gt;&lt;/p&gt;
+&lt;p&gt;I'm currently running with this for my own installation of Rogallo and it's
+rather growing on me.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:432-1"&gt;
+&lt;p&gt;From what I've seen, someone managed to break in and pretty much &lt;code&gt;rm -rf /&lt;/code&gt; the thing. The restore of the server is being used as a good moment to change the architecture of the services it offers. This does mean it'll be a wee while before I get my capsule back.&amp;#160;&lt;a class="footnote-backref" href="#fnref:432-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/22/rogallo-v1-12-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>smolweb</category>
+      <pubDate>Sat, 22 Aug 2026 12:08:13 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v1.11.0</title>
       <link>https://blog.davep.org/2026/08/19/rogallo-v1-11-0.html</link>
@@ -1472,90 +1553,6 @@ a TODO issue.&amp;#160;&lt;a class="footnote-backref" href="#fnref:380-2" title=
       <category>smolweb</category>
       <category>textual</category>
       <pubDate>Thu, 16 Jul 2026 20:10:35 +0100</pubDate>
-    </item>
-    <item>
-      <title>Rogallo v0.8.0</title>
-      <link>https://blog.davep.org/2026/07/15/rogallo-v0-8-0.html</link>
-      <description>&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
-&lt;a href="https://rogallo.davep.dev/changelog/#v080" rel="noopener noreferrer" target="_blank"&gt;v0.8.0&lt;/a&gt; is now available. This
-release includes a small bug fix, a big change to how external links and
-unhandled MIME types are dealt with, and a further improvement to link
-navigation.&lt;/p&gt;
-&lt;p&gt;First the big change: hand-off of unhandled content and trust. Until now, if
-Rogallo was met with a URI it didn't know how to handle, or met with a MIME
-type it isn't designed to deal with, it would simply hand it off to the
-browser in your environment. This is generally handy as it means that, when
-you're browsing &lt;a href="https://blog.davep.org/tag/gemtext/"&gt;gemtext&lt;/a&gt; content, if you meet a link that
-takes you to a conventional website, the link will (normally) be opened in
-your browser.&lt;/p&gt;
-&lt;p&gt;There are, of course, any number of schemes that form part of a URI. While
-Rogallo might commonly be handing off &lt;code&gt;http&lt;/code&gt; and &lt;code&gt;https&lt;/code&gt; URIs, there's no
-reason why it can't be handing off a &lt;code&gt;finger&lt;/code&gt; or a &lt;code&gt;mailto&lt;/code&gt; or whatever. Or,
-potentially, something a wee bit more dodgy like a &lt;code&gt;javascript&lt;/code&gt; URI. While
-some web browsers don't allow that sort of thing by default (Safari, for
-example, blocks it unless configured otherwise), others might, and this
-&lt;em&gt;could&lt;/em&gt; result in a nasty surprise.&lt;/p&gt;
-&lt;p&gt;So now Rogallo has a confirmation step that lets you allow a scheme this
-once, this and every subsequent time, or just cancel out.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Confirm a scheme" height="1792" loading="lazy" src="https://blog.davep.org/attachments/2026/07/15/scheme-confirm.webp#centre" width="1798" /&gt;&lt;/p&gt;
-&lt;p&gt;By default the trusted schemes (the ones you say "always" on) are saved in a
-&lt;code&gt;trusted_schemes&lt;/code&gt; file in the data directory.&lt;/p&gt;
-&lt;p&gt;Similar to the above: if, via a URI that Rogallo can handle, it meets a MIME
-type it can't handle, it will also pass it off to your operating system.
-I've added similar protection there too.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Confirm MIME type" height="1792" loading="lazy" src="https://blog.davep.org/attachments/2026/07/15/mime-type-confirm.webp#centre" width="1798" /&gt;&lt;/p&gt;
-&lt;p&gt;In this case any MIME types marked as trusted are dropped into a
-&lt;code&gt;trusted_mime_types&lt;/code&gt; file in the data directory.&lt;/p&gt;
-&lt;div class="admonition admonition-note"&gt;
-&lt;div class="admonition-title"&gt;ℹ️ Note&lt;/div&gt;
-&lt;div class="admonition-content"&gt;
-&lt;p&gt;If such a MIME type is allowed, it is &lt;em&gt;passed off to your operating system
-to handle&lt;/em&gt;. If you'd like to tell Rogallo to try and internally handle a
-MIME type, you can set that by configuring the &lt;a href="https://rogallo.davep.dev/configuration/#displayable-content-types" rel="noopener noreferrer" target="_blank"&gt;displayable content
-types&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;I feel these changes help remove any possible footguns previously caused by
-unquestionably handing off URIs to the wider environment.&lt;/p&gt;
-&lt;p&gt;Another change I've made is to add even more link navigation. This sort of
-follows on from &lt;a href="https://blog.davep.org/2026/07/14/rogallo-v0-7-0.html"&gt;yesterday's release&lt;/a&gt; where
-I added labelled jumps to links. Again, the usual method of moving between
-links is to use &lt;kbd&gt;Tab&lt;/kbd&gt; and &lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;Tab&lt;/kbd&gt;. The
-problem with those keys is they navigate you through &lt;em&gt;all&lt;/em&gt; widgets in the UI
-that can receive focus. So, if you keep tapping &lt;kbd&gt;Tab&lt;/kbd&gt;, you'll
-navigate out of the viewer and into the next available widget, once you
-reach the last link.&lt;/p&gt;
-&lt;p&gt;With this release I've added some extra keys which can be used to constantly
-cycle around the links while you're inside the viewer. These are:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;kbd&gt;Left&lt;/kbd&gt;, &lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;Up&lt;/kbd&gt;, &lt;kbd&gt;L&lt;/kbd&gt; to go
-  backwards through the links.&lt;/li&gt;
-&lt;li&gt;&lt;kbd&gt;Right&lt;/kbd&gt;, &lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;Down&lt;/kbd&gt;, &lt;kbd&gt;l&lt;/kbd&gt; to go
-  forwards through the links.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;While these might not be to everyone's taste (I'm already getting very used
-to using &lt;kbd&gt;Left&lt;/kbd&gt; and &lt;kbd&gt;Right&lt;/kbd&gt;), they do add another set of
-options for link navigation.&lt;/p&gt;
-&lt;p&gt;The final change is a simple bug fix, where the command line history simply
-wasn't being saved and loaded correctly. From now on it should save
-correctly and allow navigation of the history using the cursor keys.&lt;/p&gt;
-&lt;p&gt;With these changes in place, I feel I'm actually getting close to bumping up
-to a v1.0.0 release. While there are still things I want to add (there are
-currently a handful of TODO items in the issues), I see these as
-nice-to-have items that I want to do later on, rather than as must-have
-items that preclude considering Rogallo a viable daily-driver.&lt;/p&gt;
-&lt;p&gt;I'll see how the next day or so goes.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/15/rogallo-v0-8-0.html</guid>
-      <category>Coding</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>Rogallo</category>
-      <category>gemtext</category>
-      <category>smolweb</category>
-      <category>textual</category>
-      <pubDate>Wed, 15 Jul 2026 19:56:57 +0100</pubDate>
     </item>
   </channel>
 </rss>
