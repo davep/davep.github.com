@@ -8,7 +8,37 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 22 Aug 2026 11:10:03 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2026 10:16:13 +0000</lastBuildDate>
+    <item>
+      <title>Wasat v1.4.0</title>
+      <link>https://blog.davep.org/2026/08/23/wasat-v1-4-0.html</link>
+      <description>&lt;p&gt;Another bump to &lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;, this being
+&lt;a href="https://wasat.davep.dev/changelog/#v140" rel="noopener noreferrer" target="_blank"&gt;v1.4.0&lt;/a&gt;. This release is in
+support of some work I want to do on &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;,
+where I intend to add proper client certificate management.&lt;/p&gt;
+&lt;p&gt;While Wasat provided good support for the generation, storage, and use of
+client certificates, there was no real public API that would allow for the
+management of those certificates. This version addresses that.&lt;/p&gt;
+&lt;p&gt;Now there are methods for doing things like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Listing all client certificates&lt;/li&gt;
+&lt;li&gt;Getting a specific certificate's details&lt;/li&gt;
+&lt;li&gt;Creating a certificate&lt;/li&gt;
+&lt;li&gt;Associating and disassociating a certificate with a URI&lt;/li&gt;
+&lt;li&gt;Deleting a certificate&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This should give me everything I need to implement a simple client
+certificate user interface in Rogallo.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/23/wasat-v1-4-0.html</guid>
+      <category>Python</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>smolweb</category>
+      <category>wasat</category>
+      <pubDate>Sun, 23 Aug 2026 11:14:49 +0100</pubDate>
+    </item>
     <item>
       <title>BagOfStuff v2.0.0</title>
       <link>https://blog.davep.org/2026/08/20/bagofstuff-v2-0-0.html</link>
@@ -781,50 +811,6 @@ dialog in Rogallo.&lt;/p&gt;</description>
       <category>smolweb</category>
       <category>wasat</category>
       <pubDate>Thu, 16 Jul 2026 17:07:52 +0100</pubDate>
-    </item>
-    <item>
-      <title>Gemtext v1.0.0</title>
-      <link>https://blog.davep.org/2026/07/16/gemtext-v1-0-0.html</link>
-      <description>&lt;p&gt;I've bumped &lt;a href="https://gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Gemtext&lt;/a&gt; to
-&lt;a href="https://gemtext.davep.dev/changelog/#v100" rel="noopener noreferrer" target="_blank"&gt;v1.0.0&lt;/a&gt;. I've gone from "this is
-test code" to "this is stable code" mostly because the library is so simple
-and I'm unlikely to add any radically new features to it&lt;sup id="fnref:409-1"&gt;&lt;a class="footnote-ref" href="#fn:409-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;This bump also has one small addition: I've added &lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.PreFormatted.alt_text" rel="noopener noreferrer" target="_blank"&gt;an &lt;code&gt;alt_text&lt;/code&gt;
-property&lt;/a&gt;
-to &lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.PreFormatted" rel="noopener noreferrer" target="_blank"&gt;the &lt;code&gt;PreFormatted&lt;/code&gt;
-class&lt;/a&gt;. This exists
-to capture and make available any text that comes after the pre-formatted
-text marker. For example, this text:&lt;/p&gt;
-&lt;div class="highlight" data-lang="gemtext"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;```python
-print(&amp;quot;Hello, World!&amp;quot;)
-```
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;will now result in:&lt;/p&gt;
-&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;PreFormatted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;print(&amp;quot;Hello, World!&amp;quot;)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;alt_text&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;python&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;If/when I &lt;a href="https://github.com/davep/rogallo/issues/151" rel="noopener noreferrer" target="_blank"&gt;add syntax highlighting of pre-formatted text blocks to
-Rogallo&lt;/a&gt;, this new property
-will make that possible.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:409-1"&gt;
-&lt;p&gt;I was thinking about adding a Gemtext builder class at some point,
-but I can't see a use for it any time soon. Perhaps v2.0.0.&amp;#160;&lt;a class="footnote-backref" href="#fnref:409-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/16/gemtext-v1-0-0.html</guid>
-      <category>Python</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>gemtext</category>
-      <category>smolweb</category>
-      <pubDate>Thu, 16 Jul 2026 08:58:50 +0100</pubDate>
     </item>
   </channel>
 </rss>
