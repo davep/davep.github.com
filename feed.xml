@@ -8,7 +8,39 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 23 Aug 2026 10:16:13 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 24 Aug 2026 09:08:41 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v1.12.1</title>
+      <link>https://blog.davep.org/2026/08/24/rogallo-v1-12-1.html</link>
+      <description>&lt;p&gt;I've just made a small but important bug fix to
+&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;. Currently, I'm working on a more
+comprehensive approach to managing client-side certificates and, in doing
+so, I noted a bug with how such certificates are currently created by
+Rogallo.&lt;/p&gt;
+&lt;p&gt;Simply put: by default, Rogallo &lt;em&gt;should&lt;/em&gt; create certificates that
+effectively never expire (the actual expiry time is the end of 9999-12-31).
+Instead, if no actual expiry time was given, the certificates were being
+created to expire a year after creation.&lt;/p&gt;
+&lt;p&gt;This does mean that, if you've created a client certificate with Rogallo and
+didn't specify your own expiry date, it currently has a far more limited
+lifespan than you were probably expecting. As such, you might want to review
+them and consider making fresh ones and setting them up well before they
+expire (expiry probably being some time in July next year, given that
+Rogallo itself has only been fully usable since around July this year).&lt;/p&gt;
+&lt;p&gt;Apologies if you've used this facility and it accordingly results in a
+little extra work. Thankfully it came to light sooner rather than later, and
+it has come to light while I'm giving client certificate management a big
+overhaul.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/24/rogallo-v1-12-1.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>smolweb</category>
+      <pubDate>Mon, 24 Aug 2026 10:06:56 +0100</pubDate>
+    </item>
     <item>
       <title>Wasat v1.4.0</title>
       <link>https://blog.davep.org/2026/08/23/wasat-v1-4-0.html</link>
@@ -1094,39 +1126,6 @@ first-class citizens.&lt;/p&gt;</description>
       <category>Spartan Protocol</category>
       <category>smolweb</category>
       <pubDate>Fri, 07 Aug 2026 19:27:00 +0100</pubDate>
-    </item>
-    <item>
-      <title>Gemtext v1.1.0</title>
-      <link>https://blog.davep.org/2026/08/07/gemtext-v1-1-0.html</link>
-      <description>&lt;p&gt;I've released a small update to &lt;a href="https://gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Gemtext&lt;/a&gt;. At
-the moment, I'm working on adding &lt;a href="https://portal.mozz.us/spartan/spartan.mozz.us/" rel="noopener noreferrer" target="_blank"&gt;Spartan
-protocol&lt;/a&gt; support to
-&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;, and to do this I need to handle a
-small extension it makes to Gemtext.&lt;/p&gt;
-&lt;p&gt;While Spartan is quite different from Gemini in the underlying protocol, it
-uses Gemtext as the default/standard markup language, but with one small
-difference. To allow uploaded data that is initiated by the markup, rather
-than by the server, there is a &lt;code&gt;=:&lt;/code&gt; line type. In some respects, this is
-similar to type &lt;code&gt;7&lt;/code&gt; items in Gopher maps.&lt;/p&gt;
-&lt;p&gt;Rather than spin up a whole new library just to support this one small
-difference, and rather than do some special-case nonsense in Rogallo itself,
-I've added optional (and turned on by default) support for &lt;code&gt;=:&lt;/code&gt;. When
-encountered, this results in a
-&lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.SpartanPrompt" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;SpartanPrompt&lt;/code&gt;&lt;/a&gt;
-object, which simply inherits from a
-&lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.Link" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;Link&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Any code that doesn't require this feature can turn it off with the
-&lt;a href="https://gemtext.davep.dev/gemtext/#gemtext.Gemtext(with_spartan_support)" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;with_spartan_support&lt;/code&gt;
-parameter&lt;/a&gt;.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/08/07/gemtext-v1-1-0.html</guid>
-      <category>Python</category>
-      <category>Coding</category>
-      <category>Spartan Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>gemtext</category>
-      <category>smolweb</category>
-      <pubDate>Fri, 07 Aug 2026 16:33:03 +0100</pubDate>
     </item>
   </channel>
 </rss>

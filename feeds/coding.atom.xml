@@ -2,11 +2,44 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-08-23T10:16:13.882724+00:00</updated>
+  <updated>2026-08-24T09:08:41.821415+00:00</updated>
   <link href="https://blog.davep.org/feeds/coding.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Posts in category "Coding" from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/08/24/rogallo-v1-12-1.html</id>
+    <title>Rogallo v1.12.1</title>
+    <updated>2026-08-24T10:06:56+01:00</updated>
+    <content type="html">&lt;p&gt;I've just made a small but important bug fix to
+&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;. Currently, I'm working on a more
+comprehensive approach to managing client-side certificates and, in doing
+so, I noted a bug with how such certificates are currently created by
+Rogallo.&lt;/p&gt;
+&lt;p&gt;Simply put: by default, Rogallo &lt;em&gt;should&lt;/em&gt; create certificates that
+effectively never expire (the actual expiry time is the end of 9999-12-31).
+Instead, if no actual expiry time was given, the certificates were being
+created to expire a year after creation.&lt;/p&gt;
+&lt;p&gt;This does mean that, if you've created a client certificate with Rogallo and
+didn't specify your own expiry date, it currently has a far more limited
+lifespan than you were probably expecting. As such, you might want to review
+them and consider making fresh ones and setting them up well before they
+expire (expiry probably being some time in July next year, given that
+Rogallo itself has only been fully usable since around July this year).&lt;/p&gt;
+&lt;p&gt;Apologies if you've used this facility and it accordingly results in a
+little extra work. Thankfully it came to light sooner rather than later, and
+it has come to light while I'm giving client certificate management a big
+overhaul.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/08/24/rogallo-v1-12-1.html"/>
+    <category term="Coding"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="Rogallo"/>
+    <category term="smolweb"/>
+    <published>2026-08-24T10:06:56+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/08/22/rogallo-v1-12-0.html</id>
     <title>Rogallo v1.12.0</title>
@@ -1502,74 +1535,5 @@ for a high-contrast theme that will resolve this sort of issue.&amp;#160;&lt;a c
     <category term="smolweb"/>
     <category term="textual"/>
     <published>2026-07-18T16:44:46+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/07/16/rogallo-v0-9-0.html</id>
-    <title>Rogallo v0.9.0</title>
-    <updated>2026-07-16T20:10:35+01:00</updated>
-    <content type="html">&lt;p&gt;I've released &lt;a href="https://rogallo.davep.dev/changelog/#v090" rel="noopener noreferrer" target="_blank"&gt;v0.9.0&lt;/a&gt; of
-&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;. The first big change in this release
-is the addition of syntax highlighting to pre-formatted text.&lt;/p&gt;
-&lt;p&gt;Much like in Markdown, Gemtext also supports pre-formatted text bounded by
-code fences. Gemtext supports the concept of "alt-text" for such text, like
-this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="gemtext"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;```python
-def hello(name: str = &amp;quot;World&amp;quot;) -&amp;gt; str:
-    return f&amp;quot;Hello, {name}!&amp;quot;
-```
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Until now Rogallo would simply show the text as-is (with some styling to
-make it stand out from normal paragraphs). From this release, if there is
-alt-text for the pre-formatted block, and if it's the name of a supported
-language, the content will have syntax highlighting applied.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Pre-text with syntax highlighting" height="1984" loading="lazy" src="https://blog.davep.org/attachments/2026/07/16/pre-highlight.webp#centre" width="1798" /&gt;&lt;/p&gt;
-&lt;p&gt;If you're curious which languages are supported, it should be &lt;a href="https://pygments.org/languages/" rel="noopener noreferrer" target="_blank"&gt;anything that
-Pygments supports&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Another significant change is to the user input dialog. As &lt;a href="https://blog.davep.org/2026/07/16/wasat-v0-7-0.html"&gt;mentioned in an
-earlier post&lt;/a&gt;, the Gemini protocol imposes
-limits on how much text can be submitted to a capsule. As documented, the
-limit is for a resulting URI of 1024 bytes&lt;sup id="fnref:380-1"&gt;&lt;a class="footnote-ref" href="#fn:380-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. To save someone typing out a
-long entry, only to have it lost&lt;sup id="fnref:380-2"&gt;&lt;a class="footnote-ref" href="#fn:380-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, I've added a count of how much input
-is left available (calculated from the size of the URI that would result):&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The input count" height="1984" loading="lazy" src="https://blog.davep.org/attachments/2026/07/16/input-count.webp#centre" width="1894" /&gt;&lt;/p&gt;
-&lt;p&gt;To help ensure that the user doesn't submit too much, I've also added an
-error display if you go over the limit, which also refuses to submit the
-input.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Too much input" height="1984" loading="lazy" src="https://blog.davep.org/attachments/2026/07/16/too-much.webp#centre" width="1894" /&gt;&lt;/p&gt;
-&lt;p&gt;With these in place it should be a lot harder to run into an unexpected loss
-of input.&lt;/p&gt;
-&lt;p&gt;One final tweak is a small change to the optional link stripe system &lt;a href="https://blog.davep.org/2026/07/14/rogallo-v0-7-0.html"&gt;I
-recently added&lt;/a&gt;. While playing around with
-some other themes, I noticed that the styling didn't show up well, or at
-all, in many of them. So I've changed it a little so it now shows in all
-available themes. I'm still not convinced it's quite right -- I'll play some
-more. But at least now it's visible in all cases.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:380-1"&gt;
-&lt;p&gt;Although I've already &lt;a href="gemini://station.martinrue.com/davep/d23d9c4731eb461bba2db4b20bb18a6e" rel="noopener noreferrer" target="_blank"&gt;encountered one capsule that limits to 1022,
-from what I can
-tell&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:380-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:380-2"&gt;
-&lt;p&gt;Right away I'm now thinking it &lt;em&gt;might&lt;/em&gt; be a good idea to re-populate
-the input dialog in such a situation. I'll have to remember to make that
-a TODO issue.&amp;#160;&lt;a class="footnote-backref" href="#fnref:380-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/07/16/rogallo-v0-9-0.html"/>
-    <category term="Coding"/>
-    <category term="Coding"/>
-    <category term="Gemini Protocol"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="Rogallo"/>
-    <category term="gemtext"/>
-    <category term="smolweb"/>
-    <category term="textual"/>
-    <published>2026-07-16T20:10:35+01:00</published>
   </entry>
 </feed>
