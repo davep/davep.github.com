@@ -8,7 +8,43 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 26 Aug 2026 07:57:11 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 Aug 2026 08:34:28 +0000</lastBuildDate>
+    <item>
+      <title>Wasat v1.6.0</title>
+      <link>https://blog.davep.org/2026/08/27/wasat-v1-6-0.html</link>
+      <description>&lt;p&gt;The &lt;a href="https://github.com/davep/rogallo/pull/373" rel="noopener noreferrer" target="_blank"&gt;client certificate management
+PR&lt;/a&gt; for
+&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt; is &lt;em&gt;very&lt;/em&gt; close to completion now --
+although the thing has grown arms and legs and turned into a bit of a UI
+overhaul&lt;sup id="fnref:432-1"&gt;&lt;a class="footnote-ref" href="#fn:432-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Something I wanted to add was a quick and easy way for the
+user to view the details of a client certificate that's being used for the
+current page. Rogallo lets you do this for the server certificate, but not
+the client certificate.&lt;/p&gt;
+&lt;p&gt;It was at this point that I realised I'd never provided easy access to the
+&lt;code&gt;ClientCertificate&lt;/code&gt; on the &lt;code&gt;Response&lt;/code&gt; object. So
+&lt;a href="https://wasat.davep.dev/changelog/#v160" rel="noopener noreferrer" target="_blank"&gt;v1.6.0&lt;/a&gt; addresses this and
+provides
+&lt;a href="https://wasat.davep.dev/library/response/#wasat.response.Response.client_cert" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;Response.client_cert&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;With this in place, I &lt;em&gt;think&lt;/em&gt; I can finally get that Rogallo PR over the
+line...&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:432-1"&gt;
+&lt;p&gt;Not unrelated. The UI overhaul was in support of the client certificate manager.&amp;#160;&lt;a class="footnote-backref" href="#fnref:432-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/27/wasat-v1-6-0.html</guid>
+      <category>Python</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>smolweb</category>
+      <category>wasat</category>
+      <pubDate>Thu, 27 Aug 2026 09:25:11 +0100</pubDate>
+    </item>
     <item>
       <title>GitHub social preview is fixed</title>
       <link>https://blog.davep.org/2026/08/26/github-social-preview-is-fixed.html</link>
@@ -162,7 +198,7 @@ finish this off. With this release Gopher and Nex get to join in on the
 parent/root navigation party.&lt;/p&gt;
 &lt;h2 id="cancelling-requests"&gt;Cancelling requests&lt;/h2&gt;
 &lt;p&gt;This one came up because, as of the time of writing, the server where my wee
-capsule lives is dead&lt;sup id="fnref:434-1"&gt;&lt;a class="footnote-ref" href="#fn:434-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This meant that if I checked if it was there, and
+capsule lives is dead&lt;sup id="fnref:435-1"&gt;&lt;a class="footnote-ref" href="#fn:435-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This meant that if I checked if it was there, and
 got impatient and went to navigate somewhere else, the somewhere else would
 load and then, after the defined timeout, the error about the previous
 request would pop up.&lt;/p&gt;
@@ -188,8 +224,8 @@ rather growing on me.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:434-1"&gt;
-&lt;p&gt;From what I've seen, someone managed to break in and pretty much &lt;code&gt;rm -rf /&lt;/code&gt; the thing. The restore of the server is being used as a good moment to change the architecture of the services it offers. This does mean it'll be a wee while before I get my capsule back.&amp;#160;&lt;a class="footnote-backref" href="#fnref:434-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:435-1"&gt;
+&lt;p&gt;From what I've seen, someone managed to break in and pretty much &lt;code&gt;rm -rf /&lt;/code&gt; the thing. The restore of the server is being used as a good moment to change the architecture of the services it offers. This does mean it'll be a wee while before I get my capsule back.&amp;#160;&lt;a class="footnote-backref" href="#fnref:435-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1003,88 +1039,6 @@ readable for anyone else looking over it.&lt;/p&gt;</description>
       <category>Rogallo</category>
       <category>smolweb</category>
       <pubDate>Mon, 10 Aug 2026 20:13:18 +0100</pubDate>
-    </item>
-    <item>
-      <title>SmolServe - A lightweight multi-protocol small web server</title>
-      <link>https://blog.davep.org/2026/08/09/smolserve-a-lightweight-multi-protocol-small-web-server.html</link>
-      <description>&lt;p&gt;As &lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt; got close to being "stable", I did a fair bit of
-work on &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;its documentation&lt;/a&gt;. Something that I
-wanted to include in the site was a good collection of up-to-date
-screenshots. These are all created on the fly. To do this, of course,
-requires something that looks like a Gemini server.&lt;/p&gt;
-&lt;p&gt;Initially, this was simple: Rogallo only supported Gemini capsules, so I
-could illustrate most things just using &lt;a href="https://blog.davep.org/tag/gemtext/"&gt;Gemtext&lt;/a&gt; files in
-the local filesystem (with an admonition in the documentation to point out
-that Rogallo was for more than viewing local files). This, of course, wasn't
-going to scale when &lt;a href="https://blog.davep.org/2026/07/24/rogallo-v1-1-0.html"&gt;I added Finger
-support&lt;/a&gt;, and neither was it going to work
-well for &lt;a href="https://blog.davep.org/2026/07/28/rogallo-v1-2-0.html"&gt;Gopher support&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The solution seemed obvious: use a lightweight local server for these
-protocols. With this need in place &lt;a href="https://smolserve.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;SmolServe&lt;/a&gt;
-was born. As mentioned &lt;a href="https://blog.davep.org/2026/08/05/rogallo-v1-5-0.html"&gt;when I released Rogallo
-v1.5.0&lt;/a&gt;, this &lt;em&gt;isn't&lt;/em&gt; a project to build a
-comprehensive &lt;a href="https://blog.davep.org/tag/smolweb/"&gt;smolweb&lt;/a&gt; server. The aim is to build myself a
-minimal just-good-enough server that helps me with local testing and
-documentation.&lt;/p&gt;
-&lt;p&gt;As it stands, SmolServe supports Gemini, Gopher, Finger and Spartan. Or,
-rather, it supports a just-enough-to-get-by version of each of those
-protocols. None are implemented in a way that would serve as a "production"
-server; they're implemented to allow me to generate screenshots for the
-Rogallo documentation, involving any of the supported protocols, without the
-need to rely on services I don't control and which aren't local.&lt;/p&gt;
-&lt;p&gt;The big benefit of SmolServe is the &lt;code&gt;exec&lt;/code&gt; support. With this, you can run
-up the server and then have it run another command. Once that command
-finishes its work, SmolServe will close down too. This means that, when it
-comes to producing the Rogallo documentation, I can just have the server
-running when I need it. Pulling some snippets &lt;a href="https://github.com/davep/rogallo/blob/main/Makefile" rel="noopener noreferrer" target="_blank"&gt;from the Rogallo
-&lt;code&gt;Makefile&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight" data-lang="makefile"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;run&lt;/span&gt;&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="o"&gt;:=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;run
-&lt;span class="nv"&gt;smol&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="o"&gt;:=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;run&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;smolserve&lt;span class="w"&gt; &lt;/span&gt;--config&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;docs&lt;span class="k"&gt;)&lt;/span&gt;server/smolserve.toml
-&lt;span class="nv"&gt;smolexec&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;:=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;smol&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;exec&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--
-&lt;span class="nv"&gt;mkdocs&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="o"&gt;:=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;smolexec&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;mkdocs
-
-&lt;span class="c"&gt;##############################################################################&lt;/span&gt;
-&lt;span class="c"&gt;# Documentation.&lt;/span&gt;
-&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;
-&lt;span class="nf"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;mkdocs&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;build
-
-&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;rtfm&lt;/span&gt;
-&lt;span class="nf"&gt;rtfm&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;mkdocs&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;serve&lt;span class="w"&gt; &lt;/span&gt;--livereload
-
-&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;publishdocs&lt;/span&gt;
-&lt;span class="nf"&gt;publishdocs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;clean&lt;/span&gt;-&lt;span class="n"&gt;docs&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;mkdocs&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;gh-deploy
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The idea is that, when I build the documentation, I actually run
-&lt;code&gt;smolserve&lt;/code&gt;, which in turn runs &lt;code&gt;mkdocs&lt;/code&gt;, which then produces the
-documentation while the local server is available.&lt;/p&gt;
-&lt;p&gt;I also use this sort of approach for local testing of the &lt;a href="https://github.com/davep/tilde-team-capsule" rel="noopener noreferrer" target="_blank"&gt;content of my
-capsule&lt;/a&gt; that lives &lt;a href="gemini://tilde.team/~davep" rel="noopener noreferrer" target="_blank"&gt;over on
-&lt;code&gt;tilde.team&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="highlight" data-lang="makefile"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;.PHONY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;view&lt;/span&gt;
-&lt;span class="nf"&gt;view&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;smolserve&lt;span class="w"&gt; &lt;/span&gt;--config&lt;span class="w"&gt; &lt;/span&gt;smolserve.toml&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;exec&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;rogallo&lt;span class="w"&gt; &lt;/span&gt;open&lt;span class="w"&gt; &lt;/span&gt;gemini://localhost/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;My aim now is that, if I add any other protocols to Rogallo, I'll add a
-just-good-enough version of them to SmolServe to help me with testing and
-documentation. For the moment, though, I think it's in a stable and usable
-state.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/08/09/smolserve-a-lightweight-multi-protocol-small-web-server.html</guid>
-      <category>Coding</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>SmolServe</category>
-      <category>Spartan Protocol</category>
-      <category>finger</category>
-      <category>gopher</category>
-      <category>smolweb</category>
-      <pubDate>Sun, 09 Aug 2026 14:05:08 +0100</pubDate>
     </item>
   </channel>
 </rss>
