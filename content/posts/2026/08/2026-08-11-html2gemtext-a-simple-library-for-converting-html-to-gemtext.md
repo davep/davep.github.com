@@ -2,7 +2,7 @@
 title: "html2gemtext - A simple library for converting HTML to Gemtext"
 date: "2026-08-11 20:24:39+0100"
 category: Python
-tags: [Coding, "Gemini Protocol", PyPI, Python, gemtext, smolweb]
+tags: [Coding, "Gemini Protocol", PyPI, Python, gemtext, html2gemtext, smolweb]
 ---
 
 Yesterday evening, while tinkering with

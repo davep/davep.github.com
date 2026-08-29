@@ -2,7 +2,7 @@
 title: "md2gemtext - A library for converting Markdown to Gemtext"
 date: "2026-08-16 14:43:04+0100"
 category: Python
-tags: [Coding, "Gemini Protocol", Markdown, PyPI, Python, gemtext, smolweb]
+tags: [Coding, "Gemini Protocol", Markdown, PyPI, Python, gemtext, md2gemtext, smolweb]
 ---
 
 Following on from

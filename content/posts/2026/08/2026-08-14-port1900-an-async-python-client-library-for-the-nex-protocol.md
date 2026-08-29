@@ -2,7 +2,7 @@
 title: "Port1900 - An async Python client library for the Nex protocol"
 date: "2026-08-14 19:21:42+0100"
 category: Python
-tags: [Coding, PyPI, Python, Rogallo, "Nex Protocol", smolweb]
+tags: [Coding, "Nex Protocol", PyPI, Python, Rogallo, port1900, smolweb]
 ---
 
 It's that time again. Time to add another [small web

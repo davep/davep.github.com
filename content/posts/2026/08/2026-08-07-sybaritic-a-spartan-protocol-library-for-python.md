@@ -2,7 +2,7 @@
 title: "Sybaritic - A Spartan protocol library for Python"
 date: "2026-08-07 19:27:00+0100"
 category: Python
-tags: [Coding, PyPI, Python, Rogallo, "Spartan Protocol", smolweb]
+tags: [Coding, PyPI, Python, Rogallo, "Spartan Protocol", smolweb, sybaritic]
 ---
 
 Now that [Rogallo](https://rogallo.davep.dev/) supports [multiple
