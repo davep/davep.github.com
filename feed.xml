@@ -8,7 +8,147 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 29 Aug 2026 09:13:53 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 29 Aug 2026 11:57:29 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v2.0.0</title>
+      <link>https://blog.davep.org/2026/08/29/rogallo-v2-0-0.html</link>
+      <description>&lt;p&gt;I've just released
+&lt;a href="https://github.com/davep/rogallo/releases/tag/v2.0.0" rel="noopener noreferrer" target="_blank"&gt;v2.0.0&lt;/a&gt; of
+&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;. This release has quite a lot of
+changes, one or two of them &lt;em&gt;"breaking changes"&lt;/em&gt;, hence the bump to v2.0.0.
+I will add though that, when I say &lt;em&gt;"breaking changes"&lt;/em&gt;, nothing should
+&lt;em&gt;actually&lt;/em&gt; break, it's just some features have changed in an incompatible
+way and some application commands have been removed or renamed (and so some
+default keyboard bindings have changed). The worst that might happen is a
+keyboard binding you set up no longer works.&lt;/p&gt;
+&lt;p&gt;With this in mind, in &lt;a href="https://semver.org" rel="noopener noreferrer" target="_blank"&gt;the spirit of semver&lt;/a&gt;, the major
+version is bumped.&lt;/p&gt;
+&lt;p&gt;Now for what's new in this release.&lt;/p&gt;
+&lt;h2 id="client-certificate-management"&gt;Client certificate management&lt;/h2&gt;
+&lt;p&gt;While Rogallo supported the creation and use of client certificates for use
+with Gemini capsules, it never made it that easy to work with them. Creating
+and using them was pretty frictionless, but if you were someone who wanted
+to bring your own certificate from another application, you were on your
+own. Actually doing that was easy enough, if you were comfortable with
+diving into the certificate directory and hand-editing the JSON file to
+create the association. What was lacking though was a good interface to
+manage all of this in the application.&lt;/p&gt;
+&lt;p&gt;This version solves that problem. Rogallo now contains a client certificate
+manager that lets you:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create new client certificates&lt;/li&gt;
+&lt;li&gt;Add and remove associations for client certificates&lt;/li&gt;
+&lt;li&gt;Delete client certificates&lt;/li&gt;
+&lt;li&gt;Import client certificates&lt;/li&gt;
+&lt;li&gt;Export client certificates&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Also, when you encounter a capsule that demands a certificate and you don't
+have one associated, you can pick an existing one from your certificate
+library; before the only option you had was to create a new one.&lt;/p&gt;
+&lt;h2 id="reworked-side-panel"&gt;Reworked side panel&lt;/h2&gt;
+&lt;p&gt;Initially, when I first started work on Rogallo, I had a simple history list
+that could be popped in/out on the side of the display. Then, when I added
+bookmarks, this became a sort of toggle, with either the history showing,
+the bookmarks showing, or both hidden. The command to show the history would
+hide the bookmarks; the command to show the bookmarks would hide the
+history; both would toggle themselves to hide. This was... kind of messy,
+but it worked.&lt;/p&gt;
+&lt;p&gt;When I started work on the certificate manager it made sense that it also
+occupied the same space. However, the code for managing this, and the
+resulting user experience, started to get pretty messy. I wasn't at all
+happy with it so ended up going on a bit of a side-quest to clean this up.&lt;/p&gt;
+&lt;p&gt;The result is that Rogallo now has a &lt;a href="https://rogallo.davep.dev/side-panel/" rel="noopener noreferrer" target="_blank"&gt;tabbed side
+panel&lt;/a&gt; (similar to the one in
+&lt;a href="https://hike.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Hike&lt;/a&gt;). This contains the bookmark manager,
+history manager and client certificate manager.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The new side panel" height="1952" loading="lazy" src="https://blog.davep.org/attachments/2026/08/29/side-panel.webp#centre" width="1942" /&gt;&lt;/p&gt;
+&lt;p&gt;This is where one of the main breaking changes comes in: the
+&lt;code&gt;ToggleHistoryManager&lt;/code&gt; and &lt;code&gt;ToggleBookmarksManager&lt;/code&gt; commands have been
+removed from Rogallo and their default keyboard bindings have been freed up.
+Also, to clean up the naming of things, I've renamed &lt;code&gt;JumpToSidebar&lt;/code&gt; to
+&lt;code&gt;JumpToSidePanel&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I feel this side panel approach is far cleaner and far easier to work with.&lt;/p&gt;
+&lt;p&gt;It's also worth noting that it's moved over to the left side of the display.
+However, if you'd prefer it on the right &lt;a href="https://rogallo.davep.dev/side-panel/#left-or-right-side" rel="noopener noreferrer" target="_blank"&gt;there's a configuration option for
+that&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="viewing-client-certificate-information"&gt;Viewing client certificate information&lt;/h2&gt;
+&lt;p&gt;As part of the work on managing client certificates, I added a dialog that
+lets you view details of a certificate. As well as being available in the
+certificate manager, it can also be used to view any certificate that might
+be in use when viewing the current page. The &lt;code&gt;AboutClientCertificate&lt;/code&gt;
+command (bound to &lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;F7&lt;/kbd&gt; by default) can be used to
+bring up the view.&lt;/p&gt;
+&lt;p&gt;For the folk who lean more on the mouse, the key icon that appears in the
+title bar of the viewer can be clicked on to get the same view.&lt;/p&gt;
+&lt;h2 id="protocol-guessing-in-the-command-line"&gt;Protocol guessing in the command line&lt;/h2&gt;
+&lt;p&gt;The command line in the application now tries to be a little bit smarter
+when it comes to understanding input. Before now, if you were to type in
+&lt;code&gt;example.com&lt;/code&gt;, Rogallo would assume that you were attempting to visit a
+Gemini capsule on that host and process the input as if it were
+&lt;code&gt;gemini://example.com/&lt;/code&gt;. This release extends this a little.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If the input doesn't appear to be anything else and it includes a &lt;code&gt;@&lt;/code&gt; it
+  will be turned into a &lt;code&gt;finger&lt;/code&gt; URI. So &lt;code&gt;user@example.com&lt;/code&gt; becomes
+  &lt;code&gt;finger://example.com/user&lt;/code&gt; and &lt;code&gt;@example.com&lt;/code&gt; becomes
+  &lt;code&gt;finger://example.com/&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;If the first part of the host has a recognisable protocol name, it will be
+  assumed that that protocol should be used. In other words:&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;gopher.example.com&lt;/code&gt; -&amp;gt; &lt;code&gt;gopher://gopher.example.com/1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;spartan.example.com&lt;/code&gt; -&amp;gt; &lt;code&gt;spartan://spartan.example.com/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;nex.example.com&lt;/code&gt; -&amp;gt; &lt;code&gt;nex://nex.example.com/&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is probably of very minor use, but it was easy enough to add and seemed
+like a useful little change.&lt;/p&gt;
+&lt;h2 id="emoji-removal-overhaul"&gt;Emoji removal overhaul&lt;/h2&gt;
+&lt;p&gt;I've overhauled the code that does emoji removal if you toggle removal on.
+More work is done to identify "real" emoji. This should mean that all the
+usual colourful image-like candidates are removed, but now things like
+braille and box drawing characters, etc, &lt;em&gt;won't&lt;/em&gt; be removed.&lt;/p&gt;
+&lt;p&gt;Also, when removing an emoji, if there is a space following it, that space
+will also be removed. This solves the cosmetic problem of &lt;code&gt;"👉 This"&lt;/code&gt; being
+turned into &lt;code&gt;" This"&lt;/code&gt; when it would make more sense that it is turned into
+&lt;code&gt;"This"&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;It's worth keeping in mind here that this isn't intended to be a
+100%-correct solution. It's aimed at being a good-enough solution to clean
+up most of the emoji clutter if you don't like that sort of thing.&lt;/p&gt;
+&lt;h2 id="overall-performance"&gt;Overall performance&lt;/h2&gt;
+&lt;p&gt;My general approach to developing anything is one of &lt;em&gt;"make it right then
+make it fast"&lt;/em&gt;. I've never been a fan of early optimisation, and when I've
+watched people obsess over such things far too early in a codebase's
+lifecycle I've generally watched them get into a mess. I like to try and
+avoid that mess.&lt;/p&gt;
+&lt;p&gt;So this was my approach with Rogallo. When it came to building the widget
+that displayed the content of a page, I spent my time trying to ensure it
+was correct, not that it was fast. Quite quickly, however, I found that once
+a page had quite a few links on it -- especially when you got to many 100s
+of links -- performance was terrible. I'd had an issue sat in TODO for this
+from the start, but hadn't gone back to address it.&lt;/p&gt;
+&lt;p&gt;Then the other day someone else noted this issue so I decided it was time to
+go back and work on it. As of this release of Rogallo you should find that a
+page with 1,000 links on it performs about as well as a page with a handful
+of links.&lt;/p&gt;
+&lt;p&gt;In doing this work I've also made a lot of optimisations to how a page is
+initially built; so not only should a page be more responsive as you
+navigate it, it should be noticeably quicker to appear in the first place.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;There's a lot in this release and I'm really delighted with how it's turned
+out. I wasn't intending to make quite so many large changes, but each bit of
+work naturally caused the next bit of work and... well, here we are.&lt;/p&gt;
+&lt;p&gt;With this work out of the way I can start to look at the one remaining
+protocol that's currently on the TODO list, and also look at making some
+other quality-of-life improvements.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/29/rogallo-v2-0-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>smolweb</category>
+      <pubDate>Sat, 29 Aug 2026 12:56:00 +0100</pubDate>
+    </item>
     <item>
       <title>A lot of stability</title>
       <link>https://blog.davep.org/2026/08/29/a-lot-of-stability.html</link>
@@ -49,7 +189,7 @@ now in place.&lt;/p&gt;</description>
 PR&lt;/a&gt; for
 &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt; is &lt;em&gt;very&lt;/em&gt; close to completion now --
 although the thing has grown arms and legs and turned into a bit of a UI
-overhaul&lt;sup id="fnref:433-1"&gt;&lt;a class="footnote-ref" href="#fn:433-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Something I wanted to add was a quick and easy way for the
+overhaul&lt;sup id="fnref:434-1"&gt;&lt;a class="footnote-ref" href="#fn:434-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Something I wanted to add was a quick and easy way for the
 user to view the details of a client certificate that's being used for the
 current page. Rogallo lets you do this for the server certificate, but not
 the client certificate.&lt;/p&gt;
@@ -63,8 +203,8 @@ line...&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:433-1"&gt;
-&lt;p&gt;Not unrelated. The UI overhaul was in support of the client certificate manager.&amp;#160;&lt;a class="footnote-backref" href="#fnref:433-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:434-1"&gt;
+&lt;p&gt;Not unrelated. The UI overhaul was in support of the client certificate manager.&amp;#160;&lt;a class="footnote-backref" href="#fnref:434-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -231,7 +371,7 @@ finish this off. With this release Gopher and Nex get to join in on the
 parent/root navigation party.&lt;/p&gt;
 &lt;h2 id="cancelling-requests"&gt;Cancelling requests&lt;/h2&gt;
 &lt;p&gt;This one came up because, as of the time of writing, the server where my wee
-capsule lives is dead&lt;sup id="fnref:436-1"&gt;&lt;a class="footnote-ref" href="#fn:436-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This meant that if I checked if it was there, and
+capsule lives is dead&lt;sup id="fnref:437-1"&gt;&lt;a class="footnote-ref" href="#fn:437-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This meant that if I checked if it was there, and
 got impatient and went to navigate somewhere else, the somewhere else would
 load and then, after the defined timeout, the error about the previous
 request would pop up.&lt;/p&gt;
@@ -257,8 +397,8 @@ rather growing on me.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:436-1"&gt;
-&lt;p&gt;From what I've seen, someone managed to break in and pretty much &lt;code&gt;rm -rf /&lt;/code&gt; the thing. The restore of the server is being used as a good moment to change the architecture of the services it offers. This does mean it'll be a wee while before I get my capsule back.&amp;#160;&lt;a class="footnote-backref" href="#fnref:436-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:437-1"&gt;
+&lt;p&gt;From what I've seen, someone managed to break in and pretty much &lt;code&gt;rm -rf /&lt;/code&gt; the thing. The restore of the server is being used as a good moment to change the architecture of the services it offers. This does mean it'll be a wee while before I get my capsule back.&amp;#160;&lt;a class="footnote-backref" href="#fnref:437-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -298,7 +438,7 @@ large service). Sure, &lt;a href="https://github.blog/news-insights/company-news
 bad&lt;/a&gt;,
 but with them you know they're being actively worked on, they're something
 that's going to be getting constant attention until they're resolved.
-Moreover, those sorts of issues generally suggest a scale problem&lt;sup id="fnref:426-1"&gt;&lt;a class="footnote-ref" href="#fn:426-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. These
+Moreover, those sorts of issues generally suggest a scale problem&lt;sup id="fnref:427-1"&gt;&lt;a class="footnote-ref" href="#fn:427-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. These
 little bugs, though, suggest a lack of attention to detail, a lack of proper
 testing, a lack of care about the product as a whole.&lt;/p&gt;
 &lt;p&gt;It's not even the first time in the last couple of weeks that I've run into
@@ -317,8 +457,8 @@ problems?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:426-1"&gt;
-&lt;p&gt;Yes, of their own design. But still...&amp;#160;&lt;a class="footnote-backref" href="#fnref:426-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:427-1"&gt;
+&lt;p&gt;Yes, of their own design. But still...&amp;#160;&lt;a class="footnote-backref" href="#fnref:427-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -355,7 +495,7 @@ iterables &lt;em&gt;isn't&lt;/em&gt; supported and will raise a &lt;code&gt;NotI
 other slice-based operations aren't supported either.&lt;/p&gt;
 &lt;p&gt;While this is close to a breaking change, it's fine for my use of this code.
 However, I had to make one big breaking change: I'd written &lt;code&gt;clear&lt;/code&gt; so that
-it returned &lt;code&gt;Self&lt;/code&gt;&lt;sup id="fnref:424-1"&gt;&lt;a class="footnote-ref" href="#fn:424-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The interface expected by &lt;code&gt;MutableSequence&lt;/code&gt; is one
+it returned &lt;code&gt;Self&lt;/code&gt;&lt;sup id="fnref:425-1"&gt;&lt;a class="footnote-ref" href="#fn:425-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The interface expected by &lt;code&gt;MutableSequence&lt;/code&gt; is one
 that returns &lt;code&gt;None&lt;/code&gt;. So to strictly comply with that interface, I've changed
 the return type.&lt;/p&gt;
 &lt;p&gt;With this being a breaking change, I've bumped the library version to
@@ -365,11 +505,11 @@ that the API has changed. That deserves a major version bump.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:424-1"&gt;
+&lt;li id="fn:425-1"&gt;
 &lt;p&gt;I tend to prefer that a method that might return &lt;code&gt;None&lt;/code&gt; actually
 return &lt;code&gt;Self&lt;/code&gt;; it allows for chaining. I recognise that there are other
 schools of thought about this in the Python world; I'm not a member of
-those schools.&amp;#160;&lt;a class="footnote-backref" href="#fnref:424-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+those schools.&amp;#160;&lt;a class="footnote-backref" href="#fnref:425-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -626,7 +766,7 @@ I was busy working on something else.&lt;/p&gt;
 &lt;p&gt;Yesterday evening &lt;a href="https://github.com/davep/rogallo/issues/290#issuecomment-5304008984" rel="noopener noreferrer" target="_blank"&gt;I finally managed to come up with a way to always
 recreate
 it&lt;/a&gt;
-and, having done so, the solution seems pretty straightforward&lt;sup id="fnref:419-1"&gt;&lt;a class="footnote-ref" href="#fn:419-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In order
+and, having done so, the solution seems pretty straightforward&lt;sup id="fnref:420-1"&gt;&lt;a class="footnote-ref" href="#fn:420-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In order
 to implement the tweak I want, I need to be able to truncate the navigation
 history, and of course do so in a non-destructive way.&lt;/p&gt;
 &lt;p&gt;So the history classes in BagOfStuff
@@ -639,8 +779,8 @@ current location, then save it, without affecting the working copy.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:419-1"&gt;
-&lt;p&gt;Why do I feel like I'll regret saying that?&amp;#160;&lt;a class="footnote-backref" href="#fnref:419-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:420-1"&gt;
+&lt;p&gt;Why do I feel like I'll regret saying that?&amp;#160;&lt;a class="footnote-backref" href="#fnref:420-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -804,7 +944,7 @@ the HTML into Markdown and then use the Markdown widget to show the result,
 &lt;a href="https://blog.davep.org/2026/08/11/html2gemtext-a-simple-library-for-converting-html-to-gemtext.html"&gt;but in the end I decided to turn it into Gemtext
 instead&lt;/a&gt;;
 in part because it's a fun challenge, and in part because it feels more in
-keeping with the Geminispace aesthetic&lt;sup id="fnref:432-1"&gt;&lt;a class="footnote-ref" href="#fn:432-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+keeping with the Geminispace aesthetic&lt;sup id="fnref:433-1"&gt;&lt;a class="footnote-ref" href="#fn:433-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So, whereas before, if you landed on some HTML in Geminispace, you'd see
 this:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Viewing raw HTML" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/raw-html.webp#centre" width="836" /&gt;&lt;/p&gt;
@@ -842,7 +982,7 @@ you have to get past to get to the content. I can see this being an
 &lt;p&gt;&lt;img alt="The Station logo taking up space" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/the-station-logo.webp#centre" width="836" /&gt;&lt;/p&gt;
 &lt;p&gt;So I got to thinking: in the case of
 &lt;a href="gemini://station.martinrue.com/" rel="noopener noreferrer" target="_blank"&gt;Station&lt;/a&gt;, the author of the site has been
-kind enough to give the pre-formatted text block some alt-text&lt;sup id="fnref:432-2"&gt;&lt;a class="footnote-ref" href="#fn:432-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, so that
+kind enough to give the pre-formatted text block some alt-text&lt;sup id="fnref:433-2"&gt;&lt;a class="footnote-ref" href="#fn:433-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, so that
 means it's possible to have a targeted filter for such well-designed sites.
 Given this, I've added &lt;a href="https://rogallo.davep.dev/viewer/#filtering-out-pre-formatted-text" rel="noopener noreferrer" target="_blank"&gt;a method of filtering out pre-formatted
 blocks&lt;/a&gt;,
@@ -886,11 +1026,11 @@ column of any line, being seen as a Gopher map that indicated an error.&lt;/p&gt
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:432-1"&gt;
-&lt;p&gt;Which also has me wanting, longer-term, to do the same for Markdown. While using the Markdown widget is neat and all, I think it would be far more in keeping with the purpose of this project to turn Markdown into Gemtext.&amp;#160;&lt;a class="footnote-backref" href="#fnref:432-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:433-1"&gt;
+&lt;p&gt;Which also has me wanting, longer-term, to do the same for Markdown. While using the Markdown widget is neat and all, I think it would be far more in keeping with the purpose of this project to turn Markdown into Gemtext.&amp;#160;&lt;a class="footnote-backref" href="#fnref:433-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:432-2"&gt;
-&lt;p&gt;As I write more Gemtext myself, I'm going to do my very best to always do the same.&amp;#160;&lt;a class="footnote-backref" href="#fnref:432-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:433-2"&gt;
+&lt;p&gt;As I write more Gemtext myself, I'm going to do my very best to always do the same.&amp;#160;&lt;a class="footnote-backref" href="#fnref:433-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -945,91 +1085,6 @@ and so incorrectly rendering the result.&lt;/p&gt;</description>
       <category>gopher</category>
       <category>smolweb</category>
       <pubDate>Wed, 12 Aug 2026 15:55:27 +0100</pubDate>
-    </item>
-    <item>
-      <title>html2gemtext - A simple library for converting HTML to Gemtext</title>
-      <link>https://blog.davep.org/2026/08/11/html2gemtext-a-simple-library-for-converting-html-to-gemtext.html</link>
-      <description>&lt;p&gt;Yesterday evening, while tinkering with
-&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;, I managed to nerd-snipe myself pretty
-well. I was playing around with the idea of better presentation of some
-forms of &lt;code&gt;text/*&lt;/code&gt; content. While, of course, Rogallo handles &lt;code&gt;text/gemtext&lt;/code&gt;
-just fine, there are lots of other MIME types that it will show too (pretty
-much all within &lt;code&gt;text/*&lt;/code&gt;). Already, if it can work out an appropriate
-language, the viewer will do syntax highlighting, and this includes Markdown
-files. However, &lt;a href="https://textual.textualize.io/widgets/markdown/" rel="noopener noreferrer" target="_blank"&gt;Rogallo has a full Markdown widget built right
-in&lt;/a&gt; so I was experimenting
-with using that as the way to show Markdown content.&lt;/p&gt;
-&lt;p&gt;Nothing that clever really, all pretty obvious.&lt;/p&gt;
-&lt;p&gt;But then I got to thinking... In &lt;a href="https://oldnews.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;OldNews&lt;/a&gt; I
-heavily rely on
-&lt;a href="https://docs.html-to-markdown.xberg.io/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;html-to-markdown&lt;/code&gt;&lt;/a&gt;. Given I have
-a Markdown viewer to hand, if the user ends up trying to look at some
-&lt;code&gt;text/html&lt;/code&gt;, why not convert it over to Markdown and render it that way?
-That's... doable.&lt;/p&gt;
-&lt;p&gt;There are, however, some problems with this idea:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;As useful as &lt;code&gt;html-to-markdown&lt;/code&gt; has been for OldNews, I've found it quite
-  unreliable at times, with the occasional breaking change. I don't mention
-  this as a negative about the project, but I don't want another one of my
-  projects sitting on top of a moving target like that.&lt;/li&gt;
-&lt;li&gt;Dragging in a reasonably large dependency for what's likely to be a niche
-  requirement doesn't quite feel right.&lt;/li&gt;
-&lt;li&gt;Textual's Markdown viewer has, to this day, one massive design flaw: links
-  can't be navigated with the keyboard&lt;sup id="fnref:427-1"&gt;&lt;a class="footnote-ref" href="#fn:427-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'm doing my absolute best to
-  ensure that Rogallo is keyboard-first. Leaning on this widget for viewing
-  Markdown is one thing, but leaning on the widget for other content types
-  starts to erode that aim.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I did consider the idea of having this feature as an install option, so
-you'd be able to install &lt;code&gt;rogallo&lt;/code&gt; and have it work as normal, or install
-&lt;code&gt;rogallo[html]&lt;/code&gt; (or similar) and it would drag in the ability to render some
-HTML using this pipeline.&lt;/p&gt;
-&lt;p&gt;Then I realised: why target Markdown at all? I already have the code for
-rendering Gemtext, and that solves the keyboard navigation of links problem.
-How hard could it be to write something to convert HTML to Gemtext?&lt;/p&gt;
-&lt;p&gt;Turns out, at least for the requirements I have right now, &lt;a href="https://github.com/davep/html2gemtext" rel="noopener noreferrer" target="_blank"&gt;not that
-hard&lt;/a&gt;!&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://html2gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;html2gemtext&lt;/code&gt;&lt;/a&gt; is still in its infancy,
-but it's doing a passable job of turning most of the HTML I throw at it into
-reasonable Gemtext. I don't doubt for a moment that there are &lt;em&gt;lots&lt;/em&gt; of
-pages out there that won't turn out right -- for varied values of right --
-but so far the results are readable and navigable. The plan now is to keep
-improving as I run into new cases that could be handled better.&lt;/p&gt;
-&lt;p&gt;While I've not built this into Rogallo just yet, I think I will make use of
-it. I'm also giving serious thought to using it for &lt;a href="gemini://tilde.team/~davep/" rel="noopener noreferrer" target="_blank"&gt;my
-capsule&lt;/a&gt;. Over there I'm &lt;a href="gemini://tilde.team/~davep/gemlog/" rel="noopener noreferrer" target="_blank"&gt;adding some posts
-from this blog&lt;/a&gt; and &lt;code&gt;html2gemtext&lt;/code&gt; could
-form the basis of a tool to help automate some of that.&lt;/p&gt;
-&lt;p&gt;Right now &lt;a href="https://github.com/davep/tilde-team-capsule/blob/11a6bfa7e0ab6015471d660cacdd0287d10bd3dc/bin/borrow-from-blog" rel="noopener noreferrer" target="_blank"&gt;I'm using a script I've
-written&lt;/a&gt;
-that wraps &lt;a href="https://kristaps.bsd.lv/lowdown/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;lowdown&lt;/code&gt;&lt;/a&gt; to do the Markdown
-to Gemtext conversion, but the result -- as good as it is -- isn't &lt;em&gt;quite&lt;/em&gt;
-what I'd like. I'm thinking I could tailor the results exactly as I want if
-I go from this blog's HTML via &lt;code&gt;html2gemtext&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Or, of course, given my blog is written in Markdown, I could next tackle my
-own just-how-I-need-it Markdown to Gemtext converter...&lt;/p&gt;
-&lt;p&gt;As for how this new library will go into Rogallo... Using it to render HTML
-that might be found kicking about in Geminispace or Gopherspace makes sense,
-I think. That should be enough. It's not like I &lt;em&gt;really&lt;/em&gt; need to turn it
-into an &lt;code&gt;http(s)&lt;/code&gt; browser too. Right? Right?!?&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:427-1"&gt;
-&lt;p&gt;This mouse-only problem is a recurring theme in Textual.&amp;#160;&lt;a class="footnote-backref" href="#fnref:427-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/08/11/html2gemtext-a-simple-library-for-converting-html-to-gemtext.html</guid>
-      <category>Python</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>gemtext</category>
-      <category>html2gemtext</category>
-      <category>smolweb</category>
-      <pubDate>Tue, 11 Aug 2026 20:24:39 +0100</pubDate>
     </item>
   </channel>
 </rss>

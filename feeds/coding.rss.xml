@@ -8,7 +8,147 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 29 Aug 2026 09:13:53 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 29 Aug 2026 11:57:29 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v2.0.0</title>
+      <link>https://blog.davep.org/2026/08/29/rogallo-v2-0-0.html</link>
+      <description>&lt;p&gt;I've just released
+&lt;a href="https://github.com/davep/rogallo/releases/tag/v2.0.0" rel="noopener noreferrer" target="_blank"&gt;v2.0.0&lt;/a&gt; of
+&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;. This release has quite a lot of
+changes, one or two of them &lt;em&gt;"breaking changes"&lt;/em&gt;, hence the bump to v2.0.0.
+I will add though that, when I say &lt;em&gt;"breaking changes"&lt;/em&gt;, nothing should
+&lt;em&gt;actually&lt;/em&gt; break, it's just some features have changed in an incompatible
+way and some application commands have been removed or renamed (and so some
+default keyboard bindings have changed). The worst that might happen is a
+keyboard binding you set up no longer works.&lt;/p&gt;
+&lt;p&gt;With this in mind, in &lt;a href="https://semver.org" rel="noopener noreferrer" target="_blank"&gt;the spirit of semver&lt;/a&gt;, the major
+version is bumped.&lt;/p&gt;
+&lt;p&gt;Now for what's new in this release.&lt;/p&gt;
+&lt;h2 id="client-certificate-management"&gt;Client certificate management&lt;/h2&gt;
+&lt;p&gt;While Rogallo supported the creation and use of client certificates for use
+with Gemini capsules, it never made it that easy to work with them. Creating
+and using them was pretty frictionless, but if you were someone who wanted
+to bring your own certificate from another application, you were on your
+own. Actually doing that was easy enough, if you were comfortable with
+diving into the certificate directory and hand-editing the JSON file to
+create the association. What was lacking though was a good interface to
+manage all of this in the application.&lt;/p&gt;
+&lt;p&gt;This version solves that problem. Rogallo now contains a client certificate
+manager that lets you:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create new client certificates&lt;/li&gt;
+&lt;li&gt;Add and remove associations for client certificates&lt;/li&gt;
+&lt;li&gt;Delete client certificates&lt;/li&gt;
+&lt;li&gt;Import client certificates&lt;/li&gt;
+&lt;li&gt;Export client certificates&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Also, when you encounter a capsule that demands a certificate and you don't
+have one associated, you can pick an existing one from your certificate
+library; before the only option you had was to create a new one.&lt;/p&gt;
+&lt;h2 id="reworked-side-panel"&gt;Reworked side panel&lt;/h2&gt;
+&lt;p&gt;Initially, when I first started work on Rogallo, I had a simple history list
+that could be popped in/out on the side of the display. Then, when I added
+bookmarks, this became a sort of toggle, with either the history showing,
+the bookmarks showing, or both hidden. The command to show the history would
+hide the bookmarks; the command to show the bookmarks would hide the
+history; both would toggle themselves to hide. This was... kind of messy,
+but it worked.&lt;/p&gt;
+&lt;p&gt;When I started work on the certificate manager it made sense that it also
+occupied the same space. However, the code for managing this, and the
+resulting user experience, started to get pretty messy. I wasn't at all
+happy with it so ended up going on a bit of a side-quest to clean this up.&lt;/p&gt;
+&lt;p&gt;The result is that Rogallo now has a &lt;a href="https://rogallo.davep.dev/side-panel/" rel="noopener noreferrer" target="_blank"&gt;tabbed side
+panel&lt;/a&gt; (similar to the one in
+&lt;a href="https://hike.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Hike&lt;/a&gt;). This contains the bookmark manager,
+history manager and client certificate manager.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The new side panel" height="1952" loading="lazy" src="https://blog.davep.org/attachments/2026/08/29/side-panel.webp#centre" width="1942" /&gt;&lt;/p&gt;
+&lt;p&gt;This is where one of the main breaking changes comes in: the
+&lt;code&gt;ToggleHistoryManager&lt;/code&gt; and &lt;code&gt;ToggleBookmarksManager&lt;/code&gt; commands have been
+removed from Rogallo and their default keyboard bindings have been freed up.
+Also, to clean up the naming of things, I've renamed &lt;code&gt;JumpToSidebar&lt;/code&gt; to
+&lt;code&gt;JumpToSidePanel&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I feel this side panel approach is far cleaner and far easier to work with.&lt;/p&gt;
+&lt;p&gt;It's also worth noting that it's moved over to the left side of the display.
+However, if you'd prefer it on the right &lt;a href="https://rogallo.davep.dev/side-panel/#left-or-right-side" rel="noopener noreferrer" target="_blank"&gt;there's a configuration option for
+that&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="viewing-client-certificate-information"&gt;Viewing client certificate information&lt;/h2&gt;
+&lt;p&gt;As part of the work on managing client certificates, I added a dialog that
+lets you view details of a certificate. As well as being available in the
+certificate manager, it can also be used to view any certificate that might
+be in use when viewing the current page. The &lt;code&gt;AboutClientCertificate&lt;/code&gt;
+command (bound to &lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;F7&lt;/kbd&gt; by default) can be used to
+bring up the view.&lt;/p&gt;
+&lt;p&gt;For the folk who lean more on the mouse, the key icon that appears in the
+title bar of the viewer can be clicked on to get the same view.&lt;/p&gt;
+&lt;h2 id="protocol-guessing-in-the-command-line"&gt;Protocol guessing in the command line&lt;/h2&gt;
+&lt;p&gt;The command line in the application now tries to be a little bit smarter
+when it comes to understanding input. Before now, if you were to type in
+&lt;code&gt;example.com&lt;/code&gt;, Rogallo would assume that you were attempting to visit a
+Gemini capsule on that host and process the input as if it were
+&lt;code&gt;gemini://example.com/&lt;/code&gt;. This release extends this a little.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If the input doesn't appear to be anything else and it includes a &lt;code&gt;@&lt;/code&gt; it
+  will be turned into a &lt;code&gt;finger&lt;/code&gt; URI. So &lt;code&gt;user@example.com&lt;/code&gt; becomes
+  &lt;code&gt;finger://example.com/user&lt;/code&gt; and &lt;code&gt;@example.com&lt;/code&gt; becomes
+  &lt;code&gt;finger://example.com/&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;If the first part of the host has a recognisable protocol name, it will be
+  assumed that that protocol should be used. In other words:&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;gopher.example.com&lt;/code&gt; -&amp;gt; &lt;code&gt;gopher://gopher.example.com/1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;spartan.example.com&lt;/code&gt; -&amp;gt; &lt;code&gt;spartan://spartan.example.com/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;nex.example.com&lt;/code&gt; -&amp;gt; &lt;code&gt;nex://nex.example.com/&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is probably of very minor use, but it was easy enough to add and seemed
+like a useful little change.&lt;/p&gt;
+&lt;h2 id="emoji-removal-overhaul"&gt;Emoji removal overhaul&lt;/h2&gt;
+&lt;p&gt;I've overhauled the code that does emoji removal if you toggle removal on.
+More work is done to identify "real" emoji. This should mean that all the
+usual colourful image-like candidates are removed, but now things like
+braille and box drawing characters, etc, &lt;em&gt;won't&lt;/em&gt; be removed.&lt;/p&gt;
+&lt;p&gt;Also, when removing an emoji, if there is a space following it, that space
+will also be removed. This solves the cosmetic problem of &lt;code&gt;"👉 This"&lt;/code&gt; being
+turned into &lt;code&gt;" This"&lt;/code&gt; when it would make more sense that it is turned into
+&lt;code&gt;"This"&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;It's worth keeping in mind here that this isn't intended to be a
+100%-correct solution. It's aimed at being a good-enough solution to clean
+up most of the emoji clutter if you don't like that sort of thing.&lt;/p&gt;
+&lt;h2 id="overall-performance"&gt;Overall performance&lt;/h2&gt;
+&lt;p&gt;My general approach to developing anything is one of &lt;em&gt;"make it right then
+make it fast"&lt;/em&gt;. I've never been a fan of early optimisation, and when I've
+watched people obsess over such things far too early in a codebase's
+lifecycle I've generally watched them get into a mess. I like to try and
+avoid that mess.&lt;/p&gt;
+&lt;p&gt;So this was my approach with Rogallo. When it came to building the widget
+that displayed the content of a page, I spent my time trying to ensure it
+was correct, not that it was fast. Quite quickly, however, I found that once
+a page had quite a few links on it -- especially when you got to many 100s
+of links -- performance was terrible. I'd had an issue sat in TODO for this
+from the start, but hadn't gone back to address it.&lt;/p&gt;
+&lt;p&gt;Then the other day someone else noted this issue so I decided it was time to
+go back and work on it. As of this release of Rogallo you should find that a
+page with 1,000 links on it performs about as well as a page with a handful
+of links.&lt;/p&gt;
+&lt;p&gt;In doing this work I've also made a lot of optimisations to how a page is
+initially built; so not only should a page be more responsive as you
+navigate it, it should be noticeably quicker to appear in the first place.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;There's a lot in this release and I'm really delighted with how it's turned
+out. I wasn't intending to make quite so many large changes, but each bit of
+work naturally caused the next bit of work and... well, here we are.&lt;/p&gt;
+&lt;p&gt;With this work out of the way I can start to look at the one remaining
+protocol that's currently on the TODO list, and also look at making some
+other quality-of-life improvements.&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/08/29/rogallo-v2-0-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>smolweb</category>
+      <pubDate>Sat, 29 Aug 2026 12:56:00 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v1.12.1</title>
       <link>https://blog.davep.org/2026/08/24/rogallo-v1-12-1.html</link>
@@ -81,7 +221,7 @@ finish this off. With this release Gopher and Nex get to join in on the
 parent/root navigation party.&lt;/p&gt;
 &lt;h2 id="cancelling-requests"&gt;Cancelling requests&lt;/h2&gt;
 &lt;p&gt;This one came up because, as of the time of writing, the server where my wee
-capsule lives is dead&lt;sup id="fnref:436-1"&gt;&lt;a class="footnote-ref" href="#fn:436-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This meant that if I checked if it was there, and
+capsule lives is dead&lt;sup id="fnref:437-1"&gt;&lt;a class="footnote-ref" href="#fn:437-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This meant that if I checked if it was there, and
 got impatient and went to navigate somewhere else, the somewhere else would
 load and then, after the defined timeout, the error about the previous
 request would pop up.&lt;/p&gt;
@@ -107,8 +247,8 @@ rather growing on me.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:436-1"&gt;
-&lt;p&gt;From what I've seen, someone managed to break in and pretty much &lt;code&gt;rm -rf /&lt;/code&gt; the thing. The restore of the server is being used as a good moment to change the architecture of the services it offers. This does mean it'll be a wee while before I get my capsule back.&amp;#160;&lt;a class="footnote-backref" href="#fnref:436-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:437-1"&gt;
+&lt;p&gt;From what I've seen, someone managed to break in and pretty much &lt;code&gt;rm -rf /&lt;/code&gt; the thing. The restore of the server is being used as a good moment to change the architecture of the services it offers. This does mean it'll be a wee while before I get my capsule back.&amp;#160;&lt;a class="footnote-backref" href="#fnref:437-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -406,7 +546,7 @@ the HTML into Markdown and then use the Markdown widget to show the result,
 &lt;a href="https://blog.davep.org/2026/08/11/html2gemtext-a-simple-library-for-converting-html-to-gemtext.html"&gt;but in the end I decided to turn it into Gemtext
 instead&lt;/a&gt;;
 in part because it's a fun challenge, and in part because it feels more in
-keeping with the Geminispace aesthetic&lt;sup id="fnref:432-1"&gt;&lt;a class="footnote-ref" href="#fn:432-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+keeping with the Geminispace aesthetic&lt;sup id="fnref:433-1"&gt;&lt;a class="footnote-ref" href="#fn:433-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So, whereas before, if you landed on some HTML in Geminispace, you'd see
 this:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Viewing raw HTML" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/raw-html.webp#centre" width="836" /&gt;&lt;/p&gt;
@@ -444,7 +584,7 @@ you have to get past to get to the content. I can see this being an
 &lt;p&gt;&lt;img alt="The Station logo taking up space" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/the-station-logo.webp#centre" width="836" /&gt;&lt;/p&gt;
 &lt;p&gt;So I got to thinking: in the case of
 &lt;a href="gemini://station.martinrue.com/" rel="noopener noreferrer" target="_blank"&gt;Station&lt;/a&gt;, the author of the site has been
-kind enough to give the pre-formatted text block some alt-text&lt;sup id="fnref:432-2"&gt;&lt;a class="footnote-ref" href="#fn:432-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, so that
+kind enough to give the pre-formatted text block some alt-text&lt;sup id="fnref:433-2"&gt;&lt;a class="footnote-ref" href="#fn:433-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, so that
 means it's possible to have a targeted filter for such well-designed sites.
 Given this, I've added &lt;a href="https://rogallo.davep.dev/viewer/#filtering-out-pre-formatted-text" rel="noopener noreferrer" target="_blank"&gt;a method of filtering out pre-formatted
 blocks&lt;/a&gt;,
@@ -488,11 +628,11 @@ column of any line, being seen as a Gopher map that indicated an error.&lt;/p&gt
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:432-1"&gt;
-&lt;p&gt;Which also has me wanting, longer-term, to do the same for Markdown. While using the Markdown widget is neat and all, I think it would be far more in keeping with the purpose of this project to turn Markdown into Gemtext.&amp;#160;&lt;a class="footnote-backref" href="#fnref:432-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:433-1"&gt;
+&lt;p&gt;Which also has me wanting, longer-term, to do the same for Markdown. While using the Markdown widget is neat and all, I think it would be far more in keeping with the purpose of this project to turn Markdown into Gemtext.&amp;#160;&lt;a class="footnote-backref" href="#fnref:433-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:432-2"&gt;
-&lt;p&gt;As I write more Gemtext myself, I'm going to do my very best to always do the same.&amp;#160;&lt;a class="footnote-backref" href="#fnref:432-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:433-2"&gt;
+&lt;p&gt;As I write more Gemtext myself, I'm going to do my very best to always do the same.&amp;#160;&lt;a class="footnote-backref" href="#fnref:433-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1407,116 +1547,6 @@ configuration file&lt;/a&gt;.&lt;/p&gt;</description>
       <category>smolweb</category>
       <category>textual</category>
       <pubDate>Sun, 19 Jul 2026 11:52:32 +0100</pubDate>
-    </item>
-    <item>
-      <title>Rogallo v0.10.0</title>
-      <link>https://blog.davep.org/2026/07/18/rogallo-v0-10-0.html</link>
-      <description>&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
-&lt;a href="https://rogallo.davep.dev/changelog/#v0100" rel="noopener noreferrer" target="_blank"&gt;v0.10.0&lt;/a&gt; is now available. This
-release has a number of changes, including some new features, some changes
-to the user interface, and a couple of quality-of-life improvements.&lt;/p&gt;
-&lt;h2 id="maximum-document-width"&gt;Maximum document width&lt;/h2&gt;
-&lt;p&gt;Amongst some feedback someone left &lt;a href="gemini://station.martinrue.com/davep/666afe3d00074b079d2529ac0f4953b8" rel="noopener noreferrer" target="_blank"&gt;on a slightly unrelated post over on
-&lt;code&gt;station&lt;/code&gt;&lt;/a&gt;
-there was mention of how a document &lt;em&gt;"should"&lt;/em&gt; wrap at around 72 characters.
-While no rationale was given for the "should" part, I was happy enough to
-accept that this could be a preference for some people. With this in mind,
-I've added &lt;a href="https://rogallo.davep.dev/configuration/#maximum-document-width" rel="noopener noreferrer" target="_blank"&gt;a configuration option to set a maximum width for
-documents&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;While, personally, I prefer Rogallo's default behaviour (I work in an
-environment where I can resize a window, and I'm capable of doing it), I can
-appreciate that someone might want to cap it. So for folk who prefer this,
-they can now make Rogallo look like this (with &lt;code&gt;maximum_document_width&lt;/code&gt; set
-to &lt;code&gt;80&lt;/code&gt;):&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Max document width in action" height="1984" loading="lazy" src="https://blog.davep.org/attachments/2026/07/18/max-doc-width.webp#centre" width="2054" /&gt;&lt;/p&gt;
-&lt;p&gt;For the moment this can only be set via the configuration file. At some
-point I might make this more of a dynamic thing. I can imagine this being
-something handy, or at least fun, to change up as you're viewing different
-content.&lt;/p&gt;
-&lt;h2 id="link-jump-timeout"&gt;Link jump timeout&lt;/h2&gt;
-&lt;p&gt;The same feedback "suggested" that the link jumping facility that Rogallo
-has should have a timeout that clears the buildup of the number being looked
-for. This seemed like a reasonable thing to ask for. So, before, if you
-typed &lt;kbd&gt;1&lt;/kbd&gt;, a link with a label of &lt;code&gt;1&lt;/code&gt; would be selected. If you did
-nothing for a while, and then typed &lt;kbd&gt;2&lt;/kbd&gt;, a link with the label of
-&lt;code&gt;12&lt;/code&gt; would be highlighted. With the new timeout (set to 1 second by default,
-configurable in the configuration file), if you type &lt;kbd&gt;1&lt;/kbd&gt; and then
-&lt;kbd&gt;2&lt;/kbd&gt; more than a second later, first link &lt;code&gt;1&lt;/code&gt; will be selected, then
-link &lt;code&gt;2&lt;/code&gt; will be selected. On the other hand, if you type &lt;kbd&gt;1&lt;/kbd&gt; then
-&lt;kbd&gt;2&lt;/kbd&gt; within a second, &lt;code&gt;12&lt;/code&gt; will be selected.&lt;/p&gt;
-&lt;p&gt;Setting the timeout to &lt;code&gt;0&lt;/code&gt; disables this and Rogallo's link jumping facility
-will work as it did before.&lt;/p&gt;
-&lt;h2 id="failed-input-recovery"&gt;Failed input recovery&lt;/h2&gt;
-&lt;p&gt;With this new feature, if you send input text to a capsule and it rejects it
-for some reason, the input will be held on to. If you then visit the same
-URI again, the input dialog will be pre-populated with what you attempted to
-send a moment ago. This gives you the opportunity to edit anything wrong
-with the submission and try again.&lt;/p&gt;
-&lt;h2 id="added-all-application-commands-to-the-command-line"&gt;Added all application commands to the command line&lt;/h2&gt;
-&lt;p&gt;If you prefer to use Rogallo's command line more than the command palette,
-I've now ensured that &lt;a href="https://rogallo.davep.dev/configuration/#keyboard-bindings" rel="noopener noreferrer" target="_blank"&gt;all bindable application
-commands&lt;/a&gt; can be
-accessed via the command line. There's a difference in their form, to stay
-in keeping with the command line. So whereas in the command palette you'd
-run &lt;code&gt;GoHome&lt;/code&gt; by typing &lt;code&gt;go home&lt;/code&gt;, in the command line it becomes a
-&lt;code&gt;!&lt;/code&gt;-prefixed snake-case command: &lt;code&gt;!go_home&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;All possible commands are listed in the help screen if it's brought up while
-the command line has focus.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Help showing commands" height="2368" loading="lazy" src="https://blog.davep.org/attachments/2026/07/18/cli-help.webp#centre" width="2310" /&gt;&lt;/p&gt;
-&lt;h2 id="capsule-navigation-commands"&gt;Capsule navigation commands&lt;/h2&gt;
-&lt;p&gt;Rogallo now has two new commands for quickly navigating within the current
-capsule path. &lt;code&gt;GoToParent&lt;/code&gt; will navigate up a level in the path of the
-current URI, and &lt;code&gt;GoToRoot&lt;/code&gt; will go to the root of the capsule.&lt;/p&gt;
-&lt;h2 id="visited-vs-non-visited-links"&gt;Visited vs non-visited links&lt;/h2&gt;
-&lt;p&gt;The icon for links is now used to show if a link is already in the location
-history (and so has been visited before), or not:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Visited and non-visited links" height="228" loading="lazy" src="https://blog.davep.org/attachments/2026/07/18/link-colours.webp#centre" width="692" /&gt;&lt;/p&gt;
-&lt;p&gt;Here you can see that &lt;code&gt;Account settings&lt;/code&gt; isn't in the visit history, but the
-other two links are. I was going to do the whole link, but I've never been a
-fan of how web browsers do this, so I've gone with just the icon. I've also
-made it subtle but still noticeable. So far, I'm much preferring this; I
-don't need it blasting out the difference, I just need it to be enough for
-me to notice&lt;sup id="fnref:382-1"&gt;&lt;a class="footnote-ref" href="#fn:382-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;h2 id="swapped-around-history-and-bookmark-tools"&gt;Swapped around history and bookmark tools&lt;/h2&gt;
-&lt;p&gt;Until now the "history" and "bookmarks" shortcut keys advertised in the
-footer brought up the sidebar-based management widgets. This made sense when
-that's all I had in Rogallo. For a while now though I've had palette-based
-search tools for both history and bookmarks. Normally I want to search for
-and select a bookmark or history item way more than I want to manage those
-lists. So I've relegated the sidebar-based tools to a secondary position and
-placed the palette-based search tools up front.&lt;/p&gt;
-&lt;p&gt;This also means that the default bindings have changed a bit. As always, you
-can discover the bindings &lt;a href="https://rogallo.davep.dev/#bindings" rel="noopener noreferrer" target="_blank"&gt;with &lt;code&gt;rogallo
-bindings&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;I know I've nodded towards this before, but I think I'm getting close to
-making a v1.0.0 release. I want to daily-drive for a few more days, and I'd
-also like to expand &lt;a href="https://rogallo.davep.dev" rel="noopener noreferrer" target="_blank"&gt;the website&lt;/a&gt;. I'd &lt;em&gt;also&lt;/em&gt;
-like to build a Gemini/Gemtext-based site for Rogallo -- it'd be pretty
-weird if I only documented it in http(s)space. I won't let those wishes
-become blockers for moving to calling Rogallo "stable", but it would be nice
-to have.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:382-1"&gt;
-&lt;p&gt;I do recognise that there's an &lt;a href="https://blog.davep.org/tag/a11y/"&gt;a11y&lt;/a&gt; issue here with the
-subtle difference; there's some work to be done at some point to allow
-for a high-contrast theme that will resolve this sort of issue.&amp;#160;&lt;a class="footnote-backref" href="#fnref:382-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/18/rogallo-v0-10-0.html</guid>
-      <category>Coding</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>Rogallo</category>
-      <category>gemtext</category>
-      <category>smolweb</category>
-      <category>textual</category>
-      <pubDate>Sat, 18 Jul 2026 16:44:46 +0100</pubDate>
     </item>
   </channel>
 </rss>
