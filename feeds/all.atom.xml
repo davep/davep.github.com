@@ -2,11 +2,38 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-08-30T09:33:33.368537+00:00</updated>
+  <updated>2026-08-30T17:46:45.933799+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/08/30/wasat-v1-7-0.html</id>
+    <title>Wasat v1.7.0</title>
+    <updated>2026-08-30T18:44:36+01:00</updated>
+    <content type="html">&lt;p&gt;A quick little update to &lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;, bumping the
+version to &lt;a href="https://wasat.davep.dev/changelog/#v170" rel="noopener noreferrer" target="_blank"&gt;v1.7.0&lt;/a&gt;. In service of
+a feature I'm adding to &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;, I've added &lt;a href="https://wasat.davep.dev/library/trust/#wasat.trust.FileTrustStore.forget" rel="noopener noreferrer" target="_blank"&gt;a
+&lt;code&gt;forget&lt;/code&gt;
+method&lt;/a&gt;
+to the trust store class, so that a certificate fingerprint for a particular
+host/port combination can be forgotten.&lt;/p&gt;
+&lt;p&gt;This came about because, if a fingerprint does change for a Gemini capsule,
+I want a Rogallo user to be able to decide to either avoid it or forget it
+and re-establish trust. While the fingerprint mismatch &lt;em&gt;should&lt;/em&gt; be a warning
+to distrust the capsule, there might be a legitimate reason why the
+certificate has changed, and I want to make that decision fairly
+frictionless.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/08/30/wasat-v1-7-0.html"/>
+    <category term="Python"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="smolweb"/>
+    <category term="wasat"/>
+    <published>2026-08-30T18:44:36+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/08/30/recently-i-found-7.html</id>
     <title>Recently I found - 7</title>
@@ -983,141 +1010,5 @@ site&lt;/a&gt;.&lt;/p&gt;</content>
     <category term="port1900"/>
     <category term="smolweb"/>
     <published>2026-08-14T19:21:42+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/08/13/rogallo-v1-8-0.html</id>
-    <title>Rogallo v1.8.0</title>
-    <updated>2026-08-13T08:28:31+01:00</updated>
-    <content type="html">&lt;p&gt;I've released &lt;a href="https://rogallo.davep.dev/changelog/#v180" rel="noopener noreferrer" target="_blank"&gt;v1.8.0&lt;/a&gt; of
-&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;. This release has a bit of an
-accidental emphasis on control of how things are rendered in the main
-viewer.&lt;/p&gt;
-&lt;h2 id="markdown"&gt;Markdown&lt;/h2&gt;
-&lt;p&gt;While Rogallo is, of course, primarily aimed at loading and rendering
-&lt;a href="https://blog.davep.org/tag/gemtext/"&gt;Gemtext&lt;/a&gt; documents, I have written it so that it'll try and
-display anything whose content type matches &lt;code&gt;text/*&lt;/code&gt;. In most cases this
-will result in something being shown as plain text and, as of
-&lt;a href="https://blog.davep.org/2026/08/08/rogallo-v1-6-0.html"&gt;v1.6.0&lt;/a&gt;, it will also attempt to add some
-syntax highlighting where appropriate. So, if you happened to come across a
-Markdown file in Geminispace, and the server told Rogallo that it was a
-Markdown file, it would look something like this:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Viewing highlighted raw Markdown" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/raw-markdown.webp#centre" width="836" /&gt;&lt;/p&gt;
-&lt;p&gt;Simply put: raw Markdown but syntax-highlighted.&lt;/p&gt;
-&lt;p&gt;The thing is, Rogallo contains everything needed to actually render the
-Markdown; it's &lt;a href="https://textual.textualize.io/widgets/markdown/" rel="noopener noreferrer" target="_blank"&gt;carrying that code
-around&lt;/a&gt; due to it being
-built on top of the &lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual framework&lt;/a&gt;, so it seemed a shame
-to not use it. So as of this version, if a Markdown file is encountered, by
-default it'll be shown as a full Markdown widget.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Viewing rendered Markdown" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/rendered-markdown.webp#centre" width="836" /&gt;&lt;/p&gt;
-&lt;h2 id="html"&gt;HTML&lt;/h2&gt;
-&lt;p&gt;Having added the above, I got to thinking that it might be interesting to
-consider other &lt;code&gt;text/*&lt;/code&gt; types that I could render in a more Rogallo-friendly
-way. The next that came to mind was &lt;code&gt;text/html&lt;/code&gt;. While it's not going to be
-&lt;em&gt;that&lt;/em&gt; common to encounter HTML on the end of a &lt;code&gt;gemini://&lt;/code&gt; connection, it's
-not impossible. Initially I did consider going via a route that had me turn
-the HTML into Markdown and then use the Markdown widget to show the result,
-&lt;a href="https://blog.davep.org/2026/08/11/html2gemtext-a-simple-library-for-converting-html-to-gemtext.html"&gt;but in the end I decided to turn it into Gemtext
-instead&lt;/a&gt;;
-in part because it's a fun challenge, and in part because it feels more in
-keeping with the Geminispace aesthetic&lt;sup id="fnref:433-1"&gt;&lt;a class="footnote-ref" href="#fn:433-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;So, whereas before, if you landed on some HTML in Geminispace, you'd see
-this:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Viewing raw HTML" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/raw-html.webp#centre" width="836" /&gt;&lt;/p&gt;
-&lt;p&gt;From now on you'll see something more like this:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Viewing HTML rendered as Gemtext" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/rendered-html.webp#centre" width="836" /&gt;&lt;/p&gt;
-&lt;p&gt;This HTML to Gemtext support is still in its infancy so I imagine there's
-going to be a lot of fun corner cases that don't quite work out, but for me
-the utility makes it worth working on.&lt;/p&gt;
-&lt;h2 id="extended-toggleview"&gt;Extended &lt;code&gt;ToggleView&lt;/code&gt;&lt;/h2&gt;
-&lt;p&gt;Until now the &lt;code&gt;ToggleView&lt;/code&gt; command (bound to &lt;kbd&gt;F4&lt;/kbd&gt; by default)
-simply toggled Gemini-based Gemtext and Gopher maps between their rendered
-and raw views (acting as a sort of "view source" command). With the addition
-of richer rendering of Markdown and HTML it will also toggle those content
-types. The point here being, if you really need to look at the raw content
-of a Markdown or HTML document found in Geminispace, it's still there for
-you.&lt;/p&gt;
-&lt;h2 id="the-handofftooperatingsystem-command"&gt;The &lt;code&gt;HandOffToOperatingSystem&lt;/code&gt; command&lt;/h2&gt;
-&lt;p&gt;A key feature of Rogallo is the automatic handing off of URIs and MIME types
-that it can't directly handle. On occasion, though, I find myself wanting to
-do the same hand-off with a document I'm successfully viewing in Rogallo.
-This was easy enough to do with the &lt;code&gt;CopyLocationToClipboard&lt;/code&gt; command (bound
-to &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;c&lt;/kbd&gt; by default), pasting the
-URI into my normal web browser and going from there. But it felt like this
-should be a command in its own right.&lt;/p&gt;
-&lt;p&gt;So now there's &lt;code&gt;HandOffToOperatingSystem&lt;/code&gt; (bound to
-&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;o&lt;/kbd&gt; by default), which will ask
-your environment to open the current URI.&lt;/p&gt;
-&lt;h2 id="hiding-some-pre-formatted-text"&gt;Hiding some pre-formatted text&lt;/h2&gt;
-&lt;p&gt;Yesterday, I saw &lt;a href="gemini://station.martinrue.com/freezr/54d38c82c214477eba340638ce787e2f" rel="noopener noreferrer" target="_blank"&gt;a post on
-Station&lt;/a&gt;
-which was talking about the site logo. The main thrust of it being, while
-the logo is cool and all, it does use up a fair bit of vertical space that
-you have to get past to get to the content. I can see this being an
-&lt;a href="https://blog.davep.org/tag/a11y/"&gt;a11y&lt;/a&gt; issue in some situations, if nothing else.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The Station logo taking up space" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/the-station-logo.webp#centre" width="836" /&gt;&lt;/p&gt;
-&lt;p&gt;So I got to thinking: in the case of
-&lt;a href="gemini://station.martinrue.com/" rel="noopener noreferrer" target="_blank"&gt;Station&lt;/a&gt;, the author of the site has been
-kind enough to give the pre-formatted text block some alt-text&lt;sup id="fnref:433-2"&gt;&lt;a class="footnote-ref" href="#fn:433-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, so that
-means it's possible to have a targeted filter for such well-designed sites.
-Given this, I've added &lt;a href="https://rogallo.davep.dev/viewer/#filtering-out-pre-formatted-text" rel="noopener noreferrer" target="_blank"&gt;a method of filtering out pre-formatted
-blocks&lt;/a&gt;,
-keyed on a URI and alt-text. So now, with the addition of this to my
-configuration:&lt;/p&gt;
-&lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;quot;hide_preformatted&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gemini://station.martinrue.com/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Station logo&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;I can get straight to the content when landing at the Station:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Station without the logo" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/station-sans-logo.webp#centre" width="836" /&gt;&lt;/p&gt;
-&lt;div class="admonition admonition-note"&gt;
-&lt;div class="admonition-title"&gt;ℹ️ Note&lt;/div&gt;
-&lt;div class="admonition-content"&gt;
-&lt;p&gt;I did hesitate before adding this. There's a part of me that was thinking
-&lt;em&gt;"but the creator of the site has designed the site this way, does it make
-sense to override their choice?"&lt;/em&gt; -- but then I decided that, if
-Geminispace is about anything, it's about privacy, freedom and control
-over &lt;em&gt;your&lt;/em&gt; experience of it. Moreover, using this is a choice on the
-client side, and like I say, it's in part an a11y feature.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id="gopher-cache-support"&gt;Gopher cache support&lt;/h2&gt;
-&lt;p&gt;More as an accident of how I was working on things than a conscious choice,
-the only protocols in Rogallo that also used the content cache were Gemini
-and Spartan. With this release of Rogallo I've extended it to Gopher
-responses too. I've made a point of &lt;em&gt;not&lt;/em&gt; using the cache for any response
-that is going to be the result of a search, as that feels like something
-that's often going to have more dynamic content.&lt;/p&gt;
-&lt;h2 id="small-gopher-fix"&gt;Small Gopher fix&lt;/h2&gt;
-&lt;p&gt;Talking of Gopher: there's also a small fix to Gopher responses in this
-release. When looking for responses that indicated an error from Gopher
-servers, Rogallo was a little too keen in how it worked, which could result
-in a plain text response, that just happened to have a &lt;code&gt;3&lt;/code&gt; in the first
-column of any line, being seen as a Gopher map that indicated an error.&lt;/p&gt;
-&lt;p&gt;This is now fixed.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:433-1"&gt;
-&lt;p&gt;Which also has me wanting, longer-term, to do the same for Markdown. While using the Markdown widget is neat and all, I think it would be far more in keeping with the purpose of this project to turn Markdown into Gemtext.&amp;#160;&lt;a class="footnote-backref" href="#fnref:433-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:433-2"&gt;
-&lt;p&gt;As I write more Gemtext myself, I'm going to do my very best to always do the same.&amp;#160;&lt;a class="footnote-backref" href="#fnref:433-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</content>
-    <link href="https://blog.davep.org/2026/08/13/rogallo-v1-8-0.html"/>
-    <category term="Coding"/>
-    <category term="Coding"/>
-    <category term="Gemini Protocol"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="Rogallo"/>
-    <category term="smolweb"/>
-    <published>2026-08-13T08:28:31+01:00</published>
   </entry>
 </feed>
