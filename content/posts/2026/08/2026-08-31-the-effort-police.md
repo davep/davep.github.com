@@ -2,7 +2,8 @@
 title: "The effort police"
 date: "2026-08-31 16:11:06+0100"
 category: AI
-tags: "AI, LLM, FOSS, coding, Free Software"
+tags: [AI, FOSS, "Free Software", "Gemini Protocol", LLM, coding, smolweb]
+series: ["Agentic Afterthoughts"]
 ---
 
 Earlier today I saw a comment on [a post on
