@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-08-31T07:49:39.759999+00:00</updated>
+  <updated>2026-08-31T16:03:22.126261+00:00</updated>
   <link href="https://blog.davep.org/feeds/tech.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
@@ -64,7 +64,7 @@ large service). Sure, &lt;a href="https://github.blog/news-insights/company-news
 bad&lt;/a&gt;,
 but with them you know they're being actively worked on, they're something
 that's going to be getting constant attention until they're resolved.
-Moreover, those sorts of issues generally suggest a scale problem&lt;sup id="fnref:428-1"&gt;&lt;a class="footnote-ref" href="#fn:428-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. These
+Moreover, those sorts of issues generally suggest a scale problem&lt;sup id="fnref:429-1"&gt;&lt;a class="footnote-ref" href="#fn:429-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. These
 little bugs, though, suggest a lack of attention to detail, a lack of proper
 testing, a lack of care about the product as a whole.&lt;/p&gt;
 &lt;p&gt;It's not even the first time in the last couple of weeks that I've run into
@@ -83,8 +83,8 @@ problems?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:428-1"&gt;
-&lt;p&gt;Yes, of their own design. But still...&amp;#160;&lt;a class="footnote-backref" href="#fnref:428-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:429-1"&gt;
+&lt;p&gt;Yes, of their own design. But still...&amp;#160;&lt;a class="footnote-backref" href="#fnref:429-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -244,7 +244,7 @@ values. In other words I won't be using &lt;code&gt;jq&lt;/code&gt; to calculate
 reading time, or GFI, etc.&lt;/p&gt;
 &lt;h2 id="post-count"&gt;Post count&lt;/h2&gt;
 &lt;p&gt;To start with, working out the number of posts in my blog is simple enough:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;. | length&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'. | length'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mi"&gt;371&lt;/span&gt;
@@ -252,26 +252,26 @@ reading time, or GFI, etc.&lt;/p&gt;
 
 &lt;h2 id="category-count"&gt;Category count&lt;/h2&gt;
 &lt;p&gt;Getting the list of categories would be:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .safe_category] | unique&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'[.[] .safe_category] | unique'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ai&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;coding&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;creative&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;emacs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gaming&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;life&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;meta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;music&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tech&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;til&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;"ai"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;"coding"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;"creative"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;"emacs"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;"gaming"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;"life"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;"meta"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;"music"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;"python"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;"tech"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;"til"&lt;/span&gt;
 &lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;and so getting the count of them is simple enough:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .safe_category] | unique | length&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'[.[] .safe_category] | unique | length'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mi"&gt;11&lt;/span&gt;
@@ -281,7 +281,7 @@ reading time, or GFI, etc.&lt;/p&gt;
 &lt;p&gt;Getting the count of tags takes a little more work, as &lt;a href="https://blogmore.davep.dev/command_line/#output-properties" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;safe_tags&lt;/code&gt; is a
 list too&lt;/a&gt;, so I
 start out with a list of lists, which I need to flatten first.&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .safe_tags] | flatten | unique | length&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'[.[] .safe_tags] | flatten | unique | length'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mi"&gt;224&lt;/span&gt;
@@ -302,23 +302,23 @@ format&lt;/a&gt;; specifically the date and
 time with offset format. From what I can tell, while &lt;code&gt;jq&lt;/code&gt; does have some
 date/time parsing support, it can't handle that format specifically.&lt;/p&gt;
 &lt;p&gt;This means that if I try:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.[0] .date | fromdate&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'.[0] .date | fromdate'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;I just get:&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq: error (at &amp;lt;stdin&amp;gt;:27293): date &amp;quot;2015-06-18T14:53:00+01:00&amp;quot; does not match format &amp;quot;%Y-%m-%dT%H:%M:%SZ&amp;quot;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq: error (at &amp;lt;stdin&amp;gt;:27293): date "2015-06-18T14:53:00+01:00" does not match format "%Y-%m-%dT%H:%M:%SZ"
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;After some searching around it seems the only approach I can really take is
 to drop the timezone offset and pretend every time is a &lt;code&gt;Z&lt;/code&gt; time:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.[0] .date[:19] + &amp;quot;Z&amp;quot; | fromdate&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'.[0] .date[:19] + "Z" | fromdate'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mi"&gt;1434639180&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;From here I can then get a fully-parsed list of date/time values using &lt;code&gt;gmtime&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.[0] .date[:19] + &amp;quot;Z&amp;quot; | fromdate | gmtime&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'.[0] .date[:19] + "Z" | fromdate | gmtime'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;
@@ -338,7 +338,7 @@ values related to time, but it's close enough for experimenting.&lt;/p&gt;
 &lt;h2 id="posts-per-year"&gt;Posts per year&lt;/h2&gt;
 &lt;p&gt;Now that I have a way of breaking the posting time into a workable array of
 values, getting the number of posts per year becomes:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[:19] + &amp;quot;Z&amp;quot; | fromdate | gmtime[0]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'[.[] .date[:19] + "Z" | fromdate | gmtime[0]] | group_by(.) | .[] | "\(.[0]): \(length)"'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;2015: 32
@@ -356,12 +356,12 @@ values, getting the number of posts per year becomes:&lt;/p&gt;
 
 &lt;p&gt;Although, to be fair to &lt;code&gt;jq&lt;/code&gt;, that's kind of long-winded when I could just
 pull the year itself out of the posting time:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[:4]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'[.[] .date[:4]] | group_by(.) | .[] | "\(.[0]): \(length)"'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2 id="posts-by-month"&gt;Posts by month&lt;/h2&gt;
 &lt;p&gt;At this point getting the posts by month of year seems obvious too:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[5:7]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'[.[] .date[5:7]] | group_by(.) | .[] | "\(.[0]): \(length)"'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;01: 14
@@ -384,7 +384,7 @@ handling query, where I use &lt;a href="https://jqlang.org/manual/#dates" rel="n
 break down the time. It turns out that the penultimate value is the day of
 the week as a number. So, while it's not quite as readable in that I don't
 have day names, I can get the values:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[:19] + &amp;quot;Z&amp;quot; | fromdate | gmtime[-2]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'[.[] .date[:19] + "Z" | fromdate | gmtime[-2]] | group_by(.) | .[] | "\(.[0]): \(length)"'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;0: 48
@@ -401,7 +401,7 @@ have day names, I can get the values:&lt;/p&gt;
 &lt;p&gt;Getting the posts by the hour is really just a variation on the
 date-chopping query used for the posts by year and the posts by month; it's
 all there in the string version of the date.&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[11:13]] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'[.[] .date[11:13]] | group_by(.) | .[] | "\(.[0]): \(length)"'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;00: 1
@@ -427,12 +427,12 @@ all there in the string version of the date.&lt;/p&gt;
 
 &lt;h2 id="first-and-last-posting-dates"&gt;First and last posting dates&lt;/h2&gt;
 &lt;p&gt;Getting the date of the first and latest post seems nice and easy:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .date[0:10]] | {first: min, last: max}&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'[.[] .date[0:10]] | {first: min, last: max}'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;first&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2015-06-18&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;last&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2026-06-01&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;"first"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"2015-06-18"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;"last"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"2026-06-01"&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -440,7 +440,7 @@ all there in the string version of the date.&lt;/p&gt;
 arithmetic easy so working out the elapsed time between the two isn't so
 straightforward. It can be done, but it's not as easy as it might be with a
 bit of Python code, for example. The best I could come up with was:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[ .[] | .date[:19] + &amp;quot;Z&amp;quot; | fromdate ] | ((max - min) / (365.25 * 24 * 60 * 60))&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'[ .[] | .date[:19] + "Z" | fromdate ] | ((max - min) / (365.25 * 24 * 60 * 60))'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mf"&gt;10.95438841990519&lt;/span&gt;
@@ -452,26 +452,26 @@ course&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;From here on in many of the stats that can be pulled out from the JSON, with
 &lt;code&gt;jq&lt;/code&gt;, become easier to handle. Each post has a &lt;code&gt;word_count&lt;/code&gt; property, so I
 only need to do this:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .word_count] | {least: min, most: max, average: (add / length)}&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'[.[] .word_count] | {least: min, most: max, average: (add / length)}'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;least&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;most&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2792&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;average&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;475.0700808625337&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;"least"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;"most"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2792&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;"average"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;475.0700808625337&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2 id="reading-times"&gt;Reading times&lt;/h2&gt;
 &lt;p&gt;A post's reading time can be accessed by &lt;code&gt;reading_time&lt;/code&gt;, so it's as easy to
 handle as the word counts:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .reading_time] | {least: min, most: max, average: (add / length)}&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'[.[] .reading_time] | {least: min, most: max, average: (add / length)}'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;least&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;most&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;average&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;1.8921832884097034&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;"least"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;"most"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;"average"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;1.8921832884097034&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -480,7 +480,7 @@ handle as the word counts:&lt;/p&gt;
 to do to figure it out. It is, however, a floating point value and I want
 counts in each integer "bucket". That can be done with
 &lt;a href="https://jqlang.org/manual/#math" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;round&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[.[] .gfi | round] | group_by(.) | .[] | &amp;quot;\(.[0]): \(length)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'[.[] .gfi | round] | group_by(.) | .[] | "\(.[0]): \(length)"'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;3: 1
@@ -505,7 +505,7 @@ queries by reading the docs, experimenting, and using Gemini on occasion to
 either help me understand an error message or to explain why an approach
 works the way it did, I'm going to have to leave this one 100% to Gemini.
 Here's its approach to using &lt;code&gt;jq&lt;/code&gt; to work out those averages:&lt;/p&gt;
-&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+&lt;div class="highlight" data-lang="sh"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;
 &lt;span class="s1"&gt;  [ .[] | .gfi | select(. != null) ] as $raw_gfi&lt;/span&gt;
 &lt;span class="s1"&gt;  | [ $raw_gfi[] | round ] as $rounded_gfi&lt;/span&gt;
 &lt;span class="s1"&gt;  | ($raw_gfi | length) as $count&lt;/span&gt;
@@ -538,14 +538,14 @@ Here's its approach to using &lt;code&gt;jq&lt;/code&gt; to work out those avera
 &lt;span class="s1"&gt;      median: $median,&lt;/span&gt;
 &lt;span class="s1"&gt;      mode: $modes&lt;/span&gt;
 &lt;span class="s1"&gt;    }&lt;/span&gt;
-&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+&lt;span class="s1"&gt;'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class="highlight" data-lang="json"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;count&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;371&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;mean&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;9.908842231503396&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;median&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;9.979198312236287&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;mode&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;"count"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;371&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;"mean"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;9.908842231503396&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;"median"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;9.979198312236287&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;"mode"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
@@ -873,8 +873,8 @@ there after all).&lt;/p&gt;
 again later, without it being a lot of faff.&lt;/p&gt;
 &lt;p&gt;With a little bit of digging around on the net I finally came up with a pair
 of &lt;code&gt;fish&lt;/code&gt; abbreviations that do just the job!&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;abbr -g widoff &amp;quot;defaults write com.apple.WindowManager StandardHideWidgets -int 1&amp;quot;
-abbr -g widon &amp;quot;defaults write com.apple.WindowManager StandardHideWidgets -int 0&amp;quot;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;abbr -g widoff "defaults write com.apple.WindowManager StandardHideWidgets -int 1"
+abbr -g widon "defaults write com.apple.WindowManager StandardHideWidgets -int 0"
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Now, when I'm going to stream, part of my "getting stuff ready to go live"
@@ -883,8 +883,8 @@ just run &lt;code&gt;widon&lt;/code&gt; again to have them come back.&lt;/p&gt;
 &lt;p&gt;Fast, clean, handy.&lt;/p&gt;
 &lt;p&gt;I've also got a pair for when I'm using &lt;a href="https://support.apple.com/en-gb/guide/mac-help/mchl534ba392/mac" rel="noopener noreferrer" target="_blank"&gt;Stage
 Manager&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;abbr -g smwidoff &amp;quot;defaults write com.apple.WindowManager StageManagerHideWidgets -int 1&amp;quot;
-abbr -g smwidon &amp;quot;defaults write com.apple.WindowManager StageManagerHideWidgets -int 0&amp;quot;
+&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;abbr -g smwidoff "defaults write com.apple.WindowManager StageManagerHideWidgets -int 1"
+abbr -g smwidon "defaults write com.apple.WindowManager StageManagerHideWidgets -int 0"
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Although, really, I can't remember the last time I used Stage Manager. I
