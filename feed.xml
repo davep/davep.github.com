@@ -8,7 +8,67 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 02 Sep 2026 15:43:13 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 02 Sep 2026 18:24:34 +0000</lastBuildDate>
+    <item>
+      <title>finger2gemtext - A library for converting finger responses to Gemtext</title>
+      <link>https://blog.davep.org/2026/09/02/finger2gemtext-a-library-for-converting-finger-responses-to-gemtext.html</link>
+      <description>&lt;p&gt;I've just released the first version of another library in the collection of
+libraries that support the development of
+&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;: specifically, another one that helps
+convert text in other formats into &lt;a href="https://blog.davep.org/tag/gemtext/"&gt;Gemtext&lt;/a&gt; so Rogallo's
+display can be a little richer. In effect, this is a sibling to
+&lt;a href="https://md2gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;md2gemtext&lt;/code&gt;&lt;/a&gt; and
+&lt;a href="https://html2gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;html2gemtext&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This time it's a library to convert &lt;a href="https://blog.davep.org/tag/finger/"&gt;finger&lt;/a&gt; responses into
+Gemtext, where it makes sense. For the most part, finger responses are
+free-form plain text, but there are times when there's information in the
+response that would be of most use if you could interact with it. For
+example, if you get a user list from &lt;code&gt;plan.cat&lt;/code&gt;&lt;sup id="fnref:417-1"&gt;&lt;a class="footnote-ref" href="#fn:417-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, that's a lot of data
+that could be turned into &lt;code&gt;finger://&lt;/code&gt; URIs that can be subsequently
+followed.&lt;/p&gt;
+&lt;p&gt;With this in mind, &lt;a href="https://finger2gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;finger2gemtext&lt;/code&gt;&lt;/a&gt; can
+take a body of text, look at it to see if it might be possible to convert it
+to useful Gemtext, and will convert it if that's the case. Given that
+there's no standard to be had here, and given that any given response could
+be of any form the author desires, I'm making the conversion pretty
+conservative.&lt;/p&gt;
+&lt;p&gt;What I have done, though, is make it so that the conversion process can be
+extended. The &lt;a href="https://finger2gemtext.davep.dev/finger2gemtext/#finger2gemtext.finger_to_gemtext" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;finger_to_gemtext&lt;/code&gt;
+function&lt;/a&gt;
+can be given a collection of additional filtering classes; if the built-in
+classes can't find anything to convert, the additional classes get a go.
+There is &lt;a href="https://finger2gemtext.davep.dev/finger2gemtext/#finger2gemtext.FingerFilter" rel="noopener noreferrer" target="_blank"&gt;a base class to inherit
+from&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I've not fully planned it out yet, but the vague idea I have here is that
+Rogallo could, at some point, have &lt;em&gt;"finger plugins"&lt;/em&gt; which will handle
+various special cases and site-specific formats.&lt;/p&gt;
+&lt;p&gt;For now, though, this gives me the basics that let me turn this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A plain finger response" height="1632" loading="lazy" src="https://blog.davep.org/attachments/2026/09/02/plain-finger.webp#centre" width="1606" /&gt;&lt;/p&gt;
+&lt;p&gt;into something where I can follow &lt;code&gt;finger://&lt;/code&gt; links without the need to
+copy/paste/edit:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A richer finger response" height="1632" loading="lazy" src="https://blog.davep.org/attachments/2026/09/02/rich-finger.webp#centre" width="1606" /&gt;&lt;/p&gt;
+&lt;p&gt;Now I need to find a few more online finger resources that respond with
+things worth making linkable...&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:417-1"&gt;
+&lt;p&gt;&lt;code&gt;finger @plan.cat&lt;/code&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:417-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/09/02/finger2gemtext-a-library-for-converting-finger-responses-to-gemtext.html</guid>
+      <category>Python</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>finger</category>
+      <category>gemtext</category>
+      <category>finger2gemtext</category>
+      <category>smolweb</category>
+      <pubDate>Wed, 02 Sep 2026 19:21:50 +0100</pubDate>
+    </item>
     <item>
       <title>Port79 v1.1.0</title>
       <link>https://blog.davep.org/2026/09/02/port79-v1-1-0.html</link>
@@ -71,7 +131,7 @@ know what process they've gone through.&lt;/p&gt;
 be clear: 100% of Rogallo is hand-written code, AI has not been involved in
 writing any of it. I &lt;em&gt;have&lt;/em&gt; used Antigravity as an occasional rubber duck to
 hash out some ideas, but there's zero chance I'd let it anywhere near the
-code itself&lt;sup id="fnref:421-1"&gt;&lt;a class="footnote-ref" href="#fn:421-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. On the other hand, some of the protocol-based support
+code itself&lt;sup id="fnref:422-1"&gt;&lt;a class="footnote-ref" href="#fn:422-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. On the other hand, some of the protocol-based support
 libraries I've built have heavily involved AI. Even then, I didn't just slap
 in a prompt and run with the result. I did research, I followed the docs, I
 read more and more about Gemini and Spartan and Nex, etc. I used an agent to
@@ -124,8 +184,8 @@ meets your standards. Doing that is kind of weird.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:421-1"&gt;
-&lt;p&gt;I've yet to see an agent write Textual code I'd consider reasonable.&amp;#160;&lt;a class="footnote-backref" href="#fnref:421-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:422-1"&gt;
+&lt;p&gt;I've yet to see an agent write Textual code I'd consider reasonable.&amp;#160;&lt;a class="footnote-backref" href="#fnref:422-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -151,7 +211,7 @@ new feature.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Fixed the verification method and client certificate status icons in the
   viewer title bar so they don't use the &lt;em&gt;"this is clickable"&lt;/em&gt; mouse cursor
-  when there's nothing worth clicking.&lt;sup id="fnref:422-1"&gt;&lt;a class="footnote-ref" href="#fn:422-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+  when there's nothing worth clicking.&lt;sup id="fnref:423-1"&gt;&lt;a class="footnote-ref" href="#fn:423-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;li&gt;Adjusted the styling of tooltips so they better stand out against the
   background text.&lt;/li&gt;
 &lt;li&gt;Fixed the cosmetics of the viewer when the content is set to a narrowed
@@ -175,8 +235,8 @@ again.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:422-1"&gt;
-&lt;p&gt;If you're wondering what that even means... it only matters if your terminal of choice supports the &lt;a href="https://sw.kovidgoyal.net/kitty/pointer-shapes/" rel="noopener noreferrer" target="_blank"&gt;kitty mouse pointer shapes protocol&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:422-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:423-1"&gt;
+&lt;p&gt;If you're wondering what that even means... it only matters if your terminal of choice supports the &lt;a href="https://sw.kovidgoyal.net/kitty/pointer-shapes/" rel="noopener noreferrer" target="_blank"&gt;kitty mouse pointer shapes protocol&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:423-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -454,7 +514,7 @@ now in place.&lt;/p&gt;</description>
 PR&lt;/a&gt; for
 &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt; is &lt;em&gt;very&lt;/em&gt; close to completion now --
 although the thing has grown arms and legs and turned into a bit of a UI
-overhaul&lt;sup id="fnref:437-1"&gt;&lt;a class="footnote-ref" href="#fn:437-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Something I wanted to add was a quick and easy way for the
+overhaul&lt;sup id="fnref:438-1"&gt;&lt;a class="footnote-ref" href="#fn:438-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Something I wanted to add was a quick and easy way for the
 user to view the details of a client certificate that's being used for the
 current page. Rogallo lets you do this for the server certificate, but not
 the client certificate.&lt;/p&gt;
@@ -468,8 +528,8 @@ line...&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:437-1"&gt;
-&lt;p&gt;Not unrelated. The UI overhaul was in support of the client certificate manager.&amp;#160;&lt;a class="footnote-backref" href="#fnref:437-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:438-1"&gt;
+&lt;p&gt;Not unrelated. The UI overhaul was in support of the client certificate manager.&amp;#160;&lt;a class="footnote-backref" href="#fnref:438-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -636,7 +696,7 @@ finish this off. With this release Gopher and Nex get to join in on the
 parent/root navigation party.&lt;/p&gt;
 &lt;h2 id="cancelling-requests"&gt;Cancelling requests&lt;/h2&gt;
 &lt;p&gt;This one came up because, as of the time of writing, the server where my wee
-capsule lives is dead&lt;sup id="fnref:440-1"&gt;&lt;a class="footnote-ref" href="#fn:440-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This meant that if I checked if it was there, and
+capsule lives is dead&lt;sup id="fnref:441-1"&gt;&lt;a class="footnote-ref" href="#fn:441-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This meant that if I checked if it was there, and
 got impatient and went to navigate somewhere else, the somewhere else would
 load and then, after the defined timeout, the error about the previous
 request would pop up.&lt;/p&gt;
@@ -662,8 +722,8 @@ rather growing on me.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:440-1"&gt;
-&lt;p&gt;From what I've seen, someone managed to break in and pretty much &lt;code&gt;rm -rf /&lt;/code&gt; the thing. The restore of the server is being used as a good moment to change the architecture of the services it offers. This does mean it'll be a wee while before I get my capsule back.&amp;#160;&lt;a class="footnote-backref" href="#fnref:440-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:441-1"&gt;
+&lt;p&gt;From what I've seen, someone managed to break in and pretty much &lt;code&gt;rm -rf /&lt;/code&gt; the thing. The restore of the server is being used as a good moment to change the architecture of the services it offers. This does mean it'll be a wee while before I get my capsule back.&amp;#160;&lt;a class="footnote-backref" href="#fnref:441-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -703,7 +763,7 @@ large service). Sure, &lt;a href="https://github.blog/news-insights/company-news
 bad&lt;/a&gt;,
 but with them you know they're being actively worked on, they're something
 that's going to be getting constant attention until they're resolved.
-Moreover, those sorts of issues generally suggest a scale problem&lt;sup id="fnref:430-1"&gt;&lt;a class="footnote-ref" href="#fn:430-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. These
+Moreover, those sorts of issues generally suggest a scale problem&lt;sup id="fnref:431-1"&gt;&lt;a class="footnote-ref" href="#fn:431-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. These
 little bugs, though, suggest a lack of attention to detail, a lack of proper
 testing, a lack of care about the product as a whole.&lt;/p&gt;
 &lt;p&gt;It's not even the first time in the last couple of weeks that I've run into
@@ -722,8 +782,8 @@ problems?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:430-1"&gt;
-&lt;p&gt;Yes, of their own design. But still...&amp;#160;&lt;a class="footnote-backref" href="#fnref:430-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:431-1"&gt;
+&lt;p&gt;Yes, of their own design. But still...&amp;#160;&lt;a class="footnote-backref" href="#fnref:431-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -760,7 +820,7 @@ iterables &lt;em&gt;isn't&lt;/em&gt; supported and will raise a &lt;code&gt;NotI
 other slice-based operations aren't supported either.&lt;/p&gt;
 &lt;p&gt;While this is close to a breaking change, it's fine for my use of this code.
 However, I had to make one big breaking change: I'd written &lt;code&gt;clear&lt;/code&gt; so that
-it returned &lt;code&gt;Self&lt;/code&gt;&lt;sup id="fnref:428-1"&gt;&lt;a class="footnote-ref" href="#fn:428-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The interface expected by &lt;code&gt;MutableSequence&lt;/code&gt; is one
+it returned &lt;code&gt;Self&lt;/code&gt;&lt;sup id="fnref:429-1"&gt;&lt;a class="footnote-ref" href="#fn:429-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The interface expected by &lt;code&gt;MutableSequence&lt;/code&gt; is one
 that returns &lt;code&gt;None&lt;/code&gt;. So to strictly comply with that interface, I've changed
 the return type.&lt;/p&gt;
 &lt;p&gt;With this being a breaking change, I've bumped the library version to
@@ -770,11 +830,11 @@ that the API has changed. That deserves a major version bump.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:428-1"&gt;
+&lt;li id="fn:429-1"&gt;
 &lt;p&gt;I tend to prefer that a method that might return &lt;code&gt;None&lt;/code&gt; actually
 return &lt;code&gt;Self&lt;/code&gt;; it allows for chaining. I recognise that there are other
 schools of thought about this in the Python world; I'm not a member of
-those schools.&amp;#160;&lt;a class="footnote-backref" href="#fnref:428-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+those schools.&amp;#160;&lt;a class="footnote-backref" href="#fnref:429-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1019,42 +1079,6 @@ Rogallo, if I were to simply add &lt;code&gt;http(s)&lt;/code&gt; support there.
       <category>md2gemtext</category>
       <category>smolweb</category>
       <pubDate>Sun, 16 Aug 2026 14:43:04 +0100</pubDate>
-    </item>
-    <item>
-      <title>BagOfStuff v1.3.0</title>
-      <link>https://blog.davep.org/2026/08/16/bagofstuff-v1-3-0.html</link>
-      <description>&lt;p&gt;For a wee while now I've been trying to nail down a weirdness with the
-navigation history in &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;. I never felt it
-was a difficult issue to deal with, but it was also one of those issues that
-I could never obviously recreate at will, and it only seemed to happen while
-I was busy working on something else.&lt;/p&gt;
-&lt;p&gt;Yesterday evening &lt;a href="https://github.com/davep/rogallo/issues/290#issuecomment-5304008984" rel="noopener noreferrer" target="_blank"&gt;I finally managed to come up with a way to always
-recreate
-it&lt;/a&gt;
-and, having done so, the solution seems pretty straightforward&lt;sup id="fnref:423-1"&gt;&lt;a class="footnote-ref" href="#fn:423-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In order
-to implement the tweak I want, I need to be able to truncate the navigation
-history, and of course do so in a non-destructive way.&lt;/p&gt;
-&lt;p&gt;So the history classes in BagOfStuff
-&lt;a href="https://bagofstuff.davep.dev/changelog/#v130" rel="noopener noreferrer" target="_blank"&gt;v1.3.0&lt;/a&gt; have grown
-&lt;a href="https://bagofstuff.davep.dev/library-contents/history/#bagofstuff.history.SimpleHistory.clone" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;clone&lt;/code&gt;&lt;/a&gt;
-and
-&lt;a href="https://bagofstuff.davep.dev/library-contents/history/#bagofstuff.history.SimpleHistory.truncate" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;truncate&lt;/code&gt;&lt;/a&gt;
-methods. This will allow me to duplicate a history, truncate it at its
-current location, then save it, without affecting the working copy.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:423-1"&gt;
-&lt;p&gt;Why do I feel like I'll regret saying that?&amp;#160;&lt;a class="footnote-backref" href="#fnref:423-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/08/16/bagofstuff-v1-3-0.html</guid>
-      <category>Python</category>
-      <category>BagOfStuff</category>
-      <category>Coding</category>
-      <category>Python</category>
-      <pubDate>Sun, 16 Aug 2026 09:05:47 +0100</pubDate>
     </item>
   </channel>
 </rss>
