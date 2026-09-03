@@ -8,7 +8,83 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 02 Sep 2026 18:24:34 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 03 Sep 2026 07:59:14 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v2.2.0</title>
+      <link>https://blog.davep.org/2026/09/03/rogallo-v2-2-0.html</link>
+      <description>&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
+&lt;a href="https://rogallo.davep.dev/changelog/#v220" rel="noopener noreferrer" target="_blank"&gt;v2.2.0&lt;/a&gt; is available. This
+release contains a handful of small new features and also a very minor
+cosmetic change.&lt;/p&gt;
+&lt;p&gt;First to the small cosmetic change: the overall design behind the UI of
+Rogallo is that it's split into a couple of key panels -- the side-panel and
+the main viewer. The styling of a panel when focus is within it, and when it
+is outwith it, is different; the idea being that your eye should be drawn to
+the active panel. This is an approach I take with all my
+&lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual&lt;/a&gt; applications.&lt;/p&gt;
+&lt;p&gt;Part of this styling is to have a thin border to the left of the active
+panel, which also helps signify that the panel is the one you should be
+paying attention to. In applications where there's always two or more panels
+on the screen all the time, this makes sense -- you want the line between
+the panels anyway to help break up the content. In Rogallo, however, it's
+going to be normal to only ever have the one panel in view (the viewer).&lt;/p&gt;
+&lt;p&gt;The other day I realised that, when it's just the viewer available, I should
+remove that left-hand border. So that's how Rogallo works now. If the viewer
+is the only panel visible: no border. If the side-panel is also visible:
+borders. I think it makes the display look a little cleaner; for what it's
+worth it also saves one column of the display for something more useful.&lt;/p&gt;
+&lt;p&gt;I've also added a couple of useful features to the active link in the
+viewer. Now, when a link is selected, you can press &lt;kbd&gt;c&lt;/kbd&gt; to copy the
+URI of that link to the clipboard. You can also press &lt;kbd&gt;o&lt;/kbd&gt; to open
+the URI by passing it to the operating system. Both these changes should
+make it easier to take a link out of a document and go and do something else
+with it.&lt;/p&gt;
+&lt;p&gt;The last couple of changes are around visiting &lt;code&gt;finger://&lt;/code&gt; URIs. The first
+is a quick and simple change: any finger content now makes use of Rogallo's
+document cache, so if you find yourself navigating back and forth between
+finger responses, there should be fewer requests made in a short period of
+time.&lt;/p&gt;
+&lt;p&gt;I added caching partly in anticipation of another change to finger
+responses: making them interactive where possible. Having created
+&lt;a href="https://blog.davep.org/2026/09/02/finger2gemtext-a-library-for-converting-finger-responses-to-gemtext.html"&gt;&lt;code&gt;finger2gemtext&lt;/code&gt;&lt;/a&gt;,
+I've updated Rogallo so that, where possible, the response is turned into
+&lt;a href="https://blog.davep.org/tag/gemtext/"&gt;Gemtext&lt;/a&gt; and anything that can be turned into a link is now
+interactive. This means that some finger services should be easier to
+navigate, no longer requiring that you copy/edit/paste text to get a fresh
+&lt;code&gt;finger://&lt;/code&gt; URI to follow.&lt;/p&gt;
+&lt;p&gt;This can be seen if you visit somewhere like
+&lt;a href="finger://plan.cat" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;finger://plan.cat&lt;/code&gt;&lt;/a&gt; or
+&lt;a href="finger://redterminal.org/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;finger://redterminal.org/&lt;/code&gt;&lt;/a&gt;. Whereas before you
+would just be shown some plain text:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A plain text finger response" height="820" loading="lazy" src="https://blog.davep.org/attachments/2026/09/03/finger-plain.webp#centre" width="780" /&gt;&lt;/p&gt;
+&lt;p&gt;Now you get a version that lets you follow the implied links in the
+response:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A richer finger response" height="820" loading="lazy" src="https://blog.davep.org/attachments/2026/09/03/finger-rich.webp#centre" width="780" /&gt;&lt;/p&gt;
+&lt;p&gt;This is, of course, going to be reasonably brittle. If any of the services
+change their output format such that the "links" can't be detected any more,
+the output won't be turned into Gemtext. Likewise, it's not impossible that
+false positives might turn up. I'm going to run with this for a while and
+see how it works out. I also have a vague plan for how the detection and
+smarter rendering of finger responses could be made configurable by the
+user.&lt;/p&gt;
+&lt;p&gt;Anyway, that's it for this release of Rogallo. Now I can return to the main
+change I was making a start on this week:
+&lt;a href="gemini://transjovian.org/titan/index" rel="noopener noreferrer" target="_blank"&gt;Titan&lt;/a&gt;
+&lt;a href="https://github.com/davep/rogallo/issues/355" rel="noopener noreferrer" target="_blank"&gt;support&lt;/a&gt;. I've not so much
+been putting it off as I have been allowing myself to get distracted by the
+above changes -- mostly because I don't quite &lt;em&gt;get&lt;/em&gt; Titan support yet and I
+don't have a good location to play around with it. Time to solve that
+problem...&lt;/p&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/09/03/rogallo-v2-2-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>smolweb</category>
+      <pubDate>Thu, 03 Sep 2026 08:14:57 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v2.1.0</title>
       <link>https://blog.davep.org/2026/08/31/rogallo-v2-1-0.html</link>
@@ -20,7 +96,7 @@ new feature.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Fixed the verification method and client certificate status icons in the
   viewer title bar so they don't use the &lt;em&gt;"this is clickable"&lt;/em&gt; mouse cursor
-  when there's nothing worth clicking.&lt;sup id="fnref:423-1"&gt;&lt;a class="footnote-ref" href="#fn:423-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+  when there's nothing worth clicking.&lt;sup id="fnref:424-1"&gt;&lt;a class="footnote-ref" href="#fn:424-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;li&gt;Adjusted the styling of tooltips so they better stand out against the
   background text.&lt;/li&gt;
 &lt;li&gt;Fixed the cosmetics of the viewer when the content is set to a narrowed
@@ -44,8 +120,8 @@ again.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:423-1"&gt;
-&lt;p&gt;If you're wondering what that even means... it only matters if your terminal of choice supports the &lt;a href="https://sw.kovidgoyal.net/kitty/pointer-shapes/" rel="noopener noreferrer" target="_blank"&gt;kitty mouse pointer shapes protocol&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:423-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:424-1"&gt;
+&lt;p&gt;If you're wondering what that even means... it only matters if your terminal of choice supports the &lt;a href="https://sw.kovidgoyal.net/kitty/pointer-shapes/" rel="noopener noreferrer" target="_blank"&gt;kitty mouse pointer shapes protocol&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:424-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -271,7 +347,7 @@ finish this off. With this release Gopher and Nex get to join in on the
 parent/root navigation party.&lt;/p&gt;
 &lt;h2 id="cancelling-requests"&gt;Cancelling requests&lt;/h2&gt;
 &lt;p&gt;This one came up because, as of the time of writing, the server where my wee
-capsule lives is dead&lt;sup id="fnref:441-1"&gt;&lt;a class="footnote-ref" href="#fn:441-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This meant that if I checked if it was there, and
+capsule lives is dead&lt;sup id="fnref:442-1"&gt;&lt;a class="footnote-ref" href="#fn:442-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This meant that if I checked if it was there, and
 got impatient and went to navigate somewhere else, the somewhere else would
 load and then, after the defined timeout, the error about the previous
 request would pop up.&lt;/p&gt;
@@ -297,8 +373,8 @@ rather growing on me.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:441-1"&gt;
-&lt;p&gt;From what I've seen, someone managed to break in and pretty much &lt;code&gt;rm -rf /&lt;/code&gt; the thing. The restore of the server is being used as a good moment to change the architecture of the services it offers. This does mean it'll be a wee while before I get my capsule back.&amp;#160;&lt;a class="footnote-backref" href="#fnref:441-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:442-1"&gt;
+&lt;p&gt;From what I've seen, someone managed to break in and pretty much &lt;code&gt;rm -rf /&lt;/code&gt; the thing. The restore of the server is being used as a good moment to change the architecture of the services it offers. This does mean it'll be a wee while before I get my capsule back.&amp;#160;&lt;a class="footnote-backref" href="#fnref:442-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -596,7 +672,7 @@ the HTML into Markdown and then use the Markdown widget to show the result,
 &lt;a href="https://blog.davep.org/2026/08/11/html2gemtext-a-simple-library-for-converting-html-to-gemtext.html"&gt;but in the end I decided to turn it into Gemtext
 instead&lt;/a&gt;;
 in part because it's a fun challenge, and in part because it feels more in
-keeping with the Geminispace aesthetic&lt;sup id="fnref:437-1"&gt;&lt;a class="footnote-ref" href="#fn:437-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+keeping with the Geminispace aesthetic&lt;sup id="fnref:438-1"&gt;&lt;a class="footnote-ref" href="#fn:438-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So, whereas before, if you landed on some HTML in Geminispace, you'd see
 this:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Viewing raw HTML" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/raw-html.webp#centre" width="836" /&gt;&lt;/p&gt;
@@ -634,7 +710,7 @@ you have to get past to get to the content. I can see this being an
 &lt;p&gt;&lt;img alt="The Station logo taking up space" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/the-station-logo.webp#centre" width="836" /&gt;&lt;/p&gt;
 &lt;p&gt;So I got to thinking: in the case of
 &lt;a href="gemini://station.martinrue.com/" rel="noopener noreferrer" target="_blank"&gt;Station&lt;/a&gt;, the author of the site has been
-kind enough to give the pre-formatted text block some alt-text&lt;sup id="fnref:437-2"&gt;&lt;a class="footnote-ref" href="#fn:437-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, so that
+kind enough to give the pre-formatted text block some alt-text&lt;sup id="fnref:438-2"&gt;&lt;a class="footnote-ref" href="#fn:438-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, so that
 means it's possible to have a targeted filter for such well-designed sites.
 Given this, I've added &lt;a href="https://rogallo.davep.dev/viewer/#filtering-out-pre-formatted-text" rel="noopener noreferrer" target="_blank"&gt;a method of filtering out pre-formatted
 blocks&lt;/a&gt;,
@@ -678,11 +754,11 @@ column of any line, being seen as a Gopher map that indicated an error.&lt;/p&gt
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:437-1"&gt;
-&lt;p&gt;Which also has me wanting, longer-term, to do the same for Markdown. While using the Markdown widget is neat and all, I think it would be far more in keeping with the purpose of this project to turn Markdown into Gemtext.&amp;#160;&lt;a class="footnote-backref" href="#fnref:437-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:438-1"&gt;
+&lt;p&gt;Which also has me wanting, longer-term, to do the same for Markdown. While using the Markdown widget is neat and all, I think it would be far more in keeping with the purpose of this project to turn Markdown into Gemtext.&amp;#160;&lt;a class="footnote-backref" href="#fnref:438-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:437-2"&gt;
-&lt;p&gt;As I write more Gemtext myself, I'm going to do my very best to always do the same.&amp;#160;&lt;a class="footnote-backref" href="#fnref:437-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:438-2"&gt;
+&lt;p&gt;As I write more Gemtext myself, I'm going to do my very best to always do the same.&amp;#160;&lt;a class="footnote-backref" href="#fnref:438-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1477,77 +1553,6 @@ perform the installation. For GNU/Linux, macOS, or similar:&lt;/p&gt;
       <category>smolweb</category>
       <category>textual</category>
       <pubDate>Tue, 21 Jul 2026 18:33:16 +0100</pubDate>
-    </item>
-    <item>
-      <title>Rogallo v0.12.0</title>
-      <link>https://blog.davep.org/2026/07/20/rogallo-v0-12-0.html</link>
-      <description>&lt;p&gt;I've bumped &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt; to
-&lt;a href="https://rogallo.davep.dev/changelog/#v0120" rel="noopener noreferrer" target="_blank"&gt;v0.12.0&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The first change is a simple addition of a &lt;code&gt;!theme&lt;/code&gt; command to the command
-line. As much as possible, I've tried to make sure that every command that's
-in the command palette can also be run from the in-app command line, but I'd
-managed to leave this one out. Now you can type &lt;code&gt;!theme&lt;/code&gt; and get the theme
-picker.&lt;/p&gt;
-&lt;p&gt;Next is the addition of an &lt;code&gt;OpenFile&lt;/code&gt; command, bound to
-&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;o&lt;/kbd&gt; by default. This opens a dialog for browsing
-the filesystem, allowing for easy access to local &lt;a href="https://blog.davep.org/tag/gemtext/"&gt;gemtext&lt;/a&gt;
-files.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The file opening dialog" height="1952" loading="lazy" src="https://blog.davep.org/attachments/2026/07/20/open-file.webp#centre" width="1990" /&gt;&lt;/p&gt;
-&lt;p&gt;Related to this, if you now enter the name of a directory in the command
-line, the same dialog will open, starting at that directory. Both these
-changes should make finding local gemtext files a smoother experience.&lt;/p&gt;
-&lt;p&gt;Another change is to the way that the &lt;a href="https://blog.davep.org/2026/07/19/rogallo-v0-11-0.html"&gt;recently added emoji
-removal&lt;/a&gt; works. I decided that it was a
-little too aggressive, in that it shouldn't remove them from the content of
-pre-formatted text. In my experience in Geminispace, so far, pre-formatted
-text is where the more creative displays happen. Indeed, I had a go at this
-myself for &lt;a href="gemini://tilde.team/~davep/" rel="noopener noreferrer" target="_blank"&gt;my new page&lt;/a&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="My page, with my image" height="1952" loading="lazy" src="https://blog.davep.org/attachments/2026/07/20/my-page.webp#centre" width="1990" /&gt;&lt;/p&gt;
-&lt;p&gt;Here I've used ANSI escape sequences and half-block characters to recreate
-my usual avatar. The problem is: the &lt;a href="https://github.com/davep/rogallo/blob/e8c8af4bfa469b791cebc0d12658f81ef98e7b60/src/rogallo/widgets/viewer/content_filter.py#L47-L56" rel="noopener noreferrer" target="_blank"&gt;emoji-removal approach I've
-used&lt;/a&gt;
-sees the half-blocks as something to remove. The result isn't great.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="My page, with emoji removed" height="1952" loading="lazy" src="https://blog.davep.org/attachments/2026/07/20/my-page-with-emoji-removed.webp#centre" width="1990" /&gt;&lt;/p&gt;
-&lt;p&gt;Given that the unwanted emojis will generally be those in body text, links,
-quotes and headers, I've tweaked the way that pre-formatted text is shown,
-with it &lt;em&gt;not&lt;/em&gt; having emojis removed. I feel this is a sensible approach.&lt;/p&gt;
-&lt;p&gt;I guess, if anyone really objects to this, I could add a configuration
-switch that dictates how aggressive the removal is.&lt;/p&gt;
-&lt;p&gt;The final change is something I wasn't really ever planning on doing, and I
-felt I'd removed the need for it &lt;a href="https://blog.davep.org/2026/07/14/rogallo-v0-7-0.html"&gt;when I added link
-stripes&lt;/a&gt;. But &lt;a href="https://github.com/davep/rogallo/issues/190" rel="noopener noreferrer" target="_blank"&gt;I got a request to do
-it&lt;/a&gt; and, really, the cost of
-doing it is nothing. The request? An option to move the link jump labels
-over to the left.&lt;/p&gt;
-&lt;p&gt;So now there's a &lt;code&gt;ToggleCosyLinkNumbers&lt;/code&gt; command (bound to
-&lt;kbd&gt;Super&lt;/kbd&gt;+&lt;kbd&gt;F8&lt;/kbd&gt; by default&lt;sup id="fnref:406-1"&gt;&lt;a class="footnote-ref" href="#fn:406-1"&gt;1&lt;/a&gt;&lt;/sup&gt;) which does what it says:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Toggling the jump labels" loading="lazy" src="https://blog.davep.org/attachments/2026/07/20/label-toggle.gif#centre" /&gt;&lt;/p&gt;
-&lt;p&gt;Personally, I prefer them on the right, where they don't disrupt the
-left-aligned margin for all the text, but I can see why this would be far
-more comfortable for others, so... why the heck not?&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:406-1"&gt;
-&lt;p&gt;One day I'll write a post about why I'm giving &lt;em&gt;every&lt;/em&gt; command a
-default binding, even if it's not so accessible in less-advanced
-terminal emulators. Mostly it's down to one of my least favourite design
-decisions in Textual mixed with my wish to have a command-based
-interface that works via the palette first and bindings second.&amp;#160;&lt;a class="footnote-backref" href="#fnref:406-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/20/rogallo-v0-12-0.html</guid>
-      <category>Coding</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>Rogallo</category>
-      <category>gemtext</category>
-      <category>smolweb</category>
-      <category>textual</category>
-      <pubDate>Mon, 20 Jul 2026 19:56:51 +0100</pubDate>
     </item>
   </channel>
 </rss>
