@@ -21,16 +21,10 @@ software development ever since. My "primary" language has drifted over the
 years, but during that time I've made an effort to get to know and work with
 plenty of others.
 
-When I have the time (although it's not so available at the moment) I love
-playing [VR](/tag/vr/) games, and [recording and publishing the
-results](https://www.youtube.com/@DavePearson/videos).
-
-Occasionally, you'll find me [streaming flat-screen gameplay from my
-PS5](https://www.youtube.com/@DavePearson/streams) (although I'm on [a bit
-of a forced break at the
-moment](/2026/05/26/let-down-by-openreach-and-ee.html)).
-
-When I'm not doing any of those things, I'm very likely tinkering with
+Because I love to code, during my free time, I'm very likely tinkering with
 [personal code projects](https://github.com/davep).
+
+Some evenings, when I'm not coding, you'll find me [streaming flat-screen
+gameplay from my PS5](https://www.youtube.com/@DavePearson/streams).
 
 [//]: # (about.md ends here)
