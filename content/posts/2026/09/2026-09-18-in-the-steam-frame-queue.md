@@ -3,6 +3,7 @@ title: "In the Steam Frame queue"
 date: "2026-09-18 08:54:45+0100"
 category: Gaming
 tags: [PCVR, Steam, "Steam Frame", VR, gaming]
+series: ["Buying the Steam Frame"]
 ---
 
 It's getting on for six years now since I got my first VR headset, and it's
