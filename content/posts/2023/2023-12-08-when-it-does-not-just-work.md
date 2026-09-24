@@ -6,18 +6,19 @@ date: 2023-12-08 10:32:00 +0100
 cover: /attachments/2023/12/08/watch-face.webp
 ---
 
-My journey into the Apple ecosystem has been gradual but all-consuming. I've
-gone from, [around a 8 years
+My journey into the [Apple](/tag/apple/) ecosystem has been gradual but
+all-consuming. I've gone from, [around 8 years
 ago](/2015/06/27/my-first-couple-of-weeks-with-an-imac.html), being
 unconvinced about how good the whole Apple world is, to pretty much having
 all the hardware they make available, in some form, that I have an actual
 use for[^1].
 
 One of the devices I was late to, but won over by, after moving away from
-Android to iPhone, was the Apple Watch. These days I have two: the original
-SE, and also a Series 8. Generally I've marvelled at just how seamless the
-experience is. I swap watches: the connection to my phone "just works" and
-it figures all that out. Stuff syncs. Stuff stays in sync.
+[Android](/tag/android/) to [iPhone](/tag/iphone/), was the [Apple
+Watch](/tag/watch/). These days I have two: the original SE, and also a
+Series 8. Generally I've marvelled at just how seamless the experience is. I
+swap watches: the connection to my phone "just works" and it figures all
+that out. Stuff syncs. Stuff stays in sync.
 
 I lean heavily on the watch. The Series 8 is my daily driver, and the SE
 acts as my nighttime tracking device while the 8 charges and I sleep.
