@@ -8,7 +8,137 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 01 Oct 2026 15:34:17 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 02 Oct 2026 09:21:09 +0000</lastBuildDate>
+    <item>
+      <title>Rogallo v3.0.0</title>
+      <link>https://blog.davep.org/2026/10/02/rogallo-v3-0-0.html</link>
+      <description>&lt;p&gt;It's been a while since I last published an update to Rogallo. In part this
+is because I've had &lt;a href="https://blog.davep.org/tag/steam-frame/"&gt;other distractions&lt;/a&gt;, but also in
+part because I've not had a huge need to add any new features of late. For
+the most part I feel Rogallo is "done"&lt;sup id="fnref:374-1"&gt;&lt;a class="footnote-ref" href="#fn:374-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;I haven't, however, been doing nothing with the code. On and off, over the
+last handful of weeks, I've been addressing something that I've wanted to
+tidy up since the early days of development: application configuration. The
+majority of my &lt;a href="https://blog.davep.org/tag/textual/"&gt;Textual&lt;/a&gt;-based applications use a simple JSON
+configuration file, and that's generally good enough. When I started Rogallo
+I used the same approach. Rogallo has since grown quite a lot and there's
+much that can be configured and so the &lt;em&gt;"honking great pile-o-JSON"&lt;/em&gt;
+approach was starting to feel quite untidy.&lt;/p&gt;
+&lt;p&gt;So Rogallo v3.0.0 addresses this. The headline change is that the single
+JSON file has been replaced with a number of focused YAML files, and some
+items that were in the original configuration file have been moved out to
+either the data directory or the state directory, depending on their
+purpose.&lt;/p&gt;
+&lt;p&gt;Now for some details on the changes.&lt;/p&gt;
+&lt;div class="admonition admonition-important"&gt;
+&lt;div class="admonition-title"&gt;❗ Important&lt;/div&gt;
+&lt;div class="admonition-content"&gt;
+&lt;p&gt;There are a lot of changes to how Rogallo is configured. As is mentioned
+&lt;a href="#conclusion"&gt;at the end of this post&lt;/a&gt;, Rogallo will make a best effort to
+migrate your old configuration to the new format. However, as a
+precaution, you might want to think about making a backup copy of your
+&lt;code&gt;configuration.json&lt;/code&gt; file before upgrading Rogallo.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="focused-configuration-files"&gt;Focused configuration files&lt;/h2&gt;
+&lt;p&gt;As mentioned above, whereas before Rogallo kept all of its configuration in
+a single file, it now looks to a number of different YAML files that focus
+on a different aspect of configuration. These include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;aliases.yaml&lt;/code&gt; - &lt;a href="https://rogallo.davep.dev/ui/command-line/#aliases" rel="noopener noreferrer" target="_blank"&gt;Aliases for the Rogallo command
+  line&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bindings.yaml&lt;/code&gt; - &lt;a href="https://rogallo.davep.dev/configuration/bindings/#changing-a-command-binding" rel="noopener noreferrer" target="_blank"&gt;Main
+  command&lt;/a&gt;
+  and &lt;a href="https://rogallo.davep.dev/configuration/bindings/#user-interface-element-bindings" rel="noopener noreferrer" target="_blank"&gt;UI
+  element&lt;/a&gt;
+  keyboard binding configuration&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gopher.yaml&lt;/code&gt; - &lt;a href="https://rogallo.davep.dev/protocols/gopher/#configuration" rel="noopener noreferrer" target="_blank"&gt;Gopher protocol
+  configuration&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;icons.yaml&lt;/code&gt; - &lt;a href="https://rogallo.davep.dev/configuration/icons/" rel="noopener noreferrer" target="_blank"&gt;Configuration of icons used throughout the
+  application&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;preformatted.yaml&lt;/code&gt; - &lt;a href="https://rogallo.davep.dev/ui/viewer/#configuration" rel="noopener noreferrer" target="_blank"&gt;Configuration for how preformatted text is
+  handled&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;toolbar.yaml&lt;/code&gt; - &lt;a href="https://rogallo.davep.dev/ui/toolbar/#toolbar-configuration" rel="noopener noreferrer" target="_blank"&gt;Configuration for the Rogallo
+  toolbar&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="general-configuration"&gt;General configuration&lt;/h2&gt;
+&lt;p&gt;For the configuration items that remain, that aren't exactly &lt;em&gt;focused&lt;/em&gt; on a
+particular Rogallo feature, &lt;a href="https://rogallo.davep.dev/configuration/general/" rel="noopener noreferrer" target="_blank"&gt;the settings have moved to
+&lt;code&gt;general.yaml&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="removal-of-some-application-commands"&gt;Removal of some application commands&lt;/h2&gt;
+&lt;p&gt;Rogallo's design is based around the idea of some "actions" being
+application-wide commands, and some actions being UI-control-specific. As I
+worked through the configuration changes I decided that it was time to
+"demote" some application-wide commands to either being UI-control-specific
+bindings or just simple configuration properties. With this in mind I've
+removed the following commands:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ChangeCommandLineLocation&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;StripeLinks&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ToggleANSIEscapeSequenceHandling&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ToggleCosyLinkNumbers&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ToggleEmojiRemoval&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ToggleLinkNumbers&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All but &lt;code&gt;ChangeCommandLineLocation&lt;/code&gt; are now &lt;a href="https://rogallo.davep.dev/ui/viewer/#available-bindings" rel="noopener noreferrer" target="_blank"&gt;keyboard shortcuts specific to
+the viewer widget
+itself&lt;/a&gt; (press
+&lt;kbd&gt;F1&lt;/kbd&gt; when the viewer has focus to get more details).
+&lt;code&gt;ChangeCommandLineLocation&lt;/code&gt; is now a &lt;a href="https://rogallo.davep.dev/ui/command-line/#location" rel="noopener noreferrer" target="_blank"&gt;simple configuration property in
+&lt;code&gt;general.yaml&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="ui-element-action-keyboard-bindings"&gt;UI element action keyboard bindings&lt;/h2&gt;
+&lt;p&gt;From the very start, Rogallo has supported some degree of control over
+keyboard bindings. As mentioned above, there's a split between
+"application-wide commands" and "UI-element-specific" actions. Until now
+it's always been possible to configure the bindings for the former, but
+never the latter.&lt;/p&gt;
+&lt;p&gt;In other words: you could always configure the binding for the
+&lt;code&gt;HandOffToOperatingSystem&lt;/code&gt; application command (hands the URI of the
+currently-viewed document to your OS), but you couldn't change the in-viewer
+binding for the &lt;kbd&gt;o&lt;/kbd&gt; key, which opens the URI of the focused link in
+the OS.&lt;/p&gt;
+&lt;p&gt;Rogallo v3.0.0 adds &lt;a href="https://rogallo.davep.dev/configuration/bindings/#user-interface-element-bindings" rel="noopener noreferrer" target="_blank"&gt;support for changing the bindings of the
+latter&lt;/a&gt;.
+So if you wanted to change &lt;kbd&gt;o&lt;/kbd&gt; to &lt;kbd&gt;b&lt;/kbd&gt; for opening a URI
+externally:&lt;/p&gt;
+&lt;div class="highlight" data-lang="yaml"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;gemtext_link.open_link_externally&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;b&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can find the bindable IDs for each of the UI controls &lt;a href="https://rogallo.davep.dev/ui/" rel="noopener noreferrer" target="_blank"&gt;at the bottom of
+each page for each of the controls&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="new-gophermap-badges"&gt;New Gophermap badges&lt;/h2&gt;
+&lt;p&gt;Not directly a configuration setup change, but something I noticed while
+doing the work, was the fact that Rogallo (and the underlying &lt;a href="https://gophermap.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Gophermap
+library&lt;/a&gt;) didn't handle &lt;code&gt;PNG&lt;/code&gt; and &lt;code&gt;RTF&lt;/code&gt; item
+types. They're now directly supported.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I believe all of the above changes make it easier to configure Rogallo, and
+more importantly easier to backup and share the configuration. Technically
+all of this is one huge breaking change -- everything that was in
+&lt;code&gt;configuration.json&lt;/code&gt; now lives elsewhere. However, I've added some code to
+Rogallo that detects when you still have a pre-v3.0.0 configuration active,
+loads up the values, creates the new files, and then renames the old file to
+&lt;code&gt;configuration.migrated.json&lt;/code&gt;. As mentioned near the start of this post, you
+might want to think about making a backup copy of &lt;code&gt;configuration.json&lt;/code&gt;
+before upgrading.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:374-1"&gt;
+&lt;p&gt;One last big thing I do want to add is support for tabs. Still to come.&amp;#160;&lt;a class="footnote-backref" href="#fnref:374-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/10/02/rogallo-v3-0-0.html</guid>
+      <category>Coding</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>Rogallo</category>
+      <category>smolweb</category>
+      <pubDate>Fri, 02 Oct 2026 08:45:01 +0100</pubDate>
+    </item>
     <item>
       <title>Rogallo v2.4.0</title>
       <link>https://blog.davep.org/2026/09/09/rogallo-v2-4-0.html</link>
@@ -212,7 +342,7 @@ new feature.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Fixed the verification method and client certificate status icons in the
   viewer title bar so they don't use the &lt;em&gt;"this is clickable"&lt;/em&gt; mouse cursor
-  when there's nothing worth clicking.&lt;sup id="fnref:440-1"&gt;&lt;a class="footnote-ref" href="#fn:440-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+  when there's nothing worth clicking.&lt;sup id="fnref:441-1"&gt;&lt;a class="footnote-ref" href="#fn:441-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;li&gt;Adjusted the styling of tooltips so they better stand out against the
   background text.&lt;/li&gt;
 &lt;li&gt;Fixed the cosmetics of the viewer when the content is set to a narrowed
@@ -236,8 +366,8 @@ again.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:440-1"&gt;
-&lt;p&gt;If you're wondering what that even means... it only matters if your terminal of choice supports the &lt;a href="https://sw.kovidgoyal.net/kitty/pointer-shapes/" rel="noopener noreferrer" target="_blank"&gt;kitty mouse pointer shapes protocol&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:440-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:441-1"&gt;
+&lt;p&gt;If you're wondering what that even means... it only matters if your terminal of choice supports the &lt;a href="https://sw.kovidgoyal.net/kitty/pointer-shapes/" rel="noopener noreferrer" target="_blank"&gt;kitty mouse pointer shapes protocol&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:441-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -463,7 +593,7 @@ finish this off. With this release Gopher and Nex get to join in on the
 parent/root navigation party.&lt;/p&gt;
 &lt;h2 id="cancelling-requests"&gt;Cancelling requests&lt;/h2&gt;
 &lt;p&gt;This one came up because, as of the time of writing, the server where my wee
-capsule lives is dead&lt;sup id="fnref:458-1"&gt;&lt;a class="footnote-ref" href="#fn:458-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This meant that if I checked if it was there, and
+capsule lives is dead&lt;sup id="fnref:459-1"&gt;&lt;a class="footnote-ref" href="#fn:459-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. This meant that if I checked if it was there, and
 got impatient and went to navigate somewhere else, the somewhere else would
 load and then, after the defined timeout, the error about the previous
 request would pop up.&lt;/p&gt;
@@ -489,8 +619,8 @@ rather growing on me.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:458-1"&gt;
-&lt;p&gt;From what I've seen, someone managed to break in and pretty much &lt;code&gt;rm -rf /&lt;/code&gt; the thing. The restore of the server is being used as a good moment to change the architecture of the services it offers. This does mean it'll be a wee while before I get my capsule back.&amp;#160;&lt;a class="footnote-backref" href="#fnref:458-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:459-1"&gt;
+&lt;p&gt;From what I've seen, someone managed to break in and pretty much &lt;code&gt;rm -rf /&lt;/code&gt; the thing. The restore of the server is being used as a good moment to change the architecture of the services it offers. This does mean it'll be a wee while before I get my capsule back.&amp;#160;&lt;a class="footnote-backref" href="#fnref:459-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -788,7 +918,7 @@ the HTML into Markdown and then use the Markdown widget to show the result,
 &lt;a href="https://blog.davep.org/2026/08/11/html2gemtext-a-simple-library-for-converting-html-to-gemtext.html"&gt;but in the end I decided to turn it into Gemtext
 instead&lt;/a&gt;;
 in part because it's a fun challenge, and in part because it feels more in
-keeping with the Geminispace aesthetic&lt;sup id="fnref:454-1"&gt;&lt;a class="footnote-ref" href="#fn:454-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+keeping with the Geminispace aesthetic&lt;sup id="fnref:455-1"&gt;&lt;a class="footnote-ref" href="#fn:455-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;So, whereas before, if you landed on some HTML in Geminispace, you'd see
 this:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Viewing raw HTML" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/raw-html.webp#centre" width="836" /&gt;&lt;/p&gt;
@@ -826,7 +956,7 @@ you have to get past to get to the content. I can see this being an
 &lt;p&gt;&lt;img alt="The Station logo taking up space" height="868" loading="lazy" src="https://blog.davep.org/attachments/2026/08/13/the-station-logo.webp#centre" width="836" /&gt;&lt;/p&gt;
 &lt;p&gt;So I got to thinking: in the case of
 &lt;a href="gemini://station.martinrue.com/" rel="noopener noreferrer" target="_blank"&gt;Station&lt;/a&gt;, the author of the site has been
-kind enough to give the pre-formatted text block some alt-text&lt;sup id="fnref:454-2"&gt;&lt;a class="footnote-ref" href="#fn:454-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, so that
+kind enough to give the pre-formatted text block some alt-text&lt;sup id="fnref:455-2"&gt;&lt;a class="footnote-ref" href="#fn:455-2"&gt;2&lt;/a&gt;&lt;/sup&gt;, so that
 means it's possible to have a targeted filter for such well-designed sites.
 Given this, I've added &lt;a href="https://rogallo.davep.dev/viewer/#filtering-out-pre-formatted-text" rel="noopener noreferrer" target="_blank"&gt;a method of filtering out pre-formatted
 blocks&lt;/a&gt;,
@@ -870,11 +1000,11 @@ column of any line, being seen as a Gopher map that indicated an error.&lt;/p&gt
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:454-1"&gt;
-&lt;p&gt;Which also has me wanting, longer-term, to do the same for Markdown. While using the Markdown widget is neat and all, I think it would be far more in keeping with the purpose of this project to turn Markdown into Gemtext.&amp;#160;&lt;a class="footnote-backref" href="#fnref:454-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:455-1"&gt;
+&lt;p&gt;Which also has me wanting, longer-term, to do the same for Markdown. While using the Markdown widget is neat and all, I think it would be far more in keeping with the purpose of this project to turn Markdown into Gemtext.&amp;#160;&lt;a class="footnote-backref" href="#fnref:455-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:454-2"&gt;
-&lt;p&gt;As I write more Gemtext myself, I'm going to do my very best to always do the same.&amp;#160;&lt;a class="footnote-backref" href="#fnref:454-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:455-2"&gt;
+&lt;p&gt;As I write more Gemtext myself, I'm going to do my very best to always do the same.&amp;#160;&lt;a class="footnote-backref" href="#fnref:455-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1291,7 +1421,7 @@ the idea of adding direct command-line support for Gemini and Gopher search
 engines. This struck me as an excellent idea, but I got to thinking that it
 could be a little more generic than that. So I've added support for
 declaring simple command-line aliases. There's now a section in the
-configuration file&lt;sup id="fnref:390-1"&gt;&lt;a class="footnote-ref" href="#fn:390-1"&gt;1&lt;/a&gt;&lt;/sup&gt; called &lt;code&gt;aliases&lt;/code&gt;. It's an association of a command
+configuration file&lt;sup id="fnref:391-1"&gt;&lt;a class="footnote-ref" href="#fn:391-1"&gt;1&lt;/a&gt;&lt;/sup&gt; called &lt;code&gt;aliases&lt;/code&gt;. It's an association of a command
 alias and an expansion. The alias itself must be a single "word" of
 characters, and the expansion the actual command that will be used. It can
 be any other command-line command, or a URI. Anything that the command line
@@ -1329,9 +1459,9 @@ utility to the internal command line.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:390-1"&gt;
+&lt;li id="fn:391-1"&gt;
 &lt;p&gt;Which I totally forgot to document when putting together this release.
-It'll come to the docs soon.&amp;#160;&lt;a class="footnote-backref" href="#fnref:390-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+It'll come to the docs soon.&amp;#160;&lt;a class="footnote-backref" href="#fnref:391-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1411,45 +1541,6 @@ welcome&lt;/a&gt;.&lt;/p&gt;</description>
       <category>smolweb</category>
       <category>textual</category>
       <pubDate>Tue, 28 Jul 2026 08:39:19 +0100</pubDate>
-    </item>
-    <item>
-      <title>Rogallo v1.1.1</title>
-      <link>https://blog.davep.org/2026/07/27/rogallo-v1-1-1.html</link>
-      <description>&lt;p&gt;I've just made a small bug-fix release for
-&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;.
-&lt;a href="https://rogallo.davep.dev/changelog/#v111" rel="noopener noreferrer" target="_blank"&gt;v1.1.1&lt;/a&gt; fixes two (mostly)
-cosmetic issues &lt;a href="https://github.com/davep/rogallo/discussions/227" rel="noopener noreferrer" target="_blank"&gt;that were reported by a
-user&lt;/a&gt;. From the ChangeLog:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Fixed &lt;code&gt;cosy_link_jumps&lt;/code&gt; not being loaded from configuration when Rogallo
-  starts up. (&lt;a href="https://github.com/davep/rogallo/pull/230" rel="noopener noreferrer" target="_blank"&gt;#230&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;Fixed viewer status line being lost when &lt;code&gt;maximum_document_width&lt;/code&gt; is set
-  to something other than &lt;code&gt;0&lt;/code&gt;.
-  (&lt;a href="https://github.com/davep/rogallo/pull/231" rel="noopener noreferrer" target="_blank"&gt;#231&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Thanks to &lt;a href="gemini://redterminal.org/" rel="noopener noreferrer" target="_blank"&gt;fab&lt;/a&gt;&lt;sup id="fnref:377-1"&gt;&lt;a class="footnote-ref" href="#fn:377-1"&gt;1&lt;/a&gt;&lt;/sup&gt; for alerting me to these issues.&lt;/p&gt;
-&lt;p&gt;One other small change in this release is that the version of
-&lt;a href="https://port79.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Port79&lt;/a&gt; is included in the output from the
-&lt;code&gt;diagnostics&lt;/code&gt; CLI command.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:377-1"&gt;
-&lt;p&gt;See &lt;a href="https://redterminal.org" rel="noopener noreferrer" target="_blank"&gt;here&lt;/a&gt; if you don't have a Gemini client.&amp;#160;&lt;a class="footnote-backref" href="#fnref:377-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/27/rogallo-v1-1-1.html</guid>
-      <category>Coding</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>Rogallo</category>
-      <category>gemtext</category>
-      <category>smolweb</category>
-      <category>textual</category>
-      <pubDate>Mon, 27 Jul 2026 09:01:52 +0100</pubDate>
     </item>
   </channel>
 </rss>
