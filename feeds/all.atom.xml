@@ -2,11 +2,73 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.davep.org</id>
   <title>davep</title>
-  <updated>2026-10-02T09:21:09.667056+00:00</updated>
+  <updated>2026-10-05T09:46:53.283802+00:00</updated>
   <link href="https://blog.davep.org/feeds/all.atom.xml" rel="self"/>
   <link href="https://blog.davep.org" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Latest posts from davep</subtitle>
+  <entry>
+    <id>https://blog.davep.org/2026/10/05/rogallo-v3-1-0.html</id>
+    <title>Rogallo v3.1.0</title>
+    <updated>2026-10-05T10:13:48+01:00</updated>
+    <content type="html">&lt;p&gt;&lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
+&lt;a href="https://rogallo.davep.dev/changelog/#v310" rel="noopener noreferrer" target="_blank"&gt;v3.1.0&lt;/a&gt; is now available. This
+release is in response to &lt;a href="https://github.com/davep/rogallo/discussions/477" rel="noopener noreferrer" target="_blank"&gt;a recent user
+request&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Right from the start of the development of Rogallo, I ensured that any MIME
+types that the application couldn't handle were correctly handed off to the
+operating system, to allow it to work out what to do. While it is possible
+for me to do some work to allow images inline -- something I might explore
+at some point in the future -- Rogallo doesn't currently support this and,
+accordingly, when faced with &lt;code&gt;image/jpeg&lt;/code&gt; or &lt;code&gt;image/png&lt;/code&gt;, etc, it delegates
+to the wider environment.&lt;/p&gt;
+&lt;p&gt;The problem, of course, is that the user might not have a tool in their
+environment that's capable of taking over the duties of downloading an image
+from a &lt;code&gt;gemini&lt;/code&gt; URI and displaying it. So the next best thing is that
+Rogallo itself offers to download the file for you. With v3.1.0 this is now
+an option.&lt;/p&gt;
+&lt;p&gt;If you encounter a MIME type that hasn't already been marked for always
+opening in an external tool, there's a new &lt;code&gt;Download&lt;/code&gt; button.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Download as an option" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/10/05/mime-choices.webp#centre" width="1076" /&gt;&lt;/p&gt;
+&lt;p&gt;If selected, you'll be asked for a location to save the file.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The download dialog" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/10/05/download-dialog.webp#centre" width="1076" /&gt;&lt;/p&gt;
+&lt;p&gt;To augment this, I've also added downloading support for links in the
+viewer. It might be, for example, that you've already marked &lt;code&gt;image/jpeg&lt;/code&gt;
+and &lt;code&gt;image/png&lt;/code&gt; as MIME types that should always be handed off to the
+operating system (perhaps you have a GUI-based client such as
+&lt;a href="https://gmi.skyjake.fi/lagrange/" rel="noopener noreferrer" target="_blank"&gt;Lagrange&lt;/a&gt; or &lt;a href="https://github.com/acidus99/MajorTom" rel="noopener noreferrer" target="_blank"&gt;Major
+Tom&lt;/a&gt; installed and it's configured to
+pick up the URI and handle it). In that case, you'd never be shown the
+dialog that would allow for downloading. So now, on the occasion that you
+&lt;em&gt;do&lt;/em&gt; want to download within Rogallo, you can navigate to the link and press
+&lt;kbd&gt;d&lt;/kbd&gt;. The download dialog will then appear, and you can save the
+content of the link that way.&lt;/p&gt;
+&lt;div class="admonition admonition-note"&gt;
+&lt;div class="admonition-title"&gt;ℹ️ Note&lt;/div&gt;
+&lt;div class="admonition-content"&gt;
+&lt;p&gt;If you want to change the binding for the link-based download, you can use
+&lt;a href="https://rogallo.davep.dev/configuration/bindings/#user-interface-element-bindings" rel="noopener noreferrer" target="_blank"&gt;the recently added UI element binding
+facility&lt;/a&gt;
+to bind
+&lt;a href="https://rogallo.davep.dev/ui/viewer/#available-bindings" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;gemtext_link.download_link&lt;/code&gt;&lt;/a&gt;
+to something else.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;For now, at least, the download process is pretty simple. It follows the
+same approach as acquiring the content of a URI for display purposes, but
+instead writes it to the file you picked. There's no "download manager" or
+similar and no sticky "download directory". These are things I might
+consider adding in the future.&lt;/p&gt;</content>
+    <link href="https://blog.davep.org/2026/10/05/rogallo-v3-1-0.html"/>
+    <category term="Coding"/>
+    <category term="Coding"/>
+    <category term="Gemini Protocol"/>
+    <category term="PyPI"/>
+    <category term="Python"/>
+    <category term="Rogallo"/>
+    <category term="smolweb"/>
+    <published>2026-10-05T10:13:48+01:00</published>
+  </entry>
   <entry>
     <id>https://blog.davep.org/2026/10/02/rogallo-v3-0-0.html</id>
     <title>Rogallo v3.0.0</title>
@@ -14,7 +76,7 @@
     <content type="html">&lt;p&gt;It's been a while since I last published an update to Rogallo. In part this
 is because I've had &lt;a href="https://blog.davep.org/tag/steam-frame/"&gt;other distractions&lt;/a&gt;, but also in
 part because I've not had a huge need to add any new features of late. For
-the most part I feel Rogallo is "done"&lt;sup id="fnref:374-1"&gt;&lt;a class="footnote-ref" href="#fn:374-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+the most part I feel Rogallo is "done"&lt;sup id="fnref:375-1"&gt;&lt;a class="footnote-ref" href="#fn:375-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;I haven't, however, been doing nothing with the code. On and off, over the
 last handful of weeks, I've been addressing something that I've wanted to
 tidy up since the early days of development: application configuration. The
@@ -123,8 +185,8 @@ before upgrading.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:374-1"&gt;
-&lt;p&gt;One last big thing I do want to add is support for tabs. Still to come.&amp;#160;&lt;a class="footnote-backref" href="#fnref:374-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:375-1"&gt;
+&lt;p&gt;One last big thing I do want to add is support for tabs. Still to come.&amp;#160;&lt;a class="footnote-backref" href="#fnref:375-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -263,7 +325,7 @@ to reach different buttons, which then meant I was often having to peek
 under the headset to actually see where my fingers were landing.&lt;/p&gt;
 &lt;p&gt;Honestly, in terms of ergonomics, I'd say the Frame's controllers are worse
 than those of the Quest 2, but slightly better than the ones that come with
-the PSVR2&lt;sup id="fnref:428-1"&gt;&lt;a class="footnote-ref" href="#fn:428-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+the PSVR2&lt;sup id="fnref:429-1"&gt;&lt;a class="footnote-ref" href="#fn:429-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;There's also the complication of the controller straps that come in the
 ergonomic kit. I love these sorts of straps (the kind that goes around the
 back of your hand) as they generally make controller use more comfortable.
@@ -285,7 +347,7 @@ as high as it will go.&lt;/p&gt;
 tried out yet. I wear glasses; I'm short-sighted and have an astigmatism
 that needs correcting. Given the design of the headset there's no way I was
 going to wear my specs while using it, so for the moment I'm playing
-unaided&lt;sup id="fnref:428-2"&gt;&lt;a class="footnote-ref" href="#fn:428-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. Despite that I found the display very readable (to be fair, I'm
+unaided&lt;sup id="fnref:429-2"&gt;&lt;a class="footnote-ref" href="#fn:429-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. Despite that I found the display very readable (to be fair, I'm
 not &lt;em&gt;that&lt;/em&gt; short-sighted).&lt;/p&gt;
 &lt;p&gt;What is slightly disappointing is the lack of an actual "home" when you boot
 up the headset. This feels like a missed opportunity. Like, sure, the
@@ -387,7 +449,7 @@ before&lt;/a&gt;,
 and do feel it's pretty much the peak VR experience. The idea that this
 could work standalone was wild to me. I know Valve have worked hard on
 making it work, and are promoting it to the point of bundling it with the
-Frame&lt;sup id="fnref:428-3"&gt;&lt;a class="footnote-ref" href="#fn:428-3"&gt;3&lt;/a&gt;&lt;/sup&gt;, but it still felt like it was going to be a bad time.&lt;/p&gt;
+Frame&lt;sup id="fnref:429-3"&gt;&lt;a class="footnote-ref" href="#fn:429-3"&gt;3&lt;/a&gt;&lt;/sup&gt;, but it still felt like it was going to be a bad time.&lt;/p&gt;
 &lt;p&gt;It wasn't a bad time. It was a good time.&lt;/p&gt;
 &lt;p&gt;While it's very obvious that the graphics have been dialled down, and while
 I did see a fair bit of pop-in of assets from time to time, generally it
@@ -418,16 +480,16 @@ again thanks to this little device making it very accessible.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:428-1"&gt;
+&lt;li id="fn:429-1"&gt;
 &lt;p&gt;I'd place the PSVR2 higher than the Frame if it wasn't for the fact
 that I find the grips of the controllers far too bulky and very
-difficult to keep gripped for an extended period of time.&amp;#160;&lt;a class="footnote-backref" href="#fnref:428-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+difficult to keep gripped for an extended period of time.&amp;#160;&lt;a class="footnote-backref" href="#fnref:429-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:428-2"&gt;
-&lt;p&gt;I will be getting prescription inserts when they become available.&amp;#160;&lt;a class="footnote-backref" href="#fnref:428-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:429-2"&gt;
+&lt;p&gt;I will be getting prescription inserts when they become available.&amp;#160;&lt;a class="footnote-backref" href="#fnref:429-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:428-3"&gt;
-&lt;p&gt;Pity us poor souls who already own it I guess.&amp;#160;&lt;a class="footnote-backref" href="#fnref:428-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:429-3"&gt;
+&lt;p&gt;Pity us poor souls who already own it I guess.&amp;#160;&lt;a class="footnote-backref" href="#fnref:429-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -513,7 +575,7 @@ on-device voice handling, these requests have been near-instant.&lt;/p&gt;
 &lt;p&gt;With the new Siri that comes with iOS 27, etc., if I'm really lucky the
 reply will be super slow (getting on for 20 seconds or so to do the job),
 but more often than not it just doesn't work at all. Either it tells me that
-my main device isn't available right now&lt;sup id="fnref:426-1"&gt;&lt;a class="footnote-ref" href="#fn:426-1"&gt;1&lt;/a&gt;&lt;/sup&gt; (which I take to mean my
+my main device isn't available right now&lt;sup id="fnref:427-1"&gt;&lt;a class="footnote-ref" href="#fn:427-1"&gt;1&lt;/a&gt;&lt;/sup&gt; (which I take to mean my
 &lt;a href="https://blog.davep.org/tag/iphone/"&gt;iPhone&lt;/a&gt;, which is wild given it's always in my pocket at the
 time), or it just busy spins for ages and then simply times out and does
 nothing.&lt;/p&gt;
@@ -524,7 +586,7 @@ ages without getting anything done, or it finally tells me it isn't working.&lt;
 &lt;em&gt;"Apple Intelligence"&lt;/em&gt;. I was, unsurprisingly, kind of annoyed that they
 didn't deliver. But it was fine, the phone is a good one and it's still
 serving me well. Also, if I'm honest, I was comfortable with the idea that
-they chose to not really implement anything&lt;sup id="fnref:426-2"&gt;&lt;a class="footnote-ref" href="#fn:426-2"&gt;2&lt;/a&gt;&lt;/sup&gt; rather than implement
+they chose to not really implement anything&lt;sup id="fnref:427-2"&gt;&lt;a class="footnote-ref" href="#fn:427-2"&gt;2&lt;/a&gt;&lt;/sup&gt; rather than implement
 something bad.&lt;/p&gt;
 &lt;p&gt;Sadly though, based on my experience so far, they've implemented something
 bad. Since upgrading, on the Watch and iPhone, I've found that it's either
@@ -533,13 +595,13 @@ benefit of the on-device voice handling of my watches.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:426-1"&gt;
-&lt;p&gt;Or words to that effect; I can't remember the exact wording.&amp;#160;&lt;a class="footnote-backref" href="#fnref:426-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:427-1"&gt;
+&lt;p&gt;Or words to that effect; I can't remember the exact wording.&amp;#160;&lt;a class="footnote-backref" href="#fnref:427-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:426-2"&gt;
+&lt;li id="fn:427-2"&gt;
 &lt;p&gt;I mean, of course, they did do the image playground and writing tools,
 but they're hardly the leap forward in assistant intelligence that was
-originally being hinted at.&amp;#160;&lt;a class="footnote-backref" href="#fnref:426-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+originally being hinted at.&amp;#160;&lt;a class="footnote-backref" href="#fnref:427-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -798,7 +860,7 @@ that such tooling easily helps with catching such issues.&lt;/p&gt;
 found that with reasonable care (you know: the sort of care you'd put into
 your work anyway) you can quickly and easily uncover connections and
 knock-on effects you might not have immediately noticed. Moreover, if LLMs
-are useful for anything when it comes to coding, it's for writing tests&lt;sup id="fnref:418-1"&gt;&lt;a class="footnote-ref" href="#fn:418-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.
+are useful for anything when it comes to coding, it's for writing tests&lt;sup id="fnref:419-1"&gt;&lt;a class="footnote-ref" href="#fn:419-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.
 With that in mind you should be able to reasonably expect the number of
 silly bugs to go down.&lt;/p&gt;
 &lt;p&gt;Unless, of course, there's no human in the loop anywhere, or the human in
@@ -812,9 +874,9 @@ enough stories of people getting nowhere.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:418-1"&gt;
+&lt;li id="fn:419-1"&gt;
 &lt;p&gt;Arguably they're a little too good at it to the point of coming round
-the other side and doing badly again, if you don't keep an eye on things.&amp;#160;&lt;a class="footnote-backref" href="#fnref:418-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+the other side and doing badly again, if you don't keep an eye on things.&amp;#160;&lt;a class="footnote-backref" href="#fnref:419-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1129,7 +1191,7 @@ display can be a little richer. In effect, this is a sibling to
 Gemtext, where it makes sense. For the most part, finger responses are
 free-form plain text, but there are times when there's information in the
 response that would be of most use if you could interact with it. For
-example, if you get a user list from &lt;code&gt;plan.cat&lt;/code&gt;&lt;sup id="fnref:425-1"&gt;&lt;a class="footnote-ref" href="#fn:425-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, that's a lot of data
+example, if you get a user list from &lt;code&gt;plan.cat&lt;/code&gt;&lt;sup id="fnref:426-1"&gt;&lt;a class="footnote-ref" href="#fn:426-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, that's a lot of data
 that could be turned into &lt;code&gt;finger://&lt;/code&gt; URIs that can be subsequently
 followed.&lt;/p&gt;
 &lt;p&gt;With this in mind, &lt;a href="https://finger2gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;finger2gemtext&lt;/code&gt;&lt;/a&gt; can
@@ -1158,8 +1220,8 @@ things worth making linkable...&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:425-1"&gt;
-&lt;p&gt;&lt;code&gt;finger @plan.cat&lt;/code&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:425-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:426-1"&gt;
+&lt;p&gt;&lt;code&gt;finger @plan.cat&lt;/code&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:426-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content>
@@ -1174,25 +1236,5 @@ things worth making linkable...&lt;/p&gt;
     <category term="finger2gemtext"/>
     <category term="smolweb"/>
     <published>2026-09-02T19:21:50+01:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.davep.org/2026/09/02/port79-v1-1-0.html</id>
-    <title>Port79 v1.1.0</title>
-    <updated>2026-09-02T16:39:03+01:00</updated>
-    <content type="html">&lt;p&gt;A small update to &lt;a href="https://port79.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Port79&lt;/a&gt;, bumping up to
-&lt;a href="https://port79.davep.dev/changelog/#v110" rel="noopener noreferrer" target="_blank"&gt;v1.1.0&lt;/a&gt;. This release adds a
-&lt;code&gt;resolve&lt;/code&gt; method to the &lt;code&gt;FingerURI&lt;/code&gt; class.&lt;/p&gt;
-&lt;p&gt;I'm currently tweaking &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;'s rendering of
-some responses from finger services and being able to resolve URIs relative
-to the underlying page is going to be very helpful.&lt;/p&gt;</content>
-    <link href="https://blog.davep.org/2026/09/02/port79-v1-1-0.html"/>
-    <category term="Python"/>
-    <category term="Coding"/>
-    <category term="PyPI"/>
-    <category term="Python"/>
-    <category term="finger"/>
-    <category term="port79"/>
-    <category term="smolweb"/>
-    <published>2026-09-02T16:39:03+01:00</published>
   </entry>
 </feed>
