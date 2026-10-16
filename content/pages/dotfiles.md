@@ -12,6 +12,7 @@ is useful to anyone, here's a list of some (most, ideally all!) of them.
 - [Helix](https://github.com/davep/helix)
 - [Kitty](https://github.com/davep/kitty)
 - [Python REPL](https://github.com/davep/.pythonrc.d)
+- [Rogallo](https://github.com/davep/rogallo-config)
 - [Vim](https://github.com/davep/.vim)
 
 [^1]: Lots of them don't actually start with a dot these days, of course.
