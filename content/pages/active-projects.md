@@ -105,7 +105,7 @@ for navigating Geminispace.
 
 ## Wasat
 
-[Wasat](https://wasat.davep.dev/) is an async Gemini Protcol client library
+[Wasat](https://wasat.davep.dev/) is an async Gemini Protocol client library
 for Python, developed as the heart of Rogallo.
 
 [//]: # (active-projects.md ends here)
