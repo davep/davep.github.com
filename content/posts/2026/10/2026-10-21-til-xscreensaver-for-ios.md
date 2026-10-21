@@ -1,7 +1,7 @@
 ---
 title: "TIL: XScreenSaver for iOS"
 date: "2026-10-21 16:22:23+0100"
-category: Tech
+category: TIL
 tags: [iOS, iPhone, jwz, software]
 ---
 
