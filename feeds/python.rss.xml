@@ -8,7 +8,58 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 26 Oct 2026 09:44:56 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 26 Oct 2026 15:46:52 +0000</lastBuildDate>
+    <item>
+      <title>Wasat v1.11.0</title>
+      <link>https://blog.davep.org/2026/10/26/wasat-v1-11-0.html</link>
+      <description>&lt;p&gt;Another little update to &lt;a href="https://wasat.davep.dev" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;, this time bumping
+the version to &lt;a href="https://wasat.davep.dev/changelog/#v1110" rel="noopener noreferrer" target="_blank"&gt;v1.11.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;After &lt;a href="https://blog.davep.org/2026/10/26/wasat-v1-10-0.html"&gt;this morning's change&lt;/a&gt;, I made a
+start on the work I wanted to do on &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
+and quickly realised that most of what I had planned was better done in
+Wasat itself. The short version is: rather than maintaining a
+just-this-session ignore list in the application, it made more sense to
+handle this in Wasat.&lt;/p&gt;
+&lt;p&gt;So this release adds an
+&lt;a href="https://wasat.davep.dev/library/client/#wasat.client.Client.ignore_security_error" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;ignore_security_error&lt;/code&gt;&lt;/a&gt;
+method to the client that lets you -- for the current session -- ignore a
+particular type of error for a given host/port pair. This makes for a lot
+less work needing to be done by the application making use of Wasat. Now
+it's just a case of&lt;sup id="fnref:374-1"&gt;&lt;a class="footnote-ref" href="#fn:374-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;wasat&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Client&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;IgnorableSecurityError&lt;/span&gt;
+
+&lt;span class="n"&gt;client&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Client&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;uri&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"gemini://expired.example.com/"&lt;/span&gt;
+
+&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;uri&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="n"&gt;IgnorableSecurityError&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ignore_security_error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;uri&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;uri&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Obviously, &lt;a href="https://github.com/davep/rogallo/pull/499/changes#diff-2cc6b7631653fa64ed1395847b26a1075692c620ee8f4c23b7b96dcc8b365a0d" rel="noopener noreferrer" target="_blank"&gt;the code in Rogallo is a bit more involved than the
+above&lt;/a&gt;,
+but that's the gist of it: try the request, if it fails with an error that
+can be ignored, ignore it and try again.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:374-1"&gt;
+&lt;p&gt;Yes, I know the &lt;code&gt;await&lt;/code&gt; isn't going to work in this example; consider it pseudo-code.&amp;#160;&lt;a class="footnote-backref" href="#fnref:374-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/10/26/wasat-v1-11-0.html</guid>
+      <category>Python</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>smolweb</category>
+      <category>wasat</category>
+      <pubDate>Mon, 26 Oct 2026 15:30:21 +0000</pubDate>
+    </item>
     <item>
       <title>Wasat v1.10.0</title>
       <link>https://blog.davep.org/2026/10/26/wasat-v1-10-0.html</link>
@@ -172,7 +223,7 @@ display can be a little richer. In effect, this is a sibling to
 Gemtext, where it makes sense. For the most part, finger responses are
 free-form plain text, but there are times when there's information in the
 response that would be of most use if you could interact with it. For
-example, if you get a user list from &lt;code&gt;plan.cat&lt;/code&gt;&lt;sup id="fnref:434-1"&gt;&lt;a class="footnote-ref" href="#fn:434-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, that's a lot of data
+example, if you get a user list from &lt;code&gt;plan.cat&lt;/code&gt;&lt;sup id="fnref:435-1"&gt;&lt;a class="footnote-ref" href="#fn:435-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, that's a lot of data
 that could be turned into &lt;code&gt;finger://&lt;/code&gt; URIs that can be subsequently
 followed.&lt;/p&gt;
 &lt;p&gt;With this in mind, &lt;a href="https://finger2gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;finger2gemtext&lt;/code&gt;&lt;/a&gt; can
@@ -201,8 +252,8 @@ things worth making linkable...&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:434-1"&gt;
-&lt;p&gt;&lt;code&gt;finger @plan.cat&lt;/code&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:434-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:435-1"&gt;
+&lt;p&gt;&lt;code&gt;finger @plan.cat&lt;/code&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:435-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -303,7 +354,7 @@ now in place.&lt;/p&gt;</description>
 PR&lt;/a&gt; for
 &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt; is &lt;em&gt;very&lt;/em&gt; close to completion now --
 although the thing has grown arms and legs and turned into a bit of a UI
-overhaul&lt;sup id="fnref:465-1"&gt;&lt;a class="footnote-ref" href="#fn:465-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Something I wanted to add was a quick and easy way for the
+overhaul&lt;sup id="fnref:466-1"&gt;&lt;a class="footnote-ref" href="#fn:466-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Something I wanted to add was a quick and easy way for the
 user to view the details of a client certificate that's being used for the
 current page. Rogallo lets you do this for the server certificate, but not
 the client certificate.&lt;/p&gt;
@@ -317,8 +368,8 @@ line...&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:465-1"&gt;
-&lt;p&gt;Not unrelated. The UI overhaul was in support of the client certificate manager.&amp;#160;&lt;a class="footnote-backref" href="#fnref:465-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:466-1"&gt;
+&lt;p&gt;Not unrelated. The UI overhaul was in support of the client certificate manager.&amp;#160;&lt;a class="footnote-backref" href="#fnref:466-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -411,7 +462,7 @@ iterables &lt;em&gt;isn't&lt;/em&gt; supported and will raise a &lt;code&gt;NotI
 other slice-based operations aren't supported either.&lt;/p&gt;
 &lt;p&gt;While this is close to a breaking change, it's fine for my use of this code.
 However, I had to make one big breaking change: I'd written &lt;code&gt;clear&lt;/code&gt; so that
-it returned &lt;code&gt;Self&lt;/code&gt;&lt;sup id="fnref:456-1"&gt;&lt;a class="footnote-ref" href="#fn:456-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The interface expected by &lt;code&gt;MutableSequence&lt;/code&gt; is one
+it returned &lt;code&gt;Self&lt;/code&gt;&lt;sup id="fnref:457-1"&gt;&lt;a class="footnote-ref" href="#fn:457-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The interface expected by &lt;code&gt;MutableSequence&lt;/code&gt; is one
 that returns &lt;code&gt;None&lt;/code&gt;. So to strictly comply with that interface, I've changed
 the return type.&lt;/p&gt;
 &lt;p&gt;With this being a breaking change, I've bumped the library version to
@@ -421,11 +472,11 @@ that the API has changed. That deserves a major version bump.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:456-1"&gt;
+&lt;li id="fn:457-1"&gt;
 &lt;p&gt;I tend to prefer that a method that might return &lt;code&gt;None&lt;/code&gt; actually
 return &lt;code&gt;Self&lt;/code&gt;; it allows for chaining. I recognise that there are other
 schools of thought about this in the Python world; I'm not a member of
-those schools.&amp;#160;&lt;a class="footnote-backref" href="#fnref:456-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+those schools.&amp;#160;&lt;a class="footnote-backref" href="#fnref:457-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -486,7 +537,7 @@ I was busy working on something else.&lt;/p&gt;
 &lt;p&gt;Yesterday evening &lt;a href="https://github.com/davep/rogallo/issues/290#issuecomment-5304008984" rel="noopener noreferrer" target="_blank"&gt;I finally managed to come up with a way to always
 recreate
 it&lt;/a&gt;
-and, having done so, the solution seems pretty straightforward&lt;sup id="fnref:451-1"&gt;&lt;a class="footnote-ref" href="#fn:451-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In order
+and, having done so, the solution seems pretty straightforward&lt;sup id="fnref:452-1"&gt;&lt;a class="footnote-ref" href="#fn:452-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In order
 to implement the tweak I want, I need to be able to truncate the navigation
 history, and of course do so in a non-destructive way.&lt;/p&gt;
 &lt;p&gt;So the history classes in BagOfStuff
@@ -499,8 +550,8 @@ current location, then save it, without affecting the working copy.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:451-1"&gt;
-&lt;p&gt;Why do I feel like I'll regret saying that?&amp;#160;&lt;a class="footnote-backref" href="#fnref:451-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:452-1"&gt;
+&lt;p&gt;Why do I feel like I'll regret saying that?&amp;#160;&lt;a class="footnote-backref" href="#fnref:452-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -609,7 +660,7 @@ That's... doable.&lt;/p&gt;
 &lt;li&gt;Dragging in a reasonably large dependency for what's likely to be a niche
   requirement doesn't quite feel right.&lt;/li&gt;
 &lt;li&gt;Textual's Markdown viewer has, to this day, one massive design flaw: links
-  can't be navigated with the keyboard&lt;sup id="fnref:459-1"&gt;&lt;a class="footnote-ref" href="#fn:459-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'm doing my absolute best to
+  can't be navigated with the keyboard&lt;sup id="fnref:460-1"&gt;&lt;a class="footnote-ref" href="#fn:460-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'm doing my absolute best to
   ensure that Rogallo is keyboard-first. Leaning on this widget for viewing
   Markdown is one thing, but leaning on the widget for other content types
   starts to erode that aim.&lt;/li&gt;
@@ -649,8 +700,8 @@ into an &lt;code&gt;http(s)&lt;/code&gt; browser too. Right? Right?!?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:459-1"&gt;
-&lt;p&gt;This mouse-only problem is a recurring theme in Textual.&amp;#160;&lt;a class="footnote-backref" href="#fnref:459-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:460-1"&gt;
+&lt;p&gt;This mouse-only problem is a recurring theme in Textual.&amp;#160;&lt;a class="footnote-backref" href="#fnref:460-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -728,55 +779,6 @@ parameter&lt;/a&gt;.&lt;/p&gt;</description>
       <category>gemtext</category>
       <category>smolweb</category>
       <pubDate>Fri, 07 Aug 2026 16:33:03 +0100</pubDate>
-    </item>
-    <item>
-      <title>Wasat v1.3.0</title>
-      <link>https://blog.davep.org/2026/07/30/wasat-v1-3-0.html</link>
-      <description>&lt;p&gt;A quick bump of &lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt; to
-&lt;a href="https://wasat.davep.dev/changelog/#v130" rel="noopener noreferrer" target="_blank"&gt;v1.3.0&lt;/a&gt;. This follows on from the
-work &lt;a href="https://blog.davep.org/2026/07/30/wasat-v1-2-0.html"&gt;started in v1.2.0&lt;/a&gt;, improving how
-hybrid mode works and also making host certificate verification information
-available in the response object.&lt;/p&gt;
-&lt;p&gt;The main improvement to hybrid mode is that it's now a little more
-discerning about when to fall back on TOFU mode. &lt;em&gt;Only&lt;/em&gt; if the CA route
-fails due to an untrusted root or a self-signed certificate does it then
-fall back to TOFU; otherwise, an exception is raised.&lt;/p&gt;
-&lt;p&gt;I've also added verification information -- such as the method used and the
-fingerprint -- to the response object. This will be useful in
-&lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt; if I want to show in the display how the current
-server was verified.&lt;/p&gt;
-&lt;p&gt;As a handy diagnostic tool, I've also added the verification method and the
-fingerprint to the verbose output of the library's CLI command.&lt;/p&gt;
-&lt;div class="highlight" data-lang="text"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ wasat --verify-mode=hybrid -v gemini://astrobotany.mozz.us/ | head -7
---- Gemini Response ---
-URI: gemini://astrobotany.mozz.us/
-Verification Method: ca
-Certificate Fingerprint: sha256:dafe13d51b1aff133dd153c6d66a1a15761020017daa69378aef6e0eefb75474
-Status: 20 (SUCCESS)
-Meta: text/gemini
------------------------
-
-$ wasat --verify-mode=hybrid -v gemini://tilde.team/~davep/ | head -7
---- Gemini Response ---
-URI: gemini://tilde.team/~davep/
-Verification Method: tofu
-Certificate Fingerprint: sha256:239f2642895698fbd16bd6fc59f2361caf6b7449a37d861d86936978c175bf78
-Status: 20 (SUCCESS)
-Meta: text/gemini; lang=en
------------------------
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;With these changes in place, I think I'm set for making some improvements to
-Rogallo relating to host certificates.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/30/wasat-v1-3-0.html</guid>
-      <category>Python</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>smolweb</category>
-      <category>wasat</category>
-      <pubDate>Thu, 30 Jul 2026 16:04:09 +0100</pubDate>
     </item>
   </channel>
 </rss>

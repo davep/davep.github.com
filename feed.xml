@@ -8,7 +8,58 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 26 Oct 2026 09:44:56 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 26 Oct 2026 15:46:52 +0000</lastBuildDate>
+    <item>
+      <title>Wasat v1.11.0</title>
+      <link>https://blog.davep.org/2026/10/26/wasat-v1-11-0.html</link>
+      <description>&lt;p&gt;Another little update to &lt;a href="https://wasat.davep.dev" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;, this time bumping
+the version to &lt;a href="https://wasat.davep.dev/changelog/#v1110" rel="noopener noreferrer" target="_blank"&gt;v1.11.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;After &lt;a href="https://blog.davep.org/2026/10/26/wasat-v1-10-0.html"&gt;this morning's change&lt;/a&gt;, I made a
+start on the work I wanted to do on &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;
+and quickly realised that most of what I had planned was better done in
+Wasat itself. The short version is: rather than maintaining a
+just-this-session ignore list in the application, it made more sense to
+handle this in Wasat.&lt;/p&gt;
+&lt;p&gt;So this release adds an
+&lt;a href="https://wasat.davep.dev/library/client/#wasat.client.Client.ignore_security_error" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;ignore_security_error&lt;/code&gt;&lt;/a&gt;
+method to the client that lets you -- for the current session -- ignore a
+particular type of error for a given host/port pair. This makes for a lot
+less work needing to be done by the application making use of Wasat. Now
+it's just a case of&lt;sup id="fnref:374-1"&gt;&lt;a class="footnote-ref" href="#fn:374-1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;div class="highlight" data-lang="python"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;wasat&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Client&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;IgnorableSecurityError&lt;/span&gt;
+
+&lt;span class="n"&gt;client&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Client&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;uri&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"gemini://expired.example.com/"&lt;/span&gt;
+
+&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;uri&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="n"&gt;IgnorableSecurityError&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ignore_security_error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;uri&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;uri&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Obviously, &lt;a href="https://github.com/davep/rogallo/pull/499/changes#diff-2cc6b7631653fa64ed1395847b26a1075692c620ee8f4c23b7b96dcc8b365a0d" rel="noopener noreferrer" target="_blank"&gt;the code in Rogallo is a bit more involved than the
+above&lt;/a&gt;,
+but that's the gist of it: try the request, if it fails with an error that
+can be ignored, ignore it and try again.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:374-1"&gt;
+&lt;p&gt;Yes, I know the &lt;code&gt;await&lt;/code&gt; isn't going to work in this example; consider it pseudo-code.&amp;#160;&lt;a class="footnote-backref" href="#fnref:374-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/10/26/wasat-v1-11-0.html</guid>
+      <category>Python</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>smolweb</category>
+      <category>wasat</category>
+      <pubDate>Mon, 26 Oct 2026 15:30:21 +0000</pubDate>
+    </item>
     <item>
       <title>Wasat v1.10.0</title>
       <link>https://blog.davep.org/2026/10/26/wasat-v1-10-0.html</link>
@@ -311,7 +362,7 @@ type who loves to build their own kit and cares about the hardware and
 stuff... I would imagine not. On the other hand, if you're someone who has a
 reasonable library on Steam and wants a low-to-no-maintenance PC that's
 almost invisible in your living room: I'd say it's ideal. Sure, the price
-isn't great, but that's the way stuff is at the moment&lt;sup id="fnref:377-1"&gt;&lt;a class="footnote-ref" href="#fn:377-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Additionally,
+isn't great, but that's the way stuff is at the moment&lt;sup id="fnref:378-1"&gt;&lt;a class="footnote-ref" href="#fn:378-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Additionally,
 you're getting a desktop Linux machine &lt;em&gt;and&lt;/em&gt; something that can be tweaked
 and tailored how you like, if that's your thing.&lt;/p&gt;
 &lt;p&gt;Next up on my list of things to do with it, aside from playing on it more
@@ -322,7 +373,7 @@ Survivors&lt;/a&gt;),
 is to figure out the easiest and best way to record video (with audio and
 voice) and, ideally, also &lt;a href="https://www.youtube.com/@DavePearson/streams" rel="noopener noreferrer" target="_blank"&gt;stream to
 YouTube&lt;/a&gt;. Given the nature of
-the machine (Linux box with gaming UI) I imagine it's as "simple"&lt;sup id="fnref:377-2"&gt;&lt;a class="footnote-ref" href="#fn:377-2"&gt;2&lt;/a&gt;&lt;/sup&gt; as
+the machine (Linux box with gaming UI) I imagine it's as "simple"&lt;sup id="fnref:378-2"&gt;&lt;a class="footnote-ref" href="#fn:378-2"&gt;2&lt;/a&gt;&lt;/sup&gt; as
 adding OBS and setting things up. To be fair to the consoles though: this is
 where they &lt;em&gt;do&lt;/em&gt; win just a little; on both my Xbox Series S and my PS5 there
 are dedicated tools for streaming. I wish the Steam Machine came with
@@ -331,11 +382,11 @@ setup that is very unlikely to be disturbed by random updates.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:377-1"&gt;
-&lt;p&gt;Thanks AI, I guess.&amp;#160;&lt;a class="footnote-backref" href="#fnref:377-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:378-1"&gt;
+&lt;p&gt;Thanks AI, I guess.&amp;#160;&lt;a class="footnote-backref" href="#fnref:378-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:377-2"&gt;
-&lt;p&gt;As in: likely doable with some tinkering and work.&amp;#160;&lt;a class="footnote-backref" href="#fnref:377-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:378-2"&gt;
+&lt;p&gt;As in: likely doable with some tinkering and work.&amp;#160;&lt;a class="footnote-backref" href="#fnref:378-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -412,7 +463,7 @@ But there was a wrinkle: the opening of the window to throw your hat into
 the ring, and the projected delivery date should you be lucky, coincided
 &lt;a href="https://blog.davep.org/2026/06/29/a-view-of-the-wash.html"&gt;with our holiday in the Netherlands&lt;/a&gt;.
 If I'd been successful, delivery would have taken place while I was out of
-the country&lt;sup id="fnref:375-1"&gt;&lt;a class="footnote-ref" href="#fn:375-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+the country&lt;sup id="fnref:376-1"&gt;&lt;a class="footnote-ref" href="#fn:376-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Given this, I waited until I got back and then put my name down for a 512GB
 machine without a controller. Unsurprisingly, I found myself on the
 waitlist, not a reservation list. So I waited. And waited. And waited. Along
@@ -459,8 +510,8 @@ just to be somewhat completionist.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:375-1"&gt;
-&lt;p&gt;Ironically, while in the country where the device would ship from.&amp;#160;&lt;a class="footnote-backref" href="#fnref:375-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:376-1"&gt;
+&lt;p&gt;Ironically, while in the country where the device would ship from.&amp;#160;&lt;a class="footnote-backref" href="#fnref:376-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -540,7 +591,7 @@ consider adding in the future.&lt;/p&gt;</description>
       <description>&lt;p&gt;It's been a while since I last published an update to Rogallo. In part this
 is because I've had &lt;a href="https://blog.davep.org/tag/steam-frame/"&gt;other distractions&lt;/a&gt;, but also in
 part because I've not had a huge need to add any new features of late. For
-the most part I feel Rogallo is "done"&lt;sup id="fnref:383-1"&gt;&lt;a class="footnote-ref" href="#fn:383-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+the most part I feel Rogallo is "done"&lt;sup id="fnref:384-1"&gt;&lt;a class="footnote-ref" href="#fn:384-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;I haven't, however, been doing nothing with the code. On and off, over the
 last handful of weeks, I've been addressing something that I've wanted to
 tidy up since the early days of development: application configuration. The
@@ -649,8 +700,8 @@ before upgrading.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:383-1"&gt;
-&lt;p&gt;One last big thing I do want to add is support for tabs. Still to come.&amp;#160;&lt;a class="footnote-backref" href="#fnref:383-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:384-1"&gt;
+&lt;p&gt;One last big thing I do want to add is support for tabs. Still to come.&amp;#160;&lt;a class="footnote-backref" href="#fnref:384-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -703,7 +754,7 @@ combines perfectly with the low-activation-energy accessibility of the Steam
 Frame. It's a game that makes the Frame feel as easy to pick up as the
 &lt;a href="https://blog.davep.org/tag/steam-deck/"&gt;Steam Deck&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Of course, being a mainly multiplayer game, your chances of having a good
-time are mixed&lt;sup id="fnref:379-1"&gt;&lt;a class="footnote-ref" href="#fn:379-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I've been into a couple of lobbies that have been really
+time are mixed&lt;sup id="fnref:380-1"&gt;&lt;a class="footnote-ref" href="#fn:380-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I've been into a couple of lobbies that have been really
 fun, with a good mix of folk, who all seem to have joined to have a good
 time. I've also joined matches where it's just kids wanting to be edgelords
 on the Internet. Thankfully, so far, it's more the former than the latter.
@@ -718,8 +769,8 @@ while to come.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:379-1"&gt;
-&lt;p&gt;It does have bot matches too, so you can do some limited single-player gameplay.&amp;#160;&lt;a class="footnote-backref" href="#fnref:379-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:380-1"&gt;
+&lt;p&gt;It does have bot matches too, so you can do some limited single-player gameplay.&amp;#160;&lt;a class="footnote-backref" href="#fnref:380-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -787,7 +838,7 @@ to reach different buttons, which then meant I was often having to peek
 under the headset to actually see where my fingers were landing.&lt;/p&gt;
 &lt;p&gt;Honestly, in terms of ergonomics, I'd say the Frame's controllers are worse
 than those of the Quest 2, but slightly better than the ones that come with
-the PSVR2&lt;sup id="fnref:437-1"&gt;&lt;a class="footnote-ref" href="#fn:437-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+the PSVR2&lt;sup id="fnref:438-1"&gt;&lt;a class="footnote-ref" href="#fn:438-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;There's also the complication of the controller straps that come in the
 ergonomic kit. I love these sorts of straps (the kind that goes around the
 back of your hand) as they generally make controller use more comfortable.
@@ -809,7 +860,7 @@ as high as it will go.&lt;/p&gt;
 tried out yet. I wear glasses; I'm short-sighted and have an astigmatism
 that needs correcting. Given the design of the headset there's no way I was
 going to wear my specs while using it, so for the moment I'm playing
-unaided&lt;sup id="fnref:437-2"&gt;&lt;a class="footnote-ref" href="#fn:437-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. Despite that I found the display very readable (to be fair, I'm
+unaided&lt;sup id="fnref:438-2"&gt;&lt;a class="footnote-ref" href="#fn:438-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. Despite that I found the display very readable (to be fair, I'm
 not &lt;em&gt;that&lt;/em&gt; short-sighted).&lt;/p&gt;
 &lt;p&gt;What is slightly disappointing is the lack of an actual "home" when you boot
 up the headset. This feels like a missed opportunity. Like, sure, the
@@ -911,7 +962,7 @@ before&lt;/a&gt;,
 and do feel it's pretty much the peak VR experience. The idea that this
 could work standalone was wild to me. I know Valve have worked hard on
 making it work, and are promoting it to the point of bundling it with the
-Frame&lt;sup id="fnref:437-3"&gt;&lt;a class="footnote-ref" href="#fn:437-3"&gt;3&lt;/a&gt;&lt;/sup&gt;, but it still felt like it was going to be a bad time.&lt;/p&gt;
+Frame&lt;sup id="fnref:438-3"&gt;&lt;a class="footnote-ref" href="#fn:438-3"&gt;3&lt;/a&gt;&lt;/sup&gt;, but it still felt like it was going to be a bad time.&lt;/p&gt;
 &lt;p&gt;It wasn't a bad time. It was a good time.&lt;/p&gt;
 &lt;p&gt;While it's very obvious that the graphics have been dialled down, and while
 I did see a fair bit of pop-in of assets from time to time, generally it
@@ -942,16 +993,16 @@ again thanks to this little device making it very accessible.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:437-1"&gt;
+&lt;li id="fn:438-1"&gt;
 &lt;p&gt;I'd place the PSVR2 higher than the Frame if it wasn't for the fact
 that I find the grips of the controllers far too bulky and very
-difficult to keep gripped for an extended period of time.&amp;#160;&lt;a class="footnote-backref" href="#fnref:437-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+difficult to keep gripped for an extended period of time.&amp;#160;&lt;a class="footnote-backref" href="#fnref:438-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:437-2"&gt;
-&lt;p&gt;I will be getting prescription inserts when they become available.&amp;#160;&lt;a class="footnote-backref" href="#fnref:437-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:438-2"&gt;
+&lt;p&gt;I will be getting prescription inserts when they become available.&amp;#160;&lt;a class="footnote-backref" href="#fnref:438-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:437-3"&gt;
-&lt;p&gt;Pity us poor souls who already own it I guess.&amp;#160;&lt;a class="footnote-backref" href="#fnref:437-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:438-3"&gt;
+&lt;p&gt;Pity us poor souls who already own it I guess.&amp;#160;&lt;a class="footnote-backref" href="#fnref:438-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1035,7 +1086,7 @@ on-device voice handling, these requests have been near-instant.&lt;/p&gt;
 &lt;p&gt;With the new Siri that comes with iOS 27, etc., if I'm really lucky the
 reply will be super slow (getting on for 20 seconds or so to do the job),
 but more often than not it just doesn't work at all. Either it tells me that
-my main device isn't available right now&lt;sup id="fnref:435-1"&gt;&lt;a class="footnote-ref" href="#fn:435-1"&gt;1&lt;/a&gt;&lt;/sup&gt; (which I take to mean my
+my main device isn't available right now&lt;sup id="fnref:436-1"&gt;&lt;a class="footnote-ref" href="#fn:436-1"&gt;1&lt;/a&gt;&lt;/sup&gt; (which I take to mean my
 &lt;a href="https://blog.davep.org/tag/iphone/"&gt;iPhone&lt;/a&gt;, which is wild given it's always in my pocket at the
 time), or it just busy spins for ages and then simply times out and does
 nothing.&lt;/p&gt;
@@ -1046,7 +1097,7 @@ ages without getting anything done, or it finally tells me it isn't working.&lt;
 &lt;em&gt;"Apple Intelligence"&lt;/em&gt;. I was, unsurprisingly, kind of annoyed that they
 didn't deliver. But it was fine, the phone is a good one and it's still
 serving me well. Also, if I'm honest, I was comfortable with the idea that
-they chose to not really implement anything&lt;sup id="fnref:435-2"&gt;&lt;a class="footnote-ref" href="#fn:435-2"&gt;2&lt;/a&gt;&lt;/sup&gt; rather than implement
+they chose to not really implement anything&lt;sup id="fnref:436-2"&gt;&lt;a class="footnote-ref" href="#fn:436-2"&gt;2&lt;/a&gt;&lt;/sup&gt; rather than implement
 something bad.&lt;/p&gt;
 &lt;p&gt;Sadly though, based on my experience so far, they've implemented something
 bad. Since upgrading, on the Watch and iPhone, I've found that it's either
@@ -1055,13 +1106,13 @@ benefit of the on-device voice handling of my watches.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:435-1"&gt;
-&lt;p&gt;Or words to that effect; I can't remember the exact wording.&amp;#160;&lt;a class="footnote-backref" href="#fnref:435-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:436-1"&gt;
+&lt;p&gt;Or words to that effect; I can't remember the exact wording.&amp;#160;&lt;a class="footnote-backref" href="#fnref:436-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:435-2"&gt;
+&lt;li id="fn:436-2"&gt;
 &lt;p&gt;I mean, of course, they did do the image playground and writing tools,
 but they're hardly the leap forward in assistant intelligence that was
-originally being hinted at.&amp;#160;&lt;a class="footnote-backref" href="#fnref:435-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+originally being hinted at.&amp;#160;&lt;a class="footnote-backref" href="#fnref:436-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1240,44 +1291,6 @@ danger of scratching the glasses, headset lenses, or both.&lt;/p&gt;
       <category>VR</category>
       <category>gaming</category>
       <pubDate>Sat, 19 Sep 2026 10:16:49 +0100</pubDate>
-    </item>
-    <item>
-      <title>In the Steam Frame queue</title>
-      <link>https://blog.davep.org/2026/09/18/in-the-steam-frame-queue.html</link>
-      <description>&lt;p&gt;It's getting on for six years now since I got my first VR headset, and it's
-the best part of five years since I sorted myself with a &lt;a href="https://blog.davep.org/tag/pcvr/"&gt;PCVR&lt;/a&gt;
-setup. Between then and now I've &lt;a href="https://www.youtube.com/playlist?list=PLUY2FpMDyORCk74IQ3sfWsxg242qLwQ8g" rel="noopener noreferrer" target="_blank"&gt;played a &lt;em&gt;lot&lt;/em&gt; of VR games and spent a lot
-of time in
-VR&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This last year, though, aside from a quick dabble with the PS5 version of
-Zero Caliber, I've not really been in VR. Mostly this is down to me moving
-late on last year, and evenings and weekends now being busier with other
-things. It's sort of always felt like a hassle to have to set up the PCVR
-rig (when you live alone it's fine to have your PCVR rig lying around the
-living room all the time; when you share with other people and your cat...
-not so much).&lt;/p&gt;
-&lt;p&gt;So when I saw the Steam Frame announced and realised that it would likely
-give me standalone access to some PCVR-level games (yes, I know, not really
-PCVR, but I would hope that there will be a push to get many games running
-standalone), I was tempted. Very tempted. Not only does it offer a
-good-quality standalone headset, it's also still designed as a full PCVR
-headset. Feels win/win.&lt;/p&gt;
-&lt;p&gt;Fast forward to yesterday evening...&lt;/p&gt;
-&lt;p&gt;&lt;img alt="I'm on the reservation list" height="287" loading="lazy" src="https://blog.davep.org/attachments/2026/09/18/frame-list.webp#centre" width="603" /&gt;&lt;/p&gt;
-&lt;p&gt;I don't know that I'll return to recording PCVR quite yet -- I guess that'll
-depend on what the Frame offers in terms of being able to record -- but I
-aim to dive back into any parts of my catalogue that will work with the
-device. I think &lt;a href="https://store.steampowered.com/news/app/546560/view/679635225181947033?l=english" rel="noopener noreferrer" target="_blank"&gt;a full revisit to the world of Half-Life is
-necessary&lt;/a&gt;
-if nothing else.&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/09/18/in-the-steam-frame-queue.html</guid>
-      <category>Gaming</category>
-      <category>PCVR</category>
-      <category>Steam</category>
-      <category>Steam Frame</category>
-      <category>VR</category>
-      <category>gaming</category>
-      <pubDate>Fri, 18 Sep 2026 08:54:45 +0100</pubDate>
     </item>
   </channel>
 </rss>
