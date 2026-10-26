@@ -8,7 +8,67 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 25 Oct 2026 09:31:38 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 26 Oct 2026 09:44:56 +0000</lastBuildDate>
+    <item>
+      <title>Wasat v1.10.0</title>
+      <link>https://blog.davep.org/2026/10/26/wasat-v1-10-0.html</link>
+      <description>&lt;p&gt;Since getting into &lt;a href="https://blog.davep.org/tag/gemini-protocol/"&gt;Gemini&lt;/a&gt;, one of my daily rituals
+has been to tend to my plant in
+&lt;a href="gemini://astrobotany.mozz.us/" rel="noopener noreferrer" target="_blank"&gt;AstroBotany&lt;/a&gt;. This morning, when trying to
+visit there with &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;, I was greeted with
+this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Expired certificate" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/10/26/astro-error.webp#centre" width="996" /&gt;&lt;/p&gt;
+&lt;p&gt;In other words: the certificate has expired&lt;sup id="fnref:373-1"&gt;&lt;a class="footnote-ref" href="#fn:373-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. At this point, the error
+dialog isn't &lt;em&gt;that&lt;/em&gt; useful. It's pretty much designed for dealing with
+capsules that are using self-signed certificates -- where TOFU is being used
+and so it would normally make sense to just forget and re-establish trust.
+With an expired CA certificate, the act of forgetting does nothing, it'll
+just fail again.&lt;/p&gt;
+&lt;p&gt;While it's technically fine to simply refuse to progress, in this case, it's
+not exactly friendly to the user. What would be sensible would be to allow
+an &lt;em&gt;"Ignore"&lt;/em&gt; option. This would, I imagine, ignore the problem for the
+current Rogallo session -- ideally with some sort of indication that the
+capsule is suspicious at the moment. Also, the dialog that gives you this
+option should show all the certificate details so the user can make an
+informed decision.&lt;/p&gt;
+&lt;p&gt;The issue here is that, until now, Wasat has dealt with security-type
+problems by raising a single &lt;code&gt;SecurityError&lt;/code&gt; exception. Aside from
+dumpster-diving the description in the exception, there's no way of knowing
+the nature of the security issue.
+&lt;a href="https://wasat.davep.dev/changelog/#v1100" rel="noopener noreferrer" target="_blank"&gt;v1.10.0&lt;/a&gt; addresses this by adding
+and raising many different exceptions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;CertificateExpiredError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CertificateNotYetValidError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CertificateRejectedError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CertificateRevokedError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CertificateUntrustedError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FingerprintMismatchError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;HostnameMismatchError&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All of these inherit from &lt;code&gt;SecurityError&lt;/code&gt; to maintain
+backward-compatibility.&lt;/p&gt;
+&lt;p&gt;While this change doesn't alter the way that Rogallo handles this situation
+right now, it does at least set me up for &lt;a href="https://github.com/davep/rogallo/issues/498" rel="noopener noreferrer" target="_blank"&gt;tackling the work I have
+planned&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:373-1"&gt;
+&lt;p&gt;By the looks of things it expired at 2026-10-26T01:52:07+00:00&amp;#160;&lt;a class="footnote-backref" href="#fnref:373-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/10/26/wasat-v1-10-0.html</guid>
+      <category>Python</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>smolweb</category>
+      <category>wasat</category>
+      <pubDate>Mon, 26 Oct 2026 09:14:44 +0000</pubDate>
+    </item>
     <item>
       <title>Steam Frame with Steam Machine</title>
       <link>https://blog.davep.org/2026/10/25/steam-frame-with-steam-machine.html</link>
@@ -251,7 +311,7 @@ type who loves to build their own kit and cares about the hardware and
 stuff... I would imagine not. On the other hand, if you're someone who has a
 reasonable library on Steam and wants a low-to-no-maintenance PC that's
 almost invisible in your living room: I'd say it's ideal. Sure, the price
-isn't great, but that's the way stuff is at the moment&lt;sup id="fnref:376-1"&gt;&lt;a class="footnote-ref" href="#fn:376-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Additionally,
+isn't great, but that's the way stuff is at the moment&lt;sup id="fnref:377-1"&gt;&lt;a class="footnote-ref" href="#fn:377-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Additionally,
 you're getting a desktop Linux machine &lt;em&gt;and&lt;/em&gt; something that can be tweaked
 and tailored how you like, if that's your thing.&lt;/p&gt;
 &lt;p&gt;Next up on my list of things to do with it, aside from playing on it more
@@ -262,7 +322,7 @@ Survivors&lt;/a&gt;),
 is to figure out the easiest and best way to record video (with audio and
 voice) and, ideally, also &lt;a href="https://www.youtube.com/@DavePearson/streams" rel="noopener noreferrer" target="_blank"&gt;stream to
 YouTube&lt;/a&gt;. Given the nature of
-the machine (Linux box with gaming UI) I imagine it's as "simple"&lt;sup id="fnref:376-2"&gt;&lt;a class="footnote-ref" href="#fn:376-2"&gt;2&lt;/a&gt;&lt;/sup&gt; as
+the machine (Linux box with gaming UI) I imagine it's as "simple"&lt;sup id="fnref:377-2"&gt;&lt;a class="footnote-ref" href="#fn:377-2"&gt;2&lt;/a&gt;&lt;/sup&gt; as
 adding OBS and setting things up. To be fair to the consoles though: this is
 where they &lt;em&gt;do&lt;/em&gt; win just a little; on both my Xbox Series S and my PS5 there
 are dedicated tools for streaming. I wish the Steam Machine came with
@@ -271,11 +331,11 @@ setup that is very unlikely to be disturbed by random updates.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:376-1"&gt;
-&lt;p&gt;Thanks AI, I guess.&amp;#160;&lt;a class="footnote-backref" href="#fnref:376-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:377-1"&gt;
+&lt;p&gt;Thanks AI, I guess.&amp;#160;&lt;a class="footnote-backref" href="#fnref:377-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:376-2"&gt;
-&lt;p&gt;As in: likely doable with some tinkering and work.&amp;#160;&lt;a class="footnote-backref" href="#fnref:376-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:377-2"&gt;
+&lt;p&gt;As in: likely doable with some tinkering and work.&amp;#160;&lt;a class="footnote-backref" href="#fnref:377-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -352,7 +412,7 @@ But there was a wrinkle: the opening of the window to throw your hat into
 the ring, and the projected delivery date should you be lucky, coincided
 &lt;a href="https://blog.davep.org/2026/06/29/a-view-of-the-wash.html"&gt;with our holiday in the Netherlands&lt;/a&gt;.
 If I'd been successful, delivery would have taken place while I was out of
-the country&lt;sup id="fnref:374-1"&gt;&lt;a class="footnote-ref" href="#fn:374-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+the country&lt;sup id="fnref:375-1"&gt;&lt;a class="footnote-ref" href="#fn:375-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Given this, I waited until I got back and then put my name down for a 512GB
 machine without a controller. Unsurprisingly, I found myself on the
 waitlist, not a reservation list. So I waited. And waited. And waited. Along
@@ -399,8 +459,8 @@ just to be somewhat completionist.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:374-1"&gt;
-&lt;p&gt;Ironically, while in the country where the device would ship from.&amp;#160;&lt;a class="footnote-backref" href="#fnref:374-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:375-1"&gt;
+&lt;p&gt;Ironically, while in the country where the device would ship from.&amp;#160;&lt;a class="footnote-backref" href="#fnref:375-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -480,7 +540,7 @@ consider adding in the future.&lt;/p&gt;</description>
       <description>&lt;p&gt;It's been a while since I last published an update to Rogallo. In part this
 is because I've had &lt;a href="https://blog.davep.org/tag/steam-frame/"&gt;other distractions&lt;/a&gt;, but also in
 part because I've not had a huge need to add any new features of late. For
-the most part I feel Rogallo is "done"&lt;sup id="fnref:382-1"&gt;&lt;a class="footnote-ref" href="#fn:382-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+the most part I feel Rogallo is "done"&lt;sup id="fnref:383-1"&gt;&lt;a class="footnote-ref" href="#fn:383-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;I haven't, however, been doing nothing with the code. On and off, over the
 last handful of weeks, I've been addressing something that I've wanted to
 tidy up since the early days of development: application configuration. The
@@ -589,8 +649,8 @@ before upgrading.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:382-1"&gt;
-&lt;p&gt;One last big thing I do want to add is support for tabs. Still to come.&amp;#160;&lt;a class="footnote-backref" href="#fnref:382-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:383-1"&gt;
+&lt;p&gt;One last big thing I do want to add is support for tabs. Still to come.&amp;#160;&lt;a class="footnote-backref" href="#fnref:383-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -643,7 +703,7 @@ combines perfectly with the low-activation-energy accessibility of the Steam
 Frame. It's a game that makes the Frame feel as easy to pick up as the
 &lt;a href="https://blog.davep.org/tag/steam-deck/"&gt;Steam Deck&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Of course, being a mainly multiplayer game, your chances of having a good
-time are mixed&lt;sup id="fnref:378-1"&gt;&lt;a class="footnote-ref" href="#fn:378-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I've been into a couple of lobbies that have been really
+time are mixed&lt;sup id="fnref:379-1"&gt;&lt;a class="footnote-ref" href="#fn:379-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I've been into a couple of lobbies that have been really
 fun, with a good mix of folk, who all seem to have joined to have a good
 time. I've also joined matches where it's just kids wanting to be edgelords
 on the Internet. Thankfully, so far, it's more the former than the latter.
@@ -658,8 +718,8 @@ while to come.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:378-1"&gt;
-&lt;p&gt;It does have bot matches too, so you can do some limited single-player gameplay.&amp;#160;&lt;a class="footnote-backref" href="#fnref:378-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:379-1"&gt;
+&lt;p&gt;It does have bot matches too, so you can do some limited single-player gameplay.&amp;#160;&lt;a class="footnote-backref" href="#fnref:379-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -727,7 +787,7 @@ to reach different buttons, which then meant I was often having to peek
 under the headset to actually see where my fingers were landing.&lt;/p&gt;
 &lt;p&gt;Honestly, in terms of ergonomics, I'd say the Frame's controllers are worse
 than those of the Quest 2, but slightly better than the ones that come with
-the PSVR2&lt;sup id="fnref:436-1"&gt;&lt;a class="footnote-ref" href="#fn:436-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+the PSVR2&lt;sup id="fnref:437-1"&gt;&lt;a class="footnote-ref" href="#fn:437-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;There's also the complication of the controller straps that come in the
 ergonomic kit. I love these sorts of straps (the kind that goes around the
 back of your hand) as they generally make controller use more comfortable.
@@ -749,7 +809,7 @@ as high as it will go.&lt;/p&gt;
 tried out yet. I wear glasses; I'm short-sighted and have an astigmatism
 that needs correcting. Given the design of the headset there's no way I was
 going to wear my specs while using it, so for the moment I'm playing
-unaided&lt;sup id="fnref:436-2"&gt;&lt;a class="footnote-ref" href="#fn:436-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. Despite that I found the display very readable (to be fair, I'm
+unaided&lt;sup id="fnref:437-2"&gt;&lt;a class="footnote-ref" href="#fn:437-2"&gt;2&lt;/a&gt;&lt;/sup&gt;. Despite that I found the display very readable (to be fair, I'm
 not &lt;em&gt;that&lt;/em&gt; short-sighted).&lt;/p&gt;
 &lt;p&gt;What is slightly disappointing is the lack of an actual "home" when you boot
 up the headset. This feels like a missed opportunity. Like, sure, the
@@ -851,7 +911,7 @@ before&lt;/a&gt;,
 and do feel it's pretty much the peak VR experience. The idea that this
 could work standalone was wild to me. I know Valve have worked hard on
 making it work, and are promoting it to the point of bundling it with the
-Frame&lt;sup id="fnref:436-3"&gt;&lt;a class="footnote-ref" href="#fn:436-3"&gt;3&lt;/a&gt;&lt;/sup&gt;, but it still felt like it was going to be a bad time.&lt;/p&gt;
+Frame&lt;sup id="fnref:437-3"&gt;&lt;a class="footnote-ref" href="#fn:437-3"&gt;3&lt;/a&gt;&lt;/sup&gt;, but it still felt like it was going to be a bad time.&lt;/p&gt;
 &lt;p&gt;It wasn't a bad time. It was a good time.&lt;/p&gt;
 &lt;p&gt;While it's very obvious that the graphics have been dialled down, and while
 I did see a fair bit of pop-in of assets from time to time, generally it
@@ -882,16 +942,16 @@ again thanks to this little device making it very accessible.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:436-1"&gt;
+&lt;li id="fn:437-1"&gt;
 &lt;p&gt;I'd place the PSVR2 higher than the Frame if it wasn't for the fact
 that I find the grips of the controllers far too bulky and very
-difficult to keep gripped for an extended period of time.&amp;#160;&lt;a class="footnote-backref" href="#fnref:436-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+difficult to keep gripped for an extended period of time.&amp;#160;&lt;a class="footnote-backref" href="#fnref:437-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:436-2"&gt;
-&lt;p&gt;I will be getting prescription inserts when they become available.&amp;#160;&lt;a class="footnote-backref" href="#fnref:436-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:437-2"&gt;
+&lt;p&gt;I will be getting prescription inserts when they become available.&amp;#160;&lt;a class="footnote-backref" href="#fnref:437-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:436-3"&gt;
-&lt;p&gt;Pity us poor souls who already own it I guess.&amp;#160;&lt;a class="footnote-backref" href="#fnref:436-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:437-3"&gt;
+&lt;p&gt;Pity us poor souls who already own it I guess.&amp;#160;&lt;a class="footnote-backref" href="#fnref:437-3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -975,7 +1035,7 @@ on-device voice handling, these requests have been near-instant.&lt;/p&gt;
 &lt;p&gt;With the new Siri that comes with iOS 27, etc., if I'm really lucky the
 reply will be super slow (getting on for 20 seconds or so to do the job),
 but more often than not it just doesn't work at all. Either it tells me that
-my main device isn't available right now&lt;sup id="fnref:434-1"&gt;&lt;a class="footnote-ref" href="#fn:434-1"&gt;1&lt;/a&gt;&lt;/sup&gt; (which I take to mean my
+my main device isn't available right now&lt;sup id="fnref:435-1"&gt;&lt;a class="footnote-ref" href="#fn:435-1"&gt;1&lt;/a&gt;&lt;/sup&gt; (which I take to mean my
 &lt;a href="https://blog.davep.org/tag/iphone/"&gt;iPhone&lt;/a&gt;, which is wild given it's always in my pocket at the
 time), or it just busy spins for ages and then simply times out and does
 nothing.&lt;/p&gt;
@@ -986,7 +1046,7 @@ ages without getting anything done, or it finally tells me it isn't working.&lt;
 &lt;em&gt;"Apple Intelligence"&lt;/em&gt;. I was, unsurprisingly, kind of annoyed that they
 didn't deliver. But it was fine, the phone is a good one and it's still
 serving me well. Also, if I'm honest, I was comfortable with the idea that
-they chose to not really implement anything&lt;sup id="fnref:434-2"&gt;&lt;a class="footnote-ref" href="#fn:434-2"&gt;2&lt;/a&gt;&lt;/sup&gt; rather than implement
+they chose to not really implement anything&lt;sup id="fnref:435-2"&gt;&lt;a class="footnote-ref" href="#fn:435-2"&gt;2&lt;/a&gt;&lt;/sup&gt; rather than implement
 something bad.&lt;/p&gt;
 &lt;p&gt;Sadly though, based on my experience so far, they've implemented something
 bad. Since upgrading, on the Watch and iPhone, I've found that it's either
@@ -995,13 +1055,13 @@ benefit of the on-device voice handling of my watches.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:434-1"&gt;
-&lt;p&gt;Or words to that effect; I can't remember the exact wording.&amp;#160;&lt;a class="footnote-backref" href="#fnref:434-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:435-1"&gt;
+&lt;p&gt;Or words to that effect; I can't remember the exact wording.&amp;#160;&lt;a class="footnote-backref" href="#fnref:435-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id="fn:434-2"&gt;
+&lt;li id="fn:435-2"&gt;
 &lt;p&gt;I mean, of course, they did do the image playground and writing tools,
 but they're hardly the leap forward in assistant intelligence that was
-originally being hinted at.&amp;#160;&lt;a class="footnote-backref" href="#fnref:434-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+originally being hinted at.&amp;#160;&lt;a class="footnote-backref" href="#fnref:435-2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -1218,66 +1278,6 @@ if nothing else.&lt;/p&gt;</description>
       <category>VR</category>
       <category>gaming</category>
       <pubDate>Fri, 18 Sep 2026 08:54:45 +0100</pubDate>
-    </item>
-    <item>
-      <title>GitHub PR reviews broken</title>
-      <link>https://blog.davep.org/2026/09/13/github-pr-reviews-broken.html</link>
-      <description>&lt;p&gt;Late on last week I was doing a PR review at work and noticed that, for some
-odd reason, the author of the PR seemed to have absolutely nuked all of the
-indentation in the code. While not a problem given the nature of the files I
-was reviewing, I wasn't happy with their apparent disregard for style and
-good practice, and was about to leave a remark and a request for changes.
-But something seemed off. So I did a refresh of the page and... everything
-fell into place.&lt;/p&gt;
-&lt;p&gt;Weird.&lt;/p&gt;
-&lt;p&gt;Since then I've seen the issue on multiple machines. To be fair, each time
-it's been in Safari, and each time I've been busy with something else so
-haven't had the chance to really dive into it. But given it's suddenly
-cropped up, at the same time, on multiple machines, with nothing else
-changing, it feels like something on the GitHub side of things.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Broken code review" height="2056" loading="lazy" src="https://blog.davep.org/attachments/2026/09/13/borked-code-review.webp#centre" width="2600" /&gt;&lt;/p&gt;
-&lt;p&gt;Perhaps I'm letting a bit of bias creep in here, but I feel like this sort
-of thing is happening more and more on GitHub. It's not that long back since
-&lt;a href="https://blog.davep.org/2026/08/21/github-social-preview-is-broken.html"&gt;social previews suddenly
-broke&lt;/a&gt;, for example. It's
-hard to shake the idea that changes are being made without regard to
-comprehensive testing, and likely without regard to how things connect.&lt;/p&gt;
-&lt;p&gt;Now, at this point, it would be easy to reach for the &lt;em&gt;"well they're
-obviously using agents to do most of the work"&lt;/em&gt; argument -- and I'm sure
-plenty of people would -- but that doesn't quite fit with my experience.
-Having experimented with such tools for a good chunk of this year now, both
-for personal and, more recently, professional projects, I've generally found
-that such tooling easily helps with catching such issues.&lt;/p&gt;
-&lt;p&gt;Plenty of times now, when using something like
-&lt;a href="https://blog.davep.org/tag/antigravity/"&gt;Antigravity&lt;/a&gt; or Claude Code to work on some code, I've
-found that with reasonable care (you know: the sort of care you'd put into
-your work anyway) you can quickly and easily uncover connections and
-knock-on effects you might not have immediately noticed. Moreover, if LLMs
-are useful for anything when it comes to coding, it's for writing tests&lt;sup id="fnref:426-1"&gt;&lt;a class="footnote-ref" href="#fn:426-1"&gt;1&lt;/a&gt;&lt;/sup&gt;.
-With that in mind you should be able to reasonably expect the number of
-silly bugs to go down.&lt;/p&gt;
-&lt;p&gt;Unless, of course, there's no human in the loop anywhere, or the human in
-the loop lacks adequate training and experience, or, I guess, they simply
-lack the ability to give a shit.&lt;/p&gt;
-&lt;p&gt;I wonder when this particular issue will get fixed? I should probably go and
-see if it's reported in the GitHub forums anywhere. I know for sure that
-there's little point in actually reporting it as a bug; my experiences with
-that in the past haven't been great, and the GitHub subreddit has seen
-enough stories of people getting nowhere.&lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:426-1"&gt;
-&lt;p&gt;Arguably they're a little too good at it to the point of coming round
-the other side and doing badly again, if you don't keep an eye on things.&amp;#160;&lt;a class="footnote-backref" href="#fnref:426-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/09/13/github-pr-reviews-broken.html</guid>
-      <category>Tech</category>
-      <category>GitHub</category>
-      <category>web</category>
-      <pubDate>Sun, 13 Sep 2026 15:19:16 +0100</pubDate>
     </item>
   </channel>
 </rss>

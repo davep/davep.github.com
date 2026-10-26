@@ -8,7 +8,67 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 25 Oct 2026 09:31:39 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 26 Oct 2026 09:44:56 +0000</lastBuildDate>
+    <item>
+      <title>Wasat v1.10.0</title>
+      <link>https://blog.davep.org/2026/10/26/wasat-v1-10-0.html</link>
+      <description>&lt;p&gt;Since getting into &lt;a href="https://blog.davep.org/tag/gemini-protocol/"&gt;Gemini&lt;/a&gt;, one of my daily rituals
+has been to tend to my plant in
+&lt;a href="gemini://astrobotany.mozz.us/" rel="noopener noreferrer" target="_blank"&gt;AstroBotany&lt;/a&gt;. This morning, when trying to
+visit there with &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt;, I was greeted with
+this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Expired certificate" height="948" loading="lazy" src="https://blog.davep.org/attachments/2026/10/26/astro-error.webp#centre" width="996" /&gt;&lt;/p&gt;
+&lt;p&gt;In other words: the certificate has expired&lt;sup id="fnref:373-1"&gt;&lt;a class="footnote-ref" href="#fn:373-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. At this point, the error
+dialog isn't &lt;em&gt;that&lt;/em&gt; useful. It's pretty much designed for dealing with
+capsules that are using self-signed certificates -- where TOFU is being used
+and so it would normally make sense to just forget and re-establish trust.
+With an expired CA certificate, the act of forgetting does nothing, it'll
+just fail again.&lt;/p&gt;
+&lt;p&gt;While it's technically fine to simply refuse to progress, in this case, it's
+not exactly friendly to the user. What would be sensible would be to allow
+an &lt;em&gt;"Ignore"&lt;/em&gt; option. This would, I imagine, ignore the problem for the
+current Rogallo session -- ideally with some sort of indication that the
+capsule is suspicious at the moment. Also, the dialog that gives you this
+option should show all the certificate details so the user can make an
+informed decision.&lt;/p&gt;
+&lt;p&gt;The issue here is that, until now, Wasat has dealt with security-type
+problems by raising a single &lt;code&gt;SecurityError&lt;/code&gt; exception. Aside from
+dumpster-diving the description in the exception, there's no way of knowing
+the nature of the security issue.
+&lt;a href="https://wasat.davep.dev/changelog/#v1100" rel="noopener noreferrer" target="_blank"&gt;v1.10.0&lt;/a&gt; addresses this by adding
+and raising many different exceptions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;CertificateExpiredError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CertificateNotYetValidError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CertificateRejectedError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CertificateRevokedError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CertificateUntrustedError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FingerprintMismatchError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;HostnameMismatchError&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All of these inherit from &lt;code&gt;SecurityError&lt;/code&gt; to maintain
+backward-compatibility.&lt;/p&gt;
+&lt;p&gt;While this change doesn't alter the way that Rogallo handles this situation
+right now, it does at least set me up for &lt;a href="https://github.com/davep/rogallo/issues/498" rel="noopener noreferrer" target="_blank"&gt;tackling the work I have
+planned&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:373-1"&gt;
+&lt;p&gt;By the looks of things it expired at 2026-10-26T01:52:07+00:00&amp;#160;&lt;a class="footnote-backref" href="#fnref:373-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+      <guid isPermaLink="false">https://blog.davep.org/2026/10/26/wasat-v1-10-0.html</guid>
+      <category>Python</category>
+      <category>Coding</category>
+      <category>Gemini Protocol</category>
+      <category>PyPI</category>
+      <category>Python</category>
+      <category>smolweb</category>
+      <category>wasat</category>
+      <pubDate>Mon, 26 Oct 2026 09:14:44 +0000</pubDate>
+    </item>
     <item>
       <title>GopherMap v1.1.0</title>
       <link>https://blog.davep.org/2026/09/22/gophermap-v1-1-0.html</link>
@@ -112,7 +172,7 @@ display can be a little richer. In effect, this is a sibling to
 Gemtext, where it makes sense. For the most part, finger responses are
 free-form plain text, but there are times when there's information in the
 response that would be of most use if you could interact with it. For
-example, if you get a user list from &lt;code&gt;plan.cat&lt;/code&gt;&lt;sup id="fnref:433-1"&gt;&lt;a class="footnote-ref" href="#fn:433-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, that's a lot of data
+example, if you get a user list from &lt;code&gt;plan.cat&lt;/code&gt;&lt;sup id="fnref:434-1"&gt;&lt;a class="footnote-ref" href="#fn:434-1"&gt;1&lt;/a&gt;&lt;/sup&gt;, that's a lot of data
 that could be turned into &lt;code&gt;finger://&lt;/code&gt; URIs that can be subsequently
 followed.&lt;/p&gt;
 &lt;p&gt;With this in mind, &lt;a href="https://finger2gemtext.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;finger2gemtext&lt;/code&gt;&lt;/a&gt; can
@@ -141,8 +201,8 @@ things worth making linkable...&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:433-1"&gt;
-&lt;p&gt;&lt;code&gt;finger @plan.cat&lt;/code&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:433-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:434-1"&gt;
+&lt;p&gt;&lt;code&gt;finger @plan.cat&lt;/code&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:434-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -243,7 +303,7 @@ now in place.&lt;/p&gt;</description>
 PR&lt;/a&gt; for
 &lt;a href="https://rogallo.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Rogallo&lt;/a&gt; is &lt;em&gt;very&lt;/em&gt; close to completion now --
 although the thing has grown arms and legs and turned into a bit of a UI
-overhaul&lt;sup id="fnref:464-1"&gt;&lt;a class="footnote-ref" href="#fn:464-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Something I wanted to add was a quick and easy way for the
+overhaul&lt;sup id="fnref:465-1"&gt;&lt;a class="footnote-ref" href="#fn:465-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. Something I wanted to add was a quick and easy way for the
 user to view the details of a client certificate that's being used for the
 current page. Rogallo lets you do this for the server certificate, but not
 the client certificate.&lt;/p&gt;
@@ -257,8 +317,8 @@ line...&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:464-1"&gt;
-&lt;p&gt;Not unrelated. The UI overhaul was in support of the client certificate manager.&amp;#160;&lt;a class="footnote-backref" href="#fnref:464-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:465-1"&gt;
+&lt;p&gt;Not unrelated. The UI overhaul was in support of the client certificate manager.&amp;#160;&lt;a class="footnote-backref" href="#fnref:465-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -351,7 +411,7 @@ iterables &lt;em&gt;isn't&lt;/em&gt; supported and will raise a &lt;code&gt;NotI
 other slice-based operations aren't supported either.&lt;/p&gt;
 &lt;p&gt;While this is close to a breaking change, it's fine for my use of this code.
 However, I had to make one big breaking change: I'd written &lt;code&gt;clear&lt;/code&gt; so that
-it returned &lt;code&gt;Self&lt;/code&gt;&lt;sup id="fnref:455-1"&gt;&lt;a class="footnote-ref" href="#fn:455-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The interface expected by &lt;code&gt;MutableSequence&lt;/code&gt; is one
+it returned &lt;code&gt;Self&lt;/code&gt;&lt;sup id="fnref:456-1"&gt;&lt;a class="footnote-ref" href="#fn:456-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. The interface expected by &lt;code&gt;MutableSequence&lt;/code&gt; is one
 that returns &lt;code&gt;None&lt;/code&gt;. So to strictly comply with that interface, I've changed
 the return type.&lt;/p&gt;
 &lt;p&gt;With this being a breaking change, I've bumped the library version to
@@ -361,11 +421,11 @@ that the API has changed. That deserves a major version bump.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:455-1"&gt;
+&lt;li id="fn:456-1"&gt;
 &lt;p&gt;I tend to prefer that a method that might return &lt;code&gt;None&lt;/code&gt; actually
 return &lt;code&gt;Self&lt;/code&gt;; it allows for chaining. I recognise that there are other
 schools of thought about this in the Python world; I'm not a member of
-those schools.&amp;#160;&lt;a class="footnote-backref" href="#fnref:455-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+those schools.&amp;#160;&lt;a class="footnote-backref" href="#fnref:456-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -426,7 +486,7 @@ I was busy working on something else.&lt;/p&gt;
 &lt;p&gt;Yesterday evening &lt;a href="https://github.com/davep/rogallo/issues/290#issuecomment-5304008984" rel="noopener noreferrer" target="_blank"&gt;I finally managed to come up with a way to always
 recreate
 it&lt;/a&gt;
-and, having done so, the solution seems pretty straightforward&lt;sup id="fnref:450-1"&gt;&lt;a class="footnote-ref" href="#fn:450-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In order
+and, having done so, the solution seems pretty straightforward&lt;sup id="fnref:451-1"&gt;&lt;a class="footnote-ref" href="#fn:451-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. In order
 to implement the tweak I want, I need to be able to truncate the navigation
 history, and of course do so in a non-destructive way.&lt;/p&gt;
 &lt;p&gt;So the history classes in BagOfStuff
@@ -439,8 +499,8 @@ current location, then save it, without affecting the working copy.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:450-1"&gt;
-&lt;p&gt;Why do I feel like I'll regret saying that?&amp;#160;&lt;a class="footnote-backref" href="#fnref:450-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:451-1"&gt;
+&lt;p&gt;Why do I feel like I'll regret saying that?&amp;#160;&lt;a class="footnote-backref" href="#fnref:451-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -549,7 +609,7 @@ That's... doable.&lt;/p&gt;
 &lt;li&gt;Dragging in a reasonably large dependency for what's likely to be a niche
   requirement doesn't quite feel right.&lt;/li&gt;
 &lt;li&gt;Textual's Markdown viewer has, to this day, one massive design flaw: links
-  can't be navigated with the keyboard&lt;sup id="fnref:458-1"&gt;&lt;a class="footnote-ref" href="#fn:458-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'm doing my absolute best to
+  can't be navigated with the keyboard&lt;sup id="fnref:459-1"&gt;&lt;a class="footnote-ref" href="#fn:459-1"&gt;1&lt;/a&gt;&lt;/sup&gt;. I'm doing my absolute best to
   ensure that Rogallo is keyboard-first. Leaning on this widget for viewing
   Markdown is one thing, but leaning on the widget for other content types
   starts to erode that aim.&lt;/li&gt;
@@ -589,8 +649,8 @@ into an &lt;code&gt;http(s)&lt;/code&gt; browser too. Right? Right?!?&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id="fn:458-1"&gt;
-&lt;p&gt;This mouse-only problem is a recurring theme in Textual.&amp;#160;&lt;a class="footnote-backref" href="#fnref:458-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;li id="fn:459-1"&gt;
+&lt;p&gt;This mouse-only problem is a recurring theme in Textual.&amp;#160;&lt;a class="footnote-backref" href="#fnref:459-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
@@ -717,67 +777,6 @@ Rogallo relating to host certificates.&lt;/p&gt;</description>
       <category>smolweb</category>
       <category>wasat</category>
       <pubDate>Thu, 30 Jul 2026 16:04:09 +0100</pubDate>
-    </item>
-    <item>
-      <title>Wasat v1.2.0</title>
-      <link>https://blog.davep.org/2026/07/30/wasat-v1-2-0.html</link>
-      <description>&lt;p&gt;I've just released &lt;a href="https://wasat.davep.dev/" rel="noopener noreferrer" target="_blank"&gt;Wasat&lt;/a&gt;
-&lt;a href="https://wasat.davep.dev/changelog/#v120" rel="noopener noreferrer" target="_blank"&gt;v1.2.0&lt;/a&gt;. This release aims to help
-out with a change I want to make in &lt;a href="https://blog.davep.org/tag/rogallo/"&gt;Rogallo&lt;/a&gt; in relation to
-certificate verification.&lt;/p&gt;
-&lt;p&gt;The issue is that, until now, Wasat offered either &lt;code&gt;ca&lt;/code&gt; or &lt;code&gt;tofu&lt;/code&gt; as
-verification modes. Meanwhile Rogallo was using &lt;code&gt;tofu&lt;/code&gt;. Long story short:
-&lt;a href="https://github.com/davep/rogallo/issues/221" rel="noopener noreferrer" target="_blank"&gt;this meant that sometimes some sites looked like they were changing
-fingerprint way more often than you'd
-expect&lt;/a&gt;. The obvious solution
-here is to first check if a site can be validated via the &lt;code&gt;ca&lt;/code&gt; route and, if
-not, fall back to the &lt;code&gt;tofu&lt;/code&gt; route. This sort of change could have been made
-in Rogallo itself, but it would have been inelegant. Rogallo maintains a
-single Gemini client object, and the verification mode is baked in when the
-object is created. To move to this &lt;em&gt;"try one way then the other"&lt;/em&gt; approach
-would have meant either maintaining two instances of the object, or tearing
-it down and making another each time we connected to a capsule.&lt;/p&gt;
-&lt;p&gt;Nah.&lt;/p&gt;
-&lt;p&gt;So the
-&lt;a href="https://wasat.davep.dev/library/client/#wasat.client.Client(verify_mode)" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;verify_mode&lt;/code&gt;&lt;/a&gt;
-of the
-&lt;a href="https://wasat.davep.dev/library/client/#wasat.client.Client" rel="noopener noreferrer" target="_blank"&gt;&lt;code&gt;Client&lt;/code&gt;&lt;/a&gt; has
-grown a new option: &lt;code&gt;hybrid&lt;/code&gt;. When set to &lt;code&gt;hybrid&lt;/code&gt;, the client will do the
-dance mentioned above: it will try and see if &lt;code&gt;ca&lt;/code&gt; will work and, if it
-does, it will take that approach. If it fails, it will then fall back on
-pure &lt;code&gt;tofu&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Out of the box, the defaults for the client are the same (it uses &lt;code&gt;ca&lt;/code&gt; by
-default), and for the moment Rogallo is still hard-baked to &lt;code&gt;tofu&lt;/code&gt;; given
-this, there should be no change in how things work when Wasat is updated.
-Now that this is up on PyPI, I'm going to pin Rogallo's use of &lt;code&gt;wasat&lt;/code&gt; to
-&lt;code&gt;&amp;gt;=1.2.0&lt;/code&gt; and then, in an update, I'll swap over to &lt;code&gt;hybrid&lt;/code&gt;. Hopefully this
-will result in a smoother journey when using sites like
-&lt;a href="gemini://astrobotany.mozz.us/app" rel="noopener noreferrer" target="_blank"&gt;AstroBotany&lt;/a&gt; and
-&lt;a href="gemini://station.martinrue.com/" rel="noopener noreferrer" target="_blank"&gt;Station&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="admonition admonition-note"&gt;
-&lt;div class="admonition-title"&gt;ℹ️ Note&lt;/div&gt;
-&lt;div class="admonition-content"&gt;
-&lt;p&gt;While writing this, I've noticed that there's one change I still need to
-make to this hybrid flow. I realised that, at the moment, &lt;em&gt;any&lt;/em&gt; kind of CA
-failure will result in a fallback to TOFU. That's not ideal and needs
-refining. All part of the learning process.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr /&gt;
-&lt;p&gt;PS: If you're wondering what happened to v1.1.0 of Wasat... there wasn't
-one. While preparing this release, I was also fighting with the fact that my
-MX Mechanical Mini keyboard seemed to be dying (and its battery &lt;em&gt;does&lt;/em&gt; seem
-to be dying) and, because of that, managed to bump the version from v1.0.1
-to v1.2.0. Oh well...&lt;/p&gt;</description>
-      <guid isPermaLink="false">https://blog.davep.org/2026/07/30/wasat-v1-2-0.html</guid>
-      <category>Python</category>
-      <category>Coding</category>
-      <category>Gemini Protocol</category>
-      <category>PyPI</category>
-      <category>Python</category>
-      <category>smolweb</category>
-      <category>wasat</category>
-      <pubDate>Thu, 30 Jul 2026 08:45:09 +0100</pubDate>
     </item>
   </channel>
 </rss>
