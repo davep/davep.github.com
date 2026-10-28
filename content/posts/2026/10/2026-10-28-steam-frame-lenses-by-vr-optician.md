@@ -1,6 +1,6 @@
 ---
 title: "Steam Frame lenses by VR Optician"
-date: "2026-10-28 14:39:31+0000"
+date: "2026-10-28 15:30:46+0000"
 category: Gaming
 tags: [PCVR, Steam, "Steam Frame", VR, gaming]
 series: ["Buying the Steam Frame"]
